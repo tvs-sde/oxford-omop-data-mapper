@@ -179,6 +179,12 @@
     <None Update="COSD\Breast\Observation\CosdV9BreastAdultComorbidityEvaluation\CosdV9BreastAdultComorbidityEvaluation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastAsaScore\CosdV9BreastAsaScore.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastFamilialCancerSyndrome\CosdV9BreastFamilialCancerSyndrome.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Lung\ConditionOccurrence\CosdV8LungConditionOccurrencePrimaryDiagnosis\CosdV8LungConditionOccurrencePrimaryDiagnosis.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
