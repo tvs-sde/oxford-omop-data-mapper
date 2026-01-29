@@ -1,0 +1,63 @@
+<Query>
+  <Sql>
+with BR as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(
+            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
+            Record ->> '$.Treatment.TreatmentStartDateCancer'
+        ) as TreatmentStartDateCancer,
+        coalesce(
+            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
+            Record ->> '$.Treatment.Surgery.ProcedureDate'
+        ) as ProcedureDate,
+        -- Quoting used to handle the hyphen in the field name safely
+        Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select
+    distinct
+        AdultComorbidityEvaluation,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(StageDateIntegratedStage as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from BR o
+where o.AdultComorbidityEvaluation is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+  </Sql>
+  <Explanations>
+    <Explanation columnName="AdultComorbidityEvaluation">
+      <Description>Adult Comorbidity Evaluation Score</Description>
+      <Origin>AdultComorbidityEvaluation-27Score</Origin>
+    </Explanation>
+    <Explanation columnName="NhsNumber">
+      <Description>Patient NHS Number</Description>
+      <Origin>NHS NUMBER</Origin>
+    </Explanation>
+    <Explanation columnName="Date">
+      <Description>Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)</Description>
+      <Origin>Multiple date sources</Origin>
+    </Explanation>
+  </Explanations>
+</Query>

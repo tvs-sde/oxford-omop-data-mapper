@@ -19,6 +19,14 @@ using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV8BreastProcedureOccur
 using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV9BreastProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV9BreastProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Breast.Observation.CosdV8BreastAdultComorbidityEvaluation;
+using OmopTransformer.COSD.Breast.Observation.CosdV8BreastFamilialCancerSyndromeIndicator;
+using OmopTransformer.COSD.Breast.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
+using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSmokingStatusCode;
+using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
+using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSourceOfReferralOutPatients;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastAdultComorbidityEvaluation;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastAsaScore;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastFamilialCancerSyndrome;
 using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementMcategoryIntegratedStage;
@@ -563,6 +571,54 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8BreastAdultComorbidityEvaluationRecord, CosdV8BreastAdultComorbidityEvaluation>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8BreastAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8BreastFamilialCancerSyndromeIndicatorRecord, CosdV8BreastFamilialCancerSyndromeIndicator>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV8BreastFamilialCancerSyndromeIndicator",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosisRecord, CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8BreastSmokingStatusCodeRecord, CosdV8BreastSmokingStatusCode>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV8BreastSmokingStatusCode",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathwayRecord, CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8BreastSourceOfReferralOutPatientsRecord, CosdV8BreastSourceOfReferralOutPatients>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV8BreastSourceOfReferralOutPatients",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastAdultComorbidityEvaluationRecord, CosdV9BreastAdultComorbidityEvaluation>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastAsaScoreRecord, CosdV9BreastAsaScore>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastAsaScore",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastFamilialCancerSyndromeRecord, CosdV9BreastFamilialCancerSyndrome>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastFamilialCancerSyndrome",
             runId,
             cancellationToken);
 

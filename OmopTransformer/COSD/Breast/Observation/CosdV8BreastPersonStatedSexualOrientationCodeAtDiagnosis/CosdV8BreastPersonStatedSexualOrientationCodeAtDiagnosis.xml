@@ -1,0 +1,50 @@
+<Query>
+  <Sql>
+with BR as (
+select 
+    Record ->> '$.Breast.BreastCore.BreastCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
+    ) as ProcedureDate,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'
+    ) as CancerTreatmentStartDate,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'BR'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from BR o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+    ClinicalDateCancerDiagnosis is null and
+    ProcedureDate is null and
+    CancerTreatmentStartDate is null
+    );
+  </Sql>
+  <Explanations>
+    <Explanation columnName="PersonStatedSexualOrientationCodeAtDiagnosis">
+      <Description>Person Stated Sexual Orientation Code At Diagnosis</Description>
+      <Origin>PersonStatedSexualOrientationCodeAtDiagnosis</Origin>
+    </Explanation>
+    <Explanation columnName="NhsNumber">
+      <Description>Patient NHS Number</Description>
+      <Origin>NHS NUMBER</Origin>
+    </Explanation>
+    <Explanation columnName="Date">
+      <Description>Approximated date from earliest available date field (diagnosis, procedure or treatment dates)</Description>
+      <Origin>Multiple date sources</Origin>
+    </Explanation>
+  </Explanations>
+</Query>

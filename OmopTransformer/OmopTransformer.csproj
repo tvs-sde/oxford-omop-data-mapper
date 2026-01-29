@@ -161,6 +161,30 @@
     <None Update="COSD\Breast\Observation\CosdV8BreastAdultComorbidityEvaluation\CosdV8BreastAdultComorbidityEvaluation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\Breast\Observation\CosdV8BreastFamilialCancerSyndromeIndicator\CosdV8BreastFamilialCancerSyndromeIndicator.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis\CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV8BreastSmokingStatusCode\CosdV8BreastSmokingStatusCode.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway\CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV8BreastSourceOfReferralOutPatients\CosdV8BreastSourceOfReferralOutPatients.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastAdultComorbidityEvaluation\CosdV9BreastAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastAsaScore\CosdV9BreastAsaScore.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastFamilialCancerSyndrome\CosdV9BreastFamilialCancerSyndrome.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Lung\ConditionOccurrence\CosdV8LungConditionOccurrencePrimaryDiagnosis\CosdV8LungConditionOccurrencePrimaryDiagnosis.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

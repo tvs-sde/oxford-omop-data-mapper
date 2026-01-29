@@ -311,6 +311,38 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `40488785`. Adult comorbidity evaluation-27
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
+### CosdV9BreastFamilialCancerSyndrome
+* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
+### CosdV9BreastAsaScore
+* Constant value set to `4185914`. Identification of physical status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
+### COSD V9 Breast Adult Comorbidity Evaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 Breast Source Of Referral Out Patients
+* Constant value set to `4258129`. Referral by
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Source%20Of%20Referral%20Out%20Patients%20mapping){: .btn }
+### COSD V8 Breast Source Of Referral For Out Patients Non Primary Cancer Pathway
+* Constant value set to `4258129`. Referral by
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Source%20Of%20Referral%20For%20Out%20Patients%20Non%20Primary%20Cancer%20Pathway%20mapping){: .btn }
+### COSD V8 Breast Smoking Status Code
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Smoking%20Status%20Code%20mapping){: .btn }
+### COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis
+* Constant value set to `4036080`. Orientation of sexual relationship
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
+### COSD V8 Breast Familial Cancer Syndrome Indicator
+* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 Breast Adult Comorbidity Evaluation
 * Constant value set to `40488785`. Adult comorbidity evaluation-27
 

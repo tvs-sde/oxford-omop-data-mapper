@@ -749,6 +749,86 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
+## CosdV9BreastFamilialCancerSyndrome
+<a href="CosdV9BreastFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9BreastFamilialCancerSyndrome.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
+## CosdV9BreastAsaScore
+<a href="CosdV9BreastAsaScore.svg" target="_blank"><img src="CosdV9BreastAsaScore.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastAsaScore%20mapping){: .btn }
+## CosdV9BreastAdultComorbidityEvaluation
+<a href="CosdV9BreastAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9BreastAdultComorbidityEvaluation.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastAdultComorbidityEvaluation%20mapping){: .btn }
+## CosdV8BreastSourceOfReferralOutPatients
+<a href="CosdV8BreastSourceOfReferralOutPatients.svg" target="_blank"><img src="CosdV8BreastSourceOfReferralOutPatients.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastSourceOfReferralOutPatients%20mapping){: .btn }
+## CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway
+<a href="CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway.svg" target="_blank"><img src="CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway%20mapping){: .btn }
+## CosdV8BreastSmokingStatusCode
+<a href="CosdV8BreastSmokingStatusCode.svg" target="_blank"><img src="CosdV8BreastSmokingStatusCode.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastSmokingStatusCode%20mapping){: .btn }
+## CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis
+<a href="CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis.svg" target="_blank"><img src="CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
+## CosdV8BreastFamilialCancerSyndromeIndicator
+<a href="CosdV8BreastFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8BreastFamilialCancerSyndromeIndicator.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## CosdV8BreastAdultComorbidityEvaluation
 <a href="CosdV8BreastAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8BreastAdultComorbidityEvaluation.svg" /></a>
 
