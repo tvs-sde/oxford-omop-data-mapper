@@ -1,0 +1,110 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TCategoryIntegratedStage\nfrom BR\nwhere TCategoryIntegratedStage is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "The date of the staging measurement, either the integrated stage date or diagnosis date as fallback.",
+          "origins": [
+            {
+              "origin": "STAGE DATE INTEGRATED STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TCategoryIntegratedStage\nfrom BR\nwhere TCategoryIntegratedStage is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "The date of the staging measurement, either the integrated stage date or diagnosis date as fallback.",
+          "origins": [
+            {
+              "origin": "STAGE DATE INTEGRATED STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TCategoryIntegratedStage\nfrom BR\nwhere TCategoryIntegratedStage is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `2000500019`. TCategoryIntegratedStage",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Lookup TCategory concepts.",
+      "dataSource": [
+        {
+          "name": "TCategoryIntegratedStage",
+          "description": "The T category (tumour size) of the integrated stage in TNM staging.",
+          "origins": [
+            {
+              "origin": "T CATEGORY (INTEGRATED STAGE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TCategoryIntegratedStage\nfrom BR\nwhere TCategoryIntegratedStage is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|TCategoryIntegratedStage|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|0|1634213|AJCC/UICC T0 Category|\r\n|1|1635564|AJCC/UICC T1 Category|\r\n|1a|1633880|AJCC/UICC T1a Category|\r\n|1b|1633921|AJCC/UICC T1b Category|\r\n|1c|1633529|AJCC/UICC T1c Category|\r\n|1d|1634100|AJCC/UICC T1d Category|\r\n|2|1635562|AJCC/UICC T2 Category|\r\n|2a|1635327|AJCC/UICC T2a Category|\r\n|2b|1633593|AJCC/UICC T2b Category|\r\n|2c|1635270|AJCC/UICC T2c Category|\r\n|2d|1633678|AJCC/UICC T2d Category|\r\n|3|1634376|AJCC/UICC T3 Category|\r\n|3a|1633771|AJCC/UICC T3a Category|\r\n|3b|1634980|AJCC/UICC T3b Category|\r\n|3c|1633360|AJCC/UICC T3c Category|\r\n|3d|1635625|AJCC/UICC T3d Category|\r\n|3e|1634730|AJCC/UICC T3e Category|\r\n|4|1634654|AJCC/UICC T4 Category|\r\n|4a|1635222|AJCC/UICC T4a Category|\r\n|4b|1634436|AJCC/UICC T4b Category|\r\n|4c|1635526|AJCC/UICC T4c Category|\r\n|4d|1633909|AJCC/UICC T4d Category|\r\n|4e|1634193|AJCC/UICC T4e Category|\r\n|X|1635682|AJCC/UICC TX Category|\r\n\r\nNotes\r\n* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `TCategoryIntegratedStage`",
+      "dataSource": [
+        {
+          "name": "TCategoryIntegratedStage",
+          "description": "The T category (tumour size) of the integrated stage in TNM staging.",
+          "origins": [
+            {
+              "origin": "T CATEGORY (INTEGRATED STAGE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TCategoryIntegratedStage\nfrom BR\nwhere TCategoryIntegratedStage is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

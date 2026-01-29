@@ -749,3 +749,13 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
+## CosdV8BreastAdultComorbidityEvaluation
+<a href="CosdV8BreastAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8BreastAdultComorbidityEvaluation.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastAdultComorbidityEvaluation%20mapping){: .btn }

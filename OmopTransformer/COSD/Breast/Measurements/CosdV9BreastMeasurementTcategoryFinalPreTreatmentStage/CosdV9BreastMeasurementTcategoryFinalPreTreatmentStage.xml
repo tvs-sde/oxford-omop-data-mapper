@@ -1,0 +1,35 @@
+<Query>
+    <Sql>
+with BR as (
+    select 
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        coalesce(
+            Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        ) as MeasurementDate,
+        Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TcategoryFinalPreTreatment
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select distinct
+    NhsNumber,
+    MeasurementDate,
+    TcategoryFinalPreTreatment
+from BR
+where TcategoryFinalPreTreatment is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NHSNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>The date of the staging measurement, either the stage date or diagnosis date as fallback.</Description>
+			<Origin>STAGE DATE FINAL PRETREATMENT STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="TcategoryFinalPreTreatment">
+			<Description>The T category (tumour size) of the final pre-treatment stage in TNM staging.</Description>
+			<Origin>T CATEGORY (FINAL PRETREATMENT)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

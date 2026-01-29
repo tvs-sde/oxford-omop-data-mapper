@@ -2657,6 +2657,355 @@ where GradeOfDifferentiationAtDiagnosis is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
+### COSD V9 Breast Measurement Tumour Laterality
+Source column  `TumourLaterality`.
+Lookup TumourLaterality concepts.
+
+
+|TumourLaterality|measurement_concept_id|notes|
+|------|-----|-----|
+|L|36770232|Left|
+|R|36770058|Right|
+|M|36769853|Midline|
+|B|36770109|Bilateral|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Topography&page=1&pageSize=500&query=&boosts)
+* [NHS - Tumour Laterality](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html?hl=tumour%2Claterality)
+
+* `TumourLaterality` The laterality (side) of the tumour - Left (L), Right (R), Midline (M), or Bilateral (B). [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+select 
+    distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_901
+where type = 'BR'
+  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Breast%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V9 Breast Measurement TNM Category Integrated Stage
+Source column  `TnmStageGroupingIntegrated`.
+Lookup TNMCategory concepts.
+
+
+|TnmStageGroupingIntegrated|measurement_concept_id|notes|
+|------|-----|-----|
+|1|1635812|IRS-modified TNM stage 1|
+|I|1635812|IRS-modified TNM stage 1|
+|1a|1635812|IRS-modified TNM stage 1|
+|IA|1635812|IRS-modified TNM stage 1|
+|1a1|1633843|Stage 1A1|
+|IA1|1633843|Stage 1A1|
+|1a2|1634275|Stage 1A2|
+|IA2|1634275|Stage 1A2|
+|1a3|1633775|Stage 1A3|
+|IA3|1633775|Stage 1A3|
+|1b|1635812|IRS-modified TNM stage 1|
+|IB|1635812|IRS-modified TNM stage 1|
+|2|1635007|IRS-modified TNM stage 2|
+|II|1635007|IRS-modified TNM stage 2|
+|2a|1635007|IRS-modified TNM stage 2|
+|IIA|1635007|IRS-modified TNM stage 2|
+|2b|1635007|IRS-modified TNM stage 2|
+|IIB|1635007|IRS-modified TNM stage 2|
+|2c|1635007|IRS-modified TNM stage 2|
+|IIC|1635007|IRS-modified TNM stage 2|
+|3|1633995|IRS-modified TNM stage 3|
+|III|1633995|IRS-modified TNM stage 3|
+|3a|1633995|IRS-modified TNM stage 3|
+|IIIA|1633995|IRS-modified TNM stage 3|
+|3b|1633995|IRS-modified TNM stage 3|
+|IIIB|1633995|IRS-modified TNM stage 3|
+|3c|1633995|IRS-modified TNM stage 3|
+|IIIC|1633995|IRS-modified TNM stage 3|
+|4|1634737|IRS-modified TNM stage 4|
+|IV|1634737|IRS-modified TNM stage 4|
+|4a|1634737|IRS-modified TNM stage 4|
+|IVA|1634737|IRS-modified TNM stage 4|
+|4b|1634737|IRS-modified TNM stage 4|
+|IVB|1634737|IRS-modified TNM stage 4|
+|4c|1634737|IRS-modified TNM stage 4|
+|IVC|1634737|IRS-modified TNM stage 4|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TnmStageGroupingIntegrated` The TNM stage grouping (combined T, N, M categories) of the integrated stage. [TNM STAGE GROUPING (INTEGRATED STAGE)]()
+
+```sql
+with BR as (
+    select 
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        coalesce(
+            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        ) as MeasurementDate,
+        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select distinct
+    NhsNumber,
+    MeasurementDate,
+    TnmStageGroupingIntegrated
+from BR
+where TnmStageGroupingIntegrated is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Breast%20Measurement%20TNM%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 Breast Measurement TNM Category Final Pre-Treatment Stage
+Source column  `TnmStageGroupingFinalPretreatment`.
+Lookup TNMCategory concepts.
+
+
+|TnmStageGroupingFinalPretreatment|measurement_concept_id|notes|
+|------|-----|-----|
+|1|1635812|IRS-modified TNM stage 1|
+|I|1635812|IRS-modified TNM stage 1|
+|1a|1635812|IRS-modified TNM stage 1|
+|IA|1635812|IRS-modified TNM stage 1|
+|1a1|1633843|Stage 1A1|
+|IA1|1633843|Stage 1A1|
+|1a2|1634275|Stage 1A2|
+|IA2|1634275|Stage 1A2|
+|1a3|1633775|Stage 1A3|
+|IA3|1633775|Stage 1A3|
+|1b|1635812|IRS-modified TNM stage 1|
+|IB|1635812|IRS-modified TNM stage 1|
+|2|1635007|IRS-modified TNM stage 2|
+|II|1635007|IRS-modified TNM stage 2|
+|2a|1635007|IRS-modified TNM stage 2|
+|IIA|1635007|IRS-modified TNM stage 2|
+|2b|1635007|IRS-modified TNM stage 2|
+|IIB|1635007|IRS-modified TNM stage 2|
+|2c|1635007|IRS-modified TNM stage 2|
+|IIC|1635007|IRS-modified TNM stage 2|
+|3|1633995|IRS-modified TNM stage 3|
+|III|1633995|IRS-modified TNM stage 3|
+|3a|1633995|IRS-modified TNM stage 3|
+|IIIA|1633995|IRS-modified TNM stage 3|
+|3b|1633995|IRS-modified TNM stage 3|
+|IIIB|1633995|IRS-modified TNM stage 3|
+|3c|1633995|IRS-modified TNM stage 3|
+|IIIC|1633995|IRS-modified TNM stage 3|
+|4|1634737|IRS-modified TNM stage 4|
+|IV|1634737|IRS-modified TNM stage 4|
+|4a|1634737|IRS-modified TNM stage 4|
+|IVA|1634737|IRS-modified TNM stage 4|
+|4b|1634737|IRS-modified TNM stage 4|
+|IVB|1634737|IRS-modified TNM stage 4|
+|4c|1634737|IRS-modified TNM stage 4|
+|IVC|1634737|IRS-modified TNM stage 4|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TnmStageGroupingFinalPretreatment` The TNM stage grouping (combined T, N, M categories) of the final pre-treatment stage. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
+
+```sql
+with BR as (
+    select 
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        coalesce(
+            Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        ) as MeasurementDate,
+        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select distinct
+    NhsNumber,
+    MeasurementDate,
+    TnmStageGroupingFinalPretreatment
+from BR
+where TnmStageGroupingFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Breast%20Measurement%20TNM%20Category%20Final%20Pre-Treatment%20Stage%20mapping){: .btn }
+### COSD V9 Breast Measurement T Category Integrated Stage
+Source column  `TCategoryIntegratedStage`.
+Lookup TCategory concepts.
+
+
+|TCategoryIntegratedStage|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1634213|AJCC/UICC T0 Category|
+|1|1635564|AJCC/UICC T1 Category|
+|1a|1633880|AJCC/UICC T1a Category|
+|1b|1633921|AJCC/UICC T1b Category|
+|1c|1633529|AJCC/UICC T1c Category|
+|1d|1634100|AJCC/UICC T1d Category|
+|2|1635562|AJCC/UICC T2 Category|
+|2a|1635327|AJCC/UICC T2a Category|
+|2b|1633593|AJCC/UICC T2b Category|
+|2c|1635270|AJCC/UICC T2c Category|
+|2d|1633678|AJCC/UICC T2d Category|
+|3|1634376|AJCC/UICC T3 Category|
+|3a|1633771|AJCC/UICC T3a Category|
+|3b|1634980|AJCC/UICC T3b Category|
+|3c|1633360|AJCC/UICC T3c Category|
+|3d|1635625|AJCC/UICC T3d Category|
+|3e|1634730|AJCC/UICC T3e Category|
+|4|1634654|AJCC/UICC T4 Category|
+|4a|1635222|AJCC/UICC T4a Category|
+|4b|1634436|AJCC/UICC T4b Category|
+|4c|1635526|AJCC/UICC T4c Category|
+|4d|1633909|AJCC/UICC T4d Category|
+|4e|1634193|AJCC/UICC T4e Category|
+|X|1635682|AJCC/UICC TX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TCategoryIntegratedStage` The T category (tumour size) of the integrated stage in TNM staging. [T CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html)
+
+```sql
+with BR as (
+    select 
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        coalesce(
+            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        ) as MeasurementDate,
+        Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select distinct
+    NhsNumber,
+    MeasurementDate,
+    TCategoryIntegratedStage
+from BR
+where TCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Breast%20Measurement%20T%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 Breast Measurement T Category Final Pre-Treatment Stage
+Source column  `TcategoryFinalPreTreatment`.
+Lookup TCategory concepts.
+
+
+|TcategoryFinalPreTreatment|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1634213|AJCC/UICC T0 Category|
+|1|1635564|AJCC/UICC T1 Category|
+|1a|1633880|AJCC/UICC T1a Category|
+|1b|1633921|AJCC/UICC T1b Category|
+|1c|1633529|AJCC/UICC T1c Category|
+|1d|1634100|AJCC/UICC T1d Category|
+|2|1635562|AJCC/UICC T2 Category|
+|2a|1635327|AJCC/UICC T2a Category|
+|2b|1633593|AJCC/UICC T2b Category|
+|2c|1635270|AJCC/UICC T2c Category|
+|2d|1633678|AJCC/UICC T2d Category|
+|3|1634376|AJCC/UICC T3 Category|
+|3a|1633771|AJCC/UICC T3a Category|
+|3b|1634980|AJCC/UICC T3b Category|
+|3c|1633360|AJCC/UICC T3c Category|
+|3d|1635625|AJCC/UICC T3d Category|
+|3e|1634730|AJCC/UICC T3e Category|
+|4|1634654|AJCC/UICC T4 Category|
+|4a|1635222|AJCC/UICC T4a Category|
+|4b|1634436|AJCC/UICC T4b Category|
+|4c|1635526|AJCC/UICC T4c Category|
+|4d|1633909|AJCC/UICC T4d Category|
+|4e|1634193|AJCC/UICC T4e Category|
+|X|1635682|AJCC/UICC TX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TcategoryFinalPreTreatment` The T category (tumour size) of the final pre-treatment stage in TNM staging. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+with BR as (
+    select 
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        coalesce(
+            Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        ) as MeasurementDate,
+        Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TcategoryFinalPreTreatment
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select distinct
+    NhsNumber,
+    MeasurementDate,
+    TcategoryFinalPreTreatment
+from BR
+where TcategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Breast%20Measurement%20T%20Category%20Final%20Pre-Treatment%20Stage%20mapping){: .btn }
+### COSD V9 Breast Measurement Primary Pathway Metastasis
+Source column  `MetastaticSite`.
+Lookup MetastasisSite concepts.
+
+
+|MetastaticSite|measurement_concept_id|notes|
+|------|-----|-----|
+|01|36769301|Metastasis to bone|
+|02|36768862|Metastasis to brain|
+|03|36770544|Metastasis to liver|
+|04|36770283|Metastasis to lung|
+|07|36769180|Metastasis to the Unknown Site|
+|08|35225673|Metastasis to skin|
+|09|36769243|Distant spread to lymph node|
+|10|36769301|Metastasis to bone|
+|11|35226074|Metastasis to bone marrow|
+|12|36769269|Regional spread to lymph node|
+|98|36769180|Metastasis|
+|99|36769180|Metastasis|
+
+Notes
+* [OMOP Metastasis](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=metastasis&boosts)
+* [NHS - Metastasis](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html?hl=metastatic%2Csite%2Cdiagnosis)
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with BR as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    MetastaticSite
+from BR
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Breast%20Measurement%20Primary%20Pathway%20Metastasis%20mapping){: .btn }
 ### COSD V9 Breast Measurement Non Primary Pathway Recurrence Metastasis
 Source column  `MetastaticSite`.
 Lookup MetastasisSite concepts.

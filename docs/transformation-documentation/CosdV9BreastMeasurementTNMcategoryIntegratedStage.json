@@ -1,0 +1,110 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TnmStageGroupingIntegrated\nfrom BR\nwhere TnmStageGroupingIntegrated is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "The date of the staging measurement, either the integrated stage date or diagnosis date as fallback.",
+          "origins": [
+            {
+              "origin": "STAGE DATE INTEGRATED STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TnmStageGroupingIntegrated\nfrom BR\nwhere TnmStageGroupingIntegrated is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "The date of the staging measurement, either the integrated stage date or diagnosis date as fallback.",
+          "origins": [
+            {
+              "origin": "STAGE DATE INTEGRATED STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TnmStageGroupingIntegrated\nfrom BR\nwhere TnmStageGroupingIntegrated is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `2000500013`. TNMCategoryIntegratedStage",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Lookup TNMCategory concepts.",
+      "dataSource": [
+        {
+          "name": "TnmStageGroupingIntegrated",
+          "description": "The TNM stage grouping (combined T, N, M categories) of the integrated stage.",
+          "origins": [
+            {
+              "origin": "TNM STAGE GROUPING (INTEGRATED STAGE)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TnmStageGroupingIntegrated\nfrom BR\nwhere TnmStageGroupingIntegrated is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|TnmStageGroupingIntegrated|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|1|1635812|IRS-modified TNM stage 1|\r\n|I|1635812|IRS-modified TNM stage 1|\r\n|1a|1635812|IRS-modified TNM stage 1|\r\n|IA|1635812|IRS-modified TNM stage 1|\r\n|1a1|1633843|Stage 1A1|\r\n|IA1|1633843|Stage 1A1|\r\n|1a2|1634275|Stage 1A2|\r\n|IA2|1634275|Stage 1A2|\r\n|1a3|1633775|Stage 1A3|\r\n|IA3|1633775|Stage 1A3|\r\n|1b|1635812|IRS-modified TNM stage 1|\r\n|IB|1635812|IRS-modified TNM stage 1|\r\n|2|1635007|IRS-modified TNM stage 2|\r\n|II|1635007|IRS-modified TNM stage 2|\r\n|2a|1635007|IRS-modified TNM stage 2|\r\n|IIA|1635007|IRS-modified TNM stage 2|\r\n|2b|1635007|IRS-modified TNM stage 2|\r\n|IIB|1635007|IRS-modified TNM stage 2|\r\n|2c|1635007|IRS-modified TNM stage 2|\r\n|IIC|1635007|IRS-modified TNM stage 2|\r\n|3|1633995|IRS-modified TNM stage 3|\r\n|III|1633995|IRS-modified TNM stage 3|\r\n|3a|1633995|IRS-modified TNM stage 3|\r\n|IIIA|1633995|IRS-modified TNM stage 3|\r\n|3b|1633995|IRS-modified TNM stage 3|\r\n|IIIB|1633995|IRS-modified TNM stage 3|\r\n|3c|1633995|IRS-modified TNM stage 3|\r\n|IIIC|1633995|IRS-modified TNM stage 3|\r\n|4|1634737|IRS-modified TNM stage 4|\r\n|IV|1634737|IRS-modified TNM stage 4|\r\n|4a|1634737|IRS-modified TNM stage 4|\r\n|IVA|1634737|IRS-modified TNM stage 4|\r\n|4b|1634737|IRS-modified TNM stage 4|\r\n|IVB|1634737|IRS-modified TNM stage 4|\r\n|4c|1634737|IRS-modified TNM stage 4|\r\n|IVC|1634737|IRS-modified TNM stage 4|\r\n\r\nNotes\r\n* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `TnmStageGroupingIntegrated`",
+      "dataSource": [
+        {
+          "name": "TnmStageGroupingIntegrated",
+          "description": "The TNM stage grouping (combined T, N, M categories) of the integrated stage.",
+          "origins": [
+            {
+              "origin": "TNM STAGE GROUPING (INTEGRATED STAGE)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    TnmStageGroupingIntegrated\nfrom BR\nwhere TnmStageGroupingIntegrated is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}
