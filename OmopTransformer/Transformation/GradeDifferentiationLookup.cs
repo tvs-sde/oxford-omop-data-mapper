@@ -8,7 +8,7 @@ internal class GradeDifferentiationLookup : ILookup
     public Dictionary<string, ValueWithNote> Mappings { get; } =
         new()
         {
-            { "GX", new ValueWithNote("",    "GX grade") },
+            { "GX", new ValueWithNote("0",    "GX grade") },
             { "G1", new ValueWithNote("36768162",   "Grade 1: Well differentiated") },
             { "G2", new ValueWithNote("36770626",   "Grade 2: Moderately differentiated") },
             { "G3", new ValueWithNote("36769666",   "Grade 3: Poorly differentiated") },
