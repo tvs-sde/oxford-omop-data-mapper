@@ -311,10 +311,38 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `40488785`. Adult comorbidity evaluation-27
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
+### CosdV9BreastSourceOfReferralForOutpatients
+* Constant value set to `4258129`. Referral by
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastSourceOfReferralForOutpatients%20mapping){: .btn }
+### CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway
+* Constant value set to `4258129`. Referral by
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway%20mapping){: .btn }
+### CosdV9BreastPerformanceStatusAdult
+* Constant value set to `4309681`. General physical performance status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
+### CosdV9BreastMenopausalStatus
+* Constant value set to `4059477`. Menopause
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastMenopausalStatus%20mapping){: .btn }
+### CosdV9BreastHistoryOfAlcoholPast
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastHistoryOfAlcoholPast%20mapping){: .btn }
+### CosdV9BreastHistoryOfAlcoholCurrent
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndrome
 * Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
+### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
+* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9BreastAsaScore
 * Constant value set to `4185914`. Identification of physical status
 
