@@ -1,0 +1,68 @@
+<Query>
+    <Sql>
+with BR as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(
+            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
+            Record ->> '$.Treatment.TreatmentStartDateCancer'
+        ) as TreatmentStartDateCancer,
+        coalesce(
+            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
+            Record ->> '$.Treatment.Surgery.ProcedureDate'
+        ) as ProcedureDate,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndromeSubsidiaryComment.#cdata-section' as FamilialCancerSyndromeSubsidiaryComment,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select
+    distinct
+        FamilialCancerSyndromeSubsidiaryComment,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(StageDateIntegratedStage as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from BR o
+where o.FamilialCancerSyndromeSubsidiaryComment is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+    </Sql>
+    <Explanations>
+      <Explanation columnName="NHSNumber">
+    	  <Description>Patient NHS Number</Description>
+    	  <Origin>NHS NUMBER</Origin>
+      </Explanation>
+		 <Explanation columnName="FamilialCancerSyndromeSubsidiaryComment">
+		   <Description>FAMILIAL CANCER SYNDROME SUBSIDIARY COMMENT</Description>
+		   <Origin>FAMILIAL CANCER SYNDROME SUBSIDIARY COMMENT</Origin>
+		</Explanation>
+      <Explanation columnName="Date" >
+    	  <Description>Observation date</Description>
+    	  <Origin>DATE FIRST SEEN</Origin>
+    	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+    	  <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TREATMENT START DATE (CANCER)</Origin>
+    	  <Origin>PROCEDURE DATE</Origin>
+      </Explanation>
+    </Explanations>
+</Query>

@@ -27,6 +27,13 @@ using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSourceOfReferralOutPat
 using OmopTransformer.COSD.Breast.Observation.CosdV9BreastAdultComorbidityEvaluation;
 using OmopTransformer.COSD.Breast.Observation.CosdV9BreastAsaScore;
 using OmopTransformer.COSD.Breast.Observation.CosdV9BreastFamilialCancerSyndrome;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastFamilialCancerSyndromeSubsidiaryComment;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastHistoryOfAlcoholCurrent;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastHistoryOfAlcoholPast;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastMenopausalStatus;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastPerformanceStatusAdult;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway;
+using OmopTransformer.COSD.Breast.Observation.CosdV9BreastSourceOfReferralForOutpatients;
 using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementMcategoryIntegratedStage;
@@ -619,6 +626,48 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9BreastFamilialCancerSyndromeRecord, CosdV9BreastFamilialCancerSyndrome>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV9BreastFamilialCancerSyndrome",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastFamilialCancerSyndromeSubsidiaryCommentRecord, CosdV9BreastFamilialCancerSyndromeSubsidiaryComment>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastFamilialCancerSyndromeSubsidiaryComment",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastHistoryOfAlcoholCurrentRecord, CosdV9BreastHistoryOfAlcoholCurrent>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastHistoryOfAlcoholCurrent",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastHistoryOfAlcoholPastRecord, CosdV9BreastHistoryOfAlcoholPast>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastHistoryOfAlcoholPast",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastMenopausalStatusRecord, CosdV9BreastMenopausalStatus>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastMenopausalStatus",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastPerformanceStatusAdultRecord, CosdV9BreastPerformanceStatusAdult>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastPerformanceStatusAdult",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastSourceOfReferralForNonPrimaryCancerPathwayRecord, CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastSourceOfReferralForOutpatientsRecord, CosdV9BreastSourceOfReferralForOutpatients>(
+            _observationRecorder.InsertUpdateObservations,
+            "Cosd CosdV9BreastSourceOfReferralForOutpatients",
             runId,
             cancellationToken);
 
