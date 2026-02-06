@@ -188,10 +188,22 @@ order by
 * Constant value set to `2000500004`. History Of Alcohol (Past)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV8AlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+### CosdV9BreastHistoryOfAlcoholPast
+* Constant value set to `2000500004`. History Of Alcohol (Past)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastHistoryOfAlcoholPast%20mapping){: .btn }
+### CosdV9BreastHistoryOfAlcoholCurrent
+* Constant value set to `2000500003`. History Of Alcohol (Current)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndrome
 * Constant value set to `2000500005`. Familial Cancer (Indicator)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
+### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
+* Constant value set to `2000500006`. Familial Cancer (Comment)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### COSD V8 Breast Familial Cancer Syndrome Indicator
 * Constant value set to `2000500005`. Familial Cancer (Indicator)
 
