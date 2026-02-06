@@ -98,6 +98,30 @@ has_toc: false
 > * Duplicates are handled by selecting distinct records based on NHS Number, Procedure Date, and Primary Procedure OPCS
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungProcedureOccurrencePrimaryProcedureOpcs%20mapping){: .btn }
+## CosdV8CTYAProcedureOccurrenceProcedureOpcs
+<a href="CosdV8CTYAProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="CosdV8CTYAProcedureOccurrenceProcedureOpcs.svg" /></a>
+
+{: .important-title }
+> Duplicates
+>
+> COSD data contains numerous duplicated records due to repeated submissions that include the same records.  The latest record may occasionally have a NULL field that was previously populated.  We observed this for address fields, date of birth and other personal details, but did not observe it for procedure data.
+>
+> In order to avoid true duplicates occurring in the data, we have included distinct records for  NHSNumber (person_id) , PrimaryProcedureOpcs(procedure_concept_id), ProcedureOpcs(procedure_concept_id), ProcedureDate (procedure_date) and excluded all duplicates.  The tool will handle things a little differently, as each new submission will have to be dealt with as it arrives.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8CTYAProcedureOccurrenceProcedureOpcs%20mapping){: .btn }
+## CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs
+<a href="CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs.svg" target="_blank"><img src="CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs.svg" /></a>
+
+{: .important-title }
+> Duplicates
+>
+> COSD data contains numerous duplicated records due to repeated submissions that include the same records.  The latest record may occasionally have a NULL field that was previously populated.  We observed this for address fields, date of birth and other personal details, but did not observe it for procedure data.
+>
+> In order to avoid true duplicates occurring in the data, we have included distinct records for  NHSNumber (person_id) , PrimaryProcedureOpcs(procedure_concept_id), ProcedureOpcs(procedure_concept_id), ProcedureDate (procedure_date) and excluded all duplicates.  The tool will handle things a little differently, as each new submission will have to be dealt with as it arrives.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs%20mapping){: .btn }
 ## CosdV9ProcedureOccurrenceProcedureOpcs
 <a href="CosdV9ProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="CosdV9ProcedureOccurrenceProcedureOpcs.svg" /></a>
 
