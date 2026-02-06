@@ -1,0 +1,46 @@
+<Query>
+    <Sql>
+with CT as (
+  select 
+    unnest(
+        [
+            [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], 
+            Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], 
+        recursive := true
+    ) as ProcedureDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    unnest(
+        [
+            [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], 
+            Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], 
+        recursive := true
+    ) as PrimaryProcedureOpcs
+  from omop_staging.cosd_staging_81
+  where Type = 'CT'
+)
+select
+      distinct
+          ProcedureDate,
+          NhsNumber,
+          PrimaryProcedureOpcs
+from CT o
+where o.ProcedureDate is not null 
+  and o.PrimaryProcedureOpcs is not null;
+    </Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ProcedureDate">
+			<Description>The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.</Description>
+			<Origin>PROCEDURE DATE</Origin>
+		</Explanation>
+		<Explanation columnName="PrimaryProcedureOpcs">
+			<Description>PRIMARY PROCEDURE (OPCS) is the OPCS Classification of Interventions and Procedures code which is used to identify the primary Patient Procedure carried out.</Description>
+			<Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

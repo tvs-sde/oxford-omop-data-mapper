@@ -218,6 +218,12 @@
     <None Update="COSD\Lung\ProcedureOccurrence\CosdV9LungProcedureOccurrenceRelapseMethodOfDetection\CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\CTYA\ProcedureOccurrence\CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs\CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CTYA\ProcedureOccurrence\CosdV8CTYAProcedureOccurrenceProcedureOpcs\CosdV8CTYAProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Lung\Measurements\CosdV8LungMeasurementGradeOfDifferentiation\CosdV8LungMeasurementGradeOfDifferentiation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
