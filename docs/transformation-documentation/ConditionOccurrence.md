@@ -95,6 +95,27 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV8CTYAConditionOccurrencePrimaryDiagnosis
+<a href="CosdV8CTYAConditionOccurrencePrimaryDiagnosis.svg" target="_blank"><img src="CosdV8CTYAConditionOccurrencePrimaryDiagnosis.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+> * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8CTYAConditionOccurrencePrimaryDiagnosis%20mapping){: .btn }
+## CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopography
+<a href="CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopography.svg" target="_blank"><img src="CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopography.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * For a given Diagnosis date, all valid combinations of Histology and Topography are added (thereby giving us an ICD-O-3 condition) as well as the ICD10 Diagnosis.
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+> * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
 ## CosdV8ConditionOccurrencePrimaryDiagnosis
 <a href="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" target="_blank"><img src="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" /></a>
 

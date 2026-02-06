@@ -407,6 +407,86 @@ and l.NhsNumber is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20Lung%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### Cosd V8 CTYA Procedure Occurrence Procedure Opcs
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with ct as (
+  select 
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    -- Unnest Procedure Date (Handling Treatment as potentially an array)
+    unnest(
+      [
+        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], 
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'
+      ], recursive := true
+    ) as ProcedureDate,
+    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)
+    unnest(
+      [
+        [
+          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'
+        ], 
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'
+      ], recursive := true
+    ) as ProcedureOpcsCode
+    from omop_staging.cosd_staging_81
+    where Type = 'CT'
+)
+select
+  distinct
+        NhsNumber,
+        ProcedureDate,
+        ProcedureOpcsCode
+from ct
+where ct.ProcedureOpcsCode is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20Cosd%20V8%20CTYA%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### Cosd V8 CTYA Procedure Occurrence Primary Procedure Opcs
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with CT as (
+  select 
+    unnest(
+        [
+            [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], 
+            Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], 
+        recursive := true
+    ) as ProcedureDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    unnest(
+        [
+            [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], 
+            Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], 
+        recursive := true
+    ) as PrimaryProcedureOpcs
+  from omop_staging.cosd_staging_81
+  where Type = 'CT'
+)
+select
+      distinct
+          ProcedureDate,
+          NhsNumber,
+          PrimaryProcedureOpcs
+from CT o
+where o.ProcedureDate is not null 
+  and o.PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20Cosd%20V8%20CTYA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
 ### Cosd V9 Procedure Occurrence Procedure Opcs
 Source column  `ProcedureDate`.
 Converts text to dates.

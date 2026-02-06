@@ -1,0 +1,132 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis\n  from omop_staging.cosd_staging_81 co\nwhere co.Type = 'CT'\n)\nselect \n\tdistinct\n\t\tNhsNumber,\n\t\tcoalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n\t\tBasisOfDiagnosisCancer,\n\t\tCancerDiagnosis\nfrom ct\nwhere NhsNumber is not null and\n\t(\n\t\tDiagnosisDate is not null or \n\t\tNonPrimaryDiagnosisDate is not null\n\t);\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_concept_id",
+      "operation_description": "Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "CancerDiagnosis",
+          "description": "PRIMARY DIAGNOSIS (ICD) is the International Classification of Diseases (ICD) code used to identify the PRIMARY DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "PRIMARY DIAGNOSIS (ICD)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis\n  from omop_staging.cosd_staging_81 co\nwhere co.Type = 'CT'\n)\nselect \n\tdistinct\n\t\tNhsNumber,\n\t\tcoalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n\t\tBasisOfDiagnosisCancer,\n\t\tCancerDiagnosis\nfrom ct\nwhere NhsNumber is not null and\n\t(\n\t\tDiagnosisDate is not null or \n\t\tNonPrimaryDiagnosisDate is not null\n\t);\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `condition` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosisDate",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis\n  from omop_staging.cosd_staging_81 co\nwhere co.Type = 'CT'\n)\nselect \n\tdistinct\n\t\tNhsNumber,\n\t\tcoalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n\t\tBasisOfDiagnosisCancer,\n\t\tCancerDiagnosis\nfrom ct\nwhere NhsNumber is not null and\n\t(\n\t\tDiagnosisDate is not null or \n\t\tNonPrimaryDiagnosisDate is not null\n\t);\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Value copied from `CancerDiagnosis`",
+      "dataSource": [
+        {
+          "name": "CancerDiagnosis",
+          "description": "PRIMARY DIAGNOSIS (ICD) is the International Classification of Diseases (ICD) code used to identify the PRIMARY DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "PRIMARY DIAGNOSIS (ICD)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis\n  from omop_staging.cosd_staging_81 co\nwhere co.Type = 'CT'\n)\nselect \n\tdistinct\n\t\tNhsNumber,\n\t\tcoalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n\t\tBasisOfDiagnosisCancer,\n\t\tCancerDiagnosis\nfrom ct\nwhere NhsNumber is not null and\n\t(\n\t\tDiagnosisDate is not null or \n\t\tNonPrimaryDiagnosisDate is not null\n\t);\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_status_concept_id",
+      "operation_description": "Lookup NHS Data Dictionary Basis Of Diagnosis Cancer",
+      "dataSource": [
+        {
+          "name": "BasisOfDiagnosisCancer",
+          "description": "The basis of how a PATIENT DIAGNOSIS relating to cancer was identified.",
+          "origins": [
+            {
+              "origin": "BASIS OF DIAGNOSIS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/basis_of_diagnosis__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis\n  from omop_staging.cosd_staging_81 co\nwhere co.Type = 'CT'\n)\nselect \n\tdistinct\n\t\tNhsNumber,\n\t\tcoalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n\t\tBasisOfDiagnosisCancer,\n\t\tCancerDiagnosis\nfrom ct\nwhere NhsNumber is not null and\n\t(\n\t\tDiagnosisDate is not null or \n\t\tNonPrimaryDiagnosisDate is not null\n\t);\n\t",
+      "lookup_table_markdown": "\r\n\r\n|BasisOfDiagnosisCancer|condition_status_concept_id|notes|\r\n|------|-----|-----|\r\n|0|32895|Death diagnosis|\r\n|1|32899|Preliminary diagnosis|\r\n|2|32899|Preliminary diagnosis|\r\n|4|32893|Confirmed diagnosis|\r\n|5|32893|Confirmed diagnosis|\r\n|6|32908|Secondary diagnosis|\r\n|7|32902|Primary diagnosis|\r\n|9|||\r\n\r\nNotes\r\n* [OMOP Condition Status](https://athena.ohdsi.org/search-terms/terms?domain=Condition+Status&standardConcept=Standard&page=1&pageSize=50&query=)\r\n* [NHS Basis of Diagnosis of Cancer](https://www.datadictionary.nhs.uk/attributes/basis_of_diagnosis_for_cancer.html?hl=basis%2Cdiagnosis%2Ccancer)\r\n"
+    },
+    {
+      "name": "condition_status_source_value",
+      "operation_description": "Value copied from `BasisOfDiagnosisCancer`",
+      "dataSource": [
+        {
+          "name": "BasisOfDiagnosisCancer",
+          "description": "The basis of how a PATIENT DIAGNOSIS relating to cancer was identified.",
+          "origins": [
+            {
+              "origin": "BASIS OF DIAGNOSIS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/basis_of_diagnosis__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis\n  from omop_staging.cosd_staging_81 co\nwhere co.Type = 'CT'\n)\nselect \n\tdistinct\n\t\tNhsNumber,\n\t\tcoalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n\t\tBasisOfDiagnosisCancer,\n\t\tCancerDiagnosis\nfrom ct\nwhere NhsNumber is not null and\n\t(\n\t\tDiagnosisDate is not null or \n\t\tNonPrimaryDiagnosisDate is not null\n\t);\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

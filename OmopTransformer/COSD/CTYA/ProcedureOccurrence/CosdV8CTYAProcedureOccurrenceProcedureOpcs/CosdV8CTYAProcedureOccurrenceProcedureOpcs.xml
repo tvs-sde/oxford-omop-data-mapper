@@ -1,0 +1,47 @@
+<Query>
+    <Sql>
+with ct as (
+  select 
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    -- Unnest Procedure Date (Handling Treatment as potentially an array)
+    unnest(
+      [
+        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], 
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'
+      ], recursive := true
+    ) as ProcedureDate,
+    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)
+    unnest(
+      [
+        [
+          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'
+        ], 
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'
+      ], recursive := true
+    ) as ProcedureOpcsCode
+    from omop_staging.cosd_staging_81
+    where Type = 'CT'
+)
+select
+  distinct
+        NhsNumber,
+        ProcedureDate,
+        ProcedureOpcsCode
+from ct
+where ct.ProcedureOpcsCode is not null;
+	</Sql>
+	<Explanations>
+		<Explanation columnName="NhsNumber">
+			<Description>Patient NHS Number</Description>
+			<Origin>NHS NUMBER</Origin>
+		</Explanation>
+		<Explanation columnName="ProcedureDate">
+			<Description>The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.</Description>
+			<Origin>PROCEDURE DATE</Origin>
+		</Explanation>
+		<Explanation columnName="ProcedureOpcsCode">
+			<Description>PROCEDURE (OPCS) is a Patient Procedure other than the PRIMARY PROCEDURE (OPCS).</Description>
+			<Origin>PROCEDURE (OPCS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

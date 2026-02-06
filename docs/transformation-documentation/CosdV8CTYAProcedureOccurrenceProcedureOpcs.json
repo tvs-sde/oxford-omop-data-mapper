@@ -1,0 +1,117 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    -- Unnest Procedure Date (Handling Treatment as potentially an array)\n    unnest(\n      [\n        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'\n      ], recursive := true\n    ) as ProcedureDate,\n    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)\n    unnest(\n      [\n        [\n          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'\n        ], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'\n      ], recursive := true\n    ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'CT'\n)\nselect\n  distinct\n        NhsNumber,\n        ProcedureDate,\n        ProcedureOpcsCode\nfrom ct\nwhere ct.ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    -- Unnest Procedure Date (Handling Treatment as potentially an array)\n    unnest(\n      [\n        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'\n      ], recursive := true\n    ) as ProcedureDate,\n    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)\n    unnest(\n      [\n        [\n          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'\n        ], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'\n      ], recursive := true\n    ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'CT'\n)\nselect\n  distinct\n        NhsNumber,\n        ProcedureDate,\n        ProcedureOpcsCode\nfrom ct\nwhere ct.ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    -- Unnest Procedure Date (Handling Treatment as potentially an array)\n    unnest(\n      [\n        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'\n      ], recursive := true\n    ) as ProcedureDate,\n    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)\n    unnest(\n      [\n        [\n          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'\n        ], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'\n      ], recursive := true\n    ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'CT'\n)\nselect\n  distinct\n        NhsNumber,\n        ProcedureDate,\n        ProcedureOpcsCode\nfrom ct\nwhere ct.ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `ProcedureOpcsCode`",
+      "dataSource": [
+        {
+          "name": "ProcedureOpcsCode",
+          "description": "PROCEDURE (OPCS) is a Patient Procedure other than the PRIMARY PROCEDURE (OPCS).",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    -- Unnest Procedure Date (Handling Treatment as potentially an array)\n    unnest(\n      [\n        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'\n      ], recursive := true\n    ) as ProcedureDate,\n    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)\n    unnest(\n      [\n        [\n          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'\n        ], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'\n      ], recursive := true\n    ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'CT'\n)\nselect\n  distinct\n        NhsNumber,\n        ProcedureDate,\n        ProcedureOpcsCode\nfrom ct\nwhere ct.ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "ProcedureOpcsCode",
+          "description": "PROCEDURE (OPCS) is a Patient Procedure other than the PRIMARY PROCEDURE (OPCS).",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith ct as (\n  select \n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    -- Unnest Procedure Date (Handling Treatment as potentially an array)\n    unnest(\n      [\n        [Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'\n      ], recursive := true\n    ) as ProcedureDate,\n    -- Unnest OPCS Codes (Handling Treatment array and OPCS array)\n    unnest(\n      [\n        [\n          Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'\n        ], \n        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'\n      ], recursive := true\n    ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'CT'\n)\nselect\n  distinct\n        NhsNumber,\n        ProcedureDate,\n        ProcedureOpcsCode\nfrom ct\nwhere ct.ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "quantity",
+      "operation_description": "Constant value set to `1`. One",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

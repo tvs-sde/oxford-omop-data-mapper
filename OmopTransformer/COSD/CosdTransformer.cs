@@ -176,6 +176,10 @@ using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV8LungProcedureOccurrenc
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceRelapseMethodOfDetection;
+using OmopTransformer.COSD.CTYA.ConditionOccurrence.CosdV8CTYAConditionOccurrencePrimaryDiagnosis;
+using OmopTransformer.COSD.CTYA.ConditionOccurrence.CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopography;
+using OmopTransformer.COSD.CTYA.ProcedureOccurrence.CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.CTYA.ProcedureOccurrence.CosdV8CTYAProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.Omop;
 using OmopTransformer.Omop.ConditionOccurrence;
 using OmopTransformer.Omop.Death;
@@ -314,6 +318,18 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopographyRecord, CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopography>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V8 Condition Occurrence Primary Diagnosis Histology Topography",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8CTYAConditionOccurrencePrimaryDiagnosisRecord, CosdV8CTYAConditionOccurrencePrimaryDiagnosis>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V8 CTYA Condition Occurrence Primary Diagnosis",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopographyRecord, CosdV8CTYAConditionOccurrencePrimaryDiagnosisHistologyTopography>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V8 CTYA Condition Occurrence Primary Diagnosis Histology Topography",
             runId,
             cancellationToken);
 
@@ -464,6 +480,18 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9LungProcedureOccurrenceProcedureOpcsRecord, CosdV9LungProcedureOccurrenceProcedureOpcs>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "Cosd V9 Lung Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcsRecord, CosdV8CTYAProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V8 CTYA Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8CTYAProcedureOccurrenceProcedureOpcsRecord, CosdV8CTYAProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V8 CTYA Procedure Occurrence Procedure Opcs",
             runId,
             cancellationToken);
 

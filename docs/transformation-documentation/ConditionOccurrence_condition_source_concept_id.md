@@ -555,6 +555,82 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### Cosd V8 CTYA Condition Occurrence Primary Diagnosis
+Source column  `CancerDiagnosis`.
+Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `CancerDiagnosis` PRIMARY DIAGNOSIS (ICD) is the International Classification of Diseases (ICD) code used to identify the PRIMARY DIAGNOSIS. [PRIMARY DIAGNOSIS (ICD)](https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_.html)
+
+```sql
+with ct as (
+  select 
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis
+  from omop_staging.cosd_staging_81 co
+where co.Type = 'CT'
+)
+select 
+	distinct
+		NhsNumber,
+		coalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,
+		BasisOfDiagnosisCancer,
+		CancerDiagnosis
+from ct
+where NhsNumber is not null and
+	(
+		DiagnosisDate is not null or 
+		NonPrimaryDiagnosisDate is not null
+	);
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20Cosd%20V8%20CTYA%20Condition%20Occurrence%20Primary%20Diagnosis%20mapping){: .btn }
+### Cosd V8 CTYA Condition Occurrence Primary Diagnosis Histology Topography
+Source columns  `CancerHistology`, `CancerTopography`.
+Resolve ICD-o-3 codes to OMOP concepts.
+
+* `CancerHistology` MORPHOLOGY (ICD-O CANCER TRANSFORMATION) is the morphology code of the Cancer Transformation using the ICD-O CODE. [MORPHOLOGY (ICD-O CANCER TRANSFORMATION)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html)
+
+* `CancerTopography` TOPOGRAPHY (ICD-O) is the topographical site of the Tumour using the ICD-O CODE. [TOPOGRAPHY (ICD-O)](https://www.datadictionary.nhs.uk/data_elements/topography__icd-o_.html)
+
+```sql
+with ct as (
+  select 
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis
+  from omop_staging.cosd_staging_81 co
+where co.Type = 'CT'
+)
+select 
+	distinct
+		NhsNumber,
+		coalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,
+		BasisOfDiagnosisCancer,
+		CancerHistology,
+		CancerTopography
+from ct
+where NhsNumber is not null and
+	(
+		DiagnosisDate is not null or 
+		NonPrimaryDiagnosisDate is not null
+	)
+	and (CancerHistology is not null and CancerTopography is not null)
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20Cosd%20V8%20CTYA%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
 ### Cosd V8 Condition Occurrence Primary Diagnosis
 Source column  `CancerDiagnosis`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
