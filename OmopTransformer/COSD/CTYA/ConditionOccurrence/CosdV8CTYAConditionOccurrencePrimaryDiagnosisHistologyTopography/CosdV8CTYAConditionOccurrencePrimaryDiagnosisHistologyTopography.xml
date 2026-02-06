@@ -1,0 +1,53 @@
+<Query>
+    <Sql>
+with ct as (
+  select 
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.TopographyICDO.@code' as CancerTopography,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.BasisOfCancerDiagnosis.@code' as BasisOfDiagnosisCancer,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code' as CancerDiagnosis
+  from omop_staging.cosd_staging_81 co
+where co.Type = 'CT'
+)
+select 
+	distinct
+		NhsNumber,
+		coalesce (DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,
+		BasisOfDiagnosisCancer,
+		CancerHistology,
+		CancerTopography
+from ct
+where NhsNumber is not null and
+	(
+		DiagnosisDate is not null or 
+		NonPrimaryDiagnosisDate is not null
+	)
+	and (CancerHistology is not null and CancerTopography is not null)
+	</Sql>
+    <Explanations>
+		<Explanation columnName="NhsNumber">
+			<Description>Patient NHS Number</Description>
+			<Origin>NHS NUMBER</Origin>
+		</Explanation>
+		<Explanation columnName="DiagnosisDate">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+			<Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="CancerHistology">
+			<Description>MORPHOLOGY (ICD-O CANCER TRANSFORMATION) is the morphology code of the Cancer Transformation using the ICD-O CODE.</Description>
+			<Origin>MORPHOLOGY (ICD-O CANCER TRANSFORMATION)</Origin>
+		</Explanation>
+		<Explanation columnName="CancerTopography">
+			<Description>TOPOGRAPHY (ICD-O) is the topographical site of the Tumour using the ICD-O CODE.</Description>
+			<Origin>TOPOGRAPHY (ICD-O)</Origin>
+		</Explanation>
+		<Explanation columnName="BasisOfDiagnosisCancer">
+			<Description>The basis of how a PATIENT DIAGNOSIS relating to cancer was identified.</Description>
+			<Origin>BASIS OF DIAGNOSIS (CANCER)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
