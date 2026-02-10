@@ -402,6 +402,86 @@ and l.NhsNumber is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_value%20field%20COSD%20V8%20Lung%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### Cosd V9 CTYA Procedure Occurrence Procedure Opcs
+* Value copied from `ProcedureOpcsCode`
+
+* `ProcedureOpcsCode` PROCEDURE (OPCS) is a Patient Procedure other than the PRIMARY PROCEDURE (OPCS). [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+with CT as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        
+        unnest(
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureDate'], 
+                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+            ], 
+            recursive := true
+        ) as ProcedureDate,
+
+        unnest(
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], 
+                Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'
+            ], 
+            recursive := true
+        ) as ProcedureOpcsCode
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcsCode
+from CT
+where ProcedureOpcsCode is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_value%20field%20Cosd%20V9%20CTYA%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### Cosd V9 CTYA Procedure Occurrence Primary Procedure Opcs
+* Value copied from `PrimaryProcedureOpcs`
+
+* `PrimaryProcedureOpcs` PRIMARY PROCEDURE (OPCS) is the OPCS Classification of Interventions and Procedures code which is used to identify the primary Patient Procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+with CT as (
+    select 
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        
+        unnest(
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureDate'], 
+                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+            ], 
+            recursive := true
+        ) as ProcedureDate,
+
+        unnest(
+            [
+                [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], 
+                Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+            ], 
+            recursive := true
+        ) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select 
+  distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from CT
+where ProcedureDate is not null
+  and PrimaryProcedureOpcs is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_value%20field%20Cosd%20V9%20CTYA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
 ### Cosd V8 CTYA Procedure Occurrence Procedure Opcs
 * Value copied from `ProcedureOpcsCode`
 
