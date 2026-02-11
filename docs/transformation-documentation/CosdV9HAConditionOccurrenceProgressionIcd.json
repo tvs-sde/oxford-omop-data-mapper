@@ -1,0 +1,92 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number, the primary identifier for a person in NHS England and Wales.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non primary cancer diagnosis (clinically agreed): used as condition_start_date for progression.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- Cancer Progression ICD: the ICD code of the cancer progression.\n    -- Agreed at the multidisciplinary team meeting by the care professional team.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code' as ProgressionIcd\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and ProgressionIcd is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_concept_id",
+      "operation_description": "Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "ProgressionIcd",
+          "description": "The International Classification of Diseases (ICD) code of the cancer progression during a Cancer Care Spell. For the Cancer Outcomes and Services Data Set - Core, this is the ICD code of the original patient diagnosis of the cancer progression, agreed at the multidisciplinary team meeting by the care professional team.",
+          "origins": [
+            {
+              "origin": "CANCER PROGRESSION (ICD ORIGINAL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cancer_progression__icd_original_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non primary cancer diagnosis (clinically agreed): used as condition_start_date for progression.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- Cancer Progression ICD: the ICD code of the cancer progression.\n    -- Agreed at the multidisciplinary team meeting by the care professional team.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code' as ProgressionIcd\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and ProgressionIcd is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `condition` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfNonPrimaryCancerDiagnosisClinicallyAgreed",
+          "description": "The date where the non primary cancer patient diagnosis was confirmed or agreed. Normally the date of the authorized pathology laboratory service report confirming the diagnosis.",
+          "origins": [
+            {
+              "origin": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non primary cancer diagnosis (clinically agreed): used as condition_start_date for progression.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- Cancer Progression ICD: the ICD code of the cancer progression.\n    -- Agreed at the multidisciplinary team meeting by the care professional team.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code' as ProgressionIcd\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and ProgressionIcd is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Value copied from `ProgressionIcd`",
+      "dataSource": [
+        {
+          "name": "ProgressionIcd",
+          "description": "The International Classification of Diseases (ICD) code of the cancer progression during a Cancer Care Spell. For the Cancer Outcomes and Services Data Set - Core, this is the ICD code of the original patient diagnosis of the cancer progression, agreed at the multidisciplinary team meeting by the care professional team.",
+          "origins": [
+            {
+              "origin": "CANCER PROGRESSION (ICD ORIGINAL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cancer_progression__icd_original_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non primary cancer diagnosis (clinically agreed): used as condition_start_date for progression.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- Cancer Progression ICD: the ICD code of the cancer progression.\n    -- Agreed at the multidisciplinary team meeting by the care professional team.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code' as ProgressionIcd\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and ProgressionIcd is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

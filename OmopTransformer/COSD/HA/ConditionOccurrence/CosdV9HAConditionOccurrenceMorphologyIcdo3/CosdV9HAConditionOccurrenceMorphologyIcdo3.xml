@@ -1,0 +1,32 @@
+<Query>
+    <Sql>
+select distinct
+    -- NHS Number: unique patient identifier, used to link to the person table.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- Date of primary cancer diagnosis (clinically agreed): used as condition_start_date.
+    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    -- Morphology ICD-O Diagnosis: the ICD-O morphology code describing the cell type of the tumour.
+    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.
+    -- Stored as condition_source_value in the condition_occurrence table.
+    Record ->> '$.PrimaryPathway.Diagnosis.MorphologyIcd-o-3.@code' as MorphologyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and MorphologyIcdo3 is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number, the primary identifier for a person in NHS England and Wales.</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+		    <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+		    <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+	    </Explanation>
+	    <Explanation columnName="MorphologyIcdo3">
+		    <Description>Patient diagnosis using the ICD-O code during a Cancer Care Spell. Equivalent to the CLINICAL CLASSIFICATION CODE attribute. Records patient diagnosis using the ICD-O code during a Cancer Care Spell.</Description>
+		    <Origin>MORPHOLOGY (ICD-O DIAGNOSIS)</Origin>
+	    </Explanation>
+    </Explanations>
+</Query>

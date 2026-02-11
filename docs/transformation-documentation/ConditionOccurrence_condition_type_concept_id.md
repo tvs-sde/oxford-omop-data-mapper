@@ -50,6 +50,50 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Topography ICD-O-3
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Topography%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Secondary Diagnosis ICD
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Progression ICD
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Primary Diagnosis ICD
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Primary Diagnosis ICD
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Morphology SNOMED
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20SNOMED%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Morphology ICD-O-3
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology SNOMED Transformation
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Transformation%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology SNOMED Diagnosis
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Diagnosis%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology ICD-O-3
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology ICD-O-3 Transformation
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20Transformation%20mapping){: .btn }
 ### Cosd V8 CTYA Condition Occurrence Primary Diagnosis
 * Constant value set to `32828`. `EHR episode record`
 

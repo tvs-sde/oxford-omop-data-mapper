@@ -1,0 +1,92 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number, the primary identifier for a person in NHS England and Wales.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of primary cancer diagnosis (clinically agreed): used as condition_start_date.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Morphology SNOMED Diagnosis: the SNOMED code or SNOMED CT concept ID for the cell type of the tumour.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and MorphologySnomedDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_concept_id",
+      "operation_description": "Resolve Snomed codes to OMOP concepts.",
+      "dataSource": [
+        {
+          "name": "MorphologySnomedDiagnosis",
+          "description": "Patient diagnosis using SNOMED code or SNOMED CT concept ID for the cell type of the tumour during a Cancer Care Spell. Equivalent to the CLINICAL TERMINOLOGY CODE attribute.",
+          "origins": [
+            {
+              "origin": "MORPHOLOGY (SNOMED DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/morphology__snomed_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of primary cancer diagnosis (clinically agreed): used as condition_start_date.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Morphology SNOMED Diagnosis: the SNOMED code or SNOMED CT concept ID for the cell type of the tumour.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and MorphologySnomedDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `condition` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of primary cancer diagnosis (clinically agreed): used as condition_start_date.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Morphology SNOMED Diagnosis: the SNOMED code or SNOMED CT concept ID for the cell type of the tumour.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and MorphologySnomedDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Value copied from `MorphologySnomedDiagnosis`",
+      "dataSource": [
+        {
+          "name": "MorphologySnomedDiagnosis",
+          "description": "Patient diagnosis using SNOMED code or SNOMED CT concept ID for the cell type of the tumour during a Cancer Care Spell. Equivalent to the CLINICAL TERMINOLOGY CODE attribute.",
+          "origins": [
+            {
+              "origin": "MORPHOLOGY (SNOMED DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/morphology__snomed_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, used to link to the person table.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of primary cancer diagnosis (clinically agreed): used as condition_start_date.\n    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Morphology SNOMED Diagnosis: the SNOMED code or SNOMED CT concept ID for the cell type of the tumour.\n    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.\n    -- Stored as condition_source_value in the condition_occurrence table.\n    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and MorphologySnomedDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

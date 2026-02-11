@@ -1,0 +1,32 @@
+<Query>
+    <Sql>
+select distinct
+    -- NHS Number: unique patient identifier, used to link to the person table.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- Date of primary cancer diagnosis (clinically agreed): used as condition_start_date.
+    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    -- Primary Diagnosis ICD: the ICD-10 code for the primary cancer diagnosis.
+    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.
+    -- Stored as condition_source_value in the condition_occurrence table.
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code' as PrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number, the primary identifier for a person in NHS England and Wales.</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+		    <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+		    <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+	    </Explanation>
+	    <Explanation columnName="PrimaryDiagnosisIcd">
+		    <Description>ICD code used to identify the primary diagnosis. Used by the Secondary Uses Service to derive the Healthcare Resource Group (HRG4).</Description>
+		    <Origin>PRIMARY DIAGNOSIS (ICD)</Origin>
+	    </Explanation>
+    </Explanations>
+</Query>

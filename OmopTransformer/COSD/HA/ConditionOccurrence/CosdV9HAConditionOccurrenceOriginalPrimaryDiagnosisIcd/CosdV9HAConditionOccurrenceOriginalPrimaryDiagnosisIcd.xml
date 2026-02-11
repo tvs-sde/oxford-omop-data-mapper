@@ -1,0 +1,33 @@
+<Query>
+    <Sql>
+select distinct
+    -- NHS Number: unique patient identifier, used to link to the person table.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- Date of non primary cancer diagnosis (clinically agreed): used as condition_start_date for recurrence.
+    -- Currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step.
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    -- Original Primary Diagnosis ICD: the ICD code of the original primary diagnosis for cancer recurrence.
+    -- Agreed at the multidisciplinary team meeting by the care professional team.
+    -- Will be mapped to a standard OMOP condition_concept_id via vocabulary lookup in a later step.
+    -- Stored as condition_source_value in the condition_occurrence table.
+    Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code' as OriginalPrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number, the primary identifier for a person in NHS England and Wales.</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+		    <Description>The date where the non primary cancer patient diagnosis was confirmed or agreed. Normally the date of the authorized pathology laboratory service report confirming the diagnosis.</Description>
+		    <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+	    </Explanation>
+	    <Explanation columnName="OriginalPrimaryDiagnosisIcd">
+		    <Description>ICD code used to identify the original primary diagnosis. For COSDS Core, used for cancer recurrence and agreed at the multidisciplinary team meeting by the care professional team.</Description>
+		    <Origin>PRIMARY DIAGNOSIS (ICD ORIGINAL)</Origin>
+	    </Explanation>
+    </Explanations>
+</Query>
