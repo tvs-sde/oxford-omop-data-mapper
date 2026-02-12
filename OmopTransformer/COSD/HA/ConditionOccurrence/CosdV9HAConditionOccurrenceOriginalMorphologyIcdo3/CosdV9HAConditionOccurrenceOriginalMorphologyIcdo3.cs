@@ -19,7 +19,7 @@ internal class CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3 : OmopConditio
     [ConstantValue(32828, "`EHR episode record`")]
     public override int? condition_type_concept_id { get; set; }
 
-    [Transform(typeof(Icdo3Selector), nameof(Source.OriginalMorphologyIcdo3))]
+    [Transform(typeof(Icdo3MorphologySelector), nameof(Source.OriginalMorphologyIcdo3))]
     public override int? condition_source_concept_id { get; set; }
 
     [Transform(typeof(StandardConditionConceptSelector), useOmopTypeAsSource: true, nameof(condition_source_concept_id))]

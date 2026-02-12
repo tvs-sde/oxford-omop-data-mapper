@@ -22,8 +22,8 @@
     <line x1="645" y1="420" x2="645" y2="615" stroke="white" stroke-width="2" />
     <line x1="635" y1="605" x2="645" y2="615" stroke="white" stroke-width="2" />
     <line x1="655" y1="605" x2="645" y2="615" stroke="white" stroke-width="2" />
-    <text x="520" y="728" fill="white" font-size="1em" font-family="Helvetica">Resolve ICD-o-3 codes to OMOP</text>
-    <text x="520" y="746" fill="white" font-size="1em" font-family="Helvetica">concepts.</text>
+    <text x="520" y="728" fill="white" font-size="1em" font-family="Helvetica">Resolve ICD-O-3 morphology codes to</text>
+    <text x="520" y="746" fill="white" font-size="1em" font-family="Helvetica">OMOP concepts.</text>
   </g>
   <g>
     <rect x="445" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />

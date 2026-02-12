@@ -22,7 +22,7 @@
     },
     {
       "name": "condition_source_concept_id",
-      "operation_description": "Resolve ICD-o-3 codes to OMOP concepts.",
+      "operation_description": "Resolve ICD-O-3 morphology codes to OMOP concepts.",
       "dataSource": [
         {
           "name": "MorphologyIcdo3",

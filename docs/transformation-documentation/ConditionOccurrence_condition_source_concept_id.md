@@ -557,7 +557,7 @@ where NHSNumber is not null
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
 ### COSD V9 HA Condition Occurrence Topography ICD-O-3
 Source column  `TopographyIcdo3`.
-Resolve ICD-o-3 codes to OMOP concepts.
+Resolve ICD-O-3 morphology codes to OMOP concepts.
 
 * `TopographyIcdo3` Topographical site of the tumour using the ICD-O code. [TOPOGRAPHY (ICD-O)](https://www.datadictionary.nhs.uk/data_elements/topography__icd-o_.html)
 
@@ -716,7 +716,7 @@ where type = 'HA'
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20SNOMED%20mapping){: .btn }
 ### COSD V9 HA Condition Occurrence Original Morphology ICD-O-3
 Source column  `OriginalMorphologyIcdo3`.
-Resolve ICD-o-3 codes to OMOP concepts.
+Resolve ICD-O-3 morphology codes to OMOP concepts.
 
 * `OriginalMorphologyIcdo3` Morphology code of the original primary diagnosis of the cancer transformation using the ICD-O code during a Cancer Care Spell. Equivalent to the CLINICAL CLASSIFICATION CODE attribute. Agreed at the multidisciplinary team meeting by the care professional team. [MORPHOLOGY (ICD-O CANCER TRANSFORMATION ORIGINAL)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_original_.html)
 
@@ -795,7 +795,7 @@ where type = 'HA'
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Diagnosis%20mapping){: .btn }
 ### COSD V9 HA Condition Occurrence Morphology ICD-O-3
 Source column  `MorphologyIcdo3`.
-Resolve ICD-o-3 codes to OMOP concepts.
+Resolve ICD-O-3 morphology codes to OMOP concepts.
 
 * `MorphologyIcdo3` Patient diagnosis using the ICD-O code during a Cancer Care Spell. Equivalent to the CLINICAL CLASSIFICATION CODE attribute. Records patient diagnosis using the ICD-O code during a Cancer Care Spell. [MORPHOLOGY (ICD-O DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_diagnosis_.html)
 
@@ -821,7 +821,7 @@ where type = 'HA'
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20mapping){: .btn }
 ### COSD V9 HA Condition Occurrence Morphology ICD-O-3 Transformation
 Source column  `MorphologyIcdo3Transformation`.
-Resolve ICD-o-3 codes to OMOP concepts.
+Resolve ICD-O-3 morphology codes to OMOP concepts.
 
 * `MorphologyIcdo3Transformation` Morphology code of the cancer transformation using the ICD-O code during a Cancer Care Spell. Equivalent to the CLINICAL CLASSIFICATION CODE attribute. [MORPHOLOGY (ICD-O CANCER TRANSFORMATION)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html)
 
