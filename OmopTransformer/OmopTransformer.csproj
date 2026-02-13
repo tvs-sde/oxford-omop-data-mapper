@@ -221,6 +221,39 @@
     <None Update="COSD\Lung\ConditionOccurrence\CosdV9LungConditionOccurrenceRecurrence\CosdV9LungConditionOccurrenceRecurrence.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd\CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd\CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceProgressionIcd\CosdV9HaematologicalConditionOccurrenceProgressionIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3\CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation\CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3\CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd\CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed\CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis\CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation\CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Haematological\ConditionOccurrence\CosdV9HaematologicalConditionOccurrenceTopographyIcdo3\CosdV9HaematologicalConditionOccurrenceTopographyIcdo3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Lung\ProcedureOccurrence\CosdV8LungProcedureOccurrencePrimaryProcedureOpcs\CosdV8LungProcedureOccurrencePrimaryProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

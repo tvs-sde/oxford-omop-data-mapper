@@ -63,6 +63,17 @@ using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrenc
 using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV9LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV9LungConditionOccurrenceRecurrence;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceProgressionIcd;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation;
+using OmopTransformer.COSD.Haematological.ConditionOccurrence.CosdV9HaematologicalConditionOccurrenceTopographyIcdo3;
 using OmopTransformer.COSD.Core.Death.v8Death;
 using OmopTransformer.COSD.Core.Death.v9DeathBasisOfDiagnosisCancer;
 using OmopTransformer.COSD.Core.Death.v9DeathDischargeDestination;
@@ -392,6 +403,72 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9LungConditionOccurrenceRecurrenceRecord, CosdV9LungConditionOccurrenceRecurrence>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V9 Lung Condition Occurrence Recurrence",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcdRecord, CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcdRecord, CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceProgressionIcdRecord, CosdV9HaematologicalConditionOccurrenceProgressionIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Record, CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Morphology ICD-O-3",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3TransformationRecord, CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Morphology ICD-O-3 Transformation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3Record, CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Original Morphology ICD-O-3",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcdRecord, CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomedRecord, CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Original Morphology SNOMED",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosisRecord, CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Morphology SNOMED Diagnosis",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformationRecord, CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Morphology SNOMED Transformation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HaematologicalConditionOccurrenceTopographyIcdo3Record, CosdV9HaematologicalConditionOccurrenceTopographyIcdo3>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Haematological Condition Occurrence Topography ICD-O-3",
             runId,
             cancellationToken);
 

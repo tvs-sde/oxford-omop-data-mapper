@@ -95,6 +95,99 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceTopographyIcdo3
+<a href="CosdV9HaematologicalConditionOccurrenceTopographyIcdo3.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceTopographyIcdo3.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceTopographyIcdo3%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd
+<a href="CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceSecondaryDiagnosisIcd%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceProgressionIcd
+<a href="CosdV9HaematologicalConditionOccurrenceProgressionIcd.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceProgressionIcd.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+> * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceProgressionIcd%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd
+<a href="CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrencePrimaryDiagnosisIcd%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd
+<a href="CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * This transformation captures the original primary diagnosis at the time of cancer recurrence
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceOriginalPrimaryDiagnosisIcd%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed
+<a href="CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceOriginalMorphologySnomed%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3
+<a href="CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceOriginalMorphologyIcdo3%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation
+<a href="CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Captures cancer transformation morphology using SNOMED codes from non-primary pathway
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceMorphologySnomedTransformation%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis
+<a href="CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceMorphologySnomedDiagnosis%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3
+<a href="CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3%20mapping){: .btn }
+## CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation
+<a href="CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation.svg" target="_blank"><img src="CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation.svg" /></a>
+
+{: .important-title }
+> Assumptions
+>
+> * Captures cancer transformation morphology from non-primary pathway
+> * Any changes in a Diagnosis that may occur in later submissions, for the same Diagnosis date, is taken to be an additional diagnosis as opposed to a change (hence removal of the original)
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HaematologicalConditionOccurrenceMorphologyIcdo3Transformation%20mapping){: .btn }
 ## CosdV8ConditionOccurrencePrimaryDiagnosis
 <a href="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" target="_blank"><img src="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" /></a>
 

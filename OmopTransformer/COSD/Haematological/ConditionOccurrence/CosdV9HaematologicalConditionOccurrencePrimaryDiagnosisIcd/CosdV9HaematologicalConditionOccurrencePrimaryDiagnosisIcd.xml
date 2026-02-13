@@ -1,0 +1,30 @@
+<Query>
+    <Sql><![CDATA[
+select distinct
+    -- NHS Number: unique patient identifier, will be mapped to person_id in a later ETL step
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- Date of primary cancer diagnosis: maps to condition_start_date, will be cast to date type in a later step (format CCYY-MM-DD)
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    -- Primary ICD diagnosis code: maps to condition_source_value, will be mapped to a standard condition_concept_id via ICD-10 vocabulary in a later step
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code' as PrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and PrimaryDiagnosisIcd is not null;
+    ]]></Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS Number is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryDiagnosisIcd">
+            <Description>ICD code used to identify the primary diagnosis.</Description>
+            <Origin>PRIMARY DIAGNOSIS (ICD)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

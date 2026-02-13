@@ -1,0 +1,92 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "NHS Number is the primary identifier for a person or patient in NHS England and Wales.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, will be mapped to person_id in a later ETL step\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non-primary cancer diagnosis: maps to condition_start_date, will be cast to date type in a later step (format CCYY-MM-DD)\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- ICD-O morphology code of the cancer transformation: maps to condition_source_value, will be mapped to a standard condition_concept_id via ICD-O-3 vocabulary in a later step\n    Record ->> '$.NonPrimaryPathway.Transformation.MorphologyIcd-o-3Transformation.@code' as MorphologyIcdo3Transformation\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null\n  and MorphologyIcdo3Transformation is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_concept_id",
+      "operation_description": "Resolve ICD-O-3 morphology codes to OMOP concepts. This selector handles morphology-only codes (not requiring separate topography).",
+      "dataSource": [
+        {
+          "name": "MorphologyIcdo3Transformation",
+          "description": "Morphology code of the cancer transformation using the ICD-O code during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "MORPHOLOGY (ICD-O CANCER TRANSFORMATION)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, will be mapped to person_id in a later ETL step\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non-primary cancer diagnosis: maps to condition_start_date, will be cast to date type in a later step (format CCYY-MM-DD)\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- ICD-O morphology code of the cancer transformation: maps to condition_source_value, will be mapped to a standard condition_concept_id via ICD-O-3 vocabulary in a later step\n    Record ->> '$.NonPrimaryPathway.Transformation.MorphologyIcd-o-3Transformation.@code' as MorphologyIcdo3Transformation\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null\n  and MorphologyIcdo3Transformation is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `condition` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfNonPrimaryCancerDiagnosisClinicallyAgreed",
+          "description": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date where the non primary cancer patient diagnosis was confirmed or agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, will be mapped to person_id in a later ETL step\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non-primary cancer diagnosis: maps to condition_start_date, will be cast to date type in a later step (format CCYY-MM-DD)\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- ICD-O morphology code of the cancer transformation: maps to condition_source_value, will be mapped to a standard condition_concept_id via ICD-O-3 vocabulary in a later step\n    Record ->> '$.NonPrimaryPathway.Transformation.MorphologyIcd-o-3Transformation.@code' as MorphologyIcdo3Transformation\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null\n  and MorphologyIcdo3Transformation is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Value copied from `MorphologyIcdo3Transformation`",
+      "dataSource": [
+        {
+          "name": "MorphologyIcdo3Transformation",
+          "description": "Morphology code of the cancer transformation using the ICD-O code during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "MORPHOLOGY (ICD-O CANCER TRANSFORMATION)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    -- NHS Number: unique patient identifier, will be mapped to person_id in a later ETL step\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    -- Date of non-primary cancer diagnosis: maps to condition_start_date, will be cast to date type in a later step (format CCYY-MM-DD)\n    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    -- ICD-O morphology code of the cancer transformation: maps to condition_source_value, will be mapped to a standard condition_concept_id via ICD-O-3 vocabulary in a later step\n    Record ->> '$.NonPrimaryPathway.Transformation.MorphologyIcd-o-3Transformation.@code' as MorphologyIcdo3Transformation\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and NhsNumber is not null\n  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null\n  and MorphologyIcdo3Transformation is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

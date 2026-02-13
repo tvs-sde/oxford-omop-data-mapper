@@ -1,0 +1,30 @@
+<Query>
+    <Sql><![CDATA[
+select distinct
+    -- NHS Number: unique patient identifier, will be mapped to person_id in a later ETL step
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- Date of non-primary cancer diagnosis: maps to condition_start_date for the recurrence event, will be cast to date type in a later step (format CCYY-MM-DD)
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    -- Original primary ICD diagnosis code at recurrence: maps to condition_source_value, will be mapped to a standard condition_concept_id via ICD-10 vocabulary in a later step
+    Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code' as OriginalPrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalPrimaryDiagnosisIcd is not null;
+    ]]></Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS Number is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+            <Description>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date where the non primary cancer patient diagnosis was confirmed or agreed.</Description>
+            <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="OriginalPrimaryDiagnosisIcd">
+            <Description>ICD code used to identify the original primary diagnosis. For COSDS Core, used for cancer recurrence and agreed at the multidisciplinary team meeting by the care professional team.</Description>
+            <Origin>PRIMARY DIAGNOSIS (ICD ORIGINAL)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
