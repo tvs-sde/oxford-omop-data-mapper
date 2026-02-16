@@ -18,7 +18,7 @@ internal class CosdV8MeasurementNonPrimaryPathwayMetastasis : OmopMeasurement<Co
     [ConstantValue(32828, "EHR episode record")]
     public override int? measurement_type_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed))]
+    [CopyValue(nameof(Source.MetastaticSite))]
     public override string? measurement_source_value { get; set; }
 
     [Transform(typeof(MetastasisSiteLookup), nameof(Source.MetastaticSite))]
