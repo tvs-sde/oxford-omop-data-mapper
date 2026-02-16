@@ -211,6 +211,16 @@ has_toc: false
 <a href="CosdV9MeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV9MeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9MeasurementGradeOfDifferentiation%20mapping){: .btn }
+## CosdV9MeasurementAdultComorbidityEvaluation
+<a href="CosdV9MeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9MeasurementAdultComorbidityEvaluation.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9MeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV8MeasurementTumourLaterality
 <a href="CosdV8MeasurementTumourLaterality.svg" target="_blank"><img src="CosdV8MeasurementTumourLaterality.svg" /></a>
 
@@ -267,6 +277,16 @@ has_toc: false
 <a href="CosdV8MeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV8MeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8MeasurementGradeOfDifferentiation%20mapping){: .btn }
+## CosdV8MeasurementAdultComorbidityEvaluation
+<a href="CosdV8MeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8MeasurementAdultComorbidityEvaluation.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8MeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV9BreastMeasurementTumourLaterality
 <a href="CosdV9BreastMeasurementTumourLaterality.svg" target="_blank"><img src="CosdV9BreastMeasurementTumourLaterality.svg" /></a>
 

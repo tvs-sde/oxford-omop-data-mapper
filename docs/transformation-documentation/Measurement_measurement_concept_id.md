@@ -637,7 +637,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|GX||GX grade|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -1277,7 +1277,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|GX||GX grade|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -1954,7 +1954,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|GX||GX grade|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -1980,6 +1980,10 @@ where Type = 'CO'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
+### CosdV9MeasurementAdultComorbidityEvaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20CosdV9MeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V8 Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.
@@ -2624,7 +2628,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|GX||GX grade|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -2657,6 +2661,10 @@ where GradeOfDifferentiationAtDiagnosis is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
+### CosdV8MeasurementAdultComorbidityEvaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20CosdV8MeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V9 Breast Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.
@@ -3311,7 +3319,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|GX||GX grade|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -3870,7 +3878,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|GX||GX grade|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|

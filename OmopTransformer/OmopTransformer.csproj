@@ -392,7 +392,10 @@
     <None Update="COSD\Colorectal\Measurements\CosdV9MeasurementTumourLaterality\CosdV9MeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\Colorectal\Observation\CosdV8AdultComorbidityEvaluation\CosdV8AdultComorbidityEvaluation.xml">
+    <None Update="COSD\Colorectal\Measurements\CosdV9MeasurementAdultComorbidityEvaluation\CosdV9MeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Colorectal\Measurements\CosdV8MeasurementAdultComorbidityEvaluation\CosdV8MeasurementAdultComorbidityEvaluation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Colorectal\Observation\CosdV8AdultPerformanceStatus\CosdV8AdultPerformanceStatus.xml">
@@ -417,9 +420,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Colorectal\Observation\CosdV8SourceOfReferralOutPatients\CosdV8SourceOfReferralOutPatients.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="COSD\Colorectal\Observation\CosdV9AdultComorbidityEvaluation\CosdV9AdultComorbidityEvaluation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Colorectal\Observation\CosdV9AsaScore\CosdV9AsaScore.xml">

@@ -649,16 +649,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9AsaScore%20mapping){: .btn }
-## CosdV9AdultComorbidityEvaluation
-<a href="CosdV9AdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9AdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9AdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV8SourceOfReferralOutPatients
 <a href="CosdV8SourceOfReferralOutPatients.svg" target="_blank"><img src="CosdV8SourceOfReferralOutPatients.svg" /></a>
 
@@ -739,16 +729,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8AdultPerformanceStatus%20mapping){: .btn }
-## CosdV8AdultComorbidityEvaluation
-<a href="CosdV8AdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8AdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV9BreastFamilialCancerSyndrome
 <a href="CosdV9BreastFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9BreastFamilialCancerSyndrome.svg" /></a>
 

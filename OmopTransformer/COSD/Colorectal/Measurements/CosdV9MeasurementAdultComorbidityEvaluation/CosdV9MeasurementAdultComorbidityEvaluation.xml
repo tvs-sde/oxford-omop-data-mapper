@@ -26,7 +26,7 @@ select
 			cast(StageDateIntegratedStage as date),
 			cast(TreatmentStartDateCancer as date),
 			cast(ProcedureDate as date)
-		) as Date
+		) as MeasurementDate
 from CO o
 where o.AdultComorbidityEvaluation is not null
   and not (
@@ -45,16 +45,16 @@ where o.AdultComorbidityEvaluation is not null
     	  <Origin>NHS NUMBER</Origin>
       </Explanation>
 		 <Explanation columnName="AdultComorbidityEvaluation">
-			 <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
-			 <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+		   <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+		   <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
 		</Explanation>
-      <Explanation columnName="Date" >
-    	  <Description>Observation date</Description>
+      <Explanation columnName="MeasurementDate" >
+    	  <Description>Measurement date</Description>
     	  <Origin>DATE FIRST SEEN</Origin>
     	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
-    	  <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
-    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+    	  <Origin>DIAGNOSIS DATE</Origin>
     	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
     	  <Origin>TREATMENT START DATE (CANCER)</Origin>
     	  <Origin>PROCEDURE DATE</Origin>
       </Explanation>

@@ -46,6 +46,8 @@ select
 	strengthdose,
 	EVENT_ID
 from ##duckdb_source##
+where concept_identifier is null or
+TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
 ```
 
 

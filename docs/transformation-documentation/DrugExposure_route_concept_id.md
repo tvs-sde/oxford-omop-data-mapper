@@ -25,7 +25,7 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |endotracheal|40491832|transtracheal|
 |enteral feed|4167540|enteral|
 |epidural|4225555|epidural|
-|flush|||
+|flush|0|flush|
 |gastrojejunostomy|4133177|jejunostomy|
 |gastrostomy|4132254|gastrostomy|
 |gingival|4156704|gingival|
@@ -58,11 +58,11 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |intravesical|4186838|intravesical|
 |intraviteal|4302785|intravitreal|
 |intravitreal|4302785|intravitreal|
-|irrigation|||
+|irrigation|0|irrigation|
 |jejunostomy|4133177|jejunostomy|
 |left ear|4023156|otic|
 |left eye|40549429|ocular|
-|line lock|||
+|line lock|0|line lock|
 |local infiltration|37397638|infiltrationr|
 |nasal|4262914|nasal|
 |nasogastric|4132711|nasogastric|
@@ -76,7 +76,7 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |patient-controlled epidural analgesia|4225555|epidural|
 |patient-controlled intravenous analgesia|4171047|intravenous|
 |per rectum|4290759|rectal|
-|regional analgesia|||
+|regional analgesia|0|regional analgesia|
 |right ear|4023156|otic|
 |right eye|40549429|ocular|
 |rinse|4263689|topical|
@@ -90,9 +90,9 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |transdermal|4262099|transdermal|
 |transurethral|4305382|transurethral|
 |vaginal|4057765|vaginal|
-|via cvvhd|||
-|transmucosal|||
-|shampoo|||
+|via cvvhd|0|via cvvhd|
+|transmucosal|0|transmucosal|
+|shampoo|0|shampoo|
 
 Notes
 * [OMOP Routes](https://athena.ohdsi.org/search-terms/terms?domain=Route&standardConcept=Standard&page=1&pageSize=500&query=&boosts
@@ -112,6 +112,8 @@ select
 	strengthdose,
 	EVENT_ID
 from ##duckdb_source##
+where concept_identifier is null or
+TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
 ```
 
 
@@ -135,7 +137,7 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |endotracheal|40491832|transtracheal|
 |enteral feed|4167540|enteral|
 |epidural|4225555|epidural|
-|flush|||
+|flush|0|flush|
 |gastrojejunostomy|4133177|jejunostomy|
 |gastrostomy|4132254|gastrostomy|
 |gingival|4156704|gingival|
@@ -168,11 +170,11 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |intravesical|4186838|intravesical|
 |intraviteal|4302785|intravitreal|
 |intravitreal|4302785|intravitreal|
-|irrigation|||
+|irrigation|0|irrigation|
 |jejunostomy|4133177|jejunostomy|
 |left ear|4023156|otic|
 |left eye|40549429|ocular|
-|line lock|||
+|line lock|0|line lock|
 |local infiltration|37397638|infiltrationr|
 |nasal|4262914|nasal|
 |nasogastric|4132711|nasogastric|
@@ -186,7 +188,7 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |patient-controlled epidural analgesia|4225555|epidural|
 |patient-controlled intravenous analgesia|4171047|intravenous|
 |per rectum|4290759|rectal|
-|regional analgesia|||
+|regional analgesia|0|regional analgesia|
 |right ear|4023156|otic|
 |right eye|40549429|ocular|
 |rinse|4263689|topical|
@@ -200,9 +202,9 @@ Prescribing Drug Routes to OMOP Condition Concept IDs
 |transdermal|4262099|transdermal|
 |transurethral|4305382|transurethral|
 |vaginal|4057765|vaginal|
-|via cvvhd|||
-|transmucosal|||
-|shampoo|||
+|via cvvhd|0|via cvvhd|
+|transmucosal|0|transmucosal|
+|shampoo|0|shampoo|
 
 Notes
 * [OMOP Routes](https://athena.ohdsi.org/search-terms/terms?domain=Route&standardConcept=Standard&page=1&pageSize=500&query=&boosts
