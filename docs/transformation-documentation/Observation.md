@@ -739,6 +739,16 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
+## CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
+<a href="CosdV9BreastFamilialCancerSyndromeSubsidiaryComment.svg" target="_blank"><img src="CosdV9BreastFamilialCancerSyndromeSubsidiaryComment.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ## CosdV9BreastAsaScore
 <a href="CosdV9BreastAsaScore.svg" target="_blank"><img src="CosdV9BreastAsaScore.svg" /></a>
 

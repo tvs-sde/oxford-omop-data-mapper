@@ -185,6 +185,27 @@
     <None Update="COSD\Breast\Observation\CosdV9BreastFamilialCancerSyndrome\CosdV9BreastFamilialCancerSyndrome.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastFamilialCancerSyndromeSubsidiaryComment\CosdV9BreastFamilialCancerSyndromeSubsidiaryComment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastHistoryOfAlcoholCurrent\CosdV9BreastHistoryOfAlcoholCurrent.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastHistoryOfAlcoholPast\CosdV9BreastHistoryOfAlcoholPast.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastMenopausalStatus\CosdV9BreastMenopausalStatus.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastPerformanceStatusAdult\CosdV9BreastPerformanceStatusAdult.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway\CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Breast\Observation\CosdV9BreastSourceOfReferralForOutpatients\CosdV9BreastSourceOfReferralForOutpatients.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Lung\ConditionOccurrence\CosdV8LungConditionOccurrencePrimaryDiagnosis\CosdV8LungConditionOccurrencePrimaryDiagnosis.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
