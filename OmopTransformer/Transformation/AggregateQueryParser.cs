@@ -19,7 +19,7 @@ internal class AggregateQueryParser
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Cannot read xml file {fileName}. Error: {ex.Message}. InnerException: {ex.InnerException?.Message}");
+            Console.Error.WriteLine($"Cannot read xml file {fileName}. Error: {ex}.");
 
             return null;
         }
