@@ -729,6 +729,66 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8AdultPerformanceStatus%20mapping){: .btn }
+## CosdV9BreastSourceOfReferralForOutpatients
+<a href="CosdV9BreastSourceOfReferralForOutpatients.svg" target="_blank"><img src="CosdV9BreastSourceOfReferralForOutpatients.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastSourceOfReferralForOutpatients%20mapping){: .btn }
+## CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway
+<a href="CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway.svg" target="_blank"><img src="CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway%20mapping){: .btn }
+## CosdV9BreastPerformanceStatusAdult
+<a href="CosdV9BreastPerformanceStatusAdult.svg" target="_blank"><img src="CosdV9BreastPerformanceStatusAdult.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
+## CosdV9BreastMenopausalStatus
+<a href="CosdV9BreastMenopausalStatus.svg" target="_blank"><img src="CosdV9BreastMenopausalStatus.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastMenopausalStatus%20mapping){: .btn }
+## CosdV9BreastHistoryOfAlcoholPast
+<a href="CosdV9BreastHistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9BreastHistoryOfAlcoholPast.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastHistoryOfAlcoholPast%20mapping){: .btn }
+## CosdV9BreastHistoryOfAlcoholCurrent
+<a href="CosdV9BreastHistoryOfAlcoholCurrent.svg" target="_blank"><img src="CosdV9BreastHistoryOfAlcoholCurrent.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
 ## CosdV9BreastFamilialCancerSyndrome
 <a href="CosdV9BreastFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9BreastFamilialCancerSyndrome.svg" /></a>
 
