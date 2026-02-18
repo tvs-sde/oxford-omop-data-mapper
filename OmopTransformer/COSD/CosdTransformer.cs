@@ -68,6 +68,17 @@ using OmopTransformer.COSD.Core.Death.v9DeathBasisOfDiagnosisCancer;
 using OmopTransformer.COSD.Core.Death.v9DeathDischargeDestination;
 using OmopTransformer.COSD.Core.DemographicsV8;
 using OmopTransformer.COSD.Core.DemographicsV9;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrencePrimaryDiagnosisIcd;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceProgressionIcd;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceMorphologyIcdo3;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceTopographyIcdo3;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceMorphologySnomedTransformation;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceOriginalMorphologySnomed;
+using OmopTransformer.COSD.Core.ConditionOccurrence.CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementMcategoryIntegratedStage;
@@ -392,6 +403,72 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9LungConditionOccurrenceRecurrenceRecord, CosdV9LungConditionOccurrenceRecurrence>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V9 Lung Condition Occurrence Recurrence",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrencePrimaryDiagnosisIcdRecord, CosdV9HAConditionOccurrencePrimaryDiagnosisIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceSecondaryDiagnosisIcdRecord, CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceProgressionIcdRecord, CosdV9HAConditionOccurrenceProgressionIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceMorphologyIcdo3Record, CosdV9HAConditionOccurrenceMorphologyIcdo3>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Morphology ICD-O-3",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceMorphologyIcdo3TransformationRecord, CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Morphology ICD-O-3 Transformation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3Record, CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Original Morphology ICD-O-3",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceTopographyIcdo3Record, CosdV9HAConditionOccurrenceTopographyIcdo3>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Topography ICD-O-3",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceMorphologySnomedDiagnosisRecord, CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Morphology SNOMED Diagnosis",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceMorphologySnomedTransformationRecord, CosdV9HAConditionOccurrenceMorphologySnomedTransformation>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Morphology SNOMED Transformation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceOriginalMorphologySnomedRecord, CosdV9HAConditionOccurrenceOriginalMorphologySnomed>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Original Morphology SNOMED",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcdRecord, CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Original Primary Diagnosis ICD",
             runId,
             cancellationToken);
 

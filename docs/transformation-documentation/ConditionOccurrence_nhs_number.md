@@ -290,6 +290,215 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Topography ICD-O-3
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.TopographyIcd-o-3.@code' as TopographyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and TopographyIcdo3 is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Topography%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code' as SecondaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and SecondaryDiagnosisIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code' as ProgressionIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and ProgressionIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code' as PrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and PrimaryDiagnosisIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code' as OriginalPrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalPrimaryDiagnosisIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Morphology SNOMED
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.OriginalMorphologySnomed.@code' as OriginalMorphologySnomed
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalMorphologySnomed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20SNOMED%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Morphology ICD-O-3
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.OriginalMorphologyIcd-o-3.@code' as OriginalMorphologyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalMorphologyIcdo3 is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology SNOMED Transformation
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.MorphologySNOMEDTransformation.MorphologySnomedTransformation.@code' as MorphologySnomedTransformation
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and MorphologySnomedTransformation is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Transformation%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology SNOMED Diagnosis
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and MorphologySnomedDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Diagnosis%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology ICD-O-3
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.MorphologyIcd-o-3.@code' as MorphologyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and MorphologyIcdo3 is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology ICD-O-3 Transformation
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.MorphologyIcd-o-3Transformation.@code' as MorphologyIcdo3Transformation
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and MorphologyIcdo3Transformation is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20Transformation%20mapping){: .btn }
 ### Cosd V8 Condition Occurrence Primary Diagnosis
 * Value copied from `NhsNumber`
 

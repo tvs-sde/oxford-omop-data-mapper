@@ -555,6 +555,226 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Topography ICD-O-3
+Source column  `TopographyIcdo3`.
+Resolve ICD-o-3 codes to OMOP concepts.
+
+* `TopographyIcdo3` Topographical site of the tumour using the ICD-O code. [TOPOGRAPHY (ICD-O)](https://www.datadictionary.nhs.uk/data_elements/topography__icd-o_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.TopographyIcd-o-3.@code' as TopographyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and TopographyIcdo3 is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Topography%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Secondary Diagnosis ICD
+Source column  `SecondaryDiagnosisIcd`.
+Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `SecondaryDiagnosisIcd` ICD code used to identify the secondary patient diagnosis. [SECONDARY DIAGNOSIS (ICD)](https://www.datadictionary.nhs.uk/data_elements/secondary_diagnosis__icd_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code' as SecondaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and SecondaryDiagnosisIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Progression ICD
+Source column  `ProgressionIcd`.
+Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProgressionIcd` The International Classification of Diseases (ICD) code of the cancer progression during a Cancer Care Spell. For the Cancer Outcomes and Services Data Set - Core, this is the ICD code of the original patient diagnosis of the cancer progression, agreed at the multidisciplinary team meeting by the care professional team. [CANCER PROGRESSION (ICD ORIGINAL)](https://www.datadictionary.nhs.uk/data_elements/cancer_progression__icd_original_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code' as ProgressionIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and ProgressionIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Primary Diagnosis ICD
+Source column  `PrimaryDiagnosisIcd`.
+Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryDiagnosisIcd` ICD code used to identify the primary diagnosis. [PRIMARY DIAGNOSIS (ICD)](https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code' as PrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and PrimaryDiagnosisIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Primary Diagnosis ICD
+Source column  `OriginalPrimaryDiagnosisIcd`.
+Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `OriginalPrimaryDiagnosisIcd` ICD code used to identify the original primary diagnosis. For COSDS Core, used for cancer recurrence and agreed at the multidisciplinary team meeting by the care professional team. [PRIMARY DIAGNOSIS (ICD ORIGINAL)](https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_original_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code' as OriginalPrimaryDiagnosisIcd
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalPrimaryDiagnosisIcd is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Morphology SNOMED
+Source column  `OriginalMorphologySnomed`.
+Resolve Snomed codes to OMOP concepts.
+
+* `OriginalMorphologySnomed` SNOMED code or SNOMED CT concept ID for the morphology code of the original primary diagnosis of the cancer transformation during a Cancer Care Spell. [MORPHOLOGY (SNOMED CANCER TRANSFORMATION ORIGINAL)](https://www.datadictionary.nhs.uk/data_elements/morphology__snomed_cancer_transformation_original_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.OriginalMorphologySnomed.@code' as OriginalMorphologySnomed
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalMorphologySnomed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20SNOMED%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Original Morphology ICD-O-3
+Source column  `OriginalMorphologyIcdo3`.
+Resolve ICD-o-3 codes to OMOP concepts.
+
+* `OriginalMorphologyIcdo3` Morphology code of the original primary diagnosis of the cancer transformation using the ICD-O code during a Cancer Care Spell. [MORPHOLOGY (ICD-O CANCER TRANSFORMATION ORIGINAL)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_original_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.OriginalMorphologyIcd-o-3.@code' as OriginalMorphologyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and OriginalMorphologyIcdo3 is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Original%20Morphology%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology SNOMED Transformation
+Source column  `MorphologySnomedTransformation`.
+Resolve Snomed codes to OMOP concepts.
+
+* `MorphologySnomedTransformation` Cancer transformation using SNOMED code or SNOMED CT concept ID for the cell type of the tumour during a Cancer Care Spell. [MORPHOLOGY (SNOMED CANCER TRANSFORMATION)](https://www.datadictionary.nhs.uk/data_elements/morphology__snomed_cancer_transformation_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.MorphologySNOMEDTransformation.MorphologySnomedTransformation.@code' as MorphologySnomedTransformation
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and MorphologySnomedTransformation is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Transformation%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology SNOMED Diagnosis
+Source column  `MorphologySnomedDiagnosis`.
+Resolve Snomed codes to OMOP concepts.
+
+* `MorphologySnomedDiagnosis` Patient diagnosis using SNOMED code or SNOMED CT concept ID for the cell type of the tumour during a Cancer Care Spell. [MORPHOLOGY (SNOMED DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/morphology__snomed_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and MorphologySnomedDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20SNOMED%20Diagnosis%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology ICD-O-3
+Source column  `MorphologyIcdo3`.
+Resolve ICD-o-3 codes to OMOP concepts.
+
+* `MorphologyIcdo3` Patient diagnosis using the ICD-O code during a Cancer Care Spell. [MORPHOLOGY (ICD-O DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.MorphologyIcd-o-3.@code' as MorphologyIcdo3
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and MorphologyIcdo3 is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Morphology ICD-O-3 Transformation
+Source column  `MorphologyIcdo3Transformation`.
+Resolve ICD-o-3 codes to OMOP concepts.
+
+* `MorphologyIcdo3Transformation` Morphology code of the cancer transformation using the ICD-O code during a Cancer Care Spell. [MORPHOLOGY (ICD-O CANCER TRANSFORMATION)](https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Transformation.MorphologyIcd-o-3Transformation.@code' as MorphologyIcdo3Transformation
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null
+  and MorphologyIcdo3Transformation is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Morphology%20ICD-O-3%20Transformation%20mapping){: .btn }
 ### Cosd V8 Condition Occurrence Primary Diagnosis
 Source column  `CancerDiagnosis`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.

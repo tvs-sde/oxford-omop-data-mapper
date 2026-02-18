@@ -1,0 +1,27 @@
+<Query>
+    <Sql><![CDATA[
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.MorphologySNOMED.MorphologySnomedDiagnosis.@code' as MorphologySnomedDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and MorphologySnomedDiagnosis is not null;
+    ]]></Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS Number is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="MorphologySnomedDiagnosis">
+            <Description>Patient diagnosis using SNOMED code or SNOMED CT concept ID for the cell type of the tumour during a Cancer Care Spell.</Description>
+            <Origin>MORPHOLOGY (SNOMED DIAGNOSIS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

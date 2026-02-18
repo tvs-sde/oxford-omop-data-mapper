@@ -329,6 +329,39 @@
     <None Update="COSD\Core\DemographicsV9\OmopDemographicsV9.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrencePrimaryDiagnosisIcd\COSDv9HAConditionOccurrencePrimaryDiagnosisIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd\COSDv9HAConditionOccurrenceSecondaryDiagnosisIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceProgressionIcd\COSDv9HAConditionOccurrenceProgressionIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceMorphologyIcdo3\COSDv9HAConditionOccurrenceMorphologyIcdo3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation\COSDv9HAConditionOccurrenceMorphologyIcdo3Transformation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3\COSDv9HAConditionOccurrenceOriginalMorphologyIcdo3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceTopographyIcdo3\COSDv9HAConditionOccurrenceTopographyIcdo3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis\COSDv9HAConditionOccurrenceMorphologySnomedDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceMorphologySnomedTransformation\COSDv9HAConditionOccurrenceMorphologySnomedTransformation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceOriginalMorphologySnomed\COSDv9HAConditionOccurrenceOriginalMorphologySnomed.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Core\ConditionOccurrence\CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd\COSDv9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Colorectal\Measurements\CosdV8MeasurementGradeOfDifferentiation\CosdV8MeasurementGradeOfDifferentiation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

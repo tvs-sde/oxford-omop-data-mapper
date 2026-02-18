@@ -95,6 +95,50 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceTopographyIcdo3
+<a href="CosdV9HAConditionOccurrenceTopographyIcdo3.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceTopographyIcdo3.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceTopographyIcdo3%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd
+<a href="CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceSecondaryDiagnosisIcd%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceProgressionIcd
+<a href="CosdV9HAConditionOccurrenceProgressionIcd.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceProgressionIcd.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceProgressionIcd%20mapping){: .btn }
+## CosdV9HAConditionOccurrencePrimaryDiagnosisIcd
+<a href="CosdV9HAConditionOccurrencePrimaryDiagnosisIcd.svg" target="_blank"><img src="CosdV9HAConditionOccurrencePrimaryDiagnosisIcd.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrencePrimaryDiagnosisIcd%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd
+<a href="CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceOriginalPrimaryDiagnosisIcd%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceOriginalMorphologySnomed
+<a href="CosdV9HAConditionOccurrenceOriginalMorphologySnomed.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceOriginalMorphologySnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceOriginalMorphologySnomed%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3
+<a href="CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceOriginalMorphologyIcdo3%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceMorphologySnomedTransformation
+<a href="CosdV9HAConditionOccurrenceMorphologySnomedTransformation.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceMorphologySnomedTransformation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceMorphologySnomedTransformation%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis
+<a href="CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceMorphologySnomedDiagnosis%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceMorphologyIcdo3
+<a href="CosdV9HAConditionOccurrenceMorphologyIcdo3.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceMorphologyIcdo3.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceMorphologyIcdo3%20mapping){: .btn }
+## CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation
+<a href="CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation.svg" target="_blank"><img src="CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9HAConditionOccurrenceMorphologyIcdo3Transformation%20mapping){: .btn }
 ## CosdV8ConditionOccurrencePrimaryDiagnosis
 <a href="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" target="_blank"><img src="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" /></a>
 
