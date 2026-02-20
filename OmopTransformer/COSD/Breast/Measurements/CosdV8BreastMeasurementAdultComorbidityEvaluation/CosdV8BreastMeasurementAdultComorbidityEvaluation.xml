@@ -26,7 +26,7 @@ select
                 cast (FinalPreTreatmentTNMStageGroupingDate as date),
                 cast (CancerTreatmentStartDate as date),
                 cast (ProcedureDate as date)
-              ) as Date
+              ) as MeasurementDate
 from BR o
 where o.AdultComorbidityEvaluation is not null
   and not (
@@ -44,7 +44,7 @@ where o.AdultComorbidityEvaluation is not null
 		    <Description>Patient NHS Number</Description>
 		    <Origin>NHS NUMBER</Origin>
 	    </Explanation>
-	    <Explanation columnName="Date">
+	    <Explanation columnName="MeasurementDate">
 			<Description>Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)</Description>
 			<Origin>Multiple date sources</Origin>
 		</Explanation>

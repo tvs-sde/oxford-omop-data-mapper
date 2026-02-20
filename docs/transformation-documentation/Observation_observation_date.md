@@ -2364,54 +2364,6 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV9AsaScore%20mapping){: .btn }
-### CosdV9AdultComorbidityEvaluation
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with CO as (
-	select
-		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-		coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
-		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
-		Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,
-		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-	from omop_staging.cosd_staging_901
-	where type = 'CO'
-)
-select
-	distinct
-		AdultComorbidityEvaluation,
-		NhsNumber,
-		least(
-			cast(DateFirstSeen as date),
-			cast(DateFirstSeenCancerSpecialist as date),
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
-		) as Date
-from CO o
-where o.AdultComorbidityEvaluation is not null
-  and not (
-		DateFirstSeen is null and
-		DateFirstSeenCancerSpecialist is null and
-		DateOfPrimaryDiagnosisClinicallyAgreed is null and
-		StageDateFinalPretreatmentStage is null and
-		StageDateIntegratedStage is null and
-		TreatmentStartDateCancer is null and
-		ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV9AdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV8SourceOfReferralOutPatients
 * Value copied from `Date`
 
@@ -2784,54 +2736,6 @@ where o.AdultPerformanceStatus is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8AdultPerformanceStatus%20mapping){: .btn }
-### CosdV8AdultComorbidityEvaluation
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with CO as (
-	select 
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
-		Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-	from omop_staging.cosd_staging_81
-	where Type = 'CO'
-)
-select
-      distinct
-          AdultComorbidityEvaluation,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from CO o
-where o.AdultComorbidityEvaluation is not null
-  and not (
-		DateFirstSeen is null and
-		SpecialistDateFirstSeen is null and
-		ClinicalDateCancerDiagnosis is null and
-		IntegratedStageTNMStageGroupingDate is null and
-		FinalPreTreatmentTNMStageGroupingDate is null and
-		CancerTreatmentStartDate is null and
-		ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV9BreastSourceOfReferralForOutpatients
 * Value copied from `Date`
 
@@ -3310,61 +3214,6 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
-### COSD V9 Breast Adult Comorbidity Evaluation
-* Value copied from `Date`
-
-* `Date` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with BR as (
-    select
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-        coalesce(
-            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
-            Record ->> '$.Treatment.TreatmentStartDateCancer'
-        ) as TreatmentStartDateCancer,
-        coalesce(
-            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
-            Record ->> '$.Treatment.Surgery.ProcedureDate'
-        ) as ProcedureDate,
-        -- Quoting used to handle the hyphen in the field name safely
-        Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'BR'
-)
-select
-    distinct
-        AdultComorbidityEvaluation,
-        NhsNumber,
-        least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
-        ) as Date
-from BR o
-where o.AdultComorbidityEvaluation is not null
-  and not (
-        DateFirstSeen is null and
-        DateFirstSeenCancerSpecialist is null and
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        StageDateFinalPretreatmentStage is null and
-        StageDateIntegratedStage is null and
-        TreatmentStartDateCancer is null and
-        ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 Breast Source Of Referral Out Patients
 * Value copied from `Date`
 
@@ -3629,52 +3478,3 @@ where o.FamilialCancerSyndromeIndicator is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
-### COSD V8 Breast Adult Comorbidity Evaluation
-* Value copied from `Date`
-
-* `Date` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with BR as (
-    select 
-        Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
-        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_81
-    where Type = 'BR'
-)
-select
-      distinct
-          AdultComorbidityEvaluation,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (DateFirstSeenCancerSpecialist as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from BR o
-where o.AdultComorbidityEvaluation is not null
-  and not (
-        DateFirstSeen is null and
-        DateFirstSeenCancerSpecialist is null and
-        ClinicalDateCancerDiagnosis is null and
-        IntegratedStageTNMStageGroupingDate is null and
-        FinalPreTreatmentTNMStageGroupingDate is null and
-        CancerTreatmentStartDate is null and
-        ProcedureDate is null
-    );
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }

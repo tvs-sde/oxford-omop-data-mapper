@@ -1,4 +1,4 @@
-namespace OmopTransformer.COSD.Colorectal.Observation;
+namespace OmopTransformer.COSD.Breast;
 
 internal class DocumentationNotes
 {

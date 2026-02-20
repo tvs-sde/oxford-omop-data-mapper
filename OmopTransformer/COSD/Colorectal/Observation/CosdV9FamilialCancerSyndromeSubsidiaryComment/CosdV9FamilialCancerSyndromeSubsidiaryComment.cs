@@ -10,7 +10,7 @@ internal class CosdV9FamilialCancerSyndromeSubsidiaryComment : OmopObservation<C
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
 
-    [ConstantValue(44782478, "Hereditary cancer-predisposing syndrome")]
+    [ConstantValue(4171594, "Family history of malignant neoplasm")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.Date))]

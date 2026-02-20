@@ -260,21 +260,17 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9HistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9FamilialCancerSyndrome
-* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+* Constant value set to `4171594`. Family history of malignant neoplasm
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9FamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV9FamilialCancerSyndromeSubsidiaryComment
-* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+* Constant value set to `4171594`. Family history of malignant neoplasm
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9FamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9AsaScore
 * Constant value set to `4185914`. Identification of physical status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9AsaScore%20mapping){: .btn }
-### CosdV9AdultComorbidityEvaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9AdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV8SourceOfReferralOutPatients
 * Constant value set to `4258129`. Referral by
 
@@ -292,7 +288,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV8FamilialCancerSyndromeIndicator
-* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+* Constant value set to `4171594`. Family history of malignant neoplasm
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8FamilialCancerSyndromeIndicator%20mapping){: .btn }
 ### CosdV8AlcoholHistoryCancerInLastThreeMonths
@@ -307,10 +303,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4309681`. General physical performance status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AdultPerformanceStatus%20mapping){: .btn }
-### CosdV8AdultComorbidityEvaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV9BreastSourceOfReferralForOutpatients
 * Constant value set to `4258129`. Referral by
 
@@ -347,10 +339,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4185914`. Identification of physical status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
-### COSD V9 Breast Adult Comorbidity Evaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 Breast Source Of Referral Out Patients
 * Constant value set to `4258129`. Referral by
 
@@ -371,7 +359,3 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
-### COSD V8 Breast Adult Comorbidity Evaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }

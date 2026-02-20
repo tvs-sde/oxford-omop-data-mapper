@@ -17,9 +17,9 @@ internal class AggregateQueryParser
             query = (Query)serializer.Deserialize(reader)!;
 
         }
-        catch
+        catch (Exception ex)
         {
-            Console.Error.WriteLine($"Cannot read xml file {fileName}.");
+            Console.Error.WriteLine($"Cannot read xml file {fileName}. Error: {ex}.");
 
             return null;
         }

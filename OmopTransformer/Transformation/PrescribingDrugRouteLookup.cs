@@ -20,7 +20,7 @@ internal class PrescribingDrugRouteLookup : ILookup
             { "endotracheal", new ValueWithNote("40491832", "transtracheal") },
             { "enteral feed", new ValueWithNote("4167540", "enteral") },
             { "epidural", new ValueWithNote("4225555", "epidural") },
-            { "flush", new ValueWithNote("", "") },
+            { "flush", new ValueWithNote("0", "flush") },
             { "gastrojejunostomy", new ValueWithNote("4133177", "jejunostomy") },
             { "gastrostomy", new ValueWithNote("4132254", "gastrostomy") },
             { "gingival", new ValueWithNote("4156704", "gingival") },
@@ -53,11 +53,11 @@ internal class PrescribingDrugRouteLookup : ILookup
             { "intravesical", new ValueWithNote("4186838", "intravesical") },
             { "intraviteal", new ValueWithNote("4302785", "intravitreal") },
             { "intravitreal", new ValueWithNote("4302785", "intravitreal") },
-            { "irrigation", new ValueWithNote("", "") },
+            { "irrigation", new ValueWithNote("0", "irrigation") },
             { "jejunostomy", new ValueWithNote("4133177", "jejunostomy") },
             { "left ear", new ValueWithNote("4023156", "otic") },
             { "left eye", new ValueWithNote("40549429", "ocular") },
-            { "line lock", new ValueWithNote("", "") },
+            { "line lock", new ValueWithNote("0", "line lock") },
             { "local infiltration", new ValueWithNote("37397638", "infiltrationr") },
             { "nasal", new ValueWithNote("4262914", "nasal") },
             { "nasogastric", new ValueWithNote("4132711", "nasogastric") },
@@ -71,7 +71,7 @@ internal class PrescribingDrugRouteLookup : ILookup
             { "patient-controlled epidural analgesia", new ValueWithNote("4225555", "epidural") },
             { "patient-controlled intravenous analgesia", new ValueWithNote("4171047", "intravenous") },
             { "per rectum", new ValueWithNote("4290759", "rectal") },
-            { "regional analgesia", new ValueWithNote("", "") },
+            { "regional analgesia", new ValueWithNote("0", "regional analgesia") },
             { "right ear", new ValueWithNote("4023156", "otic") },
             { "right eye", new ValueWithNote("40549429", "ocular") },
             { "rinse", new ValueWithNote("4263689", "topical") },
@@ -83,12 +83,11 @@ internal class PrescribingDrugRouteLookup : ILookup
             { "sublingual", new ValueWithNote("4292110", "sublingual") },
             { "topical", new ValueWithNote("4263689", "topical") },
             { "transdermal", new ValueWithNote("4262099", "transdermal") },
-            //{ "subdermal", new ValueWithNote("4186839", "oromucosal") },
             { "transurethral", new ValueWithNote("4305382", "transurethral") },
             { "vaginal", new ValueWithNote("4057765", "vaginal") },
-            { "via cvvhd", new ValueWithNote("", "") },
-            { "transmucosal", new ValueWithNote("", "") },
-            { "shampoo", new ValueWithNote("", "") }
+            { "via cvvhd", new ValueWithNote("0", "via cvvhd") },
+            { "transmucosal", new ValueWithNote("0", "transmucosal") },
+            { "shampoo", new ValueWithNote("0", "shampoo") }
         };
 
 

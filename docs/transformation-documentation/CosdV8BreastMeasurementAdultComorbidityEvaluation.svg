@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1735" height="800">
+<svg xmlns="http://www.w3.org/2000/svg" width="2155" height="800">
   <rect width="100%" height="100%" fill="#3E5EB2" />
   <g>
     <rect x="25" y="20" width="400" height="400" fill="#3E5EB2" stroke="white" stroke-width="2" />
@@ -22,11 +22,11 @@
     <line x1="645" y1="420" x2="645" y2="615" stroke="white" stroke-width="2" />
     <line x1="635" y1="605" x2="645" y2="615" stroke="white" stroke-width="2" />
     <line x1="655" y1="605" x2="645" y2="615" stroke="white" stroke-width="2" />
-    <text x="520" y="728" fill="white" font-size="1em" font-family="Helvetica">Copy value</text>
+    <text x="520" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to dates.</text>
   </g>
   <g>
     <rect x="445" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
-    <text x="458" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">observation_date</text>
+    <text x="458" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">measurement_date</text>
   </g>
   <g>
     <rect x="865" y="20" width="400" height="400" fill="#3E5EB2" stroke="white" stroke-width="2" />
@@ -36,24 +36,40 @@
     <line x1="1065" y1="420" x2="1065" y2="615" stroke="white" stroke-width="2" />
     <line x1="1055" y1="605" x2="1065" y2="615" stroke="white" stroke-width="2" />
     <line x1="1075" y1="605" x2="1065" y2="615" stroke="white" stroke-width="2" />
-    <text x="940" y="728" fill="white" font-size="1em" font-family="Helvetica">Copy value</text>
+    <text x="940" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to dates.</text>
   </g>
   <g>
     <rect x="865" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
-    <text x="878" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">observation_datetime</text>
+    <text x="878" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">measurement_datetime</text>
   </g>
   <g>
     <rect x="1285" y="20" width="400" height="400" fill="#3E5EB2" stroke="white" stroke-width="2" />
-    <text x="1298" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">AdultComorbidityEvaluation-27Score</text>
+    <text x="1298" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">ADULT COMORBIDITY EVALUATION-27</text>
+    <text x="1298" y="246" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">SCORE</text>
   </g>
   <g>
     <line x1="1485" y1="420" x2="1485" y2="615" stroke="white" stroke-width="2" />
     <line x1="1475" y1="605" x2="1485" y2="615" stroke="white" stroke-width="2" />
     <line x1="1495" y1="605" x2="1485" y2="615" stroke="white" stroke-width="2" />
-    <text x="1360" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to number.</text>
+    <text x="1360" y="728" fill="white" font-size="1em" font-family="Helvetica">Copy value</text>
   </g>
   <g>
     <rect x="1285" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
-    <text x="1298" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">value_as_number</text>
+    <text x="1298" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">measurement_source_value</text>
+  </g>
+  <g>
+    <rect x="1705" y="20" width="400" height="400" fill="#3E5EB2" stroke="white" stroke-width="2" />
+    <text x="1718" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">ADULT COMORBIDITY EVALUATION-27</text>
+    <text x="1718" y="246" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">SCORE</text>
+  </g>
+  <g>
+    <line x1="1905" y1="420" x2="1905" y2="615" stroke="white" stroke-width="2" />
+    <line x1="1895" y1="605" x2="1905" y2="615" stroke="white" stroke-width="2" />
+    <line x1="1915" y1="605" x2="1905" y2="615" stroke="white" stroke-width="2" />
+    <text x="1780" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to number.</text>
+  </g>
+  <g>
+    <rect x="1705" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
+    <text x="1718" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">value_as_number</text>
   </g>
 </svg>

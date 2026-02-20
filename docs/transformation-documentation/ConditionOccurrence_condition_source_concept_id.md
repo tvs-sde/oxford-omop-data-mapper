@@ -304,8 +304,8 @@ Accident and Emergency Diagnosis to OMOP Condition Concept IDs
 |35|432586|Mental disorder|
 |36 04|373499|Ophthalmological of Eye|
 |37|439437|Social problem|
-|38||Diagnosis not classifiable|
-|39||Nothing abnormal detected|
+|38|0|Diagnosis not classifiable|
+|39|0|Nothing abnormal detected|
 
 Notes
 * [ACCIDENT and EMERGENCY CLINICAL CODES](https://archive.datadictionary.nhs.uk/DD%20Release%20September%202020/supporting_information/accident_and_emergency_diagnosis_tables.html)
@@ -904,20 +904,20 @@ Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be
 ```sql
 with BR as (
     select
-        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
         Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,
         Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis
     from omop_staging.cosd_staging_81
     where type = 'BR'
 )
 select distinct
-    NHSNumber,
+    NhsNumber,
     NonPrimaryDiagnosisDate,
     NonPrimaryProgressionOriginalDiagnosis
 from BR
 where NonPrimaryProgressionOriginalDiagnosis is not null
   and NonPrimaryDiagnosisDate is not null
-  and NHSNumber is not null;
+  and NhsNumber is not null;
 ```
 
 

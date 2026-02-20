@@ -266,10 +266,6 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9AsaScore%20mapping){: .btn }
-### CosdV9AdultComorbidityEvaluation
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9AdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV8SourceOfReferralOutPatients
 * Constant value set to `32828`. `EHR episode record`
 
@@ -302,10 +298,6 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV8AdultPerformanceStatus%20mapping){: .btn }
-### CosdV8AdultComorbidityEvaluation
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV8AdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV9BreastSourceOfReferralForOutpatients
 * Constant value set to `32828`. `EHR episode record`
 
@@ -342,10 +334,6 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
-### COSD V9 Breast Adult Comorbidity Evaluation
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20COSD%20V9%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 Breast Source Of Referral Out Patients
 * Constant value set to `32828`. `EHR episode record`
 
@@ -366,7 +354,3 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
-### COSD V8 Breast Adult Comorbidity Evaluation
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20COSD%20V8%20Breast%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }

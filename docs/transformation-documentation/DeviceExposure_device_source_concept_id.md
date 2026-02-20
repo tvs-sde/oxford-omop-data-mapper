@@ -222,8 +222,8 @@ Accident and Emergency Treatment to OMOP Procedure Concept IDs
 |555|4252594|Eye - subconjunctival injection|
 |56|4305000|Dental|
 |57|4052492|Prescription|
-|27||Not Mappable|
-|99||Not Mappable|
+|27|0|Not Mappable|
+|99|0|Not Mappable|
 
 Notes
 * [ACCIDENT and EMERGENCY CLINICAL CODES](https://archive.datadictionary.nhs.uk/DD%20Release%20September%202020/supporting_information/accident_and_emergency_treatment_tables.html)

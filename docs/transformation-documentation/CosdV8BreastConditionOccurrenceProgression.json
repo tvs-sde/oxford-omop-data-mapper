@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NHSNumber is not null;\n    ",
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NhsNumber is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -35,7 +35,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NHSNumber is not null;\n    ",
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NhsNumber is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -60,7 +60,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NHSNumber is not null;\n    ",
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NhsNumber is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -78,7 +78,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NHSNumber is not null;\n    ",
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n        Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    NonPrimaryDiagnosisDate,\n    NonPrimaryProgressionOriginalDiagnosis\nfrom BR\nwhere NonPrimaryProgressionOriginalDiagnosis is not null\n  and NonPrimaryDiagnosisDate is not null\n  and NhsNumber is not null;\n    ",
       "lookup_table_markdown": null
     },
     {

@@ -83,15 +83,15 @@
     },
     {
       "name": "measurement_source_value",
-      "operation_description": "Value copied from `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`",
+      "operation_description": "Value copied from `MetastaticSite`",
       "dataSource": [
         {
-          "name": "DateOfNonPrimaryCancerDiagnosisClinicallyAgreed",
-          "description": "Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed.",
+          "name": "MetastaticSite",
+          "description": "Is the site of the metastatic disease at PATIENT DIAGNOSIS",
           "origins": [
             {
-              "origin": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html"
+              "origin": "METASTATIC SITE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html"
             }
           ]
         }

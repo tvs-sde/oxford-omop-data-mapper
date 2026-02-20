@@ -22,7 +22,7 @@
     },
     {
       "name": "observation_concept_id",
-      "operation_description": "Constant value set to `44782478`. Hereditary cancer-predisposing syndrome",
+      "operation_description": "Constant value set to `4171594`. Family history of malignant neoplasm",
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null

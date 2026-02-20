@@ -26,7 +26,7 @@ select
                 cast (FinalPreTreatmentTNMStageGroupingDate as date),
                 cast (CancerTreatmentStartDate as date),
                 cast (ProcedureDate as date)
-              ) as Date
+              ) as MeasurementDate
 from CO o
 where o.AdultComorbidityEvaluation is not null
   and not (
@@ -49,8 +49,8 @@ where o.AdultComorbidityEvaluation is not null
 		   <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
 		   <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
 		</Explanation>
-      <Explanation columnName="Date" >
-    	  <Description>Observation date</Description>
+      <Explanation columnName="MeasurementDate" >
+    	  <Description>Measurement date</Description>
     	  <Origin>DATE FIRST SEEN</Origin>
     	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
     	  <Origin>DIAGNOSIS DATE</Origin>

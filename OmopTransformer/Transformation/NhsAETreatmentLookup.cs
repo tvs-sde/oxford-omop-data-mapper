@@ -114,8 +114,8 @@ internal class NhsAETreatmentLookup : ILookup
             { "555", new ValueWithNote("4252594", "Eye - subconjunctival injection") },
             { "56", new ValueWithNote("4305000", "Dental") },
             { "57", new ValueWithNote("4052492", "Prescription") },
-            { "27", new ValueWithNote("", "Not Mappable") },
-            { "99", new ValueWithNote("", "Not Mappable") },
+            { "27", new ValueWithNote("0", "Not Mappable") },
+            { "99", new ValueWithNote("0", "Not Mappable") },
         };
 
 

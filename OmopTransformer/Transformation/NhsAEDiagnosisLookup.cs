@@ -244,8 +244,8 @@ internal class NhsAEDiagnosisLookup : ILookup
             { "35", new ValueWithNote("432586", "Mental disorder") },
             { "36 04", new ValueWithNote("373499", "Ophthalmological of Eye") },
             { "37", new ValueWithNote("439437", "Social problem") },
-            { "38", new ValueWithNote("", "Diagnosis not classifiable") },
-            { "39", new ValueWithNote("", "Nothing abnormal detected") },
+            { "38", new ValueWithNote("0", "Diagnosis not classifiable") },
+            { "39", new ValueWithNote("0", "Nothing abnormal detected") },
         };
 
 
