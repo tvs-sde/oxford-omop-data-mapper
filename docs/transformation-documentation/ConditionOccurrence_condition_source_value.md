@@ -583,20 +583,20 @@ where DateOfPrimaryDiagnosisClinicallyAgreed is not null
 ```sql
 with BR as (
     select
-        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
         Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,
         Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code' as NonPrimaryProgressionOriginalDiagnosis
     from omop_staging.cosd_staging_81
     where type = 'BR'
 )
 select distinct
-    NHSNumber,
+    NhsNumber,
     NonPrimaryDiagnosisDate,
     NonPrimaryProgressionOriginalDiagnosis
 from BR
 where NonPrimaryProgressionOriginalDiagnosis is not null
   and NonPrimaryDiagnosisDate is not null
-  and NHSNumber is not null;
+  and NhsNumber is not null;
 ```
 
 

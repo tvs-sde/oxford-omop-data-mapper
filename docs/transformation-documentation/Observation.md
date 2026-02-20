@@ -819,16 +819,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastAsaScore%20mapping){: .btn }
-## CosdV9BreastAdultComorbidityEvaluation
-<a href="CosdV9BreastAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9BreastAdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV8BreastSourceOfReferralOutPatients
 <a href="CosdV8BreastSourceOfReferralOutPatients.svg" target="_blank"><img src="CosdV8BreastSourceOfReferralOutPatients.svg" /></a>
 
@@ -879,13 +869,3 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastFamilialCancerSyndromeIndicator%20mapping){: .btn }
-## CosdV8BreastAdultComorbidityEvaluation
-<a href="CosdV8BreastAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8BreastAdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastAdultComorbidityEvaluation%20mapping){: .btn }

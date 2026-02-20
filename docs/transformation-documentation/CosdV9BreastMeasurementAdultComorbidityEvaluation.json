@@ -1,0 +1,110 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        coalesce(\n            Record ->> '$.Treatment[0].TreatmentStartDateCancer', \n            Record ->> '$.Treatment.TreatmentStartDateCancer'\n        ) as TreatmentStartDateCancer,\n        coalesce(\n            Record ->> '$.Treatment[0].Surgery.ProcedureDate', \n            Record ->> '$.Treatment.Surgery.ProcedureDate'\n        ) as ProcedureDate,\n        -- Quoting used to handle the hyphen in the field name safely\n        Record ->> '$.\"CancerCarePlan\".\"AdultComorbidityEvaluation-27Score\".\"@code\"' as AdultComorbidityEvaluation,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect\n    distinct\n        AdultComorbidityEvaluation,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as MeasurementDate\nfrom BR o\nwhere o.AdultComorbidityEvaluation is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)",
+          "origins": [
+            {
+              "origin": "Multiple date sources",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        coalesce(\n            Record ->> '$.Treatment[0].TreatmentStartDateCancer', \n            Record ->> '$.Treatment.TreatmentStartDateCancer'\n        ) as TreatmentStartDateCancer,\n        coalesce(\n            Record ->> '$.Treatment[0].Surgery.ProcedureDate', \n            Record ->> '$.Treatment.Surgery.ProcedureDate'\n        ) as ProcedureDate,\n        -- Quoting used to handle the hyphen in the field name safely\n        Record ->> '$.\"CancerCarePlan\".\"AdultComorbidityEvaluation-27Score\".\"@code\"' as AdultComorbidityEvaluation,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect\n    distinct\n        AdultComorbidityEvaluation,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as MeasurementDate\nfrom BR o\nwhere o.AdultComorbidityEvaluation is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)",
+          "origins": [
+            {
+              "origin": "Multiple date sources",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        coalesce(\n            Record ->> '$.Treatment[0].TreatmentStartDateCancer', \n            Record ->> '$.Treatment.TreatmentStartDateCancer'\n        ) as TreatmentStartDateCancer,\n        coalesce(\n            Record ->> '$.Treatment[0].Surgery.ProcedureDate', \n            Record ->> '$.Treatment.Surgery.ProcedureDate'\n        ) as ProcedureDate,\n        -- Quoting used to handle the hyphen in the field name safely\n        Record ->> '$.\"CancerCarePlan\".\"AdultComorbidityEvaluation-27Score\".\"@code\"' as AdultComorbidityEvaluation,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect\n    distinct\n        AdultComorbidityEvaluation,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as MeasurementDate\nfrom BR o\nwhere o.AdultComorbidityEvaluation is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Constant value set to `40488785`. Adult comorbidity evaluation-27",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `AdultComorbidityEvaluation`",
+      "dataSource": [
+        {
+          "name": "AdultComorbidityEvaluation",
+          "description": "Adult Comorbidity Evaluation Score",
+          "origins": [
+            {
+              "origin": "AdultComorbidityEvaluation-27Score",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        coalesce(\n            Record ->> '$.Treatment[0].TreatmentStartDateCancer', \n            Record ->> '$.Treatment.TreatmentStartDateCancer'\n        ) as TreatmentStartDateCancer,\n        coalesce(\n            Record ->> '$.Treatment[0].Surgery.ProcedureDate', \n            Record ->> '$.Treatment.Surgery.ProcedureDate'\n        ) as ProcedureDate,\n        -- Quoting used to handle the hyphen in the field name safely\n        Record ->> '$.\"CancerCarePlan\".\"AdultComorbidityEvaluation-27Score\".\"@code\"' as AdultComorbidityEvaluation,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect\n    distinct\n        AdultComorbidityEvaluation,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as MeasurementDate\nfrom BR o\nwhere o.AdultComorbidityEvaluation is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_number",
+      "operation_description": "Converts text to number.",
+      "dataSource": [
+        {
+          "name": "AdultComorbidityEvaluation",
+          "description": "Adult Comorbidity Evaluation Score",
+          "origins": [
+            {
+              "origin": "AdultComorbidityEvaluation-27Score",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        coalesce(\n            Record ->> '$.Treatment[0].TreatmentStartDateCancer', \n            Record ->> '$.Treatment.TreatmentStartDateCancer'\n        ) as TreatmentStartDateCancer,\n        coalesce(\n            Record ->> '$.Treatment[0].Surgery.ProcedureDate', \n            Record ->> '$.Treatment.Surgery.ProcedureDate'\n        ) as ProcedureDate,\n        -- Quoting used to handle the hyphen in the field name safely\n        Record ->> '$.\"CancerCarePlan\".\"AdultComorbidityEvaluation-27Score\".\"@code\"' as AdultComorbidityEvaluation,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect\n    distinct\n        AdultComorbidityEvaluation,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as MeasurementDate\nfrom BR o\nwhere o.AdultComorbidityEvaluation is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    }
+  ]
+}
