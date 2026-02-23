@@ -50,7 +50,7 @@
     <line x1="645" y1="420" x2="645" y2="615" stroke="white" stroke-width="2" />
     <line x1="635" y1="605" x2="645" y2="615" stroke="white" stroke-width="2" />
     <line x1="655" y1="605" x2="645" y2="615" stroke="white" stroke-width="2" />
-    <text x="520" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to dates.</text>
+    <text x="520" y="728" fill="white" font-size="1em" font-family="Helvetica">Copy value</text>
   </g>
   <g>
     <rect x="445" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
@@ -92,7 +92,7 @@
     <line x1="1065" y1="420" x2="1065" y2="615" stroke="white" stroke-width="2" />
     <line x1="1055" y1="605" x2="1065" y2="615" stroke="white" stroke-width="2" />
     <line x1="1075" y1="605" x2="1065" y2="615" stroke="white" stroke-width="2" />
-    <text x="940" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to dates.</text>
+    <text x="940" y="728" fill="white" font-size="1em" font-family="Helvetica">Copy value</text>
   </g>
   <g>
     <rect x="865" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
