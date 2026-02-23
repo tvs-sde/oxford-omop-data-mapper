@@ -1,4 +1,4 @@
-﻿<Query>
+<Query>
     <Sql>
 	    with cosddates as (
     select

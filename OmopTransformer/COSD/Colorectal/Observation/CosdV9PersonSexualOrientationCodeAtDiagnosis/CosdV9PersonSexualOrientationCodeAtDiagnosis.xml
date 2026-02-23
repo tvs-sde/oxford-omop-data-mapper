@@ -15,9 +15,9 @@ select
 		PersonSexualOrientationCodeAtDiagnosis,
 		NhsNumber,
 		least(
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
+			DateOfPrimaryDiagnosisClinicallyAgreed,
+			TreatmentStartDateCancer,
+			ProcedureDate
 		) as Date
 from CO o
 where o.PersonSexualOrientationCodeAtDiagnosis is not null

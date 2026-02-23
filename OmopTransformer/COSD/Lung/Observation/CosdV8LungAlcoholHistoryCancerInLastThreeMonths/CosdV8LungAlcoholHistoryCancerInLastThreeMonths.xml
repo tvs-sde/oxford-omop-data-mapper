@@ -19,13 +19,13 @@ select
           AlcoholHistoryCancerInLastThreeMonths,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from LU o
 where o.AlcoholHistoryCancerInLastThreeMonths is not null

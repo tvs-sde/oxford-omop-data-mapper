@@ -26,13 +26,13 @@ select
         AdultComorbidityEvaluation,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as MeasurementDate
 from BR o
 where o.AdultComorbidityEvaluation is not null

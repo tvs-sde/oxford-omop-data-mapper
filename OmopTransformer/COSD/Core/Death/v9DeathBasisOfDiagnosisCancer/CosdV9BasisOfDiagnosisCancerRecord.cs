@@ -8,5 +8,5 @@ namespace OmopTransformer.COSD.Core.Death.v9DeathBasisOfDiagnosisCancer;
 internal class CosdV9BasisOfDiagnosisCancerRecord
 {
     public string? NhsNumber { get; set; }
-    public string? DeathDate { get; set; }
+    public DateOnly? DeathDate { get; set; }
 }

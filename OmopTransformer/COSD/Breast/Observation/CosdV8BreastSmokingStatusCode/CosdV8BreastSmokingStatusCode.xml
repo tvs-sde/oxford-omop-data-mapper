@@ -31,13 +31,13 @@ select
           SmokingStatusCode,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from BR o
 where o.SmokingStatusCode is not null
