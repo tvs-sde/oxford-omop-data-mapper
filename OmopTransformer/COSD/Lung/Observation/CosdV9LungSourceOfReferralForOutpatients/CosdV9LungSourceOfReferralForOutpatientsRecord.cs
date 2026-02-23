@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungSourceOfReferralForOut
 internal class CosdV9LungSourceOfReferralForOutpatientsRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? SourceOfReferralForOutpatients { get; set; }
 }

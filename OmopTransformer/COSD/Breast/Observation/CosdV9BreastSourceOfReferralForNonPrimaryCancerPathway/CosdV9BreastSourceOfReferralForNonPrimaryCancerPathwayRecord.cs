@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastSourceOfReferralFo
 internal class CosdV9BreastSourceOfReferralForNonPrimaryCancerPathwayRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? SourceOfReferralForNonPrimaryCancerPathway { get; set; }
 }

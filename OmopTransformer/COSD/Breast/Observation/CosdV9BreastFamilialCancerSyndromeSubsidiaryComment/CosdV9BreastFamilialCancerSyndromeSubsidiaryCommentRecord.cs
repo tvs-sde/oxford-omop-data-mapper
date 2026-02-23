@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastFamilialCancerSynd
 internal class CosdV9BreastFamilialCancerSyndromeSubsidiaryCommentRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? FamilialCancerSyndromeSubsidiaryComment { get; set; }
 }

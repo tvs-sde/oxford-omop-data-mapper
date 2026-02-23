@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Colorectal.Observation.CosdV9PerformanceStatusAdu
 internal class CosdV9PerformanceStatusAdultRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? PerformanceStatusAdult { get; set; }
 }

@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungAlcoholHistoryCancerIn
 internal class CosdV8LungAlcoholHistoryCancerInLastThreeMonthsRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? AlcoholHistoryCancerInLastThreeMonths { get; set; }
 }

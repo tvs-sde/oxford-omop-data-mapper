@@ -8,5 +8,5 @@ namespace OmopTransformer.COSD.Core.Death.v9DeathDischargeDestination;
 internal class CosdV9DeathDischargeDestinationRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? DeathDate { get; set; }
+    public string? DeathDate { get; set; }
 }

@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungTobaccoSmokingCessatio
 internal class CosdV9LungTobaccoSmokingCessationRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? TobaccoSmokingCessation { get; set; }
 }

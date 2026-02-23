@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Colorectal.Observation.CosdV9SourceOfReferralForO
 internal class CosdV9SourceOfReferralForOutpatientsRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? SourceOfReferralForOutpatients { get; set; }
 }

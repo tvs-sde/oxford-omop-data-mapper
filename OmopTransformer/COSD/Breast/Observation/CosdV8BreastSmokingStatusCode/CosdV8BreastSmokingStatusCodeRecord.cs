@@ -9,5 +9,5 @@ internal class CosdV8BreastSmokingStatusCodeRecord
 {
     public string? SmokingStatusCode { get; set; }
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
 }

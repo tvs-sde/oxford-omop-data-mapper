@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Colorectal.Observation.CosdV9AsaScore;
 internal class CosdV9AsaScoreRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? AsaScore { get; set; }
 }

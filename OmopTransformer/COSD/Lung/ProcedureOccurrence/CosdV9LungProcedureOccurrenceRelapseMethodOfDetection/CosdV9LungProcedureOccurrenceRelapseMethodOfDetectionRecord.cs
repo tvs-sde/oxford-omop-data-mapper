@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccur
 internal class CosdV9LungProcedureOccurrenceRelapseMethodOfDetectionRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? RelapseMethodOfDetection { get; set; }
 }

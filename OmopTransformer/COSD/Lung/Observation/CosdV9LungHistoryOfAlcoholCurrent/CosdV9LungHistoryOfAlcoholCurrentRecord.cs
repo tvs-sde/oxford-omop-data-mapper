@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungHistoryOfAlcoholCurren
 internal class CosdV9LungHistoryOfAlcoholCurrentRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? HistoryOfAlcoholCurrent { get; set; }
 }

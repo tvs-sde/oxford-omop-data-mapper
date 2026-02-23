@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Colorectal.Observation.CosdV8FamilialCancerSyndro
 internal class CosdV8FamilialCancerSyndromeIndicatorRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? FamilialCancerSyndromeIndicator { get; set; }
 }

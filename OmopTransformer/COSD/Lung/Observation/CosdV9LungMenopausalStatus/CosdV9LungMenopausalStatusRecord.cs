@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungMenopausalStatus;
 internal class CosdV9LungMenopausalStatusRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? MenopausalStatus { get; set; }
 }

@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungAdultPerformanceStatus
 internal class CosdV8LungAdultPerformanceStatusRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string? AdultPerformanceStatus { get; set; }
 }

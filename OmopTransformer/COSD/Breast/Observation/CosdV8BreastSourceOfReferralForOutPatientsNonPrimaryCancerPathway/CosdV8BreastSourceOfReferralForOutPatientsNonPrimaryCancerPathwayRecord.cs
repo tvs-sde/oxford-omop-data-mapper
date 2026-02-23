@@ -9,5 +9,5 @@ internal class CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway
 {
     public string? SourceOfReferralOutPatients { get; set; }
     public string? NhsNumber { get; set; }
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
 }

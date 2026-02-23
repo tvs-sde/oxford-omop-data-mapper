@@ -8,6 +8,6 @@ namespace OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementAdultCom
 internal class CosdV8MeasurementAdultComorbidityEvaluationRecord
 {
     public string? NhsNumber { get; set; }
-    public DateOnly? MeasurementDate { get; set; }
+    public string? MeasurementDate { get; set; }
     public string? AdultComorbidityEvaluation { get; set; }
 }
