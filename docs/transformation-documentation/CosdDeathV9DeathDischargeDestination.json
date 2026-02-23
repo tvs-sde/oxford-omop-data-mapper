@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    coalesce(\n        cast(Record ->> '$.Treatment.DischargeDateHospitalProviderSpell' as date),\n        make_date(\n            cast(extract(year from cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date)) as integer),\n            12,\n            31\n        )\n    ) as DeathDate\nfrom omop_staging.cosd_staging_901\nwhere (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code') = '79';-- Not applicable - PATIENT died or stillbirth\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Treatment.DischargeDateHospitalProviderSpell',\n        make_date(\n            cast(extract(year from Record ->> '$.Treatment.TreatmentStartDateCancer') as integer),\n            12,\n            31\n        )\n    ) as DeathDate\nfrom omop_staging.cosd_staging_901\nwhere (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code') = '79';-- Not applicable - PATIENT died or stillbirth\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -39,7 +39,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    coalesce(\n        cast(Record ->> '$.Treatment.DischargeDateHospitalProviderSpell' as date),\n        make_date(\n            cast(extract(year from cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date)) as integer),\n            12,\n            31\n        )\n    ) as DeathDate\nfrom omop_staging.cosd_staging_901\nwhere (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code') = '79';-- Not applicable - PATIENT died or stillbirth\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Treatment.DischargeDateHospitalProviderSpell',\n        make_date(\n            cast(extract(year from Record ->> '$.Treatment.TreatmentStartDateCancer') as integer),\n            12,\n            31\n        )\n    ) as DeathDate\nfrom omop_staging.cosd_staging_901\nwhere (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code') = '79';-- Not applicable - PATIENT died or stillbirth\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -61,7 +61,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    coalesce(\n        cast(Record ->> '$.Treatment.DischargeDateHospitalProviderSpell' as date),\n        make_date(\n            cast(extract(year from cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date)) as integer),\n            12,\n            31\n        )\n    ) as DeathDate\nfrom omop_staging.cosd_staging_901\nwhere (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code') = '79';-- Not applicable - PATIENT died or stillbirth\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Treatment.DischargeDateHospitalProviderSpell',\n        make_date(\n            cast(extract(year from Record ->> '$.Treatment.TreatmentStartDateCancer') as integer),\n            12,\n            31\n        )\n    ) as DeathDate\nfrom omop_staging.cosd_staging_901\nwhere (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code') = '79';-- Not applicable - PATIENT died or stillbirth\n\t",
       "lookup_table_markdown": null
     },
     {

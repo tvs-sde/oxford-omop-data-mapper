@@ -158,13 +158,13 @@ select
         TobaccoSmokingStatus,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from LU o
 where o.TobaccoSmokingStatus is not null
@@ -207,13 +207,13 @@ select
         TobaccoSmokingCessation,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from LU o
 where o.TobaccoSmokingCessation is not null
@@ -256,13 +256,13 @@ select
         PerformanceStatusAdult,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from LU o
 where o.PerformanceStatusAdult is not null
@@ -301,9 +301,9 @@ select
         MenopausalStatus,
         NhsNumber,
         least(
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from LU o
 where o.MenopausalStatus is not null
@@ -342,13 +342,13 @@ select
         AdultComorbidityEvaluation,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from LU o
 where o.AdultComorbidityEvaluation is not null
@@ -391,13 +391,13 @@ select
           SmokingStatusCode,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from LU o
 where o.SmokingStatusCode is not null
@@ -440,13 +440,13 @@ select
           FamilialCancerSyndromeIndicator,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from LU o
 where o.FamilialCancerSyndromeIndicator is not null
@@ -489,13 +489,13 @@ select
           AdultPerformanceStatus,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from LU o
 where o.AdultPerformanceStatus is not null
@@ -538,13 +538,13 @@ select
           AdultComorbidityEvaluation,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from LU o
 where o.AdultComorbidityEvaluation is not null
@@ -587,13 +587,13 @@ select
 		TobaccoSmokingStatus,
 		NhsNumber,
 		least(
-			cast(DateFirstSeen as date),
-			cast(DateFirstSeenCancerSpecialist as date),
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
+			DateFirstSeen,
+			DateFirstSeenCancerSpecialist,
+			DateOfPrimaryDiagnosisClinicallyAgreed,
+			StageDateFinalPretreatmentStage,
+			StageDateIntegratedStage,
+			TreatmentStartDateCancer,
+			ProcedureDate
 		) as Date
 from CO o
 where o.TobaccoSmokingStatus is not null
@@ -636,13 +636,13 @@ select
 		TobaccoSmokingCessation,
 		NhsNumber,
 		least(
-			cast(DateFirstSeen as date),
-			cast(DateFirstSeenCancerSpecialist as date),
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
+			DateFirstSeen,
+			DateFirstSeenCancerSpecialist,
+			DateOfPrimaryDiagnosisClinicallyAgreed,
+			StageDateFinalPretreatmentStage,
+			StageDateIntegratedStage,
+			TreatmentStartDateCancer,
+			ProcedureDate
 		) as Date
 from CO o
 where o.TobaccoSmokingCessation is not null
@@ -685,13 +685,13 @@ select
 		PerformanceStatusAdult,
 		NhsNumber,
 		least(
-			cast(DateFirstSeen as date),
-			cast(DateFirstSeenCancerSpecialist as date),
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
+			DateFirstSeen,
+			DateFirstSeenCancerSpecialist,
+			DateOfPrimaryDiagnosisClinicallyAgreed,
+			StageDateFinalPretreatmentStage,
+			StageDateIntegratedStage,
+			TreatmentStartDateCancer,
+			ProcedureDate
 		) as Date
 from CO o
 where o.PerformanceStatusAdult is not null
@@ -730,9 +730,9 @@ select
 		MenopausalStatus,
 		NhsNumber,
 		least(
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
+			DateOfPrimaryDiagnosisClinicallyAgreed,
+			TreatmentStartDateCancer,
+			ProcedureDate
 		) as Date
 from CO o
 where o.MenopausalStatus is not null
@@ -771,13 +771,13 @@ select
 		AsaScore,
 		NhsNumber,
 		least(
-			cast(DateFirstSeen as date),
-			cast(DateFirstSeenCancerSpecialist as date),
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
+			DateFirstSeen,
+			DateFirstSeenCancerSpecialist,
+			DateOfPrimaryDiagnosisClinicallyAgreed,
+			StageDateFinalPretreatmentStage,
+			StageDateIntegratedStage,
+			TreatmentStartDateCancer,
+			ProcedureDate
 		) as Date
 from CO o
 where o.AsaScore is not null
@@ -820,13 +820,13 @@ select
           SmokingStatusCode,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from CO o
 where o.SmokingStatusCode is not null
@@ -869,13 +869,13 @@ select
           AdultPerformanceStatus,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from CO o
 where o.AdultPerformanceStatus is not null
@@ -924,13 +924,13 @@ select
         PerformanceStatusAdult,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from BR o
 where o.PerformanceStatusAdult is not null
@@ -975,9 +975,9 @@ select
         MenopausalStatus,
         NhsNumber,
         least(
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from BR o
 where o.MenopausalStatus is not null
@@ -1025,13 +1025,13 @@ select
         AsaScore,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            TreatmentStartDateCancer,
+            ProcedureDate
         ) as Date
 from BR o
 where o.AsaScore is not null
@@ -1086,13 +1086,13 @@ select
           SmokingStatusCode,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                DateFirstSeen,
+                SpecialistDateFirstSeen,
+                ClinicalDateCancerDiagnosis,
+                IntegratedStageTNMStageGroupingDate,
+                FinalPreTreatmentTNMStageGroupingDate,
+                CancerTreatmentStartDate,
+                ProcedureDate
               ) as Date
 from BR o
 where o.SmokingStatusCode is not null

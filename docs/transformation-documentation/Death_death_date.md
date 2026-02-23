@@ -126,9 +126,9 @@ order by
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
-        cast(Record ->> '$.Treatment.DischargeDateHospitalProviderSpell' as date),
+        Record ->> '$.Treatment.DischargeDateHospitalProviderSpell',
         make_date(
-            cast(extract(year from cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date)) as integer),
+            cast(extract(year from Record ->> '$.Treatment.TreatmentStartDateCancer') as integer),
             12,
             31
         )
