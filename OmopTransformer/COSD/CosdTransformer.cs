@@ -18,9 +18,7 @@ using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV8BreastProcedureOccur
 using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV8BreastProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV9BreastProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV9BreastProcedureOccurrencePrimaryProcedureOpcs;
-using OmopTransformer.COSD.Breast.Observation.CosdV8BreastFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.Breast.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
-using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSmokingStatusCode;
 using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 using OmopTransformer.COSD.Breast.Observation.CosdV8BreastSourceOfReferralOutPatients;
 using OmopTransformer.COSD.Breast.Observation.CosdV9BreastAsaScore;
@@ -573,21 +571,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8BreastFamilialCancerSyndromeIndicatorRecord, CosdV8BreastFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8BreastFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
-
         await Transform<CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosisRecord, CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis",
-            runId,
-            cancellationToken);
-
-        await Transform<CosdV8BreastSmokingStatusCodeRecord, CosdV8BreastSmokingStatusCode>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8BreastSmokingStatusCode",
             runId,
             cancellationToken);
 
