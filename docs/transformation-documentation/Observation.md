@@ -839,16 +839,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway%20mapping){: .btn }
-## CosdV8BreastSmokingStatusCode
-<a href="CosdV8BreastSmokingStatusCode.svg" target="_blank"><img src="CosdV8BreastSmokingStatusCode.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastSmokingStatusCode%20mapping){: .btn }
 ## CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis
 <a href="CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis.svg" target="_blank"><img src="CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis.svg" /></a>
 
@@ -859,13 +849,3 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-## CosdV8BreastFamilialCancerSyndromeIndicator
-<a href="CosdV8BreastFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8BreastFamilialCancerSyndromeIndicator.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastFamilialCancerSyndromeIndicator%20mapping){: .btn }

@@ -164,13 +164,7 @@
     <None Update="COSD\Breast\Measurements\CosdV9BreastMeasurementTumourLaterality\CosdV9BreastMeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\Breast\Observation\CosdV8BreastFamilialCancerSyndromeIndicator\CosdV8BreastFamilialCancerSyndromeIndicator.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="COSD\Breast\Observation\CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis\CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="COSD\Breast\Observation\CosdV8BreastSmokingStatusCode\CosdV8BreastSmokingStatusCode.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Breast\Observation\CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway\CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway.xml">

@@ -3235,7 +3235,7 @@ select
         Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate', 
         Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
     ) as ProcedureDate,
-    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.SourceOfReferralForOut-patients.@code' as SourceOfReferralOutPatients,
+    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.SourceOfReferralOutPatients.@code' as SourceOfReferralOutPatients,
     Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
 from omop_staging.cosd_staging_81
 where Type = 'BR'
@@ -3289,7 +3289,7 @@ select
         Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate', 
         Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
     ) as ProcedureDate,
-    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.SourceOfReferralForOut-patients.@code' as SourceOfReferralOutPatients,
+    Record ->> '$.Breast.BreastCore.BreastCoreNonPrimaryCancerPathway.SourceOfReferralForOutPatientsNonPrimaryCancerPathway.@code' as SourceOfReferralOutPatients,
     Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
 from omop_staging.cosd_staging_81
 where Type = 'BR'
@@ -3322,66 +3322,6 @@ where o.SourceOfReferralOutPatients is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20Breast%20Source%20Of%20Referral%20For%20Out%20Patients%20Non%20Primary%20Cancer%20Pathway%20mapping){: .btn }
-### COSD V8 Breast Smoking Status Code
-* Value copied from `Date`
-
-* `Date` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with BR as (
-    select 
-        Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,
-        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-        unnest(
-            [
-                [Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'], 
-                Record ->> '$.Breast.BreastCore.BreastCoreTreatment[*].CancerTreatmentStartDate'
-            ], 
-            recursive := true
-        ) as CancerTreatmentStartDate,
-        unnest(
-            [
-                [Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'], 
-                Record ->> '$.Breast.BreastCore.BreastCoreTreatment[*].BreastCoreSurgery.ProcedureDate'
-            ], 
-            recursive := true
-        ) as ProcedureDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCode,
-        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_81
-    where Type = 'BR'
-)
-select
-      distinct
-          SmokingStatusCode,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from BR o
-where o.SmokingStatusCode is not null
-  and not (
-    DateFirstSeen is null and
-    SpecialistDateFirstSeen is null and
-    ClinicalDateCancerDiagnosis is null and
-    IntegratedStageTNMStageGroupingDate is null and
-    FinalPreTreatmentTNMStageGroupingDate is null and
-    CancerTreatmentStartDate is null and
-    ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20Breast%20Smoking%20Status%20Code%20mapping){: .btn }
 ### COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis
 * Value copied from `Date`
 
@@ -3424,57 +3364,3 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
-### COSD V8 Breast Familial Cancer Syndrome Indicator
-* Value copied from `Date`
-
-* `Date` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with BR as (
-select 
-    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,
-    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-    coalesce(
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'
-    ) as CancerTreatmentStartDate,
-    coalesce(
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
-    ) as ProcedureDate,
-    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,
-    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-from omop_staging.cosd_staging_81
-where Type = 'BR'
-)
-select
-      distinct
-          FamilialCancerSyndromeIndicator,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from BR o
-where o.FamilialCancerSyndromeIndicator is not null
-  and not (
-    DateFirstSeen is null and
-    SpecialistDateFirstSeen is null and
-    ClinicalDateCancerDiagnosis is null and
-    IntegratedStageTNMStageGroupingDate is null and
-    FinalPreTreatmentTNMStageGroupingDate is null and
-    CancerTreatmentStartDate is null and
-    ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }

@@ -204,7 +204,3 @@ order by
 * Constant value set to `2000500006`. Familial Cancer (Comment)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
-### COSD V8 Breast Familial Cancer Syndrome Indicator
-* Constant value set to `2000500005`. Familial Cancer (Indicator)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
