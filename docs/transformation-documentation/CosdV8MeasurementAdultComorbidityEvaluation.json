@@ -22,7 +22,7 @@
     },
     {
       "name": "measurement_date",
-      "operation_description": "Converts text to dates.",
+      "operation_description": "Value copied from `MeasurementDate`",
       "dataSource": [
         {
           "name": "MeasurementDate",
@@ -64,7 +64,7 @@
     },
     {
       "name": "measurement_datetime",
-      "operation_description": "Converts text to dates.",
+      "operation_description": "Value copied from `MeasurementDate`",
       "dataSource": [
         {
           "name": "MeasurementDate",
