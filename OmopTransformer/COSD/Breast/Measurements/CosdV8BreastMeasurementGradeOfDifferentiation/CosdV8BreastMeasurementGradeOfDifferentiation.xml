@@ -11,7 +11,7 @@ with BR as (
 )
 select distinct
     NHSNumber,
-    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    coalesce(nullif(ClinicalDateCancerDiagnosis, ''), nullif(DateOfNonPrimaryCancerDiagnosisClinicallyAgreed, '')) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BR
 where GradeOfDifferentiationAtDiagnosis is not null;

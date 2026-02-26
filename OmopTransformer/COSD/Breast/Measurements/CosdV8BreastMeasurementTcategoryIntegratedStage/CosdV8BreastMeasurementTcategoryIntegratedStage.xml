@@ -11,7 +11,7 @@ with br as (
 )
 select distinct
     NhsNumber,
-    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateIntegratedStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     TCategoryIntegratedStage
 from br
 where TCategoryIntegratedStage is not null;

@@ -11,7 +11,7 @@ with br as (
 )
 select distinct
     NhsNumber,
-    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    coalesce(nullif(ClinicalDateCancerDiagnosis, ''), nullif(DateOfNonPrimaryCancerDiagnosisClinicallyAgreed, '')) as MeasurementDate,
     TumourLaterality
 from br
 where TumourLaterality is not null

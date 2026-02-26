@@ -8,12 +8,12 @@ with BR as (
         Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
         coalesce(
-            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
-            Record ->> '$.Treatment.TreatmentStartDateCancer'
+            nullif(Record ->> '$.Treatment[0].TreatmentStartDateCancer', ''), 
+            nullif(Record ->> '$.Treatment.TreatmentStartDateCancer', '')
         ) as TreatmentStartDateCancer,
         coalesce(
-            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
-            Record ->> '$.Treatment.Surgery.ProcedureDate'
+            nullif(Record ->> '$.Treatment[0].Surgery.ProcedureDate', ''), 
+            nullif(Record ->> '$.Treatment.Surgery.ProcedureDate', '')
         ) as ProcedureDate,
         -- Quoting used to handle the hyphen in the field name safely
         Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,

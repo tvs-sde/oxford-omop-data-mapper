@@ -4,8 +4,8 @@ with BR as (
     select 
         record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
-            record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage', ''),
+            nullif(record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as McategoryFinalPreTreatment
     from omop_staging.cosd_staging_901
