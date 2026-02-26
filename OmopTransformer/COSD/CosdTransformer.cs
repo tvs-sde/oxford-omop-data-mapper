@@ -181,6 +181,8 @@ using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Transformation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV9MeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementAdultComorbidityEvaluation;
 
 namespace OmopTransformer.COSD;
 
@@ -1201,7 +1203,7 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8MeasurementAdultComorbidityEvaluationRecord, CosdV8MeasurementAdultComorbidityEvaluation>(
+        await Transform<CosdV8BreastMeasurementAdultComorbidityEvaluationRecord, CosdV8BreastMeasurementAdultComorbidityEvaluation>(
             _measurementRecorder.InsertUpdateMeasurements,
             "CosdV8MeasurementAdultComorbidityEvaluation",
             runId,
@@ -1285,9 +1287,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV9MeasurementAdultComorbidityEvaluationRecord, CosdV9MeasurementAdultComorbidityEvaluation>(
+        await Transform<CosdV9BreastMeasurementAdultComorbidityEvaluationRecord, CosdV9BreastMeasurementAdultComorbidityEvaluation>(
              _measurementRecorder.InsertUpdateMeasurements,
-             "CosdV9MeasurementAdultComorbidityEvaluation",
+             "CosdV9BreastMeasurementAdultComorbidityEvaluation",
         runId,
         cancellationToken);
     }

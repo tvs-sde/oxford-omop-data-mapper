@@ -2772,7 +2772,7 @@ select
             cast(DateFirstSeenCancerSpecialist as date),
             cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
             cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
         ) as Date
@@ -2826,7 +2826,7 @@ select
             cast(DateFirstSeenCancerSpecialist as date),
             cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
             cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
         ) as Date
@@ -2880,7 +2880,7 @@ select
             cast(DateFirstSeenCancerSpecialist as date),
             cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
             cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
         ) as Date
