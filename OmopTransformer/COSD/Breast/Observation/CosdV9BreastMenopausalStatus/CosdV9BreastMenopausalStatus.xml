@@ -21,9 +21,9 @@ select
         MenopausalStatus,
         NhsNumber,
         least(
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.MenopausalStatus is not null
