@@ -19,13 +19,13 @@ select
           AdultPerformanceStatus,
           NhsNumber,
           least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
+                try_cast(DateFirstSeen as date),
+                try_cast(SpecialistDateFirstSeen as date),
+                try_cast(ClinicalDateCancerDiagnosis as date),
+                try_cast(IntegratedStageTNMStageGroupingDate as date),
+                try_cast(FinalPreTreatmentTNMStageGroupingDate as date),
+                try_cast(CancerTreatmentStartDate as date),
+                try_cast(ProcedureDate as date)
               ) as Date
 from LU o
 where o.AdultPerformanceStatus is not null
