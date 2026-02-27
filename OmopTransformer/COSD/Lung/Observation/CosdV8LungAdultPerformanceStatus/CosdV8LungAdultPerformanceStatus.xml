@@ -7,8 +7,8 @@ with LU as (
         Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
         Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
         Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-        coalesce(Record ->> '$.Lung.LungCore.LungCoreTreatment[0].CancerTreatmentStartDate', Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate') as CancerTreatmentStartDate,
-        coalesce(Record ->> '$.Lung.LungCore.LungCoreTreatment[0].LungCoreSurgeryAndOtherProcedures.ProcedureDate', Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate') as ProcedureDate,
+        coalesce(nullif(Record ->> '$.Lung.LungCore.LungCoreTreatment[0].CancerTreatmentStartDate', ''), nullif(Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate', '')) as CancerTreatmentStartDate,
+        coalesce(nullif(Record ->> '$.Lung.LungCore.LungCoreTreatment[0].LungCoreSurgeryAndOtherProcedures.ProcedureDate', ''), nullif(Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate', '')) as ProcedureDate,
         Record ->> '$.Lung.LungCore.LungCoreDiagnosis.AdultPerformanceStatus.@code' as AdultPerformanceStatus,
         Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_81

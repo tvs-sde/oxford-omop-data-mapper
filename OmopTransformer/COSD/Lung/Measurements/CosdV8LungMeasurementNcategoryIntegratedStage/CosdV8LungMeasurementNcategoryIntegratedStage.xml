@@ -11,7 +11,7 @@ with lung as (
 )
 select distinct
 	NhsNumber,
-	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	coalesce(nullif(StageDateIntegratedStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
 	NCategoryIntegratedStage
 from lung
 where NCategoryIntegratedStage is not null

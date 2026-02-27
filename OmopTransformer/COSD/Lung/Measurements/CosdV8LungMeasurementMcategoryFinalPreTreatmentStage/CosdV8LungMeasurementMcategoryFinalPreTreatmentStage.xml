@@ -11,7 +11,7 @@ with lung as (
 )
 select distinct
 	NHSNumber,
-	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	coalesce(nullif(StageDateFinalPretreatmentStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
 	McategoryFinalPreTreatment
 from lung
 where McategoryFinalPreTreatment is not null

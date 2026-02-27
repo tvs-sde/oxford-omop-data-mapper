@@ -4,8 +4,8 @@ select
   distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NHSNumber,
     coalesce(
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',''),
+        nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed','')
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
 from omop_staging.cosd_staging_901

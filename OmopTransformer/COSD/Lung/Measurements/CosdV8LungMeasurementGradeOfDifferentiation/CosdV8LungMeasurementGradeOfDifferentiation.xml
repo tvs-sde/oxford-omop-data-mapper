@@ -11,7 +11,7 @@ with lung as (
 )
 select distinct
 	NHSNumber,
-	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+	coalesce(nullif(ClinicalDateCancerDiagnosis, ''), nullif(DateOfNonPrimaryCancerDiagnosisClinicallyAgreed, '')) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from lung
 where GradeOfDifferentiationAtDiagnosis is not null
