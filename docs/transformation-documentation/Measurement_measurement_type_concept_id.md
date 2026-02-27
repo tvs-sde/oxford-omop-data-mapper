@@ -90,6 +90,10 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V9%20Lung%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
+### CosdV9LungMeasurementAdultComorbidityEvaluation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20CosdV9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V8 Lung Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
@@ -138,6 +142,10 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20Lung%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
+### CosdV8LungMeasurementAdultComorbidityEvaluation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20CosdV8LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V9 Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 

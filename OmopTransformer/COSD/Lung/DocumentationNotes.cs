@@ -1,4 +1,4 @@
-namespace OmopTransformer.COSD.Lung.Observation;
+namespace OmopTransformer.COSD.Lung;
 
 internal class DocumentationNotes
 {

@@ -107,6 +107,16 @@ has_toc: false
 <a href="CosdV9LungMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV9LungMeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## CosdV9LungMeasurementAdultComorbidityEvaluation
+<a href="CosdV9LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9LungMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV8LungMeasurementTumourLaterality
 <a href="CosdV8LungMeasurementTumourLaterality.svg" target="_blank"><img src="CosdV8LungMeasurementTumourLaterality.svg" /></a>
 
@@ -155,6 +165,16 @@ has_toc: false
 <a href="CosdV8LungMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV8LungMeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## CosdV8LungMeasurementAdultComorbidityEvaluation
+<a href="CosdV8LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8LungMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+{: .important-title }
+> Notes
+>
+> Observation dates are approximated using other date fields.
+>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV9MeasurementTumourLaterality
 <a href="CosdV9MeasurementTumourLaterality.svg" target="_blank"><img src="CosdV9MeasurementTumourLaterality.svg" /></a>
 

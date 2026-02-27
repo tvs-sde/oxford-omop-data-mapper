@@ -419,16 +419,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungAsaScore%20mapping){: .btn }
-## CosdV9LungAdultComorbidityEvaluation
-<a href="CosdV9LungAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9LungAdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV8LungSurgicalAccessType
 <a href="CosdV8LungSurgicalAccessType.svg" target="_blank"><img src="CosdV8LungSurgicalAccessType.svg" /></a>
 
@@ -519,16 +509,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungAdultPerformanceStatus%20mapping){: .btn }
-## CosdV8LungAdultComorbidityEvaluation
-<a href="CosdV8LungAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8LungAdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV9TobaccoSmokingStatus
 <a href="CosdV9TobaccoSmokingStatus.svg" target="_blank"><img src="CosdV9TobaccoSmokingStatus.svg" /></a>
 

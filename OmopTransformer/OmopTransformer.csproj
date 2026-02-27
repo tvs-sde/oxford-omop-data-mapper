@@ -269,6 +269,12 @@
     <None Update="COSD\Lung\Measurements\CosdV8LungMeasurementTumourLaterality\CosdV8LungMeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\Lung\Measurements\CosdV8LungMeasurementAdultComorbidityEvaluation\CosdV8LungMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\Lung\Measurements\CosdV9LungMeasurementAdultComorbidityEvaluation\CosdV9LungMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Lung\Measurements\CosdV9LungMeasurementGradeOfDifferentiation\CosdV9LungMeasurementGradeOfDifferentiation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -473,9 +479,6 @@
     <None Update="COSD\Colorectal\Observation\CosdV9TobaccoSmokingStatus\CosdV9TobaccoSmokingStatus.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\Lung\Observation\CosdV8LungAdultComorbidityEvaluation\CosdV8LungAdultComorbidityEvaluation.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="COSD\Lung\Observation\CosdV8LungAdultPerformanceStatus\CosdV8LungAdultPerformanceStatus.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -498,9 +501,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Lung\Observation\CosdV8LungSourceOfReferralOutPatients\CosdV8LungSourceOfReferralOutPatients.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="COSD\Lung\Observation\CosdV9LungAdultComorbidityEvaluation\CosdV9LungAdultComorbidityEvaluation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Lung\Observation\CosdV9LungAsaScore\CosdV9LungAsaScore.xml">
