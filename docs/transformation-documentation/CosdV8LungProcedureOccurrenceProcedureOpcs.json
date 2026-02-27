@@ -64,6 +64,42 @@
       "lookup_table_markdown": null
     },
     {
+      "name": "procedure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n    unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n  distinct\n\t\tNhsNumber,\n\t\tProcedureDate,\n\t\tProcedureOpcsCode\nfrom lung\nwhere ProcedureOpcsCode is not null\nand NhsNumber is not null\nand ProcedureDate is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n    unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n  distinct\n\t\tNhsNumber,\n\t\tProcedureDate,\n\t\tProcedureOpcsCode\nfrom lung\nwhere ProcedureOpcsCode is not null\nand NhsNumber is not null\nand ProcedureDate is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
       "name": "procedure_type_concept_id",
       "operation_description": "Constant value set to `32828`. `EHR episode record`",
       "dataSource": null,

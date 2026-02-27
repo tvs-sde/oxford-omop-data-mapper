@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),\n            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -39,7 +39,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),\n            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -61,7 +61,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),\n            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -93,7 +93,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),\n            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
       "lookup_table_markdown": "\r\n\r\n|MCategoryIntegratedStage|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|0|1635624|AJCC/UICC M0 Category|\r\n|1|1635142|AJCC/UICC M1 Category|\r\n|1a|1635100|AJCC/UICC M1a Category|\r\n|1b|1634463|AJCC/UICC M1b Category|\r\n|1c|1635519|AJCC/UICC M1c Category|\r\n|1d|1634064|AJCC/UICC M1d Category|\r\n|X  |1633547|AJCC/UICC MX Category|\r\n\r\nNotes\r\n* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)\r\n"
     },
     {
@@ -111,7 +111,7 @@
           ]
         }
       ],
-      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',\n            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(\n            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),\n            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')\n        ) as MeasurementDate,\n        Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage\n    from omop_staging.cosd_staging_901\n    where Type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    MeasurementDate,\n    MCategoryIntegratedStage\nfrom BR\nwhere MCategoryIntegratedStage is not null;\n\t",
       "lookup_table_markdown": null
     }
   ]

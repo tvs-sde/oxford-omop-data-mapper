@@ -18,6 +18,12 @@ internal class CosdV9LungProcedureOccurrenceRelapseMethodOfDetection : OmopProce
     [CopyValue(nameof(Source.Date))]
     public override DateTime? procedure_datetime { get; set; }
 
+    [CopyValue(nameof(Source.Date))]
+    public override DateTime? procedure_end_date { get; set; }
+
+    [CopyValue(nameof(Source.Date))]
+    public override DateTime? procedure_end_datetime { get; set; }
+
     [ConstantValue(32828, "`EHR episode record`")]
     public override int? procedure_type_concept_id { get; set; }
 

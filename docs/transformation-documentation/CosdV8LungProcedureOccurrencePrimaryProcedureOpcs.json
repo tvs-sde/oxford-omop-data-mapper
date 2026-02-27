@@ -64,6 +64,42 @@
       "lookup_table_markdown": null
     },
     {
+      "name": "procedure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date on which the procedure was performed",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith Lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code' as PrimaryProcedureOPCS\n  from omop_staging.cosd_staging_81\n  where Type = 'LU'\n)\nselect\n      distinct\n          ProcedureDate,\n          NhsNumber,\n          PrimaryProcedureOPCS\nfrom Lung l\nwhere l.ProcedureDate is not null\nand l.PrimaryProcedureOPCS is not null\nand l.NhsNumber is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date on which the procedure was performed",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith Lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code' as PrimaryProcedureOPCS\n  from omop_staging.cosd_staging_81\n  where Type = 'LU'\n)\nselect\n      distinct\n          ProcedureDate,\n          NhsNumber,\n          PrimaryProcedureOPCS\nfrom Lung l\nwhere l.ProcedureDate is not null\nand l.PrimaryProcedureOPCS is not null\nand l.NhsNumber is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
       "name": "procedure_type_concept_id",
       "operation_description": "Constant value set to `32828`. `EHR episode record`",
       "dataSource": null,

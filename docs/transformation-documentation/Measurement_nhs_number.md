@@ -1643,8 +1643,8 @@ with BR as (
     select 
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated
     from omop_staging.cosd_staging_901
@@ -1671,8 +1671,8 @@ with BR as (
     select 
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
     from omop_staging.cosd_staging_901
@@ -1699,8 +1699,8 @@ with BR as (
     select 
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
     from omop_staging.cosd_staging_901
@@ -1727,8 +1727,8 @@ with BR as (
     select 
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TcategoryFinalPreTreatment
     from omop_staging.cosd_staging_901
@@ -1851,8 +1851,8 @@ with BR as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
     from omop_staging.cosd_staging_901
@@ -1879,8 +1879,8 @@ with BR as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NcategoryFinalPreTreatment
     from omop_staging.cosd_staging_901
@@ -1907,8 +1907,8 @@ with BR as (
     select 
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
-            Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage', ''),
+            nullif(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
     from omop_staging.cosd_staging_901
@@ -1935,8 +1935,8 @@ with BR as (
     select 
         record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         coalesce(
-            record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
-            record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            nullif(record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage', ''),
+            nullif(record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed', '')
         ) as MeasurementDate,
         record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as McategoryFinalPreTreatment
     from omop_staging.cosd_staging_901
@@ -1992,12 +1992,12 @@ with BR as (
         Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
         coalesce(
-            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
-            Record ->> '$.Treatment.TreatmentStartDateCancer'
+            nullif(Record ->> '$.Treatment[0].TreatmentStartDateCancer', ''), 
+            nullif(Record ->> '$.Treatment.TreatmentStartDateCancer', '')
         ) as TreatmentStartDateCancer,
         coalesce(
-            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
-            Record ->> '$.Treatment.Surgery.ProcedureDate'
+            nullif(Record ->> '$.Treatment[0].Surgery.ProcedureDate', ''), 
+            nullif(Record ->> '$.Treatment.Surgery.ProcedureDate', '')
         ) as ProcedureDate,
         -- Quoting used to handle the hyphen in the field name safely
         Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,
@@ -2050,7 +2050,7 @@ with br as (
 )
 select distinct
     NhsNumber,
-    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    coalesce(nullif(ClinicalDateCancerDiagnosis, ''), nullif(DateOfNonPrimaryCancerDiagnosisClinicallyAgreed, '')) as MeasurementDate,
     TumourLaterality
 from br
 where TumourLaterality is not null
@@ -2077,7 +2077,7 @@ with br as (
 )
 select distinct
     NhsNumber,
-    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateFinalPretreatmentStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     TnmStageGroupingFinalPretreatment
 from br
 where TnmStageGroupingFinalPretreatment is not null;
@@ -2103,7 +2103,7 @@ with br as (
 )
 select distinct
     NhsNumber,
-    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateIntegratedStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     TCategoryIntegratedStage
 from br
 where TCategoryIntegratedStage is not null;
@@ -2129,7 +2129,7 @@ with br as (
 )
 select distinct
     NhsNumber,
-    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateFinalPretreatmentStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     TcategoryFinalPreTreatment
 from br
 where TcategoryFinalPreTreatment is not null;
@@ -2220,7 +2220,7 @@ with BR as (
 )
 select distinct
     NHSNumber,
-    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateIntegratedStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     NCategoryIntegratedStage
 from BR
 where NCategoryIntegratedStage is not null;
@@ -2246,7 +2246,7 @@ with BR as (
 )
 select distinct
     NHSNumber,
-    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateFinalPretreatmentStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     NcategoryFinalPreTreatment
 from BR
 where NcategoryFinalPreTreatment is not null
@@ -2273,7 +2273,7 @@ with BR as (
 )
 select distinct
     NHSNumber,
-    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateIntegratedStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     MCategoryIntegratedStage
 from BR
 where MCategoryIntegratedStage is not null
@@ -2300,7 +2300,7 @@ with BR as (
 )
 select distinct
     NHSNumber,
-    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    coalesce(nullif(StageDateFinalPretreatmentStage, ''), nullif(ClinicalDateCancerDiagnosis, '')) as MeasurementDate,
     McategoryFinalPreTreatment
 from BR
 where McategoryFinalPreTreatment is not null
@@ -2327,7 +2327,7 @@ with BR as (
 )
 select distinct
     NHSNumber,
-    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    coalesce(nullif(ClinicalDateCancerDiagnosis, ''), nullif(DateOfNonPrimaryCancerDiagnosisClinicallyAgreed, '')) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BR
 where GradeOfDifferentiationAtDiagnosis is not null;

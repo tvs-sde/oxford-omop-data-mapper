@@ -64,6 +64,42 @@
       "lookup_table_markdown": null
     },
     {
+      "name": "procedure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n        unnest(\n            [\n                [ Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code' ],\n                Record ->> '$.Treatment.Surgery.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_901\n    where type = 'CO'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcsCode\nfrom CO\nwhere ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n        unnest(\n            [\n                [ Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code' ],\n                Record ->> '$.Treatment.Surgery.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcsCode\n    from omop_staging.cosd_staging_901\n    where type = 'CO'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcsCode\nfrom CO\nwhere ProcedureOpcsCode is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
       "name": "procedure_type_concept_id",
       "operation_description": "Constant value set to `32828`. `EHR episode record`",
       "dataSource": null,

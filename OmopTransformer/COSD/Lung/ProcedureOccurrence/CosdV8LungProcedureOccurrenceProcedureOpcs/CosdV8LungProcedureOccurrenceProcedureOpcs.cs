@@ -24,6 +24,12 @@ internal class CosdV8LungProcedureOccurrenceProcedureOpcs : OmopProcedureOccurre
 
     [Transform(typeof(DateConverter), nameof(Source.ProcedureDate))]
     public override DateTime? procedure_datetime { get; set; }
+
+    [Transform(typeof(DateConverter), nameof(Source.ProcedureDate))]
+    public override DateTime? procedure_end_date { get; set; }
+
+    [Transform(typeof(DateConverter), nameof(Source.ProcedureDate))]
+    public override DateTime? procedure_end_datetime { get; set; }
     
     [ConstantValue(32828, "`EHR episode record`")]
     public override int? procedure_type_concept_id { get; set; }

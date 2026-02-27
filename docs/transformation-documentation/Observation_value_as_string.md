@@ -1533,13 +1533,13 @@ select
         SourceOfReferralForOutpatients,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(nullif(StageDateIntegratedStage, '') as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateFirstSeen as date),
+            try_cast(DateFirstSeenCancerSpecialist as date),
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(StageDateFinalPretreatmentStage as date),
+            try_cast(nullif(StageDateIntegratedStage, '') as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.SourceOfReferralForOutpatients is not null
@@ -1587,13 +1587,13 @@ select
         SourceOfReferralForNonPrimaryCancerPathway,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(nullif(StageDateIntegratedStage, '') as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateFirstSeen as date),
+            try_cast(DateFirstSeenCancerSpecialist as date),
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(StageDateFinalPretreatmentStage as date),
+            try_cast(nullif(StageDateIntegratedStage, '') as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.SourceOfReferralForNonPrimaryCancerPathway is not null
@@ -1641,13 +1641,13 @@ select
         HistoryOfAlcoholPast,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateFirstSeen as date),
+            try_cast(DateFirstSeenCancerSpecialist as date),
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(StageDateFinalPretreatmentStage as date),
+            try_cast(StageDateIntegratedStage as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.HistoryOfAlcoholPast is not null
@@ -1695,13 +1695,13 @@ select
         HistoryOfAlcoholCurrent,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateFirstSeen as date),
+            try_cast(DateFirstSeenCancerSpecialist as date),
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(StageDateFinalPretreatmentStage as date),
+            try_cast(StageDateIntegratedStage as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.HistoryOfAlcoholCurrent is not null
@@ -1749,13 +1749,13 @@ select
         FamilialCancerSyndrome,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateFirstSeen as date),
+            try_cast(DateFirstSeenCancerSpecialist as date),
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(StageDateFinalPretreatmentStage as date),
+            try_cast(StageDateIntegratedStage as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.FamilialCancerSyndrome is not null
@@ -1803,13 +1803,13 @@ select
         FamilialCancerSyndromeSubsidiaryComment,
         NhsNumber,
         least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
+            try_cast(DateFirstSeen as date),
+            try_cast(DateFirstSeenCancerSpecialist as date),
+            try_cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            try_cast(StageDateFinalPretreatmentStage as date),
+            try_cast(StageDateIntegratedStage as date),
+            try_cast(TreatmentStartDateCancer as date),
+            try_cast(ProcedureDate as date)
         ) as Date
 from BR o
 where o.FamilialCancerSyndromeSubsidiaryComment is not null

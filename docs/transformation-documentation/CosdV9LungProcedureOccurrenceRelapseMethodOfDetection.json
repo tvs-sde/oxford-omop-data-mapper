@@ -75,6 +75,42 @@
       "lookup_table_markdown": null
     },
     {
+      "name": "procedure_end_date",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Procedure date",
+          "origins": [
+            {
+              "origin": "CANCER RECURRENCE OR PROGRESSION - DATE DETECTED",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,\n        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n        unnest ([[Record ->> '$.NonPrimaryPathway.Recurrence.Relapse-MethodOfDetection.@code'], Record ->> '$.NonPrimaryPathway.Recurrence.Relapse-MethodOfDetection[*].@code'], recursive := true) as RelapseMethodOfDetection,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'LU'\n)\nselect\n    distinct\n        RelapseMethodOfDetection,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as Date\nfrom LU o\nwhere o.RelapseMethodOfDetection is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_datetime",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Procedure date",
+          "origins": [
+            {
+              "origin": "CANCER RECURRENCE OR PROGRESSION - DATE DETECTED",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,\n        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n        unnest ([[Record ->> '$.NonPrimaryPathway.Recurrence.Relapse-MethodOfDetection.@code'], Record ->> '$.NonPrimaryPathway.Recurrence.Relapse-MethodOfDetection[*].@code'], recursive := true) as RelapseMethodOfDetection,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'LU'\n)\nselect\n    distinct\n        RelapseMethodOfDetection,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(StageDateIntegratedStage as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as Date\nfrom LU o\nwhere o.RelapseMethodOfDetection is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
       "name": "procedure_type_concept_id",
       "operation_description": "Constant value set to `32828`. `EHR episode record`",
       "dataSource": null,
