@@ -1,0 +1,92 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "The unique NHS NUMBER allocated to every patient registered with the NHS.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure SNOMED CT codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by SNOMED CT concept ID.\n-- The SNOMED CT code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureDate",
+          "description": "Procedure date of the diagnostic procedure. Same as the ACTIVITY DATE attribute for this diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE (DIAGNOSTIC PROCEDURE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure SNOMED CT codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by SNOMED CT concept ID.\n-- The SNOMED CT code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32879`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `DiagnosticProcedureSnomedCt`",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureSnomedCt",
+          "description": "The SNOMED CT concept ID used to identify the diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (SNOMED CT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure SNOMED CT codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by SNOMED CT concept ID.\n-- The SNOMED CT code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve Snomed codes to OMOP concepts.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureSnomedCt",
+          "description": "The SNOMED CT concept ID used to identify the diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (SNOMED CT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure SNOMED CT codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by SNOMED CT concept ID.\n-- The SNOMED CT code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    }
+  ]
+}

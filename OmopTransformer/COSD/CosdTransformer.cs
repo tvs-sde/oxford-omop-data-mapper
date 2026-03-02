@@ -172,6 +172,12 @@ using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV8LungProcedureOccurrenc
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceRelapseMethodOfDetection;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.Omop;
 using OmopTransformer.Omop.ConditionOccurrence;
 using OmopTransformer.Omop.Death;
@@ -230,6 +236,42 @@ internal class CosdTransformer : Transformer
     public async Task Transform(CancellationToken cancellationToken)
     {
         Guid runId = Guid.NewGuid();
+
+        await Transform<COSDv8URProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8URProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V8 UR Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URProcedureOccurrenceProcedureOPCSRecord, COSDv8URProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V8 UR Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V9 UR Procedure Occurrence Diagnostic Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V9 UR Procedure Occurrence Diagnostic Procedure Snomed Ct",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9URProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V9 UR Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrenceProcedureOpcsRecord, COSDv9URProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "Cosd V9 UR Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
 
         await Transform<CosdDemographicsV9, CosdPersonV9>(
             _personRecorder.InsertUpdatePersons,

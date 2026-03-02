@@ -1,0 +1,92 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "The unique NHS NUMBER allocated to every patient registered with the NHS.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure OPCS codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by OPCS code.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureDate",
+          "description": "Procedure date of the diagnostic procedure. Same as the ACTIVITY DATE attribute for this diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE (DIAGNOSTIC PROCEDURE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure OPCS codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by OPCS code.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32879`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `DiagnosticProcedureOpcs`",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureOpcs",
+          "description": "The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure OPCS codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by OPCS code.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureOpcs",
+          "description": "The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts diagnostic procedure OPCS codes for the Urological cancer area (COSD v9).\n-- These represent diagnostic procedures carried out, identified by OPCS code.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\n-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'UR'\n  and NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    }
+  ]
+}
