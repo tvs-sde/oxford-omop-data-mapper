@@ -511,7 +511,7 @@ internal class RxNormLookup : ILookup
             { "pyrazinamide", new ValueWithNote("1759455", "pyrazinamide") },
             { "magnesium oxide", new ValueWithNote("993631", "magnesium oxide") },
             { "magnesium sulfate", new ValueWithNote("19093848", "magnesium sulfate") },
-            { "loprazolam", new ValueWithNote("19042550", "triazulenone") },
+            { "loprazolam", new ValueWithNote("19042550", "triazulenone") }, // ERROR: triazulenone is a different compound, not a synonym for loprazolam (a triazolobenzodiazepine hypnotic)
             { "lymecycline", new ValueWithNote("19092353", "lymecycline") },
             { "pyridostigmine", new ValueWithNote("759740", "pyridostigmine") },
             { "rabeprazole", new ValueWithNote("911735", "rabeprazole") },
@@ -536,7 +536,7 @@ internal class RxNormLookup : ILookup
             { "paricalcitol", new ValueWithNote("1517740", "paricalcitol") },
             { "perindopril", new ValueWithNote("1373225", "perindopril") },
             { "isosorbide dinitrate", new ValueWithNote("1383925", "isosorbide dinitrate") },
-            { "ispaghula", new ValueWithNote("19132967", "ispaghula extract") },
+            { "ispaghula", new ValueWithNote("19132967", "ispaghula extract") }, // ERROR: "ispaghula extract" is more specific than "ispaghula" (which encompasses husk, seed, extract, etc.)
             { "mirtazapine", new ValueWithNote("725131", "mirtazapine") },
             { "misoprostol", new ValueWithNote("1150871", "misoprostol") },
             { "liraglutide", new ValueWithNote("40170911", "liraglutide") },
@@ -872,7 +872,7 @@ internal class RxNormLookup : ILookup
             { "lithium citrate", new ValueWithNote("767410", "lithium citrate") },
             { "zinc acetate", new ValueWithNote("979096", "zinc acetate") },
             { "methylprednisolone sodium succinate", new ValueWithNote("19026798", "methylprednisolone sodium succinate") },
-            { "carbomer 980", new ValueWithNote("42898572", "carbomer homopolymer type c") }, // refer to the same substance
+            { "carbomer 980", new ValueWithNote("42898572", "carbomer homopolymer type c") }, // ERROR: Carbomer 980 is classified as Homopolymer Type B, not Type C. Type C encompasses Carbomer 971P/974P.
             { "glucosamine", new ValueWithNote("1360332", "glucosamine") },
             { "nonacog alfa", new ValueWithNote("46274289", "nonacog alfa") },
             { "polyvinyl alcohol", new ValueWithNote("948856", "polyvinyl alcohol") },
@@ -1085,7 +1085,7 @@ internal class RxNormLookup : ILookup
             { "factor viii-von willebrand factor", new ValueWithNote("36030083", "factor viii / von willebrand factor") },
             { "ethinylestradiol + norethisterone", new ValueWithNote("36030139", "ethinyl estradiol / norethindrone") },
             { "l-acetylcarnitine", new ValueWithNote("19037596", "acetylcarnitine") },
-            { "chlorphenamine", new ValueWithNote("19049707", "chlorphenoxamine") },
+            { "chlorphenamine", new ValueWithNote("19049707", "chlorphenoxamine") }, // ERROR: chlorphenamine (BAN) = chlorpheniramine (USAN), NOT chlorphenoxamine which is a different anticholinergic/antihistamine drug
             { "estradiol-medroxyprogesterone", new ValueWithNote("36030310", "estradiol / medroxyprogesterone") },
             { "betamethasone-salicylic acid", new ValueWithNote("36027016", "betamethasone / salicylic acid") },
             { "calcium carbonate-prasterone", new ValueWithNote("36028330", "calcium carbonate / prasterone") },
@@ -1099,19 +1099,19 @@ internal class RxNormLookup : ILookup
             { "erythromycin-zinc acetate", new ValueWithNote("36030166", "erythromycin / zinc acetate") },
             { "formoterol-glycopyrronium", new ValueWithNote("36029773", "formoterol / glycopyrronium") },
             { "hydrocortisone-miconazole", new ValueWithNote("36029277", "hydrocortisone / miconazole") },
-            { "hypromellose ophthalmic", new ValueWithNote("40056206", "hypromellose ophthalmic gel") },
+            { "hypromellose ophthalmic", new ValueWithNote("40056206", "hypromellose ophthalmic gel") }, // ERROR: description adds "gel" making it more specific than the source
             { "betamethasone-clioquinol", new ValueWithNote("36027015", "betamethasone / clioquinol") },
             { "dydrogesterone-estradiol", new ValueWithNote("36030766", "dydrogesterone / estradiol") },
             { "cetrimide-chlorhexidine", new ValueWithNote("36029297", "cetrimide / chlorhexidine") },
             { "chlorhexidine-lidocaine", new ValueWithNote("36029292", "chlorhexidine / lidocaine") },
-            { "ganciclovir ophthalmic", new ValueWithNote("40047166", "ganciclovir ophthalmic gel") },
+            { "ganciclovir ophthalmic", new ValueWithNote("40047166", "ganciclovir ophthalmic gel") }, // ERROR: description adds "gel" making it more specific than the source
             { "ethinylestradiol + norethisterone ace", new ValueWithNote("36030139", "ethinyl estradiol / norethindrone") }, //closest match to ethinylestradiol + norethisterone, acetate provides faster release of the same drug
             { "ubidecarenone-vitamin e", new ValueWithNote("36029194", "ubidecarenone / vitamin e") },
             { "valaciclovir", new ValueWithNote("1717704", "valacyclovir") },
             { "quinine bisulphate", new ValueWithNote("19135856", "quinine bisulfate") },
             { "chlorhexidine-neomycin", new ValueWithNote("36031065", "chlorhexidine / neomycin") },
             { "indapamide-perindopril", new ValueWithNote("36030141", "indapamide / perindopril") },
-            { "sodium chloride nasal", new ValueWithNote("40080074", "sodium chloride nasal gel") },
+            { "sodium chloride nasal", new ValueWithNote("40080074", "sodium chloride nasal gel") }, // ERROR: description adds "gel" making it more specific than the source
             { "ethinylestradiol-norelgestromin", new ValueWithNote("36030133", "ethinyl estradiol / norelgestromin") },
             { "ethinylestradiol-levonorgestrel", new ValueWithNote("36029985", "ethinyl estradiol / levonorgestrel") },
             { "heparinoid-salicylic acid", new ValueWithNote("36028188", "heparinoids / salicylic acid") },
@@ -1125,7 +1125,7 @@ internal class RxNormLookup : ILookup
             { "desogestrel-ethinylestradiol", new ValueWithNote("36030123", "desogestrel / ethinyl estradiol") },
             { "felodipine-ramipril", new ValueWithNote("36030144", "felodipine / ramipril") },
             { "mesalazine", new ValueWithNote("968426", "mesalamine") }, // us vs uk naming
-            { "timolol ophthalmic", new ValueWithNote("40087912", "timolol ophthalmic solution") },
+            { "timolol ophthalmic", new ValueWithNote("40087912", "timolol ophthalmic solution") }, // ERROR: description adds "solution" making it more specific than the source
             { "urea hydrogen peroxide otic", new ValueWithNote("958999", "carbamide peroxide") }, // carbamide peroxide is the same substance as urea hydrogen peroxide
             { "budesonide/formoterol/glycopyrronium", new ValueWithNote("779032", "budesonide / formoterol / glycopyrronium") },
             { "naloxone-oxycodone", new ValueWithNote("36029671", "naloxone / oxycodone") },
@@ -1151,7 +1151,7 @@ internal class RxNormLookup : ILookup
             { "sodium chloride ophthalmic", new ValueWithNote("36227316", "sodium chloride ophthalmic product") },
             { "isoniazid-rifampicin", new ValueWithNote("36029269", "isoniazid / rifampin") },
             { "paracetamol-tramadol", new ValueWithNote("36030125", "acetaminophen / tramadol") },
-            { "triamcinolone nasal", new ValueWithNote("40085508", "triamcinolone nasal spray") },
+            { "triamcinolone nasal", new ValueWithNote("40085508", "triamcinolone nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
             { "sodium citrate ophthalmic", new ValueWithNote("36218153", "citrate ophthalmic product") },
             { "acetylcysteine ophthalmic", new ValueWithNote("36216795", "acetylcysteine ophthalmic product") },
             { "cyclopentolate ophthalmic", new ValueWithNote("36213819", "cyclopentolate ophthalmic product") },
@@ -1167,7 +1167,7 @@ internal class RxNormLookup : ILookup
             { "moxifloxacin ophthalmic", new ValueWithNote("36213853", "moxifloxacin ophthalmic product") },
             { "prednisolone ophthalmic", new ValueWithNote("36220910", "prednisolone ophthalmic product") },
             { "brimonidine-brinzolamide ophthalmic", new ValueWithNote("36246176", "brimonidine / brinzolamide ophthalmic product") },
-            { "ipratropium nasal", new ValueWithNote("40049465", "ipratropium nasal spray") },
+            { "ipratropium nasal", new ValueWithNote("40049465", "ipratropium nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
             { "brimonidine ophthalmic", new ValueWithNote("36219537", "brimonidine ophthalmic product") },
             { "bimatoprost ophthalmic", new ValueWithNote("36226260", "bimatoprost ophthalmic product") },
             { "dorzolamide ophthalmic", new ValueWithNote("36224178", "dorzolamide ophthalmic product") },
@@ -1177,12 +1177,12 @@ internal class RxNormLookup : ILookup
             { "olopatadine ophthalmic", new ValueWithNote("36223879", "olopatadine ophthalmic product") },
             { "tropicamide ophthalmic", new ValueWithNote("36227351", "tropicamide ophthalmic product") },
             { "witch hazel ophthalmic", new ValueWithNote("36227261", "witch hazel ophthalmic product") },
-            { "beclometasone nasal", new ValueWithNote("40010699", "beclomethasone nasal spray") },
+            { "beclometasone nasal", new ValueWithNote("40010699", "beclomethasone nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
             { "betamethasone-neomycin ophthalmic", new ValueWithNote("36212136", "betamethasone / neomycin ophthalmic product") },
-            { "azelastine nasal", new ValueWithNote("40133581", "azelastine nasal spray") },
+            { "azelastine nasal", new ValueWithNote("40133581", "azelastine nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
             { "gentamicin-hydrocortisone otic", new ValueWithNote("36029279", "gentamicin / hydrocortisone") },
-            { "mometasone nasal", new ValueWithNote("40066277", "mometasone nasal spray") },
-            { "budesonide nasal", new ValueWithNote("40020313", "budesonide nasal spray") },
+            { "mometasone nasal", new ValueWithNote("40066277", "mometasone nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
+            { "budesonide nasal", new ValueWithNote("40020313", "budesonide nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
             { "azelastine-fluticasone nasal", new ValueWithNote("778911", "azelastine / fluticasone") },
             { "azelastine ophthalmic", new ValueWithNote("36225520", "azelastine ophthalmic product") },
             { "cefuroxime ophthalmic", new ValueWithNote("36217283", "cefuroxime ophthalmic product") },
@@ -1196,7 +1196,7 @@ internal class RxNormLookup : ILookup
             { "bromfenac ophthalmic", new ValueWithNote("36219545", "bromfenac ophthalmic product") },
             { "chloramphenicol otic", new ValueWithNote("36216754", "chloramphenicol otic product") },
             { "dicycloverine", new ValueWithNote("924724", "dicyclomine") },
-            { "ephedrine nasal", new ValueWithNote("40037821", "ephedrine nasal spray") },
+            { "ephedrine nasal", new ValueWithNote("40037821", "ephedrine nasal spray") }, // ERROR: description adds "spray" making it more specific than the source
             { "ketorolac ophthalmic", new ValueWithNote("36225366", "ketorolac ophthalmic product") },
             { "nepafenac ophthalmic", new ValueWithNote("36223788", "nepafenac ophthalmic product") },
             { "ofloxacin ophthalmic", new ValueWithNote("36227393", "ofloxacin ophthalmic product") },
@@ -1208,15 +1208,15 @@ internal class RxNormLookup : ILookup
             { "citric acid/mg oxide/na picosulfate", new ValueWithNote("36029516", "citric acid / magnesium oxide / picosulfurate") },
             { "lidocaine-phenylephrine nasal", new ValueWithNote("36030085", "lidocaine / phenylephrine") },
             { "zuclopenthixol acetate injection", new ValueWithNote("19121994", "zuclopenthixol acetate") },
-            { "amylmetacresol-dichlorobenzyl alc top", new ValueWithNote("36028603", "amylmetacresol / dichlorobenzyl alcohol / menthol") },
-            { "timolol-travoprost ophthalmic", new ValueWithNote("40099457", "travoprost ophthalmic solution") },
+            { "amylmetacresol-dichlorobenzyl alc top", new ValueWithNote("36028603", "amylmetacresol / dichlorobenzyl alcohol / menthol") }, // ERROR: source is a 2-ingredient product but description adds menthol (3 ingredients)
+            { "timolol-travoprost ophthalmic", new ValueWithNote("40099457", "travoprost ophthalmic solution") }, // ERROR: timolol is dropped entirely; a 2-drug combination mapped to single-ingredient
             { "fluticasone nasal", new ValueWithNote("36220588", "fluticasone nasal product") },
             { "convalescent plasma", new ValueWithNote("", "") },
             { "clioquinol-flumetasone otic", new ValueWithNote("36030361", "clioquinol / flumethasone") },
             { "estradiol + norethisterone", new ValueWithNote("21272343", "estradiol + norethisterone") },
             { "acetic acid otic", new ValueWithNote("36217021", "acetic acid otic product") },
             { "benzalkonium chloride-cetrimide", new ValueWithNote("36030307", "benzalkonium / cetrimide") },
-            { "citric acid-magnesium carbonate", new ValueWithNote("42945929", "citric acid / magnesium carbonate oral solution") },
+            { "citric acid-magnesium carbonate", new ValueWithNote("42945929", "citric acid / magnesium carbonate oral solution") }, // ERROR: description adds "oral solution" making it more specific than the source
             { "digoxin specific antibody", new ValueWithNote("19045317", "digoxin antibodies fab fragments") },
             { "urea (13-c)", new ValueWithNote("19054337", "urea c-13") },
             { "potassium chloride 20mmol with glucose 5", new ValueWithNote("36030057", "glucose / potassium chloride") },
@@ -1230,8 +1230,8 @@ internal class RxNormLookup : ILookup
             { "amphotericin b (fungizone)", new ValueWithNote("40009648", "amphotericin b oral suspension [fungizone]") },
             { "zuclopenthixol decanoate depot inject", new ValueWithNote("19121997", "zuclopenthixol decanoate") },
             { "insulin isophane biphasic", new ValueWithNote("46221581", "insulin isophane") },
-            { "potassium ascorbate ophthalmic", new ValueWithNote("21035740", "potassium ascorbate ophthalmic solution") },
-            { "fentanyl-levobupivacaine", new ValueWithNote("19098741", "levobupivacaine") },
+            { "potassium ascorbate ophthalmic", new ValueWithNote("21035740", "potassium ascorbate ophthalmic solution") }, // ERROR: description adds "solution" making it more specific than the source
+            { "fentanyl-levobupivacaine", new ValueWithNote("19098741", "levobupivacaine") }, // ERROR: fentanyl is dropped entirely; a 2-drug combination mapped to single-ingredient
             { "cocaine nasal", new ValueWithNote("36213696", "cocaine nasal product") },
             { "estradiol-norethisterone", new ValueWithNote("21272343", "estradiol + norethisterone") },
             { "immunoglobulin subcutaneous", new ValueWithNote("4008249", "immunoglobulin") },
@@ -1246,7 +1246,7 @@ internal class RxNormLookup : ILookup
             { "ispaghula-senna", new ValueWithNote("21179012", "senna + ispaghula") },
             { "terpin + codeine", new ValueWithNote("36030564", "codeine / terpin hydrate") },
             { "alpha tocopherol + selenium", new ValueWithNote("21272268", "alpha tocopherol + selenium") },
-            { "brinzolamide-timolol ophthalmic", new ValueWithNote("36219538", "brinzolamide ophthalmic product") },
+            { "brinzolamide-timolol ophthalmic", new ValueWithNote("36219538", "brinzolamide ophthalmic product") }, // ERROR: timolol is dropped entirely; a 2-drug combination mapped to single-ingredient
             { "phenoxymethylpenicillin potassium", new ValueWithNote("21234367", "phenoxymethylpenicillin potassium") },
             { "glucose 4% with 0.18% sodium chloride in", new ValueWithNote("36029299", "glucose / sodium chloride") },
             { "glucose 5% with 0.45% sodium chloride in", new ValueWithNote("36029299", "glucose / sodium chloride") },
@@ -1258,20 +1258,20 @@ internal class RxNormLookup : ILookup
             { "liquid paraffin ophthalmic", new ValueWithNote("19129738", "paraffin") },
             { "ichthammol-zinc oxide", new ValueWithNote("", "") },
             { "tafluprost-timolol ophthalmic", new ValueWithNote("", "") },
-            { "trometamol (tham))", new ValueWithNote("1511352", "trometamol citrate") },
+            { "trometamol (tham))", new ValueWithNote("1511352", "trometamol citrate") }, // ERROR: trometamol citrate is a more specific salt form; trometamol/THAM is the base compound
             { "dexamethasone/neomycin/polymyxin b ophth", new ValueWithNote("40027153", "dexamethasone / neomycin / polymyxin b ophthalmic ointment") },
             { "piperacillin-tazobactam (tazocin equival", new ValueWithNote("46275426", "piperacillin / tazobactam injection") },
             { "proxymetacaine ophthalmic", new ValueWithNote("19016891", "proparacaine hydrochloride 5 mg/ml ophthalmic solution [minims proxymetacaine hydrochloride]") },
             { "lidocaine-zinc oxide", new ValueWithNote("40001305", "lidocaine / zinc oxide topical ointment") },
-            { "sodium alginate-potassium bicarbonate", new ValueWithNote("939541", "sodium alginate 50 mg/ml / sodium bicarbonate 26.7 mg/ml oral suspension") },
-            { "acetic acid/dexamethasone/neomycin otic", new ValueWithNote("40027174", "dexamethasone / neomycin otic solution") },
+            { "sodium alginate-potassium bicarbonate", new ValueWithNote("939541", "sodium alginate 50 mg/ml / sodium bicarbonate 26.7 mg/ml oral suspension") }, // ERROR: medication contains potassium bicarbonate but description says sodium bicarbonate — different ingredient
+            { "acetic acid/dexamethasone/neomycin otic", new ValueWithNote("40027174", "dexamethasone / neomycin otic solution") }, // ERROR: acetic acid (antimicrobial) is dropped — 3-ingredient product mapped to 2-ingredient
             { "calcium citrate + colecalciferol", new ValueWithNote("", "") },
-            { "al hydroxide/mg hydroxide/simeticone", new ValueWithNote("40007792", "aluminum hydroxide / magnesium hydroxide chewable tablet") },
+            { "al hydroxide/mg hydroxide/simeticone", new ValueWithNote("40007792", "aluminum hydroxide / magnesium hydroxide chewable tablet") }, // ERROR: simeticone (simethicone) is dropped — 3-ingredient product mapped to 2-ingredient
             { "latanoprost-timolol ophthalmic", new ValueWithNote("40058182", "latanoprost / timolol ophthalmic solution") },
             { "oxybuprocaine ophthalmic", new ValueWithNote("", "") },
             { "soft paraffin + wool fat", new ValueWithNote("", "") },
             { "corticotrophin releasing hormone", new ValueWithNote("", "") },
-            { "alginic acid/calcium carbonate/na bic", new ValueWithNote("40092304", "alginic acid / calcium carbonate chewable tablet") },
+            { "alginic acid/calcium carbonate/na bic", new ValueWithNote("40092304", "alginic acid / calcium carbonate chewable tablet") }, // ERROR: sodium bicarbonate is dropped — 3-ingredient product mapped to 2-ingredient
             { "calcium acetate-magnesium carbonate", new ValueWithNote("40094156", "calcium acetate / magnesium carbonate oral tablet") },
             { "aluminium acetate", new ValueWithNote("930604", "aluminum acetate") },
             { "polihexanide ophthalmic", new ValueWithNote("21026605", "polihexanide ophthalmic solution") },
@@ -1285,13 +1285,13 @@ internal class RxNormLookup : ILookup
             { "potassium acid tartrate-potassium bicarb", new ValueWithNote("19086788", "potassium bitartrate") },
             { "glucose 2.5% with 0.45% sodium chloride", new ValueWithNote("36249707", "glucose 25 mg/ml / sodium chloride 4.5 mg/ml injection") },
             { "imipenem/cilastatin/relebactam", new ValueWithNote("1778262", "imipenem") },
-            { "haemophilus b-meningococcal conj vaccine", new ValueWithNote("43291283", "haemophilus b conjugate vaccine injection") },
+            { "haemophilus b-meningococcal conj vaccine", new ValueWithNote("43291283", "haemophilus b conjugate vaccine injection") }, // ERROR: meningococcal component is dropped — combined Hib/MenC vaccine mapped to Hib-only
             { "glucose 5% to", new ValueWithNote("36249735", "glucose 50 mg/ml injection") },
             { "calamine-glycerol", new ValueWithNote("902616", "calamine") },
             { "fusidic acid ophthalmic", new ValueWithNote("40131820", "fusidate ophthalmic solution") },
             { "calamine-menthol", new ValueWithNote("902616", "calamine") },
             { "continuous subcutaneous", new ValueWithNote("", "") },
-            { "dronabinol + cannabidiol", new ValueWithNote("19018910", "cannabinol") },
+            { "dronabinol + cannabidiol", new ValueWithNote("19018910", "cannabinol") }, // ERROR: cannabinol (CBN) is a different cannabinoid from both dronabinol (THC) and cannabidiol (CBD)
             { "hamamelis ophthalmic", new ValueWithNote("40750388", "hamamelis virginiana leaf extract ophthalmic solution") },
             { "sng001 (interferon -ß1a)", new ValueWithNote("722424", "interferon beta-1a") },
             { "adrenaline-lidocaine", new ValueWithNote("1343916", "epinephrine") },
@@ -1307,7 +1307,7 @@ internal class RxNormLookup : ILookup
             { "continuous subcutaneous infusion", new ValueWithNote("", "") },
             { "mercaptamine (cysteamine)", new ValueWithNote("910888", "cysteamine") },
             { "potassium chloride 0.15% (20 mmol/l) in", new ValueWithNote("21125559", "potassium chloride 1.5 mg/ml") },
-            { "clobetasol/oxytetracycline/nystatin topi", new ValueWithNote("21168381", "clobetasone / nystatin / oxytetracycline topical ointment") },
+            { "clobetasol/oxytetracycline/nystatin topi", new ValueWithNote("21168381", "clobetasone / nystatin / oxytetracycline topical ointment") }, // ERROR: clobetasol (super-potent steroid) ≠ clobetasone (mild steroid) — different medications
             { "bupivacaine + clonidine", new ValueWithNote("732893", "bupivacaine") }, 
             { "potassium chloride 0.3% (40 mmol/l) in s", new ValueWithNote("21115885", "potassium chloride 3 mg/ml") }, // confidence: 56.1%, omop match: 100.0%
             { "potassium chloride 0.3% (40 mmol/l) in g", new ValueWithNote("21115885", "potassium chloride 3 mg/ml") }, // confidence: 56.1%, omop match: 100.0%
@@ -1318,12 +1318,12 @@ internal class RxNormLookup : ILookup
             { "retinol + vitamin d", new ValueWithNote("19008339", "vitamin a") },
             { "chlorhexidine-nystatin", new ValueWithNote("36404953", "chlorhexidine / nystatin topical cream") }, 
             { "paed 3k 1l (aqueous)", new ValueWithNote("", "") },
-            { "al hydroxide/dicycloverine/mgo/simet", new ValueWithNote("36029196", "aluminum hydroxide / magnesium hydroxide") },
+            { "al hydroxide/dicycloverine/mgo/simet", new ValueWithNote("36029196", "aluminum hydroxide / magnesium hydroxide") }, // ERROR: multiple issues — MgO ≠ Mg(OH)2, and dicycloverine + simethicone are dropped entirely
             { "sodium bicarbonate-sodium biphosphate", new ValueWithNote("36030996", "sodium bicarbonate / sodium phosphate") },
             { "neonatal main (aqueous)", new ValueWithNote("", "") },
             { "ubidecarenone (ubiquinone)", new ValueWithNote("1351115", "ubidecarenone") },
             { "benzalkonium/dimeticone/hc/nystatin top", new ValueWithNote("36408018", "benzalkonium / dimethicone / hydrocortisone / nystatin topical cream") },
-            { "neat", new ValueWithNote("1714319", "naltrexone") }, 
+            { "neat", new ValueWithNote("1714319", "naltrexone") }, // ERROR: "neat" is not a recognized synonym or abbreviation for naltrexone
             { "cetylpyridium/chlorocresol/lidocaine top", new ValueWithNote("36812860", "	cetylpyridinium / chlorocresol / lidocaine topical gel") },
             { "pca", new ValueWithNote("", "") },
             { "imipenem-cilastatin", new ValueWithNote("36030124", "cilastatin/imipenem") },
@@ -1400,14 +1400,14 @@ internal class RxNormLookup : ILookup
             { "sodium hyaluronate ophthalmic", new ValueWithNote("19106560", "sodium hyaluronate") },
             { "water for injection to", new ValueWithNote("43575855", "water for injection roth") },
             { "hydrocortisone + urea", new ValueWithNote("36029271", "hydrocortisone / urea") },
-            { "beclometasone-formoterol", new ValueWithNote("21014364", "easyhaler beclometasone") },
+            { "beclometasone-formoterol", new ValueWithNote("21014364", "easyhaler beclometasone") }, // ERROR: maps beclometasone+formoterol combination to branded beclometasone-only product; formoterol is dropped
             { "argx-117", new ValueWithNote("", "") },
             { "fluticasone-formoterol", new ValueWithNote("2070686", "fluticasone / formoterol inhalation suspension") },
             { "metformin-vildagliptin", new ValueWithNote("21140122", "metformin / vildagliptin oral tablet") },
             { "hepatitis b adult vaccine", new ValueWithNote("501488", "hepatitis b vaccine") },
             { "human papillomavirus vaccine", new ValueWithNote("45892511", "l1 protein, human papillomavirus type 11 vaccine / l1 protein, human papillomavirus type 16 vaccine / l1 protein, human papillomavirus type 18 vaccine / l1 protein, human papillomavirus type 31 vaccine / l1 protein, human papillomavirus type 33 vaccine") },
             { "measles/mumps/rubella vaccine", new ValueWithNote("41111268", "measles vaccine / mumps vaccine / rubella virus vaccine injectable solution") },
-            { "gramicid/neomy/nystatin/triamcin otic", new ValueWithNote("36029562", "neomycin / nystatin / thiostrepton / triamcinolone") },
+            { "gramicid/neomy/nystatin/triamcin otic", new ValueWithNote("36029562", "neomycin / nystatin / thiostrepton / triamcinolone") }, // ERROR: gramicidin is replaced with thiostrepton — a different antibiotic
             { "diphtheria/poliomyelitis/tetanus vaccine", new ValueWithNote("", "") },
             { "bacillus calmette-guérin", new ValueWithNote("19015423", "bcg vaccine") }, 
             { "sodium chloride, hypertonic, ophthalmic", new ValueWithNote("", "") },
@@ -1417,13 +1417,13 @@ internal class RxNormLookup : ILookup
             { "conjugated estrogens-medroxyprogesterone", new ValueWithNote("36027056", "estrogens, conjugated (usp) / medroxyprogesterone") },
             { "other supplements", new ValueWithNote("", "") },
             { "calamine/coal tar/zinc oxide", new ValueWithNote("40734311", "calamine / coal tar / zinc oxide topical ointment") },
-            { "estradiol + norethisterone acetate", new ValueWithNote("42902238", "estradiol 1 mg / norethindrone acetate 0.5 mg oral tablet") },
-            { "diphth/hib/pertussis/polio/tetanus vacc", new ValueWithNote("41018110", "acellular pertussis vaccine, inactivated / diphtheria toxoid vaccine, inactivated / poliovirus vaccine inactivated, type 1 (mahoney) / tetanus toxoid vaccine, inactivated prefilled syringe [boostrix polio cc]") },
+            { "estradiol + norethisterone acetate", new ValueWithNote("42902238", "estradiol 1 mg / norethindrone acetate 0.5 mg oral tablet") }, // ERROR: description adds specific doses (1mg/0.5mg) making it more specific than the generic combination
+            { "diphth/hib/pertussis/polio/tetanus vacc", new ValueWithNote("41018110", "acellular pertussis vaccine, inactivated / diphtheria toxoid vaccine, inactivated / poliovirus vaccine inactivated, type 1 (mahoney) / tetanus toxoid vaccine, inactivated prefilled syringe [boostrix polio cc]") }, // ERROR: Hib component is missing — 5-component vaccine mapped to 4-component Boostrix Polio (DTaP-IPV)
             { "darunavir + cobicistat + emtricitabine +", new ValueWithNote("778975", "cobicistat / darunavir / emtricitabine / tenofovir alafenamide") },
             { "taldefgrobep alfa (bhv-2000)", new ValueWithNote("1254421", "taldefgrobep alfa") },
             { "jnj-67484703", new ValueWithNote("", "") },
             { "oral rehydration salts", new ValueWithNote("40756244", "oral rehydration salts") },
-            { "calcium carbonate-ca lactate gluconate", new ValueWithNote("42944845", "calcium carbonate / calcium gluconate / calcium lactate / ergocalciferol oral tablet") },
+            { "calcium carbonate-ca lactate gluconate", new ValueWithNote("42944845", "calcium carbonate / calcium gluconate / calcium lactate / ergocalciferol oral tablet") }, // ERROR: adds ergocalciferol (vitamin D) not in source, and incorrectly splits calcium lactate gluconate into two separate salts
             { "pneumococcal 23-polyvalent vaccine", new ValueWithNote("561429", "polyvalent pneumococcal vaccine") },
             { "covid-19 mrna vaccine (pfizer / biont", new ValueWithNote("", "") },
             { "nirmatrelvir (pf-07321332) + ritonavir", new ValueWithNote("1235357", "nirmatrelvir / ritonavir oral tablet") },
@@ -1453,24 +1453,24 @@ internal class RxNormLookup : ILookup
             { "amino acids (l-lysine 2.5% and l-arginin", new ValueWithNote("2009211", "1000 ml amino acids 25 mg/ml injectable solution [aminofusin-tpn]") },
             { "benzylpenicillin sodium", new ValueWithNote("1728416", "penicillin g") },
             { "be1116", new ValueWithNote("41207381", "4 factor prothrombin complex concentrate / factor ix / factor vii / factor x / prothrombin injectable solution [beriplex]") },
-            { "buffered sodium chloride 0.9% sterile iv", new ValueWithNote("968205", "sodium chloride 0.154 meq/ml irrigation solution") },
+            { "buffered sodium chloride 0.9% sterile iv", new ValueWithNote("968205", "sodium chloride 0.154 meq/ml irrigation solution") }, // ERROR: source is IV solution but description is irrigation solution — different route/formulation
             { "coagulation factor xa", new ValueWithNote("4197686", "coagulation factor xa") },
             { "copper intrauterine contraceptive device", new ValueWithNote("37498155", "copper 313 mg drug implant [paragard]") },
             { "diphth/pertussis,acel/polio/tetanus vacc", new ValueWithNote("40213289", "diphtheria, tetanus toxoids and acellular pertussis vaccine, and poliovirus vaccine, inactivated") },
             { "cryoprecipitate", new ValueWithNote("36848862", "cryoprecipitate") },
-            { "fresh frozen plasma", new ValueWithNote("19025693", "plasma protein fraction") },
+            { "fresh frozen plasma", new ValueWithNote("19025693", "plasma protein fraction") }, // ERROR: FFP (contains all coagulation factors) ≠ plasma protein fraction (processed 5% albumin solution) — entirely different products
             { "epoetin beta-methoxy polyethylene glycol", new ValueWithNote("19015768", "methoxy polyethylene glycol-epoetin beta") },
             { "heparin flush", new ValueWithNote("1367571", "heparin") },
-            { "ergometrine-oxytocin", new ValueWithNote("1326115", "oxytocin") },
+            { "ergometrine-oxytocin", new ValueWithNote("1326115", "oxytocin") }, // ERROR: ergometrine is dropped — 2-drug combination (e.g. Syntometrine) mapped to single-ingredient
             { "fluorescein ophthalmic", new ValueWithNote("996625", "fluorescein") },
             { "glucose 20% infusion (continuous)", new ValueWithNote("1560524", "glucose") },
             { "glucose 10% infusion", new ValueWithNote("1560524", "glucose") },
             { "glucose 5% intravenous infusion solution", new ValueWithNote("1560524", "glucose") },
             { "loteprednol ophthalmic", new ValueWithNote("992127", "loteprednol") },
             { "magnesium glycerophosphate", new ValueWithNote("36879003", "magnesium glycerophosphate") },
-            { "magnesium carbonate-magnesium sulfate", new ValueWithNote("19093848", "magnesium sulfate") },
+            { "magnesium carbonate-magnesium sulfate", new ValueWithNote("19093848", "magnesium sulfate") }, // ERROR: magnesium carbonate is dropped — 2-ingredient product mapped to single-ingredient
             { "glucose 50% intravenous infusion solutio", new ValueWithNote("1560524", "glucose") },
-            { "nitrous oxide-oxygen", new ValueWithNote("19021129", "nitrous oxide") },
+            { "nitrous oxide-oxygen", new ValueWithNote("19021129", "nitrous oxide") }, // ERROR: oxygen is dropped — should map to nitrous oxide / oxygen (see line with "nitrous oxide + oxygen" which correctly maps to the combination)
             { "glucose 12.5% intravenous infusion solut", new ValueWithNote("1560524", "glucose") },
             { "hepatitis b paediatric vaccine", new ValueWithNote("501488", "hepatitis b vaccine") },
             { "influenza vaccine, inactivated", new ValueWithNote("19121608", "influenza virus vaccine") },
@@ -1487,7 +1487,7 @@ internal class RxNormLookup : ILookup
             { "nitrous oxide + oxygen", new ValueWithNote("21128839", "nitrous oxide / oxygen gas for inhalation") },
             { "arterial line flush sodium chloride 0", new ValueWithNote("967823", "sodium chloride") },
             { "sodium acid phosphate", new ValueWithNote("990499", "sodium phosphate, monobasic") },
-            { "calcium lactate + calcium phosphate +", new ValueWithNote("939871", "sodium phosphate") },
+            { "calcium lactate + calcium phosphate +", new ValueWithNote("939871", "sodium phosphate") }, // ERROR: calcium salts mapped to sodium phosphate — completely different compound
             { "central line flush sodium chloride 0.", new ValueWithNote("967823", "sodium chloride") },
             { "flupentixol decanoate", new ValueWithNote("19055982", "flupenthixol") },
             { "sodium cromoglicate nasal", new ValueWithNote("1152631", "cromolyn") },
