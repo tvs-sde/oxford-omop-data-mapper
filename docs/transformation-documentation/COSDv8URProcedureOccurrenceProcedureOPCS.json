@@ -1,0 +1,92 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "The unique NHS NUMBER allocated to every patient registered with the NHS.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group and ProcedureOPCS can also repeat within a treatment, so unnest is required.\n-- ProcedureOPCS identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], recursive := true) as ProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    ProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and ProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for \"Procedure Date\".",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group and ProcedureOPCS can also repeat within a treatment, so unnest is required.\n-- ProcedureOPCS identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], recursive := true) as ProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    ProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and ProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32879`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `ProcedureOPCS`",
+      "dataSource": [
+        {
+          "name": "ProcedureOPCS",
+          "description": "Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group and ProcedureOPCS can also repeat within a treatment, so unnest is required.\n-- ProcedureOPCS identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], recursive := true) as ProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    ProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and ProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "ProcedureOPCS",
+          "description": "Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group and ProcedureOPCS can also repeat within a treatment, so unnest is required.\n-- ProcedureOPCS identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], recursive := true) as ProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    ProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and ProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    }
+  ]
+}

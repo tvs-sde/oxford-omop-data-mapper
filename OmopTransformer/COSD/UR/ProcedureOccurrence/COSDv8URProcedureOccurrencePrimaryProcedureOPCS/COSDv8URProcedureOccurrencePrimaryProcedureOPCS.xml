@@ -1,0 +1,40 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Extracts primary procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).
+-- UrologicalCoreTreatment is a repeating group, so unnest is required to normalise each treatment entry.
+-- PrimaryProcedureOPCS identifies the primary patient procedure carried out (OPCS-4 code).
+-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.
+-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'UR'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from ur
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>The unique NHS NUMBER allocated to every patient registered with the NHS.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for "Procedure Date".</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOPCS">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
