@@ -1,0 +1,31 @@
+<Query>
+    <Sql>
+<![CDATA[
+select distinct
+    -- NHS Number: Patient identifier, used to link to the person table.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
+    -- Diagnostic Procedure (OPCS): The OPCS-4 code identifying the diagnostic procedure carried out. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure. Same as the ACTIVITY DATE attribute for this diagnostic procedure.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureOpcs">
+            <Description>The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

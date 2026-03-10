@@ -1,0 +1,37 @@
+<Query>
+    <Sql>
+<![CDATA[
+with COSD as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        -- Procedure date associated with the surgery treatment record
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+        -- The primary OPCS procedure code for the surgery
+        unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from COSD
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS Number data element, the primary identifier for a person within the NHS.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date. Will be mapped to procedure_date in OMOP. Currently in string format (CCYY-MM-DD) and will be cast to a date type in a later ETL step.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOpcs">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. Will be mapped to procedure_source_value and used to derive procedure_concept_id via OPCS4-to-OMOP concept mapping in a later ETL step.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

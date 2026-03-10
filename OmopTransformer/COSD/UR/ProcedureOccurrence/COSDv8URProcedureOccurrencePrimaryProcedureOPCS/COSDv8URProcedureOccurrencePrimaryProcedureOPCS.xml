@@ -1,0 +1,38 @@
+<Query>
+    <Sql>
+<![CDATA[
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'UR'
+)
+select distinct
+    -- NHS Number: Patient identifier, used to link to the person table.
+    NhsNumber,
+    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
+    ProcedureDate,
+    -- Primary Procedure (OPCS): The OPCS-4 code identifying the primary surgical procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
+    PrimaryProcedureOPCS
+from ur
+where NhsNumber is not null
+  and PrimaryProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for "Procedure Date".</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOPCS">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

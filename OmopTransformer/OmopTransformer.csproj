@@ -851,6 +851,156 @@
     <None Update="SUS\CCMDS\DeviceExposure\SusCCMDSDeviceExposure.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\BA\ProcedureOccurrence\COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate\COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate\COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate\COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate\COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate\COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CO\ProcedureOccurrence\COSDv8COProcedureOccurrencePrimaryProcedureOPCS\COSDv8COProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CO\ProcedureOccurrence\COSDv8COProcedureOccurrenceProcedureOPCS\COSDv8COProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CO\ProcedureOccurrence\COSDv9COProcedureOccurrencePrimaryProcedureOpcs\COSDv9COProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CO\ProcedureOccurrence\COSDv9COProcedureOccurrenceProcedureOpcs\COSDv9COProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ProcedureOccurrence\COSDv8CTProcedureOccurrencePrimaryProcedureOPCS\COSDv8CTProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ProcedureOccurrence\COSDv901CTProcedureOccurrenceDiagnosticProcedureOpcs\COSDv901CTProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ProcedureOccurrence\COSDv901CTProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv901CTProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ProcedureOccurrence\COSDv901CTProcedureOccurrencePrimaryProcedureOpcs\COSDv901CTProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ProcedureOccurrence\COSDv901CTProcedureOccurrenceProcedureOpcs\COSDv901CTProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv8HNProcedureOccurrenceDiagnosticProcedureOpcs\COSDv8HNProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv8HNProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv8HNProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv8HNProcedureOccurrencePrimaryProcedureOpcs\COSDv8HNProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv8HNProcedureOccurrenceProcedureOpcs\COSDv8HNProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv9HNProcedureOccurrencePrimaryProcedureOPCS\COSDv9HNProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv9HNProcedureOccurrenceProcedureOPCS\COSDv9HNProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ProcedureOccurrence\COSDv8LVProcedureOccurrencePrimaryProcedureOPCS\COSDv8LVProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ProcedureOccurrence\COSDv8LVProcedureOccurrenceProcedureOPCS\COSDv8LVProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ProcedureOccurrence\COSDv9LVProcedureOccurrencePrimaryProcedureOpcs\COSDv9LVProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ProcedureOccurrence\COSDv9LVProcedureOccurrenceProcedureOpcs\COSDv9LVProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ProcedureOccurrence\COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDate\COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ProcedureOccurrence\COSDv8SAProcedureOccurrenceProcedureOPCSProcedureDate\COSDv8SAProcedureOccurrenceProcedureOPCSProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ProcedureOccurrence\COSDv9SAProcedureOccurrencePrimaryProcedureOpcsProcedureDate\COSDv9SAProcedureOccurrencePrimaryProcedureOpcsProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ProcedureOccurrence\COSDv9SAProcedureOccurrenceProcedureOpcsProcedureDate\COSDv9SAProcedureOccurrenceProcedureOpcsProcedureDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ProcedureOccurrence\COSDv8SKProcedureOccurrencePrimaryProcedureOPCS\COSDv8SKProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ProcedureOccurrence\COSDv8SKProcedureOccurrenceProcedureOPCS\COSDv8SKProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ProcedureOccurrence\COSDv9SKProcedureOccurrenceDiagnosticProcedureOpcs\COSDv9SKProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ProcedureOccurrence\COSDv9SKProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv9SKProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ProcedureOccurrence\COSDv9SKProcedureOccurrencePrimaryProcedureOpcs\COSDv9SKProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ProcedureOccurrence\COSDv9SKProcedureOccurrenceProcedureOpcs\COSDv9SKProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ProcedureOccurrence\COSDv8UGProcedureOccurrencePrimaryProcedureOPCS\COSDv8UGProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ProcedureOccurrence\COSDv8UGProcedureOccurrenceProcedureOPCS\COSDv8UGProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ProcedureOccurrence\COSDv9UGProcedureOccurrenceDiagnosticProcedureOpcs\COSDv9UGProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ProcedureOccurrence\COSDv9UGProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv9UGProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ProcedureOccurrence\COSDv9UGProcedureOccurrencePrimaryProcedureOpcs\COSDv9UGProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ProcedureOccurrence\COSDv9UGProcedureOccurrenceProcedureOpcs\COSDv9UGProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv8URProcedureOccurrencePrimaryProcedureOPCS\COSDv8URProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv8URProcedureOccurrenceProcedureOPCS\COSDv8URProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs\COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrencePrimaryProcedureOpcs\COSDv9URProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrenceProcedureOpcs\COSDv9URProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs\COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrencePrimaryProcedureOpcs\COSDv9HAProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrenceProcedureOpcs\COSDv9HAProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' != 'Release_no_docs'">
 		<ItemGroup>

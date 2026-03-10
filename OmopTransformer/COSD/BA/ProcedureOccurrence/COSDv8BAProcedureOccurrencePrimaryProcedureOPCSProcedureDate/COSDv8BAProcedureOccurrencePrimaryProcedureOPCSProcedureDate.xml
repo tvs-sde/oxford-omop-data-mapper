@@ -1,0 +1,51 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Primary OPCS-4 procedure for CNS cancer area (COSD v8 BA)
+-- PrimaryProcedureOPCS maps to procedure_source_value in OMOP procedure_occurrence
+-- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
+-- NHSNumber links to person_id via the person table
+with ba as (
+    select distinct
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest (
+            [
+                [Record ->> '$.CNS.CNSCore.CNSCoreTreatment.CNSCoreSurgeryAndOtherProcedures.ProcedureDate'],
+                Record ->> '$.CNS.CNSCore.CNSCoreTreatment[*].CNSCoreSurgeryAndOtherProcedures.ProcedureDate'
+            ],
+            recursive := true
+        ) as ProcedureDate,
+        unnest (
+            [
+                [Record ->> '$.CNS.CNSCore.CNSCoreTreatment.CNSCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+                Record ->> '$.CNS.CNSCore.CNSCoreTreatment[*].CNSCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+            ],
+            recursive := true
+        ) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'BA'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from ba
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>Patient NHS Number. Used to link to the OMOP person table to resolve person_id.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date. Extracted as a string in CCYY-MM-DD format and will be cast to a date type in a later ETL step to populate procedure_date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOPCS">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. Will be mapped to a standard OMOP concept to populate procedure_concept_id and stored as procedure_source_value.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

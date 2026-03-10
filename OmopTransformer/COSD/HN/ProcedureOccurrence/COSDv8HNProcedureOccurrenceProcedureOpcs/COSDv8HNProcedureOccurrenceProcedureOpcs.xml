@@ -1,0 +1,41 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- COSDv8HN ProcedureOccurrence: ProcedureOpcs
+-- Extracts the secondary OPCS procedure codes for Head and Neck cancer from COSD v8.
+-- ProcedureOpcs can be repeating within each treatment block; unnest flattens multiple OPCS codes.
+-- Maps to procedure_occurrence.procedure_source_value (OPCS-4 code).
+-- ProcedureDate maps to procedure_occurrence.procedure_date (string format CCYY-MM-DD, to be cast in later ETL step).
+-- NHSNumber used to link to the person table via NHS number lookup.
+with hn as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcs
+from hn
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureOpcs">
+            <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.</Description>
+            <Origin>PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

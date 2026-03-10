@@ -1,0 +1,41 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- COSDv9HN ProcedureOccurrence: ProcedureOPCS
+-- Extracts the secondary OPCS procedure codes for Head and Neck cancer from COSD v9.
+-- ProcedureOPCS can be repeating within each treatment block; unnest flattens multiple OPCS codes.
+-- Maps to procedure_occurrence.procedure_source_value (OPCS-4 code).
+-- ProcedureDate maps to procedure_occurrence.procedure_date (string format CCYY-MM-DD, to be cast in later ETL step).
+-- NHSNumber used to link to the person table via NHS number lookup.
+with hn as (
+    select distinct
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest ([[Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    ProcedureOPCS
+from hn
+where NHSNumber is not null
+  and ProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureOPCS">
+            <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.</Description>
+            <Origin>PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

@@ -1,0 +1,51 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Primary OPCS-4 procedure for CNS cancer area (COSD v9 BA)
+-- PrimaryProcedureOpcs maps to procedure_source_value in OMOP procedure_occurrence
+-- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
+-- NhsNumber links to person_id via the person table
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest (
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+            ],
+            recursive := true
+        ) as ProcedureDate,
+        unnest (
+            [
+                [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+                Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+            ],
+            recursive := true
+        ) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from ba
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number. Used to link to the OMOP person table to resolve person_id.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date. Extracted as a string in CCYY-MM-DD format and will be cast to a date type in a later ETL step to populate procedure_date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOpcs">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. Will be mapped to a standard OMOP concept to populate procedure_concept_id and stored as procedure_source_value.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

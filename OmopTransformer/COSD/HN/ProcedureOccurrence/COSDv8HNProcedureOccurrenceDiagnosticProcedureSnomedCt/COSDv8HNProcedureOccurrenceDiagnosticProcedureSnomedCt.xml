@@ -1,0 +1,34 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- COSDv8HN ProcedureOccurrence: DiagnosticProcedureSnomedCt
+-- Extracts the diagnostic procedure SNOMED CT code for Head and Neck cancer from COSD v8.
+-- This is a non-repeating field (not in the Treatment array), so no CTE is needed.
+-- Maps to procedure_occurrence.procedure_source_value (SNOMED CT concept ID).
+-- DiagnosticProcedureDate maps to procedure_occurrence.procedure_date (string format CCYY-MM-DD, to be cast in later ETL step).
+-- NHSNumber used to link to the person table via NHS number lookup.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_81
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureSnomedCt">
+            <Description>The SNOMED CT concept ID used to identify the diagnostic procedure.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (SNOMED CT)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

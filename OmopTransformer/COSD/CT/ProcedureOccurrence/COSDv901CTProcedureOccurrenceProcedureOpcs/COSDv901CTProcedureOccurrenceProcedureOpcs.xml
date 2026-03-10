@@ -1,0 +1,48 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- COSD v9.01 CT - Procedure Occurrence: Procedure (OPCS)
+-- Extracts secondary surgical procedure OPCS codes and procedure date from Treatment/Surgery.
+-- Uses CTE because Treatment and ProcedureOpcs are repeating elements requiring unnest.
+-- Note: ProcedureOpcs can contain multiple codes per Surgery (ProcedureOpcs[*]),
+-- while ProcedureDate is one per Surgery. The zip unnest may produce misaligned rows
+-- when multiple OPCS codes exist per surgery; later ETL steps should validate alignment.
+
+with ct as (
+    select distinct
+        -- NHS Number: unique patient identifier used to link to the OMOP person table.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+
+        -- Procedure OPCS: OPCS-4 code for secondary (non-primary) procedures performed during surgery.
+        -- Will be mapped to procedure_source_value and used to derive procedure_concept_id.
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcs
+from ct
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+]]>
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>The unique NHS Number assigned to every patient registered with the NHS in England and Wales.</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ProcedureDate">
+		    <Description>Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for "Procedure Date".</Description>
+		    <Origin>PROCEDURE DATE</Origin>
+	    </Explanation>
+	    <Explanation columnName="ProcedureOpcs">
+		    <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.</Description>
+		    <Origin>PROCEDURE (OPCS)</Origin>
+	    </Explanation>
+	</Explanations>
+</Query>
