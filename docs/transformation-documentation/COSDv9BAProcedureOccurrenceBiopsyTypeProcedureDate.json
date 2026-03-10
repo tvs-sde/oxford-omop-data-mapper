@@ -1,0 +1,103 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number. Used to link to the OMOP person table to resolve person_id.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)\n-- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence\n-- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)\n-- NhsNumber links to person_id via the person table\n-- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar\n-- to maintain correct row-level alignment within the same Treatment/Surgery node\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.SurgeryCNS.BiopsyType.@code' as BiopsyType\nfrom omop_staging.cosd_staging_901\nwhere type = 'BA'\n  and NhsNumber is not null\n  and BiopsyType is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "BIOPSY ANAESTHETIC TYPE",
+      "dataSource": [
+        {
+          "name": "BiopsyType",
+          "description": "The type of biopsy carried out on Central Nervous System (CNS) tumours during a Central Nervous System Cancer Care Spell. Coded values include Frame-based stereotactic biopsy (1), Frameless stereotactic biopsy (2), Open biopsy (3), Percutaneous biopsy (4), Endoscopic biopsy (5), Other biopsy (6). Will be stored as procedure_source_value and mapped to a standard concept in a later ETL step.",
+          "origins": [
+            {
+              "origin": "BIOPSY TYPE (CENTRAL NERVOUS SYSTEM TUMOURS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/biopsy_type__central_nervous_system_tumours_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)\n-- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence\n-- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)\n-- NhsNumber links to person_id via the person table\n-- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar\n-- to maintain correct row-level alignment within the same Treatment/Surgery node\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.SurgeryCNS.BiopsyType.@code' as BiopsyType\nfrom omop_staging.cosd_staging_901\nwhere type = 'BA'\n  and NhsNumber is not null\n  and BiopsyType is not null;\n",
+      "lookup_table_markdown": "\r\n\r\n|BiopsyType|procedure_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4303995|Local anaesthetic|\r\n|2|4219502|Sedation|\r\n|3|4174669|General anaesthetic|\r\n|9|0|Not Known (Not Recorded)|\r\n\r\n"
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date. Extracted as a string in CCYY-MM-DD format and will be cast to a date type in a later ETL step to populate procedure_date. Uses scalar path aligned with BiopsyType cardinality.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)\n-- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence\n-- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)\n-- NhsNumber links to person_id via the person table\n-- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar\n-- to maintain correct row-level alignment within the same Treatment/Surgery node\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.SurgeryCNS.BiopsyType.@code' as BiopsyType\nfrom omop_staging.cosd_staging_901\nwhere type = 'BA'\n  and NhsNumber is not null\n  and BiopsyType is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `BiopsyType`",
+      "dataSource": [
+        {
+          "name": "BiopsyType",
+          "description": "The type of biopsy carried out on Central Nervous System (CNS) tumours during a Central Nervous System Cancer Care Spell. Coded values include Frame-based stereotactic biopsy (1), Frameless stereotactic biopsy (2), Open biopsy (3), Percutaneous biopsy (4), Endoscopic biopsy (5), Other biopsy (6). Will be stored as procedure_source_value and mapped to a standard concept in a later ETL step.",
+          "origins": [
+            {
+              "origin": "BIOPSY TYPE (CENTRAL NERVOUS SYSTEM TUMOURS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/biopsy_type__central_nervous_system_tumours_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)\n-- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence\n-- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)\n-- NhsNumber links to person_id via the person table\n-- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar\n-- to maintain correct row-level alignment within the same Treatment/Surgery node\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.SurgeryCNS.BiopsyType.@code' as BiopsyType\nfrom omop_staging.cosd_staging_901\nwhere type = 'BA'\n  and NhsNumber is not null\n  and BiopsyType is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "BIOPSY ANAESTHETIC TYPE",
+      "dataSource": [
+        {
+          "name": "BiopsyType",
+          "description": "The type of biopsy carried out on Central Nervous System (CNS) tumours during a Central Nervous System Cancer Care Spell. Coded values include Frame-based stereotactic biopsy (1), Frameless stereotactic biopsy (2), Open biopsy (3), Percutaneous biopsy (4), Endoscopic biopsy (5), Other biopsy (6). Will be stored as procedure_source_value and mapped to a standard concept in a later ETL step.",
+          "origins": [
+            {
+              "origin": "BIOPSY TYPE (CENTRAL NERVOUS SYSTEM TUMOURS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/biopsy_type__central_nervous_system_tumours_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)\n-- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence\n-- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)\n-- NhsNumber links to person_id via the person table\n-- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar\n-- to maintain correct row-level alignment within the same Treatment/Surgery node\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.SurgeryCNS.BiopsyType.@code' as BiopsyType\nfrom omop_staging.cosd_staging_901\nwhere type = 'BA'\n  and NhsNumber is not null\n  and BiopsyType is not null;\n",
+      "lookup_table_markdown": "\r\n\r\n|BiopsyType|procedure_source_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4303995|Local anaesthetic|\r\n|2|4219502|Sedation|\r\n|3|4174669|General anaesthetic|\r\n|9|0|Not Known (Not Recorded)|\r\n\r\n"
+    }
+  ]
+}

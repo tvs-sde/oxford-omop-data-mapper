@@ -1,0 +1,28 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- OPCS code identifying the primary procedure carried out
+    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs,
+    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step
+    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate
+from omop_staging.cosd_staging_901
+where type = 'LV'
+  and NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>The unique NHS Number allocated to every patient registered with the NHS in England and Wales.</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="PrimaryProcedureOpcs">
+		    <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.</Description>
+		    <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+	    </Explanation>
+	    <Explanation columnName="ProcedureDate">
+		    <Description>Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for "Procedure Date".</Description>
+		    <Origin>PROCEDURE DATE</Origin>
+	    </Explanation>
+	</Explanations>
+</Query>
