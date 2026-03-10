@@ -2,15 +2,10 @@
     <Sql>
 <![CDATA[
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-    -- Diagnostic Procedure (OPCS): The OPCS-4 code for the diagnostic procedure, maps to procedure_source_value in procedure_occurrence.
-    -- Will be mapped to a standard OMOP concept in a later ETL step via OPCS-4 vocabulary lookup.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs,
 
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed, maps to procedure_date in procedure_occurrence.
-    -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate
 from omop_staging.cosd_staging_901
 where type = 'UG'

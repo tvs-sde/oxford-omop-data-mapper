@@ -4,9 +4,7 @@
 with COSD as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Procedure date associated with the surgery treatment record
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
-        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'SK'

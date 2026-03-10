@@ -1,12 +1,6 @@
 <Query>
     <Sql>
 <![CDATA[
--- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)
--- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)
--- NhsNumber links to person_id via the person table
--- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar
--- to maintain correct row-level alignment within the same Treatment/Surgery node
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,

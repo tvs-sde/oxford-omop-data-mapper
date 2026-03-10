@@ -2,9 +2,7 @@
     <Sql>
 select distinct
     Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
-    -- OPCS code identifying the primary procedure carried out
     Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code' as PrimaryProcedureOPCS,
-    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step
     Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate
 from omop_staging.cosd_staging_81
 where type = 'LV'

@@ -3,15 +3,10 @@
 <![CDATA[
 with ug as (
     select distinct
-        -- NHS Number: Patient identifier, used to link to the person table.
         Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
 
-        -- Primary Procedure (OPCS): The primary OPCS-4 procedure code, maps to procedure_source_value in procedure_occurrence.
-        -- Will be mapped to a standard OMOP concept in a later ETL step via OPCS-4 vocabulary lookup.
         unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS,
 
-        -- Procedure Date: The date the procedure was performed, maps to procedure_date in procedure_occurrence.
-        -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
         unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_81
     where type = 'UG'

@@ -3,9 +3,7 @@
 with lv as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Date the procedure was performed; sits at the same Surgery level as ProcedureOpcs
         Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-        -- OPCS code(s) for secondary procedures; unnested because multiple procedures can exist per Surgery
         unnest(
             [
                 [Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'],

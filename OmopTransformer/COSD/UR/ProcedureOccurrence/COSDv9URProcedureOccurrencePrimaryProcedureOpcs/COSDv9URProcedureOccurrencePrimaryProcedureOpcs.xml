@@ -10,11 +10,8 @@ with ur as (
     where type = 'UR'
 )
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     ProcedureDate,
-    -- Primary Procedure (OPCS): The OPCS-4 code identifying the primary surgical procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     PrimaryProcedureOpcs
 from ur
 where NhsNumber is not null

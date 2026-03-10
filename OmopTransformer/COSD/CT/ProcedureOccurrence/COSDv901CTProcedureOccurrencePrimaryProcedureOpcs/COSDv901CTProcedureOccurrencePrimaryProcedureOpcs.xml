@@ -1,19 +1,12 @@
 <Query>
     <Sql>
 <![CDATA[
--- COSD v9.01 CT - Procedure Occurrence: Primary Procedure (OPCS)
--- Extracts the primary surgical procedure OPCS code and procedure date from Treatment/Surgery.
--- Uses CTE because Treatment is a repeating element requiring unnest.
-
 with ct as (
     select distinct
-        -- NHS Number: unique patient identifier used to link to the OMOP person table.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
 
-        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.
         unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'CT'

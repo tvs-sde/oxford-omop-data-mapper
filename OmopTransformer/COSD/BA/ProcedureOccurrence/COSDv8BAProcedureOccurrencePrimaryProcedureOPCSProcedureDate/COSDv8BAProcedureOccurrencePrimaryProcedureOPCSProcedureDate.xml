@@ -1,10 +1,6 @@
 <Query>
     <Sql>
 <![CDATA[
--- Primary OPCS-4 procedure for CNS cancer area (COSD v8 BA)
--- PrimaryProcedureOPCS maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
--- NHSNumber links to person_id via the person table
 with ba as (
     select distinct
         Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
