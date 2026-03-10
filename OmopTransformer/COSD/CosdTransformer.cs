@@ -164,7 +164,6 @@ using OmopTransformer.COSD.Lung.Observation.CosdV8LungSurgicalAccessType;
 using OmopTransformer.COSD.Lung.Observation.CosdV9LungSurgicalAccessType;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate;
-using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate;
 using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv8COProcedureOccurrencePrimaryProcedureOPCS;
@@ -272,10 +271,8 @@ internal class CosdTransformer : Transformer
 
     public async Task Transform(CancellationToken cancellationToken)
     {
-
-
         Guid runId = Guid.NewGuid();
-        goto run;
+
         await Transform<CosdDemographicsV9, CosdPersonV9>(
             _personRecorder.InsertUpdatePersons,
             "COSD V9 Person",
@@ -1347,10 +1344,8 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9MeasurementAdultComorbidityEvaluationRecord, CosdV9MeasurementAdultComorbidityEvaluation>(
              _measurementRecorder.InsertUpdateMeasurements,
              "CosdV9MeasurementAdultComorbidityEvaluation",
-        runId,
-        cancellationToken);
-
-    run:
+            runId,
+            cancellationToken);
 
         await Transform<COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDateRecord, COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,

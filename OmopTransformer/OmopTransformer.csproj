@@ -857,9 +857,6 @@
     <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate\COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate\COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate\COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
