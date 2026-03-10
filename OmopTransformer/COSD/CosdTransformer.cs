@@ -172,20 +172,13 @@ using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv8COProcedureOccurrencePro
 using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv9COProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv9COProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv8CTProcedureOccurrencePrimaryProcedureOPCS;
-using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv901CTProcedureOccurrenceDiagnosticProcedureOpcs;
-using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv901CTProcedureOccurrenceDiagnosticProcedureSnomedCt;
 using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv901CTProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv901CTProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceProcedureOpcs;
-using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv8HNProcedureOccurrenceDiagnosticProcedureOpcs;
-using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv8HNProcedureOccurrenceDiagnosticProcedureSnomedCt;
-using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv8HNProcedureOccurrencePrimaryProcedureOpcs;
-using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv8HNProcedureOccurrenceProcedureOpcs;
-using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv9HNProcedureOccurrencePrimaryProcedureOPCS;
-using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv9HNProcedureOccurrenceProcedureOPCS;
+
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv9LVProcedureOccurrencePrimaryProcedureOpcs;
@@ -1383,30 +1376,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8HNProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv8HNProcedureOccurrenceDiagnosticProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V8 HN Procedure Occurrence Diagnostic Procedure Opcs",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv8HNProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv8HNProcedureOccurrenceDiagnosticProcedureSnomedCt>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V8 HN Procedure Occurrence Diagnostic Procedure Snomed Ct",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv8HNProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv8HNProcedureOccurrencePrimaryProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V8 HN Procedure Occurrence Primary Procedure Opcs",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv8HNProcedureOccurrenceProcedureOpcsRecord, COSDv8HNProcedureOccurrenceProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V8 HN Procedure Occurrence Procedure Opcs",
-            runId,
-            cancellationToken);
-
         await Transform<COSDv8LVProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8LVProcedureOccurrencePrimaryProcedureOPCS>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V8 LV Procedure Occurrence Primary Procedure OPCS",
@@ -1464,18 +1433,6 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8URProcedureOccurrenceProcedureOPCSRecord, COSDv8URProcedureOccurrenceProcedureOPCS>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V8 UR Procedure Occurrence Procedure OPCS",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv901CTProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv901CTProcedureOccurrenceDiagnosticProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V901 CT Procedure Occurrence Diagnostic Procedure Opcs",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv901CTProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv901CTProcedureOccurrenceDiagnosticProcedureSnomedCt>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V901 CT Procedure Occurrence Diagnostic Procedure Snomed Ct",
             runId,
             cancellationToken);
 
@@ -1548,18 +1505,6 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9HAProcedureOccurrenceProcedureOpcsRecord, COSDv9HAProcedureOccurrenceProcedureOpcs>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V9 HA Procedure Occurrence Procedure Opcs",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv9HNProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv9HNProcedureOccurrencePrimaryProcedureOPCS>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V9 HN Procedure Occurrence Primary Procedure OPCS",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv9HNProcedureOccurrenceProcedureOPCSRecord, COSDv9HNProcedureOccurrenceProcedureOPCS>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V9 HN Procedure Occurrence Procedure OPCS",
             runId,
             cancellationToken);
 
