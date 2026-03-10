@@ -350,10 +350,6 @@ has_toc: false
 <a href="COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate.svg" target="_blank"><img src="COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate%20mapping){: .btn }
-## COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate
-<a href="COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate.svg" target="_blank"><img src="COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate%20mapping){: .btn }
 ## COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate
 <a href="COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate.svg" target="_blank"><img src="COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate.svg" /></a>
 

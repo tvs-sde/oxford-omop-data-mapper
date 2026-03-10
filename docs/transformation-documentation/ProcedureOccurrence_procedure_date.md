@@ -1760,49 +1760,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
-### COSD V9 BA Procedure Occurrence Excision Or Procedure Type Procedure Date
-Source column  `ProcedureDate`.
-Converts text to dates.
-
-* `ProcedureDate` Date relevant to the activity for the procedure date. Extracted as a string in CCYY-MM-DD format and will be cast to a date type in a later ETL step to populate procedure_date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
--- CNS excision type procedure for CNS cancer area (COSD v9 BA)
--- ExcisionOrProcedureType maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
--- NhsNumber links to person_id via the person table
--- Both ExcisionOrProcedureType and ProcedureDate are unnested at the Treatment level
-with ba as (
-    select distinct
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        unnest (
-            [
-                [Record ->> '$.Treatment.Surgery.ProcedureDate'],
-                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
-            ],
-            recursive := true
-        ) as ProcedureDate,
-        unnest (
-            [
-                [Record ->> '$.Treatment.Surgery.SurgeryCNS.ExcisionOrProcedureType.@code'],
-                Record ->> '$.Treatment[*].Surgery.SurgeryCNS.ExcisionOrProcedureType.@code'
-            ],
-            recursive := true
-        ) as ExcisionOrProcedureType
-    from omop_staging.cosd_staging_901
-    where type = 'BA'
-)
-select distinct
-    NhsNumber,
-    ProcedureDate,
-    ExcisionOrProcedureType
-from ba
-where NhsNumber is not null
-  and ExcisionOrProcedureType is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Excision%20Or%20Procedure%20Type%20Procedure%20Date%20mapping){: .btn }
 ### COSD V9 BA Procedure Occurrence Biopsy Type Procedure Date
 Source column  `ProcedureDate`.
 Converts text to dates.

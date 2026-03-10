@@ -1453,13 +1453,7 @@ internal class CosdTransformer : Transformer
             "COSD V9 BA Procedure Occurrence Biopsy Type Procedure Date",
             runId,
             cancellationToken);
-
-        await Transform<COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDateRecord, COSDv9BAProcedureOccurrenceExcisionOrProcedureTypeProcedureDate>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V9 BA Procedure Occurrence Excision Or Procedure Type Procedure Date",
-            runId,
-            cancellationToken);
-
+        
         await Transform<COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDateRecord, COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V9 BA Procedure Occurrence Primary Procedure Opcs Procedure Date",

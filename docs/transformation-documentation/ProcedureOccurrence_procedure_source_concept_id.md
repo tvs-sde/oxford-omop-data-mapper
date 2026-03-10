@@ -1848,49 +1848,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
-### COSD V9 BA Procedure Occurrence Excision Or Procedure Type Procedure Date
-Source column  `ExcisionOrProcedureType`.
-Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
-
-* `ExcisionOrProcedureType` The type of excision performed on Central Nervous System (CNS) tumours during a Central Nervous System Cancer Care Spell. Coded values include Limited less than 50% (1), Partial 50-69% (2), Subtotal 70-95% (3), Total Macroscopic (4), Extent Uncertain (5), CSF Division Procedure (6). Will be stored as procedure_source_value and mapped to a standard concept in a later ETL step. [EXCISION TYPE (CENTRAL NERVOUS SYSTEM TUMOURS)](https://www.datadictionary.nhs.uk/data_elements/excision_type__central_nervous_system_tumours_.html)
-
-```sql
--- CNS excision type procedure for CNS cancer area (COSD v9 BA)
--- ExcisionOrProcedureType maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
--- NhsNumber links to person_id via the person table
--- Both ExcisionOrProcedureType and ProcedureDate are unnested at the Treatment level
-with ba as (
-    select distinct
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        unnest (
-            [
-                [Record ->> '$.Treatment.Surgery.ProcedureDate'],
-                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
-            ],
-            recursive := true
-        ) as ProcedureDate,
-        unnest (
-            [
-                [Record ->> '$.Treatment.Surgery.SurgeryCNS.ExcisionOrProcedureType.@code'],
-                Record ->> '$.Treatment[*].Surgery.SurgeryCNS.ExcisionOrProcedureType.@code'
-            ],
-            recursive := true
-        ) as ExcisionOrProcedureType
-    from omop_staging.cosd_staging_901
-    where type = 'BA'
-)
-select distinct
-    NhsNumber,
-    ProcedureDate,
-    ExcisionOrProcedureType
-from ba
-where NhsNumber is not null
-  and ExcisionOrProcedureType is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Excision%20Or%20Procedure%20Type%20Procedure%20Date%20mapping){: .btn }
 ### COSD V9 BA Procedure Occurrence Biopsy Type Procedure Date
 Source column  `BiopsyType`.
 BIOPSY ANAESTHETIC TYPE

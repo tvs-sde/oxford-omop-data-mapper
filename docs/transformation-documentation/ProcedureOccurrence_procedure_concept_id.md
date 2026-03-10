@@ -421,11 +421,6 @@ Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
-### COSD V9 BA Procedure Occurrence Excision Or Procedure Type Procedure Date
-Source column  `procedure_source_concept_id`.
-Maps concepts to standard valid concepts in the `procedure` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Excision%20Or%20Procedure%20Type%20Procedure%20Date%20mapping){: .btn }
 ### COSD V9 BA Procedure Occurrence Biopsy Type Procedure Date
 Source column  `BiopsyType`.
 BIOPSY ANAESTHETIC TYPE
