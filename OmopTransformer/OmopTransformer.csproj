@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -558,6 +558,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\Colorectal\ProcedureOccurrence\CosdV9ProcedureOccurrenceProcedureOpcs\CosdV9ProcedureOccurrenceProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv8URProcedureOccurrencePrimaryProcedureOPCS\COSDv8URProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv8URProcedureOccurrenceProcedureOPCS\COSDv8URProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs\COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt\COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrencePrimaryProcedureOpcs\COSDv9URProcedureOccurrencePrimaryProcedureOpcs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ProcedureOccurrence\COSDv9URProcedureOccurrenceProcedureOpcs\COSDv9URProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="OxfordGP\ConditionOccurrence\OxfordGPConditionOccurrence.xml">

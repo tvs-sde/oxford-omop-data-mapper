@@ -43,6 +43,30 @@ has_toc: false
 <a href="OxfordGPProcedureOccurrence.svg" target="_blank"><img src="OxfordGPProcedureOccurrence.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OxfordGPProcedureOccurrence%20mapping){: .btn }
+## COSDv9URProcedureOccurrenceProcedureOpcs
+<a href="COSDv9URProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv9URProcedureOccurrenceProcedureOpcs.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9URProcedureOccurrenceProcedureOpcs%20mapping){: .btn }
+## COSDv9URProcedureOccurrencePrimaryProcedureOpcs
+<a href="COSDv9URProcedureOccurrencePrimaryProcedureOpcs.svg" target="_blank"><img src="COSDv9URProcedureOccurrencePrimaryProcedureOpcs.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9URProcedureOccurrencePrimaryProcedureOpcs%20mapping){: .btn }
+## COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt
+<a href="COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt.svg" target="_blank"><img src="COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt%20mapping){: .btn }
+## COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs
+<a href="COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs.svg" target="_blank"><img src="COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs%20mapping){: .btn }
+## COSDv8URProcedureOccurrenceProcedureOPCS
+<a href="COSDv8URProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv8URProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv8URProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv8URProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8URProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
 ## CosdV9LungProcedureOccurrenceRelapseMethodOfDetection
 <a href="CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.svg" target="_blank"><img src="CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.svg" /></a>
 

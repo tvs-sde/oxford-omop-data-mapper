@@ -1,0 +1,32 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Extracts diagnostic procedure SNOMED CT codes for the Urological cancer area (COSD v9).
+-- These represent diagnostic procedures carried out, identified by SNOMED CT concept ID.
+-- The SNOMED CT code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
+-- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>The unique NHS NUMBER allocated to every patient registered with the NHS.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure. Same as the ACTIVITY DATE attribute for this diagnostic procedure.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureSnomedCt">
+            <Description>The SNOMED CT concept ID used to identify the diagnostic procedure.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (SNOMED CT)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

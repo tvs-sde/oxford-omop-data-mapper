@@ -1,0 +1,92 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "The unique NHS NUMBER allocated to every patient registered with the NHS.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v9).\n-- Treatment is a repeating group and ProcedureOpcs can also repeat within a treatment, so unnest is required.\n-- ProcedureOpcs identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs.@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom ur\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for \"Procedure Date\".",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v9).\n-- Treatment is a repeating group and ProcedureOpcs can also repeat within a treatment, so unnest is required.\n-- ProcedureOpcs identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs.@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom ur\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32879`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `ProcedureOpcs`",
+      "dataSource": [
+        {
+          "name": "ProcedureOpcs",
+          "description": "Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v9).\n-- Treatment is a repeating group and ProcedureOpcs can also repeat within a treatment, so unnest is required.\n-- ProcedureOpcs identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs.@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom ur\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "ProcedureOpcs",
+          "description": "Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Extracts secondary/other procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v9).\n-- Treatment is a repeating group and ProcedureOpcs can also repeat within a treatment, so unnest is required.\n-- ProcedureOpcs identifies patient procedures other than the primary procedure (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs.@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom ur\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "lookup_table_markdown": null
+    }
+  ]
+}

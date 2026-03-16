@@ -36,6 +36,36 @@ Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20Oxford%20Procedure%20Occurrence%20mapping){: .btn }
+### COSD V9 UR Procedure Occurrence Procedure Opcs
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20UR%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 UR Procedure Occurrence Primary Procedure Opcs
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20UR%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 UR Procedure Occurrence Diagnostic Procedure Snomed Ct
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20UR%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Snomed%20Ct%20mapping){: .btn }
+### COSD V9 UR Procedure Occurrence Diagnostic Procedure Opcs
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20UR%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V8 UR Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20UR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 UR Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20UR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### CosdV9LungProcedureOccurrenceRelapseMethodOfDetection
 Source column  `RelapseMethodOfDetection`.
 Lookup RelapseMethodOfDetection concepts for lung cancer recurrence.
