@@ -1,0 +1,92 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "NHS Number data element, the primary identifier for a person within the NHS.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The SNOMED CT concept ID used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureSnomedCt.@code'], recursive := true) as DiagnosticProcedureSnomedCt\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureSnomedCt\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureDate",
+          "description": "Procedure date of the diagnostic procedure. Will be mapped to procedure_date in OMOP. Currently in string format (CCYY-MM-DD) and will be cast to a date type in a later ETL step.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE (DIAGNOSTIC PROCEDURE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The SNOMED CT concept ID used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureSnomedCt.@code'], recursive := true) as DiagnosticProcedureSnomedCt\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureSnomedCt\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `DiagnosticProcedureSnomedCt`",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureSnomedCt",
+          "description": "The SNOMED CT concept ID used to identify the diagnostic procedure. Will be mapped to procedure_source_value and used to derive procedure_concept_id via SNOMED-to-OMOP concept mapping in a later ETL step.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (SNOMED CT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The SNOMED CT concept ID used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureSnomedCt.@code'], recursive := true) as DiagnosticProcedureSnomedCt\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureSnomedCt\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve Snomed codes to OMOP concepts.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureSnomedCt",
+          "description": "The SNOMED CT concept ID used to identify the diagnostic procedure. Will be mapped to procedure_source_value and used to derive procedure_concept_id via SNOMED-to-OMOP concept mapping in a later ETL step.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (SNOMED CT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The SNOMED CT concept ID used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureSnomedCt.@code'], recursive := true) as DiagnosticProcedureSnomedCt\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureSnomedCt\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null;\n",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "The unique NHS Number assigned to every patient registered with the NHS in England and Wales.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- COSD v8 CT - Procedure Occurrence: Primary Procedure (OPCS)\n-- Extracts the primary surgical procedure OPCS code and procedure date from CTYACoreTreatment/CTYACoreSurgeryAndOtherProcedures.\n-- Uses CTE because CTYACoreTreatment is a repeating element requiring unnest.\n\nwith ct as (\n    select distinct\n        -- NHS Number: unique patient identifier used to link to the OMOP person table.\n        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n\n        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n\n        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'CT'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ct\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for \"Procedure Date\".",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- COSD v8 CT - Procedure Occurrence: Primary Procedure (OPCS)\n-- Extracts the primary surgical procedure OPCS code and procedure date from CTYACoreTreatment/CTYACoreSurgeryAndOtherProcedures.\n-- Uses CTE because CTYACoreTreatment is a repeating element requiring unnest.\n\nwith ct as (\n    select distinct\n        -- NHS Number: unique patient identifier used to link to the OMOP person table.\n        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n\n        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n\n        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'CT'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ct\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `PrimaryProcedureOpcs`",
+      "dataSource": [
+        {
+          "name": "PrimaryProcedureOpcs",
+          "description": "OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.",
+          "origins": [
+            {
+              "origin": "PRIMARY PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- COSD v8 CT - Procedure Occurrence: Primary Procedure (OPCS)\n-- Extracts the primary surgical procedure OPCS code and procedure date from CTYACoreTreatment/CTYACoreSurgeryAndOtherProcedures.\n-- Uses CTE because CTYACoreTreatment is a repeating element requiring unnest.\n\nwith ct as (\n    select distinct\n        -- NHS Number: unique patient identifier used to link to the OMOP person table.\n        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n\n        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n\n        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'CT'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ct\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "PrimaryProcedureOpcs",
+          "description": "OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.",
+          "origins": [
+            {
+              "origin": "PRIMARY PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- COSD v8 CT - Procedure Occurrence: Primary Procedure (OPCS)\n-- Extracts the primary surgical procedure OPCS code and procedure date from CTYACoreTreatment/CTYACoreSurgeryAndOtherProcedures.\n-- Uses CTE because CTYACoreTreatment is a repeating element requiring unnest.\n\nwith ct as (\n    select distinct\n        -- NHS Number: unique patient identifier used to link to the OMOP person table.\n        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n\n        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n\n        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.\n        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'CT'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ct\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
+      "lookup_table_markdown": null
+    }
+  ]
+}

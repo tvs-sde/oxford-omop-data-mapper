@@ -1,0 +1,37 @@
+<Query>
+    <Sql>
+<![CDATA[
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from ug
+where NHSNumber is not null
+  and ProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureOPCS">
+            <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.</Description>
+            <Origin>PROCEDURE (OPCS)</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

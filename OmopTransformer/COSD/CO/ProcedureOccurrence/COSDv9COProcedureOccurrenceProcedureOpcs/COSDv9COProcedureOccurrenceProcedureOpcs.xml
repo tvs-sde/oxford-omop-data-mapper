@@ -1,0 +1,35 @@
+<Query>
+    <Sql>
+<![CDATA[
+with co as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'CO'
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from co
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureOpcs">
+            <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. Will be mapped to procedure_concept_id and stored as procedure_source_value in the procedure_occurrence table. The OPCS-4 code will be used to look up the corresponding standard OMOP concept in the Procedure domain.</Description>
+            <Origin>PROCEDURE (OPCS)</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date, in CCYY-MM-DD format. Will be transformed to a date type and mapped to procedure_date in the procedure_occurrence table. Null values indicate the procedure date was not recorded.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

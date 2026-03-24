@@ -162,6 +162,48 @@ using OmopTransformer.COSD.Lung.Observation.CosdV9LungTobaccoSmokingCessation;
 using OmopTransformer.COSD.Lung.Observation.CosdV9LungTobaccoSmokingStatus;
 using OmopTransformer.COSD.Lung.Observation.CosdV8LungSurgicalAccessType;
 using OmopTransformer.COSD.Lung.Observation.CosdV9LungSurgicalAccessType;
+using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate;
+using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate;
+using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate;
+using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate;
+using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv8COProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv8COProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv9COProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv9COProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv8CTProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv901CTProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv901CTProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs;
+using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt;
+using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceProcedureOpcs;
+
+using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv9LVProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv9LVProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.SA.ProcedureOccurrence.COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDate;
+using OmopTransformer.COSD.SA.ProcedureOccurrence.COSDv8SAProcedureOccurrenceProcedureOPCSProcedureDate;
+using OmopTransformer.COSD.SA.ProcedureOccurrence.COSDv9SAProcedureOccurrencePrimaryProcedureOpcsProcedureDate;
+using OmopTransformer.COSD.SA.ProcedureOccurrence.COSDv9SAProcedureOccurrenceProcedureOpcsProcedureDate;
+using OmopTransformer.COSD.SK.ProcedureOccurrence.COSDv8SKProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.SK.ProcedureOccurrence.COSDv8SKProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.SK.ProcedureOccurrence.COSDv9SKProcedureOccurrenceDiagnosticProcedureOpcs;
+using OmopTransformer.COSD.SK.ProcedureOccurrence.COSDv9SKProcedureOccurrenceDiagnosticProcedureSnomedCt;
+using OmopTransformer.COSD.SK.ProcedureOccurrence.COSDv9SKProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.SK.ProcedureOccurrence.COSDv9SKProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv8UGProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv8UGProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceDiagnosticProcedureOpcs;
+using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceDiagnosticProcedureSnomedCt;
+using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrencePrimaryProcedureOpcs;
+using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Colorectal.ProcedureOccurrence.CosdV8ProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Colorectal.ProcedureOccurrence.CosdV8ProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Colorectal.ProcedureOccurrence.CosdV9ProcedureOccurrencePrimaryProcedureOpcs;
@@ -1302,7 +1344,253 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9MeasurementAdultComorbidityEvaluationRecord, CosdV9MeasurementAdultComorbidityEvaluation>(
              _measurementRecorder.InsertUpdateMeasurements,
              "CosdV9MeasurementAdultComorbidityEvaluation",
-        runId,
-        cancellationToken);
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDateRecord, COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 BA Procedure Occurrence Primary Procedure OPCS Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8COProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8COProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 CO Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8COProcedureOccurrenceProcedureOPCSRecord, COSDv8COProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 CO Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CTProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8CTProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 CT Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8LVProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 LV Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVProcedureOccurrenceProcedureOPCSRecord, COSDv8LVProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 LV Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDateRecord, COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 SA Procedure Occurrence Primary Procedure OPCS Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SAProcedureOccurrenceProcedureOPCSProcedureDateRecord, COSDv8SAProcedureOccurrenceProcedureOPCSProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 SA Procedure Occurrence Procedure OPCS Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SKProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8SKProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 SK Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SKProcedureOccurrenceProcedureOPCSRecord, COSDv8SKProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 SK Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8UGProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 UG Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGProcedureOccurrenceProcedureOPCSRecord, COSDv8UGProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 UG Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8URProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 UR Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URProcedureOccurrenceProcedureOPCSRecord, COSDv8URProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 UR Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv901CTProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv901CTProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V901 CT Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv901CTProcedureOccurrenceProcedureOpcsRecord, COSDv901CTProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V901 CT Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDateRecord, COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 BA Procedure Occurrence Biopsy Type Procedure Date",
+            runId,
+            cancellationToken);
+        
+        await Transform<COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDateRecord, COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 BA Procedure Occurrence Primary Procedure Opcs Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDateRecord, COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 BA Procedure Occurrence Procedure Opcs Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9COProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9COProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CO Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9COProcedureOccurrenceProcedureOpcsRecord, COSDv9COProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CO Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HA Procedure Occurrence Diagnostic Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HA Procedure Occurrence Diagnostic Procedure Snomed Ct",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9HAProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HA Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAProcedureOccurrenceProcedureOpcsRecord, COSDv9HAProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HA Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9LVProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 LV Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVProcedureOccurrenceProcedureOpcsRecord, COSDv9LVProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 LV Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAProcedureOccurrencePrimaryProcedureOpcsProcedureDateRecord, COSDv9SAProcedureOccurrencePrimaryProcedureOpcsProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 SA Procedure Occurrence Primary Procedure Opcs Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAProcedureOccurrenceProcedureOpcsProcedureDateRecord, COSDv9SAProcedureOccurrenceProcedureOpcsProcedureDate>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 SA Procedure Occurrence Procedure Opcs Procedure Date",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv9SKProcedureOccurrenceDiagnosticProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 SK Procedure Occurrence Diagnostic Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv9SKProcedureOccurrenceDiagnosticProcedureSnomedCt>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 SK Procedure Occurrence Diagnostic Procedure Snomed Ct",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9SKProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 SK Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKProcedureOccurrenceProcedureOpcsRecord, COSDv9SKProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 SK Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv9UGProcedureOccurrenceDiagnosticProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UG Procedure Occurrence Diagnostic Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv9UGProcedureOccurrenceDiagnosticProcedureSnomedCt>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UG Procedure Occurrence Diagnostic Procedure Snomed Ct",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9UGProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UG Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGProcedureOccurrenceProcedureOpcsRecord, COSDv9UGProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UG Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UR Procedure Occurrence Diagnostic Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UR Procedure Occurrence Diagnostic Procedure Snomed Ct",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9URProcedureOccurrencePrimaryProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UR Procedure Occurrence Primary Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URProcedureOccurrenceProcedureOpcsRecord, COSDv9URProcedureOccurrenceProcedureOpcs>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 UR Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
     }
 }
