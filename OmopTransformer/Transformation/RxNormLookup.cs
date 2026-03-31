@@ -1315,7 +1315,7 @@ internal class RxNormLookup : ILookup
             { "retinol + vitamin d", new ValueWithNote("19008339", "vitamin a") }, // ERROR: Drops vitamin D entirely. While retinol = vitamin A is correct for one component, vitamin D is a distinct active ingredient.
             { "chlorhexidine-nystatin", new ValueWithNote("45938138", "Chlorhexidine / nystatin") }, 
             { "paed 3k 1l (aqueous)", new ValueWithNote("0", "paed 3k 1l (aqueous)") }, 
-            { "al hydroxide/dicycloverine/mgo/simet", new ValueWithNote("924724", "dicyclomine") },
+            { "al hydroxide/dicycloverine/mgo/simet", new ValueWithNote("924724", "dicyclomine") }, // ERROR: Drops aluminium hydroxide, magnesium oxide (antacids), and simethicone (antiflatulent) — three active ingredients.
             { "sodium bicarbonate-sodium biphosphate", new ValueWithNote("36030996", "sodium bicarbonate / sodium phosphate") },
             { "neonatal main (aqueous)", new ValueWithNote("0", "neonatal main (aqueous)") },
             { "ubidecarenone (ubiquinone)", new ValueWithNote("1351115", "ubidecarenone") },
