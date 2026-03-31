@@ -8,21 +8,15 @@ parent: Quick Start Guide
 
 The omop mapper tool requires a the latest omop database along with some additional tables and stored procedures.
 
-The database needs to be setup in two steps because the Athena code list is too large to add to this repository. There is also an element of choice for which athana vocabularies are required. It is difficult to add more vocabularies retrospectively.
+The database needs to be setup in two steps because the Athena code list is too large to add to this repository. There is also an element of choice for which Athena vocabularies are required. It is difficult to add more vocabularies retrospectively.
 
 The process to setup the database has two steps
 
-1. [Patch the database](#database-patching) - We run the database patching tool to bring the database to the latest version.
-2. [Vocabulary Import](#vocabulary-import) - Add the athena codes.
 
-## Database Patching
+1. [Download Athena Vocabulary](#download-athena-vocabulary) - Gather the Athena vocabulary
+2. [Database Initiation](#database-initiation) - Initiate the database and import the vocabulary.
 
-We use Flyway to patch our database. This script should be run if new database patches are issued, or repeatable migrations are added/eddited (eg new stored procedures).
-
-1. Clone the repository `git clone https://github.com/answerdigital/oxford-omop-data-mapper.git`
-2. Patch the database using the following guide [https://github.com/answerdigital/oxford-omop-data-mapper/tree/main/Database/Migrations](https://github.com/answerdigital/oxford-omop-data-mapper/tree/main/Database/Migrations)
-
-## Vocabulary Import
+## Download Athena Vocabulary
 
 1. Create an https://athena.ohdsi.org/ account and download at least the following vocabularies.
 > | Id |  CDM | Code | Name |
@@ -34,9 +28,10 @@ We use Flyway to patch our database. This script should be run if new database p
 > |90	    |   CDM 5   |ICDO3 |	International Classification of Diseases for Oncology, Third Edition (WHO) |
 > |82       |   CDM 5   | RxNorm Extension | OMOP RxNorm Extension |
 > |75		|	CDM 5	| dm+d	| Dictionary of Medicines and Devices (NHS)|
+> |72      | CDM 5 |  CIEL    | Columbia International eHealth Laboratory (Columbia University) |
 > |71	| CDM 5 | ABMS	 | Provider Specialty (American Board of Medical Specialties)	 |
 > |57	| CDM 5 | HES Specialty	| Hospital Episode Statistics Specialty (NHS) |
-> |55		|	CDM 5	| OPCS4| 	OPCS Classification of Interventions and Procedures version 4 (NHS)|
+> |55		|	CDM 5	| OPCS4| 	OPCS Classification of Interventions and Procedures version 4 (NHS) |
 > |48       |    CDM 5  | Medicare Specialty | Medicare provider/supplier specialty codes (CMS) |
 > |47     |   CDM 5   | NUCC  | 	National Uniform Claim Committee Health Care Provider Taxonomy Code Set (NUCC) |
 > |44		|	CDM 5	| Ethnicity |	OMOP Ethnicity|
@@ -49,11 +44,20 @@ We use Flyway to patch our database. This script should be run if new database p
 > |3	    |	CDM 5	| ICD9Proc |	International Classification of Diseases, Ninth Revision, Clinical Modification, Volume 3 (NCHS) |
 > |2      |	CDM 5	| ICD9CM	| International Classification of Diseases, Ninth Revision, Clinical Modification, Volume 1 and 2 (NCHS) |
 > |1		|	CDM 5	| SNOMED	|Systematic Nomenclature of Medicine - Clinical Terms (IHTSDO)|
-2. Unpack the archive and import the files using the `import-athena.sql` script.
-3. Run the following scripts
+
+
+## Database Initiation
+
+The database can be initiated and vocabulary imported in one step `init`. 
 
 ```
-Database/Setup/V1 Oxford Anaesthtic Concepts.sql
-Database/Setup/V2 Oxford Concepts.sql
-Database/Setup/V3 Oxford Concepts.sql
+  docker run \
+	-e ConnectionString="DataSource=/data/omop.db;memory_limit=2GB" \
+	-e BatchSize=50000 \
+	-e VocabularyDirectory="/vocabulary" \
+	--rm \
+	-v ~/data:/data \
+	-v ~/vocabulary:/vocabulary:z \
+	ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+	init
 ```
