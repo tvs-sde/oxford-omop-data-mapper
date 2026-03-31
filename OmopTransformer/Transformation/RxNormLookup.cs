@@ -511,7 +511,7 @@ internal class RxNormLookup : ILookup
             { "pyrazinamide", new ValueWithNote("1759455", "pyrazinamide") },
             { "magnesium oxide", new ValueWithNote("993631", "magnesium oxide") },
             { "magnesium sulfate", new ValueWithNote("19093848", "magnesium sulfate") },
-            { "loprazolam", new ValueWithNote("19042550", "triazulenone") },
+            { "loprazolam", new ValueWithNote("19042550", "triazulenone") }, // ERROR: triazulenone is not loprazolam. Loprazolam is a benzodiazepine hypnotic; triazulenone is a different compound. This mapping needs correcting.
             { "lymecycline", new ValueWithNote("19092353", "lymecycline") },
             { "pyridostigmine", new ValueWithNote("759740", "pyridostigmine") },
             { "rabeprazole", new ValueWithNote("911735", "rabeprazole") },
@@ -1262,7 +1262,7 @@ internal class RxNormLookup : ILookup
             { "lidocaine-zinc oxide", new ValueWithNote("36030290", "lidocaine / zinc oxide") },
             { "sodium alginate-potassium bicarbonate", new ValueWithNote("36679849", "Potassium bicarbonate and sodium alginate only product") }, 
             { "acetic acid/dexamethasone/neomycin otic", new ValueWithNote("1518254", "Dexamethasone") }, // Unfortunately the only product in RxNorm that contains all three ingredients is a nasal spray, so priority is given to the most signficant ingredient (dexamethasone) and the otic route is lost
-            { "calcium citrate + colecalciferol", new ValueWithNote("19058572", "calcium citrate") },           
+            { "calcium citrate + colecalciferol", new ValueWithNote("19058572", "calcium citrate") }, // ERROR: Drops colecalciferol (vitamin D3), which is a distinct active ingredient, not just an excipient.
             { "al hydroxide/mg hydroxide/simeticone", new ValueWithNote("36677117", "Aluminum hydroxide and magnesium hydroxide and simethicone only product") },
             { "latanoprost-timolol ophthalmic", new ValueWithNote("36226917", "latanoprost / timolol Ophthalmic Product") },
             { "oxybuprocaine ophthalmic", new ValueWithNote("935529", "benoxinate") },
@@ -1288,13 +1288,13 @@ internal class RxNormLookup : ILookup
             { "fusidic acid ophthalmic", new ValueWithNote("3204762", "Fusidic acid product") },
             { "calamine-menthol", new ValueWithNote("902616", "calamine") },
             { "continuous subcutaneous", new ValueWithNote("0", "continuous subcutaneous") },
-            { "dronabinol + cannabidiol", new ValueWithNote("1037005", "dronabinol") }, 
+            { "dronabinol + cannabidiol", new ValueWithNote("1037005", "dronabinol") }, // ERROR: Drops cannabidiol, which is a pharmacologically distinct active ingredient.
             { "hamamelis ophthalmic", new ValueWithNote("959196", "witch hazel") },
             { "sng001 (interferon -ß1a)", new ValueWithNote("722424", "interferon beta-1a") },
-            { "adrenaline-lidocaine", new ValueWithNote("1343916", "epinephrine") },
+            { "adrenaline-lidocaine", new ValueWithNote("1343916", "epinephrine") }, // ERROR: Drops lidocaine (local anesthetic), which is typically the primary active ingredient in this combination. Adrenaline/epinephrine serves as the vasoconstrictor adjunct.
             { "alteplase ophthalmic", new ValueWithNote("1347450", "alteplase") },
             { "fusidic acid-hydrocortisone", new ValueWithNote("36678645", "Fusidic acid and hydrocortisone only product") },
-            { "dexamethasone/framycetin/gramicid ophth", new ValueWithNote("1518254", "dexamethasone") },
+            { "dexamethasone/framycetin/gramicid ophth", new ValueWithNote("1518254", "dexamethasone") }, // ERROR: Drops framycetin (aminoglycoside antibiotic) and gramicidin (antibiotic). Both are significant active antimicrobial ingredients in this ophthalmic combination.
             { "castor oil + zinc oxide", new ValueWithNote("21216760", "Castor oil + Zinc oxide") }, // Mapped to a non-standard specific product containing all three ingredients, so that our mapping will split it into the 2 ingredients
             { "meningococcal groups a + c + w135 + y", new ValueWithNote("40213172", "meningococcal ACWY vaccine, unspecified formulation") }, 
             { "potassium chloride 0.2% (27 mmol/l) in g", new ValueWithNote("36880434", "potassium chloride 2 mg/ml") }, 
@@ -1304,18 +1304,18 @@ internal class RxNormLookup : ILookup
             { "continuous subcutaneous infusion", new ValueWithNote("0", "continuous subcutaneous infusion") },
             { "mercaptamine (cysteamine)", new ValueWithNote("910888", "cysteamine") },
             { "potassium chloride 0.15% (20 mmol/l) in", new ValueWithNote("21125559", "potassium chloride 1.5 mg/ml") },
-            { "clobetasol/oxytetracycline/nystatin topi", new ValueWithNote("998415", "clobetasol") },
-            { "bupivacaine + clonidine", new ValueWithNote("732893", "bupivacaine") }, 
+            { "clobetasol/oxytetracycline/nystatin topi", new ValueWithNote("998415", "clobetasol") }, // ERROR: Drops oxytetracycline (antibiotic) and nystatin (antifungal), both significant active ingredients.
+            { "bupivacaine + clonidine", new ValueWithNote("732893", "bupivacaine") }, // ERROR: Drops clonidine, a pharmacologically active analgesic adjunct (alpha-2 agonist) used in epidural combinations.
             { "potassium chloride 0.3% (40 mmol/l) in s", new ValueWithNote("21115885", "potassium chloride 3 mg/ml") }, 
             { "potassium chloride 0.3% (40 mmol/l) in g", new ValueWithNote("21115885", "potassium chloride 3 mg/ml") },
             { "estriol applicator", new ValueWithNote("19049038", "estriol") },
             { "estradiol-dydrogesterone", new ValueWithNote("36030766", "dydrogesterone / estradiol") },
             { "emulsifying ointment + phenoxyethanol", new ValueWithNote("43252852", "emulsifying ointment bp") },
             { "insulin isophane porcine", new ValueWithNote("21215924", "insulin isophane") },
-            { "retinol + vitamin d", new ValueWithNote("19008339", "vitamin a") },
+            { "retinol + vitamin d", new ValueWithNote("19008339", "vitamin a") }, // ERROR: Drops vitamin D entirely. While retinol = vitamin A is correct for one component, vitamin D is a distinct active ingredient.
             { "chlorhexidine-nystatin", new ValueWithNote("45938138", "Chlorhexidine / nystatin") }, 
             { "paed 3k 1l (aqueous)", new ValueWithNote("0", "paed 3k 1l (aqueous)") },
-            { "al hydroxide/dicycloverine/mgo/simet", new ValueWithNote("924724", "dicyclomine") },
+            { "al hydroxide/dicycloverine/mgo/simet", new ValueWithNote("924724", "dicyclomine") }, // ERROR: Drops aluminium hydroxide, magnesium oxide (antacids), and simethicone (antiflatulent) — three active ingredients.
             { "sodium bicarbonate-sodium biphosphate", new ValueWithNote("36030996", "sodium bicarbonate / sodium phosphate") },
             { "neonatal main (aqueous)", new ValueWithNote("0", "neonatal main (aqueous)") },
             { "ubidecarenone (ubiquinone)", new ValueWithNote("1351115", "ubidecarenone") },
@@ -1325,7 +1325,7 @@ internal class RxNormLookup : ILookup
             { "pca", new ValueWithNote("0", "pca") },
             { "imipenem-cilastatin", new ValueWithNote("36030124", "cilastatin/imipenem") },
             { "drug chart reminder", new ValueWithNote("0", "drug chart reminder") },
-            { "guselkumab-golimumab-jnj78934804", new ValueWithNote("1593700", "guselkumab") }, 
+            { "guselkumab-golimumab-jnj78934804", new ValueWithNote("1593700", "guselkumab") }, // ERROR: Drops golimumab, which is a distinct anti-TNF biologic medication with different pharmacological action to guselkumab (anti-IL-23).
             { "amifampridine (3,4 dap)", new ValueWithNote("1355889", "amifampridine") }, 
             { "additional chemotherapy and/or chemother", new ValueWithNote("0", "additional chemotherapy and/or chemother") },
             { "bcg", new ValueWithNote("19015423", "bcg vaccine") }, 
@@ -1391,7 +1391,7 @@ internal class RxNormLookup : ILookup
             { "benzoic acid-salicylic acid", new ValueWithNote("36027050", "benzoate / salicylic acid") },
             { "lactic acid-salicylic acid", new ValueWithNote("0", "lactic acid / salicylic acid") },
             { "emtricitabine-tenofovir", new ValueWithNote("778947", "emtricitabine / tenofovir alafenamide") },
-            { "nirmatrelvir-ritonavir", new ValueWithNote("702530", "nirmatrelvir") },
+            { "nirmatrelvir-ritonavir", new ValueWithNote("702530", "nirmatrelvir") }, // ERROR: Drops ritonavir, which is an essential pharmacokinetic booster (CYP3A4 inhibitor) required for nirmatrelvir efficacy.
             { "bupivacaine-fentanyl", new ValueWithNote("36030181", "bupivacaine / fentanyl") },
             { "lactic acid-urea", new ValueWithNote("45938237", "Lactic acid / urea") },
             { "sodium hyaluronate ophthalmic", new ValueWithNote("19106560", "sodium hyaluronate") },
@@ -1404,26 +1404,26 @@ internal class RxNormLookup : ILookup
             { "hepatitis b adult vaccine", new ValueWithNote("501488", "hepatitis b vaccine") },
             { "human papillomavirus vaccine", new ValueWithNote("40213321", "HPV, unspecified formulation") },
             { "measles/mumps/rubella vaccine", new ValueWithNote("40213183", "measles, mumps and rubella virus vaccine") },
-            { "gramicid/neomy/nystatin/triamcin otic", new ValueWithNote("903963", "triamcinolone") },
-            { "diphtheria/poliomyelitis/tetanus vaccine", new ValueWithNote("40213160", "poliovirus vaccine, inactivated") },
+            { "gramicid/neomy/nystatin/triamcin otic", new ValueWithNote("903963", "triamcinolone") }, // ERROR: Drops gramicidin (antibiotic), neomycin (aminoglycoside antibiotic), and nystatin (antifungal) — three active antimicrobial ingredients.
+            { "diphtheria/poliomyelitis/tetanus vaccine", new ValueWithNote("40213160", "poliovirus vaccine, inactivated") }, // ERROR: Maps a triple vaccine (diphtheria + polio + tetanus) to only the poliovirus component. Diphtheria and tetanus toxoid components are lost.
             { "bacillus calmette-guérin", new ValueWithNote("19015423", "bcg vaccine") }, 
             { "sodium chloride, hypertonic, ophthalmic", new ValueWithNote("967823", "sodium chloride") },
             { "hepatitis a-hepatitis b vaccine", new ValueWithNote("36028822", "hepatitis a vaccine, inactivated / hepatitis b vaccine") },
             { "sodium bicarbonate-sodium chloride top", new ValueWithNote("36030312", "	sodium bicarbonate / sodium chloride") },
-            { "beclometasone/formoterol/glycopyrronium", new ValueWithNote("1115572", "beclomethasone") }, 
+            { "beclometasone/formoterol/glycopyrronium", new ValueWithNote("1115572", "beclomethasone") }, // ERROR: Drops formoterol (LABA bronchodilator) and glycopyrronium (LAMA bronchodilator). This is a triple-inhaler combination (e.g. Trimbow) and two significant active bronchodilators are lost.
             { "conjugated estrogens-medroxyprogesterone", new ValueWithNote("36027056", "estrogens, conjugated (usp) / medroxyprogesterone") },
             { "other supplements", new ValueWithNote("0", "other supplements") },
-            { "calamine/coal tar/zinc oxide", new ValueWithNote("1000995", "coal tar") },
+            { "calamine/coal tar/zinc oxide", new ValueWithNote("1000995", "coal tar") }, // ERROR: Drops calamine (skin protectant/antipruritic) and zinc oxide (skin protectant). Both are active components in this dermatological combination.
             { "estradiol + norethisterone acetate", new ValueWithNote("21253706", "Estradiol + Norethisterone acetate") }, // Deprecated but maps to both ingredients as standard mappings
             { "diphth/hib/pertussis/polio/tetanus vacc", new ValueWithNote("40213292", "DTP-Haemophilus influenzae type b conjugate vaccine") },
-            { "darunavir + cobicistat + emtricitabine +", new ValueWithNote("1756831", "darunavir") },
+            { "darunavir + cobicistat + emtricitabine +", new ValueWithNote("1756831", "darunavir") }, // ERROR: Maps a multi-drug antiretroviral combination (Symtuza) to just darunavir. Drops cobicistat (booster), emtricitabine (NRTI), and tenofovir (NRTI).
             { "taldefgrobep alfa (bhv-2000)", new ValueWithNote("1254421", "taldefgrobep alfa") },
             { "jnj-67484703", new ValueWithNote("0", "jnj-67484703") },
             { "oral rehydration salts", new ValueWithNote("40756244", "oral rehydration salts") },
-            { "calcium carbonate-ca lactate gluconate", new ValueWithNote("19035704", "calcium carbonate") }, 
+            { "calcium carbonate-ca lactate gluconate", new ValueWithNote("19035704", "calcium carbonate") }, // ERROR: Drops calcium lactate gluconate. Calcium carbonate is not a more generic term — it is one of two distinct calcium salt ingredients.
             { "pneumococcal 23-polyvalent vaccine", new ValueWithNote("561429", "polyvalent pneumococcal vaccine") },
             { "covid-19 mrna vaccine (pfizer / biont", new ValueWithNote("35894915", "COVID-19 vaccine") },
-            { "nirmatrelvir (pf-07321332) + ritonavir", new ValueWithNote("702530", "nirmatrelvir") },
+            { "nirmatrelvir (pf-07321332) + ritonavir", new ValueWithNote("702530", "nirmatrelvir") }, // ERROR: Drops ritonavir, which is an essential pharmacokinetic booster (CYP3A4 inhibitor) required for nirmatrelvir efficacy.
             { "sodium cromoglicate ophthalmic", new ValueWithNote("19008867", "cromoglycate") },
             { "sodium cromoglicate", new ValueWithNote("19008867", "cromoglycate") },
             { "alginate/calcium co3/sodium bicarbonate", new ValueWithNote("21197979", "Calcium carbonate + Sodium alginate + Sodium bicarbonate") }, // Deprecated but maps to all the ingredients as standard mappings
@@ -1438,7 +1438,7 @@ internal class RxNormLookup : ILookup
             { "dextran 40 with sodium chloride 0.9% (rh", new ValueWithNote("690469", "dextran 40/sodium chloride") },
             { "diphtheria + tetanus + pertussis + hepat", new ValueWithNote("3179606", "Diphtheria and tetanus toxoids with pertussis, combined vaccine") },
             { "dexpanthenol-sodium hyaluronate ophth", new ValueWithNote("787787", "sodium hyaluronate + dexpanthenol") },
-            { "clobetasol/neomycin/nystatin", new ValueWithNote("998415", "clobetasol") },
+            { "clobetasol/neomycin/nystatin", new ValueWithNote("998415", "clobetasol") }, // ERROR: Drops neomycin (aminoglycoside antibiotic) and nystatin (antifungal), both significant active antimicrobial ingredients.
             { "macrogol 3350 with electrolytes", new ValueWithNote("986417", "polyethylene glycol 3350") },
             { "gsk3511294", new ValueWithNote("37354910", "depemokimab") },
             { "dipht/tet/pertussis/hep b/polio/haemoph", new ValueWithNote("866467", "Diphtheria + Tetanus + Pertussis + Hepatitis B + Poliomyelitis + Haemophilus influenzae type B vaccine") },
