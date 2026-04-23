@@ -14,14 +14,31 @@ This tool supports the following format [SUS_SEM_Extract_Specification](https://
 This data can be requested in bulk for your trust via the [SUS+ Portal](https://digital.nhs.uk/services/secondary-uses-service-sus/sus-portal-user-guide).
 
 ## Prerequisites
-* OMOP Database [Setup guide]({% link docs/database-setup.md %})
-* Docker [Quick start](https://www.docker.com/get-started/) (or .NET if run natively)
+* [Docker](https://www.docker.com/get-started/) (or .NET 8 SDK if running from source)
+* An unpacked [Athena](https://athena.ohdsi.org/) vocabulary extract - see the [Database Setup guide]({% link docs/database-setup.md %}).
+
+The tool uses [DuckDB](https://duckdb.org/) for storage. The database is a single `.db` file created at the location given by the `ConnectionString` setting.
+
+## Initialise the database
+
+Before anything can be staged or transformed, run the `init` command to create the DuckDB database file and import the Athena vocabularies. This is a one-off step per database - see the [Database Setup guide]({% link docs/database-setup.md %}) for details.
+
+```
+docker run \
+      -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
+      -e VocabularyDirectory="/vocabulary" \
+      --rm \
+      -v /path/to/athena/extract:/vocabulary \
+      -v /path/to/database/folder:/data \
+      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      init
+```
 
 ## Stage the data
 
 ```
 docker run \
-      -e ConnectionString="Server=localhost;Database=omop;User Id=user;Password=password;" \
+      -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
       -e BatchSize=500000 \
       --rm \
       -v /path/to/your/data:/data \
@@ -29,7 +46,7 @@ docker run \
       stage load --type sus-op /data/OS_SEM_1234_Outpatient_Q1_12345678_aaaaaaaa.csv --allowed_nhs_number_list_path /data/allowed_patients.txt
 ```
 
-In this example `/path/to/your/data` should be the path to the directory where the data is stored. This directory will be mounted into the Docker container.
+In this example `/path/to/your/data` should be the path to the directory where both the source data file and the DuckDB `omop.db` live. This directory is mounted into the container at `/data`.
 
 An optional `--allowed_nhs_number_list_path` can be specified. This is a list of allowed patients (those who have not opted out of data processing). This file is used to exclude opt-out  patient records during the staging process. If it is not specified then we will stage all patients.
 
@@ -80,15 +97,16 @@ info: Microsoft.Hosting.Lifetime[0]
       Application is shutting down...
 ```
 
-Staged data can be cleared using the following command `stage load --type sus-op`.
+Staged data can be cleared using the [`stage clear`]({% link docs/user-guide/commands.md %}#clear-staging-command) command, eg `stage clear --type sus-op`.
 
 ## Transform the data
 
 ```
 docker run \
-      -e ConnectionString="Server=localhost;Database=omop;User Id=user;Password=password;" \
+      -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
       -e BatchSize=500000 \
       --rm \
+      -v /path/to/database/folder:/data \
       ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
       transform --type sus-op
 ```
@@ -161,9 +179,10 @@ This step removes invalid records, unused locations and builds the following tab
 
 ```
 docker run \
-      -e ConnectionString="Server=localhost;Database=omop;User Id=user;Password=password;" \
+      -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
       -e BatchSize=500000 \
       --rm \
+      -v /path/to/database/folder:/data \
       ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
       finalise
 ```
