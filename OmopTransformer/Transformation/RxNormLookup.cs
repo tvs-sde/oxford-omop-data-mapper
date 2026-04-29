@@ -8,7 +8,6 @@ internal class RxNormLookup : ILookup
     public Dictionary<string, ValueWithNote> Mappings { get; } =
         new()
         {
-// checked by tom - 26/02/26
             { "ajmaline", new ValueWithNote("19105879", "ajmaline") },
             { "albumin human", new ValueWithNote("1344143", "albumin human, usp") }, // usp means "united states pharmacopeia"
             { "alfentanil", new ValueWithNote("19059528", "alfentanil") },
