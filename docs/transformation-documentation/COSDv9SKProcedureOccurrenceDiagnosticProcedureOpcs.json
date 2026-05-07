@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The OPCS code used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     },
     {
@@ -42,7 +42,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The OPCS code used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     },
     {
@@ -67,7 +67,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The OPCS code used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     },
     {
@@ -85,7 +85,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Date of the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        -- The OPCS code used to identify the diagnostic procedure\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,\n        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    DiagnosticProcedureDate,\n    DiagnosticProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and DiagnosticProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     }
   ]

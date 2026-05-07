@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    -- OPCS code identifying a secondary (non-primary) procedure performed during the same care spell\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -42,7 +42,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    -- OPCS code identifying a secondary (non-primary) procedure performed during the same care spell\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -67,7 +67,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    -- OPCS code identifying a secondary (non-primary) procedure performed during the same care spell\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -85,7 +85,7 @@
           ]
         }
       ],
-      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    -- OPCS code identifying a secondary (non-primary) procedure performed during the same care spell\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
+      "query": "\nselect distinct\n    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,\n    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate\nfrom omop_staging.cosd_staging_81\nwhere type = 'LV'\n  and NHSNumber is not null\n  and ProcedureOPCS is not null;\n\t",
       "lookup_table_markdown": null
     }
   ]

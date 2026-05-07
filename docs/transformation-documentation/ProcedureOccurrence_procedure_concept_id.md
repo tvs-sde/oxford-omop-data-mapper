@@ -437,12 +437,6 @@ BIOPSY ANAESTHETIC TYPE
 * `BiopsyType` The type of biopsy carried out on Central Nervous System (CNS) tumours during a Central Nervous System Cancer Care Spell. Coded values include Frame-based stereotactic biopsy (1), Frameless stereotactic biopsy (2), Open biopsy (3), Percutaneous biopsy (4), Endoscopic biopsy (5), Other biopsy (6). Will be stored as procedure_source_value and mapped to a standard concept in a later ETL step. [BIOPSY TYPE (CENTRAL NERVOUS SYSTEM TUMOURS)](https://www.datadictionary.nhs.uk/data_elements/biopsy_type__central_nervous_system_tumours_.html)
 
 ```sql
--- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)
--- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)
--- NhsNumber links to person_id via the person table
--- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar
--- to maintain correct row-level alignment within the same Treatment/Surgery node
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,

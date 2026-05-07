@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Procedure date associated with the surgery treatment record\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     },
     {
@@ -42,7 +42,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Procedure date associated with the surgery treatment record\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     },
     {
@@ -67,7 +67,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Procedure date associated with the surgery treatment record\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     },
     {
@@ -85,7 +85,7 @@
           ]
         }
       ],
-      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        -- Procedure date associated with the surgery treatment record\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
+      "query": "\nwith COSD as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs\n    from omop_staging.cosd_staging_901\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    ProcedureOpcs\nfrom COSD\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null;\n",
       "lookup_table_markdown": null
     }
   ]

@@ -217,11 +217,8 @@ with ur as (
     where type = 'UR'
 )
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     ProcedureDate,
-    -- Procedure (OPCS): The OPCS-4 code identifying a patient procedure other than the primary procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     ProcedureOpcs
 from ur
 where NhsNumber is not null
@@ -245,11 +242,8 @@ with ur as (
     where type = 'UR'
 )
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     ProcedureDate,
-    -- Primary Procedure (OPCS): The OPCS-4 code identifying the primary surgical procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     PrimaryProcedureOpcs
 from ur
 where NhsNumber is not null
@@ -265,11 +259,8 @@ where NhsNumber is not null
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
-    -- Diagnostic Procedure (SNOMED CT): The SNOMED CT concept ID identifying the diagnostic procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt
 from omop_staging.cosd_staging_901
 where type = 'UR'
@@ -286,11 +277,8 @@ where type = 'UR'
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
-    -- Diagnostic Procedure (OPCS): The OPCS-4 code identifying the diagnostic procedure carried out. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs
 from omop_staging.cosd_staging_901
 where type = 'UR'
@@ -315,11 +303,8 @@ with ur as (
     where type = 'UR'
 )
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     ProcedureDate,
-    -- Procedure (OPCS): The OPCS-4 code identifying a patient procedure other than the primary procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     ProcedureOPCS
 from ur
 where NhsNumber is not null
@@ -343,11 +328,8 @@ with ur as (
     where type = 'UR'
 )
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     ProcedureDate,
-    -- Primary Procedure (OPCS): The OPCS-4 code identifying the primary surgical procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     PrimaryProcedureOPCS
 from ur
 where NhsNumber is not null
@@ -364,19 +346,10 @@ where NhsNumber is not null
 ```sql
 with ug as (
     select distinct
-        -- NHS Number: Patient identifier, used to link to the person table.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-        -- Procedure (OPCS): Secondary OPCS-4 procedure code(s), maps to procedure_source_value in procedure_occurrence.
-        -- Multiple secondary procedures may exist per treatment. Will be mapped to a standard OMOP concept via OPCS-4 vocabulary lookup.
-        -- This unnest covers both Treatment arrays and ProcedureOpcs arrays within each treatment.
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs,
 
-        -- Procedure Date: The date the procedure was performed, maps to procedure_date in procedure_occurrence.
-        -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
-        -- Note: ProcedureOpcs unnests across both treatments and procedures within each treatment,
-        -- while ProcedureDate only unnests across treatments. When multiple secondary procedures exist
-        -- per treatment, the date association may need reconciliation in later ETL steps.
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_901
     where type = 'UG'
@@ -400,15 +373,10 @@ where NhsNumber is not null
 ```sql
 with ug as (
     select distinct
-        -- NHS Number: Patient identifier, used to link to the person table.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-        -- Primary Procedure (OPCS): The primary OPCS-4 procedure code, maps to procedure_source_value in procedure_occurrence.
-        -- Will be mapped to a standard OMOP concept in a later ETL step via OPCS-4 vocabulary lookup.
         unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs,
 
-        -- Procedure Date: The date the procedure was performed, maps to procedure_date in procedure_occurrence.
-        -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_901
     where type = 'UG'
@@ -431,15 +399,10 @@ where NhsNumber is not null
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-    -- Diagnostic Procedure (SNOMED CT): The SNOMED CT concept ID for the diagnostic procedure, maps to procedure_source_value in procedure_occurrence.
-    -- Will be mapped to a standard OMOP concept in a later ETL step via SNOMED CT vocabulary lookup.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt,
 
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed, maps to procedure_date in procedure_occurrence.
-    -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate
 from omop_staging.cosd_staging_901
 where type = 'UG'
@@ -456,15 +419,10 @@ where type = 'UG'
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-    -- Diagnostic Procedure (OPCS): The OPCS-4 code for the diagnostic procedure, maps to procedure_source_value in procedure_occurrence.
-    -- Will be mapped to a standard OMOP concept in a later ETL step via OPCS-4 vocabulary lookup.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs,
 
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed, maps to procedure_date in procedure_occurrence.
-    -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate
 from omop_staging.cosd_staging_901
 where type = 'UG'
@@ -482,17 +440,10 @@ where type = 'UG'
 ```sql
 with ug as (
     select distinct
-        -- NHS Number: Patient identifier, used to link to the person table.
         Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
 
-        -- Procedure (OPCS): Secondary OPCS-4 procedure code(s), maps to procedure_source_value in procedure_occurrence.
-        -- Multiple secondary procedures may exist per treatment. Will be mapped to a standard OMOP concept via OPCS-4 vocabulary lookup.
         unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS,
 
-        -- Procedure Date: The date the procedure was performed, maps to procedure_date in procedure_occurrence.
-        -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
-        -- Note: ProcedureOPCS unnests across procedure codes within a single treatment, while ProcedureDate unnests across treatments.
-        -- When multiple secondary procedures exist per treatment, the date association may need reconciliation in later ETL steps.
         unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_81
     where type = 'UG'
@@ -516,15 +467,10 @@ where NHSNumber is not null
 ```sql
 with ug as (
     select distinct
-        -- NHS Number: Patient identifier, used to link to the person table.
         Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
 
-        -- Primary Procedure (OPCS): The primary OPCS-4 procedure code, maps to procedure_source_value in procedure_occurrence.
-        -- Will be mapped to a standard OMOP concept in a later ETL step via OPCS-4 vocabulary lookup.
         unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS,
 
-        -- Procedure Date: The date the procedure was performed, maps to procedure_date in procedure_occurrence.
-        -- Currently in string format (CCYY-MM-DD), will be cast to date type in a later ETL step.
         unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_81
     where type = 'UG'
@@ -549,9 +495,7 @@ where NHSNumber is not null
 with COSD as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Procedure date associated with the surgery treatment record
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
-        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'SK'
@@ -576,9 +520,7 @@ where NhsNumber is not null
 with COSD as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Procedure date associated with the surgery treatment record
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
-        -- The primary OPCS procedure code for the surgery
         unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'SK'
@@ -603,9 +545,7 @@ where NhsNumber is not null
 with COSD as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Date of the diagnostic procedure
         unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,
-        -- The SNOMED CT concept ID used to identify the diagnostic procedure
         unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureSnomedCt.@code'], recursive := true) as DiagnosticProcedureSnomedCt
     from omop_staging.cosd_staging_901
     where type = 'SK'
@@ -630,9 +570,7 @@ where NhsNumber is not null
 with COSD as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Date of the diagnostic procedure
         unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,
-        -- The OPCS code used to identify the diagnostic procedure
         unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'SK'
@@ -657,9 +595,7 @@ where NhsNumber is not null
 with COSD as (
     select distinct
         Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
-        -- Procedure date associated with the surgery treatment record
         unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
-        -- Secondary OPCS procedure codes for the surgery (other than the primary procedure)
         unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS
     from omop_staging.cosd_staging_81
     where type = 'SK'
@@ -684,9 +620,7 @@ where NHSNumber is not null
 with COSD as (
     select distinct
         Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
-        -- Procedure date associated with the surgery treatment record
         unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
-        -- The primary OPCS procedure code for the surgery
         unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
     from omop_staging.cosd_staging_81
     where type = 'SK'
@@ -811,9 +745,7 @@ where NhsNumber is not null
 with lv as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Date the procedure was performed; sits at the same Surgery level as ProcedureOpcs
         Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-        -- OPCS code(s) for secondary procedures; unnested because multiple procedures can exist per Surgery
         unnest(
             [
                 [Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'],
@@ -865,9 +797,7 @@ where type = 'LV'
 ```sql
 select distinct
     Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
-    -- OPCS code identifying a secondary (non-primary) procedure performed during the same care spell
     Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,
-    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step
     Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate
 from omop_staging.cosd_staging_81
 where type = 'LV'
@@ -886,9 +816,7 @@ where type = 'LV'
 ```sql
 select distinct
     Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
-    -- OPCS code identifying the primary procedure carried out
     Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code' as PrimaryProcedureOPCS,
-    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step
     Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate
 from omop_staging.cosd_staging_81
 where type = 'LV'
@@ -1106,11 +1034,8 @@ and l.NhsNumber is not null;
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-    -- Procedure (OPCS): The OPCS-4 code identifying a patient procedure other than the primary procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code' as ProcedureOpcs
 from omop_staging.cosd_staging_901
 where type = 'HA'
@@ -1127,11 +1052,8 @@ where type = 'HA'
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    -- Procedure Date: The date the surgical procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-    -- Primary Procedure (OPCS): The OPCS-4 code identifying the primary surgical procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs
 from omop_staging.cosd_staging_901
 where type = 'HA'
@@ -1148,11 +1070,8 @@ where type = 'HA'
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
-    -- Diagnostic Procedure (SNOMED CT): The SNOMED CT concept ID identifying the diagnostic procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt
 from omop_staging.cosd_staging_901
 where type = 'HA'
@@ -1169,11 +1088,8 @@ where type = 'HA'
 
 ```sql
 select distinct
-    -- NHS Number: Patient identifier, used to link to the person table.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    -- Diagnostic Procedure Date: The date the diagnostic procedure was performed. Will be cast to a date type in a later ETL step (expected format CCYY-MM-DD).
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
-    -- Diagnostic Procedure (OPCS): The OPCS-4 code identifying the diagnostic procedure. Will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs
 from omop_staging.cosd_staging_901
 where type = 'HA'
@@ -1189,23 +1105,12 @@ where type = 'HA'
 * `ProcedureOpcs` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
 
 ```sql
--- COSD v9.01 CT - Procedure Occurrence: Procedure (OPCS)
--- Extracts secondary surgical procedure OPCS codes and procedure date from Treatment/Surgery.
--- Uses CTE because Treatment and ProcedureOpcs are repeating elements requiring unnest.
--- Note: ProcedureOpcs can contain multiple codes per Surgery (ProcedureOpcs[*]),
--- while ProcedureDate is one per Surgery. The zip unnest may produce misaligned rows
--- when multiple OPCS codes exist per surgery; later ETL steps should validate alignment.
-
 with ct as (
     select distinct
-        -- NHS Number: unique patient identifier used to link to the OMOP person table.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
 
-        -- Procedure OPCS: OPCS-4 code for secondary (non-primary) procedures performed during surgery.
-        -- Will be mapped to procedure_source_value and used to derive procedure_concept_id.
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'CT'
@@ -1227,19 +1132,12 @@ where NhsNumber is not null
 * `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
 
 ```sql
--- COSD v9.01 CT - Procedure Occurrence: Primary Procedure (OPCS)
--- Extracts the primary surgical procedure OPCS code and procedure date from Treatment/Surgery.
--- Uses CTE because Treatment is a repeating element requiring unnest.
-
 with ct as (
     select distinct
-        -- NHS Number: unique patient identifier used to link to the OMOP person table.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
 
-        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
 
-        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.
         unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
     from omop_staging.cosd_staging_901
     where type = 'CT'
@@ -1261,19 +1159,12 @@ where NhsNumber is not null
 * `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
 
 ```sql
--- COSD v8 CT - Procedure Occurrence: Primary Procedure (OPCS)
--- Extracts the primary surgical procedure OPCS code and procedure date from CTYACoreTreatment/CTYACoreSurgeryAndOtherProcedures.
--- Uses CTE because CTYACoreTreatment is a repeating element requiring unnest.
-
 with ct as (
     select distinct
-        -- NHS Number: unique patient identifier used to link to the OMOP person table.
         Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
 
-        -- Procedure Date: the date the surgical procedure was performed, will be mapped to procedure_date (string to date conversion in later ETL step).
         unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
 
-        -- Primary Procedure OPCS: the OPCS-4 code for the primary procedure, will be mapped to procedure_source_value and used to derive procedure_concept_id.
         unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
     from omop_staging.cosd_staging_81
     where type = 'CT'
@@ -1298,9 +1189,7 @@ where NHSNumber is not null
 with co as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Secondary OPCS procedure code(s) for the surgery
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs,
-        -- Date the procedure was performed
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_901
     where type = 'CO'
@@ -1325,9 +1214,7 @@ where NhsNumber is not null
 with co as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        -- Primary OPCS procedure code for the surgery
         unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs,
-        -- Date the procedure was performed
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_901
     where type = 'CO'
@@ -1352,9 +1239,7 @@ where NhsNumber is not null
 with co as (
     select distinct
         Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        -- Secondary OPCS procedure code(s) for the surgery
         unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS,
-        -- Date the procedure was performed
         unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_81
     where type = 'CO'
@@ -1379,9 +1264,7 @@ where NhsNumber is not null
 with co as (
     select distinct
         Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        -- Primary OPCS procedure code for the surgery
         unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS,
-        -- Date the procedure was performed
         unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
     from omop_staging.cosd_staging_81
     where type = 'CO'
@@ -1630,12 +1513,6 @@ where ProcedureDate is not null and PrimaryProcedureOpcs is not null;
 * `ProcedureOpcs` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. Will be mapped to a standard OMOP concept to populate procedure_concept_id and stored as procedure_source_value. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
 
 ```sql
--- Secondary OPCS-4 procedures for CNS cancer area (COSD v9 BA)
--- ProcedureOpcs maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
--- NhsNumber links to person_id via the person table
--- This query captures secondary/additional OPCS procedures (as distinct from the primary procedure)
--- Uses the most comprehensive unnest pattern to handle both Treatment-level and ProcedureOpcs-level arrays
 with ba as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
@@ -1673,10 +1550,6 @@ where NhsNumber is not null
 * `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. Will be mapped to a standard OMOP concept to populate procedure_concept_id and stored as procedure_source_value. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
 
 ```sql
--- Primary OPCS-4 procedure for CNS cancer area (COSD v9 BA)
--- PrimaryProcedureOpcs maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
--- NhsNumber links to person_id via the person table
 with ba as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
@@ -1714,12 +1587,6 @@ where NhsNumber is not null
 * `BiopsyType` The type of biopsy carried out on Central Nervous System (CNS) tumours during a Central Nervous System Cancer Care Spell. Coded values include Frame-based stereotactic biopsy (1), Frameless stereotactic biopsy (2), Open biopsy (3), Percutaneous biopsy (4), Endoscopic biopsy (5), Other biopsy (6). Will be stored as procedure_source_value and mapped to a standard concept in a later ETL step. [BIOPSY TYPE (CENTRAL NERVOUS SYSTEM TUMOURS)](https://www.datadictionary.nhs.uk/data_elements/biopsy_type__central_nervous_system_tumours_.html)
 
 ```sql
--- CNS biopsy type procedure for CNS cancer area (COSD v9 BA)
--- BiopsyType maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date (scalar path used to match BiopsyType cardinality)
--- NhsNumber links to person_id via the person table
--- BiopsyType is a scalar field (not unnested), so ProcedureDate is also selected as scalar
--- to maintain correct row-level alignment within the same Treatment/Surgery node
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
@@ -1738,10 +1605,6 @@ where type = 'BA'
 * `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. Will be mapped to a standard OMOP concept to populate procedure_concept_id and stored as procedure_source_value. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
 
 ```sql
--- Primary OPCS-4 procedure for CNS cancer area (COSD v8 BA)
--- PrimaryProcedureOPCS maps to procedure_source_value in OMOP procedure_occurrence
--- ProcedureDate maps to procedure_date in OMOP procedure_occurrence (string, to be cast to date in a later ETL step)
--- NHSNumber links to person_id via the person table
 with ba as (
     select distinct
         Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
