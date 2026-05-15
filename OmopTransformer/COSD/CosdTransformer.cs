@@ -177,6 +177,19 @@ using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDia
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementMcategoryIntegratedStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementNcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementNcategoryIntegratedStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementNonPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementTcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementTcategoryIntegratedStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementTNMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementTNMcategoryIntegratedStage;
+using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementTumourLaterality;
 
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrenceProcedureOPCS;
@@ -1344,6 +1357,84 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9MeasurementAdultComorbidityEvaluationRecord, CosdV9MeasurementAdultComorbidityEvaluation>(
              _measurementRecorder.InsertUpdateMeasurements,
              "CosdV9MeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementAdultComorbidityEvaluationRecord, COSDv8HNMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Adult Comorbidity Evaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementGradeOfDifferentiationRecord, COSDv8HNMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Grade Of Differentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementMcategoryFinalPreTreatmentStageRecord, COSDv8HNMeasurementMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Mcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementMcategoryIntegratedStageRecord, COSDv8HNMeasurementMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Mcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementNcategoryFinalPreTreatmentStageRecord, COSDv8HNMeasurementNcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Ncategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementNcategoryIntegratedStageRecord, COSDv8HNMeasurementNcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Ncategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementNonPrimaryPathwayMetastaticSiteRecord, COSDv8HNMeasurementNonPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Non Primary Pathway Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv8HNMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Primary Pathway Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementTcategoryFinalPreTreatmentStageRecord, COSDv8HNMeasurementTcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Tcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementTcategoryIntegratedStageRecord, COSDv8HNMeasurementTcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Tcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementTNMcategoryFinalPreTreatmentStageRecord, COSDv8HNMeasurementTNMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement TNMcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementTNMcategoryIntegratedStageRecord, COSDv8HNMeasurementTNMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement TNMcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNMeasurementTumourLateralityRecord, COSDv8HNMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 HN Measurement Tumour Laterality",
             runId,
             cancellationToken);
 

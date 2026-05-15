@@ -1,0 +1,40 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Query to extract Tumour Laterality for HN cancer area from COSD v8.
+-- Identifies the side of the body for a tumour relating to paired organs, filtering only valid laterality codes.
+-- MeasurementDate uses primary diagnosis date, falling back to non-primary diagnosis date.
+-- TumourLaterality will be mapped to a measurement concept in OMOP in a later step.
+with hn as (
+    select
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    TumourLaterality
+from hn
+where TumourLaterality in ('L', 'R', 'M', 'B');
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="MeasurementDate">
+            <Description>For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+            <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="TumourLaterality">
+            <Description>Identifies the side of the body for a Tumour relating to paired organs within a PATIENT.</Description>
+            <Origin>TUMOUR LATERALITY</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
