@@ -1,0 +1,103 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.\n-- Indicates whether there is a possible or confirmed familial cancer syndrome.\n-- MeasurementDate uses the diagnosis date.\n-- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and FamilialCancerSyndromeIndicator is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.\n-- Indicates whether there is a possible or confirmed familial cancer syndrome.\n-- MeasurementDate uses the diagnosis date.\n-- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and FamilialCancerSyndromeIndicator is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.\n-- Indicates whether there is a possible or confirmed familial cancer syndrome.\n-- MeasurementDate uses the diagnosis date.\n-- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and FamilialCancerSyndromeIndicator is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "FAMILIAL CANCER SYNDROME INDICATOR",
+      "dataSource": [
+        {
+          "name": "FamilialCancerSyndromeIndicator",
+          "description": "Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "FAMILIAL CANCER SYNDROME INDICATOR",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.\n-- Indicates whether there is a possible or confirmed familial cancer syndrome.\n-- MeasurementDate uses the diagnosis date.\n-- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and FamilialCancerSyndromeIndicator is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|FamilialCancerSyndromeIndicator|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|Y|0|Yes - there is a confirmed familial cancer syndrome|\r\n|N|0|No - there is no confirmed familial cancer syndrome|\r\n|P|0|Possible familial cancer syndrome|\r\n|9|0|Not Known (Not recorded or test not done)|\r\n\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `FamilialCancerSyndromeIndicator`",
+      "dataSource": [
+        {
+          "name": "FamilialCancerSyndromeIndicator",
+          "description": "Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "FAMILIAL CANCER SYNDROME INDICATOR",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.\n-- Indicates whether there is a possible or confirmed familial cancer syndrome.\n-- MeasurementDate uses the diagnosis date.\n-- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and FamilialCancerSyndromeIndicator is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

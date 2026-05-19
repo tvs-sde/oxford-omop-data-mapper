@@ -1,0 +1,111 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.\n-- The grade classifies the differentiation of the tumour at the time of diagnosis.\n-- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.\n-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'\n    ) as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and GradeOfDifferentiationAtDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.\n-- The grade classifies the differentiation of the tumour at the time of diagnosis.\n-- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.\n-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'\n    ) as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and GradeOfDifferentiationAtDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.\n-- The grade classifies the differentiation of the tumour at the time of diagnosis.\n-- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.\n-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'\n    ) as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and GradeOfDifferentiationAtDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "GRADE OF DIFFERENTIATION (AT DIAGNOSIS)",
+      "dataSource": [
+        {
+          "name": "GradeOfDifferentiationAtDiagnosis",
+          "description": "The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "GRADE OF DIFFERENTIATION (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.\n-- The grade classifies the differentiation of the tumour at the time of diagnosis.\n-- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.\n-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'\n    ) as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and GradeOfDifferentiationAtDiagnosis is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|G1|0|Well differentiated|\r\n|G2|0|Moderately differentiated|\r\n|G3|0|Poorly differentiated|\r\n|G4|0|Undifferentiated / anaplastic|\r\n|GX|0|Grade of differentiation is not appropriate or cannot be assessed|\r\n\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `GradeOfDifferentiationAtDiagnosis`",
+      "dataSource": [
+        {
+          "name": "GradeOfDifferentiationAtDiagnosis",
+          "description": "The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "GRADE OF DIFFERENTIATION (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.\n-- The grade classifies the differentiation of the tumour at the time of diagnosis.\n-- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.\n-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'\n    ) as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and GradeOfDifferentiationAtDiagnosis is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}
