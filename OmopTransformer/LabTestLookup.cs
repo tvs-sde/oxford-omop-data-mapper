@@ -84,9 +84,9 @@ internal class LabTestLookup : ILookup
             { "Calcium output, 24hr urine", new ValueWithNote("3017730", "Calcium [Mass/volume] in 24 hour Urine") },
             { "O_Calcium output, 24hr urine", new ValueWithNote("3017730", "Calcium [Mass/volume] in 24 hour Urine") },
             { "Methadone level, urine", new ValueWithNote("3036180", "Methadone [Presence] in Urine") },
-            { "Urea output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") },
+            { "Urea output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") }, // ERROR: "Urea output" measures urea analyte excretion, not urine volume. Mapped to wrong concept (urine volume instead of urea).
             { "See CSF for oligoclonal band results", new ValueWithNote("3002182", "Oligoclonal bands [Presence] in Cerebral spinal fluid") },
-            { "O_Urea output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") },
+            { "O_Urea output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") }, // ERROR: "Urea output" measures urea analyte excretion, not urine volume. Mapped to wrong concept (urine volume instead of urea).
             { "CD16+ CD56+ % NK cells, blood", new ValueWithNote("3027831", "CD3-CD16+CD56+ (Natural killer) cells/cells in Blood") },
             { "Viscosity level, blood", new ValueWithNote("3028652", "Viscosity of Blood") },
             { "Mi-2 antibody by Immunoblot", new ValueWithNote("40759862", "Mi-2 Ab [Presence] in Serum by Immunoblot") },
@@ -112,9 +112,9 @@ internal class LabTestLookup : ILookup
             { "Glucose level, CSF", new ValueWithNote("3022548", "Glucose [Mass/volume] in Cerebral spinal fluid") },
             { "O_Glucose level, CSF", new ValueWithNote("3022548", "Glucose [Mass/volume] in Cerebral spinal fluid") },
             { "Protein output, 24hr urine", new ValueWithNote("3011705", "Protein [Mass/volume] in 24 hour Urine") },
-            { "CD8 CD27+CD28- T Cells, blood", new ValueWithNote("21493670", "CD27- cells/CD3+CD8+ (T8 suppressor cells) cells in Blood") },
+            { "CD8 CD27+CD28- T Cells, blood", new ValueWithNote("21493670", "CD27- cells/CD3+CD8+ (T8 suppressor cells) cells in Blood") }, // ERROR: Test measures CD27-positive cells but concept is CD27-negative cells — opposite phenotype.
             { "O_Protein output, 24hr urine", new ValueWithNote("3011705", "Protein [Mass/volume] in 24 hour Urine") },
-            { "INR", new ValueWithNote("3034426", "Prothrombin time (PT)") },
+            { "INR", new ValueWithNote("3034426", "Prothrombin time (PT)") }, // ERROR: INR (International Normalized Ratio) is a distinct standardized ratio derived from PT, not PT itself. INR has its own OMOP/LOINC concept.
             { "O_Porphyrins, faeces", new ValueWithNote("3035602", "Porphyrins [Presence] in Stool") },
             { "Benzodiazepine level, urine", new ValueWithNote("3042517", "Benzodiazepines panel - Urine") },
             { "Oligoclonal band screen, CSF", new ValueWithNote("3002182", "Oligoclonal bands [Presence] in Cerebral spinal fluid") },
@@ -130,7 +130,7 @@ internal class LabTestLookup : ILookup
             { "Urate output, 24hr urine", new ValueWithNote("3012870", "Urate [Mass/volume] in 24 hour Urine") },
             { "O_Urate output, 24hr urine", new ValueWithNote("3012870", "Urate [Mass/volume] in 24 hour Urine") },
             { "O_Sodium output, 24hr urine", new ValueWithNote("3004907", "Sodium [Mass/volume] in 24 hour Urine") },
-            { "CD8 CD27+CD28+ T Cells, blood", new ValueWithNote("21493670", "CD27- cells/CD3+CD8+ (T8 suppressor cells) cells in Blood") },
+            { "CD8 CD27+CD28+ T Cells, blood", new ValueWithNote("21493670", "CD27- cells/CD3+CD8+ (T8 suppressor cells) cells in Blood") }, // ERROR: Test measures CD27-positive, CD28-positive cells but concept is CD27-negative — opposite phenotype.
             { "Chloride output, 24hr urine", new ValueWithNote("3041519", "Chloride [Mass/time] in 24 hour Urine") },
             { "O_Chloride output, 24hr urine", new ValueWithNote("3041519", "Chloride [Mass/time] in 24 hour Urine") },
             { "Voltage-gated Ca channel Ab, blood", new ValueWithNote("3041634", "Voltage-gated calcium channel IgG Ab [Presence] in Serum") },
@@ -157,10 +157,10 @@ internal class LabTestLookup : ILookup
             { "Sex hormone binding globulin, blood", new ValueWithNote("3011099", "Sex hormone binding globulin [Mass/volume] in Serum or Plasma") },
             { "O_Sex hormone binding globulin, blood", new ValueWithNote("3011099", "Sex hormone binding globulin [Mass/volume] in Serum or Plasma") },
             { "Guinea pig epithelium IgE level, blood", new ValueWithNote("3041346", "Guinea pig epithelium IgE Ab/IgE total in Serum") },
-            { "O_Amino acids level, CSF", new ValueWithNote("3052322", "Alanine/Amino acids.total in Cerebral spinal fluid") },
+            { "O_Amino acids level, CSF", new ValueWithNote("3052322", "Alanine/Amino acids.total in Cerebral spinal fluid") }, // ERROR: General amino acid level mapped to Alanine/Amino acids ratio — a more specific and different measurement.
             { "Baker's yeast IgE level, blood", new ValueWithNote("3039011", "Baker's yeast IgE Ab/IgE total in Serum") },
             { "O_Guinea pig epithelium IgE level, blood", new ValueWithNote("3041346", "Guinea pig epithelium IgE Ab/IgE total in Serum") },
-            { "Amino acids level, CSF", new ValueWithNote("3052322", "Alanine/Amino acids.total in Cerebral spinal fluid") },
+            { "Amino acids level, CSF", new ValueWithNote("3052322", "Alanine/Amino acids.total in Cerebral spinal fluid") }, // ERROR: General amino acid level mapped to Alanine/Amino acids ratio — a more specific and different measurement.
             { "O_Beta-2 microglobulin, blood", new ValueWithNote("3047079", "Beta-2-Microglobulin [Presence] in Serum") },
             { "Brazil nut IgE level, blood", new ValueWithNote("3042333", "Brazil Nut IgE Ab/IgE total in Serum") },
             { "O_Brazil nut IgE level, blood", new ValueWithNote("3042333", "Brazil Nut IgE Ab/IgE total in Serum") },
@@ -202,7 +202,7 @@ internal class LabTestLookup : ILookup
             { "Vacuolated lymphocytes, blood", new ValueWithNote("40763527", "Lymphocytes.vacuolated [Presence] in Blood by Light microscopy") },
             { "Titin, CSF", new ValueWithNote("3966635", "Titin Ab [Presence] in Cerebral spinal fluid by Immunoblot") },
             { "O_Serum viscosity, blood", new ValueWithNote("3010493", "Viscosity of Serum") },
-            { "CD4 CD27-CD28+ T Cells, blood", new ValueWithNote("21493678", "CD27-CD45RA+ cells/CD3+CD4+ (T4 helper) cells in Blood") },
+            { "CD4 CD27-CD28+ T Cells, blood", new ValueWithNote("21493678", "CD27-CD45RA+ cells/CD3+CD4+ (T4 helper) cells in Blood") }, // ERROR: Test defines subset by CD28 expression but concept uses CD45RA — different surface marker.
             { "O_Vacuolated lymphocytes, blood", new ValueWithNote("40763527", "Lymphocytes.vacuolated [Presence] in Blood by Light microscopy") },
             { "O_Heinz bodies screen, blood", new ValueWithNote("3049436", "Heinz bodies [Presence] in Blood") },
             { "Promyelocyte count, blood", new ValueWithNote("3022709", "Promyelocytes [#/volume] in Blood") },
@@ -241,7 +241,7 @@ internal class LabTestLookup : ILookup
             { "O_Ammonia level, blood", new ValueWithNote("3030942", "Ammonia [Mass/volume] in Blood") },
             { "Carrot IgE level, blood", new ValueWithNote("3035253", "Carrot IgE Ab/IgE total in Serum") },
             { "O_Carrot IgE level, blood", new ValueWithNote("3035253", "Carrot IgE Ab/IgE total in Serum") },
-            { "CD4 CD27-CD28- T Cells, blood", new ValueWithNote("21493678", "CD27-CD45RA+ cells/CD3+CD4+ (T4 helper) cells in Blood") },
+            { "CD4 CD27-CD28- T Cells, blood", new ValueWithNote("21493678", "CD27-CD45RA+ cells/CD3+CD4+ (T4 helper) cells in Blood") }, // ERROR: Test defines subset by CD28 expression but concept uses CD45RA — different surface marker.
             { "Cashew nut IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") },
             { "Gastrin level,plasma", new ValueWithNote("3009927", "Gastrin [Mass/volume] in Serum or Plasma") },
             { "Beta-hydroxybutyrate level, blood", new ValueWithNote("1092084", "Beta hydroxybutyrate [Moles/volume] in Blood") },
@@ -249,8 +249,8 @@ internal class LabTestLookup : ILookup
             { "Tissue transglutaminase IgG Ab, blood", new ValueWithNote("3041421", "Tissue transglutaminase IgG Ab [Presence] in Serum") },
             { "O_Beta-hydroxybutyrate level, blood", new ValueWithNote("1092084", "Beta hydroxybutyrate [Moles/volume] in Blood") },
             { "Pancreatic polypeptide level, plasma", new ValueWithNote("3023589", "Pancreatic polypeptide [Mass/volume] in Serum or Plasma") },
-            { "Osmolality, blood", new ValueWithNote("3004663", "Osmolality of Body fluid") },
-            { "O_Osmolality, blood", new ValueWithNote("3004663", "Osmolality of Body fluid") },
+            { "Osmolality, blood", new ValueWithNote("3004663", "Osmolality of Body fluid") }, // ERROR: Blood osmolality mapped to Body fluid osmolality — different specimen type in LOINC.
+            { "O_Osmolality, blood", new ValueWithNote("3004663", "Osmolality of Body fluid") }, // ERROR: Blood osmolality mapped to Body fluid osmolality — different specimen type in LOINC.
             { "PL-12 antibody (immunoblot), blood", new ValueWithNote("40759864", "PL-12 Ab [Presence] in Serum by Immunoblot") },
             { "Oysters IgE level, blood", new ValueWithNote("40764053", "Oyster IgE Ab/IgE total in Serum") },
             { "Pineapple IgE level, blood", new ValueWithNote("40763977", "Pineapple IgE Ab/IgE total in Serum") },
@@ -324,19 +324,19 @@ internal class LabTestLookup : ILookup
             { "Inhibin B level, blood", new ValueWithNote("3038854", "Inhibin B [Presence] in Serum or Plasma") },
             { "O_Inhibin B level, blood", new ValueWithNote("3038854", "Inhibin B [Presence] in Serum or Plasma") },
             { "TCR delta and gamma %, blood", new ValueWithNote("3029686", "TCR gamma delta cells [#/volume] in Blood") },
-            { "APTT, blood", new ValueWithNote("3036489", "Thrombin time") },
-            { "O_APTT, blood", new ValueWithNote("3036489", "Thrombin time") },
+            { "APTT, blood", new ValueWithNote("3036489", "Thrombin time") }, // ERROR: APTT (Activated Partial Thromboplastin Time) is a different coagulation test from Thrombin Time.
+            { "O_APTT, blood", new ValueWithNote("3036489", "Thrombin time") }, // ERROR: APTT is a different coagulation test from Thrombin Time.
             { "Aldosterone level, plasma", new ValueWithNote("3011337", "Aldosterone [Mass/volume] in Serum or Plasma") },
             { "Sp100antibody by Immunoblot", new ValueWithNote("40759873", "sp100 Ab [Presence] in Serum by Immunoblot") },
             { "Barbiturate level, urine", new ValueWithNote("3050636", "Barbiturates panel - Urine") },
             { "Lemon IgE level, blood", new ValueWithNote("40764007", "Lemon IgE Ab/IgE total in Serum") },
             { "O_Lemon IgE level, blood", new ValueWithNote("40764007", "Lemon IgE Ab/IgE total in Serum") },
             { "Jak-2 Exon 12 by sequencing, blood", new ValueWithNote("1988162", "JAK2 gene exon 12 full mutation analysis in Blood or Tissue by Sequencing") },
-            { "Isocyanate MDI IgE level, blood", new ValueWithNote("40764038", "Isocyanate HDI IgE Ab/IgE total in Serum") },
-            { "Budgerigar serum protein IgE, blood", new ValueWithNote("40758718", "Budgerigar feather IgE Ab [Presence] in Serum") },
-            { "O_Budgerigar serum protein IgE, blood", new ValueWithNote("40758718", "Budgerigar feather IgE Ab [Presence] in Serum") },
+            { "Isocyanate MDI IgE level, blood", new ValueWithNote("40764038", "Isocyanate HDI IgE Ab/IgE total in Serum") }, // ERROR: MDI (methylene diphenyl diisocyanate) and HDI (hexamethylene diisocyanate) are different chemicals.
+            { "Budgerigar serum protein IgE, blood", new ValueWithNote("40758718", "Budgerigar feather IgE Ab [Presence] in Serum") }, // ERROR: Budgerigar serum protein and feather are different allergen sources.
+            { "O_Budgerigar serum protein IgE, blood", new ValueWithNote("40758718", "Budgerigar feather IgE Ab [Presence] in Serum") }, // ERROR: Budgerigar serum protein and feather are different allergen sources.
             { "Caffeine level, plasma", new ValueWithNote("3022695", "Caffeine [Mass/volume] in Serum or Plasma") },
-            { "O_Isocyanate MDI IgE level, blood", new ValueWithNote("40764038", "Isocyanate HDI IgE Ab/IgE total in Serum") },
+            { "O_Isocyanate MDI IgE level, blood", new ValueWithNote("40764038", "Isocyanate HDI IgE Ab/IgE total in Serum") }, // ERROR: MDI and HDI are different isocyanate chemicals.
             { "Magnesium level, blood", new ValueWithNote("3003341", "Magnesium [Presence] in Blood") },
             { "O_Magnesium level, blood", new ValueWithNote("3003341", "Magnesium [Presence] in Blood") },
             { "Amylase level, fluid", new ValueWithNote("3043024", "Amylase [Presence] in Body fluid") },
@@ -382,7 +382,7 @@ internal class LabTestLookup : ILookup
             { "Copper level, serum", new ValueWithNote("3027126", "Copper [Mass/volume] in Serum or Plasma") },
             { "Rye IgE level, blood", new ValueWithNote("40761129", "Cultivated Rye IgE Ab/IgE total in Serum") },
             { "O_Rye IgE level, blood", new ValueWithNote("40761129", "Cultivated Rye IgE Ab/IgE total in Serum") },
-            { "GABA(a)R antibody, CSF", new ValueWithNote("42529115", "GABABR IgG Ab [Presence] in Cerebral spinal fluid by Immunofluorescence") },
+            { "GABA(a)R antibody, CSF", new ValueWithNote("42529115", "GABABR IgG Ab [Presence] in Cerebral spinal fluid by Immunofluorescence") }, // ERROR: GABA(a)R is GABA-A receptor; mapped concept is GABA-B receptor — different receptor types.
             { "Gelatin IgE level, blood", new ValueWithNote("40764030", "Gelatin IgE Ab/IgE total in Serum") },
             { "Platelet glycoprotein Ia/IIa, blood", new ValueWithNote("40766209", "Platelet glycoprotein Ia/IIa Ab [Presence] in Blood by Immunoassay") },
             { "O_Gelatin IgE level, blood", new ValueWithNote("40764030", "Gelatin IgE Ab/IgE total in Serum") },
@@ -416,10 +416,10 @@ internal class LabTestLookup : ILookup
             { "Buckwheat IgE level, blood", new ValueWithNote("40764023", "Buckwheat IgE Ab/IgE total in Serum") },
             { "O_Lime IgE level, blood", new ValueWithNote("40761047", "Lime IgE Ab/IgE total in Serum") },
             { "O_Buckwheat IgE level, blood", new ValueWithNote("40764023", "Buckwheat IgE Ab/IgE total in Serum") },
-            { "Metadrenaline output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") },
+            { "Metadrenaline output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") }, // ERROR: Metadrenaline (metanephrine) excretion mapped to urine volume — completely different tests.
             { "Somatostatin level, plasma", new ValueWithNote("3002762", "Somatostatin [Mass/volume] in Plasma") },
             { "O_Androstenedione level, blood", new ValueWithNote("3044426", "Androstenedione [Presence] in Serum or Plasma") },
-            { "O_Metadrenaline output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") },
+            { "O_Metadrenaline output, 24hr urine", new ValueWithNote("3008071", "Urine output 24 hour") }, // ERROR: Metadrenaline (metanephrine) excretion mapped to urine volume — completely different tests.
             { "Pigeon feathers IgE level, blood", new ValueWithNote("3017801", "Pigeon feather IgE Ab [Presence] in Serum") },
             { "O_Pigeon feathers IgE level, blood", new ValueWithNote("3017801", "Pigeon feather IgE Ab [Presence] in Serum") },
             { "Cardiolipin IgG Ab level, blood", new ValueWithNote("3018499", "Cardiolipin IgG Ab [Interpretation] in Serum") },
@@ -434,7 +434,7 @@ internal class LabTestLookup : ILookup
             { "O_Garlic IgE level, blood", new ValueWithNote("40763972", "Garlic IgE Ab/IgE total in Serum") },
             { "O_Pear IgE level, blood", new ValueWithNote("40764068", "Pear IgE Ab/IgE total in Serum") },
             { "Urea level, plasma", new ValueWithNote("3034204", "Urea [Mass/volume] in Serum or Plasma") },
-            { "FHHb (BG))", new ValueWithNote("3014646", "Fractional oxyhemoglobin in Blood") },
+            { "FHHb (BG))", new ValueWithNote("3014646", "Fractional oxyhemoglobin in Blood") }, // ERROR: FHHb = Fractional deoxyhemoglobin; mapped to fractional oxyhemoglobin — opposite measurement.
             { "IGF-1 level, blood", new ValueWithNote("3007922", "Insulin-like growth factor-I [Mass/volume] in Blood") },
             { "O_IGF-1 level, blood", new ValueWithNote("3007922", "Insulin-like growth factor-I [Mass/volume] in Blood") },
             { "Macadamia Nut IgE level, blood", new ValueWithNote("40764044", "Macadamia IgE Ab/IgE total in Serum") },
@@ -455,7 +455,7 @@ internal class LabTestLookup : ILookup
             { "Smooth muscle IgG Ab level, blood", new ValueWithNote("3053270", "Smooth muscle IgG Ab [Titer] in Serum") },
             { "O_Albumin level, urine", new ValueWithNote("3025987", "Albumin [Presence] in Urine") },
             { "Theophylline level, blood", new ValueWithNote("3009072", "Theophylline [Mass/volume] in Blood") },
-            { "Amino acids level, plasma", new ValueWithNote("3048820", "Alanine/Amino acids.total in Serum or Plasma") },
+            { "Amino acids level, plasma", new ValueWithNote("3048820", "Alanine/Amino acids.total in Serum or Plasma") }, // ERROR: General amino acid level mapped to Alanine/Amino acids.total ratio — a more specific, different measurement.
             { "Wheat IgE level, blood", new ValueWithNote("3039291", "Wheat IgE Ab/IgE total in Serum") },
             { "Pigeon serum proteins IgG antibodies", new ValueWithNote("3017063", "Pigeon serum IgG Ab [Presence] in Serum") },
             { "Crab IgE level, blood", new ValueWithNote("3044567", "Crab IgE Ab/IgE total in Serum") },
@@ -559,7 +559,7 @@ internal class LabTestLookup : ILookup
             { "O_Protein level, urine", new ValueWithNote("3037121", "Protein [Mass/volume] in Urine") },
             { "Macroprolactin level, blood", new ValueWithNote("43055514", "Macroprolactin [Presence] in Serum or Plasma") },
             { "Bilirubin level, urine", new ValueWithNote("3011258", "Bilirubin.total [Presence] in Urine") },
-            { "Naive B cells IgD+ CD27-, blood", new ValueWithNote("21493675", "CD27+IgD- cells/Cells.CD19+CD20+ in Blood") },
+            { "Naive B cells IgD+ CD27-, blood", new ValueWithNote("21493675", "CD27+IgD- cells/Cells.CD19+CD20+ in Blood") }, // ERROR: Naive B cells are IgD+ CD27- but concept describes CD27+ IgD- (class-switched memory B cells) — opposite phenotype.
             { "O_Bilirubin level, urine", new ValueWithNote("3011258", "Bilirubin.total [Presence] in Urine") },
             { "Manganese level, serum", new ValueWithNote("3013059", "Manganese [Moles/volume] in Serum or Plasma") },
             { "O_Ferritin level, blood", new ValueWithNote("3014636", "Ferritin [Interpretation] in Blood") },
@@ -572,7 +572,7 @@ internal class LabTestLookup : ILookup
             { "SRP antibody (immunoblot), blood", new ValueWithNote("40766285", "Signal Recognition Particle (SRP) Ab [Presence] in Serum or Plasma by Immunoblot") },
             { "rCor a 14 hazelnut f439 IgE level, blood", new ValueWithNote("21494261", "Hazelnut recombinant (rCor a) 14 IgE Ab [Units/volume] in Serum") },
             { "O_Yeast IgE level, blood", new ValueWithNote("3039011", "Baker's yeast IgE Ab/IgE total in Serum") },
-            { "Red Cell Distribution width", new ValueWithNote("3050032", "Hemoglobin distribution width [Mass/volume] in Blood") },
+            { "Red Cell Distribution width", new ValueWithNote("3050032", "Hemoglobin distribution width [Mass/volume] in Blood") }, // ERROR: RDW measures red cell size variation; HDW measures hemoglobin concentration variation — different parameters.
             { "Voltage-gated K channel Ab, CSF", new ValueWithNote("40771459", "Voltage-gated potassium channel Ab [Moles/volume] in Cerebral spinal fluid") },
             { "Pork IgE level, blood", new ValueWithNote("40764108", "Pork IgE Ab/IgE total in Serum") },
             { "Haddock IgE level, blood", new ValueWithNote("3023863", "Haddock IgE Ab [Units/volume] in Serum") },
@@ -580,7 +580,7 @@ internal class LabTestLookup : ILookup
             { "O_Pork IgE level, blood", new ValueWithNote("40764108", "Pork IgE Ab/IgE total in Serum") },
             { "O_Haddock IgE level, blood", new ValueWithNote("3023863", "Haddock IgE Ab [Units/volume] in Serum") },
             { "Sodium level, sweat", new ValueWithNote("3004277", "Sodium [Moles/volume] in Sweat") },
-            { "FCOHb (BG)", new ValueWithNote("3014646", "Fractional oxyhemoglobin in Blood") },
+            { "FCOHb (BG)", new ValueWithNote("3014646", "Fractional oxyhemoglobin in Blood") }, // ERROR: FCOHb = Fractional Carboxyhemoglobin (CO-bound Hb); mapped to oxyhemoglobin — different analyte.
             { "pH, fluid", new ValueWithNote("3018672", "pH of Body fluid") },
             { "Cheese mould IgE level, blood", new ValueWithNote("40761039", "Cheese mold type IgE Ab/IgE total in Serum") },
             { "O_Cheese mould IgE level, blood", new ValueWithNote("40761039", "Cheese mold type IgE Ab/IgE total in Serum") },
@@ -609,7 +609,7 @@ internal class LabTestLookup : ILookup
             { "rCor a 8 hazelnut f425 IgE level, blood", new ValueWithNote("40761847", "Hazelnut recombinant (rCor a) 8 IgE Ab [Units/volume] in Serum") },
             { "Birch IgE level, blood", new ValueWithNote("40763988", "White Birch IgE Ab/IgE total in Serum") },
             { "O_Birch IgE level, blood", new ValueWithNote("40763988", "White Birch IgE Ab/IgE total in Serum") },
-            { "1,25-Dihydroxy Vitamin D3 level, plasma", new ValueWithNote("3024390", "25-hydroxyvitamin D3 [Moles/volume] in Serum or Plasma") },
+            { "1,25-Dihydroxy Vitamin D3 level, plasma", new ValueWithNote("3024390", "25-hydroxyvitamin D3 [Moles/volume] in Serum or Plasma") }, // ERROR: 1,25-dihydroxyvitamin D3 (calcitriol) is a different metabolite from 25-hydroxyvitamin D3 (calcidiol).
             { "Vancomycin level, serum", new ValueWithNote("3005715", "Vancomycin [Mass/volume] in Serum or Plasma") },
             { "Glucose level, fluid", new ValueWithNote("3019210", "Glucose [Mass/volume] in Body fluid") },
             { "O_Glucose level, fluid", new ValueWithNote("3019210", "Glucose [Mass/volume] in Body fluid") },
@@ -624,12 +624,12 @@ internal class LabTestLookup : ILookup
             { "Cryoglobulin, blood", new ValueWithNote("3028490", "Cryoglobulin [Mass/volume] in Blood") },
             { "O_Creatinine level, fluid", new ValueWithNote("3016662", "Creatinine [Mass/volume] in Body fluid") },
             { "O_Cryoglobulin, blood", new ValueWithNote("3028490", "Cryoglobulin [Mass/volume] in Blood") },
-            { "Red Blood Cell Distribution Width", new ValueWithNote("3050032", "Hemoglobin distribution width [Mass/volume] in Blood") },
+            { "Red Blood Cell Distribution Width", new ValueWithNote("3050032", "Hemoglobin distribution width [Mass/volume] in Blood") }, // ERROR: RDW measures red cell size variation; HDW measures hemoglobin concentration variation — different parameters.
             { "Urate level, blood", new ValueWithNote("1989097", "Urate [Mass/volume] in Blood") },
             { "O_Urate level, blood", new ValueWithNote("1989097", "Urate [Mass/volume] in Blood") },
             { "IgG subclass 3 level, blood", new ValueWithNote("3024139", "IgG subclass 3 [Mass/volume] in Serum") },
             { "Protein:creatinine index, urine", new ValueWithNote("36304575", "Protein and creatinine panel - Urine") },
-            { "Insulin level, serum", new ValueWithNote("40765155", "Glucose/Insulin [Ratio] in Serum or Plasma") },
+            { "Insulin level, serum", new ValueWithNote("40765155", "Glucose/Insulin [Ratio] in Serum or Plasma") }, // ERROR: Insulin level is a standalone measurement; mapped to Glucose/Insulin ratio — a different test.
             { "Triglycerides level, fluid", new ValueWithNote("3000637", "Triglyceride [Mass/volume] in Body fluid") },
             { "O_Triglycerides level, fluid", new ValueWithNote("3000637", "Triglyceride [Mass/volume] in Body fluid") },
             { "Potassium level, blood", new ValueWithNote("21490733", "Potassium [Mass/volume] in Blood") },
@@ -638,9 +638,9 @@ internal class LabTestLookup : ILookup
             { "IgG subclass 2 level, blood", new ValueWithNote("3028192", "IgG subclass 2 [Mass/volume] in Serum") },
             { "O_Haemoglobin electrophoresis, blood", new ValueWithNote("3032868", "Hemoglobin electrophoresis panel in Blood") },
             { "O_Lithium level, blood", new ValueWithNote("3001823", "Lithium, [Moles/volume] in Blood") },
-            { "IgD level, blood", new ValueWithNote("3031696", "IgD [Mass/volume] in Urine") },
+            { "IgD level, blood", new ValueWithNote("3031696", "IgD [Mass/volume] in Urine") }, // ERROR: Test specifies blood specimen but concept is IgD in Urine — wrong specimen.
             { "Centromere Ab level, blood", new ValueWithNote("3033099", "Centromere Ab [Titer] in Serum") },
-            { "CXCR5+CD4 T Cells, blood", new ValueWithNote("3006414", "CD5+CD2- cells/cells in Blood") },
+            { "CXCR5+CD4 T Cells, blood", new ValueWithNote("3006414", "CD5+CD2- cells/cells in Blood") }, // ERROR: CXCR5+CD4+ T cells (T follicular helper cells) mapped to CD5+CD2- cells — completely different immunophenotype.
             { "Myeloperoxidase Ab level, blood", new ValueWithNote("3016080", "Myeloperoxidase Ab [Presence] in Serum") },
             { "Haptoglobin level, serum", new ValueWithNote("3040752", "Haptoglobin [Presence] in Serum or Plasma") },
             { "O_Haptoglobin level, serum", new ValueWithNote("3040752", "Haptoglobin [Presence] in Serum or Plasma") },
@@ -657,7 +657,7 @@ internal class LabTestLookup : ILookup
             { "Phenytoin level, blood", new ValueWithNote("3021595", "Phenytoin [Presence] in Serum or Plasma") },
             { "Plasma cell count, blood", new ValueWithNote("3001362", "Plasma cells [#/volume] in Blood") },
             { "O_Phenytoin level, blood", new ValueWithNote("3021595", "Phenytoin [Presence] in Serum or Plasma") },
-            { "Light chain output per day, urine", new ValueWithNote("3017831", "Lambda light chains [Mass/volume] in 24 hour Urine") },
+            { "Light chain output per day, urine", new ValueWithNote("3017831", "Lambda light chains [Mass/volume] in 24 hour Urine") }, // ERROR: "Light chain output" is generic (kappa + lambda) but mapped specifically to Lambda only — more specific.
             { "Acylcarnitine profile, blood spot", new ValueWithNote("3046449", "Acylcarnitine [Presence] in Blood") },
             { "Mango IgE level, blood", new ValueWithNote("3037381", "Mango IgE Ab [Units/volume] in Serum") },
             { "O_Mango IgE level, blood", new ValueWithNote("3037381", "Mango IgE Ab [Units/volume] in Serum") },
@@ -665,7 +665,7 @@ internal class LabTestLookup : ILookup
             { "NRBC count per 100 WBC, blood", new ValueWithNote("3001490", "Nucleated erythrocytes [#/volume] in Blood") },
             { "Normetadrenaline level, plasma", new ValueWithNote("3016851", "Normetanephrine [Mass/volume] in Serum or Plasma") },
             { "IgA Kappa/ Lambda Heavy Chain Ratio", new ValueWithNote("44816761", "IgA.kappa/IgA.lambda [Mass Ratio] in Serum or Plasma") },
-            { "Finch serum proteins IgG Abs, blood", new ValueWithNote("3042317", "Finch droppings IgG Ab [Presence] in Serum") },
+            { "Finch serum proteins IgG Abs, blood", new ValueWithNote("3042317", "Finch droppings IgG Ab [Presence] in Serum") }, // ERROR: Finch serum proteins and finch droppings are different allergen sources.
             { "ACTH pre-15min, plasma", new ValueWithNote("3051366", "Corticotropin [Mass/volume] in Plasma --15 minutes pre 1 ug/kg CRH IV") },
             { "Cows milk IgE level, blood", new ValueWithNote("40764093", "Cow milk IgE Ab/IgE total in Serum") },
             { "O_Cows milk IgE level, blood", new ValueWithNote("40764093", "Cow milk IgE Ab/IgE total in Serum") },
@@ -701,9 +701,9 @@ internal class LabTestLookup : ILookup
             { "O_Differential white cell count, blood", new ValueWithNote("3053331", "Differential cell count method - Blood") },
             { "CD4 Effector T Cells, blood", new ValueWithNote("3014037", "CD3+CD4+ (T4 helper) cells/cells in Blood") },
             { "Parrot serum proteins IgG antibodies", new ValueWithNote("3039957", "Parrot serum proteins+feathers+droppings IgG Ab [Presence] in Serum") },
-            { "O_Proinsulin level, blood", new ValueWithNote("3046058", "Proinsulin/Insulin [Ratio] in Serum or Plasma") },
+            { "O_Proinsulin level, blood", new ValueWithNote("3046058", "Proinsulin/Insulin [Ratio] in Serum or Plasma") }, // ERROR: Proinsulin level is a standalone measurement; mapped to Proinsulin/Insulin ratio — different test.
             { "O_Liver kidney microsomal Abs, blood", new ValueWithNote("3046118", "Liver kidney microsomal 1 IgG Ab [Presence] in Serum") },
-            { "Adrenocorticotrophic hormone, plasma", new ValueWithNote("3038090", "Corticotropin Canine [Mass/volume] in Plasma") },
+            { "Adrenocorticotrophic hormone, plasma", new ValueWithNote("3038090", "Corticotropin Canine [Mass/volume] in Plasma") }, // ERROR: Human ACTH mapped to veterinary (Canine) concept.
             { "Protein C level, blood", new ValueWithNote("3004923", "Protein C [Mass/volume] in Plasma") },
             { "Tomato IgE level, blood", new ValueWithNote("3040762", "Tomato IgE Ab/IgE total in Serum") },
             { "O_Tomato IgE level, blood", new ValueWithNote("3040762", "Tomato IgE Ab/IgE total in Serum") },
@@ -714,11 +714,11 @@ internal class LabTestLookup : ILookup
             { "Cat dander IgE level, blood", new ValueWithNote("3035514", "Cat dander IgE Ab/IgE total in Serum") },
             { "O_Cat dander IgE level, blood", new ValueWithNote("3035514", "Cat dander IgE Ab/IgE total in Serum") },
             { "Ionised calcium", new ValueWithNote("3036426", "Calcium.ionized [Mass/volume] in Blood") },
-            { "Mean cell volume, blood", new ValueWithNote("3039385", "Mean sphered cell volume [Entitic volume] in Red Blood Cells") },
+            { "Mean cell volume, blood", new ValueWithNote("3039385", "Mean sphered cell volume [Entitic volume] in Red Blood Cells") }, // ERROR: MCV is the standard mean corpuscular volume; mean sphered cell volume (MSCV) is a different parameter.
             { "Mackerel IgE level, blood", new ValueWithNote("3014946", "Mackerel IgE Ab [Units/volume] in Serum") },
             { "O_Mackerel IgE level, blood", new ValueWithNote("3014946", "Mackerel IgE Ab [Units/volume] in Serum") },
             { "Ecarin clotting time, blood", new ValueWithNote("40758476", "Ecarin clotting time (ECT) in Blood by Coagulation assay") },
-            { "ACTH level 30min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") },
+            { "ACTH level 30min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") }, // ERROR: ACTH (corticotropin) level mapped to Cortisol level — different analytes.
             { "Prothrombin time and INR, blood", new ValueWithNote("3002417", "Prothrombin time (PT) in Blood by Coagulation assay") },
             { "O_Prothrombin time and INR, blood", new ValueWithNote("3002417", "Prothrombin time (PT) in Blood by Coagulation assay") },
             { "Haemoglobin A level, blood", new ValueWithNote("3020428", "Hemoglobin A/Hemoglobin.total in Blood") },
@@ -742,11 +742,11 @@ internal class LabTestLookup : ILookup
             { "O_Sweet Chestnut IgE level, blood", new ValueWithNote("40761034", "Chestnut IgE Ab/IgE total in Serum") },
             { "O_Alpha-1-antitrypsin Pi phenotype,blood", new ValueWithNote("3046867", "Alpha 1 antitrypsin phenotype [Interpretation] in Serum or Plasma") },
             { "O_Lead level, blood", new ValueWithNote("3016252", "Lead [Presence] in Blood") },
-            { "C-peptide level 120min, blood", new ValueWithNote("36660671", "C peptide [Mass/volume] in Serum or Plasma --4.5 hours post meal") },
-            { "Triglyceride", new ValueWithNote("3014600", "Triglyceride [Percentile]") },
+            { "C-peptide level 120min, blood", new ValueWithNote("36660671", "C peptide [Mass/volume] in Serum or Plasma --4.5 hours post meal") }, // ERROR: 120 minutes (2 hours) post stimulus ≠ 4.5 hours post meal — wrong timing.
+            { "Triglyceride", new ValueWithNote("3014600", "Triglyceride [Percentile]") }, // ERROR: Standard triglyceride level mapped to triglyceride percentile — different measure.
             { "Folate level, serum", new ValueWithNote("3036987", "Folate [Mass/volume] in Serum or Plasma") },
             { "Ganglioside GM1 antibody, blood", new ValueWithNote("3044375", "Ganglioside GM1 IgM Ab [Presence] in Serum") },
-            { "O_Vitamin B1 level, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") },
+            { "O_Vitamin B1 level, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") }, // ERROR: Vitamin B1 (thiamine) mapped to Vitamin B12 (cobalamin) — completely different vitamins.
             { "Cholesterol level, fluid", new ValueWithNote("3015232", "Cholesterol [Mass/volume] in Body fluid") },
             { "O_Ganglioside GM1 Ab, blood", new ValueWithNote("3044375", "Ganglioside GM1 IgM Ab [Presence] in Serum") },
             { "O_Cholesterol level, fluid", new ValueWithNote("3015232", "Cholesterol [Mass/volume] in Body fluid") },
@@ -788,22 +788,22 @@ internal class LabTestLookup : ILookup
             { "O_Proteinase 3 Ab level, blood", new ValueWithNote("3020955", "Proteinase 3 [Presence] in Serum by Immunoassay") },
             { "O_Horse dander IgE level, blood", new ValueWithNote("3040612", "Horse dander IgE Ab/IgE total in Serum") },
             { "Direct antiglobulin test baby, blood", new ValueWithNote("1260040", "Direct antiglobulin test.polyspecific reagent [Presence] on Red Blood Cells from Fetus") },
-            { "Adjusted calcium level, blood", new ValueWithNote("3048816", "Calcium.ionized [Moles/volume] adjusted to pH 7.4 in Blood") },
+            { "Adjusted calcium level, blood", new ValueWithNote("3048816", "Calcium.ionized [Moles/volume] adjusted to pH 7.4 in Blood") }, // ERROR: Adjusted calcium (albumin-corrected total calcium) is different from ionized calcium adjusted to pH 7.4.
             { "Thyroid stimulating hormone, blood", new ValueWithNote("3011450", "Thyrotropin [Presence] in Blood") },
             { "O_Thyroid stimulating hormone, blood", new ValueWithNote("3011450", "Thyrotropin [Presence] in Blood") },
             { "Calprotectin level, faeces", new ValueWithNote("42529010", "Calprotectin [Mass/volume] in Stool") },
             { "O_Calprotectin level, faeces", new ValueWithNote("42529010", "Calprotectin [Mass/volume] in Stool") },
-            { "Intrinsic factor Ab level, blood", new ValueWithNote("3021356", "Intrinsic factor [Mass/volume] in Serum") },
-            { "O_Intrinsic factor Ab level, blood", new ValueWithNote("3021356", "Intrinsic factor [Mass/volume] in Serum") },
+            { "Intrinsic factor Ab level, blood", new ValueWithNote("3021356", "Intrinsic factor [Mass/volume] in Serum") }, // ERROR: Intrinsic factor antibody (autoantibody test) mapped to intrinsic factor protein level — different tests.
+            { "O_Intrinsic factor Ab level, blood", new ValueWithNote("3021356", "Intrinsic factor [Mass/volume] in Serum") }, // ERROR: Intrinsic factor antibody mapped to intrinsic factor protein level — different tests.
             { "25-hydroxy vitamin D3 level, serum", new ValueWithNote("3024390", "25-hydroxyvitamin D3 [Moles/volume] in Serum or Plasma") },
             { "O_Platelet function, blood", new ValueWithNote("3966559", "Platelet function profile in plasma") },
-            { "Urea level 240min, blood", new ValueWithNote("3038227", "Urea [Moles/time] in 24 hour Body fluid") },
-            { "Lactate dehydrogenase level, blood", new ValueWithNote("46235370", "Lactate dehydrogenase in body fluid/Lactate dehydrogenase in serum") },
-            { "O_Lactate dehydrogenase level, blood", new ValueWithNote("46235370", "Lactate dehydrogenase in body fluid/Lactate dehydrogenase in serum") },
+            { "Urea level 240min, blood", new ValueWithNote("3038227", "Urea [Moles/time] in 24 hour Body fluid") }, // ERROR: Urea at 240 minutes in blood mapped to Urea in 24-hour body fluid — wrong specimen and timing.
+            { "Lactate dehydrogenase level, blood", new ValueWithNote("46235370", "Lactate dehydrogenase in body fluid/Lactate dehydrogenase in serum") }, // ERROR: LDH level in blood mapped to LDH body fluid/serum ratio — different test.
+            { "O_Lactate dehydrogenase level, blood", new ValueWithNote("46235370", "Lactate dehydrogenase in body fluid/Lactate dehydrogenase in serum") }, // ERROR: LDH level in blood mapped to LDH body fluid/serum ratio — different test.
             { "Peanut IgE level, blood", new ValueWithNote("40763980", "Peanut IgE Ab/IgE total in Serum") },
             { "Albumin level, fluid", new ValueWithNote("3025313", "Albumin [Mass/volume] in Body fluid") },
             { "O_Peanut IgE level, blood", new ValueWithNote("40763980", "Peanut IgE Ab/IgE total in Serum") },
-            { "rCor a 9 hazelnut f440 IgE level, blood", new ValueWithNote("40767664", "Hazelnut recombinant (rCor a) 1.0401 IgE Ab [Units/volume] in Serum") },
+            { "rCor a 9 hazelnut f440 IgE level, blood", new ValueWithNote("40767664", "Hazelnut recombinant (rCor a) 1.0401 IgE Ab [Units/volume] in Serum") }, // ERROR: rCor a 9 (11S globulin) is a different allergen component from rCor a 1.0401 (PR-10 protein).
             { "O_Albumin level, fluid", new ValueWithNote("3025313", "Albumin [Mass/volume] in Body fluid") },
             { "Urea level, fluid", new ValueWithNote("40760504", "Urea [Mass/volume] in Body fluid") },
             { "7-alpha cholestenone level, blood", new ValueWithNote("37021300", "7-Alpha hydroxy-4-cholesten-3-one [Moles/volume] in Blood") },
@@ -837,24 +837,24 @@ internal class LabTestLookup : ILookup
             { "Estimated Osmolality (BG)", new ValueWithNote("3004663", "Osmolality of Body fluid") },
             { "Urine Dipstick Colour", new ValueWithNote("3027162", "Color of Urine") },
             { "O_Vitamin B12 and folate level, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") },
-            { "MCHC", new ValueWithNote("46235811", "Reticulocyte corpuscular hemoglobin concentration mean [Mass/volume] in Blood") },
-            { "CA-19-9 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") },
-            { "O_CA-19-9 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") },
+            { "MCHC", new ValueWithNote("46235811", "Reticulocyte corpuscular hemoglobin concentration mean [Mass/volume] in Blood") }, // ERROR: MCHC (mean corpuscular Hb concentration for all RBCs) mapped to reticulocyte-specific Hb concentration — different parameter.
+            { "CA-19-9 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") }, // ERROR: CA-19-9 is a tumour marker (carbohydrate antigen 19-9); mapped to Calcium — completely different analyte.
+            { "O_CA-19-9 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") }, // ERROR: CA-19-9 is a tumour marker; mapped to Calcium — completely different analyte.
             { "Glomerular basement membrane Ab, blood", new ValueWithNote("40770973", "Glomerular basement membrane Ab [Presence] in Serum") },
-            { "Gamma glutamyl transferase", new ValueWithNote("1761624", "Gamma glutamyl transferase.macromolecular [Presence] in Serum or Plasma") },
+            { "Gamma glutamyl transferase", new ValueWithNote("1761624", "Gamma glutamyl transferase.macromolecular [Presence] in Serum or Plasma") }, // ERROR: Standard GGT mapped to macro-GGT (macromolecular form) — different entity.
             { "O_Glomerular basement membrane Ab, blood", new ValueWithNote("40770973", "Glomerular basement membrane Ab [Presence] in Serum") },
             { "Granulocyte %, blood", new ValueWithNote("3035715", "Granulocytes [#/volume] in Blood") },
             { "rAra h 8 peanut f352 IgE level, blood", new ValueWithNote("40766207", "Peanut recombinant (rAra h) 8 IgE Ab [Units/volume] in Serum") },
             { "O_Serum for Oligoclonal banding", new ValueWithNote("3034248", "Oligoclonal bands [#] in Serum or Plasma") },
             { "Adrenal cortex Ab level, blood", new ValueWithNote("40759789", "Adrenal cortex IgG Ab [Units/volume] in Serum") },
             { "O_Adrenal cortex Ab level, blood", new ValueWithNote("40759789", "Adrenal cortex IgG Ab [Units/volume] in Serum") },
-            { "CD8 Effector T Cells, blood", new ValueWithNote("3037816", "CD4+CD8+ cells/cells in Blood") },
+            { "CD8 Effector T Cells, blood", new ValueWithNote("3037816", "CD4+CD8+ cells/cells in Blood") }, // ERROR: CD8 effector T cells (CD8 single-positive) mapped to CD4+CD8+ double-positive cells — different immunophenotype.
             { "O_Renin level, blood", new ValueWithNote("3037310", "Renin [Mass/volume] in Plasma") },
             { "Alpha-galactosidase enzyme level, blood", new ValueWithNote("3004671", "Alpha galactosidase A [Enzymatic activity/volume] in Serum or Plasma") },
             { "O_Alpha-galactosidase enzyme level,blood", new ValueWithNote("3004671", "Alpha galactosidase A [Enzymatic activity/volume] in Serum or Plasma") },
             { "Neutrophil count, blood", new ValueWithNote("3017732", "Neutrophils [#/volume] in Blood") },
             { "Sodium level, urine", new ValueWithNote("3003181", "Sodium [Moles/volume] in Urine") },
-            { "Potassium level, urine", new ValueWithNote("3043518", "Potassium/Creatinine [Ratio] in Urine") },
+            { "Potassium level, urine", new ValueWithNote("3043518", "Potassium/Creatinine [Ratio] in Urine") }, // ERROR: Potassium level (concentration) mapped to Potassium/Creatinine ratio — different test.
             { "PM/Scl-75antibody by Immunoblot", new ValueWithNote("21494115", "PM-SCL-75 Ab [Presence] in Serum by Line blot") },
             { "Calcitonin level, blood", new ValueWithNote("3018840", "Calcitonin [Moles/volume] in Serum or Plasma") },
             { "O_Budgerigar (serum) IgG Ab, blood", new ValueWithNote("3040960", "Budgerigar droppings IgG Ab [Presence] in Serum") },
@@ -868,16 +868,16 @@ internal class LabTestLookup : ILookup
             { "Gastric parietal cell Ab level,blood", new ValueWithNote("3008717", "Parietal cell Ab [Titer] in Serum") },
             { "MuSK antibody level, blood", new ValueWithNote("3039955", "Muscle specific receptor tyrosine kinase Ab [Titer] in Serum or Plasma") },
             { "O_MuSK Ab level, blood", new ValueWithNote("3039955", "Muscle specific receptor tyrosine kinase Ab [Titer] in Serum or Plasma") },
-            { "APTT reference, blood", new ValueWithNote("3036489", "Thrombin time") },
+            { "APTT reference, blood", new ValueWithNote("3036489", "Thrombin time") }, // ERROR: APTT (activated partial thromboplastin time) reference mapped to Thrombin time — different coagulation test.
             { "Vitamin B12 level, serum", new ValueWithNote("3009035", "Cobalamin (Vitamin B12) [Moles/volume] in Serum or Plasma") },
             { "HbA1c", new ValueWithNote("3034639", "Hemoglobin A1c [Mass/volume] in Blood") },
             { "O_Smooth muscle antibodies level, blood", new ValueWithNote("3053270", "Smooth muscle IgG Ab [Titer] in Serum") },
-            { "IgG Kappa Heavy Chain Measurement, blood", new ValueWithNote("3019812", "Kappa light chains [Mass/volume] in Serum or Plasma") },
+            { "IgG Kappa Heavy Chain Measurement, blood", new ValueWithNote("3019812", "Kappa light chains [Mass/volume] in Serum or Plasma") }, // ERROR: IgG Kappa Heavy Chain mapped to Kappa free light chains — heavy chain ≠ light chain.
             { "Pepper IgE level, blood", new ValueWithNote("3032718", "Black Pepper IgE Ab/IgE total in Serum") },
             { "O_Pepper IgE level, blood", new ValueWithNote("3032718", "Black Pepper IgE Ab/IgE total in Serum") },
             { "Sugar chromatography, urine", new ValueWithNote("3039379", "Sucrose [Presence] in Urine") },
             { "Turkey serum proteins IgG Ab", new ValueWithNote("40763466", "Turkey IgG Ab [Mass/volume] in Serum") },
-            { "ACTH level 60min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") },
+            { "ACTH level 60min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") }, // ERROR: ACTH (corticotropin) level mapped to Cortisol level; also 60min ≠ 30min.
             { "Rapeseed IgE level, blood", new ValueWithNote("3005379", "Rapeseed IgE Ab [Units/volume] in Serum") },
             { "O_Rapeseed IgE level, blood", new ValueWithNote("3005379", "Rapeseed IgE Ab [Units/volume] in Serum") },
             { "C-reactive protein level, blood", new ValueWithNote("3000965", "C reactive protein [Presence] in Serum or Plasma") },
@@ -890,7 +890,7 @@ internal class LabTestLookup : ILookup
             { "Hu Ab (blot), blood", new ValueWithNote("36660090", "Neuronal nuclear type 1 IgG Ab [Presence] in Serum by Line blot") },
             { "Glucose level, dialysate", new ValueWithNote("3023572", "Glucose [Mass/volume] in Dialysis fluid") },
             { "1,25-dihydroxy Vitamin D level, serum", new ValueWithNote("40765038", "1,25-Dihydroxyvitamin D [Mass/volume] in Serum or Plasma") },
-            { "Complement C1q level, blood", new ValueWithNote("3046458", "Immune complex [Presence] in Serum or Plasma by C1q binding assay") },
+            { "Complement C1q level, blood", new ValueWithNote("3046458", "Immune complex [Presence] in Serum or Plasma by C1q binding assay") }, // ERROR: C1q protein level mapped to immune complex detection by C1q binding — different test.
             { "Potassium level, fluid", new ValueWithNote("3036243", "Potassium [Moles/volume] in Body fluid") },
             { "O_Glucose level, dialysate", new ValueWithNote("3023572", "Glucose [Mass/volume] in Dialysis fluid") },
             { "Cryofibrinogen immunofixation, blood", new ValueWithNote("3023504", "Cryofibrinogen [Presence] in Plasma") },
@@ -898,14 +898,14 @@ internal class LabTestLookup : ILookup
             { "Total bilirubin level, blood", new ValueWithNote("3028833", "Bilirubin.total [Mass/volume] in Blood") },
             { "Haematocrit", new ValueWithNote("3050746", "Hematocrit [Volume Fraction] of Blood by Estimated") },
             { "O_Total bilirubin level, blood", new ValueWithNote("3028833", "Bilirubin.total [Mass/volume] in Blood") },
-            { "Creatinine level 240min, blood", new ValueWithNote("3040071", "Creatinine [Moles/time] in 24 hour Body fluid") },
+            { "Creatinine level 240min, blood", new ValueWithNote("3040071", "Creatinine [Moles/time] in 24 hour Body fluid") }, // ERROR: Creatinine at 240 minutes in blood mapped to creatinine in 24-hour body fluid — wrong specimen.
             { "Ciclosporin level, blood", new ValueWithNote("3010375", "cycloSPORINE [Mass/volume] in Blood") },
             { "O_Ciclosporin level, blood", new ValueWithNote("3010375", "cycloSPORINE [Mass/volume] in Blood") },
             { "O_Immunodeficiency panel, blood", new ValueWithNote("3044481", "Immunodeficiency panel - Blood by Flow cytometry (FC)") },
             { "Jo-1 antibody (immunoblot), blood", new ValueWithNote("40759850", "Jo-1 extractable nuclear Ab [Presence] in Serum by Immunoblot") },
             { "ANCA pattern titre, blood", new ValueWithNote("3026712", "Neutrophil cytoplasmic Ab [Titer] in Serum") },
             { "Yo Ab level, blood", new ValueWithNote("3038593", "PCA-1 Ab [Titer] in Serum") },
-            { "rAra h 1 peanut f422 IgE level, blood", new ValueWithNote("40766207", "Peanut recombinant (rAra h) 8 IgE Ab [Units/volume] in Serum") },
+            { "rAra h 1 peanut f422 IgE level, blood", new ValueWithNote("40766207", "Peanut recombinant (rAra h) 8 IgE Ab [Units/volume] in Serum") }, // ERROR: rAra h 1 (Ara h 1, vicilin) mapped to rAra h 8 (PR-10 protein) — different allergen component.
             { "Platelet glycoprotein Ib, blood", new ValueWithNote("40766208", "Platelet glycoprotein Ib/Ix Ab [Presence] in Blood by Immunoassay") },
             { "Albumin level, blood", new ValueWithNote("3010072", "Albumin concentration given") },
             { "O_Albumin level, blood", new ValueWithNote("3010072", "Albumin concentration given") },
@@ -932,16 +932,16 @@ internal class LabTestLookup : ILookup
             { "Neutrophil %, blood", new ValueWithNote("3017732", "Neutrophils [#/volume] in Blood") },
             { "O_Melon IgE level, blood", new ValueWithNote("40761058", "Honeydew melon IgE Ab/IgE total in Serum") },
             { "rGly m 4 soy f353 IgE level, blood", new ValueWithNote("40766206", "Soybean recombinant (rGly m) 4 IgE Ab [Units/volume] in Serum") },
-            { "Desmethylclobazam level, blood", new ValueWithNote("40762688", "cloBAZam [Mass/volume] in Blood") },
+            { "Desmethylclobazam level, blood", new ValueWithNote("40762688", "cloBAZam [Mass/volume] in Blood") }, // ERROR: Desmethylclobazam (N-desmethylclobazam, active metabolite) mapped to parent drug clobazam — different substance.
             { "Factor VIII level chromogenic, blood", new ValueWithNote("3032768", "Coagulation factor VIII activity actual/normal in Platelet poor plasma by Chromogenic method") },
             { "Phenobarbitone level, blood", new ValueWithNote("3024886", "PHENobarbital [Presence] in Serum or Plasma") },
-            { "zzzOxalate:creatinine ratio, urine", new ValueWithNote("3026806", "Azelate/Creatinine [Molar ratio] in Urine") },
+            { "zzzOxalate:creatinine ratio, urine", new ValueWithNote("3026806", "Azelate/Creatinine [Molar ratio] in Urine") }, // ERROR: Oxalate/Creatinine ratio mapped to Azelate/Creatinine ratio — different analyte.
             { "Aldosterone level 240min, plasma", new ValueWithNote("3016953", "Aldosterone renal clearance in 24 hour Urine and Serum or Plasma") },
             { "EJ antibody (immunoblot), blood", new ValueWithNote("42529529", "Ej Ab [Presence] in Serum by Line blot") },
             { "O_Thyroglobulin level, blood", new ValueWithNote("3036535", "Thyroglobulin [Mass/volume] in Serum or Plasma") },
             { "Gluten IgE level, blood", new ValueWithNote("40764031", "Gluten IgE Ab/IgE total in Serum") },
             { "O_Gluten IgE level, blood", new ValueWithNote("40764031", "Gluten IgE Ab/IgE total in Serum") },
-            { "ACTH level 45min, plasma", new ValueWithNote("3009084", "Cortisol [Mass/volume] in Serum or Plasma --56 hours post 40 ug corticotropin IM BID 3 day") },
+            { "ACTH level 45min, plasma", new ValueWithNote("3009084", "Cortisol [Mass/volume] in Serum or Plasma --56 hours post 40 ug corticotropin IM BID 3 day") }, // ERROR: ACTH level mapped to Cortisol; also 45min ≠ 56 hours.
             { "O_ACTH pre-15min, blood", new ValueWithNote("40761652", "Corticotropin [Moles/volume] in Plasma --15 minutes pre dose insulin IV") },
             { "Troponin I level, serum", new ValueWithNote("3021337", "Troponin I.cardiac [Mass/volume] in Serum or Plasma") },
             { "Sodium level 240min, blood", new ValueWithNote("3000285", "Sodium [Moles/volume] in Blood") },
@@ -967,28 +967,28 @@ internal class LabTestLookup : ILookup
             { "Amoxycilloyl IgE level, blood", new ValueWithNote("3031955", "Amoxicillin IgE Ab/IgE total in Serum") },
             { "O_Amoxycilloyl IgE level, blood", new ValueWithNote("3031955", "Amoxicillin IgE Ab/IgE total in Serum") },
             { "Platelet ADP level, blood", new ValueWithNote("40759127", "Platelet aggregation ADP induced in Blood --10 umol/L") },
-            { "Bile acid level, blood", new ValueWithNote("3043231", "Bile acid [Presence] in Bile fluid") },
-            { "O_Bile acid level, blood", new ValueWithNote("3043231", "Bile acid [Presence] in Bile fluid") },
+            { "Bile acid level, blood", new ValueWithNote("3043231", "Bile acid [Presence] in Bile fluid") }, // ERROR: Bile acid in blood mapped to bile acid in bile fluid — wrong specimen.
+            { "O_Bile acid level, blood", new ValueWithNote("3043231", "Bile acid [Presence] in Bile fluid") }, // ERROR: Bile acid in blood mapped to bile acid in bile fluid — wrong specimen.
             { "Glucose level 60min, serum", new ValueWithNote("3023186", "Glucose [Mass/volume] in Serum or Plasma --45 minutes post dose glucose") },
             { "Lipoprotein (a) level, blood", new ValueWithNote("40763399", "Lipoprotein a/total Lipoprotein in Serum or Plasma") },
             { "O_Lipoprotein (a) level, blood", new ValueWithNote("40763399", "Lipoprotein a/total Lipoprotein in Serum or Plasma") },
             { "CD4 Naïve T Cells, blood", new ValueWithNote("3014037", "CD3+CD4+ (T4 helper) cells/cells in Blood") },
-            { "ACTH level 90min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") },
-            { "Budgerigar serum IgG Ab level, blood", new ValueWithNote("40763998", "Budgerigar feather IgE Ab/IgE total in Serum") },
-            { "Caged bird feathers IgE level, blood", new ValueWithNote("40764098", "Chicken feather IgE Ab/IgE total in Serum") },
-            { "O_Caged bird feathers IgE level, blood", new ValueWithNote("40764098", "Chicken feather IgE Ab/IgE total in Serum") },
+            { "ACTH level 90min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") }, // ERROR: ACTH level mapped to Cortisol; also 90min ≠ 30min.
+            { "Budgerigar serum IgG Ab level, blood", new ValueWithNote("40763998", "Budgerigar feather IgE Ab/IgE total in Serum") }, // ERROR: Budgerigar serum protein IgG mapped to feather IgE — different allergen source and immunoglobulin class.
+            { "Caged bird feathers IgE level, blood", new ValueWithNote("40764098", "Chicken feather IgE Ab/IgE total in Serum") }, // ERROR: Caged bird feathers (generic mixed species) mapped to Chicken feather specifically — more specific than source.
+            { "O_Caged bird feathers IgE level, blood", new ValueWithNote("40764098", "Chicken feather IgE Ab/IgE total in Serum") }, // ERROR: Caged bird feathers mapped to Chicken feather — more specific than source.
             { "Cortisol pre-15min, serum", new ValueWithNote("3052619", "Cortisol [Moles/volume] in Serum or Plasma --15 minutes pre 1 ug/kg CRH IV") },
             { "rAra h 2 peanut f423 IgE level, blood", new ValueWithNote("40761872", "Peanut recombinant (rAra h) 2 IgE Ab [Units/volume] in Serum") },
             { "THSD7A Ab, blood", new ValueWithNote("1001604", "THSD7A IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") },
             { "Day 1 ACTH level, plasma", new ValueWithNote("40757368", "Corticotropin [Mass/volume] in Plasma --9 AM 2nd day specimen") },
             { "O_Cardiolipin Ab level, blood", new ValueWithNote("3020259", "Cardiolipin IgG Ab [Titer] in Serum") },
-            { "Haemophilus influenzae B Ab level, blood", new ValueWithNote("3044398", "Haemophilus influenzae B Ag [Presence] in Serum") },
+            { "Haemophilus influenzae B Ab level, blood", new ValueWithNote("3044398", "Haemophilus influenzae B Ag [Presence] in Serum") }, // ERROR: H. influenzae B Antibody mapped to H. influenzae B Antigen — Ab ≠ Ag.
             { "IgA Kappa Heavy Chain Measurement, blood", new ValueWithNote("44816756", "IgA.kappa [Mass/volume] in Serum or Plasma") },
             { "O_Myelin associated glycoprotein Abblood", new ValueWithNote("3028891", "Myelin associated glycoprotein IgG Ab [Titer] in Serum") },
             { "Lentil IgE level, blood", new ValueWithNote("3011523", "Lentils IgE Ab [Units/volume] in Serum") },
             { "O_Lentil IgE level, blood", new ValueWithNote("3011523", "Lentils IgE Ab [Units/volume] in Serum") },
-            { "House dust mite IgE level, blood", new ValueWithNote("3018381", "European house dust mite IgG Ab [Presence] in Blood") },
-            { "O_House dust mite IgE level, blood", new ValueWithNote("3018381", "European house dust mite IgG Ab [Presence] in Blood") },
+            { "House dust mite IgE level, blood", new ValueWithNote("3018381", "European house dust mite IgG Ab [Presence] in Blood") }, // ERROR: IgE antibody test mapped to IgG antibody concept — different immunoglobulin class.
+            { "O_House dust mite IgE level, blood", new ValueWithNote("3018381", "European house dust mite IgG Ab [Presence] in Blood") }, // ERROR: IgE antibody test mapped to IgG concept — different immunoglobulin class.
             { "Urea level, dialysate", new ValueWithNote("3966666", "Urea [Mass/volume] in Dialysis fluid") },
             { "BRAF Mutation Analysis", new ValueWithNote("3039156", "BRAF gene targeted mutation analysis in Blood or Tissue by Molecular genetics method") },
             { "rVes v5 wasp i209 IgE level, blood", new ValueWithNote("40763295", "Common wasp recombinant (rVes v) 5 IgE Ab [Units/volume] in Serum") },
@@ -1014,22 +1014,22 @@ internal class LabTestLookup : ILookup
             { "O_Endomysial IgA Ab level, blood", new ValueWithNote("3020961", "Endomysium IgA Ab [Titer] in Serum") },
             { "r Gly m 5 soy f431 IgE level, blood", new ValueWithNote("43533744", "Soybean native (nGly m) 5 IgE Ab [Units/volume] in Serum") },
             { "Edoxaban level, blood", new ValueWithNote("42528613", "Edoxaban [Mass/volume] in Serum or Plasma by LC/MS/MS") },
-            { "Glucose level 60min, plasma", new ValueWithNote("36660135", "Glucose [Mass/volume] in Serum or Plasma --30 min post meal") },
+            { "Glucose level 60min, plasma", new ValueWithNote("36660135", "Glucose [Mass/volume] in Serum or Plasma --30 min post meal") }, // ERROR: 60 minutes ≠ 30 minutes post meal — wrong timing.
             { "Blood Ketones, POC", new ValueWithNote("3041426", "Ketones [Moles/volume] in Blood") },
-            { "Protein electrophoresis, blood", new ValueWithNote("3032868", "Hemoglobin electrophoresis panel in Blood") },
-            { "O_Protein electrophoresis, blood", new ValueWithNote("3032868", "Hemoglobin electrophoresis panel in Blood") },
+            { "Protein electrophoresis, blood", new ValueWithNote("3032868", "Hemoglobin electrophoresis panel in Blood") }, // ERROR: Protein electrophoresis (serum protein fractions) mapped to hemoglobin electrophoresis (Hb variants) — different tests.
+            { "O_Protein electrophoresis, blood", new ValueWithNote("3032868", "Hemoglobin electrophoresis panel in Blood") }, // ERROR: Protein electrophoresis mapped to hemoglobin electrophoresis — different tests.
             { "Gentamicin level, blood", new ValueWithNote("3035510", "Gentamicin [Mass/volume] in Serum or Plasma") },
             { "O_Gentamicin level, blood", new ValueWithNote("3035510", "Gentamicin [Mass/volume] in Serum or Plasma") },
             { "Cortisol level 45min, serum", new ValueWithNote("40759705", "Cortisol [Mass/volume] in Serum or Plasma --45 minutes post XXX challenge") },
             { "Egg IgE level, blood", new ValueWithNote("40764099", "Egg white IgE Ab/IgE total in Serum") },
             { "Blast cell %, blood", new ValueWithNote("3025159", "Blasts/Leukocytes in Blood") },
-            { "CA-15-3 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") },
-            { "O_CA-15-3 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") },
-            { "ACTH level 120min, plasma", new ValueWithNote("3049123", "Corticotropin [Mass/volume] in Plasma --12 AM specimen") },
+            { "CA-15-3 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") }, // ERROR: CA-15-3 is a tumour marker (cancer antigen 15-3); mapped to Calcium — completely different analyte.
+            { "O_CA-15-3 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") }, // ERROR: CA-15-3 is a tumour marker; mapped to Calcium — completely different analyte.
+            { "ACTH level 120min, plasma", new ValueWithNote("3049123", "Corticotropin [Mass/volume] in Plasma --12 AM specimen") }, // ERROR: ACTH at 120 minutes post-stimulus mapped to Corticotropin at 12 AM (midnight specimen) — wrong timing context.
             { "Creatinine", new ValueWithNote("3007081", "Creatinine [Interpretation] in Urine") },
             { "Procalcitonin level, blood", new ValueWithNote("3046279", "Procalcitonin [Mass/volume] in Serum or Plasma") },
             { "r Gly m 6 soy f432 IgE level, blood", new ValueWithNote("40768460", "Soybean native (nGly m) 6 IgE Ab [Units/volume] in Serum") },
-            { "ACTH level 15min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") },
+            { "ACTH level 15min, plasma", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") }, // ERROR: ACTH level mapped to Cortisol; also 15min ≠ 30min.
             { "Elastase 1 level, faeces", new ValueWithNote("3034965", "Elastase.pancreatic [Presence] in Stool") },
             { "O_Elastase 1 level, faeces", new ValueWithNote("3034965", "Elastase.pancreatic [Presence] in Stool") },
             { "O_Urine Metadrenalines", new ValueWithNote("3006956", "Metanephrines [Mass/volume] in Urine") },
@@ -1045,12 +1045,12 @@ internal class LabTestLookup : ILookup
             { "Hyaluronic acid level, serum", new ValueWithNote("3009931", "Hyaluronate [Mass/volume] in Serum or Plasma") },
             { "gp210 antibody by Immunoblot", new ValueWithNote("40759835", "Nuclear pore protein gp210 Ab [Presence] in Serum by Immunoblot") },
             { "Creatinine level (referral lab), urine", new ValueWithNote("3007081", "Creatinine [Interpretation] in Urine") },
-            { "O_CA-19-9 level, fluid", new ValueWithNote("3000822", "Calcium [Mass/volume] in Body fluid") },
-            { "CA-19-9 level, fluid", new ValueWithNote("3000822", "Calcium [Mass/volume] in Body fluid") },
+            { "O_CA-19-9 level, fluid", new ValueWithNote("3000822", "Calcium [Mass/volume] in Body fluid") }, // ERROR: CA-19-9 is a tumour marker; mapped to Calcium in body fluid.
+            { "CA-19-9 level, fluid", new ValueWithNote("3000822", "Calcium [Mass/volume] in Body fluid") }, // ERROR: CA-19-9 is a tumour marker; mapped to Calcium in body fluid.
             { "Candida Ab level, blood", new ValueWithNote("3039290", "Candida sp IgG Ab [Titer] in Serum") },
             { "Bet v 1 birch t215 IgE level, blood", new ValueWithNote("40768464", "Silver birch native (nBet v) 1 IgE Ab [Units/volume] in Serum") },
-            { "Cystatin C level, blood", new ValueWithNote("3051083", "Cystatin C [Mass/volume] in Urine") },
-            { "O_Cystatin C level, blood", new ValueWithNote("3051083", "Cystatin C [Mass/volume] in Urine") },
+            { "Cystatin C level, blood", new ValueWithNote("3051083", "Cystatin C [Mass/volume] in Urine") }, // ERROR: Blood specimen mapped to Urine concept — wrong specimen.
+            { "O_Cystatin C level, blood", new ValueWithNote("3051083", "Cystatin C [Mass/volume] in Urine") }, // ERROR: Blood specimen mapped to Urine concept — wrong specimen.
             { "O_Leucocyte immunophenotyping, blood", new ValueWithNote("40758359", "Immunophenotyping study") },
             { "Lupine seed IgE level, blood", new ValueWithNote("3029411", "Lupin seed IgE Ab [Units/volume] in Serum") },
             { "Lymphocyte %, blood", new ValueWithNote("3019198", "Lymphocytes [#/volume] in Blood") },
@@ -1061,49 +1061,49 @@ internal class LabTestLookup : ILookup
             { "O_Farm birds feather mix IgE level,blood", new ValueWithNote("40764098", "Chicken feather IgE Ab/IgE total in Serum") },
             { "Troponin I", new ValueWithNote("3033745", "Troponin I.cardiac [Mass/volume] in Blood") },
             { "Tryptase level, blood", new ValueWithNote("3042655", "Tryptase [Mass/volume] in Body fluid") },
-            { "Glucose level 0min, plasma", new ValueWithNote("3004723", "Glucose [Mass/volume] in Serum or Plasma --1 minute post 0.5 g/kg glucose IV") },
+            { "Glucose level 0min, plasma", new ValueWithNote("3004723", "Glucose [Mass/volume] in Serum or Plasma --1 minute post 0.5 g/kg glucose IV") }, // ERROR: Glucose at 0 minutes (baseline/fasting) mapped to 1 minute post IV glucose — wrong timing.
             { "O_Tryptase level, blood", new ValueWithNote("3042655", "Tryptase [Mass/volume] in Body fluid") },
             { "Amikacin level, blood", new ValueWithNote("3030247", "Amikacin [Moles/volume] in Serum or Plasma --trough") },
             { "O_Amikacin level, blood", new ValueWithNote("3030247", "Amikacin [Moles/volume] in Serum or Plasma --trough") },
             { "% PT normal plasma correction, blood", new ValueWithNote("3033658", "Prothrombin time (PT) actual/Normal") },
-            { "Aldosterone level 0min, plasma", new ValueWithNote("3011145", "Aldosterone/Renin [Ratio] in Plasma") },
+            { "Aldosterone level 0min, plasma", new ValueWithNote("3011145", "Aldosterone/Renin [Ratio] in Plasma") }, // ERROR: Aldosterone level (concentration) mapped to Aldosterone/Renin ratio — different test.
             { "CD4 TReg Cells, blood", new ValueWithNote("3014037", "CD3+CD4+ (T4 helper) cells/cells in Blood") },
             { "Lymphocyte count, blood", new ValueWithNote("3019198", "Lymphocytes [#/volume] in Blood") },
-            { "CA-125 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") },
+            { "CA-125 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") }, // ERROR: CA-125 is a tumour marker (cancer antigen 125); mapped to Calcium.
             { "Rheumatoid factor, blood", new ValueWithNote("3043745", "Rheumatoid factor [Presence] in Serum") },
             { "CALC Haemoglobin", new ValueWithNote("3027484", "Hemoglobin [Mass/volume] in Blood by calculation") },
-            { "CD19 B cells count", new ValueWithNote("36303804", "IgM cells/Cells.CD19 in Blood") },
+            { "CD19 B cells count", new ValueWithNote("36303804", "IgM cells/Cells.CD19 in Blood") }, // ERROR: CD19 B cell count (absolute B cell count) mapped to IgM cells/CD19 ratio — different parameter.
             { "O_Rheumatoid factor, blood", new ValueWithNote("3043745", "Rheumatoid factor [Presence] in Serum") },
-            { "O_CA-125 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") },
+            { "O_CA-125 level, blood", new ValueWithNote("3027495", "Calcium [Presence] in Blood") }, // ERROR: CA-125 is a tumour marker; mapped to Calcium.
             { "Timothy grass IgE level, blood", new ValueWithNote("40764057", "Timothy IgE Ab/IgE total in Serum") },
-            { "O_Haemophilus influenzae B Ab levelblood", new ValueWithNote("3044398", "Haemophilus influenzae B Ag [Presence] in Serum") },
+            { "O_Haemophilus influenzae B Ab levelblood", new ValueWithNote("3044398", "Haemophilus influenzae B Ag [Presence] in Serum") }, // ERROR: H. influenzae B Antibody mapped to H. influenzae B Antigen — Ab ≠ Ag.
             { "O_Timothy grass IgE level, blood", new ValueWithNote("40764057", "Timothy IgE Ab/IgE total in Serum") },
             { "Bet v 2 birch t216 IgE level, blood", new ValueWithNote("40763988", "White Birch IgE Ab/IgE total in Serum") },
             { "IgM Kappa Heavy Chain Measurement, blood", new ValueWithNote("44816758", "IgM.kappa [Mass/volume] in Serum or Plasma") },
             { "Iohexol half life", new ValueWithNote("3032437", "Iohexol renal clearance in Urine and Serum or Plasma") },
-            { "Day 3 Cortisol level, serum", new ValueWithNote("3033285", "Cortisol [Mass/volume] in Serum or Plasma --3 PM specimen") },
+            { "Day 3 Cortisol level, serum", new ValueWithNote("3033285", "Cortisol [Mass/volume] in Serum or Plasma --3 PM specimen") }, // ERROR: Day 3 cortisol (third day specimen) mapped to 3 PM cortisol (afternoon specimen) — different timing context.
             { "Rat mix IgE level, blood", new ValueWithNote("3020228", "Rat muliialgro IgE Ab [Units/volume] in Serum") },
             { "Haematocrit level, blood", new ValueWithNote("3050746", "Hematocrit [Volume Fraction] of Blood by Estimated") },
             { "Occult blood detection, faeces", new ValueWithNote("3030153", "Occult blood panel - Stool") },
             { "O_Lupus anticoagulant screen, blood", new ValueWithNote("1259791", "Lupus anticoagulant aPTT screening panel - Platelet poor plasma by Coagulation assay") },
             { "O_Occult blood detection, faeces", new ValueWithNote("3030153", "Occult blood panel - Stool") },
-            { "O_IgG subclasses level, blood", new ValueWithNote("3024139", "IgG subclass 3 [Mass/volume] in Serum") },
+            { "O_IgG subclasses level, blood", new ValueWithNote("3024139", "IgG subclass 3 [Mass/volume] in Serum") }, // ERROR: IgG subclasses (all 4 subclasses) mapped to IgG subclass 3 only — more specific than source.
             { "Creatinine level, dialysate", new ValueWithNote("3043954", "Creatinine in dialysis fluid/Creatinine in serum or plasma") },
             { "O_Creatinine level, dialysate", new ValueWithNote("3043954", "Creatinine in dialysis fluid/Creatinine in serum or plasma") },
             { "O_Anti-factor Xa, blood", new ValueWithNote("3045452", "LMW Heparin [Units/volume] in Platelet poor plasma") },
             { "O_Glucagon level, blood", new ValueWithNote("3023436", "Glucagon [Mass/volume] in Serum or Plasma") },
-            { "O_ACTH level 60min,blood", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") },
+            { "O_ACTH level 60min,blood", new ValueWithNote("3026147", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post dose corticotropin") }, // ERROR: ACTH level mapped to Cortisol; also 60min ≠ 30min.
             { "cLAC (BG)", new ValueWithNote("3025022", "Lactate [Mass/volume] in Cerebral spinal fluid") },
             { "Nitrites Urine Dipstick", new ValueWithNote("3021601", "Nitrite [Presence] in Urine by Test strip") },
-            { "RET-He", new ValueWithNote("3023520", "Reticulocytes [#/volume] in Blood") },
-            { "Mean cell volume", new ValueWithNote("3039385", "Mean sphered cell volume [Entitic volume] in Red Blood Cells") },
+            { "RET-He", new ValueWithNote("3023520", "Reticulocytes [#/volume] in Blood") }, // ERROR: RET-He (reticulocyte hemoglobin equivalent) mapped to reticulocyte count — different parameter.
+            { "Mean cell volume", new ValueWithNote("3039385", "Mean sphered cell volume [Entitic volume] in Red Blood Cells") }, // ERROR: MCV is the standard mean corpuscular volume; MSCV (mean sphered cell volume) is a different parameter.
             { "Potassium", new ValueWithNote("21490733", "Potassium [Mass/volume] in Blood") },
             { "Lactate", new ValueWithNote("3036579", "Lactate [Presence] in Urine") },
             { "O_Interferon gamma release, blood", new ValueWithNote("3010105", "Interferon gamma [Mass/volume] in Serum or Plasma") },
             { "Vitamin E:lipid ratio", new ValueWithNote("40762341", "Tocopherols/Cholesterol [Molar ratio] in Serum or Plasma") },
             { "Alkaline phosphatase", new ValueWithNote("3035756", "Alkaline phosphatase [Enzymatic activity/mass] in Tissue") },
-            { "APTT 50:50 mix, blood", new ValueWithNote("3036489", "Thrombin time") },
-            { "O_APTT 50:50 mix, blood", new ValueWithNote("3036489", "Thrombin time") },
+            { "APTT 50:50 mix, blood", new ValueWithNote("3036489", "Thrombin time") }, // ERROR: APTT 50:50 mix (mixing study) mapped to Thrombin time — different coagulation test.
+            { "O_APTT 50:50 mix, blood", new ValueWithNote("3036489", "Thrombin time") }, // ERROR: APTT 50:50 mix mapped to Thrombin time — different coagulation test.
             { "Growth hormone level 90min, serum", new ValueWithNote("40760101", "Somatotropin [Mass/volume] in Serum or Plasma --90 minutes post resting") },
             { "Growth hormone level 30min, serum", new ValueWithNote("40760100", "Somatotropin [Mass/volume] in Serum or Plasma --30 minutes post resting") },
             { "Cortisol level 15min, serum", new ValueWithNote("3018080", "Cortisol [Mass/volume] in Serum or Plasma --15 minutes post XXX challenge") },
@@ -1117,8 +1117,8 @@ internal class LabTestLookup : ILookup
             { "Methaemoglobin level, blood", new ValueWithNote("3005147", "Methemoglobin [Mass/volume] in Blood") },
             { "CALC LDL", new ValueWithNote("3038988", "Cholesterol in LDL [Moles/volume] in Serum or Plasma by calculation") },
             { "Haemoglobin", new ValueWithNote("3005872", "Hemoglobin [Presence] in Blood") },
-            { "G6PD level, blood", new ValueWithNote("44787112", "Glucose-6-Phosphate dehydrogenase/Pyruvate kinase [Ratio] in Blood") },
-            { "O_G6PD level, blood", new ValueWithNote("44787112", "Glucose-6-Phosphate dehydrogenase/Pyruvate kinase [Ratio] in Blood") },
+            { "G6PD level, blood", new ValueWithNote("44787112", "Glucose-6-Phosphate dehydrogenase/Pyruvate kinase [Ratio] in Blood") }, // ERROR: G6PD level (standalone enzyme activity) mapped to G6PD/Pyruvate kinase ratio — different test.
+            { "O_G6PD level, blood", new ValueWithNote("44787112", "Glucose-6-Phosphate dehydrogenase/Pyruvate kinase [Ratio] in Blood") }, // ERROR: G6PD level mapped to G6PD/PK ratio — different test.
             { "O_Vancomycin level, blood", new ValueWithNote("3039257", "Vancomycin [Moles/volume] in Serum or Plasma --trough") },
             { "Glutamic acid decarboxylase Ab, blood", new ValueWithNote("42528825", "Glutamate decarboxylase Ab [Presence] in Serum or Plasma by Immunofluorescence") },
             { "O_Glutamic acid decarboxylase Ab, blood", new ValueWithNote("42528825", "Glutamate decarboxylase Ab [Presence] in Serum or Plasma by Immunofluorescence") },
@@ -1128,10 +1128,10 @@ internal class LabTestLookup : ILookup
             { "O_Valproate level, blood", new ValueWithNote("3009466", "Valproate [Moles/volume] in Serum or Plasma") },
             { "O_Urate level, urine", new ValueWithNote("3033526", "Urate [Mass/volume] in Urine") },
             { "CV2/CRMP5, CSF", new ValueWithNote("3037012", "CV2 IgG Ab [Titer] in Cerebral spinal fluid") },
-            { "ACTH level 0min, plasma", new ValueWithNote("40763734", "Cortisol Free [Mass/volume] in Serum or Plasma --1 hour post dose corticotropin") },
+            { "ACTH level 0min, plasma", new ValueWithNote("40763734", "Cortisol Free [Mass/volume] in Serum or Plasma --1 hour post dose corticotropin") }, // ERROR: ACTH level at baseline (0min) mapped to Cortisol Free at 1 hour post corticotropin — wrong analyte and timing.
             { "CEA level, blood", new ValueWithNote("3013444", "Carcinoembryonic Ag [Units/volume] in Serum or Plasma") },
             { "O_CEA level, blood", new ValueWithNote("3013444", "Carcinoembryonic Ag [Units/volume] in Serum or Plasma") },
-            { "Ri (blot), CSF", new ValueWithNote("1175769", "Ma+Ta Ab [Units/volume] in Cerebral spinal fluid by Line blot") },
+            { "Ri (blot), CSF", new ValueWithNote("1175769", "Ma+Ta Ab [Units/volume] in Cerebral spinal fluid by Line blot") }, // ERROR: Ri antibody (ANNA-2) mapped to Ma+Ta antibody — different paraneoplastic antibody.
             { "Insulin IgG Ab level, blood", new ValueWithNote("40759653", "Insulin IgG Ab [Units/volume] in Serum") },
             { "O_Insulin IgG Ab level, blood", new ValueWithNote("40759653", "Insulin IgG Ab [Units/volume] in Serum") },
             { "Mouse IgE level, blood", new ValueWithNote("3012904", "Mouse multi IgE Ab [Units/volume] in Serum") },
@@ -1139,22 +1139,22 @@ internal class LabTestLookup : ILookup
             { "O_Alpha-fetoprotein level, blood", new ValueWithNote("3025053", "Alpha-1-Fetoprotein [Presence] in Serum or Plasma") },
             { "Apixaban level, blood", new ValueWithNote("43055442", "Apixaban [Mass/volume] in Serum or Plasma") },
             { "Titin Abs, blood", new ValueWithNote("42529128", "Titin IgG Ab [Presence] in Serum or Plasma by Line blot") },
-            { "Cortisol level 60min, serum", new ValueWithNote("3009084", "Cortisol [Mass/volume] in Serum or Plasma --56 hours post 40 ug corticotropin IM BID 3 day") },
+            { "Cortisol level 60min, serum", new ValueWithNote("3009084", "Cortisol [Mass/volume] in Serum or Plasma --56 hours post 40 ug corticotropin IM BID 3 day") }, // ERROR: Cortisol at 60 minutes mapped to cortisol at 56 hours — wrong timing.
             { "Phytanic acid level, plasma", new ValueWithNote("3021664", "Phytanate (C16:0(CH3)4) [Moles/volume] in Serum or Plasma") },
-            { "Thiopentone level, blood", new ValueWithNote("3011070", "Thiopental [Mass/volume] in Urine") },
+            { "Thiopentone level, blood", new ValueWithNote("3011070", "Thiopental [Mass/volume] in Urine") }, // ERROR: Blood specimen mapped to Urine concept — wrong specimen.
             { "O_Growth hormone level 30min, blood", new ValueWithNote("40760100", "Somatotropin [Mass/volume] in Serum or Plasma --30 minutes post resting") },
             { "O_PML-RARA gene screen, blood", new ValueWithNote("3022546", "t(15;17)(q24.1;q21.1)(PML,RARA) cells/Cells.total in Blood or Tissue by Molecular genetics method") },
             { "Chromogranin A level", new ValueWithNote("3014702", "Chromogranin A [Moles/volume] in Serum or Plasma") },
             { "PML-RARA gene screen, blood", new ValueWithNote("3022546", "t(15;17)(q24.1;q21.1)(PML,RARA) cells/Cells.total in Blood or Tissue by Molecular genetics method") },
             { "Creat (BG)", new ValueWithNote("3051825", "Creatinine [Mass/volume] in Blood") },
-            { "Glucose level 120min, plasma", new ValueWithNote("36660183", "Glucose [Mass/volume] in Serum or Plasma --15 min post meal") },
-            { "rApi m1 bee i208 IgE level, blood", new ValueWithNote("42528783", "Honey bee recombinant (rApi m) 10 IgE Ab [Units/volume] in Serum") },
+            { "Glucose level 120min, plasma", new ValueWithNote("36660183", "Glucose [Mass/volume] in Serum or Plasma --15 min post meal") }, // ERROR: 120 minutes ≠ 15 minutes post meal — wrong timing.
+            { "rApi m1 bee i208 IgE level, blood", new ValueWithNote("42528783", "Honey bee recombinant (rApi m) 10 IgE Ab [Units/volume] in Serum") }, // ERROR: rApi m1 (phospholipase A2) mapped to rApi m10 (icarapin) — different allergen component.
             { "Renin level 0min, plasma", new ValueWithNote("3037310", "Renin [Mass/volume] in Plasma") },
             { "O_Growth hormone level 90min, blood", new ValueWithNote("40760101", "Somatotropin [Mass/volume] in Serum or Plasma --90 minutes post resting") },
             { "Cryoglobulin type, blood", new ValueWithNote("3000429", "Cryoglobulin type [Identifier] in Serum by Electrophoresis") },
             { "O_Caffeine level, blood", new ValueWithNote("3028609", "Caffeine [Moles/volume] in Serum or Plasma") },
-            { "Gamma-glutamyl transpeptidase, blood", new ValueWithNote("1761624", "Gamma glutamyl transferase.macromolecular [Presence] in Serum or Plasma") },
-            { "O_Gamma-glutamyl transpeptidase, blood", new ValueWithNote("1761624", "Gamma glutamyl transferase.macromolecular [Presence] in Serum or Plasma") },
+            { "Gamma-glutamyl transpeptidase, blood", new ValueWithNote("1761624", "Gamma glutamyl transferase.macromolecular [Presence] in Serum or Plasma") }, // ERROR: Standard GGT mapped to macro-GGT (macromolecular form) — different entity.
+            { "O_Gamma-glutamyl transpeptidase, blood", new ValueWithNote("1761624", "Gamma glutamyl transferase.macromolecular [Presence] in Serum or Plasma") }, // ERROR: Standard GGT mapped to macro-GGT — different entity.
             { "CALC Base Excess", new ValueWithNote("3012501", "Base excess in Blood by calculation") },
             { "Methotrexate level, blood", new ValueWithNote("3017115", "Methotrexate [Moles/volume] in Serum or Plasma") },
             { "O_Methotrexate level, blood", new ValueWithNote("3017115", "Methotrexate [Moles/volume] in Serum or Plasma") },
@@ -1167,7 +1167,7 @@ internal class LabTestLookup : ILookup
             { "Urea", new ValueWithNote("3009810", "Urea [Mass/volume] in Blood") },
             { "O_Prolactin level, blood", new ValueWithNote("3004722", "Prolactin [Mass/volume] in Serum or Plasma") },
             { "Islet cell Ab level, blood", new ValueWithNote("3005593", "Pancreatic islet cell Ab [Titer] in Serum") },
-            { "Albumin", new ValueWithNote("3025268", "Albumin [Mass/volume] in Semen") },
+            { "Albumin", new ValueWithNote("3025268", "Albumin [Mass/volume] in Semen") }, // ERROR: Generic albumin mapped to Albumin in Semen — wrong specimen (likely intended as serum/blood).
             { "O_Islet cell Ab level, blood", new ValueWithNote("3005593", "Pancreatic islet cell Ab [Titer] in Serum") },
             { "Neutrophil function by flow cytometry", new ValueWithNote("36203200", "Neutrophils [#/volume] in Control Blood by Flow cytometry (FC)") },
             { "Day 1 Cortisol level, serum", new ValueWithNote("40757367", "Cortisol [Mass/volume] in Serum or Plasma --9 AM 2nd day specimen") },
@@ -1176,13 +1176,13 @@ internal class LabTestLookup : ILookup
             { "O_Other specific IgE (RAST) test", new ValueWithNote("3966278", "Miscellaneous allergen IgE Ab [Presence] in Serum by Radioallergosorbent test (RAST)") },
             { "Bet v 4 birch t220 IgE level, blood", new ValueWithNote("40763988", "White Birch IgE Ab/IgE total in Serum") },
             { "Platelet ATP, blood", new ValueWithNote("43533700", "Adenosine triphosphate/Adenosine diphosphate [Entitic molar ratio] in Platelets") },
-            { "Insulin level 0min, blood", new ValueWithNote("3029871", "Glucose [Mass/volume] in Serum or Plasma --15 minutes post 0.1 U/kg insulin") },
+            { "Insulin level 0min, blood", new ValueWithNote("3029871", "Glucose [Mass/volume] in Serum or Plasma --15 minutes post 0.1 U/kg insulin") }, // ERROR: Insulin level mapped to Glucose level; also 0min ≠ 15 minutes post insulin.
             { "pO2 ABG", new ValueWithNote("3027801", "Oxygen [Partial pressure] in Arterial blood") },
             { "Cortisol level 90min, serum", new ValueWithNote("3028229", "Cortisol [Mass/volume] in Serum or Plasma --8 hours post 40 ug corticotropin IM BID 3 day") },
             { "O_Cortisol level 45min, blood", new ValueWithNote("40759705", "Cortisol [Mass/volume] in Serum or Plasma --45 minutes post XXX challenge") },
             { "Amylase", new ValueWithNote("3043024", "Amylase [Presence] in Body fluid") },
             { "Total protein level, blood", new ValueWithNote("1469680", "Protein [Mass/volume] in Blood") },
-            { "Total IgE level, blood", new ValueWithNote("3039291", "Wheat IgE Ab/IgE total in Serum") },
+            { "Total IgE level, blood", new ValueWithNote("3039291", "Wheat IgE Ab/IgE total in Serum") }, // ERROR: Total IgE mapped to Wheat-specific IgE — total ≠ allergen-specific.
             { "O_Haemoglobinopathy screen, blood", new ValueWithNote("1989112", "Hemoglobinopathy panel") },
             { "Chilli pepper IgE level, blood", new ValueWithNote("3966718", "Chili Pepper IgE Ab [Presence] in Serum by Radioallergosorbent test (RAST)") },
             { "Haemoglobinopathy screen, blood", new ValueWithNote("1989112", "Hemoglobinopathy panel") },
@@ -1190,36 +1190,36 @@ internal class LabTestLookup : ILookup
             { "Non-HDL", new ValueWithNote("3044491", "Cholesterol non HDL [Mass/volume] in Serum or Plasma") },
             { "Vitamin E level, serum", new ValueWithNote("3006398", "Tocopherols [Moles/volume] in Serum or Plasma") },
             { "O_Parrot Ab level, blood", new ValueWithNote("40762007", "Parrot feather IgG Ab [Mass/volume] in Serum") },
-            { "Black olive IgE level, blood", new ValueWithNote("40761121", "Olive Pollen IgE Ab/IgE total in Serum") },
-            { "O_Black olive IgE level, blood", new ValueWithNote("40761121", "Olive Pollen IgE Ab/IgE total in Serum") },
-            { "O_ACTH level 120min,blood", new ValueWithNote("3049123", "Corticotropin [Mass/volume] in Plasma --12 AM specimen") },
+            { "Black olive IgE level, blood", new ValueWithNote("40761121", "Olive Pollen IgE Ab/IgE total in Serum") }, // ERROR: Black olive (food allergen) mapped to Olive Pollen (aeroallergen) — different allergen source.
+            { "O_Black olive IgE level, blood", new ValueWithNote("40761121", "Olive Pollen IgE Ab/IgE total in Serum") }, // ERROR: Black olive (food) mapped to Olive Pollen (aeroallergen) — different allergen source.
+            { "O_ACTH level 120min,blood", new ValueWithNote("3049123", "Corticotropin [Mass/volume] in Plasma --12 AM specimen") }, // ERROR: ACTH at 120 minutes post-stimulus mapped to Corticotropin at 12 AM (midnight specimen) — wrong timing context.
             { "Cholesterol:HDL ratio, blood", new ValueWithNote("3011163", "Cholesterol.total/Cholesterol in HDL [Mass Ratio] in Serum or Plasma") },
             { "Iohexol GFR", new ValueWithNote("3966002", "Iohexol renal clearance in Serum or Plasma or Urine") },
-            { "Cortisol level 240min, serum", new ValueWithNote("40761623", "Corticosterone [Moles/volume] in Serum or Plasma --30 minutes post 250 ug corticotropin") },
-            { "Transferrin Saturation", new ValueWithNote("3004789", "Transferrin [Mass/volume] in Serum or Plasma") },
+            { "Cortisol level 240min, serum", new ValueWithNote("40761623", "Corticosterone [Moles/volume] in Serum or Plasma --30 minutes post 250 ug corticotropin") }, // ERROR: Cortisol mapped to Corticosterone — different steroid hormone.
+            { "Transferrin Saturation", new ValueWithNote("3004789", "Transferrin [Mass/volume] in Serum or Plasma") }, // ERROR: Transferrin saturation (iron/TIBC ratio %) mapped to Transferrin concentration — different parameter.
             { "High molecular weight kininogen, blood", new ValueWithNote("3027049", "Kininogen HMW [Mass/volume] in Platelet poor plasma by Immunoassay") },
             { "Glucose (BG)", new ValueWithNote("3000483", "Glucose [Mass/volume] in Blood") },
             { "CRP", new ValueWithNote("3000965", "C reactive protein [Presence] in Serum or Plasma") },
             { "Myelin oligodendrocyte (MOG) ab, serum", new ValueWithNote("3005139", "Myelin IgG Ab [Titer] in Serum") },
             { "Live cell NMDA receptor antibody, blood", new ValueWithNote("42529112", "NMDAR IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") },
-            { "Ri Ab level, CSF", new ValueWithNote("3007368", "IgG [Mass/volume] in Cerebral spinal fluid") },
+            { "Ri Ab level, CSF", new ValueWithNote("3007368", "IgG [Mass/volume] in Cerebral spinal fluid") }, // ERROR: Ri antibody (specific paraneoplastic Ab) mapped to total IgG in CSF — different test.
             { "Ganglionic AChR antibody, blood", new ValueWithNote("1617214", "Acetylcholine receptor ganglionic neuronal IgG+IgM Ab [Moles/volume] in Serum by Immunoassay") },
             { "Meningococcal C Ab level, blood", new ValueWithNote("3023956", "Neisseria meningitidis serogroup C IgG Ab [Units/volume] in Serum") },
-            { "BE Act (BG)", new ValueWithNote("3016948", "Activated clotting time (ACT) of Blood by Coagulation assay") },
+            { "BE Act (BG)", new ValueWithNote("3016948", "Activated clotting time (ACT) of Blood by Coagulation assay") }, // ERROR: BE Act = Base Excess Actual (blood gas parameter); mapped to ACT (Activated Clotting Time) — completely different test.
             { "Cortisol level, serum", new ValueWithNote("3009682", "Cortisol [Mass/volume] in Serum or Plasma") },
             { "Dog dander IgE, blood", new ValueWithNote("40764094", "Dog dander IgE Ab/IgE total in Serum") },
             { "Absolute Monocytes", new ValueWithNote("3001604", "Monocytes [#/volume] in Blood") },
             { "O_Dog dander IgE, blood", new ValueWithNote("40764094", "Dog dander IgE Ab/IgE total in Serum") },
             { "Bilirubin", new ValueWithNote("40762888", "Bilirubin.total [Mass/volume] in Arterial blood") },
             { "O_Thyroglobulin Ab level, blood", new ValueWithNote("3024857", "Thyroglobulin Ab [Presence] in Serum") },
-            { "Potassium level 240min, blood", new ValueWithNote("3040170", "Potassium [Mass/time] in 24 hour Urine") },
+            { "Potassium level 240min, blood", new ValueWithNote("3040170", "Potassium [Mass/time] in 24 hour Urine") }, // ERROR: Potassium at 240min in blood mapped to Potassium in 24-hour Urine — wrong specimen and timing.
             { "O_Pristanic acid level, blood", new ValueWithNote("3020622", "Pristanate (C15:0(CH3)4) [Moles/volume] in Serum or Plasma") },
             { "Blood (dipstick), urine", new ValueWithNote("3037467", "Urinalysis macro (dipstick) panel - Urine") },
-            { "Mixed moulds IgE level, blood", new ValueWithNote("3002073", "Dry-rot Fungus IgE Ab [Units/volume] in Serum") },
-            { "O_Vitamin B6 level, blood", new ValueWithNote("21494411", "Vitamin B6 intake 24 hour Measured") },
+            { "Mixed moulds IgE level, blood", new ValueWithNote("3002073", "Dry-rot Fungus IgE Ab [Units/volume] in Serum") }, // ERROR: Mixed moulds (multiple species panel) mapped to single species (dry-rot fungus) — more specific.
+            { "O_Vitamin B6 level, blood", new ValueWithNote("21494411", "Vitamin B6 intake 24 hour Measured") }, // ERROR: Vitamin B6 blood level mapped to B6 dietary intake assessment — different test.
             { "O_Mixed moulds IgE level, blood", new ValueWithNote("3002073", "Dry-rot Fungus IgE Ab [Units/volume] in Serum") },
             { "CD4 Central Memory T Cells, blood", new ValueWithNote("3014037", "CD3+CD4+ (T4 helper) cells/cells in Blood") },
-            { "Nut mix FX22 IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") },
+            { "Nut mix FX22 IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") }, // ERROR: Nut mix (multiple nut panel) mapped to single nut (cashew) — more specific.
             { "Metadrenaline level, plasma", new ValueWithNote("3046750", "Metanephrine and Normetanephrine [Interpretation] in Serum or Plasma") },
             { "O_Cortisol level 30min, blood", new ValueWithNote("3007363", "Cortisol [Mass/volume] in Serum or Plasma --30 minutes post XXX challenge") },
             { "O_Haemoglobin S genotype screen, blood", new ValueWithNote("37020465", "Hemoglobin S inferred phenotype [Presence] in Blood or Tissue from Donor by Molecular genetics method") },
@@ -1231,50 +1231,50 @@ internal class LabTestLookup : ILookup
             { "O_Fat level, faeces", new ValueWithNote("3016508", "Fat [Mass/volume] in Stool") },
             { "IgH gene rearrangement screen, blood", new ValueWithNote("21492159", "IGH gene rearrangements [Presence] in Blood or Tissue by FISH") },
             { "Ca+ + (BG)", new ValueWithNote("3036426", "Calcium.ionized [Mass/volume] in Blood") },
-            { "C26:C22 ratio serum level, blood", new ValueWithNote("36305043", "Palmitoylcarnitine (C16)/Acetylcarnitine (C2) [Molar ratio] in Serum or Plasma") },
+            { "C26:C22 ratio serum level, blood", new ValueWithNote("36305043", "Palmitoylcarnitine (C16)/Acetylcarnitine (C2) [Molar ratio] in Serum or Plasma") }, // ERROR: C26:C22 (very long-chain fatty acid ratio) mapped to C16/C2 (acylcarnitine ratio) — different analytes.
             { "CD8 Central Memory T Cells, blood", new ValueWithNote("3007449", "CD3+CD8+ (T8 suppressor) cells/cells in Blood") },
-            { "Honey IgE level, blood", new ValueWithNote("3043963", "Honey bee IgE Ab/IgE total in Serum") },
-            { "O_Honey IgE level, blood", new ValueWithNote("3043963", "Honey bee IgE Ab/IgE total in Serum") },
+            { "Honey IgE level, blood", new ValueWithNote("3043963", "Honey bee IgE Ab/IgE total in Serum") }, // ERROR: Honey (food allergen) mapped to Honey bee (insect venom allergen) — different allergen source.
+            { "O_Honey IgE level, blood", new ValueWithNote("3043963", "Honey bee IgE Ab/IgE total in Serum") }, // ERROR: Honey (food) mapped to Honey bee (venom) — different allergen source.
             { "Bilirubin Urine Dipstick", new ValueWithNote("3030477", "Bilirubin.total [Presence] in Urine by Automated test strip") },
             { "Brain natriuretic peptide level, blood", new ValueWithNote("3031569", "Natriuretic peptide B [Mass/volume] in Blood") },
             { "O_Brain natriuretic peptide level, blood", new ValueWithNote("3031569", "Natriuretic peptide B [Mass/volume] in Blood") },
-            { "O_Cortisol level 60min, blood", new ValueWithNote("3009084", "Cortisol [Mass/volume] in Serum or Plasma --56 hours post 40 ug corticotropin IM BID 3 day") },
+            { "O_Cortisol level 60min, blood", new ValueWithNote("3009084", "Cortisol [Mass/volume] in Serum or Plasma --56 hours post 40 ug corticotropin IM BID 3 day") }, // ERROR: Cortisol at 60 minutes mapped to 56 hours — wrong timing.
             { "Vitamin D2 level, blood", new ValueWithNote("36031776", "25-hydroxyvitamin D2 [Mass/volume] in Capillary blood") },
             { "FIO2", new ValueWithNote("1469741", "Inspired oxygen information panel") },
             { "Absolute Eosinophils", new ValueWithNote("3013115", "Eosinophils [#/volume] in Blood") },
-            { "O_Insulin level, blood", new ValueWithNote("3046058", "Proinsulin/Insulin [Ratio] in Serum or Plasma") },
-            { "GABA(a)R antibody, blood", new ValueWithNote("42529108", "GABABR IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") },
-            { "% APTT normal plasma correction", new ValueWithNote("42870499", "Thrombin time actual/Normal") },
+            { "O_Insulin level, blood", new ValueWithNote("3046058", "Proinsulin/Insulin [Ratio] in Serum or Plasma") }, // ERROR: Insulin level mapped to Proinsulin/Insulin ratio — different test.
+            { "GABA(a)R antibody, blood", new ValueWithNote("42529108", "GABABR IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") }, // ERROR: GABA(a)R (GABA-A receptor) mapped to GABABR (GABA-B receptor) — different receptor subtypes.
+            { "% APTT normal plasma correction", new ValueWithNote("42870499", "Thrombin time actual/Normal") }, // ERROR: APTT correction study mapped to Thrombin time — different coagulation test.
             { "INR Therapeutic range", new ValueWithNote("3034426", "Prothrombin time (PT)") },
             { "CALC Saturated O2", new ValueWithNote("3039986", "Oxygen saturation Calculated from oxygen partial pressure in Capillary blood") },
             { "Ferret IgE level, blood", new ValueWithNote("40764104", "Ferret epithelium IgE Ab/IgE total in Serum") },
             { "O_Ferret IgE level, blood", new ValueWithNote("40764104", "Ferret epithelium IgE Ab/IgE total in Serum") },
-            { "Vitamin D level, blood", new ValueWithNote("36031776", "25-hydroxyvitamin D2 [Mass/volume] in Capillary blood") },
-            { "O_Vitamin D level, blood", new ValueWithNote("36031776", "25-hydroxyvitamin D2 [Mass/volume] in Capillary blood") },
-            { "Hepcidin level, serum", new ValueWithNote("3052622", "Pro-hepcidin [Mass/volume] in Serum or Plasma") },
+            { "Vitamin D level, blood", new ValueWithNote("36031776", "25-hydroxyvitamin D2 [Mass/volume] in Capillary blood") }, // ERROR: Total vitamin D level mapped to 25-hydroxyvitamin D2 only — misses D3 component.
+            { "O_Vitamin D level, blood", new ValueWithNote("36031776", "25-hydroxyvitamin D2 [Mass/volume] in Capillary blood") }, // ERROR: Total vitamin D mapped to D2 only — misses D3 component.
+            { "Hepcidin level, serum", new ValueWithNote("3052622", "Pro-hepcidin [Mass/volume] in Serum or Plasma") }, // ERROR: Hepcidin (active form) mapped to pro-hepcidin (precursor) — different molecule.
             { "Sodium level 0min, blood", new ValueWithNote("3000285", "Sodium [Moles/volume] in Blood") },
-            { "F-Actin antibody by Immunoblot", new ValueWithNote("43055089", "Myosin Ab [Presence] in Serum or Plasma by Immunoblot") },
+            { "F-Actin antibody by Immunoblot", new ValueWithNote("43055089", "Myosin Ab [Presence] in Serum or Plasma by Immunoblot") }, // ERROR: F-Actin antibody mapped to Myosin antibody — different cytoskeletal protein targets.
             { "Alpha-1-antitrypsin genotype, blood", new ValueWithNote("3046867", "Alpha 1 antitrypsin phenotype [Interpretation] in Serum or Plasma") },
             { "CALC Bicarbonate", new ValueWithNote("3011510", "Bicarbonate [Moles/volume] in Water") },
             { "O_Ganglionic Achr Abs, blood", new ValueWithNote("1617214", "Acetylcholine receptor ganglionic neuronal IgG+IgM Ab [Moles/volume] in Serum by Immunoassay") },
             { "Urea level 0min, blood", new ValueWithNote("3009810", "Urea [Mass/volume] in Blood") },
-            { "Switched memory (IgD- CD27+) - % B cells", new ValueWithNote("21493679", "CD27-IgD+ cells/Cells.CD19+CD20+ in Blood") },
+            { "Switched memory (IgD- CD27+) - % B cells", new ValueWithNote("21493679", "CD27-IgD+ cells/Cells.CD19+CD20+ in Blood") }, // ERROR: Switched memory B cells (IgD- CD27+) mapped to CD27-IgD+ (naïve B cells) — opposite phenotype.
             { "Total cholesterol level, blood", new ValueWithNote("1091261", "Total cholesterol from lipid profile") },
             { "O_Total cholesterol level, blood", new ValueWithNote("1091261", "Total cholesterol from lipid profile") },
-            { "Digoxin level, blood", new ValueWithNote("3005999", "Digoxin [Mass] of Dose") },
-            { "O_Digoxin level, blood", new ValueWithNote("3005999", "Digoxin [Mass] of Dose") },
+            { "Digoxin level, blood", new ValueWithNote("3005999", "Digoxin [Mass] of Dose") }, // ERROR: Digoxin level (serum concentration) mapped to Digoxin Dose (amount administered) — different parameter.
+            { "O_Digoxin level, blood", new ValueWithNote("3005999", "Digoxin [Mass] of Dose") }, // ERROR: Digoxin level mapped to Digoxin Dose — different parameter.
             { "Bee venom IgE level, blood", new ValueWithNote("3043963", "Honey bee IgE Ab/IgE total in Serum") },
             { "O_Bee venom IgE level, blood", new ValueWithNote("3043963", "Honey bee IgE Ab/IgE total in Serum") },
-            { "Fish mix FX2 IgE level, blood", new ValueWithNote("3043915", "Codfish IgE Ab/IgE total in Serum") },
+            { "Fish mix FX2 IgE level, blood", new ValueWithNote("3043915", "Codfish IgE Ab/IgE total in Serum") }, // ERROR: Fish mix panel (FX2: multiple fish) mapped to Codfish only — more specific.
             { "O_Cortisol level 90min, blood", new ValueWithNote("3018286", "Cortisol [Mass/volume] in Serum or Plasma --11 PM specimen") },
-            { "O_Cortisol level 240min, blood", new ValueWithNote("40761623", "Corticosterone [Moles/volume] in Serum or Plasma --30 minutes post 250 ug corticotropin") },
-            { "SLA/LP antibody by Immunoblot", new ValueWithNote("40759864", "PL-12 Ab [Presence] in Serum by Immunoblot") },
-            { "Food mix FX5 IgE level, blood", new ValueWithNote("3007307", "Food Allergen Mix fx73 (Beef+Chicken+Pork) IgE Ab [Presence] in Serum by Multidisk") },
+            { "O_Cortisol level 240min, blood", new ValueWithNote("40761623", "Corticosterone [Moles/volume] in Serum or Plasma --30 minutes post 250 ug corticotropin") }, // ERROR: Cortisol mapped to Corticosterone — different steroid hormone.
+            { "SLA/LP antibody by Immunoblot", new ValueWithNote("40759864", "PL-12 Ab [Presence] in Serum by Immunoblot") }, // ERROR: SLA/LP (soluble liver antigen/liver-pancreas) mapped to PL-12 (anti-aminoacyl-tRNA synthetase) — different autoantibody.
+            { "Food mix FX5 IgE level, blood", new ValueWithNote("3007307", "Food Allergen Mix fx73 (Beef+Chicken+Pork) IgE Ab [Presence] in Serum by Multidisk") }, // ERROR: FX5 (standard food mix: egg/milk/fish/wheat/peanut/soy) mapped to FX73 (meat mix) — different allergen mix.
             { "CD8 T cell count", new ValueWithNote("3026340", "CD5+CD8+ cells/cells in Blood") },
             { "ANA Titre, Blood", new ValueWithNote("3037522", "Nuclear Ab [Titer] in Serum") },
             { "Absolute Basophils", new ValueWithNote("3006315", "Basophils [#/volume] in Blood") },
             { "Na+ (BG)", new ValueWithNote("3000285", "Sodium [Moles/volume] in Blood") },
-            { "O_Vitamin E level, blood", new ValueWithNote("21494526", "Vitamin E intake 24 hour Measured") },
+            { "O_Vitamin E level, blood", new ValueWithNote("21494526", "Vitamin E intake 24 hour Measured") }, // ERROR: Vitamin E blood level mapped to Vitamin E dietary intake — different test.
             { "Omega-5 Gliadin IgE level, blood", new ValueWithNote("36031415", "Gliadin IgE Ab [Units/volume] in Serum") },
             { "Growth hormone level 60min, serum", new ValueWithNote("3052612", "Somatotropin [Units/volume] in Serum or Plasma --45 minutes post dose growth hormone releasing factor") },
             { "Vitamin A level, blood", new ValueWithNote("3006352", "Retinol [Mass/volume] in Blood") },
@@ -1284,54 +1284,54 @@ internal class LabTestLookup : ILookup
             { "Cortisol level 120min, serum", new ValueWithNote("3049457", "Cortisol [Mass/volume] in Serum or Plasma --12 AM specimen") },
             { "O_ANCA screen, blood", new ValueWithNote("3009628", "Neutrophil cytoplasmic Ab [Presence] in Serum") },
             { "vWF activity level, blood", new ValueWithNote("43534000", "von Willebrand factor (vWf).activity [Units/volume] in Platelet poor plasma by Immunoassay") },
-            { "O_Cytospin, CSF", new ValueWithNote("40771469", "Cytokeratin 19 [Mass/volume] in Cerebral spinal fluid") },
+            { "O_Cytospin, CSF", new ValueWithNote("40771469", "Cytokeratin 19 [Mass/volume] in Cerebral spinal fluid") }, // ERROR: Cytospin (cell preparation technique) mapped to Cytokeratin 19 (tumour marker protein) — completely different.
             { "O_vWF activity level, blood", new ValueWithNote("43534000", "von Willebrand factor (vWf).activity [Units/volume] in Platelet poor plasma by Immunoassay") },
             { "Ristocetin cofactor assay, blood", new ValueWithNote("36306070", "von Willebrand factor.ristocetin cofactor inhibitor [Units/volume] in Platelet poor plasma by Coagulation assay") },
-            { "Mutton IgE level, blood", new ValueWithNote("3041637", "Turkey meat IgE Ab/IgE total in Serum") },
-            { "O_Mutton IgE level, blood", new ValueWithNote("3041637", "Turkey meat IgE Ab/IgE total in Serum") },
+            { "Mutton IgE level, blood", new ValueWithNote("3041637", "Turkey meat IgE Ab/IgE total in Serum") }, // ERROR: Mutton (sheep meat) mapped to Turkey meat — different species.
+            { "O_Mutton IgE level, blood", new ValueWithNote("3041637", "Turkey meat IgE Ab/IgE total in Serum") }, // ERROR: Mutton mapped to Turkey meat — different species.
             { "O_Growth hormone level 60min, blood", new ValueWithNote("40760100", "Somatotropin [Mass/volume] in Serum or Plasma --30 minutes post resting") },
             { "Platelet genetics full sequencing Band 3", new ValueWithNote("1761870", "Platelet disorders multigene analysis in Blood or Tissue by Sequencing") },
             { "Paracetamol level, blood", new ValueWithNote("40763107", "Acetaminophen [Mass/volume] in Blood") },
             { "O_Paracetamol level, blood", new ValueWithNote("40763107", "Acetaminophen [Mass/volume] in Blood") },
             { "ADP platelet agglutination, blood", new ValueWithNote("3017055", "Platelet aggregation ADP induced in Platelet rich plasma") },
-            { "O_Complement function, blood", new ValueWithNote("3035351", "Complement+Immunoglobulin [Presence] in Red Blood Cells") },
-            { "IgG Lambda Heavy Chain Measurement, bloo", new ValueWithNote("3004640", "Lambda light chains [Mass/volume] in Serum or Plasma") },
+            { "O_Complement function, blood", new ValueWithNote("3035351", "Complement+Immunoglobulin [Presence] in Red Blood Cells") }, // ERROR: Complement function test mapped to Complement+Ig on RBCs (DAT-like test) — different assay.
+            { "IgG Lambda Heavy Chain Measurement, bloo", new ValueWithNote("3004640", "Lambda light chains [Mass/volume] in Serum or Plasma") }, // ERROR: IgG Lambda heavy chain mapped to Lambda free light chains — heavy chain ≠ light chain.
             { "Insulin level 120min, blood", new ValueWithNote("36660450", "Insulin [Units/volume] in Serum or Plasma --15 min post meal") },
             { "Gentamicin timing,blood", new ValueWithNote("3053140", "Gentamicin [Moles/volume] in Serum or Plasma") },
             { "O_Glucose level 90min, blood", new ValueWithNote("3020260", "Glucose [Mass/volume] in Serum or Plasma --45 minutes post 100 g glucose PO") },
             { "O_Mitochondrial Abs, blood", new ValueWithNote("43055284", "Mitochondria M2-3E IgG Ab [Presence] in Serum by Immunoassay") },
-            { "C24:C22 ratio serum level, blood", new ValueWithNote("36303549", "Tetradecenoylcarnitine (C14:1)/Acetylcarnitine (C2) [Molar ratio] in Serum or Plasma") },
+            { "C24:C22 ratio serum level, blood", new ValueWithNote("36303549", "Tetradecenoylcarnitine (C14:1)/Acetylcarnitine (C2) [Molar ratio] in Serum or Plasma") }, // ERROR: C24:C22 (VLCFA ratio) mapped to C14:1/C2 (acylcarnitine ratio) — different analytes.
             { "Pneumococcal serotype S14 antibody", new ValueWithNote("3031278", "Streptococcus pneumoniae 14 serotypes IgG panel A [Mass/volume] - Serum") },
-            { "Jo-1 Ab level, blood", new ValueWithNote("1092250", "Jo sup(a) Ab [Titer] in Serum or Plasma") },
+            { "Jo-1 Ab level, blood", new ValueWithNote("1092250", "Jo sup(a) Ab [Titer] in Serum or Plasma") }, // ERROR: Jo-1 (anti-histidyl-tRNA synthetase, myositis Ab) mapped to Jo(a) (Kidd blood group Ab) — completely different antibodies.
             { "O_PNH cell marker analysis, blood", new ValueWithNote("1175525", "PNH GPI-Linked WBC and RBC Ag Panel - Blood") },
-            { "Red blood cell vitamin B1, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") },
+            { "Red blood cell vitamin B1, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") }, // ERROR: Vitamin B1 (thiamine) mapped to Vitamin B12 (cobalamin) — different vitamins.
             { "Band forms count, blood", new ValueWithNote("3018199", "Band form neutrophils [#/volume] in Blood") },
-            { "Ristocetin 1.2 mg/ml, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") },
-            { "Dexamethasone level(Overnight Dex Supp)", new ValueWithNote("3026486", "Cortisol [Moles/volume] in Serum or Plasma --17 hours post 1 mg dexamethasone PO overnight") },
+            { "Ristocetin 1.2 mg/ml, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") }, // ERROR: Ristocetin-induced platelet aggregation mapped to Magnesium — completely unrelated.
+            { "Dexamethasone level(Overnight Dex Supp)", new ValueWithNote("3026486", "Cortisol [Moles/volume] in Serum or Plasma --17 hours post 1 mg dexamethasone PO overnight") }, // ERROR: Dexamethasone level (drug concentration) mapped to Cortisol level (hormone response) — different analyte.
             { "O_Growth hormone level 150min, blood", new ValueWithNote("40760003", "Somatotropin [Mass/volume] in Serum or Plasma --160 minutes post exercise") },
             { "pO2 (BG)", new ValueWithNote("3027315", "Oxygen [Partial pressure] in Blood") },
             { "Growth hormone level, serum", new ValueWithNote("3023709", "Somatotropin [Mass/volume] in Serum or Plasma") },
-            { "Factor IX level, blood", new ValueWithNote("3021326", "Factor IX given [Volume]") },
+            { "Factor IX level, blood", new ValueWithNote("3021326", "Factor IX given [Volume]") }, // ERROR: Factor IX level (activity/measurement) mapped to Factor IX given (dose administered) — different parameter.
             { "O_Paraneoplastic Ab level, blood", new ValueWithNote("3031964", "Paraneoplastic Ab panel - Serum") },
-            { "Ristocetin 0.6 mg/ml, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") },
-            { "O_Factor IX level, blood", new ValueWithNote("3021326", "Factor IX given [Volume]") },
+            { "Ristocetin 0.6 mg/ml, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") }, // ERROR: Ristocetin-induced platelet aggregation mapped to Magnesium — completely unrelated.
+            { "O_Factor IX level, blood", new ValueWithNote("3021326", "Factor IX given [Volume]") }, // ERROR: Factor IX level mapped to Factor IX given (dose) — different parameter.
             { "O_Glucose level 60min, blood", new ValueWithNote("36660135", "Glucose [Mass/volume] in Serum or Plasma --30 min post meal") },
             { "Growth hormone level 150min, serum", new ValueWithNote("40760101", "Somatotropin [Mass/volume] in Serum or Plasma --90 minutes post resting") },
-            { "Chromogranin B level, blood", new ValueWithNote("3014702", "Chromogranin A [Moles/volume] in Serum or Plasma") },
-            { "P3NP level, serum", new ValueWithNote("3038143", "Amylase.P3/Amylase.total in Serum or Plasma") },
+            { "Chromogranin B level, blood", new ValueWithNote("3014702", "Chromogranin A [Moles/volume] in Serum or Plasma") }, // ERROR: Chromogranin B mapped to Chromogranin A — different protein.
+            { "P3NP level, serum", new ValueWithNote("3038143", "Amylase.P3/Amylase.total in Serum or Plasma") }, // ERROR: P3NP (procollagen III N-terminal peptide, fibrosis marker) mapped to Amylase P3 isoform ratio — completely different analyte.
             { "Suxamethonium IgE level, blood", new ValueWithNote("3005103", "Succinylcholine IgE Ab [Units/volume] in Serum") },
             { "O_Suxamethonium IgE level, blood", new ValueWithNote("3005103", "Succinylcholine IgE Ab [Units/volume] in Serum") },
             { "PO2", new ValueWithNote("3003246", "Oxygen [Partial pressure] in Exhaled gas") },
-            { "Total protein", new ValueWithNote("3035472", "Albumin/Protein.total in Serum or Plasma") },
+            { "Total protein", new ValueWithNote("3035472", "Albumin/Protein.total in Serum or Plasma") }, // ERROR: Total protein (concentration) mapped to Albumin/Total protein ratio — different parameter.
             { "O_Sickle cell screen, blood", new ValueWithNote("1091979", "Sickle cells [Presence] in Blood") },
-            { "nGal d 1 ovomucoid f233 IgE level, blood", new ValueWithNote("40761901", "Conalbumin native (nGal d) 3 IgE Ab [Units/volume] in Serum") },
+            { "nGal d 1 ovomucoid f233 IgE level, blood", new ValueWithNote("40761901", "Conalbumin native (nGal d) 3 IgE Ab [Units/volume] in Serum") }, // ERROR: nGal d 1 (ovomucoid) mapped to nGal d 3 (conalbumin/ovotransferrin) — different egg allergen component.
             { "O_Porphyrin screen, blood", new ValueWithNote("1002300", "Porphyrin fractions panel - Urine") },
             { "Urine period", new ValueWithNote("3007876", "Appearance of Urine") },
             { "Cortisol level 0min, serum", new ValueWithNote("3008497", "Cortisol [Mass/volume] in Serum or Plasma --1 minute post XXX challenge") },
             { "AMPA2 receptor antibody", new ValueWithNote("42529111", "AMPAR2 IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") },
             { "Factor VIII inhibitor level, blood", new ValueWithNote("3011699", "Coagulation factor VIII inhibitor [Presence] in Platelet poor plasma by Coagulation assay") },
             { "O_Factor VIII inhibitor level, blood", new ValueWithNote("3011699", "Coagulation factor VIII inhibitor [Presence] in Platelet poor plasma by Coagulation assay") },
-            { "Creatinine level 0min, blood", new ValueWithNote("3040510", "Creatinine [Moles/time] in 1 hour Urine") },
+            { "Creatinine level 0min, blood", new ValueWithNote("3040510", "Creatinine [Moles/time] in 1 hour Urine") }, // ERROR: Creatinine at 0min in blood mapped to creatinine in 1-hour Urine — wrong specimen.
             { "Platelet genetics full sequencing Band 1", new ValueWithNote("1761870", "Platelet disorders multigene analysis in Blood or Tissue by Sequencing") },
             { "Platelet genetics full sequencing Band 2", new ValueWithNote("1761870", "Platelet disorders multigene analysis in Blood or Tissue by Sequencing") },
             { "Factor XIII level, blood", new ValueWithNote("3013178", "Coagulation factor XIII Ag actual/normal in Platelet poor plasma by Immunoassay") },
@@ -1344,15 +1344,15 @@ internal class LabTestLookup : ILookup
             { "O_Growth hormone level 120min, blood", new ValueWithNote("40771483", "Somatotropin [Mass/volume] in Serum or Plasma --130 minutes post exercise") },
             { "Parathyroid hormone level, plasma", new ValueWithNote("3024040", "Parathyrin [Interpretation] in Serum or Plasma") },
             { "Glucose", new ValueWithNote("3000483", "Glucose [Mass/volume] in Blood") },
-            { "Sodium", new ValueWithNote("3029627", "Sodium [Mass/mass] in Hair") },
+            { "Sodium", new ValueWithNote("3029627", "Sodium [Mass/mass] in Hair") }, // ERROR: Generic sodium test mapped to Sodium in Hair — wrong specimen (likely intended as blood).
             { "O_Full Blood Count", new ValueWithNote("3002317", "Cells Counted Total [#] in Blood") },
             { "O2 Sat (BG)", new ValueWithNote("3013502", "Oxygen saturation in Blood") },
             { "Anti-Mullerian hormone level, serum", new ValueWithNote("3049799", "Mullerian inhibiting substance [Moles/volume] in Serum or Plasma") },
             { "Lymphocyte function test, flow cytometry", new ValueWithNote("3012323", "Lymphocytes/Leukocytes in Blood by Flow cytometry (FC)") },
-            { "Myelin oligodendrocyte (MOG) ab, CSF", new ValueWithNote("46234774", "IgG [Moles/volume] in Cerebral spinal fluid") },
-            { "Quail serum proteins IgG antibodies", new ValueWithNote("3050281", "Chicken serum proteins IgG Ab [Presence] in Serum") },
-            { "Nut mix IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") },
-            { "O_Nut mix IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") },
+            { "Myelin oligodendrocyte (MOG) ab, CSF", new ValueWithNote("46234774", "IgG [Moles/volume] in Cerebral spinal fluid") }, // ERROR: MOG antibody (specific anti-MOG Ab) mapped to total IgG in CSF — different test.
+            { "Quail serum proteins IgG antibodies", new ValueWithNote("3050281", "Chicken serum proteins IgG Ab [Presence] in Serum") }, // ERROR: Quail serum proteins mapped to Chicken serum proteins — different bird species.
+            { "Nut mix IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") }, // ERROR: Nut mix (multiple nut panel) mapped to Cashew nut only — more specific.
+            { "O_Nut mix IgE level, blood", new ValueWithNote("3052099", "Cashew nut IgE Ab/IgE total in Serum") }, // ERROR: Nut mix mapped to Cashew nut only — more specific.
             { "O_Platelet nucleotides, blood", new ValueWithNote("43533700", "Adenosine triphosphate/Adenosine diphosphate [Entitic molar ratio] in Platelets") },
             { "Growth hormone level 120min, serum", new ValueWithNote("40760101", "Somatotropin [Mass/volume] in Serum or Plasma --90 minutes post resting") },
             { "Growth hormone level 240min, serum", new ValueWithNote("40760100", "Somatotropin [Mass/volume] in Serum or Plasma --30 minutes post resting") },
@@ -1362,86 +1362,86 @@ internal class LabTestLookup : ILookup
             { "O_Aminophylline level, blood", new ValueWithNote("3009072", "Theophylline [Mass/volume] in Blood") },
             { "Fixed cell NMDA receptor antibody, blood", new ValueWithNote("42529112", "NMDAR IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") },
             { "Total CO2", new ValueWithNote("3001288", "Carbon dioxide, total [Moles/volume] in Body fluid") },
-            { "ADAMTS13 activity, blood", new ValueWithNote("1989260", "ADAMTS13 gene full mutation analysis in Blood or Tissue by Sequencing") },
+            { "ADAMTS13 activity, blood", new ValueWithNote("1989260", "ADAMTS13 gene full mutation analysis in Blood or Tissue by Sequencing") }, // ERROR: ADAMTS13 activity (enzyme function test) mapped to ADAMTS13 gene sequencing — different test type.
             { "Ovarian Ab level, blood", new ValueWithNote("3044866", "Ovary Ab [Titer] in Serum") },
             { "O_Phytanic acid level, blood", new ValueWithNote("3021664", "Phytanate (C16:0(CH3)4) [Moles/volume] in Serum or Plasma") },
             { "Factor VIII Inhibitor screen, blood", new ValueWithNote("3011699", "Coagulation factor VIII inhibitor [Presence] in Platelet poor plasma by Coagulation assay") },
             { "O_Factor VIII Inhibitor screen, blood", new ValueWithNote("3011699", "Coagulation factor VIII inhibitor [Presence] in Platelet poor plasma by Coagulation assay") },
             { "Rare Inherited Anaemia panel", new ValueWithNote("1989577", "Hemolytic anemia panel") },
-            { "APTT inhibitor screen,blood", new ValueWithNote("3016948", "Activated clotting time (ACT) of Blood by Coagulation assay") },
+            { "APTT inhibitor screen,blood", new ValueWithNote("3016948", "Activated clotting time (ACT) of Blood by Coagulation assay") }, // ERROR: APTT inhibitor screen mapped to Activated Clotting Time (ACT) — different test.
             { "Progesterone screen, blood", new ValueWithNote("3022188", "Progesterone [Moles/volume] in Serum or Plasma --3rd specimen post XXX challenge") },
             { "O_Progesterone screen, blood", new ValueWithNote("3022188", "Progesterone [Moles/volume] in Serum or Plasma --3rd specimen post XXX challenge") },
             { "ELF Score, serum", new ValueWithNote("36305723", "Liver fibrosis score in Serum or Plasma by Calculated by ELF") },
             { "AML MRD", new ValueWithNote("3965536", "Acute myeloid leukemia minimal residual disease in Bone marrow by Flow cytometry (FC) Narrative") },
-            { "Mixed trees IgE level, blood", new ValueWithNote("40764045", "Cajeput tree IgE Ab/IgE total in Serum") },
+            { "Mixed trees IgE level, blood", new ValueWithNote("40764045", "Cajeput tree IgE Ab/IgE total in Serum") }, // ERROR: Mixed trees panel mapped to single species (Cajeput tree) — more specific.
             { "O_Hen (serum) antibodies, blood", new ValueWithNote("3038781", "Chicken feather IgG Ab [Presence] in Serum") },
             { "O_Iron level, blood", new ValueWithNote("3046728", "Iron [Presence] in Serum or Plasma") },
-            { "IgA Lambda Heavy Chain Measurement, bloo", new ValueWithNote("21493214", "Lambda light chains.free [Mass/volume] in Serum by Nephelometry") },
+            { "IgA Lambda Heavy Chain Measurement, bloo", new ValueWithNote("21493214", "Lambda light chains.free [Mass/volume] in Serum by Nephelometry") }, // ERROR: IgA Lambda heavy chain mapped to Lambda free light chains — heavy chain ≠ light chain.
             { "O_Glucose level 120min, blood", new ValueWithNote("3034530", "Glucose [Mass/volume] in Blood --2 hours post meal") },
-            { "LGI1 antibody, CSF", new ValueWithNote("3008278", "IgA [Mass/volume] in Cerebral spinal fluid") },
+            { "LGI1 antibody, CSF", new ValueWithNote("3008278", "IgA [Mass/volume] in Cerebral spinal fluid") }, // ERROR: LGI1 antibody (specific autoantibody) mapped to total IgA in CSF — different test.
             { "Pemphigoid Ab level, blood", new ValueWithNote("1470029", "P200 pemphigoid IgG Ab [Presence] in Serum or Plasma by Immunofluorescence") },
             { "50:50 normal plasma DRVVT, blood", new ValueWithNote("3027112", "dRVVT actual/normal [Presence] in Platelet poor plasma by Coagulation assay") },
-            { "nGal d 2 ovalbumin f232 IgE level, blood", new ValueWithNote("40761901", "Conalbumin native (nGal d) 3 IgE Ab [Units/volume] in Serum") },
-            { "O_Fat globules detection, faeces", new ValueWithNote("3043695", "Oval fat bodies (globules) [#/area] in Urine sediment by Automated count") },
-            { "Immunoglobulin G level, blood", new ValueWithNote("3040832", "Hemoglobin G/Hemoglobin.total in Blood") },
+            { "nGal d 2 ovalbumin f232 IgE level, blood", new ValueWithNote("40761901", "Conalbumin native (nGal d) 3 IgE Ab [Units/volume] in Serum") }, // ERROR: nGal d 2 (ovalbumin) mapped to nGal d 3 (conalbumin) — different egg allergen component.
+            { "O_Fat globules detection, faeces", new ValueWithNote("3043695", "Oval fat bodies (globules) [#/area] in Urine sediment by Automated count") }, // ERROR: Fat globules in faeces mapped to oval fat bodies in Urine — wrong specimen.
+            { "Immunoglobulin G level, blood", new ValueWithNote("3040832", "Hemoglobin G/Hemoglobin.total in Blood") }, // ERROR: IgG (Immunoglobulin G) mapped to Hemoglobin G — completely different analyte.
             { "dsDNA Ab level, blood", new ValueWithNote("40766112", "DNA double strand IgG Ab [Titer] in Serum") },
             { "O_Testosterone level, blood", new ValueWithNote("3008893", "Testosterone [Mass/volume] in Serum or Plasma") },
-            { "O_Immunoglobulin G level, blood", new ValueWithNote("3040832", "Hemoglobin G/Hemoglobin.total in Blood") },
+            { "O_Immunoglobulin G level, blood", new ValueWithNote("3040832", "Hemoglobin G/Hemoglobin.total in Blood") }, // ERROR: IgG (Immunoglobulin G) mapped to Hemoglobin G — completely different analyte.
             { "O_dsDNA Ab level, blood", new ValueWithNote("40766112", "DNA double strand IgG Ab [Titer] in Serum") },
             { "Tr Abs, blood", new ValueWithNote("40768035", "Tr sup(a) Ab [Presence] in Serum or Plasma") },
             { "Cortisol level (Overnight Dex Supp Test", new ValueWithNote("3048821", "Cortisol [Moles/volume] in Serum or Plasma --post 1 mg dexamethasone PO overnight") },
             { "Factor XII level, blood", new ValueWithNote("3002348", "Coagulation factor XII activity actual/normal in Platelet poor plasma by Coagulation assay") },
-            { "Grass pollen IgE level, blood", new ValueWithNote("40761121", "Olive Pollen IgE Ab/IgE total in Serum") },
-            { "Aubergine IgE level, blood", new ValueWithNote("40763994", "Cabbage IgE Ab/IgE total in Serum") },
+            { "Grass pollen IgE level, blood", new ValueWithNote("40761121", "Olive Pollen IgE Ab/IgE total in Serum") }, // ERROR: Grass pollen IgE mapped to Olive pollen IgE — different allergen.
+            { "Aubergine IgE level, blood", new ValueWithNote("40763994", "Cabbage IgE Ab/IgE total in Serum") }, // ERROR: Aubergine (eggplant) IgE mapped to Cabbage IgE — different vegetable.
             { "O_Factor XII level, blood", new ValueWithNote("3002348", "Coagulation factor XII activity actual/normal in Platelet poor plasma by Coagulation assay") },
-            { "O_Aubergine IgE level, blood", new ValueWithNote("40763994", "Cabbage IgE Ab/IgE total in Serum") },
+            { "O_Aubergine IgE level, blood", new ValueWithNote("40763994", "Cabbage IgE Ab/IgE total in Serum") }, // ERROR: Aubergine (eggplant) IgE mapped to Cabbage IgE — different vegetable.
             { "PRP platelet count, blood", new ValueWithNote("1092269", "Platelets [Presence] in Blood") },
             { "K+ (BG)", new ValueWithNote("21490733", "Potassium [Mass/volume] in Blood") },
             { "Glycated haemoglobin reference, blood", new ValueWithNote("3039720", "Glucose mean value [Moles/volume] in Blood Estimated from glycated hemoglobin") },
             { "Pneumococcal serotype S18C antibody", new ValueWithNote("3039571", "Streptococcus pneumoniae Danish serotype 18C IgG Ab [Mass/volume] in Serum by Immunoassay") },
-            { "Tree mix tx8 IgE level, blood", new ValueWithNote("40764065", "Cottonwood IgE Ab/IgE total in Serum") },
+            { "Tree mix tx8 IgE level, blood", new ValueWithNote("40764065", "Cottonwood IgE Ab/IgE total in Serum") }, // ERROR: Tree pollen mix (tx8) mapped to single species (Cottonwood) — more specific.
             { "Collagen platelet agg, whole blood", new ValueWithNote("40759129", "Platelet aggregation collagen induced in Blood --1 ug/mL") },
-            { "Ristocetin 1.25 mg/ml level, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") },
-            { "CD40L (Hyper IgM) Assay", new ValueWithNote("3051946", "CD40 cells [#/volume] in Blood") },
-            { "Factor XIII sequencing, blood", new ValueWithNote("42870548", "TNFRSF13B gene full mutation analysis in Blood or Tissue by Sequencing") },
+            { "Ristocetin 1.25 mg/ml level, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") }, // ERROR: Ristocetin-induced platelet aggregation mapped to Magnesium — completely unrelated.
+            { "CD40L (Hyper IgM) Assay", new ValueWithNote("3051946", "CD40 cells [#/volume] in Blood") }, // ERROR: CD40L (CD40 ligand, CD154) mapped to CD40 (receptor) — different molecule.
+            { "Factor XIII sequencing, blood", new ValueWithNote("42870548", "TNFRSF13B gene full mutation analysis in Blood or Tissue by Sequencing") }, // ERROR: Factor XIII gene (F13A1/F13B) mapped to TNFRSF13B gene (TACI, immunodeficiency gene) — wrong gene.
             { "Red blood cell count, blood", new ValueWithNote("3026361", "Erythrocytes [#/volume] in Blood") },
             { "ABL transcript ratio ratio, blood", new ValueWithNote("3029271", "t(9;22)(q34.1;q11)(ABL1,BCR) fusion transcript/control transcript [Log Number Ratio] in Blood or Tissue by Molecular genetics method") },
             { "P53 sequencing, blood", new ValueWithNote("3965027", "Copy number variation analysis in Blood or Tissue by Sequencing") },
             { "Linseed IgE level, blood", new ValueWithNote("1617718", "Flaxseed IgE Ab [Units/volume] in Serum") },
             { "O_Linseed IgE level, blood", new ValueWithNote("1617718", "Flaxseed IgE Ab [Units/volume] in Serum") },
-            { "IgM Lambda Heavy Chain Measurement, bloo", new ValueWithNote("3002067", "Lambda light chains [Mass/time] in 24 hour Urine") },
-            { "Factor IX Post dose level", new ValueWithNote("3021326", "Factor IX given [Volume]") },
+            { "IgM Lambda Heavy Chain Measurement, bloo", new ValueWithNote("3002067", "Lambda light chains [Mass/time] in 24 hour Urine") }, // ERROR: IgM Lambda heavy chain mapped to Lambda light chains in 24hr Urine — wrong analyte and specimen.
+            { "Factor IX Post dose level", new ValueWithNote("3021326", "Factor IX given [Volume]") }, // ERROR: Factor IX post-dose level (activity measurement) mapped to Factor IX given (dose administered) — different parameter.
             { "O_Factor XIII screen, blood", new ValueWithNote("3029727", "Coagulation factor XIII inhibitor [Presence] in Platelet poor plasma by Chromogenic method") },
             { "Cardiac muscle Ab level, blood", new ValueWithNote("3032053", "Myocardium IgG Ab [Presence] in Serum") },
             { "O_Cardiac muscle Ab level, blood", new ValueWithNote("3032053", "Myocardium IgG Ab [Presence] in Serum") },
             { "O_Cortisol level 120min, blood", new ValueWithNote("3049457", "Cortisol [Mass/volume] in Serum or Plasma --12 AM specimen") },
             { "CD19 B cells percentage", new ValueWithNote("3010503", "CD19 cells [#/volume] in Blood") },
             { "Heparin Assay", new ValueWithNote("3024856", "Heparin unfractionated [Units/volume] in Platelet poor plasma by Coagulation assay") },
-            { "Grass mix GX1 IgE level, blood", new ValueWithNote("3032672", "Canary grass IgE Ab/IgE total in Serum") },
-            { "O_Factor VIII level, blood", new ValueWithNote("3000104", "Factor VIII given [Volume]") },
+            { "Grass mix GX1 IgE level, blood", new ValueWithNote("3032672", "Canary grass IgE Ab/IgE total in Serum") }, // ERROR: Grass mix GX1 (multiple grass panel) mapped to single species (Canary grass) — more specific.
+            { "O_Factor VIII level, blood", new ValueWithNote("3000104", "Factor VIII given [Volume]") }, // ERROR: Factor VIII level (activity measurement) mapped to Factor VIII given (dose administered) — different parameter.
             { "O_Adrenocorticotrophic hormone, blood", new ValueWithNote("3035637", "Corticotropin [Mass/volume] in Plasma") },
-            { "Factor VIII level, blood", new ValueWithNote("3000104", "Factor VIII given [Volume]") },
+            { "Factor VIII level, blood", new ValueWithNote("3000104", "Factor VIII given [Volume]") }, // ERROR: Factor VIII level (activity measurement) mapped to Factor VIII given (dose administered) — different parameter.
             { "Haemoglobinopathy interpretation", new ValueWithNote("3015697", "Hemoglobin pattern [Interpretation] in Blood") },
             { "Pneumococcal serotype S19A antibody", new ValueWithNote("3041719", "Streptococcus pneumoniae Danish serotype 19A IgG Ab [Mass/volume] in Serum by Immunoassay") },
-            { "Myeloid panel", new ValueWithNote("3031639", "Reticulocytes panel - Blood") },
+            { "Myeloid panel", new ValueWithNote("3031639", "Reticulocytes panel - Blood") }, // ERROR: Myeloid panel (myeloid lineage markers) mapped to Reticulocytes panel (RBC precursors) — different cell lineage.
             { "Leucocyte immunophenotyping interp", new ValueWithNote("40758359", "Immunophenotyping study") },
-            { "Sox-1 Abs, blood", new ValueWithNote("1469635", "SOX11 [Presence] in Tissue by Immune stain") },
+            { "Sox-1 Abs, blood", new ValueWithNote("1469635", "SOX11 [Presence] in Tissue by Immune stain") }, // ERROR: Sox-1 antibody (paraneoplastic neural Ab) mapped to SOX11 (tissue marker/transcription factor) — different protein.
             { "Chol/HDL", new ValueWithNote("3011884", "Cholesterol in HDL [Presence] in Serum or Plasma") },
             { "Absolute Lymphocytes", new ValueWithNote("3019198", "Lymphocytes [#/volume] in Blood") },
             { "O_Cortisol level 0min, blood", new ValueWithNote("3008497", "Cortisol [Mass/volume] in Serum or Plasma --1 minute post XXX challenge") },
-            { "Dihydrotestosterone, blood", new ValueWithNote("3028569", "Dehydrochlormethyltestosterone [Mass/volume] in Urine") },
+            { "Dihydrotestosterone, blood", new ValueWithNote("3028569", "Dehydrochlormethyltestosterone [Mass/volume] in Urine") }, // ERROR: DHT (dihydrotestosterone, natural androgen) mapped to Dehydrochlormethyltestosterone (Oral Turinabol, anabolic steroid) — different substance, wrong specimen.
             { "Potassium level 0min, blood", new ValueWithNote("21490733", "Potassium [Mass/volume] in Blood") },
             { "Growth hormone level 0min, serum", new ValueWithNote("21492324", "Somatotropin [Units/volume] in Serum or Plasma --45 minutes post XXX challenge") },
-            { "Unswitched memory (IgD+ CD27+), blood", new ValueWithNote("21493675", "CD27+IgD- cells/Cells.CD19+CD20+ in Blood") },
-            { "O_Dihydrotestosterone, blood", new ValueWithNote("3028569", "Dehydrochlormethyltestosterone [Mass/volume] in Urine") },
+            { "Unswitched memory (IgD+ CD27+), blood", new ValueWithNote("21493675", "CD27+IgD- cells/Cells.CD19+CD20+ in Blood") }, // ERROR: Unswitched memory B cells (IgD+ CD27+) mapped to CD27+IgD- (class-switched memory) — opposite IgD phenotype.
+            { "O_Dihydrotestosterone, blood", new ValueWithNote("3028569", "Dehydrochlormethyltestosterone [Mass/volume] in Urine") }, // ERROR: DHT mapped to Dehydrochlormethyltestosterone (Oral Turinabol) — different substance, wrong specimen.
             { "Cholesterol", new ValueWithNote("3009160", "Cholesterol [Percentile]") },
             { "Bcr-abl gene level, blood", new ValueWithNote("3011913", "t(9;22)(q34.1;q11)(ABL1,BCR) fusion transcript major break points [Presence] in Blood or Tissue by Molecular genetics method") },
-            { "Ristocetin 0.5 mg/ml level, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") },
+            { "Ristocetin 0.5 mg/ml level, blood", new ValueWithNote("3006916", "Magnesium [Mass/volume] in Blood") }, // ERROR: Ristocetin-induced platelet aggregation mapped to Magnesium — completely unrelated.
             { "O_Bcr-abl gene level, blood", new ValueWithNote("3011913", "t(9;22)(q34.1;q11)(ABL1,BCR) fusion transcript major break points [Presence] in Blood or Tissue by Molecular genetics method") },
             { "U-snRNP Ab level, blood", new ValueWithNote("3047813", "U1 small nuclear ribonucleoprotein IgG Ab [Presence] in Serum") },
             { "Arachidonic acid plat agg, blood", new ValueWithNote("3039998", "Platelet aggregation arachidonate induced [Units/volume] in Blood") },
-            { "AMA-M2 antibody by Immunoblot", new ValueWithNote("40759839", "Ma+Ta Ab [Presence] in Serum by Immunoblot") },
-            { "CASPR2 antibody, CSF", new ValueWithNote("1175876", "PCA-2 Ab [Presence] in Cerebral spinal fluid by Immunofluorescence") },
+            { "AMA-M2 antibody by Immunoblot", new ValueWithNote("40759839", "Ma+Ta Ab [Presence] in Serum by Immunoblot") }, // ERROR: AMA-M2 (anti-mitochondrial M2 antibody) mapped to Ma+Ta Ab (paraneoplastic antibody) — different autoantibody.
+            { "CASPR2 antibody, CSF", new ValueWithNote("1175876", "PCA-2 Ab [Presence] in Cerebral spinal fluid by Immunofluorescence") }, // ERROR: CASPR2 antibody (autoimmune encephalitis) mapped to PCA-2 Ab (paraneoplastic cerebellar) — different autoantibody.
             { "Adalimumab Anti-Drug Ab, blood", new ValueWithNote("37020142", "Adalimumab neutralizing antibody [Titer] in Serum by Bioassay") },
             { "Iron panel", new ValueWithNote("46235471", "Iron panel - Serum or Plasma") },
             { "CD8 Term. Diff. T Cells, blood", new ValueWithNote("3026340", "CD5+CD8+ cells/cells in Blood") },
@@ -1461,16 +1461,16 @@ internal class LabTestLookup : ILookup
             { "Emicizumab level, blood", new ValueWithNote("1989376", "Emicizumab [Mass/volume] in Platelet poor plasma by Coagulation assay") },
             { "50:50 NP DRVVT correction, blood", new ValueWithNote("46235125", "dRVVT with 1:1 PNP actual/normal (normalized LA mix)") },
             { "O_Factor IX Inhibitor screen", new ValueWithNote("36031637", "Coagulation factor IX activity and inhibitor panel - Platelet poor plasma by Coagulation assay") },
-            { "50:50 normal plasma PTT-LA, blood", new ValueWithNote("3033658", "Prothrombin time (PT) actual/Normal") },
-            { "Factor VIII full sequencing", new ValueWithNote("21493137", "IVD gene full mutation analysis in Blood or Tissue by Sequencing") },
+            { "50:50 normal plasma PTT-LA, blood", new ValueWithNote("3033658", "Prothrombin time (PT) actual/Normal") }, // ERROR: PTT-LA (partial thromboplastin time lupus anticoagulant) mapped to PT (prothrombin time) — different coagulation test.
+            { "Factor VIII full sequencing", new ValueWithNote("21493137", "IVD gene full mutation analysis in Blood or Tissue by Sequencing") }, // ERROR: Factor VIII gene (F8) mapped to IVD gene (isovaleryl-CoA dehydrogenase) — wrong gene.
             { "Growth hormone level 180min, serum", new ValueWithNote("40760003", "Somatotropin [Mass/volume] in Serum or Plasma --160 minutes post exercise") },
             { "Haemoglobin A1c DCCT aligned, blood", new ValueWithNote("36304734", "Hemoglobin A1c/Hemoglobin.total goal Blood") },
             { "O_Pneumococcal IgG level, blood", new ValueWithNote("3045274", "Streptococcus pneumoniae IgG Ab [Mass/volume] in Serum") },
             { "Factor XI level, blood", new ValueWithNote("3001850", "Coagulation factor XI activity actual/normal in Platelet poor plasma by Coagulation assay") },
             { "O_Factor XI level, blood", new ValueWithNote("3001850", "Coagulation factor XI activity actual/normal in Platelet poor plasma by Coagulation assay") },
             { "MuSK abs IIF, blood", new ValueWithNote("36660504", "Muscle specific receptor tyrosine kinase IgG Ab [Moles/volume] in Serum by Immunoassay") },
-            { "Zic-4, CSF", new ValueWithNote("40761141", "Zinc [Mass/volume] in Cerebral spinal fluid") },
-            { "Animal mix EX1 IgE level, blood", new ValueWithNote("3011777", "Horse meat IgE Ab [Units/volume] in Serum") },
+            { "Zic-4, CSF", new ValueWithNote("40761141", "Zinc [Mass/volume] in Cerebral spinal fluid") }, // ERROR: Zic-4 antibody (paraneoplastic autoantibody) mapped to Zinc level in CSF — completely different analyte.
+            { "Animal mix EX1 IgE level, blood", new ValueWithNote("3011777", "Horse meat IgE Ab [Units/volume] in Serum") }, // ERROR: Animal mix EX1 (animal dander mix: cat/dog/horse/cow) mapped to Horse meat IgE — different allergen source (dander mix vs single meat).
             { "Pneumococcal serotype S23F antibody", new ValueWithNote("36204091", "Streptococcus pneumoniae Danish serotype 23F IgG Ab [Mass/volume] in Serum by Immunoassay") },
             { "Pneumococcal serotype S4 antibody", new ValueWithNote("3031967", "Streptococcus pneumoniae 4 serotypes IgG panel [Mass/volume] - Serum") },
             { "O_Sweat screen, sweat", new ValueWithNote("1092143", "Chloride [Presence] in Sweat by Screen method") },
@@ -1478,32 +1478,32 @@ internal class LabTestLookup : ILookup
             { "O_Pituitary Ab level, blood", new ValueWithNote("40766277", "Pituitary Ab [Titer] in Serum by Immunofluorescence") },
             { "Animal (rodent) mix EX70 IgE level", new ValueWithNote("3020228", "Rat muliialgro IgE Ab [Units/volume] in Serum") },
             { "Pneumococcal serotype S9V antibody", new ValueWithNote("3041754", "Streptococcus pneumoniae Danish serotype 9V IgG Ab [Mass/volume] in Serum by Immunoassay") },
-            { "O_Thalassaemia screen, blood", new ValueWithNote("3009995", "Carboxyhemoglobin [Presence] in Blood by Screen method") },
+            { "O_Thalassaemia screen, blood", new ValueWithNote("3009995", "Carboxyhemoglobin [Presence] in Blood by Screen method") }, // ERROR: Thalassaemia screen (Hb electrophoresis/HPLC) mapped to Carboxyhemoglobin screen — completely different test.
             { "Transitional B cells %, blood", new ValueWithNote("3000060", "B lymphocytes [#/volume] in Blood") },
             { "O_Renal profile, blood", new ValueWithNote("40762887", "Creatinine [Moles/volume] in Blood") },
             { "Factor VIII inhibitor porcine, blood", new ValueWithNote("3011699", "Coagulation factor VIII inhibitor [Presence] in Platelet poor plasma by Coagulation assay") },
             { "CD4 T cell percentage", new ValueWithNote("21494815", "CD4 cells/Lymphocytes in Specimen") },
             { "Caeruloplasmin level, blood", new ValueWithNote("3040880", "Ceruloplasmin actual/normal in Serum or Plasma") },
             { "O_Caeruloplasmin level, blood", new ValueWithNote("3040880", "Ceruloplasmin actual/normal in Serum or Plasma") },
-            { "Factor V sequencing, blood", new ValueWithNote("21493137", "IVD gene full mutation analysis in Blood or Tissue by Sequencing") },
+            { "Factor V sequencing, blood", new ValueWithNote("21493137", "IVD gene full mutation analysis in Blood or Tissue by Sequencing") }, // ERROR: Factor V gene (F5) mapped to IVD gene (isovaleryl-CoA dehydrogenase) — wrong gene.
             { "TSH receptor Ab level, blood", new ValueWithNote("42528824", "Thyrotropin receptor Ab [Presence] in Serum") },
             { "O_Malarial parasite screen, blood", new ValueWithNote("3002978", "Plasmodium sp identified in Blood by Thin film") },
             { "O_TSH receptor Ab level, blood", new ValueWithNote("42528824", "Thyrotropin receptor Ab [Presence] in Serum") },
-            { "Red blood cell vitamin B2, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") },
-            { "Factor X sequencing, blood", new ValueWithNote("36660693", "F12 gene full mutation analysis in Blood or Tissue by Sequencing") },
-            { "Mean cell haemoglobin conc, blood", new ValueWithNote("3011550", "Carboxyhemoglobin [Mass/volume] in Blood") },
+            { "Red blood cell vitamin B2, blood", new ValueWithNote("3009438", "Cobalamin (Vitamin B12) [Presence] in Blood") }, // ERROR: Vitamin B2 (riboflavin) mapped to Vitamin B12 (cobalamin) — different vitamins.
+            { "Factor X sequencing, blood", new ValueWithNote("36660693", "F12 gene full mutation analysis in Blood or Tissue by Sequencing") }, // ERROR: Factor X gene (F10) mapped to Factor XII gene (F12) — wrong gene.
+            { "Mean cell haemoglobin conc, blood", new ValueWithNote("3011550", "Carboxyhemoglobin [Mass/volume] in Blood") }, // ERROR: MCHC (mean corpuscular Hb concentration) mapped to Carboxyhemoglobin — completely different parameter.
             { "Absolute Neutrophils", new ValueWithNote("3017732", "Neutrophils [#/volume] in Blood") },
             { "Total white cell count, blood", new ValueWithNote("3002317", "Cells Counted Total [#] in Blood") },
             { "DRVVT correction, blood", new ValueWithNote("46235124", "dRVVT W excess phospholipid percent correction") },
             { "Heparin Induced Thrombocytopenia, Blood", new ValueWithNote("3032948", "Heparin induced platelet Ab [Presence] in Serum") },
             { "Other haematology test result", new ValueWithNote("44786642", "Hemoglobin.other [Type] in Blood") },
-            { "Conductivity level, sweat", new ValueWithNote("3008848", "Chloride [Moles/volume] in Sweat") },
+            { "Conductivity level, sweat", new ValueWithNote("3008848", "Chloride [Moles/volume] in Sweat") }, // ERROR: Conductivity (electrical property) mapped to Chloride concentration — related but different measurements.
             { "vWF plt-type, blood", new ValueWithNote("3049242", "von Willebrand panel - Platelet poor plasma") },
             { "DPPX Antibodies, CSF", new ValueWithNote("42529120", "Dipeptidyl aminopeptidase-like protein 6 IgG Ab [Presence] in Cerebral spinal fluid by Immunofluorescence") },
             { "Jak-2 Exon 12 by HRM, blood", new ValueWithNote("1988162", "JAK2 gene exon 12 full mutation analysis in Blood or Tissue by Sequencing") },
             { "HDL cholesterol level, blood", new ValueWithNote("3011884", "Cholesterol in HDL [Presence] in Serum or Plasma") },
-            { "Temperature POCT", new ValueWithNote("21490788", "Temperature difference") },
-            { "pO2(T)c", new ValueWithNote("1617274", "Carbon dioxide, total [Moles/volume] in Central venous blood") },
+            { "Temperature POCT", new ValueWithNote("21490788", "Temperature difference") }, // ERROR: Body temperature measurement mapped to temperature difference — different parameter.
+            { "pO2(T)c", new ValueWithNote("1617274", "Carbon dioxide, total [Moles/volume] in Central venous blood") }, // ERROR: pO2 (partial pressure of oxygen) mapped to Carbon dioxide total — different gas.
             { "O_HDL cholesterol level, blood", new ValueWithNote("3011884", "Cholesterol in HDL [Presence] in Serum or Plasma") },
             // { "O_Liver function screen, blood", new ValueWithNote("3026863", "Hepatic function 1996 panel - Serum or Plasma") },
             // { "O_Blood film microscopy", new ValueWithNote("3041179", "Nucleated erythrocytes [Presence] in Blood by Light microscopy") },
@@ -1521,16 +1521,16 @@ internal class LabTestLookup : ILookup
             // { "DRVVT ratio, blood", new ValueWithNote("3032493", "dRVVT/dRVVT W excess phospholipid (screen to confirm ratio)") },
             // { "O_Immunoglobulin M level, blood", new ValueWithNote("3040240", "Hemoglobin M/Hemoglobin.total in Blood") },
             { "Acetylcholine receptor abs IIF, blood", new ValueWithNote("3019856", "Acetylcholine receptor blocking Ab [Titer] in Serum by Immunofluorescence") },
-            { "Salmonella typhi IgG antibodies", new ValueWithNote("3012862", "Salmonella enteritidis IgG Ab [Presence] in Serum") },
+            { "Salmonella typhi IgG antibodies", new ValueWithNote("3012862", "Salmonella enteritidis IgG Ab [Presence] in Serum") }, // ERROR: Salmonella typhi (typhoid) mapped to Salmonella enteritidis (gastroenteritis) — different species.
             // { "La Ab level, blood", new ValueWithNote("40758457", "Le sup(a) Ab [Titer] in Serum or Plasma") },
             // { "O_Beta-thalassaemia screen, blood", new ValueWithNote("3034112", "Fetal cell screen [Interpretation] in Blood") },
             { "White blood cell count, blood", new ValueWithNote("3010813", "Leukocytes [#/volume] in Blood") },
-            { "Anti-nuclear Ab level (Hep-2), blood", new ValueWithNote("3022307", "Neuronal nuclear type 2 Ab [Titer] in Serum") },
-            { "O_Anti-nuclear Ab level (Hep-2), blood", new ValueWithNote("3022307", "Neuronal nuclear type 2 Ab [Titer] in Serum") },
+            { "Anti-nuclear Ab level (Hep-2), blood", new ValueWithNote("3022307", "Neuronal nuclear type 2 Ab [Titer] in Serum") }, // ERROR: ANA (anti-nuclear antibody on HEp-2 cells) mapped to ANNA-2 (neuronal nuclear Ab type 2, Ri) — different autoantibody.
+            { "O_Anti-nuclear Ab level (Hep-2), blood", new ValueWithNote("3022307", "Neuronal nuclear type 2 Ab [Titer] in Serum") }, // ERROR: ANA on HEp-2 mapped to ANNA-2 (neuronal nuclear Ab type 2) — different autoantibody.
             { "Beta-interferon neutralising antibody", new ValueWithNote("3011083", "Interferon.beta 1 neutralizing antibody [Titer] in Serum or Plasma by Neutralization test") },
             // { "Mean cell haemoglobin level, blood", new ValueWithNote("3023081", "Carboxyhemoglobin/Hemoglobin.total in Blood") },
             // { "O_Clotting screen, blood", new ValueWithNote("44786764", "Warfarin [Presence] in Specimen by Screen method") },
-            { "O_Neutrophil function screen, blood", new ValueWithNote("1091593", "Neutrophil Ab screen panel - Serum or Plasma") },
+            { "O_Neutrophil function screen, blood", new ValueWithNote("1091593", "Neutrophil Ab screen panel - Serum or Plasma") }, // ERROR: Neutrophil function screen (phagocyte activity) mapped to Neutrophil antibody screen (anti-neutrophil Ab) — different test.
             // { "HDL", new ValueWithNote("3007070", "Cholesterol in HDL [Mass/volume] in Serum or Plasma") },
             { "Prostate specific Ag, blood", new ValueWithNote("3052038", "Prostate specific Ag [Mass/volume] in Body fluid") },
             { "O_Prostate specific Ag, blood", new ValueWithNote("3052038", "Prostate specific Ag [Mass/volume] in Body fluid") },
@@ -1555,10 +1555,10 @@ internal class LabTestLookup : ILookup
             // { "Pneumococcal total IgG antibodies, blood", new ValueWithNote("3045274", "Streptococcus pneumoniae IgG Ab [Mass/volume] in Serum") },
             // { "Factor VII sequencing, blood", new ValueWithNote("36660657", "F7 gene full mutation analysis in Blood or Tissue by Sequencing") },
             // { "PLGF level, serum", new ValueWithNote("44816653", "Placental growth factor [Mass/volume] in Serum") },
-            { "Factor V level, blood", new ValueWithNote("40758469", "V Ab [Titer] in Serum or Plasma") },
-            { "O_Factor V level, blood", new ValueWithNote("40758469", "V Ab [Titer] in Serum or Plasma") },
+            { "Factor V level, blood", new ValueWithNote("40758469", "V Ab [Titer] in Serum or Plasma") }, // ERROR: Factor V level (coagulation factor activity) mapped to V Ab (blood group V antibody) — completely different.
+            { "O_Factor V level, blood", new ValueWithNote("40758469", "V Ab [Titer] in Serum or Plasma") }, // ERROR: Factor V level mapped to V Ab (blood group) — completely different.
             { "Factor VIII binding level, blood", new ValueWithNote("3019250", "Coagulation factor VIII activity actual/normal in Platelet poor plasma by Coagulation assay") },
-            { "Hb (BG)", new ValueWithNote("3041888", "Hemoglobin H [Presence] in Blood") },
+            { "Hb (BG)", new ValueWithNote("3041888", "Hemoglobin H [Presence] in Blood") }, // ERROR: Hb (blood gas haemoglobin, total Hb) mapped to Hemoglobin H (HbH, alpha-thalassaemia variant) — different parameter.
             { "Factor VIII Timed level", new ValueWithNote("3019250", "Coagulation factor VIII activity actual/normal in Platelet poor plasma by Coagulation assay") },
             { "Infliximab Anti-Drug Ab, blood", new ValueWithNote("43055457", "inFLIXimab Ab [Mass/volume] in Serum or Plasma") },
             { "Warfarin Dose Next Test", new ValueWithNote("3024105", "Warfarin [Mass] of Dose") },
@@ -1566,10 +1566,10 @@ internal class LabTestLookup : ILookup
             // { "Split Skin Immunofluorescence, Blood", new ValueWithNote("1091719", "Skin IgG Ab [Presence] in Serum by Human split skin substrate") },
             // { "O_Immunoglobulin E level, blood", new ValueWithNote("3013530", "Hemoglobin E/Hemoglobin.total in Blood") },
             // { "Janus kinase 2 mol detection, blood", new ValueWithNote("3046498", "JAK2 gene p.Val617Phe [Presence] in Blood or Tissue by Molecular genetics method") },
-            { "Factor VIII Post dose level", new ValueWithNote("3000104", "Factor VIII given [Volume]") },
+            { "Factor VIII Post dose level", new ValueWithNote("3000104", "Factor VIII given [Volume]") }, // ERROR: Factor VIII post-dose level (activity measurement) mapped to Factor VIII given (dose administered) — different parameter.
             // { "O_Janus kinase 2 mol detection, blood", new ValueWithNote("3046498", "JAK2 gene p.Val617Phe [Presence] in Blood or Tissue by Molecular genetics method") },
             // { "Sugar chromatography, faeces", new ValueWithNote("40760907", "Glucose [Mass/volume] in Stool by Post hydrolysis") },
-            { "Factor IX Timed level", new ValueWithNote("3021326", "Factor IX given [Volume]") },
+            { "Factor IX Timed level", new ValueWithNote("3021326", "Factor IX given [Volume]") }, // ERROR: Factor IX timed level (activity measurement) mapped to Factor IX given (dose administered) — different parameter.
             { "Urgent PR3 Antibody", new ValueWithNote("42868446", "Proteinase 3 IgG Ab [Presence] in Serum by Immunoassay") },
             // { "50:50 normal plasma incubated mix, blood", new ValueWithNote("3011477", "Packed erythrocytes given [Volume]") },
             // { "Luteinising hormone level, serum", new ValueWithNote("3052390", "Lutropin [Units/volume] in Serum or Plasma --15 minutes pre 100 ug luteinizing releasing hormone IV") },
