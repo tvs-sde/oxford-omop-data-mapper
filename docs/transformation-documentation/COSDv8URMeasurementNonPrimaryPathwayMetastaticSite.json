@@ -65,7 +65,7 @@
     },
     {
       "name": "measurement_concept_id",
-      "operation_description": "METASTATIC SITE (AT DIAGNOSIS)",
+      "operation_description": "Lookup MetastasisSite concepts.",
       "dataSource": [
         {
           "name": "MetastaticSite",
@@ -79,7 +79,7 @@
         }
       ],
       "query": "\n-- Query to extract Metastatic Site (Non-Primary Pathway) for UR cancer area from COSD v8.\n-- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.\n-- Code 97 (Not Applicable - Disease not spread) is excluded.\n-- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n        unnest(\n            [\n                [ Record ->> '$.Urological.UrologicalCore.UrologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' ],\n                Record ->> '$.Urological.UrologicalCore.UrologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite[*].@code'\n            ],\n            recursive := true\n        ) as MetastaticSite\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,\n    MetastaticSite\nfrom ur\nwhere MetastaticSite is not null\n  and MetastaticSite != '97';\n\t",
-      "lookup_table_markdown": "\r\n\r\n|MetastaticSite|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|01|0|Bone (Retired 1 July 2012)|\r\n|02|0|Brain|\r\n|03|0|Liver|\r\n|04|0|Lung|\r\n|05|0|Other metastatic site (Retired 1 July 2012)|\r\n|06|0|Multiple metastatic sites (Retired 1 April 2018)|\r\n|07|0|Unknown metastatic site|\r\n|08|0|Skin|\r\n|09|0|Distant Lymph Nodes|\r\n|10|0|Bone (excluding Bone Marrow)|\r\n|11|0|Bone marrow|\r\n|12|0|Regional Lymph Nodes|\r\n|98|0|Other metastatic site (not listed)|\r\n|99|0|Other metastatic site (Retired 1 April 2018)|\r\n|97|0|Not Applicable (Disease not spread)|\r\n\r\n"
+      "lookup_table_markdown": "\r\n\r\n|MetastaticSite|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|01|36769301|Metastasis to bone|\r\n|02|36768862|Metastasis to brain|\r\n|03|36770544|Metastasis to liver|\r\n|04|36770283|Metastasis to lung|\r\n|07|36769180|Metastasis to the Unknown Site|\r\n|08|35225673|Metastasis to skin|\r\n|09|36769243|Distant spread to lymph node|\r\n|10|36769301|Metastasis to bone|\r\n|11|35226074|Metastasis to bone marrow|\r\n|12|36769269|Regional spread to lymph node|\r\n|98|36769180|Metastasis|\r\n|99|36769180|Metastasis|\r\n\r\nNotes\r\n* [OMOP Metastasis](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=metastasis&boosts)\r\n* [NHS - Metastasis](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html?hl=metastatic%2Csite%2Cdiagnosis)\r\n"
     },
     {
       "name": "measurement_source_value",

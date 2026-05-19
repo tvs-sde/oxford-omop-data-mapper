@@ -73,7 +73,7 @@
     },
     {
       "name": "measurement_concept_id",
-      "operation_description": "GRADE OF DIFFERENTIATION (AT DIAGNOSIS)",
+      "operation_description": "Lookup GradeDifferentiation concepts.",
       "dataSource": [
         {
           "name": "GradeOfDifferentiationAtDiagnosis",
@@ -87,7 +87,7 @@
         }
       ],
       "query": "\n-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.\n-- The grade classifies the differentiation of the tumour at the time of diagnosis.\n-- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.\n-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    coalesce(\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'\n    ) as MeasurementDate,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and GradeOfDifferentiationAtDiagnosis is not null;\n\t",
-      "lookup_table_markdown": "\r\n\r\n|GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|G1|0|Well differentiated|\r\n|G2|0|Moderately differentiated|\r\n|G3|0|Poorly differentiated|\r\n|G4|0|Undifferentiated / anaplastic|\r\n|GX|0|Grade of differentiation is not appropriate or cannot be assessed|\r\n\r\n"
+      "lookup_table_markdown": "\r\n\r\n|GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|GX|0|GX grade|\r\n|G1|36768162|Grade 1: Well differentiated|\r\n|G2|36770626|Grade 2: Moderately differentiated|\r\n|G3|36769666|Grade 3: Poorly differentiated|\r\n|G4|36769737|Grade 4: Undifferentiated|\r\n\r\nNotes\r\n* [OMOP Grade Differentiation](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Histopattern&page=1&pageSize=500&query=grade&boosts)\r\n* [NHS - Grade of Differentiation (At Diagnosis)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html?hl=grade%2Cdifferentiation)\r\n"
     },
     {
       "name": "measurement_source_value",

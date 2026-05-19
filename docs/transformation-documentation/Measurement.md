@@ -83,10 +83,6 @@ has_toc: false
 <a href="COSDv8URMeasurementPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8URMeasurementPrimaryPathwayMetastaticSite.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URMeasurementPrimaryPathwayMetastaticSite%20mapping){: .btn }
-## COSDv8URMeasurementPerformanceStatusAdult
-<a href="COSDv8URMeasurementPerformanceStatusAdult.svg" target="_blank"><img src="COSDv8URMeasurementPerformanceStatusAdult.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URMeasurementPerformanceStatusAdult%20mapping){: .btn }
 ## COSDv8URMeasurementNonPrimaryPathwayMetastaticSite
 <a href="COSDv8URMeasurementNonPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8URMeasurementNonPrimaryPathwayMetastaticSite.svg" /></a>
 
@@ -111,10 +107,6 @@ has_toc: false
 <a href="COSDv8URMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="COSDv8URMeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URMeasurementGradeOfDifferentiation%20mapping){: .btn }
-## COSDv8URMeasurementFamilialCancerSyndromeIndicator
-<a href="COSDv8URMeasurementFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8URMeasurementFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URMeasurementFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## CosdV9LungMeasurementTumourLaterality
 <a href="CosdV9LungMeasurementTumourLaterality.svg" target="_blank"><img src="CosdV9LungMeasurementTumourLaterality.svg" /></a>
 

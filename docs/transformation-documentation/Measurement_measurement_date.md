@@ -364,29 +364,6 @@ where MetastaticSite is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20COSD%20V8%20UR%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD V8 UR Measurement Performance Status Adult
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
--- Query to extract Performance Status (Adult) for UR cancer area from COSD v8.
--- A WHO classification indicating activity/disability status.
--- MeasurementDate uses the diagnosis date.
--- PerformanceStatusAdult will be mapped to a measurement value concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.AdultPerformanceStatus.@code' as PerformanceStatusAdult
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and PerformanceStatusAdult is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20COSD%20V8%20UR%20Measurement%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 UR Measurement Non Primary Pathway Metastatic Site
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -554,29 +531,6 @@ where type = 'UR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20COSD%20V8%20UR%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
-### COSD V8 UR Measurement Familial Cancer Syndrome Indicator
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
--- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.
--- Indicates whether there is a possible or confirmed familial cancer syndrome.
--- MeasurementDate uses the diagnosis date.
--- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and FamilialCancerSyndromeIndicator is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20COSD%20V8%20UR%20Measurement%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 Lung Measurement Tumour Laterality
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.

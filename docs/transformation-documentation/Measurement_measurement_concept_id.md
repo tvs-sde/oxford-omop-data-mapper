@@ -338,27 +338,27 @@ where type = 'UR'
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
 ### COSD V8 UR Measurement Primary Pathway Metastatic Site
 Source column  `MetastaticSite`.
-METASTATIC SITE (AT DIAGNOSIS)
+Lookup MetastasisSite concepts.
 
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|0|Bone (Retired 1 July 2012)|
-|02|0|Brain|
-|03|0|Liver|
-|04|0|Lung|
-|05|0|Other metastatic site (Retired 1 July 2012)|
-|06|0|Multiple metastatic sites (Retired 1 April 2018)|
-|07|0|Unknown metastatic site|
-|08|0|Skin|
-|09|0|Distant Lymph Nodes|
-|10|0|Bone (excluding Bone Marrow)|
-|11|0|Bone marrow|
-|12|0|Regional Lymph Nodes|
-|98|0|Other metastatic site (not listed)|
-|99|0|Other metastatic site (Retired 1 April 2018)|
-|97|0|Not Applicable (Disease not spread)|
+|01|36769301|Metastasis to bone|
+|02|36768862|Metastasis to brain|
+|03|36770544|Metastasis to liver|
+|04|36770283|Metastasis to lung|
+|07|36769180|Metastasis to the Unknown Site|
+|08|35225673|Metastasis to skin|
+|09|36769243|Distant spread to lymph node|
+|10|36769301|Metastasis to bone|
+|11|35226074|Metastasis to bone marrow|
+|12|36769269|Regional spread to lymph node|
+|98|36769180|Metastasis|
+|99|36769180|Metastasis|
 
+Notes
+* [OMOP Metastasis](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=metastasis&boosts)
+* [NHS - Metastasis](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html?hl=metastatic%2Csite%2Cdiagnosis)
 
 * `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
 
@@ -393,63 +393,29 @@ where MetastaticSite is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD V8 UR Measurement Performance Status Adult
-Source column  `PerformanceStatusAdult`.
-PERFORMANCE STATUS (ADULT)
-
-
-|PerformanceStatusAdult|measurement_concept_id|notes|
-|------|-----|-----|
-|0|0|Able to carry out all normal activity without restriction|
-|1|0|Restricted in strenuous activity but ambulatory and able to carry out light work|
-|2|0|Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours|
-|3|0|Symptomatic and in a chair or in bed for greater than 50% of the day but not bedridden|
-|4|0|Completely disabled; cannot carry out any self-care; totally confined to bed or chair|
-|9|0|Not Recorded|
-
-
-* `PerformanceStatusAdult` A World Health Organisation classification indicating a PERSON's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
-
-```sql
--- Query to extract Performance Status (Adult) for UR cancer area from COSD v8.
--- A WHO classification indicating activity/disability status.
--- MeasurementDate uses the diagnosis date.
--- PerformanceStatusAdult will be mapped to a measurement value concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.AdultPerformanceStatus.@code' as PerformanceStatusAdult
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and PerformanceStatusAdult is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 UR Measurement Non Primary Pathway Metastatic Site
 Source column  `MetastaticSite`.
-METASTATIC SITE (AT DIAGNOSIS)
+Lookup MetastasisSite concepts.
 
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|0|Bone (Retired 1 July 2012)|
-|02|0|Brain|
-|03|0|Liver|
-|04|0|Lung|
-|05|0|Other metastatic site (Retired 1 July 2012)|
-|06|0|Multiple metastatic sites (Retired 1 April 2018)|
-|07|0|Unknown metastatic site|
-|08|0|Skin|
-|09|0|Distant Lymph Nodes|
-|10|0|Bone (excluding Bone Marrow)|
-|11|0|Bone marrow|
-|12|0|Regional Lymph Nodes|
-|98|0|Other metastatic site (not listed)|
-|99|0|Other metastatic site (Retired 1 April 2018)|
-|97|0|Not Applicable (Disease not spread)|
+|01|36769301|Metastasis to bone|
+|02|36768862|Metastasis to brain|
+|03|36770544|Metastasis to liver|
+|04|36770283|Metastasis to lung|
+|07|36769180|Metastasis to the Unknown Site|
+|08|35225673|Metastasis to skin|
+|09|36769243|Distant spread to lymph node|
+|10|36769301|Metastasis to bone|
+|11|35226074|Metastasis to bone marrow|
+|12|36769269|Regional spread to lymph node|
+|98|36769180|Metastasis|
+|99|36769180|Metastasis|
 
+Notes
+* [OMOP Metastasis](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=metastasis&boosts)
+* [NHS - Metastasis](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html?hl=metastatic%2Csite%2Cdiagnosis)
 
 * `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
 
@@ -666,17 +632,20 @@ where type = 'UR'
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V8 UR Measurement Grade Of Differentiation
 Source column  `GradeOfDifferentiationAtDiagnosis`.
-GRADE OF DIFFERENTIATION (AT DIAGNOSIS)
+Lookup GradeDifferentiation concepts.
 
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
-|G1|0|Well differentiated|
-|G2|0|Moderately differentiated|
-|G3|0|Poorly differentiated|
-|G4|0|Undifferentiated / anaplastic|
-|GX|0|Grade of differentiation is not appropriate or cannot be assessed|
+|GX|0|GX grade|
+|G1|36768162|Grade 1: Well differentiated|
+|G2|36770626|Grade 2: Moderately differentiated|
+|G3|36769666|Grade 3: Poorly differentiated|
+|G4|36769737|Grade 4: Undifferentiated|
 
+Notes
+* [OMOP Grade Differentiation](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Histopattern&page=1&pageSize=500&query=grade&boosts)
+* [NHS - Grade of Differentiation (At Diagnosis)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html?hl=grade%2Cdifferentiation)
 
 * `GradeOfDifferentiationAtDiagnosis` The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
 
@@ -700,38 +669,6 @@ where type = 'UR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
-### COSD V8 UR Measurement Familial Cancer Syndrome Indicator
-Source column  `FamilialCancerSyndromeIndicator`.
-FAMILIAL CANCER SYNDROME INDICATOR
-
-
-|FamilialCancerSyndromeIndicator|measurement_concept_id|notes|
-|------|-----|-----|
-|Y|0|Yes - there is a confirmed familial cancer syndrome|
-|N|0|No - there is no confirmed familial cancer syndrome|
-|P|0|Possible familial cancer syndrome|
-|9|0|Not Known (Not recorded or test not done)|
-
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
--- Query to extract Familial Cancer Syndrome Indicator for UR cancer area from COSD v8.
--- Indicates whether there is a possible or confirmed familial cancer syndrome.
--- MeasurementDate uses the diagnosis date.
--- FamilialCancerSyndromeIndicator will be mapped to a measurement value concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.UrologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and FamilialCancerSyndromeIndicator is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 Lung Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.
