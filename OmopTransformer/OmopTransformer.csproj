@@ -884,6 +884,30 @@
     <None Update="COSD\CT\ProcedureOccurrence\COSDv901CTProcedureOccurrenceProcedureOpcs\COSDv901CTProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementAdultComorbidityEvaluation\COSDv8LVMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementGradeOfDifferentiation\COSDv8LVMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementMcategoryIntegratedStage\COSDv8LVMeasurementMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementNcategoryIntegratedStage\COSDv8LVMeasurementNcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementPrimaryPathwayMetastaticSite\COSDv8LVMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementTcategoryIntegratedStage\COSDv8LVMeasurementTcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementTNMStageGroupingIntegrated\COSDv8LVMeasurementTNMStageGroupingIntegrated.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv8LVMeasurementTumourLaterality\COSDv8LVMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\LV\ProcedureOccurrence\COSDv8LVProcedureOccurrencePrimaryProcedureOPCS\COSDv8LVProcedureOccurrencePrimaryProcedureOPCS.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
