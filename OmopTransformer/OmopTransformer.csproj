@@ -974,6 +974,51 @@
     <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrenceProcedureOpcs\COSDv9HAProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementFamilialCancerSyndromeIndicator\COSDv8URMeasurementFamilialCancerSyndromeIndicator.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementGradeOfDifferentiation\COSDv8URMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementMcategoryFinalPreTreatmentStage\COSDv8URMeasurementMcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementMcategoryIntegratedStage\COSDv8URMeasurementMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementNcategoryFinalPreTreatmentStage\COSDv8URMeasurementNcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementNcategoryIntegratedStage\COSDv8URMeasurementNcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementNonPrimaryPathwayMetastaticSite\COSDv8URMeasurementNonPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementPerformanceStatusAdult\COSDv8URMeasurementPerformanceStatusAdult.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementPrimaryPathwayMetastaticSite\COSDv8URMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementProstateSpecificAntigenDiagnosis\COSDv8URMeasurementProstateSpecificAntigenDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementTcategoryFinalPreTreatmentStage\COSDv8URMeasurementTcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementTcategoryIntegratedStage\COSDv8URMeasurementTcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementTNMcategoryFinalPreTreatmentStage\COSDv8URMeasurementTNMcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementTNMcategoryIntegratedStage\COSDv8URMeasurementTNMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\Measurement\COSDv8URMeasurementTumourLaterality\COSDv8URMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' != 'Release_no_docs'">
 		<ItemGroup>
