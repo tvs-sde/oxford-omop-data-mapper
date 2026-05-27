@@ -29,6 +29,21 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\BA\Measurement\COSDv8BAMeasurementAdultComorbidityEvaluation\COSDv8BAMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv8BAMeasurementAdultPerformanceStatus\COSDv8BAMeasurementAdultPerformanceStatus.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv8BAMeasurementGradeOfDifferentiation\COSDv8BAMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv8BAMeasurementMetastaticSite\COSDv8BAMeasurementMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv8BAMeasurementTumourLaterality\COSDv8BAMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Colorectal\ConditionOccurrence\CosdConditionOccurrencePrimaryDiagnosisHistologyTopography\CosdV9ConditionOccurrencePrimaryDiagnosisHistologyTopography.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
