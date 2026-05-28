@@ -257,7 +257,7 @@ group by
 ### SUS AE Source Of Referral For AE
 * Value copied from `SourceofReferralForAE`
 
-* `SourceofReferralForAE` The source of referral of each Accident and Emergency Episode. [SOURCE OF REFERRAL FOR A and E]()
+* `SourceofReferralForAE` The source of referral of each Accident and Emergency Episode. [SOURCE OF REFERRAL FOR A and E](https://www.datadictionary.nhs.uk/data_elements/source_of_referral_for_a_and_e.html)
 
 ```sql
 select
@@ -772,7 +772,7 @@ where o.SourceOfReferralOutPatients is not null
 ### CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis
 * Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
 
-* `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation of a PERSON at the time of diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE AT DIAGNOSIS]()
+* `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation of a PERSON at the time of diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE AT DIAGNOSIS](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code_at_diagnosis.html)
 
 ```sql
 with LU as (
