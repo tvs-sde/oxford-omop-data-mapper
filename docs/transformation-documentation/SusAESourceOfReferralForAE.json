@@ -55,7 +55,7 @@
           "origins": [
             {
               "origin": "ARRIVAL DATE",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/arrival_date.html"
             }
           ]
         }
@@ -73,7 +73,7 @@
           "origins": [
             {
               "origin": "ARRIVAL DATE",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/arrival_date.html"
             }
           ]
         },
@@ -83,7 +83,7 @@
           "origins": [
             {
               "origin": "ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/arrival_time_at_accident_and_emergency_department.html"
             }
           ]
         }
@@ -108,7 +108,7 @@
           "origins": [
             {
               "origin": "SOURCE OF REFERRAL FOR A and E",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/source_of_referral_for_a_and_e.html"
             }
           ]
         }

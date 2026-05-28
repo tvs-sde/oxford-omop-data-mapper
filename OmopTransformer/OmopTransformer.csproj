@@ -926,6 +926,45 @@
     <None Update="COSD\SK\ProcedureOccurrence\COSDv9SKProcedureOccurrenceProcedureOpcs\COSDv9SKProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementAdultComorbidityEvaluation\COSDv8SKMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementGradeOfDifferentiation\COSDv8SKMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementMCategoryFinalPretreatment\COSDv8SKMeasurementMCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementMCategoryIntegratedStage\COSDv8SKMeasurementMCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementNCategoryFinalPretreatment\COSDv8SKMeasurementNCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementNCategoryIntegratedStage\COSDv8SKMeasurementNCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementNonPrimaryPathwayMetastaticSite\COSDv8SKMeasurementNonPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementPrimaryPathwayMetastaticSite\COSDv8SKMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementTCategoryFinalPretreatment\COSDv8SKMeasurementTCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementTCategoryIntegratedStage\COSDv8SKMeasurementTCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementTNMStageGroupingFinalPretreatment\COSDv8SKMeasurementTNMStageGroupingFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementTNMStageGroupingIntegrated\COSDv8SKMeasurementTNMStageGroupingIntegrated.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\Measurement\COSDv8SKMeasurementTumourLaterality\COSDv8SKMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\UG\ProcedureOccurrence\COSDv8UGProcedureOccurrencePrimaryProcedureOPCS\COSDv8UGProcedureOccurrencePrimaryProcedureOPCS.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
