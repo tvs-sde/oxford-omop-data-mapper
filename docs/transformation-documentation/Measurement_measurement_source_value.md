@@ -75,6 +75,359 @@ where lower(EVENT) not like '%comment%'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
+### COSD V8 UG Measurement Tumour Laterality
+* Value copied from `TumourLaterality`
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    TumourLaterality
+from UG
+where TumourLaterality is not null
+  and TumourLaterality in ('L', 'R', 'M', 'B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 UG Measurement Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        unnest(
+            [
+                [ Record ->> '$.UpperGI.UpperGICore.UpperGICoreDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.UpperGI.UpperGICore.UpperGICoreDiagnosis.MetastaticSite[*].@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    MetastaticSite
+from ug
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 UG Measurement Non Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'UG'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage TNM Stage Grouping
+* Value copied from `IntegratedStageTNMStageGrouping`
+
+* `IntegratedStageTNMStageGrouping` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [TNM STAGE GROUPING (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__integrated_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGrouping' as IntegratedStageTNMStageGrouping
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    IntegratedStageTNMStageGrouping
+from UG
+where IntegratedStageTNMStageGrouping is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20TNM%20Stage%20Grouping%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage T Category
+* Value copied from `IntegratedStageTCategory`
+
+* `IntegratedStageTCategory` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary tumour after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [T CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTCategory' as IntegratedStageTCategory
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    IntegratedStageTCategory
+from UG
+where IntegratedStageTCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20T%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage N Category
+* Value copied from `IntegratedStageNCategory`
+
+* `IntegratedStageNCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional lymph node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [N CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageNCategory' as IntegratedStageNCategory
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    IntegratedStageNCategory
+from UG
+where IntegratedStageNCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20N%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage M Category
+* Value copied from `IntegratedStageMCategory`
+
+* `IntegratedStageMCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [M CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/m_category__integrated_stage_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageMCategory' as IntegratedStageMCategory
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    IntegratedStageMCategory
+from UG
+where IntegratedStageMCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20M%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Grade Of Differentiation
+* Value copied from `GradeOfDifferentiationAtDiagnosis`
+
+* `GradeOfDifferentiationAtDiagnosis` Definitive grade of the tumour at the time of patient diagnosis during a cancer care spell. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    GradeOfDifferentiationAtDiagnosis
+from UG
+where GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment TNM Stage Grouping
+* Value copied from `FinalPreTreatmentTNMStageGrouping`
+
+* `FinalPreTreatmentTNMStageGrouping` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGrouping' as FinalPreTreatmentTNMStageGrouping
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentTNMStageGrouping
+from UG
+where FinalPreTreatmentTNMStageGrouping is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20TNM%20Stage%20Grouping%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment T Category
+* Value copied from `FinalPreTreatmentTCategory`
+
+* `FinalPreTreatmentTCategory` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTCategory' as FinalPreTreatmentTCategory
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentTCategory
+from UG
+where FinalPreTreatmentTCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20T%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment N Category
+* Value copied from `FinalPreTreatmentNCategory`
+
+* `FinalPreTreatmentNCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional lymph node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentNCategory' as FinalPreTreatmentNCategory
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentNCategory
+from UG
+where FinalPreTreatmentNCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20N%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment M Category
+* Value copied from `FinalPreTreatmentMCategory`
+
+* `FinalPreTreatmentMCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentMCategory' as FinalPreTreatmentMCategory
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentMCategory
+from UG
+where FinalPreTreatmentMCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20M%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Adult Comorbidity Evaluation
+* Value copied from `AdultComorbidityEvaluation`
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation,
+    least(
+        cast(DateFirstSeen as date),
+        cast(SpecialistDateFirstSeen as date),
+        cast(ClinicalDateCancerDiagnosis as date),
+        cast(FinalPreTreatmentTNMStageGroupingDate as date),
+        cast(IntegratedStageTNMStageGroupingDate as date)
+    ) as MeasurementDate
+from UG
+where AdultComorbidityEvaluation is not null
+  and not (
+      DateFirstSeen is null and
+      SpecialistDateFirstSeen is null and
+      ClinicalDateCancerDiagnosis is null and
+      FinalPreTreatmentTNMStageGroupingDate is null and
+      IntegratedStageTNMStageGroupingDate is null
+  );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 Lung Measurement Tumour Laterality
 * Value copied from `TumourLaterality`
 
@@ -267,7 +620,7 @@ where MetastaticSite is not null
 ### COSD V9 Lung Measurement N Category Integrated Stage
 * Value copied from `NCategoryIntegratedStage`
 
-* `NCategoryIntegratedStage` The N category (regional lymph nodes) assigned to the tumour for the integrated stage. [N CATEGORY INTEGRATED STAGE]()
+* `NCategoryIntegratedStage` The N category (regional lymph nodes) assigned to the tumour for the integrated stage. [N CATEGORY INTEGRATED STAGE](https://www.datadictionary.nhs.uk/data_elements/n_category_integrated_stage.html)
 
 ```sql
 select 
@@ -290,7 +643,7 @@ where type = 'LU'
 ### COSD V9 Lung Measurement N Category Final Pre Treatment Stage
 * Value copied from `NcategoryFinalPreTreatment`
 
-* `NcategoryFinalPreTreatment` The N category (regional lymph nodes) assigned to the tumour at the time of the final pre-treatment stage. [N CATEGORY FINAL PRETREATMENT]()
+* `NcategoryFinalPreTreatment` The N category (regional lymph nodes) assigned to the tumour at the time of the final pre-treatment stage. [N CATEGORY FINAL PRETREATMENT](https://www.datadictionary.nhs.uk/data_elements/n_category_final_pretreatment.html)
 
 ```sql
 select
@@ -313,7 +666,7 @@ where type = 'LU'
 ### COSD V9 Lung Measurement M Category Integrated Stage
 * Value copied from `MCategoryIntegratedStage`
 
-* `MCategoryIntegratedStage` The M category (distant metastasis) assigned to the tumour for the integrated stage. [M CATEGORY INTEGRATED STAGE]()
+* `MCategoryIntegratedStage` The M category (distant metastasis) assigned to the tumour for the integrated stage. [M CATEGORY INTEGRATED STAGE](https://www.datadictionary.nhs.uk/data_elements/m_category_integrated_stage.html)
 
 ```sql
 select 
@@ -336,7 +689,7 @@ where type = 'LU'
 ### COSD V9 Lung Measurement M Category Final Pre Treatment Stage
 * Value copied from `McategoryFinalPreTreatment`
 
-* `McategoryFinalPreTreatment` The M category (distant metastasis) assigned to the tumour at the time of the final pre-treatment stage. [M CATEGORY FINAL PRETREATMENT]()
+* `McategoryFinalPreTreatment` The M category (distant metastasis) assigned to the tumour at the time of the final pre-treatment stage. [M CATEGORY FINAL PRETREATMENT](https://www.datadictionary.nhs.uk/data_elements/m_category_final_pretreatment.html)
 
 ```sql
 select 
@@ -1866,7 +2219,7 @@ where McategoryFinalPreTreatment is not null;
 ### COSD V9 Breast Measurement Grade of Differentiation
 * Value copied from `GradeOfDifferentiationAtDiagnosis`
 
-* `GradeOfDifferentiationAtDiagnosis` The grade of differentiation of the cancer at diagnosis, indicating how much the cancer cells differ from normal cells. [GRADE OF DIFFERENTIATION AT DIAGNOSIS]()
+* `GradeOfDifferentiationAtDiagnosis` The grade of differentiation of the cancer at diagnosis, indicating how much the cancer cells differ from normal cells. [GRADE OF DIFFERENTIATION AT DIAGNOSIS](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation_at_diagnosis.html)
 
 ```sql
 with BR as (

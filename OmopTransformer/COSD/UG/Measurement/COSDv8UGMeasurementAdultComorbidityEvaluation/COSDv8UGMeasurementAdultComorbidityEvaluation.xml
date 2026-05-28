@@ -1,0 +1,53 @@
+<Query>
+    <Sql>
+with UG as (
+    select
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation,
+    least(
+        cast(DateFirstSeen as date),
+        cast(SpecialistDateFirstSeen as date),
+        cast(ClinicalDateCancerDiagnosis as date),
+        cast(FinalPreTreatmentTNMStageGroupingDate as date),
+        cast(IntegratedStageTNMStageGroupingDate as date)
+    ) as MeasurementDate
+from UG
+where AdultComorbidityEvaluation is not null
+  and not (
+      DateFirstSeen is null and
+      SpecialistDateFirstSeen is null and
+      ClinicalDateCancerDiagnosis is null and
+      FinalPreTreatmentTNMStageGroupingDate is null and
+      IntegratedStageTNMStageGroupingDate is null
+  );
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="AdultComorbidityEvaluation">
+            <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+            <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+        </Explanation>
+        <Explanation columnName="MeasurementDate">
+            <Description>Measurement date is the earliest available date from referral, specialist first seen, diagnosis, or staging dates.</Description>
+            <Origin>DATE FIRST SEEN</Origin>
+            <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+            <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+            <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

@@ -55,6 +55,58 @@ has_toc: false
 <a href="OxfordLabMeasurement.svg" target="_blank"><img src="OxfordLabMeasurement.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OxfordLabMeasurement%20mapping){: .btn }
+## COSDv8UGMeasurementTumourLaterality
+<a href="COSDv8UGMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv8UGMeasurementTumourLaterality.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementTumourLaterality%20mapping){: .btn }
+## COSDv8UGMeasurementPrimaryPathwayMetastaticSite
+<a href="COSDv8UGMeasurementPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8UGMeasurementPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite
+<a href="COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv8UGMeasurementIntegratedStageTNMStageGrouping
+<a href="COSDv8UGMeasurementIntegratedStageTNMStageGrouping.svg" target="_blank"><img src="COSDv8UGMeasurementIntegratedStageTNMStageGrouping.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementIntegratedStageTNMStageGrouping%20mapping){: .btn }
+## COSDv8UGMeasurementIntegratedStageTCategory
+<a href="COSDv8UGMeasurementIntegratedStageTCategory.svg" target="_blank"><img src="COSDv8UGMeasurementIntegratedStageTCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementIntegratedStageTCategory%20mapping){: .btn }
+## COSDv8UGMeasurementIntegratedStageNCategory
+<a href="COSDv8UGMeasurementIntegratedStageNCategory.svg" target="_blank"><img src="COSDv8UGMeasurementIntegratedStageNCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementIntegratedStageNCategory%20mapping){: .btn }
+## COSDv8UGMeasurementIntegratedStageMCategory
+<a href="COSDv8UGMeasurementIntegratedStageMCategory.svg" target="_blank"><img src="COSDv8UGMeasurementIntegratedStageMCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementIntegratedStageMCategory%20mapping){: .btn }
+## COSDv8UGMeasurementGradeOfDifferentiation
+<a href="COSDv8UGMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="COSDv8UGMeasurementGradeOfDifferentiation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping
+<a href="COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping.svg" target="_blank"><img src="COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping%20mapping){: .btn }
+## COSDv8UGMeasurementFinalPretreatmentTCategory
+<a href="COSDv8UGMeasurementFinalPretreatmentTCategory.svg" target="_blank"><img src="COSDv8UGMeasurementFinalPretreatmentTCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementFinalPretreatmentTCategory%20mapping){: .btn }
+## COSDv8UGMeasurementFinalPretreatmentNCategory
+<a href="COSDv8UGMeasurementFinalPretreatmentNCategory.svg" target="_blank"><img src="COSDv8UGMeasurementFinalPretreatmentNCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementFinalPretreatmentNCategory%20mapping){: .btn }
+## COSDv8UGMeasurementFinalPretreatmentMCategory
+<a href="COSDv8UGMeasurementFinalPretreatmentMCategory.svg" target="_blank"><img src="COSDv8UGMeasurementFinalPretreatmentMCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementFinalPretreatmentMCategory%20mapping){: .btn }
+## COSDv8UGMeasurementAdultComorbidityEvaluation
+<a href="COSDv8UGMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8UGMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## CosdV9LungMeasurementTumourLaterality
 <a href="CosdV9LungMeasurementTumourLaterality.svg" target="_blank"><img src="CosdV9LungMeasurementTumourLaterality.svg" /></a>
 
