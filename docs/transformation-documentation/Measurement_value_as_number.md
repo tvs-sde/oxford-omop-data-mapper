@@ -101,6 +101,54 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### COSD v8 SA Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION]()
+
+```sql
+with SA as (
+    select
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        coalesce(Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[0].CancerTreatmentStartDate', Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.CancerTreatmentStartDate') as CancerTreatmentStartDate,
+        coalesce(Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[0].SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate', Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate') as ProcedureDate,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_81
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation,
+    least(
+        cast(DateFirstSeen as date),
+        cast(SpecialistDateFirstSeen as date),
+        cast(ClinicalDateCancerDiagnosis as date),
+        cast(IntegratedStageTNMStageGroupingDate as date),
+        cast(FinalPreTreatmentTNMStageGroupingDate as date),
+        cast(CancerTreatmentStartDate as date),
+        cast(ProcedureDate as date)
+    ) as MeasurementDate
+from SA
+where AdultComorbidityEvaluation is not null
+  and not (
+        DateFirstSeen is null and
+        SpecialistDateFirstSeen is null and
+        ClinicalDateCancerDiagnosis is null and
+        IntegratedStageTNMStageGroupingDate is null and
+        FinalPreTreatmentTNMStageGroupingDate is null and
+        CancerTreatmentStartDate is null and
+        ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v8%20SA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### CosdV9MeasurementAdultComorbidityEvaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
