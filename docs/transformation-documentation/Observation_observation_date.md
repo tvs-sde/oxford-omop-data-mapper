@@ -458,7 +458,7 @@ group by
 Source column  `ArrivalDate`.
 Converts text to dates.
 
-* `ArrivalDate` Event date [ARRIVAL DATE]()
+* `ArrivalDate` Event date [ARRIVAL DATE](https://www.datadictionary.nhs.uk/data_elements/arrival_date.html)
 
 ```sql
 select
@@ -478,7 +478,7 @@ where SourceofReferralForAE is not null
 Source column  `ArrivalDate`.
 Converts text to dates.
 
-* `ArrivalDate` Event date [ARRIVAL DATE]()
+* `ArrivalDate` Event date [ARRIVAL DATE](https://www.datadictionary.nhs.uk/data_elements/arrival_date.html)
 
 ```sql
 select
@@ -502,7 +502,7 @@ and d.AccidentAndEmergencyDiagnosis in ('30','301')
 Source column  `ArrivalDate`.
 Converts text to dates.
 
-* `ArrivalDate` Event date [ARRIVAL DATE]()
+* `ArrivalDate` Event date [ARRIVAL DATE](https://www.datadictionary.nhs.uk/data_elements/arrival_date.html)
 
 ```sql
 select
