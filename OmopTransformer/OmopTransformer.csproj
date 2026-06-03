@@ -974,6 +974,48 @@
     <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrenceProcedureOpcs\COSDv9HAProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementAdultComorbidityEvaluation\COSDv9CRMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementAsaScore\COSDv9CRMeasurementAsaScore.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementGradeOfDifferentiation\COSDv9CRMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementMcategoryFinalPretreatmentStage\COSDv9CRMeasurementMcategoryFinalPretreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementMcategoryIntegratedStage\COSDv9CRMeasurementMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementNcategoryFinalPretreatmentStage\COSDv9CRMeasurementNcategoryFinalPretreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementNcategoryIntegratedStage\COSDv9CRMeasurementNcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementNonPrimaryPathwayProgressionMetastasis\COSDv9CRMeasurementNonPrimaryPathwayProgressionMetastasis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementNonPrimaryPathwayRecurrenceMetastasis\COSDv9CRMeasurementNonPrimaryPathwayRecurrenceMetastasis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementPrimaryPathwayMetastasis\COSDv9CRMeasurementPrimaryPathwayMetastasis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementTcategoryFinalPretreatmentStage\COSDv9CRMeasurementTcategoryFinalPretreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementTcategoryIntegratedStage\COSDv9CRMeasurementTcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementTNMcategoryFinalPretreatmentStage\COSDv9CRMeasurementTNMcategoryFinalPretreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv9CRMeasurementTNMcategoryIntegratedStage\COSDv9CRMeasurementTNMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' != 'Release_no_docs'">
 		<ItemGroup>
