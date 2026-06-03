@@ -267,7 +267,7 @@ where MetastaticSite is not null
 ### COSD V9 Lung Measurement N Category Integrated Stage
 * Value copied from `NCategoryIntegratedStage`
 
-* `NCategoryIntegratedStage` The N category (regional lymph nodes) assigned to the tumour for the integrated stage. [N CATEGORY INTEGRATED STAGE]()
+* `NCategoryIntegratedStage` The N category (regional lymph nodes) assigned to the tumour for the integrated stage. [N CATEGORY INTEGRATED STAGE](https://www.datadictionary.nhs.uk/data_elements/n_category_integrated_stage.html)
 
 ```sql
 select 
@@ -290,7 +290,7 @@ where type = 'LU'
 ### COSD V9 Lung Measurement N Category Final Pre Treatment Stage
 * Value copied from `NcategoryFinalPreTreatment`
 
-* `NcategoryFinalPreTreatment` The N category (regional lymph nodes) assigned to the tumour at the time of the final pre-treatment stage. [N CATEGORY FINAL PRETREATMENT]()
+* `NcategoryFinalPreTreatment` The N category (regional lymph nodes) assigned to the tumour at the time of the final pre-treatment stage. [N CATEGORY FINAL PRETREATMENT](https://www.datadictionary.nhs.uk/data_elements/n_category_final_pretreatment.html)
 
 ```sql
 select
@@ -313,7 +313,7 @@ where type = 'LU'
 ### COSD V9 Lung Measurement M Category Integrated Stage
 * Value copied from `MCategoryIntegratedStage`
 
-* `MCategoryIntegratedStage` The M category (distant metastasis) assigned to the tumour for the integrated stage. [M CATEGORY INTEGRATED STAGE]()
+* `MCategoryIntegratedStage` The M category (distant metastasis) assigned to the tumour for the integrated stage. [M CATEGORY INTEGRATED STAGE](https://www.datadictionary.nhs.uk/data_elements/m_category_integrated_stage.html)
 
 ```sql
 select 
@@ -336,7 +336,7 @@ where type = 'LU'
 ### COSD V9 Lung Measurement M Category Final Pre Treatment Stage
 * Value copied from `McategoryFinalPreTreatment`
 
-* `McategoryFinalPreTreatment` The M category (distant metastasis) assigned to the tumour at the time of the final pre-treatment stage. [M CATEGORY FINAL PRETREATMENT]()
+* `McategoryFinalPreTreatment` The M category (distant metastasis) assigned to the tumour at the time of the final pre-treatment stage. [M CATEGORY FINAL PRETREATMENT](https://www.datadictionary.nhs.uk/data_elements/m_category_final_pretreatment.html)
 
 ```sql
 select 
@@ -1866,7 +1866,7 @@ where McategoryFinalPreTreatment is not null;
 ### COSD V9 Breast Measurement Grade of Differentiation
 * Value copied from `GradeOfDifferentiationAtDiagnosis`
 
-* `GradeOfDifferentiationAtDiagnosis` The grade of differentiation of the cancer at diagnosis, indicating how much the cancer cells differ from normal cells. [GRADE OF DIFFERENTIATION AT DIAGNOSIS]()
+* `GradeOfDifferentiationAtDiagnosis` The grade of differentiation of the cancer at diagnosis, indicating how much the cancer cells differ from normal cells. [GRADE OF DIFFERENTIATION AT DIAGNOSIS](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation_at_diagnosis.html)
 
 ```sql
 with BR as (
@@ -2295,3 +2295,180 @@ where o.AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20CosdV8BreastMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+### COSD V9 BA Measurement Tumour Laterality
+* Value copied from `TumourLaterality`
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and TumourLaterality in ('L', 'R', 'M', 'B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V9 BA Measurement Tnm Stage Grouping Final Pretreatment
+* Value copied from `TnmStageGroupingFinalPretreatment`
+
+* `TnmStageGroupingFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and TnmStageGroupingFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement T Category Final Pretreatment
+* Value copied from `TCategoryFinalPretreatment`
+
+* `TCategoryFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and TCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 BA Measurement Non Primary Pathway Recurrence Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 BA Measurement Non Primary Pathway Progression Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 BA Measurement N Category Final Pretreatment
+* Value copied from `NCategoryFinalPretreatment`
+
+* `NCategoryFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and NCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement M Category Final Pretreatment
+* Value copied from `MCategoryFinalPretreatment`
+
+* `MCategoryFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as MCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and MCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement Grade Of Differentiation At Diagnosis
+* Value copied from `GradeOfDifferentiationAtDiagnosis`
+
+* `GradeOfDifferentiationAtDiagnosis` Definitive grade of the tumour at the time of patient diagnosis during a cancer care spell. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20BA%20Measurement%20Grade%20Of%20Differentiation%20At%20Diagnosis%20mapping){: .btn }

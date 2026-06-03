@@ -863,6 +863,36 @@
     <None Update="COSD\BA\ProcedureOccurrence\COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate\COSDv9BAProcedureOccurrenceProcedureOpcsProcedureDate.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis\COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementMCategoryFinalPretreatment\COSDv9BAMeasurementMCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementNCategoryFinalPretreatment\COSDv9BAMeasurementNCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementNonPrimaryPathwayProgressionMetastaticSite\COSDv9BAMeasurementNonPrimaryPathwayProgressionMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite\COSDv9BAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementPerformanceStatusAdult\COSDv9BAMeasurementPerformanceStatusAdult.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementPrimaryPathwayMetastaticSite\COSDv9BAMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementTCategoryFinalPretreatment\COSDv9BAMeasurementTCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementTnmStageGroupingFinalPretreatment\COSDv9BAMeasurementTnmStageGroupingFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\Measurement\COSDv9BAMeasurementTumourLaterality\COSDv9BAMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\CO\ProcedureOccurrence\COSDv8COProcedureOccurrencePrimaryProcedureOPCS\COSDv8COProcedureOccurrencePrimaryProcedureOPCS.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

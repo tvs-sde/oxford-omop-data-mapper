@@ -403,3 +403,39 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+## COSDv9BAMeasurementTumourLaterality
+<a href="COSDv9BAMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv9BAMeasurementTumourLaterality.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementTumourLaterality%20mapping){: .btn }
+## COSDv9BAMeasurementTnmStageGroupingFinalPretreatment
+<a href="COSDv9BAMeasurementTnmStageGroupingFinalPretreatment.svg" target="_blank"><img src="COSDv9BAMeasurementTnmStageGroupingFinalPretreatment.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementTnmStageGroupingFinalPretreatment%20mapping){: .btn }
+## COSDv9BAMeasurementTCategoryFinalPretreatment
+<a href="COSDv9BAMeasurementTCategoryFinalPretreatment.svg" target="_blank"><img src="COSDv9BAMeasurementTCategoryFinalPretreatment.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementTCategoryFinalPretreatment%20mapping){: .btn }
+## COSDv9BAMeasurementPrimaryPathwayMetastaticSite
+<a href="COSDv9BAMeasurementPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv9BAMeasurementPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv9BAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite
+<a href="COSDv9BAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite.svg" target="_blank"><img src="COSDv9BAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite%20mapping){: .btn }
+## COSDv9BAMeasurementNonPrimaryPathwayProgressionMetastaticSite
+<a href="COSDv9BAMeasurementNonPrimaryPathwayProgressionMetastaticSite.svg" target="_blank"><img src="COSDv9BAMeasurementNonPrimaryPathwayProgressionMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementNonPrimaryPathwayProgressionMetastaticSite%20mapping){: .btn }
+## COSDv9BAMeasurementNCategoryFinalPretreatment
+<a href="COSDv9BAMeasurementNCategoryFinalPretreatment.svg" target="_blank"><img src="COSDv9BAMeasurementNCategoryFinalPretreatment.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementNCategoryFinalPretreatment%20mapping){: .btn }
+## COSDv9BAMeasurementMCategoryFinalPretreatment
+<a href="COSDv9BAMeasurementMCategoryFinalPretreatment.svg" target="_blank"><img src="COSDv9BAMeasurementMCategoryFinalPretreatment.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementMCategoryFinalPretreatment%20mapping){: .btn }
+## COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis
+<a href="COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis.svg" target="_blank"><img src="COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis%20mapping){: .btn }

@@ -1852,3 +1852,31 @@ where lower(EVENT) not like '%comment%'
 * Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20Breast%20Measurement%20M%20Category%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 BA Measurement Tnm Stage Grouping Final Pretreatment
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement T Category Final Pretreatment
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement Primary Pathway Metastatic Site
+* Constant value set to `2000500007`. PrimaryPathwayMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 BA Measurement Non Primary Pathway Recurrence Metastatic Site
+* Constant value set to `2000500008`. NonPrimaryPathwayRecurrenceMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 BA Measurement Non Primary Pathway Progression Metastatic Site
+* Constant value set to `2000500009`. NonPrimaryPathwayProgressionMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 BA Measurement N Category Final Pretreatment
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 BA Measurement M Category Final Pretreatment
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20BA%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
