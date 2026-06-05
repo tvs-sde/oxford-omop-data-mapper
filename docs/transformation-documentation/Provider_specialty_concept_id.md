@@ -104,7 +104,7 @@ Notes
 * [NHS MainSpecialtyCode](https://www.datadictionary.nhs.uk/attributes/main_specialty_code.html#attribute_main_specialty_code.data_elements)
 * [OMOP Providers](https://athena.ohdsi.org/search-terms/terms?domain=Provider&standardConcept=Standard&conceptClass=Physician+Specialty&page=1&pageSize=15&query=General+Dental+Practice&boosts)
 
-* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE]()
+* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE](https://www.datadictionary.nhs.uk/data_elements/main_specialty_code.html)
 
 ```sql
 with counts as (
@@ -235,7 +235,7 @@ Notes
 * [NHS MainSpecialtyCode](https://www.datadictionary.nhs.uk/attributes/main_specialty_code.html#attribute_main_specialty_code.data_elements)
 * [OMOP Providers](https://athena.ohdsi.org/search-terms/terms?domain=Provider&standardConcept=Standard&conceptClass=Physician+Specialty&page=1&pageSize=15&query=General+Dental+Practice&boosts)
 
-* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE]()
+* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE](https://www.datadictionary.nhs.uk/data_elements/main_specialty_code.html)
 
 ```sql
 with counts as (

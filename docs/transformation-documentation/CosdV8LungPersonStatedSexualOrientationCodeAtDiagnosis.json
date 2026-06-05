@@ -96,7 +96,7 @@
           "origins": [
             {
               "origin": "PERSON STATED SEXUAL ORIENTATION CODE AT DIAGNOSIS",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code_at_diagnosis.html"
             }
           ]
         }
