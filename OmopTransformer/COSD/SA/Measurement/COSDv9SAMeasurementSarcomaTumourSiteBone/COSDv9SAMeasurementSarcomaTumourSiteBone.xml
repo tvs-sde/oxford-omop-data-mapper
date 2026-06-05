@@ -1,0 +1,25 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisBoneAndSoftTissue.SarcomaTumourSiteBone.@code' as SarcomaTumourSiteBone
+from omop_staging.cosd_staging_901
+where type = 'SA'
+  and SarcomaTumourSiteBone is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NHSNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="SarcomaTumourSiteBone">
+			<Description>Location of the bone sarcoma within the body using an OPCS-4 code, at a more detailed level than ICD or ICD-O.</Description>
+			<Origin>SARCOMA TUMOUR SITE (BONE)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
