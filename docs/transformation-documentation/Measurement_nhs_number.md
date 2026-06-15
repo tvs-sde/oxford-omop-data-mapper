@@ -5054,6 +5054,354 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V8%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V9 GY Measurement Tumour Laterality
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TumourLaterality in ('L', 'R', 'M', 'B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V9 GY Measurement Tnm Stage Grouping Integrated
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TnmStageGroupingIntegrated is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Tnm%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V9 GY Measurement Tnm Stage Grouping Final Pretreatment
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TnmStageGroupingFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement T Category Integrated Stage
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20T%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 GY Measurement T Category Final Pretreatment
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement Primary Pathway Metastatic Site
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    MetastaticSite
+from gy
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 GY Measurement Non Primary Pathway Recurrence Metastatic Site
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from gy
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 GY Measurement Non Primary Pathway Progression Metastatic Site
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from gy
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 GY Measurement N Category Integrated Stage
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20N%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 GY Measurement N Category Final Pretreatment
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement M Category Integrated Stage
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and MCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20M%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 GY Measurement M Category Final Pretreatment
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as MCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and MCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement Grade Of Differentiation At Diagnosis
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Grade%20Of%20Differentiation%20At%20Diagnosis%20mapping){: .btn }
+### COSD V9 GY Measurement Adult Comorbidity Evaluation
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+        Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select
+    distinct
+        AdultComorbidityEvaluation,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(StageDateIntegratedStage as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as MeasurementDate
+from gy
+where AdultComorbidityEvaluation is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20nhs_number%20field%20COSD%20V9%20GY%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 GY Measurement Tumour Laterality
 * Value copied from `NhsNumber`
 

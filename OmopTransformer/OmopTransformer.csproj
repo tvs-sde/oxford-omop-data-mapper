@@ -218,6 +218,48 @@
     <None Update="COSD\GY\Measurement\COSDv8GYMeasurementTumourLaterality\COSDv8GYMeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementAdultComorbidityEvaluation\COSDv9GYMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis\COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementMCategoryFinalPretreatment\COSDv9GYMeasurementMCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementMCategoryIntegratedStage\COSDv9GYMeasurementMCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementNCategoryFinalPretreatment\COSDv9GYMeasurementNCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementNCategoryIntegratedStage\COSDv9GYMeasurementNCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementNonPrimaryPathwayProgressionMetastaticSite\COSDv9GYMeasurementNonPrimaryPathwayProgressionMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementNonPrimaryPathwayRecurrenceMetastaticSite\COSDv9GYMeasurementNonPrimaryPathwayRecurrenceMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementPrimaryPathwayMetastaticSite\COSDv9GYMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementTCategoryFinalPretreatment\COSDv9GYMeasurementTCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementTCategoryIntegratedStage\COSDv9GYMeasurementTCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementTnmStageGroupingFinalPretreatment\COSDv9GYMeasurementTnmStageGroupingFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementTnmStageGroupingIntegrated\COSDv9GYMeasurementTnmStageGroupingIntegrated.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\Measurement\COSDv9GYMeasurementTumourLaterality\COSDv9GYMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Breast\Observation\CosdV8BreastFamilialCancerSyndromeIndicator\CosdV8BreastFamilialCancerSyndromeIndicator.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
