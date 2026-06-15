@@ -101,6 +101,76 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
+Source column  `ProstateSpecificAntigenDiagnosis`.
+Converts text to number.
+
+* `ProstateSpecificAntigenDiagnosis` Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml). [PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/prostate_specific_antigen__diagnosis_.html)
+
+```sql
+-- Query to extract Prostate Specific Antigen (Diagnosis) for UR cancer area from COSD v9.
+-- PSA is a numeric lab measurement in ng/ml at the time of prostate cancer diagnosis.
+-- MeasurementDate uses the primary diagnosis date.
+-- PsaDiagnosis is a numeric value that will be stored as value_as_number in OMOP in a later step.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisProstate.PsaDiagnosis.@value' as ProstateSpecificAntigenDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and ProstateSpecificAntigenDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
+### COSD V9 UR Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+-- Query to extract Adult Comorbidity Evaluation - 27 Score for UR cancer area from COSD v9.
+-- The ACE-27 score measures comorbidity severity during a cancer care spell.
+-- MeasurementDate uses the earliest available date from various clinical events.
+-- AdultComorbidityEvaluation will be mapped to a measurement value concept in OMOP in a later step.
+with UR as (
+	select
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+		Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'UR'
+)
+select distinct
+	NhsNumber,
+	AdultComorbidityEvaluation,
+	least(
+		cast(DateFirstSeen as date),
+		cast(DateFirstSeenCancerSpecialist as date),
+		cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+		cast(StageDateFinalPretreatmentStage as date),
+		cast(StageDateIntegratedStage as date)
+	) as MeasurementDate
+from UR
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		DateFirstSeenCancerSpecialist is null and
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		StageDateFinalPretreatmentStage is null and
+		StageDateIntegratedStage is null
+    );
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20UR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 UR Measurement Prostate Specific Antigen Diagnosis
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.
