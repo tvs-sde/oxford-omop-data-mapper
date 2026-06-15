@@ -468,9 +468,9 @@ group by
 Source columns  `ArrivalDate`, `ArrivalTime`.
 Combines a date with a time of day.
 
-* `ArrivalDate` Event date [ARRIVAL DATE]()
+* `ArrivalDate` Event date [ARRIVAL DATE](https://www.datadictionary.nhs.uk/data_elements/arrival_date.html)
 
-* `ArrivalTime` The time (using a 24 hour clock) that is of relevance to an ACTIVITY. [ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT]()
+* `ArrivalTime` The time (using a 24 hour clock) that is of relevance to an ACTIVITY. [ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT](https://www.datadictionary.nhs.uk/data_elements/arrival_time_at_accident_and_emergency_department.html)
 
 ```sql
 select
@@ -490,9 +490,9 @@ where SourceofReferralForAE is not null
 Source columns  `ArrivalDate`, `ArrivalTime`.
 Combines a date with a time of day.
 
-* `ArrivalDate` Event date [ARRIVAL DATE]()
+* `ArrivalDate` Event date [ARRIVAL DATE](https://www.datadictionary.nhs.uk/data_elements/arrival_date.html)
 
-* `ArrivalTime` The time (using a 24 hour clock) that is of relevance to an ACTIVITY. [ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT]()
+* `ArrivalTime` The time (using a 24 hour clock) that is of relevance to an ACTIVITY. [ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT](https://www.datadictionary.nhs.uk/data_elements/arrival_time_at_accident_and_emergency_department.html)
 
 ```sql
 select
@@ -516,9 +516,9 @@ and d.AccidentAndEmergencyDiagnosis in ('30','301')
 Source columns  `ArrivalDate`, `ArrivalTime`.
 Combines a date with a time of day.
 
-* `ArrivalDate` Event date [ARRIVAL DATE]()
+* `ArrivalDate` Event date [ARRIVAL DATE](https://www.datadictionary.nhs.uk/data_elements/arrival_date.html)
 
-* `ArrivalTime` The time (using a 24 hour clock) that is of relevance to an ACTIVITY. [ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT]()
+* `ArrivalTime` The time (using a 24 hour clock) that is of relevance to an ACTIVITY. [ARRIVAL TIME AT ACCIDENT AND EMERGENCY DEPARTMENT](https://www.datadictionary.nhs.uk/data_elements/arrival_time_at_accident_and_emergency_department.html)
 
 ```sql
 select

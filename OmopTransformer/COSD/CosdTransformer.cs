@@ -56,6 +56,19 @@ using OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementTcategoryI
 using OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementTNMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementTumourLaterality;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementMcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementNcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementNcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementNonPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementProstateSpecificAntigenDiagnosis;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementTcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementTcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementTNMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementTNMcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv8URMeasurementTumourLaterality;
 using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosis;
 using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography;
 using OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrenceProgression;
@@ -1646,6 +1659,84 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9URProcedureOccurrenceProcedureOpcsRecord, COSDv9URProcedureOccurrenceProcedureOpcs>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V9 UR Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementGradeOfDifferentiationRecord, COSDv8URMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementGradeOfDifferentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementMcategoryFinalPreTreatmentStageRecord, COSDv8URMeasurementMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementMcategoryFinalPreTreatmentStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementMcategoryIntegratedStageRecord, COSDv8URMeasurementMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementMcategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementNcategoryFinalPreTreatmentStageRecord, COSDv8URMeasurementNcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementNcategoryFinalPreTreatmentStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementNcategoryIntegratedStageRecord, COSDv8URMeasurementNcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementNcategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementNonPrimaryPathwayMetastaticSiteRecord, COSDv8URMeasurementNonPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementNonPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv8URMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementProstateSpecificAntigenDiagnosisRecord, COSDv8URMeasurementProstateSpecificAntigenDiagnosis>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementProstateSpecificAntigenDiagnosis",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementTcategoryFinalPreTreatmentStageRecord, COSDv8URMeasurementTcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementTcategoryFinalPreTreatmentStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementTcategoryIntegratedStageRecord, COSDv8URMeasurementTcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementTcategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementTNMcategoryFinalPreTreatmentStageRecord, COSDv8URMeasurementTNMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementTNMcategoryFinalPreTreatmentStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementTNMcategoryIntegratedStageRecord, COSDv8URMeasurementTNMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementTNMcategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URMeasurementTumourLateralityRecord, COSDv8URMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8URMeasurementTumourLaterality",
             runId,
             cancellationToken);
     }

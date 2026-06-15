@@ -30,7 +30,7 @@
           "origins": [
             {
               "origin": "MAIN SPECIALTY CODE",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/main_specialty_code.html"
             }
           ]
         }
@@ -48,7 +48,7 @@
           "origins": [
             {
               "origin": "MAIN SPECIALTY CODE",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/main_specialty_code.html"
             }
           ]
         }
