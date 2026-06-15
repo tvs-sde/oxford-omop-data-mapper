@@ -1141,7 +1141,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8BreastMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
-<<<<<<< HEAD
 ## COSDv9BAMeasurementTumourLaterality
 <a href="COSDv9BAMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv9BAMeasurementTumourLaterality.svg" /></a>
 
@@ -1178,7 +1177,6 @@ has_toc: false
 <a href="COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis.svg" target="_blank"><img src="COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9BAMeasurementGradeOfDifferentiationAtDiagnosis%20mapping){: .btn }
-=======
 ## COSDv8BAMeasurementTumourLaterality
 <a href="COSDv8BAMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv8BAMeasurementTumourLaterality.svg" /></a>
 
@@ -1195,4 +1193,3 @@ has_toc: false
 <a href="COSDv8BAMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8BAMeasurementAdultComorbidityEvaluation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8BAMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
->>>>>>> main
