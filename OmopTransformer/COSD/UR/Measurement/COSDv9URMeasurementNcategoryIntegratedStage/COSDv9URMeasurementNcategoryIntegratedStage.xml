@@ -1,0 +1,33 @@
+<Query>
+    <Sql>
+-- Query to extract N Category (Integrated Stage) for UR cancer area from COSD v9.
+-- The N category classifies the absence or presence and extent of regional lymph node metastases after treatment.
+-- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
+-- NcategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NcategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NcategoryIntegratedStage is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+			<Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+		</Explanation>
+		<Explanation columnName="NcategoryIntegratedStage">
+			<Description>Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional lymph node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell.</Description>
+			<Origin>N CATEGORY (INTEGRATED STAGE)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

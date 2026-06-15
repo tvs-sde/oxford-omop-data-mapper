@@ -1,0 +1,33 @@
+<Query>
+    <Sql>
+-- Query to extract N Category (Final Pretreatment) for CT (CTYA) cancer area from COSD v8.
+-- The N category classifies the absence or presence and extent of regional lymph node metastases before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- NcategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentNCategory' as NcategoryFinalPreTreatment
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and NcategoryFinalPreTreatment is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="NcategoryFinalPreTreatment">
+			<Description>Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional lymph node metastases before treatment during a Cancer Care Spell.</Description>
+			<Origin>N CATEGORY (FINAL PRETREATMENT)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
