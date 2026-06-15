@@ -288,6 +288,19 @@ using OmopTransformer.COSD.SK.Measurement.COSDv8SKMeasurementTCategoryIntegrated
 using OmopTransformer.COSD.SK.Measurement.COSDv8SKMeasurementTNMStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.SK.Measurement.COSDv8SKMeasurementTNMStageGroupingIntegrated;
 using OmopTransformer.COSD.SK.Measurement.COSDv8SKMeasurementTumourLaterality;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementMCategoryFinalPretreatment;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementMCategoryIntegratedStage;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementNCategoryFinalPretreatment;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementNCategoryIntegratedStage;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementNonPrimaryPathwayProgressionMetastaticSite;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementNonPrimaryPathwayRecurrenceMetastaticSite;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementTCategoryFinalPretreatment;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementTCategoryIntegratedStage;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementTNMStageGroupingFinalPretreatment;
+using OmopTransformer.COSD.SK.Measurement.COSDv9SKMeasurementTNMStageGroupingIntegrated;
 using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv8UGProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv8UGProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceDiagnosticProcedureOpcs;
@@ -3075,6 +3088,84 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9UGMeasurementTnmStageGroupingIntegratedRecord, COSDv9UGMeasurementTnmStageGroupingIntegrated>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSD V9 UG Measurement Tnm Stage Grouping Integrated",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementAdultComorbidityEvaluationRecord, COSDv9SKMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementGradeOfDifferentiationRecord, COSDv9SKMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementGradeOfDifferentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementMCategoryFinalPretreatmentRecord, COSDv9SKMeasurementMCategoryFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementMCategoryFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementMCategoryIntegratedStageRecord, COSDv9SKMeasurementMCategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementMCategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementNCategoryFinalPretreatmentRecord, COSDv9SKMeasurementNCategoryFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementNCategoryFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementNCategoryIntegratedStageRecord, COSDv9SKMeasurementNCategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementNCategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementNonPrimaryPathwayProgressionMetastaticSiteRecord, COSDv9SKMeasurementNonPrimaryPathwayProgressionMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementNonPrimaryPathwayProgressionMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementNonPrimaryPathwayRecurrenceMetastaticSiteRecord, COSDv9SKMeasurementNonPrimaryPathwayRecurrenceMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementNonPrimaryPathwayRecurrenceMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv9SKMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementTCategoryFinalPretreatmentRecord, COSDv9SKMeasurementTCategoryFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementTCategoryFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementTCategoryIntegratedStageRecord, COSDv9SKMeasurementTCategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementTCategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementTNMStageGroupingFinalPretreatmentRecord, COSDv9SKMeasurementTNMStageGroupingFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementTNMStageGroupingFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKMeasurementTNMStageGroupingIntegratedRecord, COSDv9SKMeasurementTNMStageGroupingIntegrated>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9SKMeasurementTNMStageGroupingIntegrated",
             runId,
             cancellationToken);
     }
