@@ -101,9 +101,6 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD V9 SA Measurement Adult Comorbidity Evaluation
-=======
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.
@@ -198,18 +195,13 @@ where type = 'UR'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
 ### COSD V9 UG Measurement Adult Comorbidity Evaluation 27 Score
->>>>>>> main
 Source column  `AdultComorbidityEvaluation27Score`.
 Converts text to number.
 
 * `AdultComorbidityEvaluation27Score` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
 
 ```sql
-<<<<<<< HEAD
-with SA as (
-=======
 with UG as (
->>>>>>> main
     select
         Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
         Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
@@ -218,16 +210,6 @@ with UG as (
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
         coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
         coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
-<<<<<<< HEAD
-        Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation27Score,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'SA'
-)
-select distinct
-    NhsNumber,
-    AdultComorbidityEvaluation27Score,
-=======
         Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation27Score,
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_901
@@ -236,7 +218,6 @@ select distinct
 select distinct
     AdultComorbidityEvaluation27Score,
     NhsNumber,
->>>>>>> main
     least(
         cast(DateFirstSeen as date),
         cast(DateFirstSeenCancerSpecialist as date),
@@ -246,11 +227,6 @@ select distinct
         cast(TreatmentStartDateCancer as date),
         cast(ProcedureDate as date)
     ) as MeasurementDate
-<<<<<<< HEAD
-from SA
-where AdultComorbidityEvaluation27Score is not null
-  and not (
-=======
 from UG
 where AdultComorbidityEvaluation27Score is not null
   and not (
@@ -351,6 +327,54 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V9 SA Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation27Score`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation27Score` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+with SA as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+        Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation27Score,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation27Score,
+    least(
+        cast(DateFirstSeen as date),
+        cast(DateFirstSeenCancerSpecialist as date),
+        cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+        cast(StageDateFinalPretreatmentStage as date),
+        cast(StageDateIntegratedStage as date),
+        cast(TreatmentStartDateCancer as date),
+        cast(ProcedureDate as date)
+    ) as MeasurementDate
+from SA
+where AdultComorbidityEvaluation27Score is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20SA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD v8 SA Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
@@ -436,7 +460,6 @@ select
 from lv
 where AdultComorbidityEvaluation is not null
   and not (
->>>>>>> main
         DateFirstSeen is null and
         DateFirstSeenCancerSpecialist is null and
         DateOfPrimaryDiagnosisClinicallyAgreed is null and
@@ -448,9 +471,6 @@ where AdultComorbidityEvaluation is not null
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20SA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD v8 LV Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
@@ -839,7 +859,6 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### CosdV9MeasurementAdultComorbidityEvaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
