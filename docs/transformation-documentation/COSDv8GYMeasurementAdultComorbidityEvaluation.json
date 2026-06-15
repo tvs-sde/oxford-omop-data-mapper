@@ -1,0 +1,158 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith gy as (\n    select\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'GY'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(IntegratedStageTNMStageGroupingDate as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(CancerTreatmentStartDate as date),\n        cast(ProcedureDate as date)\n    ) as MeasurementDate\nfrom gy\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      IntegratedStageTNMStageGroupingDate is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      CancerTreatmentStartDate is null and\n      ProcedureDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Value copied from `MeasurementDate`",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement date is the earliest available date from referral, specialist first seen, diagnosis, staging, treatment start, or procedure date.",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith gy as (\n    select\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'GY'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(IntegratedStageTNMStageGroupingDate as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(CancerTreatmentStartDate as date),\n        cast(ProcedureDate as date)\n    ) as MeasurementDate\nfrom gy\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      IntegratedStageTNMStageGroupingDate is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      CancerTreatmentStartDate is null and\n      ProcedureDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Value copied from `MeasurementDate`",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement date is the earliest available date from referral, specialist first seen, diagnosis, staging, treatment start, or procedure date.",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith gy as (\n    select\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'GY'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(IntegratedStageTNMStageGroupingDate as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(CancerTreatmentStartDate as date),\n        cast(ProcedureDate as date)\n    ) as MeasurementDate\nfrom gy\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      IntegratedStageTNMStageGroupingDate is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      CancerTreatmentStartDate is null and\n      ProcedureDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Constant value set to `40488785`. Adult comorbidity evaluation-27",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `AdultComorbidityEvaluation`",
+      "dataSource": [
+        {
+          "name": "AdultComorbidityEvaluation",
+          "description": "The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.",
+          "origins": [
+            {
+              "origin": "ADULT COMORBIDITY EVALUATION - 27 SCORE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith gy as (\n    select\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'GY'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(IntegratedStageTNMStageGroupingDate as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(CancerTreatmentStartDate as date),\n        cast(ProcedureDate as date)\n    ) as MeasurementDate\nfrom gy\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      IntegratedStageTNMStageGroupingDate is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      CancerTreatmentStartDate is null and\n      ProcedureDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_number",
+      "operation_description": "Converts text to number.",
+      "dataSource": [
+        {
+          "name": "AdultComorbidityEvaluation",
+          "description": "The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.",
+          "origins": [
+            {
+              "origin": "ADULT COMORBIDITY EVALUATION - 27 SCORE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith gy as (\n    select\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'GY'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(IntegratedStageTNMStageGroupingDate as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(CancerTreatmentStartDate as date),\n        cast(ProcedureDate as date)\n    ) as MeasurementDate\nfrom gy\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      IntegratedStageTNMStageGroupingDate is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      CancerTreatmentStartDate is null and\n      ProcedureDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}
