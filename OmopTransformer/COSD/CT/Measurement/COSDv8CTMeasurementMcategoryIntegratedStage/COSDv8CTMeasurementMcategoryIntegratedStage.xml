@@ -1,0 +1,33 @@
+<Query>
+    <Sql>
+-- Query to extract M Category (Integrated Stage) for CT (CTYA) cancer area from COSD v8.
+-- The M category classifies the absence or presence of distant metastases after treatment and/or after all available evidence.
+-- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
+-- McategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageMCategory' as McategoryIntegratedStage
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and McategoryIntegratedStage is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="McategoryIntegratedStage">
+			<Description>Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell.</Description>
+			<Origin>M CATEGORY (INTEGRATED STAGE)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

@@ -1624,6 +1624,7 @@ where lower(EVENT) not like '%comment%'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
+<<<<<<< HEAD
 ### COSD V9 UG Measurement Tnm Stage Grouping Integrated
 * Constant value set to `2000500013`. TNMCategoryIntegratedStage
 
@@ -1668,6 +1669,252 @@ where lower(EVENT) not like '%comment%'
 * Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UG%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+=======
+### COSD V9 UR Measurement TNM Category Integrated Stage
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20TNM%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement TNM Category Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20TNM%20Category%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
+* Constant value set to `4272032`. Prostate specific antigen measurement
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
+### COSD V9 UR Measurement Primary Pathway Metastatic Site
+* Constant value set to `2000500007`. PrimaryPathwayMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 UR Measurement Non Primary Pathway Recurrence Metastatic Site
+* Constant value set to `2000500008`. NonPrimaryPathwayRecurrenceMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 UR Measurement Non Primary Pathway Progression Metastatic Site
+* Constant value set to `2000500009`. NonPrimaryPathwayProgressionMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 UR Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 UR Measurement Adult Comorbidity Evaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 UR Measurement TNMcategory Integrated Stage
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20TNMcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement TNMcategory Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20TNMcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement Prostate Specific Antigen Diagnosis
+* Constant value set to `4272032`. Prostate specific antigen measurement
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
+### COSD V8 UR Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 UR Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UR%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage TNM Stage Grouping
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20TNM%20Stage%20Grouping%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage T Category
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20T%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage N Category
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20N%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Integrated Stage M Category
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Integrated%20Stage%20M%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment TNM Stage Grouping
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20TNM%20Stage%20Grouping%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment T Category
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20T%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment N Category
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20N%20Category%20mapping){: .btn }
+### COSD V8 UG Measurement Final Pretreatment M Category
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Final%20Pretreatment%20M%20Category%20mapping){: .btn }
+### COSD V8 SK Measurement TNM Stage Grouping Integrated
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V8 SK Measurement TNM Stage Grouping Final Pretreatment
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement TCategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement TCategory Final Pretreatment
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement NCategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement NCategory Final Pretreatment
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement MCategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement MCategory Final Pretreatment
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SA Measurement TNMcategory Integrated Stage
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20TNMcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement TNMcategory Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20TNMcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement TNM Stage Grouping Integrated
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V9 LV Measurement TNM Stage Grouping Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement Primary Pathway Metastatic Site
+* Constant value set to `2000500007`. PrimaryPathwayMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 LV Measurement Non Primary Pathway Recurrence Metastatic Site
+* Constant value set to `2000500008`. NonPrimaryPathwayRecurrenceMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 LV Measurement Non Primary Pathway Progression Metastatic Site
+* Constant value set to `2000500009`. NonPrimaryPathwayProgressionMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 LV Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 LV Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20LV%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 LV Measurement TNM Stage Grouping Integrated
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20LV%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD v8 LV Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20LV%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 LV Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20LV%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 LV Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20LV%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+>>>>>>> main
 ### COSD V9 Lung Measurement TNM Category Integrated Stage
 * Constant value set to `2000500018`. TNMCategoryIntegratedStage
 
@@ -1744,6 +1991,230 @@ where lower(EVENT) not like '%comment%'
 * Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20Lung%20Measurement%20M%20Category%20(Final%20Pretreatment)%20mapping){: .btn }
+### COSD V9 HN Measurement Tnm Stage Grouping Integrated
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20Tnm%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V9 HN Measurement Tnm Stage Grouping Final Pretreatment
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 HN Measurement T Category Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20T%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 HN Measurement T Category Final Pretreatment
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 HN Measurement Primary Pathway Metastatic Site
+* Constant value set to `2000500007`. PrimaryPathwayMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 HN Measurement Non Primary Pathway Recurrence Metastatic Site
+* Constant value set to `2000500008`. NonPrimaryPathwayRecurrenceMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 HN Measurement Non Primary Pathway Progression Metastatic Site
+* Constant value set to `2000500009`. NonPrimaryPathwayProgressionMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 HN Measurement N Category Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20N%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 HN Measurement N Category Final Pretreatment
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 HN Measurement M Category Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20M%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 HN Measurement M Category Final Pretreatment
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HN%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 HN Measurement TNMcategory Integrated Stage
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20TNMcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement TNMcategory Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20TNMcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 HN Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v8%20HN%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement TNM Stage Grouping Integrated
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V8 GY Measurement TNM Stage Grouping Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 GY Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement TNM Stage Grouping Integrated
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V8 CT Measurement TNM Stage Grouping Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Lactate Dehydrogenase Level Peak At Diagnosis
+* Constant value set to `4012918`. Lactate dehydrogenase measurement
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Lactate%20Dehydrogenase%20Level%20Peak%20At%20Diagnosis%20mapping){: .btn }
+### COSD V8 CT Measurement Lactate Dehydrogenase Level Normal Upper Limit
+* Constant value set to `4012918`. Lactate dehydrogenase measurement
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CT%20Measurement%20Lactate%20Dehydrogenase%20Level%20Normal%20Upper%20Limit%20mapping){: .btn }
+### COSD v9 CR Measurement TNM Category Integrated Stage
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20TNM%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement TNM Category Final Pretreatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20TNM%20Category%20Final%20Pretreatment%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement Tcategory Final Pretreatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Tcategory%20Final%20Pretreatment%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement Primary Pathway Metastasis
+* Constant value set to `2000500007`. PrimaryPathwayMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Primary%20Pathway%20Metastasis%20mapping){: .btn }
+### COSD v9 CR Measurement Non Primary Pathway Recurrence Metastasis
+* Constant value set to `2000500008`. NonPrimaryPathwayRecurrenceMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastasis%20mapping){: .btn }
+### COSD v9 CR Measurement Non Primary Pathway Progression Metastasis
+* Constant value set to `2000500009`. NonPrimaryPathwayProgressionMetastasis
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastasis%20mapping){: .btn }
+### COSD v9 CR Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement Ncategory Final Pretreatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Ncategory%20Final%20Pretreatment%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v9 CR Measurement Mcategory Final Pretreatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20v9%20CR%20Measurement%20Mcategory%20Final%20Pretreatment%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement TNM Category Integrated Stage
+* Constant value set to `2000500013`. TNMCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20TNM%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement TNM Category Final Pre Treatment Stage
+* Constant value set to `2000500017`. TNMCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20TNM%20Category%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement Tcategory Integrated Stage
+* Constant value set to `2000500012`. TCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement Ncategory Integrated Stage
+* Constant value set to `2000500011`. NCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement Mcategory Integrated Stage
+* Constant value set to `2000500010`. MCategoryIntegratedStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CR Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20CR%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 Measurement TNM Category Integrated Stage
 * Constant value set to `2000500013`. TNMCategoryIntegratedStage
 
