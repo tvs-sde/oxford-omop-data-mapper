@@ -920,6 +920,48 @@
     <None Update="COSD\LV\ProcedureOccurrence\COSDv9LVProcedureOccurrenceProcedureOpcs\COSDv9LVProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementAdultComorbidityEvaluation\COSDv9LVMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementGradeOfDifferentiation\COSDv9LVMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementMcategoryFinalPreTreatmentStage\COSDv9LVMeasurementMcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementMcategoryIntegratedStage\COSDv9LVMeasurementMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementNcategoryFinalPreTreatmentStage\COSDv9LVMeasurementNcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementNcategoryIntegratedStage\COSDv9LVMeasurementNcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementNonPrimaryPathwayProgressionMetastaticSite\COSDv9LVMeasurementNonPrimaryPathwayProgressionMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementNonPrimaryPathwayRecurrenceMetastaticSite\COSDv9LVMeasurementNonPrimaryPathwayRecurrenceMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementPrimaryPathwayMetastaticSite\COSDv9LVMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementTcategoryFinalPreTreatmentStage\COSDv9LVMeasurementTcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementTcategoryIntegratedStage\COSDv9LVMeasurementTcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementTNMStageGroupingFinalPreTreatmentStage\COSDv9LVMeasurementTNMStageGroupingFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementTNMStageGroupingIntegrated\COSDv9LVMeasurementTNMStageGroupingIntegrated.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\Measurement\COSDv9LVMeasurementTumourLaterality\COSDv9LVMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\SA\ProcedureOccurrence\COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDate\COSDv8SAProcedureOccurrencePrimaryProcedureOPCSProcedureDate.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
