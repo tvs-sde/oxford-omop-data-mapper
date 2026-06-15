@@ -4442,7 +4442,8 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BA
-where GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null
+  and GradeOfDifferentiationAtDiagnosis != ''
 	
 ```
 
