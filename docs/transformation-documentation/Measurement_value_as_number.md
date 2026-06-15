@@ -101,56 +101,52 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
-### COSD V9 HN Measurement Adult Comorbidity Evaluation
+### COSD v8 LV Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
 
 * `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
 
 ```sql
--- Query to extract Adult Comorbidity Evaluation - 27 Score for HN cancer area from COSD v9.
--- The ACE-27 score is a person score recorded during a Cancer Care Spell using the ACE-27 assessment tool.
--- MeasurementDate is the earliest available date across referral, diagnosis, staging, and procedure dates.
--- AdultComorbidityEvaluation will be mapped to a measurement concept in OMOP in a later step.
-with hn as (
+with lv as (
     select
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
-        Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation
-    from omop_staging.cosd_staging_901
-    where type = 'HN'
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Liver.LiverCore.LiverCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
 )
 select
     distinct
-        NhsNumber,
         AdultComorbidityEvaluation,
+        NhsNumber,
         least(
-            DateFirstSeen,
-            DateFirstSeenCancerSpecialist,
-            DateOfPrimaryDiagnosisClinicallyAgreed,
-            StageDateFinalPretreatmentStage,
-            StageDateIntegratedStage,
-            ProcedureDate
+            cast(DateFirstSeen as date),
+            cast(SpecialistDateFirstSeen as date),
+            cast(ClinicalDateCancerDiagnosis as date),
+            cast(IntegratedStageTNMStageGroupingDate as date),
+            cast(CancerTreatmentStartDate as date),
+            cast(ProcedureDate as date)
         ) as MeasurementDate
-from hn
+from lv
 where AdultComorbidityEvaluation is not null
   and not (
         DateFirstSeen is null and
-        DateFirstSeenCancerSpecialist is null and
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        StageDateFinalPretreatmentStage is null and
-        StageDateIntegratedStage is null and
+        SpecialistDateFirstSeen is null and
+        ClinicalDateCancerDiagnosis is null and
+        IntegratedStageTNMStageGroupingDate is null and
+        CancerTreatmentStartDate is null and
         ProcedureDate is null
     );
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### CosdV9MeasurementAdultComorbidityEvaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
