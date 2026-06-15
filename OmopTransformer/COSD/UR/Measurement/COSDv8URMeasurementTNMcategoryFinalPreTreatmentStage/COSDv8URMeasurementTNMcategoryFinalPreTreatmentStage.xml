@@ -1,0 +1,33 @@
+<Query>
+    <Sql>
+-- Query to extract TNM Stage Grouping (Final Pretreatment) for UR cancer area from COSD v8.
+-- The TNM stage grouping classifies the combination of T, N and M into stage groupings before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- TnmStageGroupingFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate',
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGrouping' as TnmStageGroupingFinalPreTreatment
+from omop_staging.cosd_staging_81
+where type = 'UR'
+  and TnmStageGroupingFinalPreTreatment is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+			<Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+		</Explanation>
+		<Explanation columnName="TnmStageGroupingFinalPreTreatment">
+			<Description>Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell.</Description>
+			<Origin>TNM STAGE GROUPING (FINAL PRETREATMENT)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
