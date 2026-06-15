@@ -177,364 +177,234 @@ where lower(EVENT) not like '%comment%'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
-### COSD V8 UR Measurement Tumour Laterality
+### COSD v8 LV Measurement Tumour Laterality
 Source column  `MeasurementDate`.
 Converts text to dates.
 
-* `MeasurementDate` For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
+* `MeasurementDate` For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
--- Query to extract Tumour Laterality for UR cancer area from COSD v8.
--- Identifies the side of the body for a tumour relating to paired organs.
--- Only valid laterality codes (L, R, M, B) are included.
--- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.
--- TumourLaterality will be mapped to a measurement value concept in OMOP in a later step.
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
 select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and (Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');
-	
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    TumourLaterality
+from lv
+where TumourLaterality is not null
+  and TumourLaterality in ('L','R','M','B');
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
-### COSD V8 UR Measurement TNMcategory Integrated Stage
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
-
-```sql
--- Query to extract TNM Stage Grouping (Integrated) for UR cancer area from COSD v8.
--- The TNM stage grouping classifies the combination of T, N and M into stage groupings after treatment.
--- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
--- TnmStageGroupingIntegrated will be mapped to a measurement concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageTNMStageGrouping' as TnmStageGroupingIntegrated
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and TnmStageGroupingIntegrated is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20TNMcategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement TNMcategory Final Pre Treatment Stage
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html)
-
-```sql
--- Query to extract TNM Stage Grouping (Final Pretreatment) for UR cancer area from COSD v8.
--- The TNM stage grouping classifies the combination of T, N and M into stage groupings before treatment.
--- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
--- TnmStageGroupingFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGrouping' as TnmStageGroupingFinalPreTreatment
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and TnmStageGroupingFinalPreTreatment is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20TNMcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Tcategory Integrated Stage
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD v8 LV Measurement TNM Stage Grouping Integrated
 Source column  `MeasurementDate`.
 Converts text to dates.
 
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
 
 ```sql
--- Query to extract T Category (Integrated Stage) for UR cancer area from COSD v8.
--- The T category classifies the size and extent of the primary tumour after treatment and/or after all available evidence has been collected.
--- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
--- TcategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGrouping' as TnmStageGroupingIntegrated,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
 select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageTCategory' as TcategoryIntegratedStage
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and TcategoryIntegratedStage is not null;
-	
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    TnmStageGroupingIntegrated
+from lv
+where TnmStageGroupingIntegrated is not null;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Tcategory Final Pre Treatment Stage
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD v8 LV Measurement Tcategory Integrated Stage
 Source column  `MeasurementDate`.
 Converts text to dates.
 
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html)
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
 
 ```sql
--- Query to extract T Category (Final Pretreatment) for UR cancer area from COSD v8.
--- The T category classifies the size and extent of the primary tumour before treatment.
--- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
--- TcategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTCategory' as TCategoryIntegratedStage,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
 select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTCategory' as TcategoryFinalPreTreatment
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and TcategoryFinalPreTreatment is not null;
-	
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    TCategoryIntegratedStage
+from lv
+where TCategoryIntegratedStage is not null;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Prostate Specific Antigen Diagnosis
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
--- Query to extract Prostate Specific Antigen (Diagnosis) for UR cancer area from COSD v8.
--- PSA is a numeric lab measurement in ng/ml at the time of prostate cancer diagnosis.
--- MeasurementDate uses the diagnosis date.
--- ProstateSpecificAntigenDiagnosis is a numeric value that will be stored as value_as_number in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreCancerCarePlan.UrologicalCancerCarePlan.ProstateSpecificAntigenDiagnosis.@value' as ProstateSpecificAntigenDiagnosis
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and ProstateSpecificAntigenDiagnosis is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
-### COSD V8 UR Measurement Primary Pathway Metastatic Site
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 LV Measurement Primary Pathway Metastatic Site
 Source column  `ClinicalDateCancerDiagnosis`.
 Converts text to dates.
 
 * `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
--- Query to extract Metastatic Site (Primary Pathway/Diagnosis) for UR cancer area from COSD v8.
--- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
--- Code 97 (Not Applicable - Disease not spread) is excluded.
--- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
-with ur as (
-    select distinct
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        unnest(
-            [
-                [ Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.MetastaticSite.@code' ],
-                Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.MetastaticSite[*].@code'
-            ],
-            recursive := true
-        ) as MetastaticSite
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreDiagnosis.MetastaticSite.@code' as MetastaticSite
     from omop_staging.cosd_staging_81
-    where type = 'UR'
+    where Type = 'LV'
 )
 select distinct
     NhsNumber,
     ClinicalDateCancerDiagnosis,
     MetastaticSite
-from ur
+from lv
 where MetastaticSite is not null
   and MetastaticSite != '97';
-	
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD V8 UR Measurement Non Primary Pathway Metastatic Site
-Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 LV Measurement Ncategory Integrated Stage
+Source column  `MeasurementDate`.
 Converts text to dates.
 
-* `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed` Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed. [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
 
 ```sql
--- Query to extract Metastatic Site (Non-Primary Pathway) for UR cancer area from COSD v8.
--- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
--- Code 97 (Not Applicable - Disease not spread) is excluded.
--- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
-with ur as (
-    select distinct
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
-        unnest(
-            [
-                [ Record ->> '$.Urological.UrologicalCore.UrologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' ],
-                Record ->> '$.Urological.UrologicalCore.UrologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite[*].@code'
-            ],
-            recursive := true
-        ) as MetastaticSite
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
     from omop_staging.cosd_staging_81
-    where type = 'UR'
+    where Type = 'LV'
 )
 select distinct
     NhsNumber,
-    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
-    MetastaticSite
-from ur
-where MetastaticSite is not null
-  and MetastaticSite != '97';
-	
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    NCategoryIntegratedStage
+from lv
+where NCategoryIntegratedStage is not null;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD V8 UR Measurement Ncategory Integrated Stage
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 LV Measurement Mcategory Integrated Stage
 Source column  `MeasurementDate`.
 Converts text to dates.
 
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
 
 ```sql
--- Query to extract N Category (Integrated Stage) for UR cancer area from COSD v8.
--- The N category classifies the absence or presence and extent of regional lymph node metastases after treatment.
--- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
--- NcategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageMCategory' as MCategoryIntegratedStage,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
 select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageNCategory' as NcategoryIntegratedStage
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and NcategoryIntegratedStage is not null;
-	
+    NhsNumber,
+    coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    MCategoryIntegratedStage
+from lv
+where MCategoryIntegratedStage is not null;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Ncategory Final Pre Treatment Stage
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 LV Measurement Grade Of Differentiation
 Source column  `MeasurementDate`.
 Converts text to dates.
 
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html)
+* `MeasurementDate` For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
--- Query to extract N Category (Final Pretreatment) for UR cancer area from COSD v8.
--- The N category classifies the absence or presence and extent of regional lymph node metastases before treatment.
--- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
--- NcategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Liver.LiverCore.LiverCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
 select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentNCategory' as NcategoryFinalPreTreatment
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and NcategoryFinalPreTreatment is not null;
-	
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    GradeOfDifferentiationAtDiagnosis
+from lv
+where GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Mcategory Integrated Stage
-Source column  `MeasurementDate`.
-Converts text to dates.
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD v8 LV Measurement Adult Comorbidity Evaluation
+* Value copied from `MeasurementDate`
 
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
+* `MeasurementDate` Measurement date is the earliest available date from the patient pathway. [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
 
 ```sql
--- Query to extract M Category (Integrated Stage) for UR cancer area from COSD v8.
--- The M category classifies the absence or presence of distant metastases after treatment.
--- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
--- McategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.IntegratedStageMCategory' as McategoryIntegratedStage
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and McategoryIntegratedStage is not null;
-	
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Liver.LiverCore.LiverCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
+select
+    distinct
+        AdultComorbidityEvaluation,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(SpecialistDateFirstSeen as date),
+            cast(ClinicalDateCancerDiagnosis as date),
+            cast(IntegratedStageTNMStageGroupingDate as date),
+            cast(CancerTreatmentStartDate as date),
+            cast(ProcedureDate as date)
+        ) as MeasurementDate
+from lv
+where AdultComorbidityEvaluation is not null
+  and not (
+        DateFirstSeen is null and
+        SpecialistDateFirstSeen is null and
+        ClinicalDateCancerDiagnosis is null and
+        IntegratedStageTNMStageGroupingDate is null and
+        CancerTreatmentStartDate is null and
+        ProcedureDate is null
+    );
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Mcategory Final Pre Treatment Stage
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html)
-
-```sql
--- Query to extract M Category (Final Pretreatment) for UR cancer area from COSD v8.
--- The M category classifies the absence or presence of distant metastases before treatment.
--- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
--- McategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and McategoryFinalPreTreatment is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD V8 UR Measurement Grade Of Differentiation
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
--- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v8.
--- The grade classifies the differentiation of the tumour at the time of diagnosis.
--- MeasurementDate uses diagnosis date, falling back to non-primary diagnosis date.
--- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    coalesce(
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis',
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
-    ) as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and GradeOfDifferentiationAtDiagnosis is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 Lung Measurement Tumour Laterality
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.

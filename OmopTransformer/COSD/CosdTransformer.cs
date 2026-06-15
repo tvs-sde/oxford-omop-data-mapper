@@ -191,6 +191,14 @@ using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDia
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceProcedureOpcs;
 
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementMcategoryIntegratedStage;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementNcategoryIntegratedStage;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementTcategoryIntegratedStage;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementTNMStageGroupingIntegrated;
+using OmopTransformer.COSD.LV.Measurement.COSDv8LVMeasurementTumourLaterality;
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv8LVProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.LV.ProcedureOccurrence.COSDv9LVProcedureOccurrencePrimaryProcedureOpcs;
@@ -1381,6 +1389,54 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8CTProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8CTProcedureOccurrencePrimaryProcedureOPCS>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V8 CT Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementAdultComorbidityEvaluationRecord, COSDv8LVMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement Adult Comorbidity Evaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementGradeOfDifferentiationRecord, COSDv8LVMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement Grade Of Differentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementMcategoryIntegratedStageRecord, COSDv8LVMeasurementMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement M Category Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementNcategoryIntegratedStageRecord, COSDv8LVMeasurementNcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement N Category Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv8LVMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement Primary Pathway Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementTcategoryIntegratedStageRecord, COSDv8LVMeasurementTcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement T Category Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementTNMStageGroupingIntegratedRecord, COSDv8LVMeasurementTNMStageGroupingIntegrated>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement TNM Stage Grouping Integrated",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVMeasurementTumourLateralityRecord, COSDv8LVMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 LV Measurement Tumour Laterality",
             runId,
             cancellationToken);
 

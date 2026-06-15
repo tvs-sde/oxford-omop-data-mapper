@@ -101,29 +101,52 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
-### COSD V8 UR Measurement Prostate Specific Antigen Diagnosis
-Source column  `ProstateSpecificAntigenDiagnosis`.
+### COSD v8 LV Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
 
-* `ProstateSpecificAntigenDiagnosis` Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml). [PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/prostate_specific_antigen__diagnosis_.html)
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
 
 ```sql
--- Query to extract Prostate Specific Antigen (Diagnosis) for UR cancer area from COSD v8.
--- PSA is a numeric lab measurement in ng/ml at the time of prostate cancer diagnosis.
--- MeasurementDate uses the diagnosis date.
--- ProstateSpecificAntigenDiagnosis is a numeric value that will be stored as value_as_number in OMOP in a later step.
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreCancerCarePlan.UrologicalCancerCarePlan.ProstateSpecificAntigenDiagnosis.@value' as ProstateSpecificAntigenDiagnosis
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and ProstateSpecificAntigenDiagnosis is not null;
-	
+with lv as (
+    select
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Liver.LiverCore.LiverCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Liver.LiverCore.LiverCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where Type = 'LV'
+)
+select
+    distinct
+        AdultComorbidityEvaluation,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(SpecialistDateFirstSeen as date),
+            cast(ClinicalDateCancerDiagnosis as date),
+            cast(IntegratedStageTNMStageGroupingDate as date),
+            cast(CancerTreatmentStartDate as date),
+            cast(ProcedureDate as date)
+        ) as MeasurementDate
+from lv
+where AdultComorbidityEvaluation is not null
+  and not (
+        DateFirstSeen is null and
+        SpecialistDateFirstSeen is null and
+        ClinicalDateCancerDiagnosis is null and
+        IntegratedStageTNMStageGroupingDate is null and
+        CancerTreatmentStartDate is null and
+        ProcedureDate is null
+    );
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### CosdV9MeasurementAdultComorbidityEvaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
