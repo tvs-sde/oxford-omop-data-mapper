@@ -4,19 +4,11 @@
   "omopColumns": [
     {
       "name": "nhs_number",
-<<<<<<< HEAD
-      "operation_description": "Value copied from `NHSNumber`",
-      "dataSource": [
-        {
-          "name": "NHSNumber",
-          "description": "The unique NHS NUMBER allocated to every patient registered with the NHS.",
-=======
       "operation_description": "Value copied from `NhsNumber`",
       "dataSource": [
         {
           "name": "NhsNumber",
           "description": "NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.",
->>>>>>> main
           "origins": [
             {
               "origin": "NHS NUMBER",
@@ -25,11 +17,7 @@
           ]
         }
       ],
-<<<<<<< HEAD
-      "query": "\n-- Extracts primary procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group, so unnest is required to normalise each treatment entry.\n-- PrimaryProcedureOPCS identifies the primary patient procedure carried out (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
-=======
       "query": "\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NhsNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
->>>>>>> main
       "lookup_table_markdown": null
     },
     {
@@ -54,37 +42,22 @@
           ]
         }
       ],
-<<<<<<< HEAD
-      "query": "\n-- Extracts primary procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group, so unnest is required to normalise each treatment entry.\n-- PrimaryProcedureOPCS identifies the primary patient procedure carried out (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
-=======
       "query": "\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NhsNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
->>>>>>> main
       "lookup_table_markdown": null
     },
     {
       "name": "procedure_type_concept_id",
-<<<<<<< HEAD
-      "operation_description": "Constant value set to `32879`. `EHR episode record`",
-=======
       "operation_description": "Constant value set to `32828`. `EHR episode record`",
->>>>>>> main
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null
     },
     {
       "name": "procedure_source_value",
-<<<<<<< HEAD
-      "operation_description": "Value copied from `PrimaryProcedureOPCS`",
-      "dataSource": [
-        {
-          "name": "PrimaryProcedureOPCS",
-=======
       "operation_description": "Value copied from `PrimaryProcedureOpcs`",
       "dataSource": [
         {
           "name": "PrimaryProcedureOpcs",
->>>>>>> main
           "description": "OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.",
           "origins": [
             {
@@ -94,11 +67,7 @@
           ]
         }
       ],
-<<<<<<< HEAD
-      "query": "\n-- Extracts primary procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group, so unnest is required to normalise each treatment entry.\n-- PrimaryProcedureOPCS identifies the primary patient procedure carried out (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
-=======
       "query": "\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NhsNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
->>>>>>> main
       "lookup_table_markdown": null
     },
     {
@@ -106,11 +75,7 @@
       "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
       "dataSource": [
         {
-<<<<<<< HEAD
-          "name": "PrimaryProcedureOPCS",
-=======
           "name": "PrimaryProcedureOpcs",
->>>>>>> main
           "description": "OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.",
           "origins": [
             {
@@ -120,11 +85,7 @@
           ]
         }
       ],
-<<<<<<< HEAD
-      "query": "\n-- Extracts primary procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v8).\n-- UrologicalCoreTreatment is a repeating group, so unnest is required to normalise each treatment entry.\n-- PrimaryProcedureOPCS identifies the primary patient procedure carried out (OPCS-4 code).\n-- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.\n-- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NHSNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
-=======
       "query": "\nwith ur as (\n    select distinct\n        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,\n        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS\n    from omop_staging.cosd_staging_81\n    where type = 'UR'\n)\nselect distinct\n    NhsNumber,\n    ProcedureDate,\n    PrimaryProcedureOPCS\nfrom ur\nwhere NhsNumber is not null\n  and PrimaryProcedureOPCS is not null;\n",
->>>>>>> main
       "lookup_table_markdown": null
     }
   ]

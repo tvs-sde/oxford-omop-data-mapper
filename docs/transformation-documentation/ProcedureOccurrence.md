@@ -67,8 +67,6 @@ has_toc: false
 <a href="COSDv8URProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8URProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
-<<<<<<< HEAD
-=======
 ## COSDv9UGProcedureOccurrenceProcedureOpcs
 <a href="COSDv9UGProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv9UGProcedureOccurrenceProcedureOpcs.svg" /></a>
 
@@ -149,7 +147,6 @@ has_toc: false
 <a href="COSDv8LVProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8LVProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8LVProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
->>>>>>> main
 ## CosdV9LungProcedureOccurrenceRelapseMethodOfDetection
 <a href="CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.svg" target="_blank"><img src="CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.svg" /></a>
 
