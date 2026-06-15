@@ -177,15 +177,6 @@ where lower(EVENT) not like '%comment%'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD V9 UG Measurement Tnm Stage Grouping Integrated
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-=======
 ### COSD V9 UR Measurement Tumour Laterality
 Source column  `MeasurementDate`.
 Converts text to dates.
@@ -221,7 +212,6 @@ Converts text to dates.
 -- The TNM stage grouping classifies the combination of T, N and M into stage groupings after treatment.
 -- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
 -- TnmStageGroupingIntegrated will be mapped to a measurement concept in OMOP in a later step.
->>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
@@ -230,26 +220,12 @@ select distinct
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated
 from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-where type = 'UG'
-=======
 where type = 'UR'
->>>>>>> main
   and TnmStageGroupingIntegrated is not null;
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Tnm%20Stage%20Grouping%20Integrated%20mapping){: .btn }
-### COSD V9 UG Measurement Tnm Stage Grouping Final Pretreatment
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20TNM%20Category%20Integrated%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement TNM Category Final Pre Treatment Stage
 Source column  `MeasurementDate`.
@@ -262,7 +238,6 @@ Converts text to dates.
 -- The TNM stage grouping classifies the combination of T, N and M into stage groupings before treatment.
 -- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
 -- TnmStageGroupingFinalPretreatment will be mapped to a measurement concept in OMOP in a later step.
->>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
@@ -271,26 +246,12 @@ select distinct
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
 from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-where type = 'UG'
-=======
 where type = 'UR'
->>>>>>> main
   and TnmStageGroupingFinalPretreatment is not null;
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
-### COSD V9 UG Measurement T Category Integrated Stage
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20TNM%20Category%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Tcategory Integrated Stage
 Source column  `MeasurementDate`.
@@ -303,38 +264,20 @@ Converts text to dates.
 -- The T category classifies the size and extent of the primary tumour after treatment and/or after all available evidence has been collected.
 -- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
 -- TcategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
->>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
-<<<<<<< HEAD
-    Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
-from omop_staging.cosd_staging_901
-where type = 'UG'
-  and TCategoryIntegratedStage is not null;
-=======
     Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TcategoryIntegratedStage
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and TcategoryIntegratedStage is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20T%20Category%20Integrated%20Stage%20mapping){: .btn }
-### COSD V9 UG Measurement T Category Final Pretreatment
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Tcategory Final Pre Treatment Stage
 Source column  `MeasurementDate`.
@@ -347,32 +290,20 @@ Converts text to dates.
 -- The T category classifies the size and extent of the primary tumour before treatment.
 -- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
 -- TcategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
->>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
         Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
-<<<<<<< HEAD
-    Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TCategoryFinalPretreatment
-from omop_staging.cosd_staging_901
-where type = 'UG'
-  and TCategoryFinalPretreatment is not null;
-=======
     Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TcategoryFinalPreTreatment
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and TcategoryFinalPreTreatment is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
-### COSD V9 UG Measurement Primary Pathway Metastatic Site
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 Source column  `MeasurementDate`.
@@ -398,22 +329,17 @@ where type = 'UR'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
 ### COSD V9 UR Measurement Primary Pathway Metastatic Site
->>>>>>> main
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
 
 * `DateOfPrimaryDiagnosisClinicallyAgreed` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
-<<<<<<< HEAD
-with ug as (
-=======
 -- Query to extract Metastatic Site (Primary Pathway/Diagnosis) for UR cancer area from COSD v9.
 -- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
 -- Code 97 (Not Applicable - Disease not spread) is excluded.
 -- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
 with UR as (
->>>>>>> main
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -425,49 +351,32 @@ with UR as (
             recursive := true
         ) as MetastaticSite
     from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-    where type = 'UG'
-=======
     where type = 'UR'
->>>>>>> main
 )
 select distinct
     NhsNumber,
     DateOfPrimaryDiagnosisClinicallyAgreed,
     MetastaticSite
-<<<<<<< HEAD
-from ug
-=======
 from UR
->>>>>>> main
 where MetastaticSite is not null
   and MetastaticSite != '97';
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD V9 UG Measurement Non Primary Pathway Recurrence Metastatic Site
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
 ### COSD V9 UR Measurement Non Primary Pathway Recurrence Metastatic Site
->>>>>>> main
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
 
 * `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed` Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed. [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
-<<<<<<< HEAD
-with ug as (
-=======
 -- Query to extract Metastatic Site (Non-Primary Pathway - Recurrence) for UR cancer area from COSD v9.
 -- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
 -- Code 97 (Not Applicable - Disease not spread) is excluded.
 -- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
 with UR as (
->>>>>>> main
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
@@ -479,49 +388,32 @@ with UR as (
             recursive := true
         ) as MetastaticSite
     from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-    where type = 'UG'
-=======
     where type = 'UR'
->>>>>>> main
 )
 select distinct
     NhsNumber,
     DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
     MetastaticSite
-<<<<<<< HEAD
-from ug
-=======
 from UR
->>>>>>> main
 where MetastaticSite is not null
   and MetastaticSite != '97';
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
-### COSD V9 UG Measurement Non Primary Pathway Progression Metastatic Site
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UR%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
 ### COSD V9 UR Measurement Non Primary Pathway Progression Metastatic Site
->>>>>>> main
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
 
 * `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed` Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed. [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
-<<<<<<< HEAD
-with ug as (
-=======
 -- Query to extract Metastatic Site (Non-Primary Pathway - Progression) for UR cancer area from COSD v9.
 -- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
 -- Code 97 (Not Applicable - Disease not spread) is excluded.
 -- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
 with UR as (
->>>>>>> main
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
@@ -533,18 +425,12 @@ with UR as (
             recursive := true
         ) as MetastaticSite
     from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-    where type = 'UG'
-=======
     where type = 'UR'
->>>>>>> main
 )
 select distinct
     NhsNumber,
     DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
     MetastaticSite
-<<<<<<< HEAD
-=======
 from UR
 where MetastaticSite is not null
   and MetastaticSite != '97';
@@ -1084,6 +970,347 @@ where type = 'UR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UR%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V9 UG Measurement Tnm Stage Grouping Integrated
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and TnmStageGroupingIntegrated is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Tnm%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V9 UG Measurement Tnm Stage Grouping Final Pretreatment
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and TnmStageGroupingFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 UG Measurement T Category Integrated Stage
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and TCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20T%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UG Measurement T Category Final Pretreatment
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and TCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 UG Measurement Primary Pathway Metastatic Site
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    MetastaticSite
+from ug
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 UG Measurement Non Primary Pathway Recurrence Metastatic Site
+Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed` Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed. [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from ug
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 UG Measurement Non Primary Pathway Progression Metastatic Site
+Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed` Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed. [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from ug
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 UG Measurement N Category Integrated Stage
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20N%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UG Measurement N Category Final Pretreatment
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 UG Measurement M Category Integrated Stage
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and MCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20M%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 UG Measurement M Category Final Pretreatment
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as MCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and MCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 UG Measurement Grade Of Differentiation At Diagnosis
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Grade%20Of%20Differentiation%20At%20Diagnosis%20mapping){: .btn }
+### COSD V9 UG Measurement Adult Comorbidity Evaluation 27 Score
+* Value copied from `MeasurementDate`
+
+* `MeasurementDate` Measurement date is the earliest available date from referral, specialist first seen, diagnosis, staging, treatment start, or procedure dates. [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with UG as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+        Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation27Score,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    AdultComorbidityEvaluation27Score,
+    NhsNumber,
+    least(
+        cast(DateFirstSeen as date),
+        cast(DateFirstSeenCancerSpecialist as date),
+        cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+        cast(StageDateFinalPretreatmentStage as date),
+        cast(StageDateIntegratedStage as date),
+        cast(TreatmentStartDateCancer as date),
+        cast(ProcedureDate as date)
+    ) as MeasurementDate
+from UG
+where AdultComorbidityEvaluation27Score is not null
+  and not (
+      DateFirstSeen is null and
+      DateFirstSeenCancerSpecialist is null and
+      DateOfPrimaryDiagnosisClinicallyAgreed is null and
+      StageDateFinalPretreatmentStage is null and
+      StageDateIntegratedStage is null and
+      TreatmentStartDateCancer is null and
+      ProcedureDate is null
+  );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Adult%20Comorbidity%20Evaluation%2027%20Score%20mapping){: .btn }
 ### COSD V8 UG Measurement Tumour Laterality
 Source column  `MeasurementDate`.
 Converts text to dates.
@@ -1137,7 +1364,6 @@ select distinct
     NhsNumber,
     ClinicalDateCancerDiagnosis,
     MetastaticSite
->>>>>>> main
 from ug
 where MetastaticSite is not null
   and MetastaticSite != '97';
@@ -1145,10 +1371,6 @@ where MetastaticSite is not null
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
-### COSD V9 UG Measurement N Category Integrated Stage
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UG%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
 ### COSD V8 UG Measurement Non Primary Pathway Metastatic Site
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
@@ -1171,15 +1393,12 @@ where type = 'UG'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20UG%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
 ### COSD V8 UG Measurement Integrated Stage TNM Stage Grouping
->>>>>>> main
 Source column  `MeasurementDate`.
 Converts text to dates.
 
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
 
 ```sql
-<<<<<<< HEAD
-=======
 with UG as (
     select
         Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
@@ -2461,7 +2680,6 @@ Converts text to dates.
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
 
 ```sql
->>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
@@ -2470,20 +2688,6 @@ select distinct
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
 from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-where type = 'UG'
-  and NCategoryIntegratedStage is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20N%20Category%20Integrated%20Stage%20mapping){: .btn }
-### COSD V9 UG Measurement N Category Final Pretreatment
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-=======
 where type = 'LV'
   and NCategoryIntegratedStage is not null;
 ```
@@ -2495,7 +2699,6 @@ Source column  `MeasurementDate`.
 Converts text to dates.
 
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html)
->>>>>>> main
 
 ```sql
 select distinct
@@ -2504,22 +2707,6 @@ select distinct
         Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
-<<<<<<< HEAD
-    Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NCategoryFinalPretreatment
-from omop_staging.cosd_staging_901
-where type = 'UG'
-  and NCategoryFinalPretreatment is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
-### COSD V9 UG Measurement M Category Integrated Stage
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-=======
     Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NcategoryFinalPreTreatment
 from omop_staging.cosd_staging_901
 where type = 'LV'
@@ -2533,7 +2720,6 @@ Source column  `MeasurementDate`.
 Converts text to dates.
 
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html)
->>>>>>> main
 
 ```sql
 select distinct
@@ -2544,20 +2730,6 @@ select distinct
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
 from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-where type = 'UG'
-  and MCategoryIntegratedStage is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20M%20Category%20Integrated%20Stage%20mapping){: .btn }
-### COSD V9 UG Measurement M Category Final Pretreatment
-Source column  `MeasurementDate`.
-Converts text to dates.
-
-* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-=======
 where type = 'LV'
   and MCategoryIntegratedStage is not null;
 ```
@@ -2569,7 +2741,6 @@ Source column  `MeasurementDate`.
 Converts text to dates.
 
 * `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html)
->>>>>>> main
 
 ```sql
 select distinct
@@ -2578,18 +2749,6 @@ select distinct
         Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
-<<<<<<< HEAD
-    Record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as MCategoryFinalPretreatment
-from omop_staging.cosd_staging_901
-where type = 'UG'
-  and MCategoryFinalPretreatment is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
-### COSD V9 UG Measurement Grade Of Differentiation At Diagnosis
-=======
     Record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as McategoryFinalPreTreatment
 from omop_staging.cosd_staging_901
 where type = 'LV'
@@ -2599,7 +2758,6 @@ where type = 'LV'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20LV%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 LV Measurement Grade Of Differentiation
->>>>>>> main
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
 
@@ -2611,23 +2769,6 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
-<<<<<<< HEAD
-where type = 'UG'
-  and GradeOfDifferentiationAtDiagnosis is not null;
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Grade%20Of%20Differentiation%20At%20Diagnosis%20mapping){: .btn }
-### COSD V9 UG Measurement Adult Comorbidity Evaluation 27 Score
-* Value copied from `MeasurementDate`
-
-* `MeasurementDate` Measurement date is the earliest available date from referral, specialist first seen, diagnosis, staging, treatment start, or procedure dates. [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with UG as (
-    select
-=======
 where type = 'LV'
   and GradeOfDifferentiationAtDiagnosis is not null;
 ```
@@ -2643,7 +2784,6 @@ where type = 'LV'
 with lv as (
     select
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
->>>>>>> main
         Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
         Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -2651,40 +2791,6 @@ with lv as (
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
         coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
         coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
-<<<<<<< HEAD
-        Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation27Score,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'UG'
-)
-select distinct
-    AdultComorbidityEvaluation27Score,
-    NhsNumber,
-    least(
-        cast(DateFirstSeen as date),
-        cast(DateFirstSeenCancerSpecialist as date),
-        cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-        cast(StageDateFinalPretreatmentStage as date),
-        cast(StageDateIntegratedStage as date),
-        cast(TreatmentStartDateCancer as date),
-        cast(ProcedureDate as date)
-    ) as MeasurementDate
-from UG
-where AdultComorbidityEvaluation27Score is not null
-  and not (
-      DateFirstSeen is null and
-      DateFirstSeenCancerSpecialist is null and
-      DateOfPrimaryDiagnosisClinicallyAgreed is null and
-      StageDateFinalPretreatmentStage is null and
-      StageDateIntegratedStage is null and
-      TreatmentStartDateCancer is null and
-      ProcedureDate is null
-  );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20UG%20Measurement%20Adult%20Comorbidity%20Evaluation%2027%20Score%20mapping){: .btn }
-=======
         Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation
     from omop_staging.cosd_staging_901
     where type = 'LV'
@@ -2945,7 +3051,6 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### COSD V9 Lung Measurement Tumour Laterality
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
