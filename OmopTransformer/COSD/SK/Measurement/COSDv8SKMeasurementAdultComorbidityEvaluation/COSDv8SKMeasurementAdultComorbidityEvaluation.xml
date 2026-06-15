@@ -1,0 +1,54 @@
+<Query>
+    <Sql>
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+		Record ->> '$.Skin.SkinCore.SkinCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select
+	distinct
+		AdultComorbidityEvaluation,
+		NhsNumber,
+		least(
+			cast(DateFirstSeen as date),
+			cast(SpecialistDateFirstSeen as date),
+			cast(ClinicalDateCancerDiagnosis as date),
+			cast(IntegratedStageTNMStageGroupingDate as date),
+			cast(FinalPreTreatmentTNMStageGroupingDate as date)
+		) as MeasurementDate
+from SK
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null
+    );
+    </Sql>
+    <Explanations>
+      <Explanation columnName="NHSNumber">
+    	  <Description>Patient NHS Number</Description>
+    	  <Origin>NHS NUMBER</Origin>
+      </Explanation>
+	  <Explanation columnName="AdultComorbidityEvaluation">
+		  <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+		  <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+	  </Explanation>
+      <Explanation columnName="MeasurementDate">
+    	  <Description>Measurement date is the earliest available date from the cancer pathway.</Description>
+    	  <Origin>DATE FIRST SEEN</Origin>
+    	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+    	  <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+      </Explanation>
+	</Explanations>
+</Query>

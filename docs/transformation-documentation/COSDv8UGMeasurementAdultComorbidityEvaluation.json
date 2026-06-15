@@ -1,0 +1,142 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith UG as (\n    select\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'UG'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(IntegratedStageTNMStageGroupingDate as date)\n    ) as MeasurementDate\nfrom UG\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      IntegratedStageTNMStageGroupingDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement date is the earliest available date from referral, specialist first seen, diagnosis, or staging dates.",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith UG as (\n    select\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'UG'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(IntegratedStageTNMStageGroupingDate as date)\n    ) as MeasurementDate\nfrom UG\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      IntegratedStageTNMStageGroupingDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement date is the earliest available date from referral, specialist first seen, diagnosis, or staging dates.",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith UG as (\n    select\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'UG'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(IntegratedStageTNMStageGroupingDate as date)\n    ) as MeasurementDate\nfrom UG\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      IntegratedStageTNMStageGroupingDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Constant value set to `40488785`. Adult comorbidity evaluation-27",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `AdultComorbidityEvaluation`",
+      "dataSource": [
+        {
+          "name": "AdultComorbidityEvaluation",
+          "description": "The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.",
+          "origins": [
+            {
+              "origin": "ADULT COMORBIDITY EVALUATION - 27 SCORE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith UG as (\n    select\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'UG'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(IntegratedStageTNMStageGroupingDate as date)\n    ) as MeasurementDate\nfrom UG\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      IntegratedStageTNMStageGroupingDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_number",
+      "operation_description": "Converts text to number.",
+      "dataSource": [
+        {
+          "name": "AdultComorbidityEvaluation",
+          "description": "The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.",
+          "origins": [
+            {
+              "origin": "ADULT COMORBIDITY EVALUATION - 27 SCORE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith UG as (\n    select\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.UpperGI.UpperGICore.UpperGICoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation\n    from omop_staging.cosd_staging_81\n    where type = 'UG'\n)\nselect distinct\n    NhsNumber,\n    AdultComorbidityEvaluation,\n    least(\n        cast(DateFirstSeen as date),\n        cast(SpecialistDateFirstSeen as date),\n        cast(ClinicalDateCancerDiagnosis as date),\n        cast(FinalPreTreatmentTNMStageGroupingDate as date),\n        cast(IntegratedStageTNMStageGroupingDate as date)\n    ) as MeasurementDate\nfrom UG\nwhere AdultComorbidityEvaluation is not null\n  and not (\n      DateFirstSeen is null and\n      SpecialistDateFirstSeen is null and\n      ClinicalDateCancerDiagnosis is null and\n      FinalPreTreatmentTNMStageGroupingDate is null and\n      IntegratedStageTNMStageGroupingDate is null\n  );\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

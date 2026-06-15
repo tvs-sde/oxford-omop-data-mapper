@@ -1,0 +1,40 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Query to extract M Category (Final Pretreatment) for HN cancer area from COSD v8.
+-- The M category classifies the absence or presence of distant metastases before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- McategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+with hn as (
+    select
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    McategoryFinalPreTreatment
+from hn
+where McategoryFinalPreTreatment is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="MeasurementDate">
+            <Description>Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="McategoryFinalPreTreatment">
+            <Description>Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell.</Description>
+            <Origin>M CATEGORY (FINAL PRETREATMENT)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
