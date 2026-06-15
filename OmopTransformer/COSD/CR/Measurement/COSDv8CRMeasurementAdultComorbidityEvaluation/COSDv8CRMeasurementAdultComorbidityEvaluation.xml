@@ -1,0 +1,62 @@
+<Query>
+    <Sql>
+with cr as (
+	select
+		Record ->> '$.Core.CoreCore.CoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.Core.CoreCore.CoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+		Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Core.CoreCore.CoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+		Record ->> '$.Core.CoreCore.CoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+		Record ->> '$.Core.CoreCore.CoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+		Record ->> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+		Record ->> '$.Core.CoreCore.CoreCancerPlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
+		Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_81
+	where type = 'CR'
+)
+select
+      distinct
+          AdultComorbidityEvaluation,
+          NhsNumber,
+          least(
+                cast(DateFirstSeen as date),
+                cast(SpecialistDateFirstSeen as date),
+                cast(ClinicalDateCancerDiagnosis as date),
+                cast(IntegratedStageTNMStageGroupingDate as date),
+                cast(FinalPreTreatmentTNMStageGroupingDate as date),
+                cast(CancerTreatmentStartDate as date),
+                cast(ProcedureDate as date)
+              ) as MeasurementDate
+from cr
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null and
+		CancerTreatmentStartDate is null and
+		ProcedureDate is null
+    );
+    </Sql>
+    <Explanations>
+      <Explanation columnName="NhsNumber">
+    	  <Description>Patient NHS Number</Description>
+    	  <Origin>NHS NUMBER</Origin>
+      </Explanation>
+	  <Explanation columnName="AdultComorbidityEvaluation">
+		  <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+		  <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+	  </Explanation>
+      <Explanation columnName="MeasurementDate">
+    	  <Description>Measurement date is the earliest available date from the patient pathway.</Description>
+    	  <Origin>DATE FIRST SEEN</Origin>
+    	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+    	  <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+    	  <Origin>TREATMENT START DATE (CANCER)</Origin>
+    	  <Origin>PROCEDURE DATE</Origin>
+      </Explanation>
+	</Explanations>
+</Query>
