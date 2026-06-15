@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+-- Query to extract Tumour Laterality for UR cancer area from COSD v9.
+-- Identifies the side of the body for a tumour relating to paired organs.
+-- Only valid laterality codes (L, R, M, B) are included.
+-- MeasurementDate uses the primary diagnosis date.
+-- TumourLaterality will be mapped to a measurement value concept in OMOP in a later step.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as MeasurementDate,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="TumourLaterality">
+			<Description>Identifies the side of the body for a Tumour relating to paired organs within a PATIENT.</Description>
+			<Origin>TUMOUR LATERALITY</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

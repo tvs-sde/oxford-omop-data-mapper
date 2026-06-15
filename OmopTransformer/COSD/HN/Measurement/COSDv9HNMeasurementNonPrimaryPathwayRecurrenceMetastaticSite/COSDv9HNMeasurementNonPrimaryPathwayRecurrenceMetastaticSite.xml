@@ -1,0 +1,45 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Query to extract Metastatic Site from the Non Primary Pathway (Recurrence) for HN cancer area from COSD v9.
+-- MetastaticSite records the site of metastatic disease at recurrence, excluding code 97 (not applicable).
+-- Uses unnest to flatten the array of metastatic sites into individual rows.
+-- MetastaticSite will be mapped to a measurement concept in OMOP in a later step.
+with hn as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from hn
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+            <Description>Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed.</Description>
+            <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="MetastaticSite">
+            <Description>Is the site of the metastatic disease at PATIENT DIAGNOSIS.</Description>
+            <Origin>METASTATIC SITE (AT DIAGNOSIS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

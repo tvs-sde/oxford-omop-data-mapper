@@ -1,0 +1,64 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Query to extract Adult Comorbidity Evaluation - 27 Score for HN cancer area from COSD v9.
+-- The ACE-27 score is a person score recorded during a Cancer Care Spell using the ACE-27 assessment tool.
+-- MeasurementDate is the earliest available date across referral, diagnosis, staging, and procedure dates.
+-- AdultComorbidityEvaluation will be mapped to a measurement concept in OMOP in a later step.
+with hn as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+        Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select
+    distinct
+        NhsNumber,
+        AdultComorbidityEvaluation,
+        least(
+            DateFirstSeen,
+            DateFirstSeenCancerSpecialist,
+            DateOfPrimaryDiagnosisClinicallyAgreed,
+            StageDateFinalPretreatmentStage,
+            StageDateIntegratedStage,
+            ProcedureDate
+        ) as MeasurementDate
+from hn
+where AdultComorbidityEvaluation is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        ProcedureDate is null
+    );
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="AdultComorbidityEvaluation">
+            <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+            <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+        </Explanation>
+        <Explanation columnName="MeasurementDate">
+            <Description>Measurement date is the earliest available date from: Date First Seen, Date First Seen (Cancer Specialist), Date of Primary Cancer Diagnosis (Clinically Agreed), TNM Stage Grouping Date (Final Pretreatment), TNM Stage Grouping Date (Integrated), and Procedure Date.</Description>
+            <Origin>DATE FIRST SEEN</Origin>
+            <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+            <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+            <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

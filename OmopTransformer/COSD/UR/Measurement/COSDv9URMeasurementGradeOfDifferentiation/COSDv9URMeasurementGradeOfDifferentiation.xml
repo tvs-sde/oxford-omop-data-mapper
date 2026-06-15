@@ -1,0 +1,29 @@
+<Query>
+    <Sql>
+-- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v9.
+-- The grade classifies the differentiation of the tumour at the time of diagnosis.
+-- MeasurementDate uses the primary diagnosis date.
+-- GradeOfDifferentiationAtDiagnosis will be mapped to a measurement value concept in OMOP in a later step.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and GradeOfDifferentiationAtDiagnosis is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="GradeOfDifferentiationAtDiagnosis">
+			<Description>The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS.</Description>
+			<Origin>GRADE OF DIFFERENTIATION (AT DIAGNOSIS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
