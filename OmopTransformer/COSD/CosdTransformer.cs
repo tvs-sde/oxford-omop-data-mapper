@@ -250,6 +250,19 @@ using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceDia
 using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceDiagnosticProcedureSnomedCt;
 using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.UG.ProcedureOccurrence.COSDv9UGProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementFinalPretreatmentMCategory;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementFinalPretreatmentNCategory;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementFinalPretreatmentTCategory;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementIntegratedStageMCategory;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementIntegratedStageNCategory;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementIntegratedStageTCategory;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementIntegratedStageTNMStageGrouping;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.UG.Measurement.COSDv8UGMeasurementTumourLaterality;
 using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs;
@@ -2431,6 +2444,84 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8GYMeasurementTumourLateralityRecord, COSDv8GYMeasurementTumourLaterality>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv8GYMeasurementTumourLaterality",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementAdultComorbidityEvaluationRecord, COSDv8UGMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementFinalPretreatmentMCategoryRecord, COSDv8UGMeasurementFinalPretreatmentMCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementFinalPretreatmentMCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementFinalPretreatmentNCategoryRecord, COSDv8UGMeasurementFinalPretreatmentNCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementFinalPretreatmentNCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementFinalPretreatmentTCategoryRecord, COSDv8UGMeasurementFinalPretreatmentTCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementFinalPretreatmentTCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementFinalPretreatmentTNMStageGroupingRecord, COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementFinalPretreatmentTNMStageGrouping",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementGradeOfDifferentiationRecord, COSDv8UGMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementGradeOfDifferentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementIntegratedStageMCategoryRecord, COSDv8UGMeasurementIntegratedStageMCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementIntegratedStageMCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementIntegratedStageNCategoryRecord, COSDv8UGMeasurementIntegratedStageNCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementIntegratedStageNCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementIntegratedStageTCategoryRecord, COSDv8UGMeasurementIntegratedStageTCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementIntegratedStageTCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementIntegratedStageTNMStageGroupingRecord, COSDv8UGMeasurementIntegratedStageTNMStageGrouping>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementIntegratedStageTNMStageGrouping",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementNonPrimaryPathwayMetastaticSiteRecord, COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementNonPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv8UGMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGMeasurementTumourLateralityRecord, COSDv8UGMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8UGMeasurementTumourLaterality",
             runId,
             cancellationToken);
     }
