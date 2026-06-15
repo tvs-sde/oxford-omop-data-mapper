@@ -2803,6 +2803,399 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 CT Measurement Tumour Laterality
+* Value copied from `TumourLaterality`
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+-- Query to extract Tumour Laterality for CT (CTYA) cancer area from COSD v8.
+-- TumourLaterality is a categorical code (L, R, M, B) identifying the side of the body for the tumour.
+-- MeasurementDate uses primary diagnosis date, falling back to non-primary diagnosis date.
+-- TumourLaterality will be mapped to a measurement value concept in OMOP in a later step.
+-- Only valid laterality codes (L, R, M, B) are included; codes 8 (Not Applicable) and 9 (Not Known) are excluded.
+with CT as (
+    select
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    TumourLaterality
+from CT
+where TumourLaterality is not null
+  and TumourLaterality in ('L','R','M','B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 CT Measurement TNM Stage Grouping Integrated
+* Value copied from `TNMStageGroupingIntegrated`
+
+* `TNMStageGroupingIntegrated` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [TNM STAGE GROUPING (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__integrated_.html)
+
+```sql
+-- Query to extract TNM Stage Grouping (Integrated) for CT (CTYA) cancer area from COSD v8.
+-- The TNM stage grouping classifies the combination of T, N, and M categories into stage groupings after treatment and/or after all available evidence.
+-- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
+-- TNMStageGroupingIntegrated will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGrouping' as TNMStageGroupingIntegrated
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and TNMStageGroupingIntegrated is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V8 CT Measurement TNM Stage Grouping Final Pre Treatment Stage
+* Value copied from `TNMStageGroupingFinalPreTreatment`
+
+* `TNMStageGroupingFinalPreTreatment` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
+
+```sql
+-- Query to extract TNM Stage Grouping (Final Pretreatment) for CT (CTYA) cancer area from COSD v8.
+-- The TNM stage grouping classifies the combination of T, N, and M categories into stage groupings before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- TNMStageGroupingFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGrouping' as TNMStageGroupingFinalPreTreatment
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and TNMStageGroupingFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Tcategory Integrated Stage
+* Value copied from `TcategoryIntegratedStage`
+
+* `TcategoryIntegratedStage` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [T CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html)
+
+```sql
+-- Query to extract T Category (Integrated Stage) for CT (CTYA) cancer area from COSD v8.
+-- The T category classifies the size and extent of the primary tumour after treatment and/or after all available evidence.
+-- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
+-- TcategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTCategory' as TcategoryIntegratedStage
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and TcategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Tcategory Final Pre Treatment Stage
+* Value copied from `TcategoryFinalPreTreatment`
+
+* `TcategoryFinalPreTreatment` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+-- Query to extract T Category (Final Pretreatment) for CT (CTYA) cancer area from COSD v8.
+-- The T category classifies the size and extent of the primary tumour before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- TcategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTCategory' as TcategoryFinalPreTreatment
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and TcategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+-- Query to extract Metastatic Site (Primary Pathway/Diagnosis) for CT (CTYA) cancer area from COSD v8.
+-- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
+-- Code 97 (Not Applicable - Disease not spread) is excluded.
+-- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
+with CT as (
+    select distinct
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        unnest(
+            [
+                [ Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.MetastaticSite[*].@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    MetastaticSite
+from CT
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 CT Measurement Ncategory Integrated Stage
+* Value copied from `NcategoryIntegratedStage`
+
+* `NcategoryIntegratedStage` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional lymph node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [N CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html)
+
+```sql
+-- Query to extract N Category (Integrated Stage) for CT (CTYA) cancer area from COSD v8.
+-- The N category classifies the absence or presence and extent of regional lymph node metastases after treatment and/or after all available evidence.
+-- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
+-- NcategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageNCategory' as NcategoryIntegratedStage
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and NcategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Ncategory Final Pre Treatment Stage
+* Value copied from `NcategoryFinalPreTreatment`
+
+* `NcategoryFinalPreTreatment` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional lymph node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+-- Query to extract N Category (Final Pretreatment) for CT (CTYA) cancer area from COSD v8.
+-- The N category classifies the absence or presence and extent of regional lymph node metastases before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- NcategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentNCategory' as NcategoryFinalPreTreatment
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and NcategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Mcategory Integrated Stage
+* Value copied from `McategoryIntegratedStage`
+
+* `McategoryIntegratedStage` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [M CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/m_category__integrated_stage_.html)
+
+```sql
+-- Query to extract M Category (Integrated Stage) for CT (CTYA) cancer area from COSD v8.
+-- The M category classifies the absence or presence of distant metastases after treatment and/or after all available evidence.
+-- MeasurementDate falls back to diagnosis date if the integrated staging date is unavailable.
+-- McategoryIntegratedStage will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageMCategory' as McategoryIntegratedStage
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and McategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Mcategory Final Pre Treatment Stage
+* Value copied from `McategoryFinalPreTreatment`
+
+* `McategoryFinalPreTreatment` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+-- Query to extract M Category (Final Pretreatment) for CT (CTYA) cancer area from COSD v8.
+-- The M category classifies the absence or presence of distant metastases before treatment.
+-- MeasurementDate falls back to diagnosis date if the staging date is unavailable.
+-- McategoryFinalPreTreatment will be mapped to a measurement concept in OMOP in a later step.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate',
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+    ) as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and McategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD V8 CT Measurement Lactate Dehydrogenase Level Peak At Diagnosis
+* Value copied from `LactateDehydrogenaseLevelPeakAtDiagnosis`
+
+* `LactateDehydrogenaseLevelPeakAtDiagnosis` Result of the clinical investigation measuring peak lactate dehydrogenase (LDH) at patient diagnosis during a cancer care spell. Unit of measurement is Units per litre (U/L). [LACTATE DEHYDROGENASE LEVEL (PEAK AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/lactate_dehydrogenase_level__peak_at_diagnosis_.html)
+
+```sql
+-- Query to extract Lactate Dehydrogenase Level (Peak at Diagnosis) for CT (CTYA) cancer area from COSD v8.
+-- LactateDehydrogenaseLevelPeakAtDiagnosis is a numeric lab value (max n6) representing peak LDH at diagnosis in U/L.
+-- MeasurementDate uses the primary diagnosis date.
+-- LactateDehydrogenaseLevelPeakAtDiagnosis will be stored as value_as_number in OMOP in a later step, with unit U/L.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLaboratoryResultsGeneral.LactateDehydrogenaseLevelPeakAtDiagnosis.@value' as LactateDehydrogenaseLevelPeakAtDiagnosis
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and LactateDehydrogenaseLevelPeakAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Lactate%20Dehydrogenase%20Level%20Peak%20At%20Diagnosis%20mapping){: .btn }
+### COSD V8 CT Measurement Lactate Dehydrogenase Level Normal Upper Limit
+* Value copied from `LactateDehydrogenaseLevelNormalUpperLimit`
+
+* `LactateDehydrogenaseLevelNormalUpperLimit` Upper limit of normal for lactate dehydrogenase (LDH), where the unit of measurement is Units per litre (U/L). [LACTATE DEHYDROGENASE LEVEL (NORMAL UPPER LIMIT)](https://www.datadictionary.nhs.uk/data_elements/lactate_dehydrogenase_level__normal_upper_limit_.html)
+
+```sql
+-- Query to extract Lactate Dehydrogenase Level (Normal Upper Limit) for CT (CTYA) cancer area from COSD v8.
+-- LactateDehydrogenaseLevelNormalUpperLimit is a numeric lab value (max n6) representing the upper limit of normal LDH in U/L.
+-- MeasurementDate uses the primary diagnosis date.
+-- LactateDehydrogenaseLevelNormalUpperLimit will be stored as value_as_number in OMOP in a later step, with unit U/L.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLaboratoryResultsGeneral.LactateDehydrogenaseLevelNormalUpperLimit.@value' as LactateDehydrogenaseLevelNormalUpperLimit
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and LactateDehydrogenaseLevelNormalUpperLimit is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Lactate%20Dehydrogenase%20Level%20Normal%20Upper%20Limit%20mapping){: .btn }
+### COSD V8 CT Measurement Grade Of Differentiation
+* Value copied from `GradeOfDifferentiationAtDiagnosis`
+
+* `GradeOfDifferentiationAtDiagnosis` The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+-- Query to extract Grade of Differentiation (At Diagnosis) for CT (CTYA) cancer area from COSD v8.
+-- GradeOfDifferentiation is a categorical code (G1-G4, GX) describing tumour differentiation.
+-- MeasurementDate uses primary diagnosis date, falling back to non-primary diagnosis date.
+-- GradeOfDifferentiation will be mapped to a measurement value concept in OMOP in a later step.
+with CT as (
+    select
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    GradeOfDifferentiationAtDiagnosis
+from CT
+where GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V8 CT Measurement Adult Comorbidity Evaluation
+* Value copied from `AdultComorbidityEvaluation`
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+-- Query to extract Adult Comorbidity Evaluation for CT (CTYA) cancer area from COSD v8.
+-- AdultComorbidityEvaluation is a categorical code (0-3, 9) from the ACE-27 assessment tool.
+-- MeasurementDate is the earliest available date from referral, specialist, diagnosis, staging, treatment, or procedure dates.
+-- AdultComorbidityEvaluation will be mapped to a measurement value concept in OMOP in a later step.
+with CT as (
+    select
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.CTYA.CTYACore.CTYACoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation,
+    least(
+        cast(DateFirstSeen as date),
+        cast(SpecialistDateFirstSeen as date),
+        cast(ClinicalDateCancerDiagnosis as date),
+        cast(IntegratedStageTNMStageGroupingDate as date),
+        cast(FinalPreTreatmentTNMStageGroupingDate as date),
+        cast(CancerTreatmentStartDate as date),
+        cast(ProcedureDate as date)
+    ) as MeasurementDate
+from CT
+where AdultComorbidityEvaluation is not null
+  and not (
+      DateFirstSeen is null and
+      SpecialistDateFirstSeen is null and
+      ClinicalDateCancerDiagnosis is null and
+      IntegratedStageTNMStageGroupingDate is null and
+      FinalPreTreatmentTNMStageGroupingDate is null and
+      CancerTreatmentStartDate is null and
+      ProcedureDate is null
+  );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20CT%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 CR Measurement Tumour Laterality
 * Value copied from `TumourLaterality`
 

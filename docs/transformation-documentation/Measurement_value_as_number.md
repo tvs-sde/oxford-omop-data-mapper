@@ -386,6 +386,104 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 CT Measurement Lactate Dehydrogenase Level Peak At Diagnosis
+Source column  `LactateDehydrogenaseLevelPeakAtDiagnosis`.
+Converts text to number.
+
+* `LactateDehydrogenaseLevelPeakAtDiagnosis` Result of the clinical investigation measuring peak lactate dehydrogenase (LDH) at patient diagnosis during a cancer care spell. Unit of measurement is Units per litre (U/L). [LACTATE DEHYDROGENASE LEVEL (PEAK AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/lactate_dehydrogenase_level__peak_at_diagnosis_.html)
+
+```sql
+-- Query to extract Lactate Dehydrogenase Level (Peak at Diagnosis) for CT (CTYA) cancer area from COSD v8.
+-- LactateDehydrogenaseLevelPeakAtDiagnosis is a numeric lab value (max n6) representing peak LDH at diagnosis in U/L.
+-- MeasurementDate uses the primary diagnosis date.
+-- LactateDehydrogenaseLevelPeakAtDiagnosis will be stored as value_as_number in OMOP in a later step, with unit U/L.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLaboratoryResultsGeneral.LactateDehydrogenaseLevelPeakAtDiagnosis.@value' as LactateDehydrogenaseLevelPeakAtDiagnosis
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and LactateDehydrogenaseLevelPeakAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CT%20Measurement%20Lactate%20Dehydrogenase%20Level%20Peak%20At%20Diagnosis%20mapping){: .btn }
+### COSD V8 CT Measurement Lactate Dehydrogenase Level Normal Upper Limit
+Source column  `LactateDehydrogenaseLevelNormalUpperLimit`.
+Converts text to number.
+
+* `LactateDehydrogenaseLevelNormalUpperLimit` Upper limit of normal for lactate dehydrogenase (LDH), where the unit of measurement is Units per litre (U/L). [LACTATE DEHYDROGENASE LEVEL (NORMAL UPPER LIMIT)](https://www.datadictionary.nhs.uk/data_elements/lactate_dehydrogenase_level__normal_upper_limit_.html)
+
+```sql
+-- Query to extract Lactate Dehydrogenase Level (Normal Upper Limit) for CT (CTYA) cancer area from COSD v8.
+-- LactateDehydrogenaseLevelNormalUpperLimit is a numeric lab value (max n6) representing the upper limit of normal LDH in U/L.
+-- MeasurementDate uses the primary diagnosis date.
+-- LactateDehydrogenaseLevelNormalUpperLimit will be stored as value_as_number in OMOP in a later step, with unit U/L.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLaboratoryResultsGeneral.LactateDehydrogenaseLevelNormalUpperLimit.@value' as LactateDehydrogenaseLevelNormalUpperLimit
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and LactateDehydrogenaseLevelNormalUpperLimit is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CT%20Measurement%20Lactate%20Dehydrogenase%20Level%20Normal%20Upper%20Limit%20mapping){: .btn }
+### COSD V8 CT Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+-- Query to extract Adult Comorbidity Evaluation for CT (CTYA) cancer area from COSD v8.
+-- AdultComorbidityEvaluation is a categorical code (0-3, 9) from the ACE-27 assessment tool.
+-- MeasurementDate is the earliest available date from referral, specialist, diagnosis, staging, treatment, or procedure dates.
+-- AdultComorbidityEvaluation will be mapped to a measurement value concept in OMOP in a later step.
+with CT as (
+    select
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.CTYA.CTYACore.CTYACoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.CTYA.CTYACore.CTYACoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation,
+    least(
+        cast(DateFirstSeen as date),
+        cast(SpecialistDateFirstSeen as date),
+        cast(ClinicalDateCancerDiagnosis as date),
+        cast(IntegratedStageTNMStageGroupingDate as date),
+        cast(FinalPreTreatmentTNMStageGroupingDate as date),
+        cast(CancerTreatmentStartDate as date),
+        cast(ProcedureDate as date)
+    ) as MeasurementDate
+from CT
+where AdultComorbidityEvaluation is not null
+  and not (
+      DateFirstSeen is null and
+      SpecialistDateFirstSeen is null and
+      ClinicalDateCancerDiagnosis is null and
+      IntegratedStageTNMStageGroupingDate is null and
+      FinalPreTreatmentTNMStageGroupingDate is null and
+      CancerTreatmentStartDate is null and
+      ProcedureDate is null
+  );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CT%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 CR Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
