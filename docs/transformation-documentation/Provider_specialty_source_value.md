@@ -9,7 +9,7 @@ has_toc: false
 ### SUS Outpatient Provider
 * Value copied from `MainSpecialtyCode`
 
-* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE]()
+* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE](https://www.datadictionary.nhs.uk/data_elements/main_specialty_code.html)
 
 ```sql
 with counts as (
@@ -45,7 +45,7 @@ order by
 ### SUS Inpatient Provider
 * Value copied from `MainSpecialtyCode`
 
-* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE]()
+* `MainSpecialtyCode` A unique code identifying each MAIN SPECIALTY designated by Royal Colleges. [MAIN SPECIALTY CODE](https://www.datadictionary.nhs.uk/data_elements/main_specialty_code.html)
 
 ```sql
 with counts as (
