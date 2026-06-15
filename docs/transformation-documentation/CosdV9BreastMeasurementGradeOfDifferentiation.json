@@ -80,7 +80,7 @@
           "origins": [
             {
               "origin": "GRADE OF DIFFERENTIATION AT DIAGNOSIS",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation_at_diagnosis.html"
             }
           ]
         }
@@ -98,7 +98,7 @@
           "origins": [
             {
               "origin": "GRADE OF DIFFERENTIATION AT DIAGNOSIS",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation_at_diagnosis.html"
             }
           ]
         }

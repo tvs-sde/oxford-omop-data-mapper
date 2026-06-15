@@ -1,0 +1,40 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Query to extract Grade of Differentiation (At Diagnosis) for HN cancer area from COSD v8.
+-- The grade represents the definitive grade of the tumour at the time of patient diagnosis.
+-- MeasurementDate uses the diagnosis date, falling back to non-primary diagnosis date.
+-- GradeOfDifferentiationAtDiagnosis will be mapped to a measurement concept in OMOP in a later step.
+with hn as (
+    select
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    GradeOfDifferentiationAtDiagnosis
+from hn
+where GradeOfDifferentiationAtDiagnosis is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="MeasurementDate">
+            <Description>For a Primary Pathway, the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed (DATE OF PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used, whilst for a non-primary pathway, the date where the Non Primary Cancer patient diagnosis was confirmed or agreed (DATE OF NON PRIMARY CANCER DIAGNOSIS - CLINICALLY AGREED) is used.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+            <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="GradeOfDifferentiationAtDiagnosis">
+            <Description>Definitive grade of the tumour at the time of patient diagnosis during a cancer care spell.</Description>
+            <Origin>GRADE OF DIFFERENTIATION (AT DIAGNOSIS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
