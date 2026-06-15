@@ -101,9 +101,6 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD v9 CR Measurement Adult Comorbidity Evaluation
-=======
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.
@@ -668,8 +665,7 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CT%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-### COSD V8 CR Measurement Adult Comorbidity Evaluation
->>>>>>> main
+### COSD v9 CR Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
 
@@ -678,7 +674,6 @@ Converts text to number.
 ```sql
 with cr as (
 	select
-<<<<<<< HEAD
 		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
 		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
 		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -704,7 +699,30 @@ select
 			cast(TreatmentStartDateCancer as date),
 			cast(ProcedureDate as date)
 		) as MeasurementDate
-=======
+from cr
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		DateFirstSeenCancerSpecialist is null and
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		StageDateFinalPretreatmentStage is null and
+		StageDateIntegratedStage is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v9%20CR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 CR Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+with cr as (
+	select
 		Record ->> '$.Core.CoreCore.CoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
 		Record ->> '$.Core.CoreCore.CoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
 		Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
@@ -730,34 +748,21 @@ select
                 cast(CancerTreatmentStartDate as date),
                 cast(ProcedureDate as date)
               ) as MeasurementDate
->>>>>>> main
 from cr
 where AdultComorbidityEvaluation is not null
   and not (
 		DateFirstSeen is null and
-<<<<<<< HEAD
-		DateFirstSeenCancerSpecialist is null and
-		DateOfPrimaryDiagnosisClinicallyAgreed is null and
-		StageDateFinalPretreatmentStage is null and
-		StageDateIntegratedStage is null and
-		TreatmentStartDateCancer is null and
-=======
 		SpecialistDateFirstSeen is null and
 		ClinicalDateCancerDiagnosis is null and
 		IntegratedStageTNMStageGroupingDate is null and
 		FinalPreTreatmentTNMStageGroupingDate is null and
 		CancerTreatmentStartDate is null and
->>>>>>> main
 		ProcedureDate is null
     );
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v9%20CR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### CosdV9MeasurementAdultComorbidityEvaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
