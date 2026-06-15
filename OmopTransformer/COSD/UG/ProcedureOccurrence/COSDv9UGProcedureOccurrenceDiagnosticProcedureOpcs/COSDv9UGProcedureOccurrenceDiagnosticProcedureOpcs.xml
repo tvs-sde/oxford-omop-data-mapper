@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+<![CDATA[
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs,
+
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureOpcs">
+            <Description>The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (OPCS)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

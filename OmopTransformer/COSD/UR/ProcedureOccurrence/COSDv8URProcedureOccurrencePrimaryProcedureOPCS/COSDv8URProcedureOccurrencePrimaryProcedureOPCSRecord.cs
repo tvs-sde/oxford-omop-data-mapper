@@ -7,7 +7,7 @@ namespace OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrenc
 [SourceQuery("COSDv8URProcedureOccurrencePrimaryProcedureOPCS.xml")]
 internal class COSDv8URProcedureOccurrencePrimaryProcedureOPCSRecord
 {
-    public string? NHSNumber { get; set; }
+    public string? NhsNumber { get; set; }
     public string? ProcedureDate { get; set; }
-    public string? PrimaryProcedureOPCS { get; set; }
+    public string? PrimaryProcedureOpcs { get; set; }
 }

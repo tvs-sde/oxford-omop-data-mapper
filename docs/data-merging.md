@@ -10,7 +10,7 @@ When OMOP records are recorded some records must be merged. An example of this w
 
 In some cases we may partially record a record with the hope of detecting the missing information in later transformations. For example if we have a person data source that does not define the patient's gender. 
 
-If all data is transformed and incomplete records still exist, use the [`prune command`]({% link docs/user-guide/commands.md %}#prune-command). 
+If all data is transformed and incomplete records still exist, use the [`finalise command`]({% link docs/user-guide/commands.md %}#finalise-command). 
 
 ## Person
 

@@ -200,6 +200,7 @@ order by
 ### COSD V9 UR Procedure Occurrence Procedure Opcs
 * Value copied from `NhsNumber`
 
+<<<<<<< HEAD
 * `NhsNumber` The unique NHS NUMBER allocated to every patient registered with the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
 
 ```sql
@@ -208,11 +209,20 @@ order by
 -- ProcedureOpcs identifies patient procedures other than the primary procedure (OPCS-4 code).
 -- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.
 -- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
+=======
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+>>>>>>> main
 with ur as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+<<<<<<< HEAD
         unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs.@code'], recursive := true) as ProcedureOpcs
+=======
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment.Surgery.ProcedureOpcs[*].@code', Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code', Record ->> '$.Treatment[*].Surgery.ProcedureOpcs.@code'], recursive := true) as ProcedureOpcs
+>>>>>>> main
     from omop_staging.cosd_staging_901
     where type = 'UR'
 )
@@ -230,6 +240,7 @@ where NhsNumber is not null
 ### COSD V9 UR Procedure Occurrence Primary Procedure Opcs
 * Value copied from `NhsNumber`
 
+<<<<<<< HEAD
 * `NhsNumber` The unique NHS NUMBER allocated to every patient registered with the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
 
 ```sql
@@ -238,6 +249,11 @@ where NhsNumber is not null
 -- PrimaryProcedureOpcs identifies the primary patient procedure carried out (OPCS-4 code).
 -- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.
 -- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
+=======
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+>>>>>>> main
 with ur as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
@@ -260,6 +276,7 @@ where NhsNumber is not null
 ### COSD V9 UR Procedure Occurrence Diagnostic Procedure Snomed Ct
 * Value copied from `NhsNumber`
 
+<<<<<<< HEAD
 * `NhsNumber` The unique NHS NUMBER allocated to every patient registered with the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
 
 ```sql
@@ -267,6 +284,11 @@ where NhsNumber is not null
 -- These represent diagnostic procedures carried out, identified by SNOMED CT concept ID.
 -- The SNOMED CT code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
 -- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.
+=======
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+>>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
@@ -282,6 +304,7 @@ where type = 'UR'
 ### COSD V9 UR Procedure Occurrence Diagnostic Procedure Opcs
 * Value copied from `NhsNumber`
 
+<<<<<<< HEAD
 * `NhsNumber` The unique NHS NUMBER allocated to every patient registered with the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
 
 ```sql
@@ -289,6 +312,11 @@ where type = 'UR'
 -- These represent diagnostic procedures carried out, identified by OPCS code.
 -- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
 -- DiagnosticProcedureDate is a string in CCYY-MM-DD format and will be cast to a date type downstream.
+=======
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+>>>>>>> main
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
@@ -302,6 +330,7 @@ where type = 'UR'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UR%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
 ### COSD V8 UR Procedure Occurrence Procedure OPCS
+<<<<<<< HEAD
 * Value copied from `NHSNumber`
 
 * `NHSNumber` The unique NHS NUMBER allocated to every patient registered with the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
@@ -317,21 +346,42 @@ with ur as (
         Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
         unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
         unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], recursive := true) as ProcedureOPCS
+=======
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code', Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code', Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], recursive := true) as ProcedureOPCS
+>>>>>>> main
     from omop_staging.cosd_staging_81
     where type = 'UR'
 )
 select distinct
+<<<<<<< HEAD
     NHSNumber,
     ProcedureDate,
     ProcedureOPCS
 from ur
 where NHSNumber is not null
+=======
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOPCS
+from ur
+where NhsNumber is not null
+>>>>>>> main
   and ProcedureOPCS is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V8 UR Procedure Occurrence Primary Procedure OPCS
+<<<<<<< HEAD
 * Value copied from `NHSNumber`
 
 * `NHSNumber` The unique NHS NUMBER allocated to every patient registered with the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
@@ -345,22 +395,532 @@ where NHSNumber is not null
 with ur as (
     select distinct
         Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+=======
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+>>>>>>> main
         unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
         unnest ([[Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
     from omop_staging.cosd_staging_81
     where type = 'UR'
 )
 select distinct
+<<<<<<< HEAD
     NHSNumber,
     ProcedureDate,
     PrimaryProcedureOPCS
 from ur
 where NHSNumber is not null
+=======
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from ur
+where NhsNumber is not null
+>>>>>>> main
   and PrimaryProcedureOPCS is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+<<<<<<< HEAD
+=======
+### COSD V9 UG Procedure Occurrence Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from ug
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 UG Procedure Occurrence Primary Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from ug
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 UG Procedure Occurrence Diagnostic Procedure Snomed Ct
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt,
+
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Snomed%20Ct%20mapping){: .btn }
+### COSD V9 UG Procedure Occurrence Diagnostic Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs,
+
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V8 UG Procedure Occurrence Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from ug
+where NHSNumber is not null
+  and ProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UG%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 UG Procedure Occurrence Primary Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from ug
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UG%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 SK Procedure Occurrence Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number data element, the primary identifier for a person within the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with COSD as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcs
+from COSD
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 SK Procedure Occurrence Primary Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number data element, the primary identifier for a person within the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with COSD as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from COSD
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 SK Procedure Occurrence Diagnostic Procedure Snomed Ct
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number data element, the primary identifier for a person within the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with COSD as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,
+        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureSnomedCt.@code'], recursive := true) as DiagnosticProcedureSnomedCt
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DiagnosticProcedureDate,
+    DiagnosticProcedureSnomedCt
+from COSD
+where NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Snomed%20Ct%20mapping){: .btn }
+### COSD V9 SK Procedure Occurrence Diagnostic Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number data element, the primary identifier for a person within the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with COSD as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,
+        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DiagnosticProcedureDate,
+    DiagnosticProcedureOpcs
+from COSD
+where NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V8 SK Procedure Occurrence Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number data element, the primary identifier for a person within the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with COSD as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    ProcedureOPCS
+from COSD
+where NHSNumber is not null
+  and ProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SK%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 SK Procedure Occurrence Primary Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS Number data element, the primary identifier for a person within the NHS. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with COSD as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from COSD
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SK%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 SA Procedure Occurrence Procedure Opcs Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS NUMBER assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcs
+from sa
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SA%20Procedure%20Occurrence%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
+### COSD V9 SA Procedure Occurrence Primary Procedure Opcs Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS NUMBER assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from sa
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
+### COSD V8 SA Procedure Occurrence Procedure OPCS Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS NUMBER assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[*].SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[*].SarcomaCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOPCS
+from sa
+where NhsNumber is not null
+  and ProcedureOPCS is not null
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SA%20Procedure%20Occurrence%20Procedure%20OPCS%20Procedure%20Date%20mapping){: .btn }
+### COSD V8 SA Procedure Occurrence Primary Procedure OPCS Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS NUMBER assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[*].SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[*].SarcomaCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from sa
+where NhsNumber is not null
+  and PrimaryProcedureOPCS is not null
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SA%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20Procedure%20Date%20mapping){: .btn }
+### COSD V9 LV Procedure Occurrence Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number allocated to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'],
+                Record ->> '$.Treatment.Surgery.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from lv
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20LV%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 LV Procedure Occurrence Primary Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number allocated to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    -- OPCS code identifying the primary procedure carried out
+    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs,
+    -- Date the procedure was performed, currently a string in CCYY-MM-DD format; will be cast to date in a later ETL step
+    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate
+from omop_staging.cosd_staging_901
+where type = 'LV'
+  and NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20LV%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V8 LV Procedure Occurrence Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number allocated to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code' as ProcedureOPCS,
+    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate
+from omop_staging.cosd_staging_81
+where type = 'LV'
+  and NHSNumber is not null
+  and ProcedureOPCS is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20LV%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 LV Procedure Occurrence Primary Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number allocated to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code' as PrimaryProcedureOPCS,
+    Record ->> '$.Liver.LiverCore.LiverCoreTreatment.LiverCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate
+from omop_staging.cosd_staging_81
+where type = 'LV'
+  and NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20LV%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+>>>>>>> main
 ### CosdV9LungProcedureOccurrenceRelapseMethodOfDetection
 * Value copied from `NhsNumber`
 
@@ -561,6 +1121,259 @@ and l.NhsNumber is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20Lung%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 HA Procedure Occurrence Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+    Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code' as ProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and ProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 HA Procedure Occurrence Primary Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 HA Procedure Occurrence Diagnostic Procedure Snomed Ct
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code' as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Snomed%20Ct%20mapping){: .btn }
+### COSD V9 HA Procedure Occurrence Diagnostic Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate' as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code' as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V901 CT Procedure Occurrence Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcs
+from ct
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V901%20CT%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V901 CT Procedure Occurrence Primary Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate,
+
+        unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from ct
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V901%20CT%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V8 CT Procedure Occurrence Primary Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` The unique NHS Number assigned to every patient registered with the NHS in England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+
+        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+
+        unnest ([[Record ->> '$.CTYA.CTYACore.CTYACoreTreatment.CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.CTYA.CTYACore.CTYACoreTreatment[*].CTYACoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from ct
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CT%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CO Procedure Occurrence Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with co as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'], recursive := true) as ProcedureOpcs,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'CO'
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from co
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CO%20Procedure%20Occurrence%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 CO Procedure Occurrence Primary Procedure Opcs
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with co as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'], Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'], recursive := true) as PrimaryProcedureOpcs,
+        unnest ([[Record ->> '$.Treatment.Surgery.ProcedureDate'], Record ->> '$.Treatment[*].Surgery.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'CO'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from co
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CO%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V8 CO Procedure Occurrence Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with co as (
+    select distinct
+        Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS,
+        unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'CO'
+)
+select distinct
+    NhsNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from co
+where NhsNumber is not null
+  and ProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CO%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CO Procedure Occurrence Primary Procedure OPCS
+* Value copied from `NhsNumber`
+
+* `NhsNumber` NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with co as (
+    select distinct
+        Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS,
+        unnest ([[Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[*].ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'CO'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from co
+where NhsNumber is not null
+  and PrimaryProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CO%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### Cosd V9 Procedure Occurrence Procedure Opcs
 * Value copied from `NhsNumber`
 
@@ -788,3 +1601,132 @@ where ProcedureDate is not null and PrimaryProcedureOpcs is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20Breast%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 BA Procedure Occurrence Procedure Opcs Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. Used to link to the OMOP person table to resolve person_id. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest (
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+            ],
+            recursive := true
+        ) as ProcedureDate,
+        unnest (
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureOpcs.@code'],
+                Record ->> '$.Treatment[*].Surgery.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOpcs
+from ba
+where NhsNumber is not null
+  and ProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
+### COSD V9 BA Procedure Occurrence Primary Procedure Opcs Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. Used to link to the OMOP person table to resolve person_id. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest (
+            [
+                [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+                Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+            ],
+            recursive := true
+        ) as ProcedureDate,
+        unnest (
+            [
+                [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+                Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+            ],
+            recursive := true
+        ) as PrimaryProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    PrimaryProcedureOpcs
+from ba
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20Procedure%20Date%20mapping){: .btn }
+### COSD V9 BA Procedure Occurrence Biopsy Type Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. Used to link to the OMOP person table to resolve person_id. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+    Record ->> '$.Treatment.Surgery.SurgeryCNS.BiopsyType.@code' as BiopsyType
+from omop_staging.cosd_staging_901
+where type = 'BA'
+  and NhsNumber is not null
+  and BiopsyType is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Procedure%20Occurrence%20Biopsy%20Type%20Procedure%20Date%20mapping){: .btn }
+### COSD V8 BA Procedure Occurrence Primary Procedure OPCS Procedure Date
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. Used to link to the OMOP person table to resolve person_id. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest (
+            [
+                [Record ->> '$.CNS.CNSCore.CNSCoreTreatment.CNSCoreSurgeryAndOtherProcedures.ProcedureDate'],
+                Record ->> '$.CNS.CNSCore.CNSCoreTreatment[*].CNSCoreSurgeryAndOtherProcedures.ProcedureDate'
+            ],
+            recursive := true
+        ) as ProcedureDate,
+        unnest (
+            [
+                [Record ->> '$.CNS.CNSCore.CNSCoreTreatment.CNSCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+                Record ->> '$.CNS.CNSCore.CNSCoreTreatment[*].CNSCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+            ],
+            recursive := true
+        ) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'BA'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from ba
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20nhs_number%20field%20COSD%20V8%20BA%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20Procedure%20Date%20mapping){: .btn }

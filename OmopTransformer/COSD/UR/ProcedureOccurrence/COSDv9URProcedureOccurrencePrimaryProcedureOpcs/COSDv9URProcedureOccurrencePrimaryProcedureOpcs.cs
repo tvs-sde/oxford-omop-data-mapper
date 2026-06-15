@@ -4,6 +4,10 @@ using OmopTransformer.Transformation;
 
 namespace OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrencePrimaryProcedureOpcs;
 
+/// <summary>
+/// COSD V9 UR - Primary Surgical Procedures
+/// Maps primary OPCS-4 coded procedures to OMOP procedure_occurrence
+/// </summary>
 internal class COSDv9URProcedureOccurrencePrimaryProcedureOpcs : OmopProcedureOccurrence<COSDv9URProcedureOccurrencePrimaryProcedureOpcsRecord>
 {
     [CopyValue(nameof(Source.NhsNumber))]
@@ -12,15 +16,15 @@ internal class COSDv9URProcedureOccurrencePrimaryProcedureOpcs : OmopProcedureOc
     [Transform(typeof(DateConverter), nameof(Source.ProcedureDate))]
     public override DateTime? procedure_date { get; set; }
 
-    [ConstantValue(32879, "`EHR episode record`")]
-    public override int? procedure_type_concept_id { get; set; }
+    [CopyValue(nameof(Source.PrimaryProcedureOpcs))]
+    public override string? procedure_source_value { get; set; }
 
     [Transform(typeof(Opcs4Selector), nameof(Source.PrimaryProcedureOpcs))]
     public override int? procedure_source_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.PrimaryProcedureOpcs))]
-    public override string? procedure_source_value { get; set; }
-
     [Transform(typeof(StandardProcedureConceptSelector), useOmopTypeAsSource: true, nameof(procedure_source_concept_id))]
     public override int[]? procedure_concept_id { get; set; }
+
+    [ConstantValue(32828, "`EHR episode record`")]
+    public override int? procedure_type_concept_id { get; set; }
 }

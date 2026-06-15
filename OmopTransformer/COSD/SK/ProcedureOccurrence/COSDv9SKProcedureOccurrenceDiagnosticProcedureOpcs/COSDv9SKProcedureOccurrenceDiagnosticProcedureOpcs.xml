@@ -1,0 +1,35 @@
+<Query>
+    <Sql>
+<![CDATA[
+with COSD as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureDate'], recursive := true) as DiagnosticProcedureDate,
+        unnest ([[Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'], Record ->> '$.DiagnosticProcedures[*].DiagnosticProcedureOpcs.@code'], recursive := true) as DiagnosticProcedureOpcs
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DiagnosticProcedureDate,
+    DiagnosticProcedureOpcs
+from COSD
+where NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>NHS Number data element, the primary identifier for a person within the NHS.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure. Will be mapped to procedure_date in OMOP. Currently in string format (CCYY-MM-DD) and will be cast to a date type in a later ETL step.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureOpcs">
+            <Description>The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out. Will be mapped to procedure_source_value and used to derive procedure_concept_id via OPCS4-to-OMOP concept mapping in a later ETL step.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

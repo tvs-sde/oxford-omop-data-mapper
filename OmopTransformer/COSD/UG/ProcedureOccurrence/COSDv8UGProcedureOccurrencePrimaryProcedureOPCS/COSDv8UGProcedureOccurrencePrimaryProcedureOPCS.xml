@@ -1,0 +1,37 @@
+<Query>
+    <Sql>
+<![CDATA[
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS,
+
+        unnest ([[Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment[*].UpperGICoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from ug
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>NHS NUMBER is the primary identifier for a person registered with the NHS in England and Wales.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOPCS">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

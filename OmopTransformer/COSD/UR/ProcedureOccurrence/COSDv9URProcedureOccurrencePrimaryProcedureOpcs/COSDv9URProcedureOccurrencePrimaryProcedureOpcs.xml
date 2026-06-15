@@ -1,11 +1,6 @@
 <Query>
     <Sql>
 <![CDATA[
--- Extracts primary procedure OPCS codes from treatment surgery for the Urological cancer area (COSD v9).
--- Treatment is a repeating group, so unnest is required to normalise each treatment entry.
--- PrimaryProcedureOpcs identifies the primary patient procedure carried out (OPCS-4 code).
--- ProcedureDate is the date of the procedure in CCYY-MM-DD string format, to be cast to date downstream.
--- The OPCS code will be mapped to a standard OMOP procedure_concept_id in a later ETL step.
 with ur as (
     select distinct
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
@@ -25,7 +20,7 @@ where NhsNumber is not null
     </Sql>
     <Explanations>
         <Explanation columnName="NhsNumber">
-            <Description>The unique NHS NUMBER allocated to every patient registered with the NHS.</Description>
+            <Description>NHS NUMBER is the primary identifier for a person or patient in NHS England and Wales.</Description>
             <Origin>NHS NUMBER</Origin>
         </Explanation>
         <Explanation columnName="ProcedureDate">

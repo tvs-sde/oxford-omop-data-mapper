@@ -1,0 +1,35 @@
+<Query>
+    <Sql>
+<![CDATA[
+with COSD as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,
+        unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Skin.SkinCore.SkinCoreTreatment.SkinCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], Record ->> '$.Skin.SkinCore.SkinCoreTreatment[*].SkinCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'], recursive := true) as PrimaryProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NHSNumber,
+    ProcedureDate,
+    PrimaryProcedureOPCS
+from COSD
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null;
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>NHS Number data element, the primary identifier for a person within the NHS.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date. Will be mapped to procedure_date in OMOP. Currently in string format (CCYY-MM-DD) and will be cast to a date type in a later ETL step.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOPCS">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. Will be mapped to procedure_source_value and used to derive procedure_concept_id via OPCS4-to-OMOP concept mapping in a later ETL step.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

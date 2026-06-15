@@ -4,6 +4,10 @@ using OmopTransformer.Transformation;
 
 namespace OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs;
 
+/// <summary>
+/// COSD V9 UR - Diagnostic Procedures
+/// Maps diagnostic OPCS-4 coded procedures to OMOP procedure_occurrence
+/// </summary>
 internal class COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs : OmopProcedureOccurrence<COSDv9URProcedureOccurrenceDiagnosticProcedureOpcsRecord>
 {
     [CopyValue(nameof(Source.NhsNumber))]
@@ -12,15 +16,15 @@ internal class COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs : OmopProcedur
     [Transform(typeof(DateConverter), nameof(Source.DiagnosticProcedureDate))]
     public override DateTime? procedure_date { get; set; }
 
-    [ConstantValue(32879, "`EHR episode record`")]
-    public override int? procedure_type_concept_id { get; set; }
+    [CopyValue(nameof(Source.DiagnosticProcedureOpcs))]
+    public override string? procedure_source_value { get; set; }
 
     [Transform(typeof(Opcs4Selector), nameof(Source.DiagnosticProcedureOpcs))]
     public override int? procedure_source_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.DiagnosticProcedureOpcs))]
-    public override string? procedure_source_value { get; set; }
-
     [Transform(typeof(StandardProcedureConceptSelector), useOmopTypeAsSource: true, nameof(procedure_source_concept_id))]
     public override int[]? procedure_concept_id { get; set; }
+
+    [ConstantValue(32828, "`EHR episode record`")]
+    public override int? procedure_type_concept_id { get; set; }
 }

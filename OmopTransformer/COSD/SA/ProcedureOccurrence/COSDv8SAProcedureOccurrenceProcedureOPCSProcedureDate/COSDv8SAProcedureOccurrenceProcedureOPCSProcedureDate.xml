@@ -1,0 +1,35 @@
+<Query>
+    <Sql>
+<![CDATA[
+with sa as (
+    select distinct
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        unnest ([[Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate'], Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[*].SarcomaCoreSurgeryAndOtherProcedures.ProcedureDate'], recursive := true) as ProcedureDate,
+        unnest ([[Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment.SarcomaCoreSurgeryAndOtherProcedures.ProcedureOPCS.@code'], Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreTreatment[*].SarcomaCoreSurgeryAndOtherProcedures.ProcedureOPCS[*].@code'], recursive := true) as ProcedureOPCS
+    from omop_staging.cosd_staging_81
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    ProcedureDate,
+    ProcedureOPCS
+from sa
+where NhsNumber is not null
+  and ProcedureOPCS is not null
+]]>
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>The unique NHS NUMBER assigned to every patient registered with the NHS in England and Wales.</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ProcedureDate">
+		    <Description>Date relevant to the activity for the procedure date. Same as the ACTIVITY DATE attribute for "Procedure Date". Will be mapped to procedure_date in the OMOP procedure_occurrence table. Format is CCYY-MM-DD and will need date parsing in a later ETL step.</Description>
+		    <Origin>PROCEDURE DATE</Origin>
+	    </Explanation>
+	    <Explanation columnName="ProcedureOPCS">
+		    <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. Will be mapped to procedure_source_value in the OMOP procedure_occurrence table. The OPCS-4 code will be mapped to a standard OMOP concept_id (procedure_concept_id) in a later ETL step using the OMOP vocabulary.</Description>
+		    <Origin>PROCEDURE (OPCS)</Origin>
+	    </Explanation>
+	</Explanations>
+</Query>
