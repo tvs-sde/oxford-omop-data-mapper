@@ -38,68 +38,6 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD v8 SA Measurement Tumour Laterality
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
-### COSD v8 SA Measurement TNMcategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20TNMcategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement TNMcategory Final Pre Treatment Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20TNMcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Tcategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Tcategory Final Pre Treatment Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Sarcoma Tumour Site Soft Tissue
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Sarcoma%20Tumour%20Site%20Soft%20Tissue%20mapping){: .btn }
-### COSD v8 SA Measurement Sarcoma Tumour Site Bone
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Sarcoma%20Tumour%20Site%20Bone%20mapping){: .btn }
-### COSD v8 SA Measurement Primary Pathway Metastatic Site
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD v8 SA Measurement Non Primary Pathway Metastatic Site
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD v8 SA Measurement Ncategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Ncategory Final Pre Treatment Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Mcategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Mcategory Final Pre Treatment Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD v8 SA Measurement Grade Of Differentiation
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
-### COSD v8 SA Measurement Adult Comorbidity Evaluation
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-=======
 ### COSD V9 UR Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
@@ -316,6 +254,66 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD v8 SA Measurement Tumour Laterality
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD v8 SA Measurement TNMcategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20TNMcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement TNMcategory Final Pre Treatment Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20TNMcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Tcategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Tcategory Final Pre Treatment Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Sarcoma Tumour Site Soft Tissue
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Sarcoma%20Tumour%20Site%20Soft%20Tissue%20mapping){: .btn }
+### COSD v8 SA Measurement Sarcoma Tumour Site Bone
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Sarcoma%20Tumour%20Site%20Bone%20mapping){: .btn }
+### COSD v8 SA Measurement Primary Pathway Metastatic Site
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 SA Measurement Non Primary Pathway Metastatic Site
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 SA Measurement Ncategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Ncategory Final Pre Treatment Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Mcategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Mcategory Final Pre Treatment Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
+### COSD v8 SA Measurement Grade Of Differentiation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD v8 SA Measurement Adult Comorbidity Evaluation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 LV Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
@@ -404,7 +402,6 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### COSD V9 Lung Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
