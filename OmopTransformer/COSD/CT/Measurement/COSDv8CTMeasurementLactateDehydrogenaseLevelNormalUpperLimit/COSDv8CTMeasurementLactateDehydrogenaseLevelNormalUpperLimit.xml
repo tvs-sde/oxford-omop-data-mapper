@@ -1,0 +1,29 @@
+<Query>
+    <Sql>
+-- Query to extract Lactate Dehydrogenase Level (Normal Upper Limit) for CT (CTYA) cancer area from COSD v8.
+-- LactateDehydrogenaseLevelNormalUpperLimit is a numeric lab value (max n6) representing the upper limit of normal LDH in U/L.
+-- MeasurementDate uses the primary diagnosis date.
+-- LactateDehydrogenaseLevelNormalUpperLimit will be stored as value_as_number in OMOP in a later step, with unit U/L.
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as MeasurementDate,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLaboratoryResultsGeneral.LactateDehydrogenaseLevelNormalUpperLimit.@value' as LactateDehydrogenaseLevelNormalUpperLimit
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and LactateDehydrogenaseLevelNormalUpperLimit is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="LactateDehydrogenaseLevelNormalUpperLimit">
+			<Description>Upper limit of normal for lactate dehydrogenase (LDH), where the unit of measurement is Units per litre (U/L).</Description>
+			<Origin>LACTATE DEHYDROGENASE LEVEL (NORMAL UPPER LIMIT)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
