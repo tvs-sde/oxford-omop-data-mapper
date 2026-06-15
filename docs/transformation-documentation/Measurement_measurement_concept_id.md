@@ -8623,6 +8623,629 @@ where GradeOfDifferentiationAtDiagnosis is not null;
 * Constant value set to `40488785`. Adult comorbidity evaluation-27
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V9 GY Measurement Tumour Laterality
+Source column  `TumourLaterality`.
+Lookup TumourLaterality concepts.
+
+
+|TumourLaterality|measurement_concept_id|notes|
+|------|-----|-----|
+|L|36770232|Left|
+|R|36770058|Right|
+|M|36769853|Midline|
+|B|36770109|Bilateral|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Topography&page=1&pageSize=500&query=&boosts)
+* [NHS - Tumour Laterality](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html?hl=tumour%2Claterality)
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TumourLaterality in ('L', 'R', 'M', 'B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V9 GY Measurement Tnm Stage Grouping Integrated
+Source column  `TnmStageGroupingIntegrated`.
+Lookup TNMCategory concepts.
+
+
+|TnmStageGroupingIntegrated|measurement_concept_id|notes|
+|------|-----|-----|
+|1|1635812|IRS-modified TNM stage 1|
+|I|1635812|IRS-modified TNM stage 1|
+|1a|1635812|IRS-modified TNM stage 1|
+|IA|1635812|IRS-modified TNM stage 1|
+|1a1|1633843|Stage 1A1|
+|IA1|1633843|Stage 1A1|
+|1a2|1634275|Stage 1A2|
+|IA2|1634275|Stage 1A2|
+|1a3|1633775|Stage 1A3|
+|IA3|1633775|Stage 1A3|
+|1b|1635812|IRS-modified TNM stage 1|
+|IB|1635812|IRS-modified TNM stage 1|
+|2|1635007|IRS-modified TNM stage 2|
+|II|1635007|IRS-modified TNM stage 2|
+|2a|1635007|IRS-modified TNM stage 2|
+|IIA|1635007|IRS-modified TNM stage 2|
+|2b|1635007|IRS-modified TNM stage 2|
+|IIB|1635007|IRS-modified TNM stage 2|
+|2c|1635007|IRS-modified TNM stage 2|
+|IIC|1635007|IRS-modified TNM stage 2|
+|3|1633995|IRS-modified TNM stage 3|
+|III|1633995|IRS-modified TNM stage 3|
+|3a|1633995|IRS-modified TNM stage 3|
+|IIIA|1633995|IRS-modified TNM stage 3|
+|3b|1633995|IRS-modified TNM stage 3|
+|IIIB|1633995|IRS-modified TNM stage 3|
+|3c|1633995|IRS-modified TNM stage 3|
+|IIIC|1633995|IRS-modified TNM stage 3|
+|4|1634737|IRS-modified TNM stage 4|
+|IV|1634737|IRS-modified TNM stage 4|
+|4a|1634737|IRS-modified TNM stage 4|
+|IVA|1634737|IRS-modified TNM stage 4|
+|4b|1634737|IRS-modified TNM stage 4|
+|IVB|1634737|IRS-modified TNM stage 4|
+|4c|1634737|IRS-modified TNM stage 4|
+|IVC|1634737|IRS-modified TNM stage 4|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TnmStageGroupingIntegrated` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [TNM STAGE GROUPING (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__integrated_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingIntegrated' as TnmStageGroupingIntegrated
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TnmStageGroupingIntegrated is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Tnm%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V9 GY Measurement Tnm Stage Grouping Final Pretreatment
+Source column  `TnmStageGroupingFinalPretreatment`.
+Lookup TNMCategory concepts.
+
+
+|TnmStageGroupingFinalPretreatment|measurement_concept_id|notes|
+|------|-----|-----|
+|1|1635812|IRS-modified TNM stage 1|
+|I|1635812|IRS-modified TNM stage 1|
+|1a|1635812|IRS-modified TNM stage 1|
+|IA|1635812|IRS-modified TNM stage 1|
+|1a1|1633843|Stage 1A1|
+|IA1|1633843|Stage 1A1|
+|1a2|1634275|Stage 1A2|
+|IA2|1634275|Stage 1A2|
+|1a3|1633775|Stage 1A3|
+|IA3|1633775|Stage 1A3|
+|1b|1635812|IRS-modified TNM stage 1|
+|IB|1635812|IRS-modified TNM stage 1|
+|2|1635007|IRS-modified TNM stage 2|
+|II|1635007|IRS-modified TNM stage 2|
+|2a|1635007|IRS-modified TNM stage 2|
+|IIA|1635007|IRS-modified TNM stage 2|
+|2b|1635007|IRS-modified TNM stage 2|
+|IIB|1635007|IRS-modified TNM stage 2|
+|2c|1635007|IRS-modified TNM stage 2|
+|IIC|1635007|IRS-modified TNM stage 2|
+|3|1633995|IRS-modified TNM stage 3|
+|III|1633995|IRS-modified TNM stage 3|
+|3a|1633995|IRS-modified TNM stage 3|
+|IIIA|1633995|IRS-modified TNM stage 3|
+|3b|1633995|IRS-modified TNM stage 3|
+|IIIB|1633995|IRS-modified TNM stage 3|
+|3c|1633995|IRS-modified TNM stage 3|
+|IIIC|1633995|IRS-modified TNM stage 3|
+|4|1634737|IRS-modified TNM stage 4|
+|IV|1634737|IRS-modified TNM stage 4|
+|4a|1634737|IRS-modified TNM stage 4|
+|IVA|1634737|IRS-modified TNM stage 4|
+|4b|1634737|IRS-modified TNM stage 4|
+|IVB|1634737|IRS-modified TNM stage 4|
+|4c|1634737|IRS-modified TNM stage 4|
+|IVC|1634737|IRS-modified TNM stage 4|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TnmStageGroupingFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the combination of Tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TnmStageGroupingFinalPretreatment' as TnmStageGroupingFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TnmStageGroupingFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Tnm%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement T Category Integrated Stage
+Source column  `TCategoryIntegratedStage`.
+Lookup TCategory concepts.
+
+
+|TCategoryIntegratedStage|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1634213|AJCC/UICC T0 Category|
+|1|1635564|AJCC/UICC T1 Category|
+|1a|1633880|AJCC/UICC T1a Category|
+|1b|1633921|AJCC/UICC T1b Category|
+|1c|1633529|AJCC/UICC T1c Category|
+|1d|1634100|AJCC/UICC T1d Category|
+|2|1635562|AJCC/UICC T2 Category|
+|2a|1635327|AJCC/UICC T2a Category|
+|2b|1633593|AJCC/UICC T2b Category|
+|2c|1635270|AJCC/UICC T2c Category|
+|2d|1633678|AJCC/UICC T2d Category|
+|3|1634376|AJCC/UICC T3 Category|
+|3a|1633771|AJCC/UICC T3a Category|
+|3b|1634980|AJCC/UICC T3b Category|
+|3c|1633360|AJCC/UICC T3c Category|
+|3d|1635625|AJCC/UICC T3d Category|
+|3e|1634730|AJCC/UICC T3e Category|
+|4|1634654|AJCC/UICC T4 Category|
+|4a|1635222|AJCC/UICC T4a Category|
+|4b|1634436|AJCC/UICC T4b Category|
+|4c|1635526|AJCC/UICC T4c Category|
+|4d|1633909|AJCC/UICC T4d Category|
+|4e|1634193|AJCC/UICC T4e Category|
+|X|1635682|AJCC/UICC TX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TCategoryIntegratedStage` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [T CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryIntegratedStage' as TCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20T%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 GY Measurement T Category Final Pretreatment
+Source column  `TCategoryFinalPretreatment`.
+Lookup TCategory concepts.
+
+
+|TCategoryFinalPretreatment|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1634213|AJCC/UICC T0 Category|
+|1|1635564|AJCC/UICC T1 Category|
+|1a|1633880|AJCC/UICC T1a Category|
+|1b|1633921|AJCC/UICC T1b Category|
+|1c|1633529|AJCC/UICC T1c Category|
+|1d|1634100|AJCC/UICC T1d Category|
+|2|1635562|AJCC/UICC T2 Category|
+|2a|1635327|AJCC/UICC T2a Category|
+|2b|1633593|AJCC/UICC T2b Category|
+|2c|1635270|AJCC/UICC T2c Category|
+|2d|1633678|AJCC/UICC T2d Category|
+|3|1634376|AJCC/UICC T3 Category|
+|3a|1633771|AJCC/UICC T3a Category|
+|3b|1634980|AJCC/UICC T3b Category|
+|3c|1633360|AJCC/UICC T3c Category|
+|3d|1635625|AJCC/UICC T3d Category|
+|3e|1634730|AJCC/UICC T3e Category|
+|4|1634654|AJCC/UICC T4 Category|
+|4a|1635222|AJCC/UICC T4a Category|
+|4b|1634436|AJCC/UICC T4b Category|
+|4c|1635526|AJCC/UICC T4c Category|
+|4d|1633909|AJCC/UICC T4d Category|
+|4e|1634193|AJCC/UICC T4e Category|
+|X|1635682|AJCC/UICC TX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `TCategoryFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.TCategoryFinalPretreatment' as TCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and TCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20T%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement Primary Pathway Metastatic Site
+Source column  `MetastaticSite`.
+METASTATIC SITE (AT DIAGNOSIS)
+
+
+|MetastaticSite|measurement_concept_id|notes|
+|------|-----|-----|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
+|97|0|Not Applicable (Disease not spread)|
+
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    MetastaticSite
+from gy
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 GY Measurement Non Primary Pathway Recurrence Metastatic Site
+Source column  `MetastaticSite`.
+METASTATIC SITE (AT DIAGNOSIS)
+
+
+|MetastaticSite|measurement_concept_id|notes|
+|------|-----|-----|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
+|97|0|Not Applicable (Disease not spread)|
+
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Recurrence.MetastaticTypeAndSiteRecurrence[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from gy
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 GY Measurement Non Primary Pathway Progression Metastatic Site
+Source column  `MetastaticSite`.
+METASTATIC SITE (AT DIAGNOSIS)
+
+
+|MetastaticSite|measurement_concept_id|notes|
+|------|-----|-----|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
+|97|0|Not Applicable (Disease not spread)|
+
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression.MetastaticSite.@code' ],
+                Record ->> '$.NonPrimaryPathway.Progression.MetastaticTypeAndSiteProgression[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    MetastaticSite
+from gy
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Non%20Primary%20Pathway%20Progression%20Metastatic%20Site%20mapping){: .btn }
+### COSD V9 GY Measurement N Category Integrated Stage
+Source column  `NCategoryIntegratedStage`.
+Lookup NCategory concepts.
+
+
+|NCategoryIntegratedStage|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1633440|AJCC/UICC N0 Category|
+|0a|1633621|AJCC/UICC N0a Category|
+|0b|1635244|AJCC/UICC N0b Category|
+|1|1634434|AJCC/UICC N1 Category|
+|1a|1633735|AJCC/UICC N1a Category|
+|1b|1635130|AJCC/UICC N1b Category|
+|1c|1634620|AJCC/UICC N1c Category|
+|2|1634119|AJCC/UICC N2 Category|
+|2a|1635644|AJCC/UICC N2a Category|
+|2b|1634134|AJCC/UICC N2b Category|
+|2c|1634080|AJCC/UICC N2c Category|
+|3|1635320|AJCC/UICC N3 Category|
+|3a|1635590|AJCC/UICC N3a Category|
+|3b|1633422|AJCC/UICC N3b Category|
+|3c|1634735|AJCC/UICC N3c Category|
+|4|1635445|AJCC/UICC N4 Category|
+|X|1633885|AJCC/UICC NX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `NCategoryIntegratedStage` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [N CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20N%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 GY Measurement N Category Final Pretreatment
+Source column  `NCategoryFinalPretreatment`.
+Lookup NCategory concepts.
+
+
+|NCategoryFinalPretreatment|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1633440|AJCC/UICC N0 Category|
+|0a|1633621|AJCC/UICC N0a Category|
+|0b|1635244|AJCC/UICC N0b Category|
+|1|1634434|AJCC/UICC N1 Category|
+|1a|1633735|AJCC/UICC N1a Category|
+|1b|1635130|AJCC/UICC N1b Category|
+|1c|1634620|AJCC/UICC N1c Category|
+|2|1634119|AJCC/UICC N2 Category|
+|2a|1635644|AJCC/UICC N2a Category|
+|2b|1634134|AJCC/UICC N2b Category|
+|2c|1634080|AJCC/UICC N2c Category|
+|3|1635320|AJCC/UICC N3 Category|
+|3a|1635590|AJCC/UICC N3a Category|
+|3b|1633422|AJCC/UICC N3b Category|
+|3c|1634735|AJCC/UICC N3c Category|
+|4|1635445|AJCC/UICC N4 Category|
+|X|1633885|AJCC/UICC NX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `NCategoryFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.NCategoryFinalPretreatment' as NCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20N%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement M Category Integrated Stage
+Source column  `MCategoryIntegratedStage`.
+Lookup  concepts.
+
+
+|MCategoryIntegratedStage|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1635624|AJCC/UICC M0 Category|
+|1|1635142|AJCC/UICC M1 Category|
+|1a|1635100|AJCC/UICC M1a Category|
+|1b|1634463|AJCC/UICC M1b Category|
+|1c|1635519|AJCC/UICC M1c Category|
+|1d|1634064|AJCC/UICC M1d Category|
+|X  |1633547|AJCC/UICC MX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `MCategoryIntegratedStage` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [M CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/m_category__integrated_stage_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and MCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20M%20Category%20Integrated%20Stage%20mapping){: .btn }
+### COSD V9 GY Measurement M Category Final Pretreatment
+Source column  `MCategoryFinalPretreatment`.
+Lookup  concepts.
+
+
+|MCategoryFinalPretreatment|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1635624|AJCC/UICC M0 Category|
+|1|1635142|AJCC/UICC M1 Category|
+|1a|1635100|AJCC/UICC M1a Category|
+|1b|1634463|AJCC/UICC M1b Category|
+|1c|1635519|AJCC/UICC M1c Category|
+|1d|1634064|AJCC/UICC M1d Category|
+|X  |1633547|AJCC/UICC MX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `MCategoryFinalPretreatment` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    coalesce(
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+    ) as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Staging.MCategoryFinalPretreatment' as MCategoryFinalPretreatment
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and MCategoryFinalPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V9 GY Measurement Grade Of Differentiation At Diagnosis
+Source column  `GradeOfDifferentiationAtDiagnosis`.
+GRADE OF DIFFERENTIATION (AT DIAGNOSIS)
+
+
+|GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
+|------|-----|-----|
+|G1|0|Well differentiated|
+|G2|0|Moderately differentiated|
+|G3|0|Poorly differentiated|
+|G4|0|Undifferentiated / anaplastic|
+|GX|0|Grade of differentiation is not appropriate or cannot be assessed|
+
+
+* `GradeOfDifferentiationAtDiagnosis` Definitive grade of the tumour at the time of patient diagnosis during a cancer care spell. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Grade%20Of%20Differentiation%20At%20Diagnosis%20mapping){: .btn }
+### COSD V9 GY Measurement Adult Comorbidity Evaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 GY Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.
