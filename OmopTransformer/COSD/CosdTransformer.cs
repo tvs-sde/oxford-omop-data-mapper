@@ -225,6 +225,21 @@ using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDia
 using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt;
 using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementMcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementNcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementNcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementNonPrimaryPathwayProgressionMetastaticSite;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementNonPrimaryPathwayRecurrenceMetastaticSite;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementProstateSpecificAntigenDiagnosis;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementTcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementTcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementTNMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementTNMcategoryIntegratedStage;
+using OmopTransformer.COSD.UR.Measurement.COSDv9URMeasurementTumourLaterality;
 using OmopTransformer.COSD.Colorectal.ProcedureOccurrence.CosdV8ProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Colorectal.ProcedureOccurrence.CosdV8ProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Colorectal.ProcedureOccurrence.CosdV9ProcedureOccurrencePrimaryProcedureOpcs;
@@ -1737,6 +1752,97 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8URMeasurementTumourLateralityRecord, COSDv8URMeasurementTumourLaterality>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv8URMeasurementTumourLaterality",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementAdultComorbidityEvaluationRecord, COSDv9URMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Adult Comorbidity Evaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementGradeOfDifferentiationRecord, COSDv9URMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Grade Of Differentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementMcategoryFinalPreTreatmentStageRecord, COSDv9URMeasurementMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Mcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementMcategoryIntegratedStageRecord, COSDv9URMeasurementMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Mcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+
+        await Transform<COSDv9URMeasurementNcategoryFinalPreTreatmentStageRecord, COSDv9URMeasurementNcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Ncategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementNcategoryIntegratedStageRecord, COSDv9URMeasurementNcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Ncategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementNonPrimaryPathwayProgressionMetastaticSiteRecord, COSDv9URMeasurementNonPrimaryPathwayProgressionMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Non Primary Pathway Progression Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementNonPrimaryPathwayRecurrenceMetastaticSiteRecord, COSDv9URMeasurementNonPrimaryPathwayRecurrenceMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Non Primary Pathway Recurrence Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv9URMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Primary Pathway Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementProstateSpecificAntigenDiagnosisRecord, COSDv9URMeasurementProstateSpecificAntigenDiagnosis>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Prostate Specific Antigen Diagnosis",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementTcategoryFinalPreTreatmentStageRecord, COSDv9URMeasurementTcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Tcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementTcategoryIntegratedStageRecord, COSDv9URMeasurementTcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Tcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementTNMcategoryFinalPreTreatmentStageRecord, COSDv9URMeasurementTNMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement TNM Category Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementTNMcategoryIntegratedStageRecord, COSDv9URMeasurementTNMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement TNM Category Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URMeasurementTumourLateralityRecord, COSDv9URMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V9 UR Measurement Tumour Laterality",
             runId,
             cancellationToken);
     }

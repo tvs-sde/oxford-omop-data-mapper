@@ -26,6 +26,10 @@ has_toc: false
 * Constant value set to `8582`. cm
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
+* Constant value set to `8842`. nanogram per millilitre
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20COSD%20V9%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
 ### COSD V8 UR Measurement Prostate Specific Antigen Diagnosis
 * Constant value set to `8842`. nanogram per millilitre
 
