@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    Record ->> '$.Core.CoreCore.CoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'CR'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+			<Description>Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed.</Description>
+			<Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="MetastaticSite">
+			<Description>Is the site of the metastatic disease at PATIENT DIAGNOSIS.</Description>
+			<Origin>METASTATIC SITE (AT DIAGNOSIS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
