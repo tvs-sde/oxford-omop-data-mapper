@@ -1,0 +1,34 @@
+<Query>
+    <Sql>
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTCategory' as TCategoryFinalPreTreatment,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	TCategoryFinalPreTreatment
+from SK
+where TCategoryFinalPreTreatment is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NHSNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="TCategoryFinalPreTreatment">
+			<Description>Code, using a TNM coding edition, that classifies the size and extent of the primary tumour before treatment during a Cancer Care Spell.</Description>
+			<Origin>T CATEGORY (FINAL PRETREATMENT)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
