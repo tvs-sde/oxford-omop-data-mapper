@@ -1514,6 +1514,48 @@
     <None Update="COSD\CR\Measurement\COSDv9CRMeasurementTNMcategoryIntegratedStage\COSDv9CRMeasurementTNMcategoryIntegratedStage.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementAdultComorbidityEvaluation27Score\COSDv9UGMeasurementAdultComorbidityEvaluation27Score.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementGradeOfDifferentiationAtDiagnosis\COSDv9UGMeasurementGradeOfDifferentiationAtDiagnosis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementMCategoryFinalPretreatment\COSDv9UGMeasurementMCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementMCategoryIntegratedStage\COSDv9UGMeasurementMCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementNCategoryFinalPretreatment\COSDv9UGMeasurementNCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementNCategoryIntegratedStage\COSDv9UGMeasurementNCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementNonPrimaryPathwayProgressionMetastaticSite\COSDv9UGMeasurementNonPrimaryPathwayProgressionMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementNonPrimaryPathwayRecurrenceMetastaticSite\COSDv9UGMeasurementNonPrimaryPathwayRecurrenceMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementPerformanceStatusAdult\COSDv9UGMeasurementPerformanceStatusAdult.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementPrimaryPathwayMetastaticSite\COSDv9UGMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementTCategoryFinalPretreatment\COSDv9UGMeasurementTCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementTCategoryIntegratedStage\COSDv9UGMeasurementTCategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementTnmStageGroupingFinalPretreatment\COSDv9UGMeasurementTnmStageGroupingFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\Measurement\COSDv9UGMeasurementTnmStageGroupingIntegrated\COSDv9UGMeasurementTnmStageGroupingIntegrated.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' != 'Release_no_docs'">
 		<ItemGroup>
