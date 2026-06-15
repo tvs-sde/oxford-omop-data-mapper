@@ -9,10 +9,10 @@ internal class COSDv8UGMeasurementAdultComorbidityEvaluation : OmopMeasurement<C
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
 
-    [Transform(typeof(DateConverter), nameof(Source.MeasurementDate))]
+    [CopyValue(nameof(Source.MeasurementDate))]
     public override DateTime? measurement_date { get; set; }
 
-    [Transform(typeof(DateConverter), nameof(Source.MeasurementDate))]
+    [CopyValue(nameof(Source.MeasurementDate))]
     public override DateTime? measurement_datetime { get; set; }
 
     [ConstantValue(32828, "EHR episode record")]

@@ -706,6 +706,52 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20GY%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD v9 CT Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation27Score`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation27Score` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+-- Query to extract Adult Comorbidity Evaluation - 27 Score for CT cancer area from COSD v9.
+-- AdultComorbidityEvaluation27Score is a categorical code (0-3, 9) from the ACE-27 assessment tool.
+-- MeasurementDate is the earliest available date from referral, specialist, diagnosis, and staging dates.
+-- AdultComorbidityEvaluation27Score will be mapped to a measurement value concept in OMOP in a later step.
+with CT as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation27Score,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation27Score,
+    least(
+        cast(DateFirstSeen as date),
+        cast(DateFirstSeenCancerSpecialist as date),
+        cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+        cast(StageDateFinalPretreatmentStage as date),
+        cast(StageDateIntegratedStage as date)
+    ) as MeasurementDate
+from CT
+where AdultComorbidityEvaluation27Score is not null
+  and not (
+      DateFirstSeen is null and
+      DateFirstSeenCancerSpecialist is null and
+      DateOfPrimaryDiagnosisClinicallyAgreed is null and
+      StageDateFinalPretreatmentStage is null and
+      StageDateIntegratedStage is null
+  );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v9%20CT%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 CT Measurement Lactate Dehydrogenase Level Peak At Diagnosis
 Source column  `LactateDehydrogenaseLevelPeakAtDiagnosis`.
 Converts text to number.
