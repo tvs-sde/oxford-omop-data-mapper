@@ -175,6 +175,10 @@ using OmopTransformer.COSD.Lung.Observation.CosdV9LungTobaccoSmokingCessation;
 using OmopTransformer.COSD.Lung.Observation.CosdV9LungTobaccoSmokingStatus;
 using OmopTransformer.COSD.Lung.Observation.CosdV8LungSurgicalAccessType;
 using OmopTransformer.COSD.Lung.Observation.CosdV9LungSurgicalAccessType;
+using OmopTransformer.COSD.BA.Measurement.COSDv8BAMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.BA.Measurement.COSDv8BAMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.BA.Measurement.COSDv8BAMeasurementMetastaticSite;
+using OmopTransformer.COSD.BA.Measurement.COSDv8BAMeasurementTumourLaterality;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrenceBiopsyTypeProcedureDate;
 using OmopTransformer.COSD.BA.ProcedureOccurrence.COSDv9BAProcedureOccurrencePrimaryProcedureOpcsProcedureDate;
@@ -1954,6 +1958,30 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9URProcedureOccurrenceProcedureOpcsRecord, COSDv9URProcedureOccurrenceProcedureOpcs>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V9 UR Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAMeasurementAdultComorbidityEvaluationRecord, COSDv8BAMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 BA Measurement Adult Comorbidity Evaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAMeasurementGradeOfDifferentiationRecord, COSDv8BAMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 BA Measurement Grade Of Differentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAMeasurementMetastaticSiteRecord, COSDv8BAMeasurementMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 BA Measurement Metastatic Site",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAMeasurementTumourLateralityRecord, COSDv8BAMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 BA Measurement Tumour Laterality",
             runId,
             cancellationToken);
 
