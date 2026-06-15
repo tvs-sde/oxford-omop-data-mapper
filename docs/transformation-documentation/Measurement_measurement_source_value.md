@@ -75,34 +75,12 @@ where lower(EVENT) not like '%comment%'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD V8 SK Measurement Tumour Laterality
-=======
 ### COSD V9 UR Measurement Tumour Laterality
->>>>>>> main
 * Value copied from `TumourLaterality`
 
 * `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
 
 ```sql
-<<<<<<< HEAD
-with SK as (
-    select
-        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
-        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
-    from omop_staging.cosd_staging_81
-    where Type = 'SK'
-)
-select distinct
-    NhsNumber,
-    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
-    TumourLaterality
-from SK
-where TumourLaterality is not null
-  and TumourLaterality in ('L','R','M','B');
-=======
 -- Query to extract Tumour Laterality for UR cancer area from COSD v9.
 -- Identifies the side of the body for a tumour relating to paired organs.
 -- Only valid laterality codes (L, R, M, B) are included.
@@ -115,35 +93,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20SK%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
-### COSD V8 SK Measurement TNM Stage Grouping Integrated
-* Value copied from `TnmStageGroupingIntegrated`
-
-* `TnmStageGroupingIntegrated` Code, using a TNM coding edition, that classifies the combination of tumour, node and metastases into stage groupings after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [TNM STAGE GROUPING (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__integrated_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGrouping' as TnmStageGroupingIntegrated,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	TnmStageGroupingIntegrated
-from SK
-where TnmStageGroupingIntegrated is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
 ### COSD V9 UR Measurement TNM Category Integrated Stage
 * Value copied from `TnmStageGroupingIntegrated`
@@ -165,35 +118,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and TnmStageGroupingIntegrated is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
-### COSD V8 SK Measurement TNM Stage Grouping Final Pretreatment
-* Value copied from `TnmStageGroupingFinalPreTreatment`
-
-* `TnmStageGroupingFinalPreTreatment` Code, using a TNM coding edition, that classifies the combination of tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGrouping' as TnmStageGroupingFinalPreTreatment,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	TnmStageGroupingFinalPreTreatment
-from SK
-where TnmStageGroupingFinalPreTreatment is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20TNM%20Category%20Integrated%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement TNM Category Final Pre Treatment Stage
 * Value copied from `TnmStageGroupingFinalPretreatment`
@@ -215,35 +143,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and TnmStageGroupingFinalPretreatment is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement TCategory Integrated Stage
-* Value copied from `TcategoryIntegratedStage`
-
-* `TcategoryIntegratedStage` Code, using a TNM coding edition, that classifies the size and extent of the primary tumour after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [T CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTCategory' as TCategoryIntegratedStage,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	TCategoryIntegratedStage
-from SK
-where TCategoryIntegratedStage is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20TNM%20Category%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Tcategory Integrated Stage
 * Value copied from `TcategoryIntegratedStage`
@@ -265,35 +168,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and TcategoryIntegratedStage is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SK Measurement TCategory Final Pretreatment
-* Value copied from `TcategoryFinalPreTreatment`
-
-* `TcategoryFinalPreTreatment` Code, using a TNM coding edition, that classifies the size and extent of the primary tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTCategory' as TCategoryFinalPreTreatment,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	TCategoryFinalPreTreatment
-from SK
-where TCategoryFinalPreTreatment is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Tcategory%20Integrated%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Tcategory Final Pre Treatment Stage
 * Value copied from `TcategoryFinalPreTreatment`
@@ -315,15 +193,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and TcategoryFinalPreTreatment is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement Primary Pathway Metastatic Site
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 * Value copied from `ProstateSpecificAntigenDiagnosis`
@@ -348,33 +221,11 @@ where type = 'UR'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
 ### COSD V9 UR Measurement Primary Pathway Metastatic Site
->>>>>>> main
 * Value copied from `MetastaticSite`
 
 * `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
 
 ```sql
-<<<<<<< HEAD
-with SK as (
-    select distinct
-        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        unnest(
-            [
-                [ Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.MetastaticSite.@code' ],
-                Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.MetastaticSite[*].@code'
-            ],
-            recursive := true
-        ) as MetastaticSite
-    from omop_staging.cosd_staging_81
-    where Type = 'SK'
-)
-select distinct
-    NhsNumber,
-    ClinicalDateCancerDiagnosis,
-    MetastaticSite
-from SK
-=======
 -- Query to extract Metastatic Site (Primary Pathway/Diagnosis) for UR cancer area from COSD v9.
 -- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
 -- Code 97 (Not Applicable - Disease not spread) is excluded.
@@ -398,40 +249,19 @@ select distinct
     DateOfPrimaryDiagnosisClinicallyAgreed,
     MetastaticSite
 from UR
->>>>>>> main
 where MetastaticSite is not null
   and MetastaticSite != '97';
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD v8 SK Measurement Non Primary Pathway Metastatic Site
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
 ### COSD V9 UR Measurement Non Primary Pathway Recurrence Metastatic Site
->>>>>>> main
 * Value copied from `MetastaticSite`
 
 * `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
 
 ```sql
-<<<<<<< HEAD
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
-		Record ->> '$.Skin.SkinCore.SkinCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
-	MetastaticSite
-from SK
-=======
 -- Query to extract Metastatic Site (Non-Primary Pathway - Recurrence) for UR cancer area from COSD v9.
 -- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
 -- Code 97 (Not Applicable - Disease not spread) is excluded.
@@ -455,37 +285,12 @@ select distinct
     DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
     MetastaticSite
 from UR
->>>>>>> main
 where MetastaticSite is not null
   and MetastaticSite != '97';
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD v8 SK Measurement NCategory Integrated Stage
-* Value copied from `NcategoryIntegratedStage`
-
-* `NcategoryIntegratedStage` Code, using a TNM coding edition, that classifies the absence or presence and extent of regional lymph node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [N CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	NCategoryIntegratedStage
-from SK
-where NCategoryIntegratedStage is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Non%20Primary%20Pathway%20Recurrence%20Metastatic%20Site%20mapping){: .btn }
 ### COSD V9 UR Measurement Non Primary Pathway Progression Metastatic Site
 * Value copied from `MetastaticSite`
@@ -543,35 +348,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and NcategoryIntegratedStage is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SK Measurement NCategory Final Pretreatment
-* Value copied from `NcategoryFinalPreTreatment`
-
-* `NcategoryFinalPreTreatment` Code, using a TNM coding edition, that classifies the absence or presence and extent of regional lymph node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentNCategory' as NCategoryFinalPreTreatment,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	NCategoryFinalPreTreatment
-from SK
-where NCategoryFinalPreTreatment is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Ncategory%20Integrated%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Ncategory Final Pre Treatment Stage
 * Value copied from `NcategoryFinalPreTreatment`
@@ -593,35 +373,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and NcategoryFinalPreTreatment is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement MCategory Integrated Stage
-* Value copied from `McategoryIntegratedStage`
-
-* `McategoryIntegratedStage` Code, using a TNM coding edition, that classifies the absence or presence of distant metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [M CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/m_category__integrated_stage_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageMCategory' as MCategoryIntegratedStage,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	MCategoryIntegratedStage
-from SK
-where MCategoryIntegratedStage is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Ncategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Mcategory Integrated Stage
 * Value copied from `McategoryIntegratedStage`
@@ -643,35 +398,10 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and McategoryIntegratedStage is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SK Measurement MCategory Final Pretreatment
-* Value copied from `McategoryFinalPreTreatment`
-
-* `McategoryFinalPreTreatment` Code, using a TNM coding edition, that classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
-
-```sql
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentMCategory' as MCategoryFinalPreTreatment,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
-	MCategoryFinalPreTreatment
-from SK
-where MCategoryFinalPreTreatment is not null;
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Mcategory%20Integrated%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Mcategory Final Pre Treatment Stage
 * Value copied from `McategoryFinalPreTreatment`
@@ -693,40 +423,17 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and McategoryFinalPreTreatment is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement Grade Of Differentiation
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD V9 UR Measurement Grade Of Differentiation
->>>>>>> main
 * Value copied from `GradeOfDifferentiationAtDiagnosis`
 
 * `GradeOfDifferentiationAtDiagnosis` The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
 
 ```sql
-<<<<<<< HEAD
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
-		Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select distinct
-	NhsNumber,
-	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
-	GradeOfDifferentiationAtDiagnosis
-from SK
-where GradeOfDifferentiationAtDiagnosis is not null;
-=======
 -- Query to extract Grade of Differentiation (at Diagnosis) for UR cancer area from COSD v9.
 -- The grade classifies the differentiation of the tumour at the time of diagnosis.
 -- MeasurementDate uses the primary diagnosis date.
@@ -738,56 +445,17 @@ select distinct
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and GradeOfDifferentiationAtDiagnosis is not null;
->>>>>>> main
 	
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
-### COSD v8 SK Measurement Adult Comorbidity Evaluation
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20UR%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
 ### COSD V9 UR Measurement Adult Comorbidity Evaluation
->>>>>>> main
 * Value copied from `AdultComorbidityEvaluation`
 
 * `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
 
 ```sql
-<<<<<<< HEAD
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-		Record ->> '$.Skin.SkinCore.SkinCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select
-	distinct
-		AdultComorbidityEvaluation,
-		NhsNumber,
-		least(
-			cast(DateFirstSeen as date),
-			cast(SpecialistDateFirstSeen as date),
-			cast(ClinicalDateCancerDiagnosis as date),
-			cast(IntegratedStageTNMStageGroupingDate as date),
-			cast(FinalPreTreatmentTNMStageGroupingDate as date)
-		) as MeasurementDate
-from SK
-where AdultComorbidityEvaluation is not null
-  and not (
-		DateFirstSeen is null and
-		SpecialistDateFirstSeen is null and
-		ClinicalDateCancerDiagnosis is null and
-		IntegratedStageTNMStageGroupingDate is null and
-		FinalPreTreatmentTNMStageGroupingDate is null
-=======
 -- Query to extract Adult Comorbidity Evaluation - 27 Score for UR cancer area from COSD v9.
 -- The ACE-27 score measures comorbidity severity during a cancer care spell.
 -- MeasurementDate uses the earliest available date from various clinical events.
@@ -1526,6 +1194,367 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20UG%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 SK Measurement Tumour Laterality
+* Value copied from `TumourLaterality`
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+with SK as (
+    select
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+    from omop_staging.cosd_staging_81
+    where Type = 'SK'
+)
+select distinct
+    NhsNumber,
+    coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+    TumourLaterality
+from SK
+where TumourLaterality is not null
+  and TumourLaterality in ('L','R','M','B');
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20SK%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 SK Measurement TNM Stage Grouping Integrated
+* Value copied from `TnmStageGroupingIntegrated`
+
+* `TnmStageGroupingIntegrated` Code, using a TNM coding edition, that classifies the combination of tumour, node and metastases into stage groupings after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [TNM STAGE GROUPING (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__integrated_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGrouping' as TnmStageGroupingIntegrated,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	TnmStageGroupingIntegrated
+from SK
+where TnmStageGroupingIntegrated is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V8 SK Measurement TNM Stage Grouping Final Pretreatment
+* Value copied from `TnmStageGroupingFinalPreTreatment`
+
+* `TnmStageGroupingFinalPreTreatment` Code, using a TNM coding edition, that classifies the combination of tumour, node and metastases into stage groupings before treatment during a Cancer Care Spell. [TNM STAGE GROUPING (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping__final_pretreatment_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGrouping' as TnmStageGroupingFinalPreTreatment,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	TnmStageGroupingFinalPreTreatment
+from SK
+where TnmStageGroupingFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement TCategory Integrated Stage
+* Value copied from `TcategoryIntegratedStage`
+
+* `TcategoryIntegratedStage` Code, using a TNM coding edition, that classifies the size and extent of the primary tumour after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [T CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/t_category__integrated_stage_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTCategory' as TCategoryIntegratedStage,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	TCategoryIntegratedStage
+from SK
+where TCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement TCategory Final Pretreatment
+* Value copied from `TcategoryFinalPreTreatment`
+
+* `TcategoryFinalPreTreatment` Code, using a TNM coding edition, that classifies the size and extent of the primary tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTCategory' as TCategoryFinalPreTreatment,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	TCategoryFinalPreTreatment
+from SK
+where TCategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with SK as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        unnest(
+            [
+                [ Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.MetastaticSite[*].@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_81
+    where Type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    MetastaticSite
+from SK
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 SK Measurement Non Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` Is the site of the metastatic disease at PATIENT DIAGNOSIS. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+		Record ->> '$.Skin.SkinCore.SkinCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+	MetastaticSite
+from SK
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 SK Measurement NCategory Integrated Stage
+* Value copied from `NcategoryIntegratedStage`
+
+* `NcategoryIntegratedStage` Code, using a TNM coding edition, that classifies the absence or presence and extent of regional lymph node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [N CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	NCategoryIntegratedStage
+from SK
+where NCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement NCategory Final Pretreatment
+* Value copied from `NcategoryFinalPreTreatment`
+
+* `NcategoryFinalPreTreatment` Code, using a TNM coding edition, that classifies the absence or presence and extent of regional lymph node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentNCategory' as NCategoryFinalPreTreatment,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	NCategoryFinalPreTreatment
+from SK
+where NCategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement MCategory Integrated Stage
+* Value copied from `McategoryIntegratedStage`
+
+* `McategoryIntegratedStage` Code, using a TNM coding edition, that classifies the absence or presence of distant metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell. [M CATEGORY (INTEGRATED STAGE)](https://www.datadictionary.nhs.uk/data_elements/m_category__integrated_stage_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageMCategory' as MCategoryIntegratedStage,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	MCategoryIntegratedStage
+from SK
+where MCategoryIntegratedStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement MCategory Final Pretreatment
+* Value copied from `McategoryFinalPreTreatment`
+
+* `McategoryFinalPreTreatment` Code, using a TNM coding edition, that classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentMCategory' as MCategoryFinalPreTreatment,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,
+	MCategoryFinalPreTreatment
+from SK
+where MCategoryFinalPreTreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement Grade Of Differentiation
+* Value copied from `GradeOfDifferentiationAtDiagnosis`
+
+* `GradeOfDifferentiationAtDiagnosis` The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+		Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select distinct
+	NhsNumber,
+	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
+	GradeOfDifferentiationAtDiagnosis
+from SK
+where GradeOfDifferentiationAtDiagnosis is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD v8 SK Measurement Adult Comorbidity Evaluation
+* Value copied from `AdultComorbidityEvaluation`
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+		Record ->> '$.Skin.SkinCore.SkinCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select
+	distinct
+		AdultComorbidityEvaluation,
+		NhsNumber,
+		least(
+			cast(DateFirstSeen as date),
+			cast(SpecialistDateFirstSeen as date),
+			cast(ClinicalDateCancerDiagnosis as date),
+			cast(IntegratedStageTNMStageGroupingDate as date),
+			cast(FinalPreTreatmentTNMStageGroupingDate as date)
+		) as MeasurementDate
+from SK
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 LV Measurement Tumour Laterality
 * Value copied from `TumourLaterality`
 
@@ -1857,14 +1886,10 @@ where AdultComorbidityEvaluation is not null
         StageDateIntegratedStage is null and
         TreatmentStartDateCancer is null and
         ProcedureDate is null
->>>>>>> main
     );
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD v8 LV Measurement Tumour Laterality
 * Value copied from `TumourLaterality`
@@ -2087,7 +2112,6 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### COSD V9 Lung Measurement Tumour Laterality
 * Value copied from `TumourLaterality`
 

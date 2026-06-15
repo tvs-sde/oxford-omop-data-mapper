@@ -101,9 +101,6 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD v8 SK Measurement Adult Comorbidity Evaluation
-=======
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.
@@ -128,39 +125,12 @@ where type = 'UR'
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20UR%20Measurement%20Prostate%20Specific%20Antigen%20Diagnosis%20mapping){: .btn }
 ### COSD V9 UR Measurement Adult Comorbidity Evaluation
->>>>>>> main
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
 
 * `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
 
 ```sql
-<<<<<<< HEAD
-with SK as (
-	select
-		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-		Record ->> '$.Skin.SkinCore.SkinCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
-		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-	from omop_staging.cosd_staging_81
-	where Type = 'SK'
-)
-select
-	distinct
-		AdultComorbidityEvaluation,
-		NhsNumber,
-		least(
-			cast(DateFirstSeen as date),
-			cast(SpecialistDateFirstSeen as date),
-			cast(ClinicalDateCancerDiagnosis as date),
-			cast(IntegratedStageTNMStageGroupingDate as date),
-			cast(FinalPreTreatmentTNMStageGroupingDate as date)
-		) as MeasurementDate
-from SK
-=======
 -- Query to extract Adult Comorbidity Evaluation - 27 Score for UR cancer area from COSD v9.
 -- The ACE-27 score measures comorbidity severity during a cancer care spell.
 -- MeasurementDate uses the earliest available date from various clinical events.
@@ -266,6 +236,49 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20UG%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD v8 SK Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+with SK as (
+	select
+		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.Skin.SkinCore.SkinCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+		Record ->> '$.Skin.SkinCore.SkinCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+		Record ->> '$.Skin.SkinCore.SkinCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
+		Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_81
+	where Type = 'SK'
+)
+select
+	distinct
+		AdultComorbidityEvaluation,
+		NhsNumber,
+		least(
+			cast(DateFirstSeen as date),
+			cast(SpecialistDateFirstSeen as date),
+			cast(ClinicalDateCancerDiagnosis as date),
+			cast(IntegratedStageTNMStageGroupingDate as date),
+			cast(FinalPreTreatmentTNMStageGroupingDate as date)
+		) as MeasurementDate
+from SK
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 LV Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
@@ -639,29 +652,20 @@ select
                 cast(ProcedureDate as date)
               ) as MeasurementDate
 from cr
->>>>>>> main
 where AdultComorbidityEvaluation is not null
   and not (
 		DateFirstSeen is null and
 		SpecialistDateFirstSeen is null and
 		ClinicalDateCancerDiagnosis is null and
 		IntegratedStageTNMStageGroupingDate is null and
-<<<<<<< HEAD
-		FinalPreTreatmentTNMStageGroupingDate is null
-=======
 		FinalPreTreatmentTNMStageGroupingDate is null and
 		CancerTreatmentStartDate is null and
 		ProcedureDate is null
->>>>>>> main
     );
 ```
 
 
-<<<<<<< HEAD
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-=======
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20CR%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### CosdV9MeasurementAdultComorbidityEvaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.

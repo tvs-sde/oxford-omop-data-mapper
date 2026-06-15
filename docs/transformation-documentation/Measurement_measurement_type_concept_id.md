@@ -38,60 +38,6 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
-<<<<<<< HEAD
-### COSD V8 SK Measurement Tumour Laterality
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20SK%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
-### COSD V8 SK Measurement TNM Stage Grouping Integrated
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
-### COSD V8 SK Measurement TNM Stage Grouping Final Pretreatment
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement TCategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SK Measurement TCategory Final Pretreatment
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement Primary Pathway Metastatic Site
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD v8 SK Measurement Non Primary Pathway Metastatic Site
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
-### COSD v8 SK Measurement NCategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SK Measurement NCategory Final Pretreatment
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement MCategory Integrated Stage
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Integrated%20Stage%20mapping){: .btn }
-### COSD v8 SK Measurement MCategory Final Pretreatment
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Final%20Pretreatment%20mapping){: .btn }
-### COSD v8 SK Measurement Grade Of Differentiation
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
-### COSD v8 SK Measurement Adult Comorbidity Evaluation
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
-=======
 ### COSD V9 UR Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
@@ -256,6 +202,58 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20UG%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 SK Measurement Tumour Laterality
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20SK%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 SK Measurement TNM Stage Grouping Integrated
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Integrated%20mapping){: .btn }
+### COSD V8 SK Measurement TNM Stage Grouping Final Pretreatment
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20SK%20Measurement%20TNM%20Stage%20Grouping%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement TCategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement TCategory Final Pretreatment
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20TCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement Primary Pathway Metastatic Site
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 SK Measurement Non Primary Pathway Metastatic Site
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD v8 SK Measurement NCategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement NCategory Final Pretreatment
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20NCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement MCategory Integrated Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Integrated%20Stage%20mapping){: .btn }
+### COSD v8 SK Measurement MCategory Final Pretreatment
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20MCategory%20Final%20Pretreatment%20mapping){: .btn }
+### COSD v8 SK Measurement Grade Of Differentiation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD v8 SK Measurement Adult Comorbidity Evaluation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20SK%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 LV Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
@@ -344,7 +342,6 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20v8%20LV%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
->>>>>>> main
 ### COSD V9 Lung Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
