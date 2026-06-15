@@ -1,0 +1,38 @@
+<Query>
+    <Sql>
+<![CDATA[
+-- Query to extract Metastatic Site from the Primary Pathway for HN cancer area from COSD v8.
+-- MetastaticSite records the site of metastatic disease at patient diagnosis, excluding code 97 (not applicable).
+-- MetastaticSite will be mapped to a measurement concept in OMOP in a later step.
+with hn as (
+    select
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.MetastaticSite.@code' as MetastaticSite
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    MetastaticSite
+from hn
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+]]>
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ClinicalDateCancerDiagnosis">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="MetastaticSite">
+            <Description>Is the site of the metastatic disease at PATIENT DIAGNOSIS.</Description>
+            <Origin>METASTATIC SITE (AT DIAGNOSIS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

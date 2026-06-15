@@ -1,0 +1,29 @@
+<Query>
+    <Sql>
+-- Query to extract Prostate Specific Antigen (Diagnosis) for UR cancer area from COSD v9.
+-- PSA is a numeric lab measurement in ng/ml at the time of prostate cancer diagnosis.
+-- MeasurementDate uses the primary diagnosis date.
+-- PsaDiagnosis is a numeric value that will be stored as value_as_number in OMOP in a later step.
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as MeasurementDate,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisProstate.PsaDiagnosis.@value' as ProstateSpecificAntigenDiagnosis
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and ProstateSpecificAntigenDiagnosis is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="ProstateSpecificAntigenDiagnosis">
+			<Description>Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml).</Description>
+			<Origin>PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
