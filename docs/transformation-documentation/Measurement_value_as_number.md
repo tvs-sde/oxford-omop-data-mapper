@@ -386,6 +386,54 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 GY Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+with gy as (
+    select
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    AdultComorbidityEvaluation,
+    least(
+        cast(DateFirstSeen as date),
+        cast(SpecialistDateFirstSeen as date),
+        cast(ClinicalDateCancerDiagnosis as date),
+        cast(IntegratedStageTNMStageGroupingDate as date),
+        cast(FinalPreTreatmentTNMStageGroupingDate as date),
+        cast(CancerTreatmentStartDate as date),
+        cast(ProcedureDate as date)
+    ) as MeasurementDate
+from gy
+where AdultComorbidityEvaluation is not null
+  and not (
+      DateFirstSeen is null and
+      SpecialistDateFirstSeen is null and
+      ClinicalDateCancerDiagnosis is null and
+      IntegratedStageTNMStageGroupingDate is null and
+      FinalPreTreatmentTNMStageGroupingDate is null and
+      CancerTreatmentStartDate is null and
+      ProcedureDate is null
+  );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20GY%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V8 CT Measurement Lactate Dehydrogenase Level Peak At Diagnosis
 Source column  `LactateDehydrogenaseLevelPeakAtDiagnosis`.
 Converts text to number.
