@@ -1,0 +1,57 @@
+<Query>
+    <Sql>
+-- Query to extract Adult Comorbidity Evaluation - 27 Score for UR cancer area from COSD v9.
+-- The ACE-27 score measures comorbidity severity during a cancer care spell.
+-- MeasurementDate uses the earliest available date from various clinical events.
+-- AdultComorbidityEvaluation will be mapped to a measurement value concept in OMOP in a later step.
+with UR as (
+	select
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+		Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'UR'
+)
+select distinct
+	NhsNumber,
+	AdultComorbidityEvaluation,
+	least(
+		cast(DateFirstSeen as date),
+		cast(DateFirstSeenCancerSpecialist as date),
+		cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+		cast(StageDateFinalPretreatmentStage as date),
+		cast(StageDateIntegratedStage as date)
+	) as MeasurementDate
+from UR
+where AdultComorbidityEvaluation is not null
+  and not (
+		DateFirstSeen is null and
+		DateFirstSeenCancerSpecialist is null and
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		StageDateFinalPretreatmentStage is null and
+		StageDateIntegratedStage is null
+    );
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="AdultComorbidityEvaluation">
+			<Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+			<Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+		</Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement date is the earliest available date from clinical events.</Description>
+			<Origin>DATE FIRST SEEN</Origin>
+			<Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+			<Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+			<Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

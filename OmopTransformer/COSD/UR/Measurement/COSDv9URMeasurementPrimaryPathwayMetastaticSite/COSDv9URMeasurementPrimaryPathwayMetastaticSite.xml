@@ -1,0 +1,43 @@
+<Query>
+    <Sql>
+-- Query to extract Metastatic Site (Primary Pathway/Diagnosis) for UR cancer area from COSD v9.
+-- MetastaticSite is a repeating field so unnest is used to normalise each site into its own row.
+-- Code 97 (Not Applicable - Disease not spread) is excluded.
+-- MetastaticSite will be mapped to a measurement value concept in OMOP in a later step.
+with UR as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        unnest(
+            [
+                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],
+                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'
+            ],
+            recursive := true
+        ) as MetastaticSite
+    from omop_staging.cosd_staging_901
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    MetastaticSite
+from UR
+where MetastaticSite is not null
+  and MetastaticSite != '97';
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="MetastaticSite">
+			<Description>Is the site of the metastatic disease at PATIENT DIAGNOSIS.</Description>
+			<Origin>METASTATIC SITE (AT DIAGNOSIS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
