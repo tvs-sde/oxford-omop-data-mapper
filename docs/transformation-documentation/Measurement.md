@@ -271,6 +271,66 @@ has_toc: false
 <a href="COSDv8SKMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8SKMeasurementAdultComorbidityEvaluation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SKMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+## COSDv8SAMeasurementTumourLaterality
+<a href="COSDv8SAMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv8SAMeasurementTumourLaterality.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTumourLaterality%20mapping){: .btn }
+## COSDv8SAMeasurementTNMcategoryIntegratedStage
+<a href="COSDv8SAMeasurementTNMcategoryIntegratedStage.svg" target="_blank"><img src="COSDv8SAMeasurementTNMcategoryIntegratedStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTNMcategoryIntegratedStage%20mapping){: .btn }
+## COSDv8SAMeasurementTNMcategoryFinalPreTreatmentStage
+<a href="COSDv8SAMeasurementTNMcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8SAMeasurementTNMcategoryFinalPreTreatmentStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTNMcategoryFinalPreTreatmentStage%20mapping){: .btn }
+## COSDv8SAMeasurementTcategoryIntegratedStage
+<a href="COSDv8SAMeasurementTcategoryIntegratedStage.svg" target="_blank"><img src="COSDv8SAMeasurementTcategoryIntegratedStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTcategoryIntegratedStage%20mapping){: .btn }
+## COSDv8SAMeasurementTcategoryFinalPreTreatmentStage
+<a href="COSDv8SAMeasurementTcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8SAMeasurementTcategoryFinalPreTreatmentStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTcategoryFinalPreTreatmentStage%20mapping){: .btn }
+## COSDv8SAMeasurementSarcomaTumourSiteSoftTissue
+<a href="COSDv8SAMeasurementSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv8SAMeasurementSarcomaTumourSiteSoftTissue.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementSarcomaTumourSiteSoftTissue%20mapping){: .btn }
+## COSDv8SAMeasurementSarcomaTumourSiteBone
+<a href="COSDv8SAMeasurementSarcomaTumourSiteBone.svg" target="_blank"><img src="COSDv8SAMeasurementSarcomaTumourSiteBone.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementSarcomaTumourSiteBone%20mapping){: .btn }
+## COSDv8SAMeasurementPrimaryPathwayMetastaticSite
+<a href="COSDv8SAMeasurementPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8SAMeasurementPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv8SAMeasurementNonPrimaryPathwayMetastaticSite
+<a href="COSDv8SAMeasurementNonPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8SAMeasurementNonPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementNonPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv8SAMeasurementNcategoryIntegratedStage
+<a href="COSDv8SAMeasurementNcategoryIntegratedStage.svg" target="_blank"><img src="COSDv8SAMeasurementNcategoryIntegratedStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementNcategoryIntegratedStage%20mapping){: .btn }
+## COSDv8SAMeasurementNcategoryFinalPreTreatmentStage
+<a href="COSDv8SAMeasurementNcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8SAMeasurementNcategoryFinalPreTreatmentStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementNcategoryFinalPreTreatmentStage%20mapping){: .btn }
+## COSDv8SAMeasurementMcategoryIntegratedStage
+<a href="COSDv8SAMeasurementMcategoryIntegratedStage.svg" target="_blank"><img src="COSDv8SAMeasurementMcategoryIntegratedStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementMcategoryIntegratedStage%20mapping){: .btn }
+## COSDv8SAMeasurementMcategoryFinalPreTreatmentStage
+<a href="COSDv8SAMeasurementMcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8SAMeasurementMcategoryFinalPreTreatmentStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementMcategoryFinalPreTreatmentStage%20mapping){: .btn }
+## COSDv8SAMeasurementGradeOfDifferentiation
+<a href="COSDv8SAMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="COSDv8SAMeasurementGradeOfDifferentiation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## COSDv8SAMeasurementAdultComorbidityEvaluation
+<a href="COSDv8SAMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8SAMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## COSDv9LVMeasurementTumourLaterality
 <a href="COSDv9LVMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv9LVMeasurementTumourLaterality.svg" /></a>
 
