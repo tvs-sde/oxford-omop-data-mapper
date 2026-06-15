@@ -890,6 +890,45 @@
     <None Update="COSD\CO\ProcedureOccurrence\COSDv9COProcedureOccurrenceProcedureOpcs\COSDv9COProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementAdultComorbidityEvaluation\COSDv8CRMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementGradeOfDifferentiation\COSDv8CRMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementMcategoryFinalPreTreatmentStage\COSDv8CRMeasurementMcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementMcategoryIntegratedStage\COSDv8CRMeasurementMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementNcategoryFinalPreTreatmentStage\COSDv8CRMeasurementNcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementNcategoryIntegratedStage\COSDv8CRMeasurementNcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementNonPrimaryPathwayMetastasis\COSDv8CRMeasurementNonPrimaryPathwayMetastasis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementPrimaryPathwayMetastasis\COSDv8CRMeasurementPrimaryPathwayMetastasis.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementTcategoryFinalPreTreatmentStage\COSDv8CRMeasurementTcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementTcategoryIntegratedStage\COSDv8CRMeasurementTcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementTNMcategoryFinalPreTreatmentStage\COSDv8CRMeasurementTNMcategoryFinalPreTreatmentStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementTNMcategoryIntegratedStage\COSDv8CRMeasurementTNMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\Measurement\COSDv8CRMeasurementTumourLaterality\COSDv8CRMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\CT\ProcedureOccurrence\COSDv8CTProcedureOccurrencePrimaryProcedureOPCS\COSDv8CTProcedureOccurrencePrimaryProcedureOPCS.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -305,6 +305,19 @@ using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTCategoryFinalPretr
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTCategoryIntegratedStage;
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTnmStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTnmStageGroupingIntegrated;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementMcategoryIntegratedStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementNcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementNcategoryIntegratedStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementNonPrimaryPathwayMetastasis;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementPrimaryPathwayMetastasis;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementTcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementTcategoryIntegratedStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementTNMcategoryFinalPreTreatmentStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementTNMcategoryIntegratedStage;
+using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementTumourLaterality;
 
 namespace OmopTransformer.COSD;
 
@@ -2151,6 +2164,84 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9URMeasurementTumourLateralityRecord, COSDv9URMeasurementTumourLaterality>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSD V9 UR Measurement Tumour Laterality",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementAdultComorbidityEvaluationRecord, COSDv8CRMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Adult Comorbidity Evaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementGradeOfDifferentiationRecord, COSDv8CRMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Grade Of Differentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementMcategoryFinalPreTreatmentStageRecord, COSDv8CRMeasurementMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Mcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementMcategoryIntegratedStageRecord, COSDv8CRMeasurementMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Mcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementNcategoryFinalPreTreatmentStageRecord, COSDv8CRMeasurementNcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Ncategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementNcategoryIntegratedStageRecord, COSDv8CRMeasurementNcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Ncategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementNonPrimaryPathwayMetastasisRecord, COSDv8CRMeasurementNonPrimaryPathwayMetastasis>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Non Primary Pathway Metastasis",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementPrimaryPathwayMetastasisRecord, COSDv8CRMeasurementPrimaryPathwayMetastasis>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Primary Pathway Metastasis",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementTcategoryFinalPreTreatmentStageRecord, COSDv8CRMeasurementTcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Tcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementTcategoryIntegratedStageRecord, COSDv8CRMeasurementTcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Tcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementTNMcategoryFinalPreTreatmentStageRecord, COSDv8CRMeasurementTNMcategoryFinalPreTreatmentStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement TNMcategory Final Pre Treatment Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementTNMcategoryIntegratedStageRecord, COSDv8CRMeasurementTNMcategoryIntegratedStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement TNMcategory Integrated Stage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRMeasurementTumourLateralityRecord, COSDv8CRMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSD V8 CR Measurement Tumour Laterality",
             runId,
             cancellationToken);
     }
