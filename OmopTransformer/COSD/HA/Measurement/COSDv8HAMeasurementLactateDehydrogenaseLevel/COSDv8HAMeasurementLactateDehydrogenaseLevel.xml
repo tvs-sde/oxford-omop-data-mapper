@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lactate Dehydrogenase Level: coded lab result indicating LDH status. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LactateDehydrogenaseLevel.@code' as LactateDehydrogenaseLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LactateDehydrogenaseLevel is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ClinicalDateCancerDiagnosis">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="LactateDehydrogenaseLevel">
+			<Description>The lactate dehydrogenase (LDH) level recorded during a Haematological Cancer Care Spell.</Description>
+			<Origin>LACTATE DEHYDROGENASE LEVEL</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

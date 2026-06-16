@@ -1,0 +1,35 @@
+<Query>
+    <Sql>
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- M Category: TNM M component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentMCategory' as FinalPreTreatmentMCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentMCategory
+from ha
+where FinalPreTreatmentMCategory is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="MeasurementDate">
+			<Description>Measurement Date is the date on which TNM Stage Grouping (Final Pretreatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="FinalPreTreatmentMCategory">
+			<Description>Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell.</Description>
+			<Origin>M CATEGORY (FINAL PRETREATMENT)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

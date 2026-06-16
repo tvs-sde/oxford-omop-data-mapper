@@ -1,0 +1,117 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and Beta2MicroglobulinLevel is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ClinicalDateCancerDiagnosis",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and Beta2MicroglobulinLevel is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ClinicalDateCancerDiagnosis",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and Beta2MicroglobulinLevel is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `81410005`. \tBeta-2-microglobulin measurement",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Constant value set to `81410005`. \tBeta-2-microglobulin measurement",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `Beta2MicroglobulinLevel`",
+      "dataSource": [
+        {
+          "name": "Beta2MicroglobulinLevel",
+          "description": "The beta 2 microglobulin level recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/.",
+          "origins": [
+            {
+              "origin": "BETA 2 MICROGLOBULIN LEVEL",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and Beta2MicroglobulinLevel is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_number",
+      "operation_description": "Converts text to number.",
+      "dataSource": [
+        {
+          "name": "Beta2MicroglobulinLevel",
+          "description": "The beta 2 microglobulin level recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/.",
+          "origins": [
+            {
+              "origin": "BETA 2 MICROGLOBULIN LEVEL",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and Beta2MicroglobulinLevel is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

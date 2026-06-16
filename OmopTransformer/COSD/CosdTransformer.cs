@@ -208,6 +208,20 @@ using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementRIPIIndexForDLBCLSc
 using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementTCategoryFinalPretreatment;
 using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementTnmStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementTumourLaterality;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementAnnArborStage;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementBeta2MicroglobulinLevel;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementFinalPreTreatmentMCategory;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementFinalPreTreatmentNCategory;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementFinalPreTreatmentTCategory;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementHaemoglobinConcentration;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementLactateDehydrogenaseLevel;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementLymphocyteCount;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementTumourLaterality;
+using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementMcategoryFinalPreTreatmentStage;
@@ -3496,6 +3510,90 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9HAMeasurementTumourLateralityRecord, COSDv9HAMeasurementTumourLaterality>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv9HAMeasurementTumourLaterality",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementAdultComorbidityEvaluationRecord, COSDv8HAMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementAnnArborStageRecord, COSDv8HAMeasurementAnnArborStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementAnnArborStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementBeta2MicroglobulinLevelRecord, COSDv8HAMeasurementBeta2MicroglobulinLevel>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementBeta2MicroglobulinLevel",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementFinalPreTreatmentMCategoryRecord, COSDv8HAMeasurementFinalPreTreatmentMCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementFinalPreTreatmentMCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementFinalPreTreatmentNCategoryRecord, COSDv8HAMeasurementFinalPreTreatmentNCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementFinalPreTreatmentNCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementFinalPreTreatmentTCategoryRecord, COSDv8HAMeasurementFinalPreTreatmentTCategory>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementFinalPreTreatmentTCategory",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementGradeOfDifferentiationRecord, COSDv8HAMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementGradeOfDifferentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementHaemoglobinConcentrationRecord, COSDv8HAMeasurementHaemoglobinConcentration>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementHaemoglobinConcentration",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementLactateDehydrogenaselevelRecord, COSDv8HAMeasurementLactateDehydrogenaseLevel>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementLactateDehydrogenaseLevel",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementLymphocyteCountRecord, COSDv8HAMeasurementLymphocyteCount>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementLymphocyteCount",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementNonPrimaryPathwayMetastaticSiteRecord, COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv8HAMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementTumourLateralityRecord, COSDv8HAMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementTumourLaterality",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatmentRecord, COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment",
             runId,
             cancellationToken);
     }

@@ -853,6 +853,62 @@ has_toc: false
 <a href="COSDv9HAMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv9HAMeasurementAdultComorbidityEvaluation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9HAMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+## COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment
+<a href="COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment.svg" target="_blank"><img src="COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment%20mapping){: .btn }
+## COSDv8HAMeasurementTumourLaterality
+<a href="COSDv8HAMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv8HAMeasurementTumourLaterality.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementTumourLaterality%20mapping){: .btn }
+## COSDv8HAMeasurementPrimaryPathwayMetastaticSite
+<a href="COSDv8HAMeasurementPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8HAMeasurementPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite
+<a href="COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite.svg" target="_blank"><img src="COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite%20mapping){: .btn }
+## COSDv8HAMeasurementLymphocyteCount
+<a href="COSDv8HAMeasurementLymphocyteCount.svg" target="_blank"><img src="COSDv8HAMeasurementLymphocyteCount.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementLymphocyteCount%20mapping){: .btn }
+## COSDv8HAMeasurementLactateDehydrogenaseLevel
+<a href="COSDv8HAMeasurementLactateDehydrogenaseLevel.svg" target="_blank"><img src="COSDv8HAMeasurementLactateDehydrogenaseLevel.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementLactateDehydrogenaseLevel%20mapping){: .btn }
+## COSDv8HAMeasurementHaemoglobinConcentration
+<a href="COSDv8HAMeasurementHaemoglobinConcentration.svg" target="_blank"><img src="COSDv8HAMeasurementHaemoglobinConcentration.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementHaemoglobinConcentration%20mapping){: .btn }
+## COSDv8HAMeasurementGradeOfDifferentiation
+<a href="COSDv8HAMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="COSDv8HAMeasurementGradeOfDifferentiation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## COSDv8HAMeasurementFinalPreTreatmentTCategory
+<a href="COSDv8HAMeasurementFinalPreTreatmentTCategory.svg" target="_blank"><img src="COSDv8HAMeasurementFinalPreTreatmentTCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementFinalPreTreatmentTCategory%20mapping){: .btn }
+## COSDv8HAMeasurementFinalPreTreatmentNCategory
+<a href="COSDv8HAMeasurementFinalPreTreatmentNCategory.svg" target="_blank"><img src="COSDv8HAMeasurementFinalPreTreatmentNCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementFinalPreTreatmentNCategory%20mapping){: .btn }
+## COSDv8HAMeasurementFinalPreTreatmentMCategory
+<a href="COSDv8HAMeasurementFinalPreTreatmentMCategory.svg" target="_blank"><img src="COSDv8HAMeasurementFinalPreTreatmentMCategory.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementFinalPreTreatmentMCategory%20mapping){: .btn }
+## COSDv8HAMeasurementBeta2MicroglobulinLevel
+<a href="COSDv8HAMeasurementBeta2MicroglobulinLevel.svg" target="_blank"><img src="COSDv8HAMeasurementBeta2MicroglobulinLevel.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementBeta2MicroglobulinLevel%20mapping){: .btn }
+## COSDv8HAMeasurementAnnArborStage
+<a href="COSDv8HAMeasurementAnnArborStage.svg" target="_blank"><img src="COSDv8HAMeasurementAnnArborStage.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementAnnArborStage%20mapping){: .btn }
+## COSDv8HAMeasurementAdultComorbidityEvaluation
+<a href="COSDv8HAMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8HAMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HAMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## COSDv9GYMeasurementTumourLaterality
 <a href="COSDv9GYMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv9GYMeasurementTumourLaterality.svg" /></a>
 

@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Grade of Differentiation: definitive grade of tumour at diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as DiagnosisGradeOfDifferentiation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and DiagnosisGradeOfDifferentiation is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ClinicalDateCancerDiagnosis">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="DiagnosisGradeOfDifferentiation">
+			<Description>The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS during a Cancer Care Spell.</Description>
+			<Origin>GRADE OF DIFFERENTIATION (AT DIAGNOSIS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

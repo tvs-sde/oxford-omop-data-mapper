@@ -9158,6 +9158,359 @@ where type = 'HA'
 * Constant value set to `40488785`. Adult comorbidity evaluation-27
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 HA Measurement White Blood Cell Count Highest Pretreatment
+* Constant value set to `4298431`. White blood cell count
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20White%20Blood%20Cell%20Count%20Highest%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement Tumour Laterality
+Source column  `TumourLaterality`.
+Lookup TumourLaterality concepts.
+
+
+|TumourLaterality|measurement_concept_id|notes|
+|------|-----|-----|
+|L|36770232|Left|
+|R|36770058|Right|
+|M|36769853|Midline|
+|B|36770109|Bilateral|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Topography&page=1&pageSize=500&query=&boosts)
+* [NHS - Tumour Laterality](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html?hl=tumour%2Claterality)
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Tumour Laterality: side of body for tumour. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and TumourLaterality is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 HA Measurement Primary Pathway Metastatic Site
+Source column  `MetastaticSite`.
+METASTATIC SITE (AT DIAGNOSIS)
+
+
+|MetastaticSite|measurement_concept_id|notes|
+|------|-----|-----|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
+|97|0|Not Applicable (Disease not spread)|
+
+
+* `MetastaticSite` The site of the metastatic disease at PATIENT DIAGNOSIS during a Cancer Care Spell. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Metastatic Site at primary diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Non Primary Pathway Metastatic Site
+Source column  `MetastaticSite`.
+METASTATIC SITE (AT DIAGNOSIS)
+
+
+|MetastaticSite|measurement_concept_id|notes|
+|------|-----|-----|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
+|97|0|Not Applicable (Disease not spread)|
+
+
+* `MetastaticSite` The site of the metastatic disease at PATIENT DIAGNOSIS during a Cancer Care Spell (non-primary pathway). [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    -- Metastatic Site from non-primary cancer pathway. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Lymphocyte Count
+* Constant value set to `45613489`. Lymphocyte Count
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Lymphocyte%20Count%20mapping){: .btn }
+### COSD V8 HA Measurement Lactate Dehydrogenase Level
+* Constant value set to `4012918`. Lactate dehydrogenase [Enzyme] in Blood
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Lactate%20Dehydrogenase%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Haemoglobin Concentration
+* Constant value set to `3000963`. Hemoglobin [Mass/volume] in Blood
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Haemoglobin%20Concentration%20mapping){: .btn }
+### COSD V8 HA Measurement Grade Of Differentiation
+Source column  `DiagnosisGradeOfDifferentiation`.
+Lookup GradeDifferentiation concepts.
+
+
+|DiagnosisGradeOfDifferentiation|measurement_concept_id|notes|
+|------|-----|-----|
+|GX|0|GX grade|
+|G1|36768162|Grade 1: Well differentiated|
+|G2|36770626|Grade 2: Moderately differentiated|
+|G3|36769666|Grade 3: Poorly differentiated|
+|G4|36769737|Grade 4: Undifferentiated|
+
+Notes
+* [OMOP Grade Differentiation](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Histopattern&page=1&pageSize=500&query=grade&boosts)
+* [NHS - Grade of Differentiation (At Diagnosis)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html?hl=grade%2Cdifferentiation)
+
+* `DiagnosisGradeOfDifferentiation` The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS during a Cancer Care Spell. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Grade of Differentiation: definitive grade of tumour at diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as DiagnosisGradeOfDifferentiation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and DiagnosisGradeOfDifferentiation is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Tcategory
+Source column  `FinalPreTreatmentTCategory`.
+Lookup TCategory concepts.
+
+
+|FinalPreTreatmentTCategory|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1634213|AJCC/UICC T0 Category|
+|1|1635564|AJCC/UICC T1 Category|
+|1a|1633880|AJCC/UICC T1a Category|
+|1b|1633921|AJCC/UICC T1b Category|
+|1c|1633529|AJCC/UICC T1c Category|
+|1d|1634100|AJCC/UICC T1d Category|
+|2|1635562|AJCC/UICC T2 Category|
+|2a|1635327|AJCC/UICC T2a Category|
+|2b|1633593|AJCC/UICC T2b Category|
+|2c|1635270|AJCC/UICC T2c Category|
+|2d|1633678|AJCC/UICC T2d Category|
+|3|1634376|AJCC/UICC T3 Category|
+|3a|1633771|AJCC/UICC T3a Category|
+|3b|1634980|AJCC/UICC T3b Category|
+|3c|1633360|AJCC/UICC T3c Category|
+|3d|1635625|AJCC/UICC T3d Category|
+|3e|1634730|AJCC/UICC T3e Category|
+|4|1634654|AJCC/UICC T4 Category|
+|4a|1635222|AJCC/UICC T4a Category|
+|4b|1634436|AJCC/UICC T4b Category|
+|4c|1635526|AJCC/UICC T4c Category|
+|4d|1633909|AJCC/UICC T4d Category|
+|4e|1634193|AJCC/UICC T4e Category|
+|X|1635682|AJCC/UICC TX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `FinalPreTreatmentTCategory` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- T Category: TNM T component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTCategory' as FinalPreTreatmentTCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentTCategory
+from ha
+where FinalPreTreatmentTCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Tcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Ncategory
+Source column  `FinalPreTreatmentNCategory`.
+Lookup NCategory concepts.
+
+
+|FinalPreTreatmentNCategory|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1633440|AJCC/UICC N0 Category|
+|0a|1633621|AJCC/UICC N0a Category|
+|0b|1635244|AJCC/UICC N0b Category|
+|1|1634434|AJCC/UICC N1 Category|
+|1a|1633735|AJCC/UICC N1a Category|
+|1b|1635130|AJCC/UICC N1b Category|
+|1c|1634620|AJCC/UICC N1c Category|
+|2|1634119|AJCC/UICC N2 Category|
+|2a|1635644|AJCC/UICC N2a Category|
+|2b|1634134|AJCC/UICC N2b Category|
+|2c|1634080|AJCC/UICC N2c Category|
+|3|1635320|AJCC/UICC N3 Category|
+|3a|1635590|AJCC/UICC N3a Category|
+|3b|1633422|AJCC/UICC N3b Category|
+|3c|1634735|AJCC/UICC N3c Category|
+|4|1635445|AJCC/UICC N4 Category|
+|X|1633885|AJCC/UICC NX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `FinalPreTreatmentNCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- N Category: TNM N component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentNCategory' as FinalPreTreatmentNCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentNCategory
+from ha
+where FinalPreTreatmentNCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Ncategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Mcategory
+Source column  `FinalPreTreatmentMCategory`.
+Lookup  concepts.
+
+
+|FinalPreTreatmentMCategory|measurement_concept_id|notes|
+|------|-----|-----|
+|0|1635624|AJCC/UICC M0 Category|
+|1|1635142|AJCC/UICC M1 Category|
+|1a|1635100|AJCC/UICC M1a Category|
+|1b|1634463|AJCC/UICC M1b Category|
+|1c|1635519|AJCC/UICC M1c Category|
+|1d|1634064|AJCC/UICC M1d Category|
+|X  |1633547|AJCC/UICC MX Category|
+
+Notes
+* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)
+
+* `FinalPreTreatmentMCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- M Category: TNM M component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentMCategory' as FinalPreTreatmentMCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentMCategory
+from ha
+where FinalPreTreatmentMCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Mcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Beta 2 Microglobulin Level
+* Constant value set to `81410005`. 	Beta-2-microglobulin measurement
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Beta%202%20Microglobulin%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Ann Arbor Stage
+Source column  `AnnArborStage`.
+ANN ARBOR STAGE
+
+
+|AnnArborStage|measurement_concept_id|notes|
+|------|-----|-----|
+|1|1633291|Stage I: one region of lymph nodes, or spleen or thymus or Waldeyer's ring enlarged|
+|2|1634430|Stage II: 2 regions of lymph nodes enlarged on the same side of the diaphragm|
+|3|1635140|Stage III: lymph nodes enlarged on both sides of the diaphragm|
+|4|1633464|Stage IV: disease outside lymph nodes (e.g. liver, bone marrow), excluding "E"|
+
+
+* `AnnArborStage` Ann Arbor Staging System stage based on the location and extent of detected disease for a patient during a haematological cancer care spell. [ANN ARBOR STAGE](https://www.datadictionary.nhs.uk/data_elements/ann_arbor_stage.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Ann Arbor Stage: haematological staging based on location and extent of disease. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.HaematologyStagingAnnArbor.AnnArborStage.@code' as AnnArborStage
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AnnArborStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Ann%20Arbor%20Stage%20mapping){: .btn }
+### COSD V8 HA Measurement Adult Comorbidity Evaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 GY Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.

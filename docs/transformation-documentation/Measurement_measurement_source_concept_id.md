@@ -2184,6 +2184,38 @@ where lower(EVENT) not like '%comment%'
 * Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V9%20HA%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement White Blood Cell Count Highest Pretreatment
+* Constant value set to `4298431`. White blood cell count
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20White%20Blood%20Cell%20Count%20Highest%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement Lymphocyte Count
+* Constant value set to `45613489`. Lymphocyte Count
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Lymphocyte%20Count%20mapping){: .btn }
+### COSD V8 HA Measurement Lactate Dehydrogenase Level
+* Constant value set to `4012918`. Lactate dehydrogenase [Enzyme] in Blood
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Lactate%20Dehydrogenase%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Haemoglobin Concentration
+* Constant value set to `3000963`. Hemoglobin [Mass/volume] in Blood
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Haemoglobin%20Concentration%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Tcategory
+* Constant value set to `2000500016`. TCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Tcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Ncategory
+* Constant value set to `2000500015`. NCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Ncategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Mcategory
+* Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Mcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Beta 2 Microglobulin Level
+* Constant value set to `81410005`. 	Beta-2-microglobulin measurement
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Beta%202%20Microglobulin%20Level%20mapping){: .btn }
 ### COSD V9 GY Measurement Tnm Stage Grouping Integrated
 * Constant value set to `2000500013`. TNMCategoryIntegratedStage
 

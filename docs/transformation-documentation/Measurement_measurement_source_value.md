@@ -5295,6 +5295,298 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V9%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 HA Measurement White Blood Cell Count Highest Pretreatment
+* Value copied from `WhiteBloodCellCountHighestPretreatment`
+
+* `WhiteBloodCellCountHighestPretreatment` The highest white blood cell count prior to the start of treatment during a Haematological Cancer Care Spell. [WHITE BLOOD CELL COUNT (HIGHEST PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/white_blood_cell_count__highest_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and WhiteBloodCellCountHighestPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20White%20Blood%20Cell%20Count%20Highest%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement Tumour Laterality
+* Value copied from `TumourLaterality`
+
+* `TumourLaterality` Identifies the side of the body for a Tumour relating to paired organs within a PATIENT. [TUMOUR LATERALITY](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Tumour Laterality: side of body for tumour. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and TumourLaterality is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 HA Measurement Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` The site of the metastatic disease at PATIENT DIAGNOSIS during a Cancer Care Spell. [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Metastatic Site at primary diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Non Primary Pathway Metastatic Site
+* Value copied from `MetastaticSite`
+
+* `MetastaticSite` The site of the metastatic disease at PATIENT DIAGNOSIS during a Cancer Care Spell (non-primary pathway). [METASTATIC SITE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    -- Metastatic Site from non-primary cancer pathway. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Lymphocyte Count
+* Value copied from `LymphocyteCount`
+
+* `LymphocyteCount` The lymphocyte count recorded during a Haematological Cancer Care Spell. Note: this item has been retired from the NHS Data Dictionary (Dec 2019). [LYMPHOCYTE COUNT]()
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lymphocyte Count: numeric lab result. Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LymphocyteCount.@value' as LymphocyteCount
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LymphocyteCount is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Lymphocyte%20Count%20mapping){: .btn }
+### COSD V8 HA Measurement Lactate Dehydrogenase Level
+* Value copied from `LactateDehydrogenaseLevel`
+
+* `LactateDehydrogenaseLevel` The lactate dehydrogenase (LDH) level recorded during a Haematological Cancer Care Spell. [LACTATE DEHYDROGENASE LEVEL](https://www.datadictionary.nhs.uk/data_elements/lactate_dehydrogenase_level.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lactate Dehydrogenase Level: coded lab result indicating LDH status. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LactateDehydrogenaseLevel.@code' as LactateDehydrogenaseLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LactateDehydrogenaseLevel is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Lactate%20Dehydrogenase%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Haemoglobin Concentration
+* Value copied from `HaemoglobinConcentration`
+
+* `HaemoglobinConcentration` The haemoglobin concentration recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/. [HAEMOGLOBIN CONCENTRATION](https://www.datadictionary.nhs.uk/data_elements/haemoglobin_concentration.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Haemoglobin Concentration: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.HaemoglobinConcentration.@value' as HaemoglobinConcentration
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and HaemoglobinConcentration is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Haemoglobin%20Concentration%20mapping){: .btn }
+### COSD V8 HA Measurement Grade Of Differentiation
+* Value copied from `DiagnosisGradeOfDifferentiation`
+
+* `DiagnosisGradeOfDifferentiation` The definitive grade of the Tumour at the time of PATIENT DIAGNOSIS during a Cancer Care Spell. [GRADE OF DIFFERENTIATION (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/grade_of_differentiation__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Grade of Differentiation: definitive grade of tumour at diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as DiagnosisGradeOfDifferentiation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and DiagnosisGradeOfDifferentiation is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Tcategory
+* Value copied from `FinalPreTreatmentTCategory`
+
+* `FinalPreTreatmentTCategory` Is the code, using a TNM CODING EDITION, which classifies the size and extent of the primary Tumour before treatment during a Cancer Care Spell. [T CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/t_category__final_pretreatment_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- T Category: TNM T component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTCategory' as FinalPreTreatmentTCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentTCategory
+from ha
+where FinalPreTreatmentTCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Tcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Ncategory
+* Value copied from `FinalPreTreatmentNCategory`
+
+* `FinalPreTreatmentNCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases before treatment during a Cancer Care Spell. [N CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/n_category__final_pretreatment_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- N Category: TNM N component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentNCategory' as FinalPreTreatmentNCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentNCategory
+from ha
+where FinalPreTreatmentNCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Ncategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Mcategory
+* Value copied from `FinalPreTreatmentMCategory`
+
+* `FinalPreTreatmentMCategory` Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell. [M CATEGORY (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- M Category: TNM M component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentMCategory' as FinalPreTreatmentMCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentMCategory
+from ha
+where FinalPreTreatmentMCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Mcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Beta 2 Microglobulin Level
+* Value copied from `Beta2MicroglobulinLevel`
+
+* `Beta2MicroglobulinLevel` The beta 2 microglobulin level recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/. [BETA 2 MICROGLOBULIN LEVEL]()
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and Beta2MicroglobulinLevel is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Beta%202%20Microglobulin%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Ann Arbor Stage
+* Value copied from `AnnArborStage`
+
+* `AnnArborStage` Ann Arbor Staging System stage based on the location and extent of detected disease for a patient during a haematological cancer care spell. [ANN ARBOR STAGE](https://www.datadictionary.nhs.uk/data_elements/ann_arbor_stage.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Ann Arbor Stage: haematological staging based on location and extent of disease. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.HaematologyStagingAnnArbor.AnnArborStage.@code' as AnnArborStage
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AnnArborStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Ann%20Arbor%20Stage%20mapping){: .btn }
+### COSD V8 HA Measurement Adult Comorbidity Evaluation
+* Value copied from `AdultComorbidityEvaluation`
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- ACE-27: Adult Comorbidity Evaluation score. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AdultComorbidityEvaluation is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20COSD%20V8%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 GY Measurement Tumour Laterality
 * Value copied from `TumourLaterality`
 

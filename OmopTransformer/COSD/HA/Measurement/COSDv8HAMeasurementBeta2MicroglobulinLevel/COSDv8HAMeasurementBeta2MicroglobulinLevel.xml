@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and Beta2MicroglobulinLevel is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ClinicalDateCancerDiagnosis">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="Beta2MicroglobulinLevel">
+			<Description>The beta 2 microglobulin level recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/.</Description>
+			<Origin>BETA 2 MICROGLOBULIN LEVEL</Origin>
+		</Explanation>
+	</Explanations>
+</Query>
