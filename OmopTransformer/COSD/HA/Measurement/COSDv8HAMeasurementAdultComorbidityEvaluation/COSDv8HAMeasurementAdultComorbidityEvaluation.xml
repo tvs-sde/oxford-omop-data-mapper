@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- ACE-27: Adult Comorbidity Evaluation score. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AdultComorbidityEvaluation is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ClinicalDateCancerDiagnosis">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="AdultComorbidityEvaluation">
+			<Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+			<Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

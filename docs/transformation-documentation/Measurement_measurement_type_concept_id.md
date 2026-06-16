@@ -830,6 +830,62 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V9%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 HA Measurement White Blood Cell Count Highest Pretreatment
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20White%20Blood%20Cell%20Count%20Highest%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement Tumour Laterality
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 HA Measurement Primary Pathway Metastatic Site
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Non Primary Pathway Metastatic Site
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Lymphocyte Count
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Lymphocyte%20Count%20mapping){: .btn }
+### COSD V8 HA Measurement Lactate Dehydrogenase Level
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Lactate%20Dehydrogenase%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Haemoglobin Concentration
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Haemoglobin%20Concentration%20mapping){: .btn }
+### COSD V8 HA Measurement Grade Of Differentiation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Tcategory
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Tcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Ncategory
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Ncategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Mcategory
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Mcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Beta 2 Microglobulin Level
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Beta%202%20Microglobulin%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Ann Arbor Stage
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Ann%20Arbor%20Stage%20mapping){: .btn }
+### COSD V8 HA Measurement Adult Comorbidity Evaluation
+* Constant value set to `32828`. EHR episode record
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 GY Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 

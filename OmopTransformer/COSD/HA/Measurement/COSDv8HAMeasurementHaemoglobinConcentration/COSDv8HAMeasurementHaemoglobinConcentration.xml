@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Haemoglobin Concentration: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.HaemoglobinConcentration.@value' as HaemoglobinConcentration
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and HaemoglobinConcentration is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="ClinicalDateCancerDiagnosis">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="HaemoglobinConcentration">
+			<Description>The haemoglobin concentration recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/.</Description>
+			<Origin>HAEMOGLOBIN CONCENTRATION</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

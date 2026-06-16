@@ -1,0 +1,27 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    -- Metastatic Site from non-primary cancer pathway. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+			<Description>Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed.</Description>
+			<Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="MetastaticSite">
+			<Description>The site of the metastatic disease at PATIENT DIAGNOSIS during a Cancer Care Spell (non-primary pathway).</Description>
+			<Origin>METASTATIC SITE (AT DIAGNOSIS)</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

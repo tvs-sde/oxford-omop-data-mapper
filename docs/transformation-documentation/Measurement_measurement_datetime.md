@@ -5589,6 +5589,312 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 HA Measurement White Blood Cell Count Highest Pretreatment
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and WhiteBloodCellCountHighestPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20White%20Blood%20Cell%20Count%20Highest%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement Tumour Laterality
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Tumour Laterality: side of body for tumour. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and TumourLaterality is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Tumour%20Laterality%20mapping){: .btn }
+### COSD V8 HA Measurement Primary Pathway Metastatic Site
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Metastatic Site at primary diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Non Primary Pathway Metastatic Site
+Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed` Is the date where the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed. [DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_non_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    -- Metastatic Site from non-primary cancer pathway. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreNonPrimaryCancerPathwayRoute.MetastaticSite.@code' as MetastaticSite
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and MetastaticSite is not null
+  and MetastaticSite != '97';
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Non%20Primary%20Pathway%20Metastatic%20Site%20mapping){: .btn }
+### COSD V8 HA Measurement Lymphocyte Count
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lymphocyte Count: numeric lab result. Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LymphocyteCount.@value' as LymphocyteCount
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LymphocyteCount is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Lymphocyte%20Count%20mapping){: .btn }
+### COSD V8 HA Measurement Lactate Dehydrogenase Level
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lactate Dehydrogenase Level: coded lab result indicating LDH status. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LactateDehydrogenaseLevel.@code' as LactateDehydrogenaseLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LactateDehydrogenaseLevel is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Lactate%20Dehydrogenase%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Haemoglobin Concentration
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Haemoglobin Concentration: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.HaemoglobinConcentration.@value' as HaemoglobinConcentration
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and HaemoglobinConcentration is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Haemoglobin%20Concentration%20mapping){: .btn }
+### COSD V8 HA Measurement Grade Of Differentiation
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Grade of Differentiation: definitive grade of tumour at diagnosis. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as DiagnosisGradeOfDifferentiation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and DiagnosisGradeOfDifferentiation is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Tcategory
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final Pretreatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- T Category: TNM T component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTCategory' as FinalPreTreatmentTCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentTCategory
+from ha
+where FinalPreTreatmentTCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Tcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Ncategory
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final Pretreatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- N Category: TNM N component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentNCategory' as FinalPreTreatmentNCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentNCategory
+from ha
+where FinalPreTreatmentNCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Ncategory%20mapping){: .btn }
+### COSD V8 HA Measurement Final Pre Treatment Mcategory
+Source column  `MeasurementDate`.
+Converts text to dates.
+
+* `MeasurementDate` Measurement Date is the date on which TNM Stage Grouping (Final Pretreatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+with ha as (
+    select distinct
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        -- M Category: TNM M component of the final pretreatment staging. Will be mapped to a measurement concept in a later ETL step.
+        Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.FinalPreTreatmentMCategory' as FinalPreTreatmentMCategory
+    from omop_staging.cosd_staging_81
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    coalesce(FinalPreTreatmentTNMStageGroupingDate, ClinicalDateCancerDiagnosis) as MeasurementDate,
+    FinalPreTreatmentMCategory
+from ha
+where FinalPreTreatmentMCategory is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Final%20Pre%20Treatment%20Mcategory%20mapping){: .btn }
+### COSD V8 HA Measurement Beta 2 Microglobulin Level
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and Beta2MicroglobulinLevel is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Beta%202%20Microglobulin%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Ann Arbor Stage
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Ann Arbor Stage: haematological staging based on location and extent of disease. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreStaging.HaematologyStagingAnnArbor.AnnArborStage.@code' as AnnArborStage
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AnnArborStage is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Ann%20Arbor%20Stage%20mapping){: .btn }
+### COSD V8 HA Measurement Adult Comorbidity Evaluation
+Source column  `ClinicalDateCancerDiagnosis`.
+Converts text to dates.
+
+* `ClinicalDateCancerDiagnosis` DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- ACE-27: Adult Comorbidity Evaluation score. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AdultComorbidityEvaluation is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 GY Measurement Tumour Laterality
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.

@@ -698,6 +698,126 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V8 HA Measurement White Blood Cell Count Highest Pretreatment
+Source column  `WhiteBloodCellCountHighestPretreatment`.
+Converts text to number.
+
+* `WhiteBloodCellCountHighestPretreatment` The highest white blood cell count prior to the start of treatment during a Haematological Cancer Care Spell. [WHITE BLOOD CELL COUNT (HIGHEST PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/white_blood_cell_count__highest_pretreatment_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and WhiteBloodCellCountHighestPretreatment is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HA%20Measurement%20White%20Blood%20Cell%20Count%20Highest%20Pretreatment%20mapping){: .btn }
+### COSD V8 HA Measurement Lymphocyte Count
+Source column  `LymphocyteCount`.
+Converts text to number.
+
+* `LymphocyteCount` The lymphocyte count recorded during a Haematological Cancer Care Spell. Note: this item has been retired from the NHS Data Dictionary (Dec 2019). [LYMPHOCYTE COUNT]()
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lymphocyte Count: numeric lab result. Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LymphocyteCount.@value' as LymphocyteCount
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LymphocyteCount is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HA%20Measurement%20Lymphocyte%20Count%20mapping){: .btn }
+### COSD V8 HA Measurement Lactate Dehydrogenase Level
+Source column  `LactateDehydrogenaseLevel`.
+Converts text to number.
+
+* `LactateDehydrogenaseLevel` The lactate dehydrogenase (LDH) level recorded during a Haematological Cancer Care Spell. [LACTATE DEHYDROGENASE LEVEL](https://www.datadictionary.nhs.uk/data_elements/lactate_dehydrogenase_level.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Lactate Dehydrogenase Level: coded lab result indicating LDH status. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.LactateDehydrogenaseLevel.@code' as LactateDehydrogenaseLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and LactateDehydrogenaseLevel is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HA%20Measurement%20Lactate%20Dehydrogenase%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Haemoglobin Concentration
+Source column  `HaemoglobinConcentration`.
+Converts text to number.
+
+* `HaemoglobinConcentration` The haemoglobin concentration recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/. [HAEMOGLOBIN CONCENTRATION](https://www.datadictionary.nhs.uk/data_elements/haemoglobin_concentration.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Haemoglobin Concentration: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.HaemoglobinConcentration.@value' as HaemoglobinConcentration
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and HaemoglobinConcentration is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HA%20Measurement%20Haemoglobin%20Concentration%20mapping){: .btn }
+### COSD V8 HA Measurement Beta 2 Microglobulin Level
+Source column  `Beta2MicroglobulinLevel`.
+Converts text to number.
+
+* `Beta2MicroglobulinLevel` The beta 2 microglobulin level recorded during a Haematological Cancer Care Spell. Note: definition not found in docs/. [BETA 2 MICROGLOBULIN LEVEL]()
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- Beta 2 Microglobulin Level: numeric lab result. Will be stored as value_as_number in a later ETL step. Definition not found in docs/.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.Beta2MicroglobulinLevel.@value' as Beta2MicroglobulinLevel
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and Beta2MicroglobulinLevel is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HA%20Measurement%20Beta%202%20Microglobulin%20Level%20mapping){: .btn }
+### COSD V8 HA Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    -- ACE-27: Adult Comorbidity Evaluation score. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and AdultComorbidityEvaluation is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 GY Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.

@@ -1397,6 +1397,48 @@
     <None Update="COSD\HA\Measurement\COSDv9HAMeasurementTumourLaterality\COSDv9HAMeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementAdultComorbidityEvaluation\COSDv8HAMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementAnnArborStage\COSDv8HAMeasurementAnnArborStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementBeta2MicroglobulinLevel\COSDv8HAMeasurementBeta2MicroglobulinLevel.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementFinalPreTreatmentMCategory\COSDv8HAMeasurementFinalPreTreatmentMCategory.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementFinalPreTreatmentNCategory\COSDv8HAMeasurementFinalPreTreatmentNCategory.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementFinalPreTreatmentTCategory\COSDv8HAMeasurementFinalPreTreatmentTCategory.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementGradeOfDifferentiation\COSDv8HAMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementHaemoglobinConcentration\COSDv8HAMeasurementHaemoglobinConcentration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementLactateDehydrogenaseLevel\COSDv8HAMeasurementLactateDehydrogenaseLevel.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementLymphocyteCount\COSDv8HAMeasurementLymphocyteCount.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite\COSDv8HAMeasurementNonPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementPrimaryPathwayMetastaticSite\COSDv8HAMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementTumourLaterality\COSDv8HAMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment\COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\UR\Measurement\COSDv8URMeasurementFamilialCancerSyndromeIndicator\COSDv8URMeasurementFamilialCancerSyndromeIndicator.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
