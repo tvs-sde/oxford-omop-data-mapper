@@ -1,0 +1,39 @@
+<Query>
+    <Sql>
+with ha as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        -- Ann Arbor Stage: haematological staging based on location and extent of disease. Unnested because StagingSiteSpecific may contain multiple entries.
+        unnest(
+            [
+                [Record ->> '$.PrimaryPathway.StagingSiteSpecific.StagingHaematological.StagingAnnArbor.AnnArborStage.@code'],
+                Record ->> '$.PrimaryPathway.StagingSiteSpecific[*].StagingHaematological.StagingAnnArbor.AnnArborStage.@code'
+            ],
+            recursive := true
+        ) as AnnArborStage
+    from omop_staging.cosd_staging_901
+    where type = 'HA'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    AnnArborStage
+from ha
+where AnnArborStage is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="AnnArborStage">
+			<Description>Ann Arbor Staging System stage based on the location and extent of detected disease for a patient during a haematological cancer care spell.</Description>
+			<Origin>ANN ARBOR STAGE</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

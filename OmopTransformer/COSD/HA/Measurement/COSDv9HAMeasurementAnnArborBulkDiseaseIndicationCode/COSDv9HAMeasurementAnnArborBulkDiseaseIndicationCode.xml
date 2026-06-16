@@ -1,0 +1,26 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    -- Ann Arbor Bulky Disease: indicates presence of bulky disease. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$.PrimaryPathway.AnnArborExtensions.AnnArborBulk.@code' as AnnArborBulk
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and AnnArborBulk is not null;
+	</Sql>
+    <Explanations>
+	    <Explanation columnName="NhsNumber">
+		    <Description>Patient NHS Number</Description>
+		    <Origin>NHS NUMBER</Origin>
+	    </Explanation>
+	    <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+			<Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+			<Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+		</Explanation>
+		<Explanation columnName="AnnArborBulk">
+			<Description>Indicates the Ann Arbor Staging System stage designation based on the presence of bulky disease during a haematological cancer care spell.</Description>
+			<Origin>ANN ARBOR BULKY DISEASE INDICATION CODE</Origin>
+		</Explanation>
+	</Explanations>
+</Query>

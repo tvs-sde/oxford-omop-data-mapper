@@ -1,0 +1,103 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Binet Stage: CLL staging classification. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.StagingSiteSpecific.StagingHaematological.StagingCLL.BinetStage.@code' as BinetStage\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and BinetStage is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Binet Stage: CLL staging classification. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.StagingSiteSpecific.StagingHaematological.StagingCLL.BinetStage.@code' as BinetStage\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and BinetStage is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Binet Stage: CLL staging classification. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.StagingSiteSpecific.StagingHaematological.StagingCLL.BinetStage.@code' as BinetStage\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and BinetStage is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "BINET STAGE",
+      "dataSource": [
+        {
+          "name": "BinetStage",
+          "description": "Binet Classification stage for a patient during a haematological cancer care spell.",
+          "origins": [
+            {
+              "origin": "BINET STAGE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/binet_stage.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Binet Stage: CLL staging classification. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.StagingSiteSpecific.StagingHaematological.StagingCLL.BinetStage.@code' as BinetStage\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and BinetStage is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|BinetStage|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|A|1635315|Stage A: platelet count greater than 99 and haemoglobin greater than 99 and 0, 1, or 2 areas of organ enlargement (number of lymph node groups plus score 1 for hepatomegaly, 1 for splenomegaly)|\r\n|B|1635179|Stage B: platelet count greater than 99 and haemoglobin greater than 99 and 3, 4, or 5 areas of organ enlargement|\r\n|C|1635062|Stage C: haemoglobin less than 100 or platelet count less than 100|\r\n\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `BinetStage`",
+      "dataSource": [
+        {
+          "name": "BinetStage",
+          "description": "Binet Classification stage for a patient during a haematological cancer care spell.",
+          "origins": [
+            {
+              "origin": "BINET STAGE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/binet_stage.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Binet Stage: CLL staging classification. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.StagingSiteSpecific.StagingHaematological.StagingCLL.BinetStage.@code' as BinetStage\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and BinetStage is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}
