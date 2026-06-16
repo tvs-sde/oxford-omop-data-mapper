@@ -21,12 +21,12 @@ internal class COSDv8HAMeasurementBeta2MicroglobulinLevel : OmopMeasurement<COSD
     [CopyValue(nameof(Source.Beta2MicroglobulinLevel))]
     public override string? measurement_source_value { get; set; }
 
-    [ConstantValue("81410005", "	Beta-2-microglobulin measurement")]
+    [ConstantValue("4216186", "Beta-2-microglobulin measurement")]
     public override int[]? measurement_concept_id { get; set; }
 
     [Transform(typeof(DoubleParser), nameof(Source.Beta2MicroglobulinLevel))]
     public override double? value_as_number { get; set; }
 
-    [ConstantValue("81410005", "	Beta-2-microglobulin measurement")]
+    [ConstantValue("4216186", "Beta-2-microglobulin measurement")]
     public override int? measurement_source_concept_id { get; set; }
 }

@@ -22,5 +22,8 @@ internal class COSDv9SAMeasurementSarcomaTumourSiteSoftTissue : OmopMeasurement<
     public override string? measurement_source_value { get; set; }
 
     [Transform(typeof(Opcs4Selector), nameof(Source.SarcomaTumourSiteSoftTissue))]
+    public override int? measurement_source_concept_id { get; set; }
+
+    [Transform(typeof(StandardMeasurementConceptSelector), useOmopTypeAsSource: true, nameof(measurement_source_concept_id))]
     public override int[]? measurement_concept_id { get; set; }
 }

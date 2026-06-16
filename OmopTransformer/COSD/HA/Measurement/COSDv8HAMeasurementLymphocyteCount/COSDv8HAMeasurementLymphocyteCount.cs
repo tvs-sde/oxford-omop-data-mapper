@@ -21,12 +21,12 @@ internal class COSDv8HAMeasurementLymphocyteCount : OmopMeasurement<COSDv8HAMeas
     [CopyValue(nameof(Source.LymphocyteCount))]
     public override string? measurement_source_value { get; set; }
 
-    [ConstantValue("45613489", "Lymphocyte Count")]
+    [ConstantValue("4254663", "Lymphocyte Count")]
     public override int[]? measurement_concept_id { get; set; }
 
     [Transform(typeof(DoubleParser), nameof(Source.LymphocyteCount))]
     public override double? value_as_number { get; set; }
 
-    [ConstantValue("45613489", "Lymphocyte Count")]
+    [ConstantValue("4254663", "Lymphocyte Count")]
     public override int? measurement_source_concept_id { get; set; }
 }
