@@ -194,6 +194,20 @@ using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDia
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceDiagnosticProcedureSnomedCt;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.HA.ProcedureOccurrence.COSDv9HAProcedureOccurrenceProcedureOpcs;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementAnnArborBulkDiseaseIndicationCode;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementAnnArborStage;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementBinetStage;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementGradeOfDifferentiation;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementMCategoryFinalPretreatment;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementNCategoryFinalPretreatment;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementPrimaryPathwayMetastaticSite;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementProgressionMetastaticSite;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementRecurrenceMetastaticSite;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementRIPIIndexForDLBCLScore;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementTCategoryFinalPretreatment;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementTnmStageGroupingFinalPretreatment;
+using OmopTransformer.COSD.HA.Measurement.COSDv9HAMeasurementTumourLaterality;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementMcategoryFinalPreTreatmentStage;
@@ -364,12 +378,6 @@ using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV8LungProcedureOccurrenc
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrencePrimaryProcedureOpcs;
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceRelapseMethodOfDetection;
-using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrencePrimaryProcedureOPCS;
-using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv8URProcedureOccurrenceProcedureOPCS;
-using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs;
-using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt;
-using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrencePrimaryProcedureOpcs;
-using OmopTransformer.COSD.UR.ProcedureOccurrence.COSDv9URProcedureOccurrenceProcedureOpcs;
 using OmopTransformer.Omop;
 using OmopTransformer.Omop.ConditionOccurrence;
 using OmopTransformer.Omop.Death;
@@ -3404,6 +3412,90 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9SKMeasurementTNMStageGroupingIntegratedRecord, COSDv9SKMeasurementTNMStageGroupingIntegrated>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv9SKMeasurementTNMStageGroupingIntegrated",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementAdultComorbidityEvaluationRecord, COSDv9HAMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementAnnArborBulkDiseaseIndicationCodeRecord, COSDv9HAMeasurementAnnArborBulkDiseaseIndicationCode>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementAnnArborBulkDiseaseIndicationCode",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementAnnArborStageRecord, COSDv9HAMeasurementAnnArborStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementAnnArborStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementBinetStageRecord, COSDv9HAMeasurementBinetStage>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementBinetStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementGradeOfDifferentiationRecord, COSDv9HAMeasurementGradeOfDifferentiation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementGradeOfDifferentiation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementMCategoryFinalPretreatmentRecord, COSDv9HAMeasurementMCategoryFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementMCategoryFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementNCategoryFinalPretreatmentRecord, COSDv9HAMeasurementNCategoryFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementNCategoryFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementPrimaryPathwayMetastaticSiteRecord, COSDv9HAMeasurementPrimaryPathwayMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementPrimaryPathwayMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementProgressionMetastaticSiteRecord, COSDv9HAMeasurementProgressionMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementProgressionMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementRecurrenceMetastaticSiteRecord, COSDv9HAMeasurementRecurrenceMetastaticSite>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementRecurrenceMetastaticSite",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementRIPIIndexForDLBCLScoreRecord, COSDv9HAMeasurementRIPIIndexForDLBCLScore>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementRIPIIndexForDLBCLScore",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementTCategoryFinalPretreatmentRecord, COSDv9HAMeasurementTCategoryFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementTCategoryFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementTnmStageGroupingFinalPretreatmentRecord, COSDv9HAMeasurementTnmStageGroupingFinalPretreatment>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementTnmStageGroupingFinalPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HAMeasurementTumourLateralityRecord, COSDv9HAMeasurementTumourLaterality>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "COSDv9HAMeasurementTumourLaterality",
             runId,
             cancellationToken);
     }

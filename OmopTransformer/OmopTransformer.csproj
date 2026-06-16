@@ -1355,6 +1355,48 @@
     <None Update="COSD\HA\ProcedureOccurrence\COSDv9HAProcedureOccurrenceProcedureOpcs\COSDv9HAProcedureOccurrenceProcedureOpcs.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementAdultComorbidityEvaluation\COSDv9HAMeasurementAdultComorbidityEvaluation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementAnnArborBulkDiseaseIndicationCode\COSDv9HAMeasurementAnnArborBulkDiseaseIndicationCode.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementAnnArborStage\COSDv9HAMeasurementAnnArborStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementBinetStage\COSDv9HAMeasurementBinetStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementGradeOfDifferentiation\COSDv9HAMeasurementGradeOfDifferentiation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementMCategoryFinalPretreatment\COSDv9HAMeasurementMCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementNCategoryFinalPretreatment\COSDv9HAMeasurementNCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementPrimaryPathwayMetastaticSite\COSDv9HAMeasurementPrimaryPathwayMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementProgressionMetastaticSite\COSDv9HAMeasurementProgressionMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementRecurrenceMetastaticSite\COSDv9HAMeasurementRecurrenceMetastaticSite.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementRIPIIndexForDLBCLScore\COSDv9HAMeasurementRIPIIndexForDLBCLScore.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementTCategoryFinalPretreatment\COSDv9HAMeasurementTCategoryFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementTnmStageGroupingFinalPretreatment\COSDv9HAMeasurementTnmStageGroupingFinalPretreatment.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HA\Measurement\COSDv9HAMeasurementTumourLaterality\COSDv9HAMeasurementTumourLaterality.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\UR\Measurement\COSDv8URMeasurementFamilialCancerSyndromeIndicator\COSDv8URMeasurementFamilialCancerSyndromeIndicator.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

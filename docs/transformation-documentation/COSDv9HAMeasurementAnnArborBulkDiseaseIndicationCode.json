@@ -1,0 +1,103 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Ann Arbor Bulky Disease: indicates presence of bulky disease. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.AnnArborExtensions.AnnArborBulk.@code' as AnnArborBulk\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and AnnArborBulk is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Ann Arbor Bulky Disease: indicates presence of bulky disease. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.AnnArborExtensions.AnnArborBulk.@code' as AnnArborBulk\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and AnnArborBulk is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Ann Arbor Bulky Disease: indicates presence of bulky disease. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.AnnArborExtensions.AnnArborBulk.@code' as AnnArborBulk\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and AnnArborBulk is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "ANN ARBOR BULKY DISEASE INDICATION CODE",
+      "dataSource": [
+        {
+          "name": "AnnArborBulk",
+          "description": "Indicates the Ann Arbor Staging System stage designation based on the presence of bulky disease during a haematological cancer care spell.",
+          "origins": [
+            {
+              "origin": "ANN ARBOR BULKY DISEASE INDICATION CODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/ann_arbor_bulky_disease_indication_code.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Ann Arbor Bulky Disease: indicates presence of bulky disease. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.AnnArborExtensions.AnnArborBulk.@code' as AnnArborBulk\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and AnnArborBulk is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|AnnArborBulk|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|X|1633986|Bulky disease present|\r\n|0|0|No bulky disease present|\r\n\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `AnnArborBulk`",
+      "dataSource": [
+        {
+          "name": "AnnArborBulk",
+          "description": "Indicates the Ann Arbor Staging System stage designation based on the presence of bulky disease during a haematological cancer care spell.",
+          "origins": [
+            {
+              "origin": "ANN ARBOR BULKY DISEASE INDICATION CODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/ann_arbor_bulky_disease_indication_code.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- Ann Arbor Bulky Disease: indicates presence of bulky disease. Will be mapped to a measurement value concept in a later ETL step.\n    Record ->> '$.PrimaryPathway.AnnArborExtensions.AnnArborBulk.@code' as AnnArborBulk\nfrom omop_staging.cosd_staging_901\nwhere type = 'HA'\n  and AnnArborBulk is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

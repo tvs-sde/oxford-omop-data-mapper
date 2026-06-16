@@ -658,6 +658,46 @@ where AdultComorbidityEvaluation is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V8%20HN%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
+### COSD V9 HA Measurement RIPI Index For DLBCL Score
+Source column  `RIPIIndexForDLBCLScore`.
+Converts text to number.
+
+* `RIPIIndexForDLBCLScore` The Revised International Prognostic Index (R-IPI) score during a haematological cancer care spell. Range 0-5. [REVISED INTERNATIONAL PROGNOSTIC INDEX SCORE](https://www.datadictionary.nhs.uk/data_elements/revised_international_prognostic_index_score.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    -- R-IPI: Revised International Prognostic Index score for DLBCL. Numeric value (range 0-5). Will be stored as value_as_number in a later ETL step.
+    Record ->> '$.CancerCarePlan.CancerCarePlanDLBCL.RipiIndexForDlbclScore.@value' as RIPIIndexForDLBCLScore
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and RIPIIndexForDLBCLScore is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20HA%20Measurement%20RIPI%20Index%20For%20DLBCL%20Score%20mapping){: .btn }
+### COSD V9 HA Measurement Adult Comorbidity Evaluation
+Source column  `AdultComorbidityEvaluation27Score`.
+Converts text to number.
+
+* `AdultComorbidityEvaluation27Score` The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'. [ADULT COMORBIDITY EVALUATION - 27 SCORE](https://www.datadictionary.nhs.uk/data_elements/adult_comorbidity_evaluation_-_27_score.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    -- ACE-27: Adult Comorbidity Evaluation score. Will be mapped to a measurement value concept in a later ETL step.
+    Record ->> '$."CancerCarePlan"."AdultComorbidityEvaluation-27Score"."@code"' as AdultComorbidityEvaluation27Score
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and AdultComorbidityEvaluation27Score is not null;
+	
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20COSD%20V9%20HA%20Measurement%20Adult%20Comorbidity%20Evaluation%20mapping){: .btn }
 ### COSD V9 GY Measurement Adult Comorbidity Evaluation
 Source column  `AdultComorbidityEvaluation`.
 Converts text to number.
