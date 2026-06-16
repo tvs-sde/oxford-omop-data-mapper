@@ -9,5 +9,5 @@ internal class COSDv8SAMeasurementSarcomaTumourSiteBoneRecord
 {
     public string? NhsNumber { get; set; }
     public string? ClinicalDateCancerDiagnosis { get; set; }
-    public string? SarcomaTumourSite { get; set; }
+    public string? SarcomaTumourSiteBone { get; set; }
 }

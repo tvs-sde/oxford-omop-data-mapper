@@ -4745,8 +4745,10 @@ where TCategoryFinalPretreatment is not null;
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Tcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
 ### COSD v8 SA Measurement Sarcoma Tumour Site Soft Tissue
-Source column  `SarcomaTumourSite`.
+Source column  `SarcomaTumourSiteSoftTissue`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `SarcomaTumourSiteSoftTissue` Location of the soft tissue sarcoma within the body using an OPCS-4 code, at a more detailed level than ICD or ICD-O. [SARCOMA TUMOUR SITE (SOFT TISSUE)](https://www.datadictionary.nhs.uk/data_elements/sarcoma_tumour_site__soft_tissue_.html)
 
 ```sql
 with SA as (
@@ -4769,8 +4771,10 @@ where SarcomaTumourSiteSoftTissue is not null;
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20v8%20SA%20Measurement%20Sarcoma%20Tumour%20Site%20Soft%20Tissue%20mapping){: .btn }
 ### COSD v8 SA Measurement Sarcoma Tumour Site Bone
-Source column  `SarcomaTumourSite`.
+Source column  `SarcomaTumourSiteBone`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `SarcomaTumourSiteBone` Location of the bone sarcoma within the body using an OPCS-4 code, at a more detailed level than ICD or ICD-O. [SARCOMA TUMOUR SITE (BONE)](https://www.datadictionary.nhs.uk/data_elements/sarcoma_tumour_site__bone_.html)
 
 ```sql
 with SA as (

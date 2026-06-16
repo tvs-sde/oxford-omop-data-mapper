@@ -66,14 +66,36 @@
     {
       "name": "measurement_concept_id",
       "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
-      "dataSource": [],
+      "dataSource": [
+        {
+          "name": "SarcomaTumourSiteSoftTissue",
+          "description": "Location of the soft tissue sarcoma within the body using an OPCS-4 code, at a more detailed level than ICD or ICD-O.",
+          "origins": [
+            {
+              "origin": "SARCOMA TUMOUR SITE (SOFT TISSUE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/sarcoma_tumour_site__soft_tissue_.html"
+            }
+          ]
+        }
+      ],
       "query": "\nwith SA as (\n    select\n        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreDiagnosis.SarcomaDiagnosisBoneAndSoftTissue.SarcomaTumourSiteSoftTissue.@code' as SarcomaTumourSiteSoftTissue\n    from omop_staging.cosd_staging_81\n    where type = 'SA'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    SarcomaTumourSiteSoftTissue\nfrom SA\nwhere SarcomaTumourSiteSoftTissue is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
       "name": "measurement_source_value",
-      "operation_description": "Value copied from `SarcomaTumourSite`",
-      "dataSource": [],
+      "operation_description": "Value copied from `SarcomaTumourSiteSoftTissue`",
+      "dataSource": [
+        {
+          "name": "SarcomaTumourSiteSoftTissue",
+          "description": "Location of the soft tissue sarcoma within the body using an OPCS-4 code, at a more detailed level than ICD or ICD-O.",
+          "origins": [
+            {
+              "origin": "SARCOMA TUMOUR SITE (SOFT TISSUE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/sarcoma_tumour_site__soft_tissue_.html"
+            }
+          ]
+        }
+      ],
       "query": "\nwith SA as (\n    select\n        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreDiagnosis.SarcomaDiagnosisBoneAndSoftTissue.SarcomaTumourSiteSoftTissue.@code' as SarcomaTumourSiteSoftTissue\n    from omop_staging.cosd_staging_81\n    where type = 'SA'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    SarcomaTumourSiteSoftTissue\nfrom SA\nwhere SarcomaTumourSiteSoftTissue is not null;\n\t",
       "lookup_table_markdown": null
     }

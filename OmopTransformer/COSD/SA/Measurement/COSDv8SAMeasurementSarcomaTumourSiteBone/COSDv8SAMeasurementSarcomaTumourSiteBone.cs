@@ -18,9 +18,9 @@ internal class COSDv8SAMeasurementSarcomaTumourSiteBone : OmopMeasurement<COSDv8
     [ConstantValue(32828, "EHR episode record")]
     public override int? measurement_type_concept_id { get; set; }
 
-    [Transform(typeof(Opcs4Selector), nameof(Source.SarcomaTumourSite))]
+    [Transform(typeof(Opcs4Selector), nameof(Source.SarcomaTumourSiteBone))]
     public override int[]? measurement_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.SarcomaTumourSite))]
+    [CopyValue(nameof(Source.SarcomaTumourSiteBone))]
     public override string? measurement_source_value { get; set; }
 }
