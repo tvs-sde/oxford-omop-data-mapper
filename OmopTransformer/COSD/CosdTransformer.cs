@@ -554,39 +554,9 @@ internal class CosdTransformer : Transformer
     {
         Guid runId = Guid.NewGuid();
 
-        await Transform<COSDv8URProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8URProcedureOccurrencePrimaryProcedureOPCS>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "Cosd V8 UR Procedure Occurrence Primary Procedure OPCS",
-            runId,
-            cancellationToken);
-
         await Transform<COSDv8URProcedureOccurrenceProcedureOPCSRecord, COSDv8URProcedureOccurrenceProcedureOPCS>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "Cosd V8 UR Procedure Occurrence Procedure OPCS",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv9URProcedureOccurrenceDiagnosticProcedureOpcsRecord, COSDv9URProcedureOccurrenceDiagnosticProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "Cosd V9 UR Procedure Occurrence Diagnostic Procedure Opcs",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCtRecord, COSDv9URProcedureOccurrenceDiagnosticProcedureSnomedCt>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "Cosd V9 UR Procedure Occurrence Diagnostic Procedure Snomed Ct",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv9URProcedureOccurrencePrimaryProcedureOpcsRecord, COSDv9URProcedureOccurrencePrimaryProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "Cosd V9 UR Procedure Occurrence Primary Procedure Opcs",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv9URProcedureOccurrenceProcedureOpcsRecord, COSDv9URProcedureOccurrenceProcedureOpcs>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "Cosd V9 UR Procedure Occurrence Procedure Opcs",
             runId,
             cancellationToken);
 
@@ -1943,12 +1913,6 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8URProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8URProcedureOccurrencePrimaryProcedureOPCS>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V8 UR Procedure Occurrence Primary Procedure OPCS",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv8URProcedureOccurrenceProcedureOPCSRecord, COSDv8URProcedureOccurrenceProcedureOPCS>(
-            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
-            "COSD V8 UR Procedure Occurrence Procedure OPCS",
             runId,
             cancellationToken);
 
