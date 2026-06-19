@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV9LungMeasurementTumourLaterality;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTumourLaterality;
 
 internal class CosdV9LungMeasurementTumourLaterality : OmopMeasurement<CosdV9LungMeasurementTumourLateralityRecord>
 {

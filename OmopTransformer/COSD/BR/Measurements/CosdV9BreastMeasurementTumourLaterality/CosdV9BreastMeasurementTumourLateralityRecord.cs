@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementTumourLaterality;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementTumourLaterality;
 
 [DataOrigin("COSD")]
 [Description("COSD V9 Breast Measurement Tumour Laterality")]

@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway : OmopObservation<CosdV9BreastSourceOfReferralForNonPrimaryCancerPathwayRecord>

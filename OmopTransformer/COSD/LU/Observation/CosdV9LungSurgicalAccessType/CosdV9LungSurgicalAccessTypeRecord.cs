@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungSurgicalAccessType;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungSurgicalAccessType;
 
 [DataOrigin("COSD")]
 [Description("CosdV9LungSurgicalAccessType")]

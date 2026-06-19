@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastFamilialCancerSyndrome;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastFamilialCancerSyndrome;
 
 [DataOrigin("COSD")]
 [Description("CosdV9BreastFamilialCancerSyndrome")]

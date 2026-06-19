@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths : OmopObservation<CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonthsRecord>

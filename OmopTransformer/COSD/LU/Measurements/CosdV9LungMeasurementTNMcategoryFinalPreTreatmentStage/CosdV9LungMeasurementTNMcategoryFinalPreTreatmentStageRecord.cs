@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV9LungMeasurementTNMcategoryFinalPreTreatmentStage;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryFinalPreTreatmentStage;
 
 [DataOrigin("COSD")]
 [Description("COSD V9 Lung Measurement TNM Category Final Pre Treatment Stage")]

@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastHistoryOfAlcoholCurrent;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastHistoryOfAlcoholCurrent;
 
 [DataOrigin("COSD")]
 [Description("CosdV9BreastHistoryOfAlcoholCurrent")]

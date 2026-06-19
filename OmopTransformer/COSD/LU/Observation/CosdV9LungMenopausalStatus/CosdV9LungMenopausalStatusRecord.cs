@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungMenopausalStatus;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungMenopausalStatus;
 
 [DataOrigin("COSD")]
 [Description("CosdV9LungMenopausalStatus")]

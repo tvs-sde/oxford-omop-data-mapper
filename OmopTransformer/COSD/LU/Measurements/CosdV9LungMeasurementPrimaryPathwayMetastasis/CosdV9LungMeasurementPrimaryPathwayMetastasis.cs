@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV9LungMeasurementPrimaryPathwayMetastasis;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementPrimaryPathwayMetastasis;
 
 internal class CosdV9LungMeasurementPrimaryPathwayMetastasis : OmopMeasurement<CosdV9LungMeasurementPrimaryPathwayMetastasisRecord>
 {

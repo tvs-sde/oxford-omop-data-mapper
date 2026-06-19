@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastMenopausalStatus;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastMenopausalStatus;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9BreastMenopausalStatus : OmopObservation<CosdV9BreastMenopausalStatusRecord>

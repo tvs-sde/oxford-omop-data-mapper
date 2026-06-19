@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementAdultComorbidityEvaluation;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementAdultComorbidityEvaluation;
 
 [DataOrigin("COSD")]
 [Description("CosdV9BreastMeasurementAdultComorbidityEvaluation")]

@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastSourceOfReferralForOutpatients;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastSourceOfReferralForOutpatients;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9BreastSourceOfReferralForOutpatients : OmopObservation<CosdV9BreastSourceOfReferralForOutpatientsRecord>

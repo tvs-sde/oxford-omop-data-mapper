@@ -1,5 +1,5 @@
 using OmopTransformer.Annotations;
-using OmopTransformer.COSD.Breast.Observation;
+using OmopTransformer.COSD.BR.Observation;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 

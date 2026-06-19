@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV9BreastProcedureOccurrencePrimaryProcedureOpcs;
+namespace OmopTransformer.COSD.BR.ProcedureOccurrence.CosdV9BreastProcedureOccurrencePrimaryProcedureOpcs;
 
 [DataOrigin("COSD")]
 [Description("COSD V9 Breast Procedure Occurrence Primary Procedure Opcs")]

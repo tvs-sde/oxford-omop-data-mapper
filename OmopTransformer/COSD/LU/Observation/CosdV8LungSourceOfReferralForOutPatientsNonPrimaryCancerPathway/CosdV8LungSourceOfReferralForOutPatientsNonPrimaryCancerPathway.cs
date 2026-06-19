@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway : OmopObservation<CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathwayRecord>

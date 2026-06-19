@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV8LungMeasurementNcategoryFinalPreTreatmentStage;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementNcategoryFinalPreTreatmentStage;
 
 internal class CosdV8LungMeasurementNcategoryFinalPreTreatmentStage : OmopMeasurement<CosdV8LungMeasurementNcategoryFinalPreTreatmentStageRecord>
 {

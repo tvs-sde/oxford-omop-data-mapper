@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV8LungProcedureOccurrencePrimaryProcedureOpcs;
+namespace OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV8LungProcedureOccurrencePrimaryProcedureOpcs;
 
 [Notes(
     "Assumptions",

@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV8BreastSmokingStatusCode;
+namespace OmopTransformer.COSD.BR.Observation.CosdV8BreastSmokingStatusCode;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8BreastSmokingStatusCode : OmopObservation<CosdV8BreastSmokingStatusCodeRecord>

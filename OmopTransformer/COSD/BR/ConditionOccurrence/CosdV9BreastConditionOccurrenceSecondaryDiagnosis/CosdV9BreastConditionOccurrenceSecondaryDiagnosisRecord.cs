@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.ConditionOccurrence.CosdV9BreastConditionOccurrenceSecondaryDiagnosis;
+namespace OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceSecondaryDiagnosis;
 
 [DataOrigin("COSD")]
 [Description("COSD V9 Breast Condition Occurrence Secondary Diagnosis")]

@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungSourceOfReferralOutPatients;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralOutPatients;
 
 [DataOrigin("COSD")]
 [Description("CosdV8LungSourceOfReferralOutPatients")]

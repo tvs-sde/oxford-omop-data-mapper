@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.ConditionOccurrence;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosis;
+namespace OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosis;
 
 [Notes(
     "Assumptions",

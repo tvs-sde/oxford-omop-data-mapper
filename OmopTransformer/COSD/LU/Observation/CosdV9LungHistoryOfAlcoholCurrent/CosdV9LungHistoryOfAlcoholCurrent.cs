@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungHistoryOfAlcoholCurrent;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungHistoryOfAlcoholCurrent;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9LungHistoryOfAlcoholCurrent : OmopObservation<CosdV9LungHistoryOfAlcoholCurrentRecord>

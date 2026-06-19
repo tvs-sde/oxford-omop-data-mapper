@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV9BreastMeasurementPrimaryPathwayMetastasis;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementPrimaryPathwayMetastasis;
 
 [DataOrigin("COSD")]
 [Description("COSD V9 Breast Measurement Primary Pathway Metastasis")]

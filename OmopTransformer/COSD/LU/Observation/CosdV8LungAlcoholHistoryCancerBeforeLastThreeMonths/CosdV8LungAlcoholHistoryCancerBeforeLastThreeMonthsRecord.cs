@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
 
 [DataOrigin("COSD")]
 [Description("CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths")]

@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungPerformanceStatusAdult;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungPerformanceStatusAdult;
 
 [DataOrigin("COSD")]
 [Description("CosdV9LungPerformanceStatusAdult")]

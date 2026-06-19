@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV9LungConditionOccurrenceRecurrence;
+namespace OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceRecurrence;
 
 [DataOrigin("COSD")]
 [Description("COSD V9 Lung Condition Occurrence Recurrence")]

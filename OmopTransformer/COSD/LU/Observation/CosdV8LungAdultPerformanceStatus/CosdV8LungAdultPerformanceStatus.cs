@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungAdultPerformanceStatus;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungAdultPerformanceStatus;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8LungAdultPerformanceStatus : OmopObservation<CosdV8LungAdultPerformanceStatusRecord>

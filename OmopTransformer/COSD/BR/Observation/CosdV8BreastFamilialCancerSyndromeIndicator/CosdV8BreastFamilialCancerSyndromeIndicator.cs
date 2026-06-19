@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV8BreastFamilialCancerSyndromeIndicator;
+namespace OmopTransformer.COSD.BR.Observation.CosdV8BreastFamilialCancerSyndromeIndicator;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8BreastFamilialCancerSyndromeIndicator : OmopObservation<CosdV8BreastFamilialCancerSyndromeIndicatorRecord>

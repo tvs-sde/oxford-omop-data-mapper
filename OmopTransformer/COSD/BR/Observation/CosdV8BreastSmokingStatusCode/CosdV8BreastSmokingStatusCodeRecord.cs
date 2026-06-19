@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV8BreastSmokingStatusCode;
+namespace OmopTransformer.COSD.BR.Observation.CosdV8BreastSmokingStatusCode;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Breast Smoking Status Code")]

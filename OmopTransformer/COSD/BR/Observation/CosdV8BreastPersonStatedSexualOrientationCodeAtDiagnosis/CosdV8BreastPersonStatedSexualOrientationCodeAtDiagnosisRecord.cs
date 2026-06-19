@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
+namespace OmopTransformer.COSD.BR.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis")]

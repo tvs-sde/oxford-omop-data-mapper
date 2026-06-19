@@ -1,9 +1,9 @@
 using OmopTransformer.Annotations;
-using OmopTransformer.COSD.Breast.Observation;
+using OmopTransformer.COSD.BR.Observation;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementAdultComorbidityEvaluation;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementAdultComorbidityEvaluation;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8BreastMeasurementAdultComorbidityEvaluation : OmopMeasurement<CosdV8BreastMeasurementAdultComorbidityEvaluationRecord>

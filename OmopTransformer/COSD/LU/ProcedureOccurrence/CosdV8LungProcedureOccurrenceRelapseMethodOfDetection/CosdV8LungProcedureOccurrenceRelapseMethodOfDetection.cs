@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV8LungProcedureOccurrenceRelapseMethodOfDetection;
+namespace OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV8LungProcedureOccurrenceRelapseMethodOfDetection;
 
 internal class CosdV8LungProcedureOccurrenceRelapseMethodOfDetection : OmopProcedureOccurrence<CosdV8LungProcedureOccurrenceRelapseMethodOfDetectionRecord>
 {

@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
+namespace OmopTransformer.COSD.BR.Observation.CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Breast Source Of Referral For Out Patients Non Primary Cancer Pathway")]

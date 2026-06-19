@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementMcategoryIntegratedStage;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementMcategoryIntegratedStage;
 
 internal class CosdV8BreastMeasurementMcategoryIntegratedStage : OmopMeasurement<CosdV8BreastMeasurementMcategoryIntegratedStageRecord>
 {

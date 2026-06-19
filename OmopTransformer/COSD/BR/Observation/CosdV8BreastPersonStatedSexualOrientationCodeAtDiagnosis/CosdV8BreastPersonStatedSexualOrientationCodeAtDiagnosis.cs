@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
+namespace OmopTransformer.COSD.BR.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis : OmopObservation<CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosisRecord>

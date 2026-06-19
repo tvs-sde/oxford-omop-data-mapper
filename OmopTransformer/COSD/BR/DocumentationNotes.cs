@@ -1,4 +1,4 @@
-namespace OmopTransformer.COSD.Breast;
+namespace OmopTransformer.COSD.BR;
 
 internal class DocumentationNotes
 {

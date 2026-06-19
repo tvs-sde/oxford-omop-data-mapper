@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV8LungMeasurementMcategoryIntegratedStage;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementMcategoryIntegratedStage;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Lung Measurement M Category (Integrated Stage)")]

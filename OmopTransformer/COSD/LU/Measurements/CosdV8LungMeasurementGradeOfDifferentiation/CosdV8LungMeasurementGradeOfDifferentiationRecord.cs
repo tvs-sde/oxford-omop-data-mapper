@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV8LungMeasurementGradeOfDifferentiation;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementGradeOfDifferentiation;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Lung Measurement Grade of Differentiation (At Diagnosis)")]

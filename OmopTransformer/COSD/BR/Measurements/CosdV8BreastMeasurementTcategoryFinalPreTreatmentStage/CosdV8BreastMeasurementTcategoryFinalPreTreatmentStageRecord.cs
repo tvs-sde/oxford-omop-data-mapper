@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementTcategoryFinalPreTreatmentStage;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementTcategoryFinalPreTreatmentStage;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Breast Measurement T Category Final Pre Treatment Stage")]

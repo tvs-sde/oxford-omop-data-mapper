@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastMenopausalStatus;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastMenopausalStatus;
 
 [DataOrigin("COSD")]
 [Description("CosdV9BreastMenopausalStatus")]

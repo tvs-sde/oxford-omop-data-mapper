@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Observation.CosdV9BreastPerformanceStatusAdult;
+namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastPerformanceStatusAdult;
 
 [DataOrigin("COSD")]
 [Description("CosdV9BreastPerformanceStatusAdult")]

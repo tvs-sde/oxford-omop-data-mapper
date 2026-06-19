@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungSourceOfReferralOutPatients;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralOutPatients;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8LungSourceOfReferralOutPatients : OmopObservation<CosdV8LungSourceOfReferralOutPatientsRecord>

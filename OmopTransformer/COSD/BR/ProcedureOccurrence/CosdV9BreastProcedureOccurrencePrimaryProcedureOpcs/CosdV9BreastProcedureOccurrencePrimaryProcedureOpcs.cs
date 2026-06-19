@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.ProcedureOccurrence.CosdV9BreastProcedureOccurrencePrimaryProcedureOpcs;
+namespace OmopTransformer.COSD.BR.ProcedureOccurrence.CosdV9BreastProcedureOccurrencePrimaryProcedureOpcs;
 
 [Notes(
     "Duplicates",

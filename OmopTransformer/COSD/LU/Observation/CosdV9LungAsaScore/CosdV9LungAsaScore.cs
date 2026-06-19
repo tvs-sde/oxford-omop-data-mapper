@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungAsaScore;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungAsaScore;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9LungAsaScore : OmopObservation<CosdV9LungAsaScoreRecord>

@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungAdultComorbidityEvaluation;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungAdultComorbidityEvaluation;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV8LungAdultComorbidityEvaluation : OmopObservation<CosdV8LungAdultComorbidityEvaluationRecord>

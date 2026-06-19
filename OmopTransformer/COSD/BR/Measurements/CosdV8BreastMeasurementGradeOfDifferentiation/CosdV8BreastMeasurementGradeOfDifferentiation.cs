@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
 
 internal class CosdV8BreastMeasurementGradeOfDifferentiation : OmopMeasurement<CosdV8BreastMeasurementGradeOfDifferentiationRecord>
 {

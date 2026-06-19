@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV9LungProcedureOccurrenceRelapseMethodOfDetection;
+namespace OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV9LungProcedureOccurrenceRelapseMethodOfDetection;
 
 [DataOrigin("COSD")]
 [Description("CosdV9LungProcedureOccurrenceRelapseMethodOfDetection")]

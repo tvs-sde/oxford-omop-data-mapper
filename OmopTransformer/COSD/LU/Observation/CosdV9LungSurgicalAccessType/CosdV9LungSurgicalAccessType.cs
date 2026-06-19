@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungSurgicalAccessType;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungSurgicalAccessType;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9LungSurgicalAccessType : OmopObservation<CosdV9LungSurgicalAccessTypeRecord>

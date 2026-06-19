@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV8LungSmokingStatusCode;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungSmokingStatusCode;
 
 [DataOrigin("COSD")]
 [Description("CosdV8LungSmokingStatusCode")]

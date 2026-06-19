@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementNcategoryIntegratedStage;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementNcategoryIntegratedStage;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Breast Measurement N Category Integrated Stage")]

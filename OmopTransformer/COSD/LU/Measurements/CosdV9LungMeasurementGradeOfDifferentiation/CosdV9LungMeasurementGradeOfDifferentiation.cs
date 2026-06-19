@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV9LungMeasurementGradeOfDifferentiation;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementGradeOfDifferentiation;
 
 internal class CosdV9LungMeasurementGradeOfDifferentiation : OmopMeasurement<CosdV9LungMeasurementGradeOfDifferentiationRecord>
 {

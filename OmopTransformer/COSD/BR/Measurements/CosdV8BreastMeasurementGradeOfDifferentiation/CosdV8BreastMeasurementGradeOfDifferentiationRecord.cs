@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Breast.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
+namespace OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Breast Measurement Grade of Differentiation (At Diagnosis)")]

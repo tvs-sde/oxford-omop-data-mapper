@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography;
+namespace OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Lung Condition Occurrence Primary Diagnosis Histology Topography")]

@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.ProcedureOccurrence.CosdV8LungProcedureOccurrenceProcedureOpcs;
+namespace OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV8LungProcedureOccurrenceProcedureOpcs;
 
 [DataOrigin("COSD")]
 [Description("Cosd V8 Lung Procedure Occurrence Procedure Opcs")]

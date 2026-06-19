@@ -2,7 +2,7 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.Lung.Observation.CosdV9LungTobaccoSmokingStatus;
+namespace OmopTransformer.COSD.LU.Observation.CosdV9LungTobaccoSmokingStatus;
 
 [Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
 internal class CosdV9LungTobaccoSmokingStatus : OmopObservation<CosdV9LungTobaccoSmokingStatusRecord>

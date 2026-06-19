@@ -1,6 +1,6 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Lung.Measurements.CosdV8LungMeasurementPrimaryPathwayMetastasis;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementPrimaryPathwayMetastasis;
 
 [DataOrigin("COSD")]
 [Description("COSD V8 Lung Measurement Primary Pathway Metastasis")]
