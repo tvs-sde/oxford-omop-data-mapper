@@ -1,6 +1,5 @@
 ﻿using OmopTransformer.Annotations;
 using OmopTransformer.Omop.CareSite;
-using OmopTransformer.Transformation;
 
 namespace OmopTransformer.SUS.AE.CareSite;
 

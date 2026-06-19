@@ -44,14 +44,12 @@ internal class RecordTransformLookupLogger
         {
             return counter;
         }
-        else
-        {
-            var lookupCounter = new LookupMissCount();
 
-            _missCountByLookup.Add(lookupName, lookupCounter);
+        var lookupCounter = new LookupMissCount();
 
-            return lookupCounter;
-        }
+        _missCountByLookup.Add(lookupName, lookupCounter);
+
+        return lookupCounter;
     }
 
     public void PrintLog(ILoggerFactory loggerFactory)

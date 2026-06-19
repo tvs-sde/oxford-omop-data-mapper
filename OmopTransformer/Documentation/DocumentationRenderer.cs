@@ -1,11 +1,11 @@
-﻿using OmopTransformer.Annotations;
-using OmopTransformer.Omop;
-using OmopTransformer.Transformation;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using Microsoft.Extensions.Logging;
-using OmopTransformer.Documentation.Charting;
 using Newtonsoft.Json;
+using OmopTransformer.Annotations;
+using OmopTransformer.Documentation.Charting;
+using OmopTransformer.Omop;
+using OmopTransformer.Transformation;
 
 namespace OmopTransformer.Documentation;
 
@@ -206,8 +206,8 @@ internal class DocumentationRenderer
                     dataSourceMappingGroup =>
                         new
                         {
-                            Key = dataSourceMappingGroup.Key,
-                            MapperType = dataSourceMappingGroup.First().MapperType,
+                            dataSourceMappingGroup.Key,
+                            dataSourceMappingGroup.First().MapperType,
                             DataOrigin = dataSourceMappingGroup.First().DataSourceName,
                             Relationships =
                                 dataSourceMappingGroup
@@ -257,8 +257,8 @@ internal class DocumentationRenderer
                     dataSourceMappingGroup =>
                         new
                         {
-                            Key = dataSourceMappingGroup.Key,
-                            MapperType = dataSourceMappingGroup.First().MapperType,
+                            dataSourceMappingGroup.Key,
+                            dataSourceMappingGroup.First().MapperType,
                             DataOrigin = dataSourceMappingGroup.First().DataSourceName,
                             Relationships = dataSourceMappingGroup
                         })

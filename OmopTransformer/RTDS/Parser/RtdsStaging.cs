@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using System.IO.Compression;
+﻿using System.IO.Compression;
+using Microsoft.Extensions.Logging;
 using OmopTransformer.RTDS.Staging;
 
 namespace OmopTransformer.RTDS.Parser;

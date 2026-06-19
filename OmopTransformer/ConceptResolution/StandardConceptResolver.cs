@@ -85,7 +85,7 @@ internal class StandardConceptResolver
 
         const int unknownConceptId = 0;
 
-        var unknownConcept = new int[] { unknownConceptId };
+        var unknownConcept = new[] { unknownConceptId };
 
         //| Domain Constraint | Input | Source Concept Id | Concept Id |
         //| -------------------| -------| ------------------| ------------|

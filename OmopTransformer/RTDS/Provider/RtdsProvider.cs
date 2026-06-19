@@ -1,6 +1,5 @@
 ﻿using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Provider;
-using OmopTransformer.Transformation;
 
 namespace OmopTransformer.RTDS.Provider;
 

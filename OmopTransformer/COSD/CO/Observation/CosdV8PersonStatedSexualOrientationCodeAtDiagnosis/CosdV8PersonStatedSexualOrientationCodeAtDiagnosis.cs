@@ -1,6 +1,5 @@
 using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
-using OmopTransformer.Transformation;
 
 namespace OmopTransformer.COSD.Colorectal.Observation.CosdV8PersonStatedSexualOrientationCodeAtDiagnosis;
 

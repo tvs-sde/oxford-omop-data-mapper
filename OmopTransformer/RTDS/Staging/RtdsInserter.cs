@@ -1,8 +1,8 @@
-﻿using DuckDB.NET.Data;
+﻿using System.Data;
+using DuckDB.NET.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OmopTransformer.RTDS.Parser;
-using System.Data;
 
 namespace OmopTransformer.RTDS.Staging;
 

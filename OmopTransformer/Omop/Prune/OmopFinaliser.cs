@@ -1,7 +1,7 @@
-﻿using DuckDB.NET.Data;
+﻿using Dapper;
+using DuckDB.NET.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Dapper;
 
 namespace OmopTransformer.Omop.Prune;
 

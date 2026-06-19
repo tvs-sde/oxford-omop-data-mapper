@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using OmopTransformer.Omop;
-using OmopTransformer.OxfordPrescribing.DrugExposure;
-using OmopTransformer.Transformation;
-using OmopTransformer.Omop.DrugExposure;
-using OmopTransformer.OxfordPrescribing.DrugExposureWithSnomed;
 using OmopTransformer.ConceptResolution;
+using OmopTransformer.Omop;
+using OmopTransformer.Omop.DrugExposure;
+using OmopTransformer.OxfordPrescribing.DrugExposure;
+using OmopTransformer.OxfordPrescribing.DrugExposureWithSnomed;
+using OmopTransformer.Transformation;
 
 namespace OmopTransformer.OxfordPrescribing;
 

@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 using OmopTransformer.Omop;
 using OmopTransformer.Transformation;
-using System.Diagnostics;
 
 namespace OmopTransformer;
 

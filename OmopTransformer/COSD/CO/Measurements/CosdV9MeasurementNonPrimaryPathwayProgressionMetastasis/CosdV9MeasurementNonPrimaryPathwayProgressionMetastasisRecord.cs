@@ -1,5 +1,5 @@
 using OmopTransformer.Annotations;
-    
+
 namespace OmopTransformer.COSD.Colorectal.Measurements.CosdV9MeasurementNonPrimaryPathwayProgressionMetastasis;
 
 [DataOrigin("COSD")]

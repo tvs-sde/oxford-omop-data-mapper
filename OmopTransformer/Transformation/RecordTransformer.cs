@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Reflection;
+using Microsoft.Extensions.Logging;
 using OmopTransformer.Annotations;
 using OmopTransformer.ConceptResolution;
 using OmopTransformer.Omop;
-using System.Reflection;
 
 namespace OmopTransformer.Transformation;
 
@@ -232,13 +232,13 @@ internal class RecordTransformer : IRecordTransformer
             {
                 if (value is int i)
                 {
-                    property.SetValue(record, new int[] { i });
+                    property.SetValue(record, new[] { i });
                     return;
                 }
 
                 if (value is string s)
                 {
-                    property.SetValue(record, new int[] { int.Parse(s) });
+                    property.SetValue(record, new[] { int.Parse(s) });
                     return;
                 }
             }

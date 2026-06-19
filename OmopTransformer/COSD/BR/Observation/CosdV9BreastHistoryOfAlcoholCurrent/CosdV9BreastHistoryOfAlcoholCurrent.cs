@@ -1,6 +1,5 @@
 using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
-using OmopTransformer.Transformation;
 
 namespace OmopTransformer.COSD.BR.Observation.CosdV9BreastHistoryOfAlcoholCurrent;
 

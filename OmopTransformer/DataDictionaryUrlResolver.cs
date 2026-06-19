@@ -43,7 +43,7 @@ internal class DataDictionaryUrlResolver
                     origin =>
                         new
                         {
-                            origin = origin,
+                            origin,
                             task = TryResolveDataDictionaryUrl(origin)
                         })
                 .ToList();

@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Options;
-using DuckDB.NET.Data;
+﻿using DuckDB.NET.Data;
+using Microsoft.Extensions.Options;
 
 namespace OmopTransformer.Omop;
 
