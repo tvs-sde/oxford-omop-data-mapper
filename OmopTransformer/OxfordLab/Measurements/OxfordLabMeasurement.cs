@@ -18,10 +18,10 @@ internal class OxfordLabMeasurement : OmopMeasurement<OxfordLabMeasurementRecord
     [ConstantValue(32828, "EHR episode record")]
     public override int? measurement_type_concept_id { get; set; }
 
-    [Transform(typeof(LabTestLookup), nameof(Source.@EVENT))]
+    [Transform(typeof(LabTestLookup), nameof(Source.EVENT))]
     public override int? measurement_source_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.@EVENT))]
+    [CopyValue(nameof(Source.EVENT))]
     public override string? measurement_source_value { get; set; }
 
     [Transform(typeof(StandardMeasurementConceptSelector), useOmopTypeAsSource: true, nameof(measurement_source_concept_id))]

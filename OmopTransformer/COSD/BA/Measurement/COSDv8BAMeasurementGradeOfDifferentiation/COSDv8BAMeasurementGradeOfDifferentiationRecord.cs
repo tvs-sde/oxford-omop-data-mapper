@@ -1,4 +1,3 @@
-using System;
 using OmopTransformer.Annotations;
 
 namespace OmopTransformer.COSD.BA.Measurement.COSDv8BAMeasurementGradeOfDifferentiation;

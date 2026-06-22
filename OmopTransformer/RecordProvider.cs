@@ -1,10 +1,10 @@
-﻿using Dapper;
+﻿using System.Collections.ObjectModel;
+using Dapper;
 using DuckDB.NET.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OmopTransformer.Annotations;
-using System.Collections.ObjectModel;
-using Query = OmopTransformer.Transformation.Query;
+using OmopTransformer.Transformation;
 
 namespace OmopTransformer;
 

@@ -1,7 +1,7 @@
 ﻿    using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+    using Microsoft.Extensions.Options;
 
-namespace OmopTransformer.OxfordGP.Staging.Clearing;
+    namespace OmopTransformer.OxfordGP.Staging.Clearing;
 
 internal class OxfordGPStagingSchema : StagingSchema, IOxfordGPStagingSchema
 {

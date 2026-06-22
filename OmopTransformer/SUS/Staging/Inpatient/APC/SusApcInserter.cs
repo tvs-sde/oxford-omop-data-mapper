@@ -1,7 +1,7 @@
-﻿using DuckDB.NET.Data;
+﻿using System.Data;
+using DuckDB.NET.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Data;
 
 namespace OmopTransformer.SUS.Staging.Inpatient.APC;
 
