@@ -316,6 +316,36 @@ Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20Lung%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Diagnostic Procedure SNOMEDCT
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Diagnostic%20Procedure%20SNOMEDCT%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Diagnostic Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Diagnostic%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 HN Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20HN%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 HN Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20HN%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V9 HA Procedure Occurrence Procedure Opcs
 Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
@@ -336,6 +366,36 @@ Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Diagnostic Procedure SNOMEDCT
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Diagnostic%20Procedure%20SNOMEDCT%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Diagnostic Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Diagnostic%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 GY Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 GY Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V901 CT Procedure Occurrence Procedure Opcs
 Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
@@ -351,6 +411,26 @@ Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20CT%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CR Procedure Occurrence Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CR Procedure Occurrence Primary Procedure OPCS
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V9 CO Procedure Occurrence Procedure Opcs
 Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.

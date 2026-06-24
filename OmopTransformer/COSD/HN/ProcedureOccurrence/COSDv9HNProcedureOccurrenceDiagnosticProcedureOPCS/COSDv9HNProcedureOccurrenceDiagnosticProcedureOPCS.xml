@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'
+        as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null
+  and DiagnosticProcedureDate is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureOpcs">
+            <Description>The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (OPCS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

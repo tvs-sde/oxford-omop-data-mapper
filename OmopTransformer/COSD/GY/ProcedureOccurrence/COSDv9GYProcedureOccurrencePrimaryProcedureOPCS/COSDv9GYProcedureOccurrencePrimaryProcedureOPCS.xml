@@ -1,0 +1,41 @@
+<Query>
+    <Sql>
+with gy as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from gy
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryProcedureOpcs">
+            <Description>OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.</Description>
+            <Origin>PRIMARY PROCEDURE (OPCS)</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

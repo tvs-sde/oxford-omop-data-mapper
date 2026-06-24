@@ -222,6 +222,12 @@ using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementNonPrimaryPathwayMe
 using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementPrimaryPathwayMetastaticSite;
 using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementTumourLaterality;
 using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment;
+using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv8HNProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv8HNProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS;
+using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT;
+using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv9HNProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.HN.ProcedureOccurrence.COSDv9HNProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.HN.Measurement.COSDv8HNMeasurementMcategoryFinalPreTreatmentStage;
@@ -425,6 +431,10 @@ using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTCategoryFinalPretr
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTCategoryIntegratedStage;
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTnmStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTnmStageGroupingIntegrated;
+using OmopTransformer.COSD.CR.ProcedureOccurrence.COSDv8CRProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.CR.ProcedureOccurrence.COSDv8CRProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.CR.ProcedureOccurrence.COSDv9CRProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.CR.ProcedureOccurrence.COSDv9CRProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.CR.Measurement.COSDv8CRMeasurementMcategoryFinalPreTreatmentStage;
@@ -466,6 +476,12 @@ using OmopTransformer.COSD.CT.Measurement.COSDv9CTMeasurementTCategoryIntegrated
 using OmopTransformer.COSD.CT.Measurement.COSDv9CTMeasurementTNMStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.CT.Measurement.COSDv9CTMeasurementTNMStageGroupingIntegrated;
 using OmopTransformer.COSD.CT.Measurement.COSDv9CTMeasurementTumourLaterality;
+using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv8GYProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv8GYProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS;
+using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT;
+using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrencePrimaryProcedureOPCS;
+using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementMcategoryFinalPreTreatmentStage;
@@ -1790,6 +1806,42 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv8HNProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8HNProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 HN Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNProcedureOccurrenceProcedureOPCSRecord, COSDv8HNProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 HN Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCSRecord, COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HN Procedure Occurrence Diagnostic Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCTRecord, COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HN Procedure Occurrence Diagnostic Procedure SNOMEDCT",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv9HNProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HN Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNProcedureOccurrenceProcedureOPCSRecord, COSDv9HNProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 HN Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDateRecord, COSDv8BAProcedureOccurrencePrimaryProcedureOPCSProcedureDate>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V8 BA Procedure Occurrence Primary Procedure OPCS Procedure Date",
@@ -2913,6 +2965,42 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv8GYProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8GYProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 GY Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8GYProcedureOccurrenceProcedureOPCSRecord, COSDv8GYProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 GY Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCSRecord, COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 GY Procedure Occurrence Diagnostic Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCTRecord, COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 GY Procedure Occurrence Diagnostic Procedure SNOMEDCT",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv9GYProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 GY Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYProcedureOccurrenceProcedureOPCSRecord, COSDv9GYProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 GY Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv8UGMeasurementAdultComorbidityEvaluationRecord, COSDv8UGMeasurementAdultComorbidityEvaluation>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv8UGMeasurementAdultComorbidityEvaluation",
@@ -3234,6 +3322,30 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9CRMeasurementTNMcategoryIntegratedStageRecord, COSDv9CRMeasurementTNMcategoryIntegratedStage>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv9CRMeasurementTNMcategoryIntegratedStage",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv8CRProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 CR Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRProcedureOccurrenceProcedureOPCSRecord, COSDv8CRProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V8 CR Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRProcedureOccurrencePrimaryProcedureOPCSRecord, COSDv9CRProcedureOccurrencePrimaryProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CR Procedure Occurrence Primary Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRProcedureOccurrenceProcedureOPCSRecord, COSDv9CRProcedureOccurrenceProcedureOPCS>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CR Procedure Occurrence Procedure OPCS",
             runId,
             cancellationToken);
 

@@ -1146,6 +1146,357 @@ and l.NhsNumber is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20Lung%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Procedure OPCS
+Source column  `ProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProcedureOpcs` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+-- Selects the non-primary PROCEDURE (OPCS) codes for Head and Neck (HN)
+-- cancer records from COSD v9.01. Each Surgery occurrence can carry zero,
+-- one or many additional OPCS-coded procedures. To preserve the
+-- one-Surgery-to-many-ProcedureOpcs relationship (and so that each
+-- non-primary procedure inherits the PROCEDURE DATE of the surgery it
+-- belongs to), the JSON is unnested in two stages: first to one Surgery
+-- object per row, then to one ProcedureOpcs code per row within that
+-- Surgery. The Surgery's ProcedureDate is carried alongside each code.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime. procedure_date is
+--     mandatory in OMOP procedure_occurrence.
+--   * Map ProcedureOpcs to the standard procedure_concept_id and retain
+--     the verbatim code in procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR
+--     provenance concept.
+with hn_surgery as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        -- Flatten Surgery to one object per row, whether Treatment is a
+        -- single object or an array.
+        unnest(
+            [
+                [Record -> '$.Treatment.Surgery'],
+                Record -> '$.Treatment[*].Surgery'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+),
+hn_proc as (
+    select
+        NhsNumber,
+        -- PROCEDURE DATE - the date relevant to the surgery; inherited by
+        -- every ProcedureOpcs code emitted from this Surgery. Becomes
+        -- procedure_date / procedure_datetime downstream.
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        -- PROCEDURE (OPCS) - additional OPCS-4 coded procedures recorded
+        -- against the surgery. Flattens single object and array shapes
+        -- into one row per code.
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOpcs.@code'],
+                Surgery ->> '$.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from hn_surgery
+    where Surgery is not null
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from hn_proc
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Primary Procedure OPCS
+Source column  `PrimaryProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer
+-- records from COSD v9.01. Each Surgery occurrence contributes one row
+-- per (patient, primary OPCS code, procedure date) triple. The Surgery
+-- structure can appear either as a single object or as an array under
+-- Treatment, so the JSON paths are unnested recursively to flatten both
+-- shapes into individual rows.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime.
+--   * Map PrimaryProcedureOpcs (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept (e.g. "EHR Cancer Registry record").
+with hn as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary
+        -- patient procedure performed during the surgery; will be mapped
+        -- to procedure_concept_id and retained as procedure_source_value.
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        -- PROCEDURE DATE - the date relevant to the surgery; paired
+        -- one-to-one with PrimaryProcedureOpcs via lockstep unnest so
+        -- each procedure code keeps its own date.
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from hn
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Diagnostic Procedure SNOMEDCT
+Source column  `DiagnosticProcedureSnomedCt`.
+Resolve Snomed codes to OMOP concepts.
+
+* `DiagnosticProcedureSnomedCt` The SNOMED CT concept ID used to identify the diagnostic procedure. [DIAGNOSTIC PROCEDURE (SNOMED CT)](https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html)
+
+```sql
+-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Head and Neck (HN)
+-- cancer records from COSD v9.01. Each diagnostic procedure contributes
+-- one row per (patient, SNOMED CT code, procedure date) triple.
+-- DiagnosticProcedures is captured as a singular structure in the source,
+-- so no unnest is required.
+--
+-- Downstream ETL responsibilities:
+--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /
+--     DATETIME and assign it to procedure_date / procedure_datetime.
+--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the
+--     standard procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept.
+select distinct
+    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the
+    -- diagnostic procedure; becomes procedure_date / procedure_datetime.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id
+    -- identifying the diagnostic procedure carried out; will be mapped to
+    -- procedure_concept_id and retained as procedure_source_value.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'
+        as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Diagnostic%20Procedure%20SNOMEDCT%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Diagnostic Procedure OPCS
+Source column  `DiagnosticProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `DiagnosticProcedureOpcs` The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out. [DIAGNOSTIC PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__opcs_.html)
+
+```sql
+-- Selects the DIAGNOSTIC PROCEDURE (OPCS) for Head and Neck (HN) cancer
+-- records from COSD v9.01. Each diagnostic procedure contributes one row
+-- per (patient, OPCS code, procedure date) triple. DiagnosticProcedures
+-- is captured as a singular structure in the source, so no unnest is
+-- required.
+--
+-- Downstream ETL responsibilities:
+--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /
+--     DATETIME and assign it to procedure_date / procedure_datetime.
+--   * Map DiagnosticProcedureOpcs (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept.
+select distinct
+    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the
+    -- diagnostic procedure; becomes procedure_date / procedure_datetime.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    -- DIAGNOSTIC PROCEDURE (OPCS) - the OPCS-4 code identifying the
+    -- diagnostic procedure carried out; will be mapped to
+    -- procedure_concept_id and retained as procedure_source_value.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'
+        as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Diagnostic%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 HN Procedure Occurrence Procedure OPCS
+Source column  `ProcedureOPCS`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProcedureOPCS` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+-- Selects the non-primary PROCEDURE (OPCS) codes for Head and Neck (HN)
+-- cancer records from COSD v8.1. Each Surgery occurrence can carry zero,
+-- one or many additional OPCS-coded procedures. To preserve the
+-- one-Surgery-to-many-ProcedureOPCS relationship (and so that each
+-- non-primary procedure inherits the PROCEDURE DATE of the surgery it
+-- belongs to), the JSON is unnested in two stages: first to one Surgery
+-- object per row, then to one ProcedureOPCS code per row within that
+-- Surgery. The Surgery's ProcedureDate is carried alongside each code.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime. procedure_date is
+--     mandatory in OMOP procedure_occurrence.
+--   * Map ProcedureOPCS to the standard procedure_concept_id and retain
+--     the verbatim code in procedure_source_value.
+--   * Resolve NHSNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR
+--     provenance concept.
+with hn_surgery as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        -- Flatten the Surgery container
+        -- (HeadNeckCoreSurgeryAndOtherProcedures) to one object per row,
+        -- whether HeadNeckCoreTreatment is a single object or an array.
+        unnest(
+            [
+                [Record -> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures'],
+                Record -> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+),
+hn_proc as (
+    select
+        NHSNumber,
+        -- PROCEDURE DATE - the date relevant to the surgery; inherited by
+        -- every ProcedureOPCS code emitted from this Surgery. Becomes
+        -- procedure_date / procedure_datetime downstream.
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        -- PROCEDURE (OPCS) - additional OPCS-4 coded procedures recorded
+        -- against the surgery. Flattens single object and array shapes
+        -- into one row per code.
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from hn_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from hn_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20HN%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 HN Procedure Occurrence Primary Procedure OPCS
+Source column  `PrimaryProcedureOPCS`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryProcedureOPCS` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer
+-- records from COSD v8.1. Each Surgery occurrence contributes one row per
+-- (patient, primary OPCS code, procedure date) triple. The Surgery
+-- structure can appear either as a single object or as an array under
+-- HeadNeckCoreTreatment, so the JSON paths are unnested recursively to
+-- flatten both shapes into individual rows.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime.
+--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NHSNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept (e.g. "EHR Cancer Registry record").
+with hn as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary
+        -- patient procedure performed during the surgery; will be mapped
+        -- to procedure_concept_id and retained as procedure_source_value.
+        unnest([
+            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], recursive := true) as PrimaryProcedureOPCS,
+        -- PROCEDURE DATE - the date relevant to the surgery; paired
+        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so
+        -- each procedure code keeps its own date.
+        unnest([
+            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],
+            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from hn
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20HN%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V9 HA Procedure Occurrence Procedure Opcs
 Source column  `ProcedureOpcs`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1222,6 +1573,358 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Procedure OPCS
+Source column  `ProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProcedureOpcs` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+-- Selects the non-primary PROCEDURE (OPCS) codes for Gynaecological (GY)
+-- cancer records from COSD v9.01. Each Surgery occurrence can carry zero,
+-- one or many additional OPCS-coded procedures. To preserve the
+-- one-Surgery-to-many-ProcedureOpcs relationship (and so that each
+-- non-primary procedure inherits the PROCEDURE DATE of the surgery it
+-- belongs to), the JSON is unnested in two stages: first to one Surgery
+-- object per row, then to one ProcedureOpcs code per row within that
+-- Surgery. The Surgery's ProcedureDate is carried alongside each code.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime. procedure_date is
+--     mandatory in OMOP procedure_occurrence.
+--   * Map ProcedureOpcs to the standard procedure_concept_id and retain
+--     the verbatim code in procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR
+--     provenance concept.
+with gy_surgery as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        -- Flatten Surgery to one object per row, whether Treatment is a
+        -- single object or an array.
+        unnest(
+            [
+                [Record -> '$.Treatment.Surgery'],
+                Record -> '$.Treatment[*].Surgery'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+),
+gy_proc as (
+    select
+        NhsNumber,
+        -- PROCEDURE DATE - the date relevant to the surgery; inherited by
+        -- every ProcedureOpcs code emitted from this Surgery. Becomes
+        -- procedure_date / procedure_datetime downstream.
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        -- PROCEDURE (OPCS) - additional OPCS-4 coded procedures recorded
+        -- against the surgery. Flattens single object and array shapes
+        -- into one row per code.
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOpcs.@code'],
+                Surgery ->> '$.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from gy_surgery
+    where Surgery is not null
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from gy_proc
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Primary Procedure OPCS
+Source column  `PrimaryProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+-- Selects the PRIMARY PROCEDURE (OPCS) for Gynaecological (GY) cancer
+-- records from COSD v9.01. Each Surgery occurrence contributes one row per
+-- (patient, primary OPCS code, procedure date) triple. The Surgery
+-- structure can appear either as a single object or as an array under
+-- Treatment, so the JSON paths are unnested recursively to flatten both
+-- shapes into individual rows.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime.
+--   * Map PrimaryProcedureOpcs (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept (e.g. "EHR Cancer Registry record").
+with gy as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary
+        -- patient procedure performed during the surgery; will be mapped
+        -- to procedure_concept_id and retained as procedure_source_value.
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        -- PROCEDURE DATE - the date relevant to the surgery; paired
+        -- one-to-one with PrimaryProcedureOpcs via lockstep unnest so
+        -- each procedure code keeps its own date.
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from gy
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Diagnostic Procedure SNOMEDCT
+Source column  `DiagnosticProcedureSnomedCt`.
+Resolve Snomed codes to OMOP concepts.
+
+* `DiagnosticProcedureSnomedCt` The SNOMED CT concept ID used to identify the diagnostic procedure. [DIAGNOSTIC PROCEDURE (SNOMED CT)](https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html)
+
+```sql
+-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Gynaecological (GY)
+-- cancer records from COSD v9.01. Each diagnostic procedure contributes
+-- one row per (patient, SNOMED CT code, procedure date) triple.
+-- DiagnosticProcedures is captured as a singular structure in the source,
+-- so no unnest is required.
+--
+-- Downstream ETL responsibilities:
+--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /
+--     DATETIME and assign it to procedure_date / procedure_datetime.
+--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the
+--     standard procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept.
+select distinct
+    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the
+    -- diagnostic procedure; becomes procedure_date / procedure_datetime.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id
+    -- identifying the diagnostic procedure carried out; will be mapped to
+    -- procedure_concept_id and retained as procedure_source_value.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'
+        as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Diagnostic%20Procedure%20SNOMEDCT%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Diagnostic Procedure OPCS
+Source column  `DiagnosticProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `DiagnosticProcedureOpcs` The OPCS Classification of Interventions and Procedures code used to identify the diagnostic procedure carried out. [DIAGNOSTIC PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__opcs_.html)
+
+```sql
+-- Selects the DIAGNOSTIC PROCEDURE (OPCS) for Gynaecological (GY) cancer
+-- records from COSD v9.01. Each diagnostic procedure contributes one row
+-- per (patient, OPCS code, procedure date) triple. DiagnosticProcedures
+-- is captured as a singular structure in the source, so no unnest is
+-- required.
+--
+-- Downstream ETL responsibilities:
+--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /
+--     DATETIME and assign it to procedure_date / procedure_datetime.
+--   * Map DiagnosticProcedureOpcs (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept.
+select distinct
+    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the
+    -- diagnostic procedure; becomes procedure_date / procedure_datetime.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    -- DIAGNOSTIC PROCEDURE (OPCS) - the OPCS-4 code identifying the
+    -- diagnostic procedure carried out; will be mapped to
+    -- procedure_concept_id and retained as procedure_source_value.
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'
+        as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Diagnostic%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 GY Procedure Occurrence Procedure OPCS
+Source column  `ProcedureOPCS`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProcedureOPCS` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+-- Selects the non-primary PROCEDURE (OPCS) codes for Gynaecological (GY)
+-- cancer records from COSD v8.1. Each Surgery occurrence can carry zero,
+-- one or many additional OPCS-coded procedures. To preserve the
+-- one-Surgery-to-many-ProcedureOPCS relationship (and so that each
+-- non-primary procedure inherits the PROCEDURE DATE of the surgery it
+-- belongs to), the JSON is unnested in two stages: first to one Surgery
+-- object per row, then to one ProcedureOPCS code per row within that
+-- Surgery. The Surgery's ProcedureDate is carried alongside each code.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime. procedure_date is
+--     mandatory in OMOP procedure_occurrence.
+--   * Map ProcedureOPCS to the standard procedure_concept_id and retain
+--     the verbatim code in procedure_source_value.
+--   * Resolve NHSNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR
+--     provenance concept.
+with gy_surgery as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        -- Flatten the Surgery container
+        -- (GynaecologicalCoreSurgeryAndOtherProcedures) to one object per
+        -- row, whether GynaecologicalCoreTreatment is a single object or
+        -- an array.
+        unnest(
+            [
+                [Record -> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures'],
+                Record -> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+),
+gy_proc as (
+    select
+        NHSNumber,
+        -- PROCEDURE DATE - the date relevant to the surgery; inherited by
+        -- every ProcedureOPCS code emitted from this Surgery. Becomes
+        -- procedure_date / procedure_datetime downstream.
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        -- PROCEDURE (OPCS) - additional OPCS-4 coded procedures recorded
+        -- against the surgery. Flattens single object and array shapes
+        -- into one row per code.
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from gy_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from gy_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 GY Procedure Occurrence Primary Procedure OPCS
+Source column  `PrimaryProcedureOPCS`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryProcedureOPCS` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+-- Selects the PRIMARY PROCEDURE (OPCS) for Gynaecological (GY) cancer
+-- records from COSD v8.1. Each Surgery occurrence contributes one row per
+-- (patient, primary OPCS code, procedure date) triple. The Surgery
+-- structure can appear either as a single object or as an array under
+-- GynaecologicalCoreTreatment, so the JSON paths are unnested recursively
+-- to flatten both shapes into individual rows.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime.
+--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NHSNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept (e.g. "EHR Cancer Registry record").
+with gy as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary
+        -- patient procedure performed during the surgery; will be mapped
+        -- to procedure_concept_id and retained as procedure_source_value.
+        unnest([
+            [Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+            Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], recursive := true) as PrimaryProcedureOPCS,
+        -- PROCEDURE DATE - the date relevant to the surgery; paired
+        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so
+        -- each procedure code keeps its own date.
+        unnest([
+            [Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate'],
+            Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from gy
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V901 CT Procedure Occurrence Procedure Opcs
 Source column  `ProcedureOpcs`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1306,6 +2009,277 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20CT%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Procedure OPCS
+Source column  `ProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProcedureOpcs` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+-- Selects the non-primary PROCEDURE (OPCS) codes for Colorectal (CR)
+-- cancer records from COSD v9.01. Each Surgery occurrence can carry zero,
+-- one or many additional OPCS-coded procedures. To preserve the
+-- one-Surgery-to-many-ProcedureOpcs relationship (and so that each
+-- non-primary procedure inherits the PROCEDURE DATE of the surgery it
+-- belongs to), the JSON is unnested in two stages: first to one Surgery
+-- object per row, then to one ProcedureOpcs code per row within that
+-- Surgery. The Surgery's ProcedureDate is carried alongside each code.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime. procedure_date is
+--     mandatory in OMOP procedure_occurrence.
+--   * Map ProcedureOpcs to the standard procedure_concept_id and retain
+--     the verbatim code in procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR
+--     provenance concept.
+with cr_surgery as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        -- Flatten Surgery to one object per row, whether Treatment is a
+        -- single object or an array. The recursive unnest handles the
+        -- list-of-one (single Surgery) and list (array Surgery) cases.
+        unnest(
+            [
+                [Record -> '$.Treatment.Surgery'],
+                Record -> '$.Treatment[*].Surgery'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+),
+cr_proc as (
+    select
+        NhsNumber,
+        -- PROCEDURE DATE - the date relevant to the surgery; inherited by
+        -- every ProcedureOpcs code emitted from this Surgery. Becomes
+        -- procedure_date / procedure_datetime downstream.
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        -- PROCEDURE (OPCS) - additional OPCS-4 coded procedures recorded
+        -- against the surgery. Flattens single object and array shapes
+        -- into one row per code.
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOpcs.@code'],
+                Surgery ->> '$.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from cr_surgery
+    where Surgery is not null
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from cr_proc
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Primary Procedure OPCS
+Source column  `PrimaryProcedureOpcs`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryProcedureOpcs` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+-- Selects the PRIMARY PROCEDURE (OPCS) for Colorectal (CR) cancer records
+-- from COSD v9.01. Each Surgery occurrence contributes one row per
+-- (patient, primary OPCS code, procedure date) triple. The Surgery
+-- structure can appear either as a single object or as an array under
+-- Treatment, so the JSON paths are unnested recursively to flatten both
+-- shapes into individual rows.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime.
+--   * Map PrimaryProcedureOpcs (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NhsNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept (e.g. "EHR Cancer Registry record").
+with cr as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary
+        -- patient procedure performed during the surgery; will be mapped
+        -- to procedure_concept_id and retained as procedure_source_value.
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        -- PROCEDURE DATE - the date relevant to the surgery; paired
+        -- one-to-one with PrimaryProcedureOpcs via lockstep unnest so
+        -- each procedure code keeps its own date.
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from cr
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CR Procedure Occurrence Procedure OPCS
+Source column  `ProcedureOPCS`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `ProcedureOPCS` Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable. [PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html)
+
+```sql
+-- Selects the non-primary PROCEDURE (OPCS) codes for Colorectal (CR)
+-- cancer records from COSD v8.1. Each Surgery occurrence can carry zero,
+-- one or many additional OPCS-coded procedures. To preserve the
+-- one-Surgery-to-many-ProcedureOPCS relationship (and so that each
+-- non-primary procedure inherits the PROCEDURE DATE of the surgery it
+-- belongs to), the JSON is unnested in two stages: first to one Surgery
+-- object per row, then to one ProcedureOPCS code per row within that
+-- Surgery. The Surgery's ProcedureDate is carried alongside each code.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime. procedure_date is
+--     mandatory in OMOP procedure_occurrence.
+--   * Map ProcedureOPCS to the standard procedure_concept_id and retain
+--     the verbatim code in procedure_source_value.
+--   * Resolve NHSNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR
+--     provenance concept.
+with cr_surgery as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        -- Flatten the Surgery container (CoreSurgeryAndOtherProcedures)
+        -- to one object per row, whether CoreTreatment is a single object
+        -- or an array.
+        unnest(
+            [
+                [Record -> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures'],
+                Record -> '$.Core.CoreCore.CoreTreatment[*].CoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'CR'
+),
+cr_proc as (
+    select
+        NHSNumber,
+        -- PROCEDURE DATE - the date relevant to the surgery; inherited by
+        -- every ProcedureOPCS code emitted from this Surgery. Becomes
+        -- procedure_date / procedure_datetime downstream.
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        -- PROCEDURE (OPCS) - additional OPCS-4 coded procedures recorded
+        -- against the surgery. Flattens single object and array shapes
+        -- into one row per code.
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from cr_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from cr_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CR Procedure Occurrence Primary Procedure OPCS
+Source column  `PrimaryProcedureOPCS`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `PrimaryProcedureOPCS` OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out. [PRIMARY PROCEDURE (OPCS)](https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html)
+
+```sql
+-- Selects the PRIMARY PROCEDURE (OPCS) for Colorectal (CR) cancer records
+-- from COSD v8.1. Each Surgery occurrence contributes one row per
+-- (patient, primary OPCS code, procedure date) triple. The Surgery
+-- structure can appear either as a single object or as an array under
+-- CoreTreatment, so the JSON paths are unnested recursively to flatten
+-- both shapes into individual rows.
+--
+-- The OPCS code is the primary patient procedure carried out (one per
+-- surgery); the ProcedureDate is the date relevant to that surgery and
+-- is paired one-to-one with the primary OPCS code via lockstep unnest.
+--
+-- Downstream ETL responsibilities:
+--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and
+--     assign it to procedure_date / procedure_datetime.
+--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard
+--     procedure_concept_id and retain the verbatim code in
+--     procedure_source_value.
+--   * Resolve NHSNumber against cdm.person to obtain person_id.
+--   * Set procedure_type_concept_id to a cancer registry / EHR provenance
+--     concept (e.g. "EHR Cancer Registry record").
+with cr as (
+    select
+        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
+        Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary
+        -- patient procedure performed during the surgery; will be mapped
+        -- to procedure_concept_id and retained as procedure_source_value.
+        -- The recursive unnest flattens the Surgery array (or single
+        -- object) under CoreTreatment.
+        unnest([
+            [Record ->> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+            Record ->> '$.Core.CoreCore.CoreTreatment[*].CoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], recursive := true) as PrimaryProcedureOPCS,
+        -- PROCEDURE DATE - the date relevant to the surgery; paired
+        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so
+        -- each procedure code keeps its own date. Will become
+        -- procedure_date / procedure_datetime.
+        unnest([
+            [Record ->> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures.ProcedureDate'],
+            Record ->> '$.Core.CoreCore.CoreTreatment[*].CoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'CR'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from cr
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V9 CO Procedure Occurrence Procedure Opcs
 Source column  `ProcedureOpcs`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.

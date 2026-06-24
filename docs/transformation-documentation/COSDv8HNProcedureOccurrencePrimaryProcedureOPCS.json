@@ -1,0 +1,110 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer\n-- records from COSD v8.1. Each Surgery occurrence contributes one row per\n-- (patient, primary OPCS code, procedure date) triple. The Surgery\n-- structure can appear either as a single object or as an array under\n-- HeadNeckCoreTreatment, so the JSON paths are unnested recursively to\n-- flatten both shapes into individual rows.\n--\n-- Downstream ETL responsibilities:\n--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and\n--     assign it to procedure_date / procedure_datetime.\n--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard\n--     procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NHSNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept (e.g. \"EHR Cancer Registry record\").\nwith hn as (\n    select\n        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'\n            as NHSNumber,\n        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary\n        -- patient procedure performed during the surgery; will be mapped\n        -- to procedure_concept_id and retained as procedure_source_value.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'\n        ], recursive := true) as PrimaryProcedureOPCS,\n        -- PROCEDURE DATE - the date relevant to the surgery; paired\n        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so\n        -- each procedure code keeps its own date.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'\n        ], recursive := true) as ProcedureDate\n    from omop_staging.cosd_staging_81\n    where type = 'HN'\n)\nselect distinct\n    NHSNumber,\n    PrimaryProcedureOPCS,\n    ProcedureDate\nfrom hn\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer\n-- records from COSD v8.1. Each Surgery occurrence contributes one row per\n-- (patient, primary OPCS code, procedure date) triple. The Surgery\n-- structure can appear either as a single object or as an array under\n-- HeadNeckCoreTreatment, so the JSON paths are unnested recursively to\n-- flatten both shapes into individual rows.\n--\n-- Downstream ETL responsibilities:\n--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and\n--     assign it to procedure_date / procedure_datetime.\n--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard\n--     procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NHSNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept (e.g. \"EHR Cancer Registry record\").\nwith hn as (\n    select\n        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'\n            as NHSNumber,\n        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary\n        -- patient procedure performed during the surgery; will be mapped\n        -- to procedure_concept_id and retained as procedure_source_value.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'\n        ], recursive := true) as PrimaryProcedureOPCS,\n        -- PROCEDURE DATE - the date relevant to the surgery; paired\n        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so\n        -- each procedure code keeps its own date.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'\n        ], recursive := true) as ProcedureDate\n    from omop_staging.cosd_staging_81\n    where type = 'HN'\n)\nselect distinct\n    NHSNumber,\n    PrimaryProcedureOPCS,\n    ProcedureDate\nfrom hn\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer\n-- records from COSD v8.1. Each Surgery occurrence contributes one row per\n-- (patient, primary OPCS code, procedure date) triple. The Surgery\n-- structure can appear either as a single object or as an array under\n-- HeadNeckCoreTreatment, so the JSON paths are unnested recursively to\n-- flatten both shapes into individual rows.\n--\n-- Downstream ETL responsibilities:\n--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and\n--     assign it to procedure_date / procedure_datetime.\n--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard\n--     procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NHSNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept (e.g. \"EHR Cancer Registry record\").\nwith hn as (\n    select\n        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'\n            as NHSNumber,\n        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary\n        -- patient procedure performed during the surgery; will be mapped\n        -- to procedure_concept_id and retained as procedure_source_value.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'\n        ], recursive := true) as PrimaryProcedureOPCS,\n        -- PROCEDURE DATE - the date relevant to the surgery; paired\n        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so\n        -- each procedure code keeps its own date.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'\n        ], recursive := true) as ProcedureDate\n    from omop_staging.cosd_staging_81\n    where type = 'HN'\n)\nselect distinct\n    NHSNumber,\n    PrimaryProcedureOPCS,\n    ProcedureDate\nfrom hn\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `PrimaryProcedureOPCS`",
+      "dataSource": [
+        {
+          "name": "PrimaryProcedureOPCS",
+          "description": "OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.",
+          "origins": [
+            {
+              "origin": "PRIMARY PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer\n-- records from COSD v8.1. Each Surgery occurrence contributes one row per\n-- (patient, primary OPCS code, procedure date) triple. The Surgery\n-- structure can appear either as a single object or as an array under\n-- HeadNeckCoreTreatment, so the JSON paths are unnested recursively to\n-- flatten both shapes into individual rows.\n--\n-- Downstream ETL responsibilities:\n--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and\n--     assign it to procedure_date / procedure_datetime.\n--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard\n--     procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NHSNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept (e.g. \"EHR Cancer Registry record\").\nwith hn as (\n    select\n        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'\n            as NHSNumber,\n        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary\n        -- patient procedure performed during the surgery; will be mapped\n        -- to procedure_concept_id and retained as procedure_source_value.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'\n        ], recursive := true) as PrimaryProcedureOPCS,\n        -- PROCEDURE DATE - the date relevant to the surgery; paired\n        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so\n        -- each procedure code keeps its own date.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'\n        ], recursive := true) as ProcedureDate\n    from omop_staging.cosd_staging_81\n    where type = 'HN'\n)\nselect distinct\n    NHSNumber,\n    PrimaryProcedureOPCS,\n    ProcedureDate\nfrom hn\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "PrimaryProcedureOPCS",
+          "description": "OPCS Classification of Interventions and Procedures code used to identify the primary patient procedure carried out.",
+          "origins": [
+            {
+              "origin": "PRIMARY PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the PRIMARY PROCEDURE (OPCS) for Head and Neck (HN) cancer\n-- records from COSD v8.1. Each Surgery occurrence contributes one row per\n-- (patient, primary OPCS code, procedure date) triple. The Surgery\n-- structure can appear either as a single object or as an array under\n-- HeadNeckCoreTreatment, so the JSON paths are unnested recursively to\n-- flatten both shapes into individual rows.\n--\n-- Downstream ETL responsibilities:\n--   * Cast ProcedureDate (currently varchar) to a DATE / DATETIME and\n--     assign it to procedure_date / procedure_datetime.\n--   * Map PrimaryProcedureOPCS (an OPCS-4 code) to the standard\n--     procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NHSNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept (e.g. \"EHR Cancer Registry record\").\nwith hn as (\n    select\n        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'\n            as NHSNumber,\n        -- PRIMARY PROCEDURE (OPCS) - the OPCS-4 code of the primary\n        -- patient procedure performed during the surgery; will be mapped\n        -- to procedure_concept_id and retained as procedure_source_value.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'\n        ], recursive := true) as PrimaryProcedureOPCS,\n        -- PROCEDURE DATE - the date relevant to the surgery; paired\n        -- one-to-one with PrimaryProcedureOPCS via lockstep unnest so\n        -- each procedure code keeps its own date.\n        unnest([\n            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],\n            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'\n        ], recursive := true) as ProcedureDate\n    from omop_staging.cosd_staging_81\n    where type = 'HN'\n)\nselect distinct\n    NHSNumber,\n    PrimaryProcedureOPCS,\n    ProcedureDate\nfrom hn\nwhere NHSNumber is not null\n  and PrimaryProcedureOPCS is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

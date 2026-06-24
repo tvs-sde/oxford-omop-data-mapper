@@ -260,6 +260,24 @@
     <None Update="COSD\GY\Measurement\COSDv9GYMeasurementTumourLaterality\COSDv9GYMeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\GY\ProcedureOccurrence\COSDv8GYProcedureOccurrencePrimaryProcedureOPCS\COSDv8GYProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ProcedureOccurrence\COSDv8GYProcedureOccurrenceProcedureOPCS\COSDv8GYProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ProcedureOccurrence\COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS\COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ProcedureOccurrence\COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT\COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ProcedureOccurrence\COSDv9GYProcedureOccurrencePrimaryProcedureOPCS\COSDv9GYProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ProcedureOccurrence\COSDv9GYProcedureOccurrenceProcedureOPCS\COSDv9GYProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\Breast\Observation\CosdV8BreastFamilialCancerSyndromeIndicator\CosdV8BreastFamilialCancerSyndromeIndicator.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1613,6 +1631,24 @@
     <None Update="COSD\HN\Measurement\COSDv8HNMeasurementTumourLaterality\COSDv8HNMeasurementTumourLaterality.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv8HNProcedureOccurrencePrimaryProcedureOPCS\COSDv8HNProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv8HNProcedureOccurrenceProcedureOPCS\COSDv8HNProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS\COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT\COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv9HNProcedureOccurrencePrimaryProcedureOPCS\COSDv9HNProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ProcedureOccurrence\COSDv9HNProcedureOccurrenceProcedureOPCS\COSDv9HNProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="COSD\CT\Measurement\COSDv8CTMeasurementAdultComorbidityEvaluation\COSDv8CTMeasurementAdultComorbidityEvaluation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1776,6 +1812,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\CR\Measurement\COSDv9CRMeasurementTNMcategoryIntegratedStage\COSDv9CRMeasurementTNMcategoryIntegratedStage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ProcedureOccurrence\COSDv8CRProcedureOccurrencePrimaryProcedureOPCS\COSDv8CRProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ProcedureOccurrence\COSDv8CRProcedureOccurrenceProcedureOPCS\COSDv8CRProcedureOccurrenceProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ProcedureOccurrence\COSDv9CRProcedureOccurrencePrimaryProcedureOPCS\COSDv9CRProcedureOccurrencePrimaryProcedureOPCS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ProcedureOccurrence\COSDv9CRProcedureOccurrenceProcedureOPCS\COSDv9CRProcedureOccurrenceProcedureOPCS.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UG\Measurement\COSDv9UGMeasurementAdultComorbidityEvaluation27Score\COSDv9UGMeasurementAdultComorbidityEvaluation27Score.xml">

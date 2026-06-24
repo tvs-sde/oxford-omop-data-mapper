@@ -202,6 +202,30 @@ has_toc: false
 > * Duplicates are handled by selecting distinct records based on NHS Number, Procedure Date, and Primary Procedure OPCS
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungProcedureOccurrencePrimaryProcedureOpcs%20mapping){: .btn }
+## COSDv9HNProcedureOccurrenceProcedureOPCS
+<a href="COSDv9HNProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv9HNProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9HNProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv9HNProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv9HNProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv9HNProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9HNProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT
+<a href="COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT.svg" target="_blank"><img src="COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9HNProcedureOccurrenceDiagnosticProcedureSNOMEDCT%20mapping){: .btn }
+## COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS
+<a href="COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS.svg" target="_blank"><img src="COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9HNProcedureOccurrenceDiagnosticProcedureOPCS%20mapping){: .btn }
+## COSDv8HNProcedureOccurrenceProcedureOPCS
+<a href="COSDv8HNProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv8HNProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HNProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv8HNProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv8HNProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8HNProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8HNProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
 ## COSDv9HAProcedureOccurrenceProcedureOpcs
 <a href="COSDv9HAProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv9HAProcedureOccurrenceProcedureOpcs.svg" /></a>
 
@@ -218,6 +242,30 @@ has_toc: false
 <a href="COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs.svg" target="_blank"><img src="COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9HAProcedureOccurrenceDiagnosticProcedureOpcs%20mapping){: .btn }
+## COSDv9GYProcedureOccurrenceProcedureOPCS
+<a href="COSDv9GYProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv9GYProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9GYProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv9GYProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv9GYProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv9GYProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9GYProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT
+<a href="COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT.svg" target="_blank"><img src="COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT%20mapping){: .btn }
+## COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS
+<a href="COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS.svg" target="_blank"><img src="COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9GYProcedureOccurrenceDiagnosticProcedureOPCS%20mapping){: .btn }
+## COSDv8GYProcedureOccurrenceProcedureOPCS
+<a href="COSDv8GYProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv8GYProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8GYProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv8GYProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv8GYProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8GYProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8GYProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
 ## COSDv901CTProcedureOccurrenceProcedureOpcs
 <a href="COSDv901CTProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv901CTProcedureOccurrenceProcedureOpcs.svg" /></a>
 
@@ -230,6 +278,22 @@ has_toc: false
 <a href="COSDv8CTProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8CTProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8CTProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv9CRProcedureOccurrenceProcedureOPCS
+<a href="COSDv9CRProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv9CRProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9CRProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv9CRProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv9CRProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv9CRProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9CRProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv8CRProcedureOccurrenceProcedureOPCS
+<a href="COSDv8CRProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv8CRProcedureOccurrenceProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8CRProcedureOccurrenceProcedureOPCS%20mapping){: .btn }
+## COSDv8CRProcedureOccurrencePrimaryProcedureOPCS
+<a href="COSDv8CRProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8CRProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8CRProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
 ## COSDv9COProcedureOccurrenceProcedureOpcs
 <a href="COSDv9COProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv9COProcedureOccurrenceProcedureOpcs.svg" /></a>
 

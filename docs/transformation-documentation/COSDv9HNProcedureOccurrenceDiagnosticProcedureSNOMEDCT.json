@@ -1,0 +1,110 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Head and Neck (HN)\n-- cancer records from COSD v9.01. Each diagnostic procedure contributes\n-- one row per (patient, SNOMED CT code, procedure date) triple.\n-- DiagnosticProcedures is captured as a singular structure in the source,\n-- so no unnest is required.\n--\n-- Downstream ETL responsibilities:\n--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /\n--     DATETIME and assign it to procedure_date / procedure_datetime.\n--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the\n--     standard procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the\n    -- diagnostic procedure; becomes procedure_date / procedure_datetime.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'\n        as DiagnosticProcedureDate,\n    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id\n    -- identifying the diagnostic procedure carried out; will be mapped to\n    -- procedure_concept_id and retained as procedure_source_value.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'\n        as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'HN'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null\n  and DiagnosticProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureDate",
+          "description": "Procedure date of the diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE (DIAGNOSTIC PROCEDURE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Head and Neck (HN)\n-- cancer records from COSD v9.01. Each diagnostic procedure contributes\n-- one row per (patient, SNOMED CT code, procedure date) triple.\n-- DiagnosticProcedures is captured as a singular structure in the source,\n-- so no unnest is required.\n--\n-- Downstream ETL responsibilities:\n--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /\n--     DATETIME and assign it to procedure_date / procedure_datetime.\n--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the\n--     standard procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the\n    -- diagnostic procedure; becomes procedure_date / procedure_datetime.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'\n        as DiagnosticProcedureDate,\n    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id\n    -- identifying the diagnostic procedure carried out; will be mapped to\n    -- procedure_concept_id and retained as procedure_source_value.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'\n        as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'HN'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null\n  and DiagnosticProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureDate",
+          "description": "Procedure date of the diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE (DIAGNOSTIC PROCEDURE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Head and Neck (HN)\n-- cancer records from COSD v9.01. Each diagnostic procedure contributes\n-- one row per (patient, SNOMED CT code, procedure date) triple.\n-- DiagnosticProcedures is captured as a singular structure in the source,\n-- so no unnest is required.\n--\n-- Downstream ETL responsibilities:\n--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /\n--     DATETIME and assign it to procedure_date / procedure_datetime.\n--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the\n--     standard procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the\n    -- diagnostic procedure; becomes procedure_date / procedure_datetime.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'\n        as DiagnosticProcedureDate,\n    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id\n    -- identifying the diagnostic procedure carried out; will be mapped to\n    -- procedure_concept_id and retained as procedure_source_value.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'\n        as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'HN'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null\n  and DiagnosticProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `DiagnosticProcedureSnomedCt`",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureSnomedCt",
+          "description": "The SNOMED CT concept ID used to identify the diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (SNOMED CT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Head and Neck (HN)\n-- cancer records from COSD v9.01. Each diagnostic procedure contributes\n-- one row per (patient, SNOMED CT code, procedure date) triple.\n-- DiagnosticProcedures is captured as a singular structure in the source,\n-- so no unnest is required.\n--\n-- Downstream ETL responsibilities:\n--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /\n--     DATETIME and assign it to procedure_date / procedure_datetime.\n--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the\n--     standard procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the\n    -- diagnostic procedure; becomes procedure_date / procedure_datetime.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'\n        as DiagnosticProcedureDate,\n    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id\n    -- identifying the diagnostic procedure carried out; will be mapped to\n    -- procedure_concept_id and retained as procedure_source_value.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'\n        as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'HN'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null\n  and DiagnosticProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve Snomed codes to OMOP concepts.",
+      "dataSource": [
+        {
+          "name": "DiagnosticProcedureSnomedCt",
+          "description": "The SNOMED CT concept ID used to identify the diagnostic procedure.",
+          "origins": [
+            {
+              "origin": "DIAGNOSTIC PROCEDURE (SNOMED CT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnostic_procedure__snomed_ct_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects the DIAGNOSTIC PROCEDURE (SNOMED CT) for Head and Neck (HN)\n-- cancer records from COSD v9.01. Each diagnostic procedure contributes\n-- one row per (patient, SNOMED CT code, procedure date) triple.\n-- DiagnosticProcedures is captured as a singular structure in the source,\n-- so no unnest is required.\n--\n-- Downstream ETL responsibilities:\n--   * Cast DiagnosticProcedureDate (currently varchar) to a DATE /\n--     DATETIME and assign it to procedure_date / procedure_datetime.\n--   * Map DiagnosticProcedureSnomedCt (a SNOMED CT concept id) to the\n--     standard procedure_concept_id and retain the verbatim code in\n--     procedure_source_value.\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Set procedure_type_concept_id to a cancer registry / EHR provenance\n--     concept.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- PROCEDURE DATE (DIAGNOSTIC PROCEDURE) - the date relevant to the\n    -- diagnostic procedure; becomes procedure_date / procedure_datetime.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'\n        as DiagnosticProcedureDate,\n    -- DIAGNOSTIC PROCEDURE (SNOMED CT) - the SNOMED CT concept id\n    -- identifying the diagnostic procedure carried out; will be mapped to\n    -- procedure_concept_id and retained as procedure_source_value.\n    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'\n        as DiagnosticProcedureSnomedCt\nfrom omop_staging.cosd_staging_901\nwhere type = 'HN'\n  and NhsNumber is not null\n  and DiagnosticProcedureSnomedCt is not null\n  and DiagnosticProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}
