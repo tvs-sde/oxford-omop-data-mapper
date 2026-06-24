@@ -161,6 +161,905 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20Oxford%20Condition%20Occurrence%20mapping){: .btn }
+### COSD V9 UR Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from ur
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UR%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 UR Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from ur
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UR%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 UR Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from ur
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UR%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 UR Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from ur
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 UR Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from ur
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UR%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 UR Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from ur
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 UG Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from ug
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 UG Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from ug
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 UG Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from ug
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 UG Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from ug
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20UG%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 UG Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from ug
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UG%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 UG Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ug as (
+    select distinct
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.UpperGI.UpperGICore.UpperGICoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'UG'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from ug
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20UG%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 SK Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from sk
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 SK Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from sk
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 SK Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from sk
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 SK Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from sk
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SK%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 SK Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.SkinCoreDiagnosisAdditionalItems.SecondaryDiagnosisICD.@code'
+            as SecondaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    SecondaryDiagnosisICD
+from sk
+where NhsNumber is not null
+  and SecondaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SK%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 SK Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from sk
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SK%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 SK Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sk as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Skin.SkinCore.SkinCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from sk
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SK%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 SA Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from sa
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SA%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 SA Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from sa
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 SA Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from sa
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SA%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 SA Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from sa
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20SA%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 SA Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from sa
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 SA Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with sa as (
+    select distinct
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'SA'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from sa
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20SA%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from lv
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from lv
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from lv
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from lv
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 LV Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from lv
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20LV%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 LV Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with lv as (
+    select distinct
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Liver.LiverCore.LiverCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from lv
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20LV%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
 ### COSD V9 Lung Condition Occurrence Recurrence
 * Value copied from `NhsNumber`
 
@@ -290,6 +1189,731 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with hn as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from hn
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with hn as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from hn
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with hn as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from hn
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with hn as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from hn
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 HN Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with hn as (
+    select distinct
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from hn
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 HN Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with hn as (
+    select distinct
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from hn
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from gy
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from gy
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from gy
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from gy
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 GY Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.GynaecologicalCoreDiagnosisAdditionalItems.SecondaryDiagnosisICD.@code'
+            as SecondaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NHSNumber,
+    ClinicalDateCancerDiagnosis,
+    SecondaryDiagnosisICD
+from gy
+where NHSNumber is not null
+  and SecondaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 GY Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NHSNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosisICD
+from gy
+where NHSNumber is not null
+  and PrimaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 GY Condition Occurrence Cancer Progression ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with gy as (
+    select distinct
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NHSNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from gy
+where NHSNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from ct
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from ct
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from ct
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CT'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from ct
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 CT Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NHSNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosisICD
+from ct
+where NHSNumber is not null
+  and PrimaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 CT Condition Occurrence Cancer Progression ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ct as (
+    select distinct
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.CTYA.CTYACore.CTYACoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'CT'
+)
+select distinct
+    NHSNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from ct
+where NHSNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with cr as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from cr
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with cr as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from cr
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with cr as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from cr
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with cr as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from cr
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 CR Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with cr as (
+    select distinct
+        Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'CR'
+)
+select distinct
+    NHSNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosisICD
+from cr
+where NHSNumber is not null
+  and PrimaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CR%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 CR Condition Occurrence Cancer Progression ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with cr as (
+    select distinct
+        Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Core.CoreCore.CoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'CR'
+)
+select distinct
+    NHSNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from cr
+where NHSNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20CR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
 ### Cosd V8 Condition Occurrence Primary Diagnosis
 * Value copied from `NhsNumber`
 
@@ -708,3 +2332,208 @@ where NhsNumber is not null and
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20Cosd%20V8%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 BA Condition Occurrence Secondary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from ba
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Condition%20Occurrence%20Secondary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 BA Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.PrimaryDiagnosisIcd.@code'
+            as PrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    PrimaryDiagnosisIcd
+from ba
+where NhsNumber is not null
+  and PrimaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 BA Condition Occurrence Original Primary Diagnosis ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from ba
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 BA Condition Occurrence Cancer Progression ICD
+* Value copied from `NhsNumber`
+
+* `NhsNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Progression.ProgressionIcd.@code'
+            as ProgressionIcd
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    ProgressionIcd
+from ba
+where NhsNumber is not null
+  and ProgressionIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V9%20BA%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V8 BA Condition Occurrence Provisional Diagnosis ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.CNS.CNSCore.CNSCoreCancerCarePlan.CancerMultiTeamDiscussionDate'
+            as CancerMultiTeamDiscussionDate,
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CNS.CNSCore.CNSCoreCancerCarePlan.CNSCancerCarePlan.ICDProvisionalDiagnosis.@code'
+            as ProvisionalDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'BA'
+)
+select distinct
+    NHSNumber,
+    CancerMultiTeamDiscussionDate,
+    ClinicalDateCancerDiagnosis,
+    ProvisionalDiagnosisICD
+from ba
+where NHSNumber is not null
+  and ProvisionalDiagnosisICD is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20BA%20Condition%20Occurrence%20Provisional%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 BA Condition Occurrence Primary Diagnosis ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'BA'
+)
+select distinct
+    NHSNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosisICD
+from ba
+where NHSNumber is not null
+  and PrimaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20BA%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 BA Condition Occurrence Cancer Progression ICD
+* Value copied from `NHSNumber`
+
+* `NHSNumber` Patient NHS Number. [NHS NUMBER](https://www.datadictionary.nhs.uk/data_elements/nhs_number.html)
+
+```sql
+with ba as (
+    select distinct
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.CNS.CNSCore.CNSCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'BA'
+)
+select distinct
+    NHSNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from ba
+where NHSNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20COSD%20V8%20BA%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }

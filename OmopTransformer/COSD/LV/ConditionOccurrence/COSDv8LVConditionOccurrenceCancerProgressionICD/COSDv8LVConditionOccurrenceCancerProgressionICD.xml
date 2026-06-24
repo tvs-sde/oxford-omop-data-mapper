@@ -1,0 +1,37 @@
+﻿<Query>
+    <Sql>
+with lv as (
+    select distinct
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.Liver.LiverCore.LiverCoreNonPrimaryCancerPathwayRoute.CancerProgressionICD.@code'
+            as CancerProgressionICD
+    from omop_staging.cosd_staging_81
+    where type = 'LV'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    CancerProgressionICD
+from lv
+where NhsNumber is not null
+  and CancerProgressionICD is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+            <Description>The date the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed.</Description>
+            <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="CancerProgressionICD">
+            <Description>The International Classification of Diseases (ICD) code of the cancer progression during a Cancer Care Spell. For COSD - Core, this is the ICD code of the original patient diagnosis of the cancer progression, agreed at the multidisciplinary team meeting by the care professional team.</Description>
+            <Origin>CANCER PROGRESSION (ICD ORIGINAL)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

@@ -1859,6 +1859,195 @@
     <None Update="COSD\SK\Measurement\COSDv9SKMeasurementTNMStageGroupingIntegrated\COSDv9SKMeasurementTNMStageGroupingIntegrated.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv8BAConditionOccurrenceCancerProgressionICD\COSDv8BAConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv8BAConditionOccurrencePrimaryDiagnosisICD\COSDv8BAConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv8BAConditionOccurrenceProvisionalDiagnosisICD\COSDv8BAConditionOccurrenceProvisionalDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ConditionOccurrence\COSDv8CRConditionOccurrenceCancerProgressionICD\COSDv8CRConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ConditionOccurrence\COSDv8CRConditionOccurrencePrimaryDiagnosisICD\COSDv8CRConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ConditionOccurrence\COSDv8CTConditionOccurrenceCancerProgressionICD\COSDv8CTConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ConditionOccurrence\COSDv8CTConditionOccurrencePrimaryDiagnosisICD\COSDv8CTConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv8GYConditionOccurrenceCancerProgressionICD\COSDv8GYConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv8GYConditionOccurrencePrimaryDiagnosisICD\COSDv8GYConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv8GYConditionOccurrenceSecondaryDiagnosisICD\COSDv8GYConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ConditionOccurrence\COSDv8HNConditionOccurrenceCancerProgressionICD\COSDv8HNConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ConditionOccurrence\COSDv8HNConditionOccurrencePrimaryDiagnosisICD\COSDv8HNConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ConditionOccurrence\COSDv8LVConditionOccurrenceCancerProgressionICD\COSDv8LVConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ConditionOccurrence\COSDv8LVConditionOccurrencePrimaryDiagnosisICD\COSDv8LVConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ConditionOccurrence\COSDv8SAConditionOccurrenceCancerProgressionICD\COSDv8SAConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ConditionOccurrence\COSDv8SAConditionOccurrencePrimaryDiagnosisICD\COSDv8SAConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv8SKConditionOccurrenceCancerProgressionICD\COSDv8SKConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv8SKConditionOccurrencePrimaryDiagnosisICD\COSDv8SKConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv8SKConditionOccurrenceSecondaryDiagnosisICD\COSDv8SKConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ConditionOccurrence\COSDv8UGConditionOccurrenceCancerProgressionICD\COSDv8UGConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ConditionOccurrence\COSDv8UGConditionOccurrencePrimaryDiagnosisICD\COSDv8UGConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ConditionOccurrence\COSDv8URConditionOccurrenceCancerProgressionICD\COSDv8URConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ConditionOccurrence\COSDv8URConditionOccurrencePrimaryDiagnosisICD\COSDv8URConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv9BAConditionOccurrenceCancerProgressionICD\COSDv9BAConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv9BAConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9BAConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv9BAConditionOccurrencePrimaryDiagnosisICD\COSDv9BAConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\BA\ConditionOccurrence\COSDv9BAConditionOccurrenceSecondaryDiagnosisICD\COSDv9BAConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ConditionOccurrence\COSDv9CRConditionOccurrenceCancerProgressionICD\COSDv9CRConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ConditionOccurrence\COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ConditionOccurrence\COSDv9CRConditionOccurrencePrimaryDiagnosisICD\COSDv9CRConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CR\ConditionOccurrence\COSDv9CRConditionOccurrenceSecondaryDiagnosisICD\COSDv9CRConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ConditionOccurrence\COSDv9CTConditionOccurrenceCancerProgressionICD\COSDv9CTConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ConditionOccurrence\COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ConditionOccurrence\COSDv9CTConditionOccurrencePrimaryDiagnosisICD\COSDv9CTConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\CT\ConditionOccurrence\COSDv9CTConditionOccurrenceSecondaryDiagnosisICD\COSDv9CTConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv9GYConditionOccurrenceCancerProgressionICD\COSDv9GYConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv9GYConditionOccurrencePrimaryDiagnosisICD\COSDv9GYConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\GY\ConditionOccurrence\COSDv9GYConditionOccurrenceSecondaryDiagnosisICD\COSDv9GYConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ConditionOccurrence\COSDv9HNConditionOccurrenceCancerProgressionICD\COSDv9HNConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ConditionOccurrence\COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ConditionOccurrence\COSDv9HNConditionOccurrencePrimaryDiagnosisICD\COSDv9HNConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\HN\ConditionOccurrence\COSDv9HNConditionOccurrenceSecondaryDiagnosisICD\COSDv9HNConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ConditionOccurrence\COSDv9LVConditionOccurrenceCancerProgressionICD\COSDv9LVConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ConditionOccurrence\COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ConditionOccurrence\COSDv9LVConditionOccurrencePrimaryDiagnosisICD\COSDv9LVConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\LV\ConditionOccurrence\COSDv9LVConditionOccurrenceSecondaryDiagnosisICD\COSDv9LVConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ConditionOccurrence\COSDv9SAConditionOccurrenceCancerProgressionICD\COSDv9SAConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ConditionOccurrence\COSDv9SAConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9SAConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ConditionOccurrence\COSDv9SAConditionOccurrencePrimaryDiagnosisICD\COSDv9SAConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SA\ConditionOccurrence\COSDv9SAConditionOccurrenceSecondaryDiagnosisICD\COSDv9SAConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv9SKConditionOccurrenceCancerProgressionICD\COSDv9SKConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv9SKConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9SKConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv9SKConditionOccurrencePrimaryDiagnosisICD\COSDv9SKConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\SK\ConditionOccurrence\COSDv9SKConditionOccurrenceSecondaryDiagnosisICD\COSDv9SKConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ConditionOccurrence\COSDv9UGConditionOccurrenceCancerProgressionICD\COSDv9UGConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ConditionOccurrence\COSDv9UGConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9UGConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ConditionOccurrence\COSDv9UGConditionOccurrencePrimaryDiagnosisICD\COSDv9UGConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UG\ConditionOccurrence\COSDv9UGConditionOccurrenceSecondaryDiagnosisICD\COSDv9UGConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ConditionOccurrence\COSDv9URConditionOccurrenceCancerProgressionICD\COSDv9URConditionOccurrenceCancerProgressionICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ConditionOccurrence\COSDv9URConditionOccurrenceOriginalPrimaryDiagnosisICD\COSDv9URConditionOccurrenceOriginalPrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ConditionOccurrence\COSDv9URConditionOccurrencePrimaryDiagnosisICD\COSDv9URConditionOccurrencePrimaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="COSD\UR\ConditionOccurrence\COSDv9URConditionOccurrenceSecondaryDiagnosisICD\COSDv9URConditionOccurrenceSecondaryDiagnosisICD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' != 'Release_no_docs'">
 		<ItemGroup>

@@ -1,0 +1,37 @@
+﻿<Query>
+    <Sql>
+with ur as (
+    select distinct
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosis
+    from omop_staging.cosd_staging_81
+    where type = 'UR'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosis
+from ur
+where NhsNumber is not null
+  and PrimaryDiagnosis is not null
+  and ClinicalDateCancerDiagnosis is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ClinicalDateCancerDiagnosis">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryDiagnosis">
+            <Description>ICD code used to identify the primary patient diagnosis. Same as the CLINICAL CLASSIFICATION CODE attribute. For Healthcare Operational Data Flows (Acute), this is the main patient diagnosis.</Description>
+            <Origin>PRIMARY DIAGNOSIS (ICD)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

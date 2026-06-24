@@ -505,6 +505,69 @@ using OmopTransformer.Omop.Observation;
 using OmopTransformer.Omop.Person;
 using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Transformation;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv8BAConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv8BAConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv8BAConditionOccurrenceProvisionalDiagnosisICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv8CRConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv8CRConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv8CTConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv8CTConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv8HNConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv8HNConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv8LVConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv8LVConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.SA.ConditionOccurrence.COSDv8SAConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.SA.ConditionOccurrence.COSDv8SAConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv8SKConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv8SKConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv8SKConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.UG.ConditionOccurrence.COSDv8UGConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.UG.ConditionOccurrence.COSDv8UGConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.UR.ConditionOccurrence.COSDv8URConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.UR.ConditionOccurrence.COSDv8URConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.SA.ConditionOccurrence.COSDv9SAConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.SA.ConditionOccurrence.COSDv9SAConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.SA.ConditionOccurrence.COSDv9SAConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.SA.ConditionOccurrence.COSDv9SAConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv9SKConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv9SKConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv9SKConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.SK.ConditionOccurrence.COSDv9SKConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.UG.ConditionOccurrence.COSDv9UGConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.UG.ConditionOccurrence.COSDv9UGConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.UG.ConditionOccurrence.COSDv9UGConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.UG.ConditionOccurrence.COSDv9UGConditionOccurrenceSecondaryDiagnosisICD;
+using OmopTransformer.COSD.UR.ConditionOccurrence.COSDv9URConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.UR.ConditionOccurrence.COSDv9URConditionOccurrenceOriginalPrimaryDiagnosisICD;
+using OmopTransformer.COSD.UR.ConditionOccurrence.COSDv9URConditionOccurrencePrimaryDiagnosisICD;
+using OmopTransformer.COSD.UR.ConditionOccurrence.COSDv9URConditionOccurrenceSecondaryDiagnosisICD;
 
 namespace OmopTransformer.COSD;
 
@@ -3557,6 +3620,384 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatmentRecord, COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv8HAMeasurementWhiteBloodCellCountHighestPretreatment",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAConditionOccurrenceCancerProgressionICDRecord, COSDv8BAConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 BA Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8BAConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 BA Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8BAConditionOccurrenceProvisionalDiagnosisICDRecord, COSDv8BAConditionOccurrenceProvisionalDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 BA Condition Occurrence Provisional Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRConditionOccurrenceCancerProgressionICDRecord, COSDv8CRConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 CR Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CRConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8CRConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 CR Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CTConditionOccurrenceCancerProgressionICDRecord, COSDv8CTConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 CT Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8CTConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8CTConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 CT Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8GYConditionOccurrenceCancerProgressionICDRecord, COSDv8GYConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 GY Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8GYConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8GYConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 GY Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8GYConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv8GYConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 GY Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNConditionOccurrenceCancerProgressionICDRecord, COSDv8HNConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 HN Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8HNConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 HN Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVConditionOccurrenceCancerProgressionICDRecord, COSDv8LVConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 LV Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LVConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8LVConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 LV Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SAConditionOccurrenceCancerProgressionICDRecord, COSDv8SAConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 SA Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SAConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8SAConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 SA Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SKConditionOccurrenceCancerProgressionICDRecord, COSDv8SKConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 SK Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SKConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8SKConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 SK Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8SKConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv8SKConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 SK Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGConditionOccurrenceCancerProgressionICDRecord, COSDv8UGConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 UG Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8UGConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8UGConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 UG Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URConditionOccurrenceCancerProgressionICDRecord, COSDv8URConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 UR Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8URConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8URConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 UR Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9BAConditionOccurrenceCancerProgressionICDRecord, COSDv9BAConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 BA Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9BAConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9BAConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 BA Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9BAConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9BAConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 BA Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9BAConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9BAConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 BA Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRConditionOccurrenceCancerProgressionICDRecord, COSDv9CRConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CR Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CR Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9CRConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CR Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9CRConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CR Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CTConditionOccurrenceCancerProgressionICDRecord, COSDv9CTConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CT Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CT Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CTConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9CTConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CT Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CTConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9CTConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CT Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYConditionOccurrenceCancerProgressionICDRecord, COSDv9GYConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 GY Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 GY Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9GYConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 GY Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9GYConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9GYConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 GY Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNConditionOccurrenceCancerProgressionICDRecord, COSDv9HNConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HN Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HN Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9HNConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HN Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9HNConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9HNConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HN Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVConditionOccurrenceCancerProgressionICDRecord, COSDv9LVConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 LV Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 LV Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9LVConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 LV Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9LVConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 LV Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAConditionOccurrenceCancerProgressionICDRecord, COSDv9SAConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SA Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9SAConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SA Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9SAConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SA Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9SAConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SA Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKConditionOccurrenceCancerProgressionICDRecord, COSDv9SKConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SK Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9SKConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SK Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9SKConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SK Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SKConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9SKConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 SK Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGConditionOccurrenceCancerProgressionICDRecord, COSDv9UGConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UG Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9UGConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UG Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9UGConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UG Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9UGConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9UGConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UG Condition Occurrence Secondary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URConditionOccurrenceCancerProgressionICDRecord, COSDv9URConditionOccurrenceCancerProgressionICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UR Condition Occurrence Cancer Progression ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9URConditionOccurrenceOriginalPrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UR Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9URConditionOccurrencePrimaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UR Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9URConditionOccurrenceSecondaryDiagnosisICDRecord, COSDv9URConditionOccurrenceSecondaryDiagnosisICD>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 UR Condition Occurrence Secondary Diagnosis ICD",
             runId,
             cancellationToken);
     }
