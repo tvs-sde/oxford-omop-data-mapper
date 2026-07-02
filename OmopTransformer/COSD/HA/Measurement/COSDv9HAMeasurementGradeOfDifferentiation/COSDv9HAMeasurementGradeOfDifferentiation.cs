@@ -21,6 +21,6 @@ internal class COSDv9HAMeasurementGradeOfDifferentiation : OmopMeasurement<COSDv
     [CopyValue(nameof(Source.GradeOfDifferentiationAtDiagnosis))]
     public override string? measurement_source_value { get; set; }
 
-    [Transform(typeof(GradeOfDifferentiationAtDiagnosisLookup), nameof(Source.GradeOfDifferentiationAtDiagnosis))]
+    [Transform(typeof(GradeDifferentiationLookup), nameof(Source.GradeOfDifferentiationAtDiagnosis))]
     public override int[]? measurement_concept_id { get; set; }
 }

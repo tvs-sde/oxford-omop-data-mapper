@@ -1,0 +1,117 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in\n-- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute. The source path\n-- SmokingStatusCode carries the patient's tobacco smoking status.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map SmokingStatusCancer (NHS National Code) to the standard\n--     observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to\n    -- observation_concept_id and retained as observation_source_value.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'\n        as SmokingStatusCancer\nfrom omop_staging.cosd_staging_81\nwhere type = 'GY'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `Observation` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in\n-- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute. The source path\n-- SmokingStatusCode carries the patient's tobacco smoking status.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map SmokingStatusCancer (NHS National Code) to the standard\n--     observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to\n    -- observation_concept_id and retained as observation_source_value.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'\n        as SmokingStatusCancer\nfrom omop_staging.cosd_staging_81\nwhere type = 'GY'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in\n-- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute. The source path\n-- SmokingStatusCode carries the patient's tobacco smoking status.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map SmokingStatusCancer (NHS National Code) to the standard\n--     observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to\n    -- observation_concept_id and retained as observation_source_value.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'\n        as SmokingStatusCancer\nfrom omop_staging.cosd_staging_81\nwhere type = 'GY'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `SmokingStatusCancer`",
+      "dataSource": [
+        {
+          "name": "SmokingStatusCancer",
+          "description": "Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only.",
+          "origins": [
+            {
+              "origin": "SMOKING STATUS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in\n-- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute. The source path\n-- SmokingStatusCode carries the patient's tobacco smoking status.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map SmokingStatusCancer (NHS National Code) to the standard\n--     observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to\n    -- observation_concept_id and retained as observation_source_value.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'\n        as SmokingStatusCancer\nfrom omop_staging.cosd_staging_81\nwhere type = 'GY'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_concept_id",
+      "operation_description": "Constant value set to `43054909`. Tobacco smoking status",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `SmokingStatusCancer`",
+      "dataSource": [
+        {
+          "name": "SmokingStatusCancer",
+          "description": "Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only.",
+          "origins": [
+            {
+              "origin": "SMOKING STATUS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in\n-- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute. The source path\n-- SmokingStatusCode carries the patient's tobacco smoking status.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map SmokingStatusCancer (NHS National Code) to the standard\n--     observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to\n    -- observation_concept_id and retained as observation_source_value.\n    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'\n        as SmokingStatusCancer\nfrom omop_staging.cosd_staging_81\nwhere type = 'GY'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -131,6 +131,144 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `1092006`. General Comment Narrative
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20Oxford%20Lab%20General%20Comment%20Observation%20mapping){: .btn }
+### COSD V9 UR Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 UR Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UR Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UR Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 UR Observation Person Stated Sexual Orientation Code At Diagnosis
+* Constant value set to `4036080`. Orientation of sexual relationship
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
+### COSD V8 UR Observation Asa Physical Status Classification System Code
+* Constant value set to `4185914`. Identification of physical status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Asa%20Physical%20Status%20Classification%20System%20Code%20mapping){: .btn }
+### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UR Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UG Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 UG Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UG Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UG Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 UG Observation Asa Physical Status Classification System Code
+* Constant value set to `4185914`. Identification of physical status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Asa%20Physical%20Status%20Classification%20System%20Code%20mapping){: .btn }
+### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UG Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SK Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 SK Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SK Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SK Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 SK Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SK Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SA Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 SA Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SA Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SA Observation Smoking Status Cancer
+* Constant value set to `43054909`. Tobacco smoking status
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 SA Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SA Observation Alcohol History Cancer Before Last Three Months
+* Constant value set to `35609491`. Alcohol units consumed per week
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 LV Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 LV Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 LV Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 LV Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V8 LV Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 LV Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### CosdV9LungTobaccoSmokingStatus
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -223,6 +361,306 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `40488785`. Adult comorbidity evaluation-27
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAdultComorbidityEvaluation%20mapping){: .btn }
+### COSD V9 HN Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 HN Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 HN Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 HN Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V9 HN Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HN Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HN Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 HN Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 HN Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 HN Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V8 HN Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HN Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HA Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 HA Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 HA Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 HA Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V9 HA Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HA Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HA Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 HA Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 HA Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 HA Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V8 HA Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HA Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 GY Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 GY Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 GY Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 GY Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V9 GY Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 GY Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 GY Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 GY Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 GY Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 GY Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V8 GY Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 GY Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
+### COSD V9 CT Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 CT Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 CT Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 CT Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V9 CT Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CT Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CT Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 CT Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 CT Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CT Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
+### COSD V9 CR Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 CR Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 CR Observation Familial Cancer Syndrome Indicator
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 CR Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V9 CR Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CR Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CR Observation Smoking Status Cancer
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 CR Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 CR Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V8 CR Observation Alcohol History Cancer In Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CR Observation Alcohol History Cancer Before Last Three Months
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### CosdV9TobaccoSmokingStatus
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -359,3 +797,23 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V9 BA Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20BA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V9 BA Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20BA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### COSD V8 BA Observation Performance Status Adult
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20BA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
+### COSD V8 BA Observation Cancer Treatment Intent
+Source column  `observation_source_concept_id`.
+Maps concepts to standard valid concepts in the `Observation` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20BA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }

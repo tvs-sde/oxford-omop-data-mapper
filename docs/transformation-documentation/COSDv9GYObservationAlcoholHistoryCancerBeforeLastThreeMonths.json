@@ -1,0 +1,117 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for\n-- Gynaecological (area GY) records in COSD v9.01, routed to the OMOP\n-- observation table as a lifestyle / risk-factor attribute describing past\n-- alcohol consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to\n--     the standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'\n        as AlcoholHistoryCancerBeforeLastThreeMonths\nfrom omop_staging.cosd_staging_901\nwhere type = 'GY'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerBeforeLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `Observation` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for\n-- Gynaecological (area GY) records in COSD v9.01, routed to the OMOP\n-- observation table as a lifestyle / risk-factor attribute describing past\n-- alcohol consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to\n--     the standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'\n        as AlcoholHistoryCancerBeforeLastThreeMonths\nfrom omop_staging.cosd_staging_901\nwhere type = 'GY'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerBeforeLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for\n-- Gynaecological (area GY) records in COSD v9.01, routed to the OMOP\n-- observation table as a lifestyle / risk-factor attribute describing past\n-- alcohol consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to\n--     the standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'\n        as AlcoholHistoryCancerBeforeLastThreeMonths\nfrom omop_staging.cosd_staging_901\nwhere type = 'GY'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerBeforeLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `AlcoholHistoryCancerBeforeLastThreeMonths`",
+      "dataSource": [
+        {
+          "name": "AlcoholHistoryCancerBeforeLastThreeMonths",
+          "description": "Past history of alcohol consumption for the patient during a cancer care spell.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for\n-- Gynaecological (area GY) records in COSD v9.01, routed to the OMOP\n-- observation table as a lifestyle / risk-factor attribute describing past\n-- alcohol consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to\n--     the standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'\n        as AlcoholHistoryCancerBeforeLastThreeMonths\nfrom omop_staging.cosd_staging_901\nwhere type = 'GY'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerBeforeLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_concept_id",
+      "operation_description": "Constant value set to `35609491`. Alcohol units consumed per week",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `AlcoholHistoryCancerBeforeLastThreeMonths`",
+      "dataSource": [
+        {
+          "name": "AlcoholHistoryCancerBeforeLastThreeMonths",
+          "description": "Past history of alcohol consumption for the patient during a cancer care spell.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for\n-- Gynaecological (area GY) records in COSD v9.01, routed to the OMOP\n-- observation table as a lifestyle / risk-factor attribute describing past\n-- alcohol consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to\n--     the standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'\n        as AlcoholHistoryCancerBeforeLastThreeMonths\nfrom omop_staging.cosd_staging_901\nwhere type = 'GY'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerBeforeLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

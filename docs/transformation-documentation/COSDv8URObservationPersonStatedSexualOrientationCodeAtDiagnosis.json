@@ -1,0 +1,128 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for\n-- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used\n-- as observation_date.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `4036080`. Orientation of sexual relationship",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for\n-- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used\n-- as observation_date.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for\n-- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used\n-- as observation_date.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_concept_id",
+      "operation_description": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+      "dataSource": [
+        {
+          "name": "PersonStatedSexualOrientationCodeAtDiagnosis",
+          "description": "The sexual orientation as self-stated by the person at the point of cancer diagnosis.",
+          "origins": [
+            {
+              "origin": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for\n-- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used\n-- as observation_date.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": "\r\n\r\n|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4069091|Heterosexual or Straight|\r\n|2|444056|Gay or Lesbian|\r\n|3|4170582|Bisexual|\r\n|4|4260977|Other sexual orientation not listed|\r\n|U|42689512|Person asked and does not know or is not sure|\r\n|Z|4260977|Not Stated (person asked but declined to provide a response)|\r\n|9|4260977|Not Known (Not Recorded)|\r\n\r\n"
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`",
+      "dataSource": [
+        {
+          "name": "PersonStatedSexualOrientationCodeAtDiagnosis",
+          "description": "The sexual orientation as self-stated by the person at the point of cancer diagnosis.",
+          "origins": [
+            {
+              "origin": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for\n-- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used\n-- as observation_date.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`",
+      "dataSource": [
+        {
+          "name": "PersonStatedSexualOrientationCodeAtDiagnosis",
+          "description": "The sexual orientation as self-stated by the person at the point of cancer diagnosis.",
+          "origins": [
+            {
+              "origin": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for\n-- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used\n-- as observation_date.\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

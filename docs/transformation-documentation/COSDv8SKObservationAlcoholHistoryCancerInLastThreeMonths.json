@@ -1,0 +1,128 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)\n-- records in COSD v8.1 (Skin core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute describing recent alcohol\n-- consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Skin core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the\n--     standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `35609491`. Alcohol units consumed per week",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)\n-- records in COSD v8.1 (Skin core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute describing recent alcohol\n-- consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Skin core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the\n--     standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)\n-- records in COSD v8.1 (Skin core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute describing recent alcohol\n-- consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Skin core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the\n--     standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_concept_id",
+      "operation_description": "ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)",
+      "dataSource": [
+        {
+          "name": "AlcoholHistoryCancerInLastThreeMonths",
+          "description": "Recent history of alcohol consumption for the patient during a cancer care spell.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)\n-- records in COSD v8.1 (Skin core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute describing recent alcohol\n-- consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Skin core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the\n--     standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": "\r\n\r\n|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4336673|Heavy (greater than 14 units per week)|\r\n|2|4042862|Light (less than or equal to 14 units per week)|\r\n|3|105542008|None ever|\r\n|Z|0|Not Stated (patient asked but declined to provide a response)|\r\n|9|0|Not Known (Not Recorded)|\r\n\r\n"
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `AlcoholHistoryCancerInLastThreeMonths`",
+      "dataSource": [
+        {
+          "name": "AlcoholHistoryCancerInLastThreeMonths",
+          "description": "Recent history of alcohol consumption for the patient during a cancer care spell.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)\n-- records in COSD v8.1 (Skin core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute describing recent alcohol\n-- consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Skin core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the\n--     standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `AlcoholHistoryCancerInLastThreeMonths`",
+      "dataSource": [
+        {
+          "name": "AlcoholHistoryCancerInLastThreeMonths",
+          "description": "Recent history of alcohol consumption for the patient during a cancer care spell.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n-- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)\n-- records in COSD v8.1 (Skin core structure), routed to the OMOP observation\n-- table as a lifestyle / risk-factor attribute describing recent alcohol\n-- consumption history.\n--\n-- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the\n-- Skin core as ClinicalDateCancerDiagnosis - is used as the\n-- observation_date.\n--\n-- Downstream ETL responsibilities:\n--   * Resolve NhsNumber against cdm.person to obtain person_id.\n--   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the\n--     standard observation_concept_id and retain the verbatim code in\n--     observation_source_value / value_source_value.\n--   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and\n--     assign to observation_date / observation_datetime.\nselect distinct\n    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes\n    -- observation_date / observation_datetime.\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation\n    -- value; mapped downstream to observation_concept_id and retained as\n    -- observation_source_value.\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

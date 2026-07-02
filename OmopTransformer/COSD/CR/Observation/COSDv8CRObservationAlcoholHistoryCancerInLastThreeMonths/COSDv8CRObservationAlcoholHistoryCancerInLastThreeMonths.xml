@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'CR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+            <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="AlcoholHistoryCancerInLastThreeMonths">
+            <Description>Current history of alcohol consumption for the patient during a cancer care spell.</Description>
+            <Origin>ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
