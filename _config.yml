@@ -2,10 +2,10 @@ title: Oxford Omop Data Mapper
 description: 
 theme: just-the-docs
 
-url: https://answerdigital.github.io/oxford-omop-data-mapper/
+url: https://tvs-sde.github.io/oxford-omop-data-mapper/
 
 aux_links:
-    GitHub: https://github.com/answerdigital/oxford-omop-data-mapper
+    GitHub: https://github.com/tvs-sde/oxford-omop-data-mapper
 
 color_scheme: omop
 
@@ -50,7 +50,7 @@ mermaid:
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub"
-gh_edit_repository: "https://github.com/answerdigital/oxford-omop-data-mapper" # the github URL for your repo
+gh_edit_repository: "https://github.com/tvs-sde/oxford-omop-data-mapper" # the github URL for your repo
 gh_edit_branch: "main" # the branch that your docs is served from
 # gh_edit_source: docs # the source that your files originate from
 gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
