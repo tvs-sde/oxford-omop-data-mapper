@@ -319,10 +319,6 @@ has_toc: false
 <a href="COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.svg" target="_blank"><img src="COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-## COSDv8URObservationAsaPhysicalStatusClassificationSystemCode
-<a href="COSDv8URObservationAsaPhysicalStatusClassificationSystemCode.svg" target="_blank"><img src="COSDv8URObservationAsaPhysicalStatusClassificationSystemCode.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationAsaPhysicalStatusClassificationSystemCode%20mapping){: .btn }
 ## COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths
 <a href="COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
 
@@ -347,10 +343,6 @@ has_toc: false
 <a href="COSDv8UGObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8UGObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode
-<a href="COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode.svg" target="_blank"><img src="COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode%20mapping){: .btn }
 ## COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths
 <a href="COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
 

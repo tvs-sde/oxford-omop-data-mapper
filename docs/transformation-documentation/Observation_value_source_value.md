@@ -140,9 +140,6 @@ has_toc: false
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Urological (UR) records in COSD
--- v9.01, sourced from TobaccoSmokingStatus. Date of primary diagnosis is
--- used as observation_date.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -162,9 +159,6 @@ where type = 'UR'
 * `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Urological
--- (UR) records in COSD v9.01, sourced from HistoryOfAlcoholCurrent. Date
--- of primary diagnosis is used as observation_date.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -184,9 +178,6 @@ where type = 'UR'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Urological
--- (UR) records in COSD v9.01, sourced from HistoryOfAlcoholPast. Date of
--- primary diagnosis is used as observation_date.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -206,9 +197,6 @@ where type = 'UR'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Urological (UR) records in COSD
--- v8.1, sourced from SmokingStatusCode. Date of primary diagnosis is used
--- as observation_date.
 select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -228,9 +216,6 @@ where type = 'UR'
 * `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation as self-stated by the person at the point of cancer diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
 
 ```sql
--- Selects PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) for
--- Urological (UR) records in COSD v8.1. Date of primary diagnosis is used
--- as observation_date.
 select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -244,49 +229,12 @@ where type = 'UR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20UR%20Observation%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
-### COSD V8 UR Observation Asa Physical Status Classification System Code
-* Value copied from `AsaPhysicalStatusClassificationSystemCode`
-
-* `AsaPhysicalStatusClassificationSystemCode` The American Society of Anesthesiologists (ASA) physical status classification system code for assessing a patient's fitness before surgery. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
-
-```sql
--- Selects ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE for Urological
--- (UR) records in COSD v8.1. The Treatment array is unnested so each
--- surgery's ASA grade can be emitted, paired with the primary diagnosis
--- date as observation_date (no dedicated assessment date is recorded
--- alongside the ASA code in this dataset).
-with ur as (
-    select
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-        Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        unnest([
-            [Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment.UrologicalCoreSurgeryAndOtherProcedures.ASAPhysicalStatusClassificationSystemCode.@code'],
-            Record ->> '$.Urological.UrologicalCore.UrologicalCoreTreatment[*].UrologicalCoreSurgeryAndOtherProcedures.ASAPhysicalStatusClassificationSystemCode.@code'
-        ], recursive := true) as AsaPhysicalStatusClassificationSystemCode
-    from omop_staging.cosd_staging_81
-    where type = 'UR'
-)
-select distinct
-    NhsNumber,
-    DateOfPrimaryDiagnosisClinicallyAgreed,
-    AsaPhysicalStatusClassificationSystemCode
-from ur
-where NhsNumber is not null
-  and AsaPhysicalStatusClassificationSystemCode is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20UR%20Observation%20Asa%20Physical%20Status%20Classification%20System%20Code%20mapping){: .btn }
 ### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
 * Value copied from `AlcoholHistoryCancerInLastThreeMonths`
 
 * `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Urological
--- (UR) records in COSD v8.1. Date of primary diagnosis is used as
--- observation_date.
 select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -306,9 +254,6 @@ where type = 'UR'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Urological
--- (UR) records in COSD v8.1. Date of primary diagnosis is used as
--- observation_date.
 select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -328,9 +273,6 @@ where type = 'UR'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,
--- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as
--- observation_date.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -350,9 +292,6 @@ where type = 'UG'
 * `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Upper GI (UG)
--- records in COSD v9.01, sourced from HistoryOfAlcoholCurrent. Date of
--- primary diagnosis is used as observation_date.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -372,14 +311,6 @@ where type = 'UG'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Upper GI
--- (area UG) records in COSD v9.01, sourced from HistoryOfAlcoholPast.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL: resolve NhsNumber to person_id; cast date; map National
--- Code value to observation_concept_id.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
@@ -399,20 +330,6 @@ where type = 'UG'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Upper GI (area UG) records in COSD
--- v8.1, routed to the OMOP observation table as a lifestyle / risk-factor
--- attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
@@ -429,64 +346,12 @@ where type = 'UG'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 UG Observation Asa Physical Status Classification System Code
-* Value copied from `AsaPhysicalStatusClassificationSystemCode`
-
-* `AsaPhysicalStatusClassificationSystemCode` The American Society of Anesthesiologists (ASA) physical status classification system code for assessing a patient's fitness before surgery. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
-
-```sql
--- Selects ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE for Upper GI
--- (area UG) records in COSD v8.1, routed to the OMOP observation table.
--- The ASA grade is a perioperative clinical assessment of the patient's
--- fitness for surgery.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because no specific assessment date is provided
--- alongside the ASA code in this dataset.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AsaPhysicalStatusClassificationSystemCode (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
-select distinct
-    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.UpperGI.UpperGICore.UpperGICoreTreatment.UpperGICoreSurgeryAndOtherProcedures.ASAPhysicalStatusClassificationSystemCode.@code'
-        as AsaPhysicalStatusClassificationSystemCode
-from omop_staging.cosd_staging_81
-where type = 'UG'
-  and NhsNumber is not null
-  and AsaPhysicalStatusClassificationSystemCode is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20UG%20Observation%20Asa%20Physical%20Status%20Classification%20System%20Code%20mapping){: .btn }
 ### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
 * Value copied from `AlcoholHistoryCancerInLastThreeMonths`
 
 * `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Upper GI (area
--- UG) records in COSD v8.1, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute describing recent alcohol consumption.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
@@ -509,31 +374,11 @@ where type = 'UG'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Upper GI
--- (area UG) records in COSD v8.1, routed to the OMOP observation table as
--- a lifestyle / risk-factor attribute describing past alcohol consumption.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory.
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -551,30 +396,11 @@ where type = 'UG'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Skin (area SK) records in COSD v9.01,
--- routed to the OMOP observation table as a lifestyle / risk-factor
--- attribute. In v9 this is sourced from TobaccoSmokingStatus.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -592,32 +418,11 @@ where type = 'SK'
 * `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)
--- records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute describing recent alcohol consumption
--- history. In v9 this is sourced from HistoryOfAlcoholCurrent.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -635,32 +440,11 @@ where type = 'SK'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Skin
--- (area SK) records in COSD v9.01, routed to the OMOP observation table as
--- a lifestyle / risk-factor attribute describing past alcohol consumption
--- history. In v9 this is sourced from HistoryOfAlcoholPast.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -678,32 +462,11 @@ where type = 'SK'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Skin (area SK) records in COSD v8.1
--- (Skin core structure), routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute. The source path SmokingStatusCode
--- carries the patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Skin core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -721,33 +484,11 @@ where type = 'SK'
 * `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Skin (area SK)
--- records in COSD v8.1 (Skin core structure), routed to the OMOP observation
--- table as a lifestyle / risk-factor attribute describing recent alcohol
--- consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Skin core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -765,33 +506,11 @@ where type = 'SK'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Skin
--- (area SK) records in COSD v8.1 (Skin core structure), routed to the OMOP
--- observation table as a lifestyle / risk-factor attribute describing past
--- alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Skin core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -809,31 +528,11 @@ where type = 'SK'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Sarcoma (area SA) records in COSD
--- v9.01, routed to the OMOP observation table as a lifestyle / risk-factor
--- attribute. The source path TobaccoSmokingStatus carries the patient's
--- tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -851,32 +550,11 @@ where type = 'SA'
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Sarcoma (area
--- SA) records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute describing current alcohol consumption
--- history (source path HistoryOfAlcoholCurrent).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -894,32 +572,11 @@ where type = 'SA'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Sarcoma
--- (area SA) records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute describing past alcohol consumption
--- history (source path HistoryOfAlcoholPast).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -937,32 +594,11 @@ where type = 'SA'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Sarcoma (area SA) records in COSD v8.1
--- (Sarcoma core structure), routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute. The source path SmokingStatusCode
--- carries the patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Sarcoma core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -980,33 +616,11 @@ where type = 'SA'
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Sarcoma (area
--- SA) records in COSD v8.1 (Sarcoma core structure), routed to the OMOP
--- observation table as a lifestyle / risk-factor attribute describing
--- current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Sarcoma core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -1024,33 +638,11 @@ where type = 'SA'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Sarcoma
--- (area SA) records in COSD v8.1 (Sarcoma core structure), routed to the
--- OMOP observation table as a lifestyle / risk-factor attribute describing
--- past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Sarcoma core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -1068,31 +660,11 @@ where type = 'SA'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Liver (area LV) records in COSD v9.01,
--- routed to the OMOP observation table as a lifestyle / risk-factor
--- attribute. The source path TobaccoSmokingStatus carries the patient's
--- tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -1110,30 +682,11 @@ where type = 'LV'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Liver (area LV) records in COSD
--- v9.01, routed to the OMOP observation table. This WHO performance status
--- is a clinical assessment of the patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -1151,31 +704,11 @@ where type = 'LV'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Liver (area LV) records in
--- COSD v9.01, routed to the OMOP observation table as a family-history /
--- risk attribute (source path FamilialCancerSyndrome).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_901
@@ -1193,35 +726,14 @@ where type = 'LV'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Liver (area LV) records in COSD v9.01,
--- routed to the OMOP observation table. Each record's Treatment array
--- carries one (intent, start date) pair per entry, so the JSON paths are
--- unnested in lockstep so each treatment intent keeps its own start date.
--- The first element of each array list covers the singular-object encoding
--- and the second the JSON-array encoding.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with lv as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -1247,32 +759,11 @@ where NhsNumber is not null
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Liver (area LV) records in COSD
--- v8.1 (Liver core structure), routed to the OMOP observation table. This
--- WHO performance status is a clinical assessment of the patient's
--- functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Liver core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Liver.LiverCore.LiverCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.Liver.LiverCore.LiverCoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -1290,31 +781,10 @@ where type = 'LV'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Liver (area LV) records in COSD v8.1
--- (Liver core structure), routed to the OMOP observation table. The Liver
--- core Treatment section is a repeating array, so the intent and its
--- associated TREATMENT START DATE (CANCER) are unnested in lockstep: the
--- first element of each array list covers the singular-object encoding and
--- the second the JSON-array encoding, keeping each intent paired with its
--- own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent is recorded against an individual treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with lv as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - unnested in lockstep with the start date;
-        -- the observation value mapped downstream to observation_concept_id.
         unnest(
             [
                 [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentIntent.@code' ],
@@ -1322,8 +792,6 @@ with lv as (
             ],
             recursive := true
         ) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - unnested in lockstep with the
-        -- intent; becomes observation_date / observation_datetime.
         unnest(
             [
                 [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' ],
@@ -1352,31 +820,11 @@ where NhsNumber is not null
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Head and Neck (area HN) records in
--- COSD v9.01, routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute. The source path TobaccoSmokingStatus carries the
--- patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -1394,30 +842,11 @@ where type = 'HN'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Head and Neck (area HN) records in
--- COSD v9.01, routed to the OMOP observation table. This WHO performance
--- status is a clinical assessment of the patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -1435,31 +864,11 @@ where type = 'HN'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Head and Neck (area HN)
--- records in COSD v9.01, routed to the OMOP observation table as a
--- family-history / risk attribute (source path FamilialCancerSyndrome).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_901
@@ -1477,35 +886,14 @@ where type = 'HN'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Head and Neck (area HN) records in
--- COSD v9.01, routed to the OMOP observation table. Each record's Treatment
--- array carries one (intent, start date) pair per entry, so the JSON paths
--- are unnested in lockstep so each treatment intent keeps its own start
--- date. The first element of each array list covers the singular-object
--- encoding and the second the JSON-array encoding.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with hn as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -1531,32 +919,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Head and Neck
--- (area HN) records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute describing current alcohol consumption
--- history (source path HistoryOfAlcoholCurrent).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -1574,32 +941,11 @@ where type = 'HN'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Head and
--- Neck (area HN) records in COSD v9.01, routed to the OMOP observation table
--- as a lifestyle / risk-factor attribute describing past alcohol consumption
--- history (source path HistoryOfAlcoholPast).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -1617,32 +963,11 @@ where type = 'HN'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Head and Neck (area HN) records in
--- COSD v8.1 (Head and Neck core structure), routed to the OMOP observation
--- table as a lifestyle / risk-factor attribute. The source path
--- SmokingStatusCode carries the patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Head and Neck core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -1660,32 +985,11 @@ where type = 'HN'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Head and Neck (area HN) records in
--- COSD v8.1 (Head and Neck core structure), routed to the OMOP observation
--- table. This WHO performance status is a clinical assessment of the
--- patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Head and Neck core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -1703,32 +1007,11 @@ where type = 'HN'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Head and Neck (area HN)
--- records in COSD v8.1 (Head and Neck core structure), routed to the OMOP
--- observation table as a family-history / risk attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Head and Neck core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.HeadNeckCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_81
@@ -1746,31 +1029,10 @@ where type = 'HN'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Head and Neck (area HN) records in
--- COSD v8.1 (Head and Neck core structure), routed to the OMOP observation
--- table. The Treatment section is a repeating array, so the intent and its
--- associated TREATMENT START DATE (CANCER) are unnested in lockstep: the
--- first element of each array list covers the singular-object encoding and
--- the second the JSON-array encoding, keeping each intent paired with its
--- own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent is recorded against an individual treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with hn as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - unnested in lockstep with the start date;
-        -- the observation value mapped downstream to observation_concept_id.
         unnest(
             [
                 [ Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.CancerTreatmentIntent.@code' ],
@@ -1778,8 +1040,6 @@ with hn as (
             ],
             recursive := true
         ) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - unnested in lockstep with the
-        -- intent; becomes observation_date / observation_datetime.
         unnest(
             [
                 [ Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.CancerTreatmentStartDate' ],
@@ -1808,33 +1068,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Head and Neck
--- (area HN) records in COSD v8.1 (Head and Neck core structure), routed to
--- the OMOP observation table as a lifestyle / risk-factor attribute
--- describing current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Head and Neck core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -1852,33 +1090,11 @@ where type = 'HN'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Head and
--- Neck (area HN) records in COSD v8.1 (Head and Neck core structure), routed
--- to the OMOP observation table as a lifestyle / risk-factor attribute
--- describing past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Head and Neck core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -1896,31 +1112,11 @@ where type = 'HN'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Haematological (area HA) records in
--- COSD v9.01, routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute. The source path TobaccoSmokingStatus carries the
--- patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -1938,30 +1134,11 @@ where type = 'HA'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Haematological (area HA) records in
--- COSD v9.01, routed to the OMOP observation table. This WHO performance
--- status is a clinical assessment of the patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -1979,31 +1156,11 @@ where type = 'HA'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Haematological (area HA)
--- records in COSD v9.01, routed to the OMOP observation table as a
--- family-history / risk attribute (source path FamilialCancerSyndrome).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_901
@@ -2021,35 +1178,14 @@ where type = 'HA'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Haematological (area HA) records in
--- COSD v9.01, routed to the OMOP observation table. Each record's Treatment
--- array carries one (intent, start date) pair per entry, so the JSON paths
--- are unnested in lockstep so each treatment intent keeps its own start
--- date. The first element of each array list covers the singular-object
--- encoding and the second the JSON-array encoding.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with ha as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -2075,32 +1211,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Haematological
--- (area HA) records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute describing current alcohol consumption
--- history (source path HistoryOfAlcoholCurrent).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -2118,32 +1233,11 @@ where type = 'HA'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for
--- Haematological (area HA) records in COSD v9.01, routed to the OMOP
--- observation table as a lifestyle / risk-factor attribute describing past
--- alcohol consumption history (source path HistoryOfAlcoholPast).
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -2161,32 +1255,11 @@ where type = 'HA'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Haematological (area HA) records in
--- COSD v8.1 (Haematological core structure), routed to the OMOP observation
--- table as a lifestyle / risk-factor attribute. The source path
--- SmokingStatusCode carries the patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Haematological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -2204,32 +1277,11 @@ where type = 'HA'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Haematological (area HA) records in
--- COSD v8.1 (Haematological core structure), routed to the OMOP observation
--- table. This WHO performance status is a clinical assessment of the
--- patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Haematological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -2247,32 +1299,11 @@ where type = 'HA'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Haematological (area HA)
--- records in COSD v8.1 (Haematological core structure), routed to the OMOP
--- observation table as a family-history / risk attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Haematological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.HaematologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_81
@@ -2290,31 +1321,10 @@ where type = 'HA'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Haematological (area HA) records in
--- COSD v8.1 (Haematological core structure), routed to the OMOP observation
--- table. The Treatment section is a repeating array, so the intent and its
--- associated TREATMENT START DATE (CANCER) are unnested in lockstep: the
--- first element of each array list covers the singular-object encoding and
--- the second the JSON-array encoding, keeping each intent paired with its
--- own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent is recorded against an individual treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with ha as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - unnested in lockstep with the start date;
-        -- the observation value mapped downstream to observation_concept_id.
         unnest(
             [
                 [ Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreTreatment.CancerTreatmentIntent.@code' ],
@@ -2322,8 +1332,6 @@ with ha as (
             ],
             recursive := true
         ) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - unnested in lockstep with the
-        -- intent; becomes observation_date / observation_datetime.
         unnest(
             [
                 [ Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreTreatment.CancerTreatmentStartDate' ],
@@ -2352,33 +1360,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Haematological
--- (area HA) records in COSD v8.1 (Haematological core structure), routed to
--- the OMOP observation table as a lifestyle / risk-factor attribute
--- describing current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Haematological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -2396,33 +1382,11 @@ where type = 'HA'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for
--- Haematological (area HA) records in COSD v8.1 (Haematological core
--- structure), routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute describing past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Haematological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -2440,30 +1404,11 @@ where type = 'HA'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in
--- COSD v9.01, routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -2481,30 +1426,11 @@ where type = 'GY'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Gynaecological (area GY) records
--- in COSD v9.01, routed to the OMOP observation table. This WHO performance
--- status is a clinical assessment of the patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -2522,31 +1448,11 @@ where type = 'GY'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Gynaecological (area GY)
--- records in COSD v9.01, routed to the OMOP observation table as a
--- family-history / risk attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_901
@@ -2564,34 +1470,14 @@ where type = 'GY'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT paired with TREATMENT START DATE (CANCER)
--- for Gynaecological (area GY) records in COSD v9.01, routed to the OMOP
--- observation table. Each record's Treatment array carries one
--- (intent, start date) pair per entry, so the JSON paths are unnested in
--- lockstep so each treatment intent keeps its own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with gy as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -2617,32 +1503,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Gynaecological
--- (area GY) records in COSD v9.01, routed to the OMOP observation table as
--- a lifestyle / risk-factor attribute describing current alcohol
--- consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -2660,32 +1525,11 @@ where type = 'GY'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for
--- Gynaecological (area GY) records in COSD v9.01, routed to the OMOP
--- observation table as a lifestyle / risk-factor attribute describing past
--- alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -2703,32 +1547,11 @@ where type = 'GY'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Gynaecological (area GY) records in
--- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation
--- table as a lifestyle / risk-factor attribute. The source path
--- SmokingStatusCode carries the patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -2746,32 +1569,11 @@ where type = 'GY'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Gynaecological (area GY) records in
--- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation
--- table. This WHO performance status is a clinical assessment of the
--- patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -2789,32 +1591,11 @@ where type = 'GY'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Gynaecological (area GY)
--- records in COSD v8.1 (Gynaecological core structure), routed to the OMOP
--- observation table as a family-history / risk attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.GynaecologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_81
@@ -2832,31 +1613,10 @@ where type = 'GY'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT for Gynaecological (area GY) records in
--- COSD v8.1 (Gynaecological core structure), routed to the OMOP observation
--- table. The Treatment section is a repeating array, so the intent and its
--- associated TREATMENT START DATE (CANCER) are unnested in lockstep: the
--- first element of each array list covers the singular-object encoding and
--- the second the JSON-array encoding, keeping each intent paired with its
--- own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent is recorded against an individual treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with gy as (
     select distinct
-        -- NHS NUMBER - patient identifier, mandatory; joins to cdm.person.
         Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
             as NhsNumber,
-        -- TREATMENT START DATE (CANCER) - unnested in lockstep with the
-        -- intent; becomes observation_date / observation_datetime.
         unnest(
             [
                 [ Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentStartDate' ],
@@ -2864,8 +1624,6 @@ with gy as (
             ],
             recursive := true
         ) as TreatmentStartDateCancer,
-        -- CANCER TREATMENT INTENT - unnested in lockstep with the start date;
-        -- the observation value mapped downstream to observation_concept_id.
         unnest(
             [
                 [ Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.CancerTreatmentIntent.@code' ],
@@ -2894,33 +1652,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Gynaecological
--- (area GY) records in COSD v8.1 (Gynaecological core structure), routed to
--- the OMOP observation table as a lifestyle / risk-factor attribute
--- describing current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -2938,33 +1674,11 @@ where type = 'GY'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for
--- Gynaecological (area GY) records in COSD v8.1 (Gynaecological core
--- structure), routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute describing past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Gynaecological core as ClinicalDateCancerDiagnosis - is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -2982,31 +1696,11 @@ where type = 'GY'
 * `TobaccoSmokingCessationTreatmentIndicationCode` Indication of whether treatment was given to the patient for tobacco smoking cessation. [TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE](https://www.datadictionary.nhs.uk/data_elements/tobacco_smoking_cessation_treatment_indication_code.html)
 
 ```sql
--- Selects TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE for Children,
--- Teenagers and Young Adults (area CT) records in COSD v9.01, routed to the
--- OMOP observation table as a lifestyle / risk-factor attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map TobaccoSmokingCessationTreatmentIndicationCode (NHS National Code)
---     to the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingCessation.@code'
         as TobaccoSmokingCessationTreatmentIndicationCode
 from omop_staging.cosd_staging_901
@@ -3024,30 +1718,11 @@ where type = 'CT'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Children, Teenagers and Young Adults
--- (area CT) records in COSD v9.01, routed to the OMOP observation table as
--- a lifestyle / risk-factor attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -3065,31 +1740,11 @@ where type = 'CT'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Children, Teenagers and Young
--- Adults (area CT) records in COSD v9.01, routed to the OMOP observation
--- table. This WHO performance status is a clinical assessment of the
--- patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -3107,31 +1762,11 @@ where type = 'CT'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Children, Teenagers and
--- Young Adults (area CT) records in COSD v9.01, routed to the OMOP
--- observation table as a family-history / risk attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_901
@@ -3149,34 +1784,14 @@ where type = 'CT'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT paired with TREATMENT START DATE (CANCER)
--- for Children, Teenagers and Young Adults (area CT) records in COSD v9.01,
--- routed to the OMOP observation table. Each record's Treatment array
--- carries one (intent, start date) pair per entry, so the JSON paths are
--- unnested in lockstep so each treatment intent keeps its own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with ct as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -3202,32 +1817,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Children,
--- Teenagers and Young Adults (area CT) records in COSD v9.01, routed to the
--- OMOP observation table as a lifestyle / risk-factor attribute describing
--- current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -3245,32 +1839,11 @@ where type = 'CT'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Children,
--- Teenagers and Young Adults (area CT) records in COSD v9.01, routed to the
--- OMOP observation table as a lifestyle / risk-factor attribute describing
--- past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -3288,31 +1861,11 @@ where type = 'CT'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Children, Teenagers and Young Adults
--- (area CT) records in COSD v8.1 (CTYA core structure), routed to the OMOP
--- observation table as a lifestyle / risk-factor attribute. The source path
--- SmokingStatusCode carries the patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- CTYA core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.CTYA.CTYACore.CTYACoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -3330,31 +1883,11 @@ where type = 'CT'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Children, Teenagers and Young
--- Adults (area CT) records in COSD v8.1 (CTYA core structure), routed to the
--- OMOP observation table. This WHO performance status is a clinical
--- assessment of the patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- CTYA core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -3372,31 +1905,11 @@ where type = 'CT'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Children, Teenagers and
--- Young Adults (area CT) records in COSD v8.1 (CTYA core structure), routed
--- to the OMOP observation table as a family-history / risk attribute.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- CTYA core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.CTYACoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_81
@@ -3414,32 +1927,11 @@ where type = 'CT'
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Children,
--- Teenagers and Young Adults (area CT) records in COSD v8.1 (CTYA core
--- structure), routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute describing current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- CTYA core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.CTYA.CTYACore.CTYACoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -3457,32 +1949,11 @@ where type = 'CT'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Children,
--- Teenagers and Young Adults (area CT) records in COSD v8.1 (CTYA core
--- structure), routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute describing past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- CTYA core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.CTYA.CTYACore.CTYACoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -3500,33 +1971,11 @@ where type = 'CT'
 * `TobaccoSmokingCessationTreatmentIndicationCode` Indication of whether treatment was given to the patient for tobacco smoking cessation. [TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE](https://www.datadictionary.nhs.uk/data_elements/tobacco_smoking_cessation_treatment_indication_code.html)
 
 ```sql
--- Selects TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE for
--- Colorectal (CR) records in COSD v9.01, routed to the OMOP observation
--- table as a lifestyle / risk-factor attribute indicating whether the
--- patient received tobacco smoking cessation treatment.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the risk-factor assessment is recorded around
--- the point of diagnosis.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map TobaccoSmokingCessationTreatmentIndicationCode (NHS National Code)
---     to the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingCessation.@code'
         as TobaccoSmokingCessationTreatmentIndicationCode
 from omop_staging.cosd_staging_901
@@ -3544,32 +1993,11 @@ where type = 'CR'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Colorectal (CR) records in COSD
--- v9.01, routed to the OMOP observation table as a lifestyle / risk-factor
--- attribute. The source path TobaccoSmokingStatus carries the patient's
--- tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the risk-factor assessment is recorded around
--- the point of diagnosis.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_901
@@ -3587,31 +2015,11 @@ where type = 'CR'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Colorectal (CR) records in
--- COSD v9.01, routed to the OMOP observation table. This WHO performance
--- status is a clinical assessment of the patient's functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the performance status is recorded around the
--- point of diagnosis.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -3629,33 +2037,11 @@ where type = 'CR'
 * `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
 
 ```sql
--- Selects FAMILIAL CANCER SYNDROME INDICATOR for Colorectal (CR) records in
--- COSD v9.01, routed to the OMOP observation table as a family / medical
--- history indicator showing whether a familial cancer syndrome is possible
--- or confirmed.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the indicator is recorded as part of the
--- diagnosis additional items.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map FamilialCancerSyndromeIndicator (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- FAMILIAL CANCER SYNDROME INDICATOR - the observation value; mapped
-    -- downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
         as FamilialCancerSyndromeIndicator
 from omop_staging.cosd_staging_901
@@ -3673,35 +2059,14 @@ where type = 'CR'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT paired with TREATMENT START DATE (CANCER)
--- for Colorectal (CR) records in COSD v9.01, routed to the OMOP observation
--- table. Each record's Treatment array carries one (intent, start date)
--- pair per entry, so the JSON paths are unnested in lockstep so each
--- treatment intent keeps its own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent applies to that treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with cr as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -3727,33 +2092,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Colorectal (CR)
--- records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute. The source path HistoryOfAlcoholCurrent
--- carries the current alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the risk-factor assessment is recorded around
--- the point of diagnosis.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -3771,33 +2114,11 @@ where type = 'CR'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Colorectal
--- (CR) records in COSD v9.01, routed to the OMOP observation table as a
--- lifestyle / risk-factor attribute. The source path HistoryOfAlcoholPast
--- carries the past alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the risk-factor assessment is recorded around
--- the point of diagnosis.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_901
@@ -3815,31 +2136,11 @@ where type = 'CR'
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
 ```sql
--- Selects SMOKING STATUS (CANCER) for Colorectal (CR) records in COSD v8.1
--- (Core structure), routed to the OMOP observation table as a lifestyle /
--- risk-factor attribute. The source path SmokingStatusCode carries the
--- patient's tobacco smoking status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map SmokingStatusCancer (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- SMOKING STATUS (CANCER) - the observation value; mapped downstream to
-    -- observation_concept_id and retained as observation_source_value.
     Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
         as SmokingStatusCancer
 from omop_staging.cosd_staging_81
@@ -3857,31 +2158,11 @@ where type = 'CR'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for Colorectal (CR) records in COSD
--- v8.1 (Core structure), routed to the OMOP observation table. This WHO
--- performance status is a clinical assessment of the patient's functional
--- status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.Core.CoreCore.CoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -3899,35 +2180,14 @@ where type = 'CR'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT paired with TREATMENT START DATE (CANCER)
--- for Colorectal (CR) records in COSD v8.1 (Core structure), routed to the
--- OMOP observation table. Each record's CoreTreatment array carries one
--- (intent, start date) pair per entry, so the JSON paths are unnested in
--- lockstep so each treatment intent keeps its own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent applies to that treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with cr as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
         Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Core.CoreCore.CoreTreatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Core.CoreCore.CoreTreatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Core.CoreCore.CoreTreatment.CancerTreatmentStartDate'],
             Record ->> '$.Core.CoreCore.CoreTreatment[*].CancerTreatmentStartDate'
@@ -3953,32 +2213,11 @@ where NhsNumber is not null
 * `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) for Colorectal (CR)
--- records in COSD v8.1 (Core structure), routed to the OMOP observation
--- table as a lifestyle / risk-factor attribute describing current alcohol
--- consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerInLastThreeMonths (NHS National Code) to the
---     standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS) - the observation value;
-    -- mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
         as AlcoholHistoryCancerInLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -3996,32 +2235,11 @@ where type = 'CR'
 * `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
 
 ```sql
--- Selects ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) for Colorectal
--- (CR) records in COSD v8.1 (Core structure), routed to the OMOP
--- observation table as a lifestyle / risk-factor attribute describing past
--- alcohol consumption history.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- Core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map AlcoholHistoryCancerBeforeLastThreeMonths (NHS National Code) to
---     the standard observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS) - the observation
-    -- value; mapped downstream to observation_concept_id and retained as
-    -- observation_source_value.
     Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
         as AlcoholHistoryCancerBeforeLastThreeMonths
 from omop_staging.cosd_staging_81
@@ -4039,31 +2257,11 @@ where type = 'CR'
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for CNS / Brain (BA) records in
--- COSD v9.01. This WHO performance status is a clinical assessment of the
--- patient's functional status and is routed to the OMOP observation table.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is used as the
--- observation_date because the performance status is recorded around the
--- point of diagnosis.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.LinkagePatientId.NhsNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_901
@@ -4081,35 +2279,14 @@ where type = 'BA'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT paired with TREATMENT START DATE (CANCER)
--- for CNS / Brain (BA) records in COSD v9.01, routed to the OMOP
--- observation table. Each record's Treatment array carries one
--- (intent, start date) pair per entry, so the JSON paths are unnested in
--- lockstep so each treatment intent keeps its own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent applies to that treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with ba as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
         Record ->> '$.LinkagePatientId.NhsNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
             Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.Treatment.TreatmentStartDateCancer'],
             Record ->> '$.Treatment[*].TreatmentStartDateCancer'
@@ -4135,31 +2312,11 @@ where NhsNumber is not null
 * `PerformanceStatusAdult` A World Health Organisation classification indicating a person's status relating to activity or disability. [PERFORMANCE STATUS (ADULT)](https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html)
 
 ```sql
--- Selects PERFORMANCE STATUS (ADULT) for CNS / Brain (BA) records in
--- COSD v8.1 (CNS core structure), routed to the OMOP observation table.
--- This WHO performance status is a clinical assessment of the patient's
--- functional status.
---
--- The DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - held in the
--- CNS core as ClinicalDateCancerDiagnosis - is used as the observation_date.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map PerformanceStatusAdult (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast DateOfPrimaryDiagnosisClinicallyAgreed (varchar) to a DATE and
---     assign to observation_date / observation_datetime.
 select distinct
-    -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
     Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension'
         as NhsNumber,
-    -- DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) - becomes
-    -- observation_date / observation_datetime.
     Record ->> '$.CNS.CNSCore.CNSCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
-    -- PERFORMANCE STATUS (ADULT) - the observation value; mapped downstream
-    -- to observation_concept_id and retained as observation_source_value.
     Record ->> '$.CNS.CNSCore.CNSCoreDiagnosis.AdultPerformanceStatus.@code'
         as PerformanceStatusAdult
 from omop_staging.cosd_staging_81
@@ -4177,35 +2334,14 @@ where type = 'BA'
 * `CancerTreatmentIntent` The intention of the cancer treatment provided during a Cancer Care Spell. [CANCER TREATMENT INTENT](https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html)
 
 ```sql
--- Selects CANCER TREATMENT INTENT paired with TREATMENT START DATE (CANCER)
--- for CNS / Brain (BA) records in COSD v8.1 (CNS core structure), routed to
--- the OMOP observation table. Each record's CNSCoreTreatment array carries
--- one (intent, start date) pair per entry, so the JSON paths are unnested
--- in lockstep so each treatment intent keeps its own start date.
---
--- The TREATMENT START DATE (CANCER) is used as the observation_date because
--- the treatment intent applies to that treatment event.
---
--- Downstream ETL responsibilities:
---   * Resolve NhsNumber against cdm.person to obtain person_id.
---   * Map CancerTreatmentIntent (NHS National Code) to the standard
---     observation_concept_id and retain the verbatim code in
---     observation_source_value / value_source_value.
---   * Cast TreatmentStartDateCancer (varchar) to a DATE and assign to
---     observation_date / observation_datetime.
 with ba as (
     select
-        -- NHS NUMBER - patient identifier, mandatory; used to join to cdm.person.
         Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension'
             as NhsNumber,
-        -- CANCER TREATMENT INTENT - the observation value; unnested in
-        -- lockstep with the treatment start date.
         unnest([
             [Record ->> '$.CNS.CNSCore.CNSCoreTreatment.CancerTreatmentIntent.@code'],
             Record ->> '$.CNS.CNSCore.CNSCoreTreatment[*].CancerTreatmentIntent.@code'
         ], recursive := true) as CancerTreatmentIntent,
-        -- TREATMENT START DATE (CANCER) - becomes observation_date /
-        -- observation_datetime. Paired one-to-one with CancerTreatmentIntent.
         unnest([
             [Record ->> '$.CNS.CNSCore.CNSCoreTreatment.CancerTreatmentStartDate'],
             Record ->> '$.CNS.CNSCore.CNSCoreTreatment[*].CancerTreatmentStartDate'

@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\n-- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,\n-- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as\n-- observation_date.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -42,7 +42,7 @@
           ]
         }
       ],
-      "query": "\n-- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,\n-- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as\n-- observation_date.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -60,7 +60,7 @@
           ]
         }
       ],
-      "query": "\n-- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,\n-- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as\n-- observation_date.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -85,7 +85,7 @@
           ]
         }
       ],
-      "query": "\n-- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,\n-- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as\n-- observation_date.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
       "lookup_table_markdown": "\r\n\r\n|SmokingStatusCancer|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|903657|Current smoker|\r\n|2|903651|Ex-smoker|\r\n|4|903653|Never smoked|\r\n|9|0|Unknown (Not Recorded)|\r\n\r\n"
     },
     {
@@ -103,7 +103,7 @@
           ]
         }
       ],
-      "query": "\n-- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,\n-- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as\n-- observation_date.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -121,7 +121,7 @@
           ]
         }
       ],
-      "query": "\n-- Selects SMOKING STATUS (CANCER) for Upper GI (UG) records in COSD v9.01,\n-- sourced from TobaccoSmokingStatus. Date of primary diagnosis is used as\n-- observation_date.\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
       "lookup_table_markdown": null
     }
   ]
