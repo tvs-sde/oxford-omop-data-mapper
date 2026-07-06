@@ -1975,9 +1975,6 @@
     <None Update="COSD\UG\Observation\COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths\COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\UG\Observation\COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode\COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="COSD\UG\Observation\COSDv8UGObservationSmokingStatusCancer\COSDv8UGObservationSmokingStatusCancer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1985,9 +1982,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UR\Observation\COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths\COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="COSD\UR\Observation\COSDv8URObservationAsaPhysicalStatusClassificationSystemCode\COSDv8URObservationAsaPhysicalStatusClassificationSystemCode.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UR\Observation\COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis\COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.xml">
@@ -2268,9 +2262,6 @@
     <None Update="COSD\UG\Observation\COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths\COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\UG\Observation\COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode\COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="COSD\UG\Observation\COSDv8UGObservationSmokingStatusCancer\COSDv8UGObservationSmokingStatusCancer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2278,9 +2269,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UR\Observation\COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths\COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="COSD\UR\Observation\COSDv8URObservationAsaPhysicalStatusClassificationSystemCode\COSDv8URObservationAsaPhysicalStatusClassificationSystemCode.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UR\Observation\COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis\COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.xml">
@@ -2561,9 +2549,6 @@
     <None Update="COSD\UG\Observation\COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths\COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="COSD\UG\Observation\COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode\COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="COSD\UG\Observation\COSDv8UGObservationSmokingStatusCancer\COSDv8UGObservationSmokingStatusCancer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2571,9 +2556,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UR\Observation\COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths\COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="COSD\UR\Observation\COSDv8URObservationAsaPhysicalStatusClassificationSystemCode\COSDv8URObservationAsaPhysicalStatusClassificationSystemCode.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="COSD\UR\Observation\COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis\COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.xml">

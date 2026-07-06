@@ -544,11 +544,9 @@ using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationAlcoholHistoryCance
 using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationSmokingStatusCancer;
 using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths;
-using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode;
 using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationSmokingStatusCancer;
 using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths;
-using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAsaPhysicalStatusClassificationSystemCode;
 using OmopTransformer.COSD.UR.Observation.COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.UR.Observation.COSDv8URObservationSmokingStatusCancer;
 using OmopTransformer.COSD.BA.Observation.COSDv9BAObservationCancerTreatmentIntent;
@@ -3884,12 +3882,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8UGObservationAsaPhysicalStatusClassificationSystemCodeRecord, COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv8UGObservationAsaPhysicalStatusClassificationSystemCode",
-            runId,
-            cancellationToken);
-
         await Transform<COSDv8UGObservationSmokingStatusCancerRecord, COSDv8UGObservationSmokingStatusCancer>(
             _observationRecorder.InsertUpdateObservations,
             "COSDv8UGObservationSmokingStatusCancer",
@@ -3905,12 +3897,6 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8URObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths>(
             _observationRecorder.InsertUpdateObservations,
             "COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths",
-            runId,
-            cancellationToken);
-
-        await Transform<COSDv8URObservationAsaPhysicalStatusClassificationSystemCodeRecord, COSDv8URObservationAsaPhysicalStatusClassificationSystemCode>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv8URObservationAsaPhysicalStatusClassificationSystemCode",
             runId,
             cancellationToken);
         
