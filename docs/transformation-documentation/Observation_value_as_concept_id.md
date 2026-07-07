@@ -184,7 +184,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -305,7 +305,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -394,7 +394,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -486,7 +486,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -584,7 +584,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -682,7 +682,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -780,7 +780,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 
@@ -878,7 +878,7 @@ ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
 |------|-----|-----|
 |1|4336673|Heavy (greater than 14 units per week)|
 |2|4042862|Light (less than or equal to 14 units per week)|
-|3|105542008|None ever|
+|3|4022664|None ever|
 |Z|0|Not Stated (patient asked but declined to provide a response)|
 |9|0|Not Known (Not Recorded)|
 

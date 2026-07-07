@@ -86,7 +86,7 @@
         }
       ],
       "query": "\nselect distinct\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'\n        as AlcoholHistoryCancerInLastThreeMonths\nfrom omop_staging.cosd_staging_81\nwhere type = 'SK'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerInLastThreeMonths is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
-      "lookup_table_markdown": "\r\n\r\n|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4336673|Heavy (greater than 14 units per week)|\r\n|2|4042862|Light (less than or equal to 14 units per week)|\r\n|3|105542008|None ever|\r\n|Z|0|Not Stated (patient asked but declined to provide a response)|\r\n|9|0|Not Known (Not Recorded)|\r\n\r\n"
+      "lookup_table_markdown": "\r\n\r\n|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4336673|Heavy (greater than 14 units per week)|\r\n|2|4042862|Light (less than or equal to 14 units per week)|\r\n|3|4022664|None ever|\r\n|Z|0|Not Stated (patient asked but declined to provide a response)|\r\n|9|0|Not Known (Not Recorded)|\r\n\r\n"
     },
     {
       "name": "observation_source_value",
