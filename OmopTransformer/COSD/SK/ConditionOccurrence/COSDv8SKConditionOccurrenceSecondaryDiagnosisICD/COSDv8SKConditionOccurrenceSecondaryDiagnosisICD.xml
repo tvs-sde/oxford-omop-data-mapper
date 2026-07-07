@@ -1,0 +1,37 @@
+﻿<Query>
+    <Sql>
+with sk as (
+    select distinct
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Skin.SkinCore.SkinCoreDiagnosis.SkinCoreDiagnosisAdditionalItems.SecondaryDiagnosisICD.@code'
+            as SecondaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'SK'
+)
+select distinct
+    NhsNumber,
+    ClinicalDateCancerDiagnosis,
+    SecondaryDiagnosisICD
+from sk
+where NhsNumber is not null
+  and SecondaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ClinicalDateCancerDiagnosis">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="SecondaryDiagnosisICD">
+            <Description>ICD code used to identify the secondary patient diagnosis. Same as the CLINICAL CLASSIFICATION CODE attribute. For Healthcare Operational Data Flows (Acute), this is the next most relevant patient diagnosis.</Description>
+            <Origin>SECONDARY DIAGNOSIS (ICD)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
