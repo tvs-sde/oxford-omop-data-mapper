@@ -1,25 +1,25 @@
 ﻿using Microsoft.Extensions.Logging;
+using OmopTransformer.ConceptResolution;
 using OmopTransformer.Omop;
 using OmopTransformer.Omop.ConditionOccurrence;
 using OmopTransformer.Omop.Death;
+using OmopTransformer.Omop.DeviceExposure;
+using OmopTransformer.Omop.DrugExposure;
 using OmopTransformer.Omop.Location;
 using OmopTransformer.Omop.Person;
 using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Omop.VisitDetail;
 using OmopTransformer.Omop.VisitOccurrence;
-using OmopTransformer.Omop.DrugExposure;
-using OmopTransformer.Omop.DeviceExposure;
 using OmopTransformer.OxfordGP.ConditionOccurrence;
 using OmopTransformer.OxfordGP.Death;
+using OmopTransformer.OxfordGP.DeviceExposure;
+using OmopTransformer.OxfordGP.DrugExposure;
 using OmopTransformer.OxfordGP.Location;
 using OmopTransformer.OxfordGP.Person;
 using OmopTransformer.OxfordGP.ProcedureOccurrence;
 using OmopTransformer.OxfordGP.VisitDetail;
 using OmopTransformer.OxfordGP.VisitOccurrence;
-using OmopTransformer.OxfordGP.DrugExposure;
-using OmopTransformer.OxfordGP.DeviceExposure;
 using OmopTransformer.Transformation;
-using OmopTransformer.ConceptResolution;
 
 namespace OmopTransformer.OxfordGP;
 

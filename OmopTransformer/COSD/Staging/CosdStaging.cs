@@ -1,11 +1,11 @@
-﻿using DuckDB.NET.Data;
+﻿using System.IO.Compression;
+using System.Text.RegularExpressions;
+using System.Xml;
+using DuckDB.NET.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.IO.Compression;
-using System.Text.RegularExpressions;
-using System.Xml;
 
 namespace OmopTransformer.COSD.Staging;
 
@@ -174,8 +174,8 @@ internal class CosdStaging : ICosdStaging
     {
         private CosdType() { }
 
-        public static CosdType Cosd81 = new ();
-        public static CosdType Cosd901 = new ();
-        public static CosdType Unknown = new ();
+        public static readonly CosdType Cosd81 = new ();
+        public static readonly CosdType Cosd901 = new ();
+        public static readonly CosdType Unknown = new ();
     }
 }

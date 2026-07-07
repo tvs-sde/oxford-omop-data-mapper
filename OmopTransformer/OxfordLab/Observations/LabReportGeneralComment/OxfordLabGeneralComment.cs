@@ -21,7 +21,7 @@ internal class OxfordLabGeneralComment : OmopObservation<OxfordLabGeneralComment
     [ConstantValue(32828, "EHR episode record")]
     public override int? observation_type_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.@EVENT))]
+    [CopyValue(nameof(Source.EVENT))]
     public override string? observation_source_value { get; set; }
 
     [CopyValue(nameof(Source.RESULT_VALUE))]

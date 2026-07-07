@@ -35,7 +35,7 @@ public static class StringExtensions
     {
         text = text.TrimWhitespace();
 
-        text = text?.TrimEnd(new char[] { '\r', '\n' }) ?? null;
+        text = text?.TrimEnd('\r', '\n') ?? null;
 
         if (string.IsNullOrEmpty(text))
             return null;

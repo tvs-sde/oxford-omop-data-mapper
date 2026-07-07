@@ -53,7 +53,7 @@ internal class SusCCMDSParser : ISusCCMDSParser
 
             for (int i = 0; i < 20; i++)
             {
-                var activityCode = new CCMDSCriticalCareActivityCode()
+                var activityCode = new CCMDSCriticalCareActivityCode
                 {
                     MessageId = messageId,
                     CriticalCareActivityCode = csv[++index].GetTrimmedValueOrNull()
@@ -69,7 +69,7 @@ internal class SusCCMDSParser : ISusCCMDSParser
 
             for (int i = 0; i < 20; i++)
             {
-                var highCostDrug = new CCMDSCriticalCareHighCostDrugs()
+                var highCostDrug = new CCMDSCriticalCareHighCostDrugs
                 {
                     MessageId = messageId,
                     CriticalCareHighCostDrugs = csv[++index].GetTrimmedValueOrNull()

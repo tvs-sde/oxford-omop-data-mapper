@@ -164,7 +164,7 @@ internal class SusAEParser : ISusAEParser
 
             for (int i = 0; i < 24; i++)
             {
-                var diagnosis = new SusAEDiagnosis()
+                var diagnosis = new SusAEDiagnosis
                 {
                     MessageId = messageId,
                     AccidentAndEmergencyDiagnosis = csv[++index].GetTrimmedValueOrNull()
@@ -196,7 +196,7 @@ internal class SusAEParser : ISusAEParser
 
             for (int i = 0; i < 24; i++)
             {
-                var treatment = new SusAETreatment()
+                var treatment = new SusAETreatment
                 {
                     MessageId = messageId,
                     AccidentAndEmergencyTreatment = csv[++index].GetTrimmedValueOrNull()

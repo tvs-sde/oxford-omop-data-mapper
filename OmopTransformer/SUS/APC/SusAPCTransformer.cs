@@ -42,6 +42,7 @@ using OmopTransformer.SUS.CCMDS.Observation.HighCostDrugs.SusCCMDSHighCostDrugs;
 using OmopTransformer.SUS.CCMDS.ProcedureOccurrence;
 using OmopTransformer.SUS.CCMDS.VisitDetails;
 using OmopTransformer.Transformation;
+
 namespace OmopTransformer.SUS.APC;
 
 internal class SusAPCTransformer : Transformer

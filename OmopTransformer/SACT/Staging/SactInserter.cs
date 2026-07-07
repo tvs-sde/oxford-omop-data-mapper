@@ -1,8 +1,8 @@
-﻿using DuckDB.NET.Data;
+﻿using System.Data;
+using System.Diagnostics;
+using DuckDB.NET.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Data;
-using System.Diagnostics;
 
 namespace OmopTransformer.SACT.Staging;
 

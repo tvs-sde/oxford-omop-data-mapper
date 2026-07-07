@@ -1,7 +1,7 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using DuckDB.NET.Data;
 using Microsoft.Extensions.Options;
-using System.Data;
 
 namespace OmopTransformer.Omop.Person;
 
@@ -69,7 +69,7 @@ internal class PersonRecorder : IPersonRecorder
 
         await connection
             .ExecuteAsync(
-                @$"
+                @"
 
 
 insert into cdm.person

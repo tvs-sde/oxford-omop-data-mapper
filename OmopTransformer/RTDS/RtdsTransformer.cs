@@ -1,21 +1,21 @@
 ﻿using Microsoft.Extensions.Logging;
+using OmopTransformer.Omop;
+using OmopTransformer.Omop.ConditionOccurrence;
 using OmopTransformer.Omop.Location;
+using OmopTransformer.Omop.Observation;
 using OmopTransformer.Omop.Person;
 using OmopTransformer.Omop.ProcedureOccurrence;
-using OmopTransformer.Omop.ConditionOccurrence;
-using OmopTransformer.Omop.VisitOccurrence;
-using OmopTransformer.Omop;
-using OmopTransformer.RTDS.ProcedureOccurrence;
-using OmopTransformer.RTDS.ConditionOccurrence;
-//using OmopTransformer.RTDS.VisitOccurrence;
-using OmopTransformer.RTDS.Person;
-using OmopTransformer.RTDS.Location;
-using OmopTransformer.Transformation;
-using OmopTransformer.RTDS.VisitOccurrence;
 using OmopTransformer.Omop.Provider;
-using OmopTransformer.RTDS.Provider;
-using OmopTransformer.Omop.Observation;
+using OmopTransformer.Omop.VisitOccurrence;
+using OmopTransformer.RTDS.ConditionOccurrence;
+using OmopTransformer.RTDS.Location;
 using OmopTransformer.RTDS.Observation;
+using OmopTransformer.RTDS.Person;
+using OmopTransformer.RTDS.ProcedureOccurrence;
+using OmopTransformer.RTDS.Provider;
+using OmopTransformer.RTDS.VisitOccurrence;
+using OmopTransformer.Transformation;
+//using OmopTransformer.RTDS.VisitOccurrence;
 
 namespace OmopTransformer.RTDS;
 
