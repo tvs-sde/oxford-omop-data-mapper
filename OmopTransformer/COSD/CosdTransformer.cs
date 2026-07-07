@@ -681,7 +681,6 @@ using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceDia
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementAdultComorbidityEvaluation;
-using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementMcategoryIntegratedStage;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementNcategoryFinalPreTreatmentStage;
@@ -694,7 +693,6 @@ using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementTNMStageGroupingFin
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementTNMStageGroupingIntegrated;
 using OmopTransformer.COSD.GY.Measurement.COSDv8GYMeasurementTumourLaterality;
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementAdultComorbidityEvaluation;
-using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis;
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementMCategoryFinalPretreatment;
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementMCategoryIntegratedStage;
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementNCategoryFinalPretreatment;
