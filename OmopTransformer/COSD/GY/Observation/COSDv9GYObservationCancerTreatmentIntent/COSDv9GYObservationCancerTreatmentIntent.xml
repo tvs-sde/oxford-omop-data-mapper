@@ -1,0 +1,41 @@
+<Query>
+    <Sql>
+with gy as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest([
+            [Record ->> '$.Treatment.CancerTreatmentIntent.@code'],
+            Record ->> '$.Treatment[*].CancerTreatmentIntent.@code'
+        ], recursive := true) as CancerTreatmentIntent,
+        unnest([
+            [Record ->> '$.Treatment.TreatmentStartDateCancer'],
+            Record ->> '$.Treatment[*].TreatmentStartDateCancer'
+        ], recursive := true) as TreatmentStartDateCancer
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    TreatmentStartDateCancer,
+    CancerTreatmentIntent
+from gy
+where NhsNumber is not null
+  and CancerTreatmentIntent is not null
+  and TreatmentStartDateCancer is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="TreatmentStartDateCancer">
+            <Description>The start date of a cancer treatment during a Cancer Care Spell.</Description>
+            <Origin>TREATMENT START DATE (CANCER)</Origin>
+        </Explanation>
+        <Explanation columnName="CancerTreatmentIntent">
+            <Description>The intention of the cancer treatment provided during a Cancer Care Spell.</Description>
+            <Origin>CANCER TREATMENT INTENT</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

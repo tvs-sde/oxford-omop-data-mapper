@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.AdultPerformanceStatus.@code'
+        as PerformanceStatusAdult
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and NhsNumber is not null
+  and PerformanceStatusAdult is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+            <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="PerformanceStatusAdult">
+            <Description>A World Health Organisation classification indicating a person's status relating to activity or disability.</Description>
+            <Origin>PERFORMANCE STATUS (ADULT)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
