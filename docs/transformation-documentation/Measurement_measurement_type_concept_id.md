@@ -934,10 +934,6 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V9%20GY%20Measurement%20M%20Category%20Final%20Pretreatment%20mapping){: .btn }
-### COSD V9 GY Measurement Grade Of Differentiation At Diagnosis
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V9%20GY%20Measurement%20Grade%20Of%20Differentiation%20At%20Diagnosis%20mapping){: .btn }
 ### COSD V9 GY Measurement Adult Comorbidity Evaluation
 * Constant value set to `32828`. EHR episode record
 
@@ -986,10 +982,6 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Mcategory%20Final%20Pre%20Treatment%20Stage%20mapping){: .btn }
-### COSD V8 GY Measurement Grade Of Differentiation
-* Constant value set to `32828`. EHR episode record
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20COSD%20V8%20GY%20Measurement%20Grade%20Of%20Differentiation%20mapping){: .btn }
 ### COSD V8 GY Measurement Adult Comorbidity Evaluation
 * Constant value set to `32828`. EHR episode record
 

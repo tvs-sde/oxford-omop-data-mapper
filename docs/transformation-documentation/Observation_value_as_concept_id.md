@@ -146,3 +146,792 @@ Notes
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20RTDS%20Treatment%20Anatomical%20Site%20mapping){: .btn }
+### COSD V9 UR Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 UR Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code' as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UR Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UR Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code' as SmokingStatusCancer
+from omop_staging.cosd_staging_81
+where type = 'UR'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 UR Observation Person Stated Sexual Orientation Code At Diagnosis
+Source column  `PersonStatedSexualOrientationCodeAtDiagnosis`.
+PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)
+
+
+|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4069091|Heterosexual or Straight|
+|2|444056|Gay or Lesbian|
+|3|4170582|Bisexual|
+|4|4260977|Other sexual orientation not listed|
+|U|42689512|Person asked and does not know or is not sure|
+|Z|4260977|Not Stated (person asked but declined to provide a response)|
+|9|4260977|Not Known (Not Recorded)|
+
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation as self-stated by the person at the point of cancer diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
+
+```sql
+select distinct
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis
+from omop_staging.cosd_staging_81
+where type = 'UR'
+  and NhsNumber is not null
+  and PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UR%20Observation%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
+### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'UR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UR Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'UR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UG Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 UG Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code' as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UG Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UG Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
+        as SmokingStatusCancer
+from omop_staging.cosd_staging_81
+where type = 'UG'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'UG'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UG Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
+        as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'UG'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SK Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
+        as SmokingStatusCancer
+from omop_staging.cosd_staging_901
+where type = 'SK'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 SK Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'SK'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SK Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
+        as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'SK'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SK Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
+        as SmokingStatusCancer
+from omop_staging.cosd_staging_81
+where type = 'SK'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 SK Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Recent history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'SK'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SK Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
+        as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'SK'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SA Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
+        as SmokingStatusCancer
+from omop_staging.cosd_staging_901
+where type = 'SA'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 SA Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'SA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SA Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
+        as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_901
+where type = 'SA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SA Observation Smoking Status Cancer
+Source column  `SmokingStatusCancer`.
+SMOKING STATUS (CANCER)
+
+
+|SmokingStatusCancer|value_as_concept_id|notes|
+|------|-----|-----|
+|1|903657|Current smoker|
+|2|903651|Ex-smoker|
+|4|903653|Never smoked|
+|9|0|Unknown (Not Recorded)|
+
+
+* `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+select distinct
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code'
+        as SmokingStatusCancer
+from omop_staging.cosd_staging_81
+where type = 'SA'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 SA Observation Alcohol History Cancer In Last Three Months
+Source column  `AlcoholHistoryCancerInLastThreeMonths`.
+ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerInLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|105542008|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerInLastThreeMonths` Current history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_in_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerInLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'SA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerInLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SA Observation Alcohol History Cancer Before Last Three Months
+Source column  `AlcoholHistoryCancerBeforeLastThreeMonths`.
+ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)
+
+
+|AlcoholHistoryCancerBeforeLastThreeMonths|value_as_concept_id|notes|
+|------|-----|-----|
+|1|4336673|Heavy (greater than 14 units per week)|
+|2|4042862|Light (less than or equal to 14 units per week)|
+|3|4022664|None ever|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not Recorded)|
+
+
+* `AlcoholHistoryCancerBeforeLastThreeMonths` Past history of alcohol consumption for the patient during a cancer care spell. [ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)](https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html)
+
+```sql
+select distinct
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
+        as AlcoholHistoryCancerBeforeLastThreeMonths
+from omop_staging.cosd_staging_81
+where type = 'SA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }

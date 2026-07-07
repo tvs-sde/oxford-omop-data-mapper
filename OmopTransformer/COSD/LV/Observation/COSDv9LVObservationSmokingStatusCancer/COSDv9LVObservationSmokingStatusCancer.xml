@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code'
+        as SmokingStatusCancer
+from omop_staging.cosd_staging_901
+where type = 'LV'
+  and NhsNumber is not null
+  and SmokingStatusCancer is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+            <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="SmokingStatusCancer">
+            <Description>Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only.</Description>
+            <Origin>SMOKING STATUS (CANCER)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
