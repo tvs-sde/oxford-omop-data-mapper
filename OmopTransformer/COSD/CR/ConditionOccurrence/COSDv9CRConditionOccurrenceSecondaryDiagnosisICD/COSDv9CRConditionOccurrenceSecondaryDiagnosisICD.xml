@@ -1,0 +1,37 @@
+﻿<Query>
+    <Sql>
+with cr as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+            as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.SecondaryDiagnosisIcd.@code'
+            as SecondaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    DateOfPrimaryDiagnosisClinicallyAgreed,
+    SecondaryDiagnosisIcd
+from cr
+where NhsNumber is not null
+  and SecondaryDiagnosisIcd is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfPrimaryDiagnosisClinicallyAgreed">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="SecondaryDiagnosisIcd">
+            <Description>ICD code used to identify the secondary patient diagnosis. Same as the CLINICAL CLASSIFICATION CODE attribute. For Healthcare Operational Data Flows (Acute), this is the next most relevant patient diagnosis.</Description>
+            <Origin>SECONDARY DIAGNOSIS (ICD)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

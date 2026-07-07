@@ -1,0 +1,43 @@
+﻿<Query>
+    <Sql>
+with ba as (
+    select distinct
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.CNS.CNSCore.CNSCoreCancerCarePlan.CancerMultiTeamDiscussionDate'
+            as CancerMultiTeamDiscussionDate,
+        Record ->> '$.CNS.CNSCore.CNSCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.CNS.CNSCore.CNSCoreCancerCarePlan.CNSCancerCarePlan.ICDProvisionalDiagnosis.@code'
+            as ProvisionalDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'BA'
+)
+select distinct
+    NHSNumber,
+    CancerMultiTeamDiscussionDate,
+    ClinicalDateCancerDiagnosis,
+    ProvisionalDiagnosisICD
+from ba
+where NHSNumber is not null
+  and ProvisionalDiagnosisICD is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="CancerMultiTeamDiscussionDate">
+            <Description>The date the multidisciplinary team discussed the PATIENT and agreed the cancer care plan.</Description>
+            <Origin>MULTIDISCIPLINARY TEAM DISCUSSION DATE (CANCER)</Origin>
+        </Explanation>
+        <Explanation columnName="ClinicalDateCancerDiagnosis">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="ProvisionalDiagnosisICD">
+            <Description>ICD code used to identify the provisional diagnosis. For COSDS, this is the working patient diagnosis defined at the multidisciplinary team meeting where first definitive treatment is agreed, informed by biopsy, radiology, and other investigations.</Description>
+            <Origin>PROVISIONAL DIAGNOSIS (ICD)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
