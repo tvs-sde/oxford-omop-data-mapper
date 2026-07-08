@@ -1,0 +1,117 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lv as (\n    select\n        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentIntent.@code' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentIntent.@code'\n            ],\n            recursive := true\n        ) as CancerTreatmentIntent,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentStartDate'\n            ],\n            recursive := true\n        ) as TreatmentStartDateCancer\n    from omop_staging.cosd_staging_81\n    where type = 'LV'\n)\nselect distinct\n    NhsNumber,\n    TreatmentStartDateCancer,\n    CancerTreatmentIntent\nfrom lv\nwhere NhsNumber is not null\n  and CancerTreatmentIntent is not null\n  and TreatmentStartDateCancer is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `Observation` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "TreatmentStartDateCancer",
+          "description": "The start date of a cancer treatment during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lv as (\n    select\n        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentIntent.@code' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentIntent.@code'\n            ],\n            recursive := true\n        ) as CancerTreatmentIntent,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentStartDate'\n            ],\n            recursive := true\n        ) as TreatmentStartDateCancer\n    from omop_staging.cosd_staging_81\n    where type = 'LV'\n)\nselect distinct\n    NhsNumber,\n    TreatmentStartDateCancer,\n    CancerTreatmentIntent\nfrom lv\nwhere NhsNumber is not null\n  and CancerTreatmentIntent is not null\n  and TreatmentStartDateCancer is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "TreatmentStartDateCancer",
+          "description": "The start date of a cancer treatment during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lv as (\n    select\n        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentIntent.@code' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentIntent.@code'\n            ],\n            recursive := true\n        ) as CancerTreatmentIntent,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentStartDate'\n            ],\n            recursive := true\n        ) as TreatmentStartDateCancer\n    from omop_staging.cosd_staging_81\n    where type = 'LV'\n)\nselect distinct\n    NhsNumber,\n    TreatmentStartDateCancer,\n    CancerTreatmentIntent\nfrom lv\nwhere NhsNumber is not null\n  and CancerTreatmentIntent is not null\n  and TreatmentStartDateCancer is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `CancerTreatmentIntent`",
+      "dataSource": [
+        {
+          "name": "CancerTreatmentIntent",
+          "description": "The intention of the cancer treatment provided during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "CANCER TREATMENT INTENT",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lv as (\n    select\n        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentIntent.@code' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentIntent.@code'\n            ],\n            recursive := true\n        ) as CancerTreatmentIntent,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentStartDate'\n            ],\n            recursive := true\n        ) as TreatmentStartDateCancer\n    from omop_staging.cosd_staging_81\n    where type = 'LV'\n)\nselect distinct\n    NhsNumber,\n    TreatmentStartDateCancer,\n    CancerTreatmentIntent\nfrom lv\nwhere NhsNumber is not null\n  and CancerTreatmentIntent is not null\n  and TreatmentStartDateCancer is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_concept_id",
+      "operation_description": "Constant value set to `4194400`. Treatment intent",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `CancerTreatmentIntent`",
+      "dataSource": [
+        {
+          "name": "CancerTreatmentIntent",
+          "description": "The intention of the cancer treatment provided during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "CANCER TREATMENT INTENT",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cancer_treatment_intent.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lv as (\n    select\n        Record ->> '$.Liver.LiverCore.LiverCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentIntent.@code' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentIntent.@code'\n            ],\n            recursive := true\n        ) as CancerTreatmentIntent,\n        unnest(\n            [\n                [ Record ->> '$.Liver.LiverCore.LiverCoreTreatment.CancerTreatmentStartDate' ],\n                Record ->> '$.Liver.LiverCore.LiverCoreTreatment[*].CancerTreatmentStartDate'\n            ],\n            recursive := true\n        ) as TreatmentStartDateCancer\n    from omop_staging.cosd_staging_81\n    where type = 'LV'\n)\nselect distinct\n    NhsNumber,\n    TreatmentStartDateCancer,\n    CancerTreatmentIntent\nfrom lv\nwhere NhsNumber is not null\n  and CancerTreatmentIntent is not null\n  and TreatmentStartDateCancer is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

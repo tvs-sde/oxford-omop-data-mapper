@@ -957,10 +957,6 @@ has_toc: false
 <a href="COSDv9GYMeasurementMCategoryFinalPretreatment.svg" target="_blank"><img src="COSDv9GYMeasurementMCategoryFinalPretreatment.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9GYMeasurementMCategoryFinalPretreatment%20mapping){: .btn }
-## COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis
-<a href="COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis.svg" target="_blank"><img src="COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9GYMeasurementGradeOfDifferentiationAtDiagnosis%20mapping){: .btn }
 ## COSDv9GYMeasurementAdultComorbidityEvaluation
 <a href="COSDv9GYMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv9GYMeasurementAdultComorbidityEvaluation.svg" /></a>
 
@@ -1009,10 +1005,6 @@ has_toc: false
 <a href="COSDv8GYMeasurementMcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8GYMeasurementMcategoryFinalPreTreatmentStage.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8GYMeasurementMcategoryFinalPreTreatmentStage%20mapping){: .btn }
-## COSDv8GYMeasurementGradeOfDifferentiation
-<a href="COSDv8GYMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="COSDv8GYMeasurementGradeOfDifferentiation.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8GYMeasurementGradeOfDifferentiation%20mapping){: .btn }
 ## COSDv8GYMeasurementAdultComorbidityEvaluation
 <a href="COSDv8GYMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8GYMeasurementAdultComorbidityEvaluation.svg" /></a>
 

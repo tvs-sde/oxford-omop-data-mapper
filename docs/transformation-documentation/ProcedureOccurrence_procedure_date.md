@@ -1058,6 +1058,214 @@ and l.NhsNumber is not null;
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20Lung%20Procedure%20Occurrence%20Primary%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with hn_surgery as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest(
+            [
+                [Record -> '$.Treatment.Surgery'],
+                Record -> '$.Treatment[*].Surgery'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+),
+hn_proc as (
+    select
+        NhsNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOpcs.@code'],
+                Surgery ->> '$.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from hn_surgery
+    where Surgery is not null
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from hn_proc
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Primary Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with hn as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'HN'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from hn
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Diagnostic Procedure SNOMEDCT
+Source column  `DiagnosticProcedureDate`.
+Converts text to dates.
+
+* `DiagnosticProcedureDate` Procedure date of the diagnostic procedure. [PROCEDURE DATE (DIAGNOSTIC PROCEDURE)](https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'
+        as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Diagnostic%20Procedure%20SNOMEDCT%20mapping){: .btn }
+### COSD V9 HN Procedure Occurrence Diagnostic Procedure OPCS
+Source column  `DiagnosticProcedureDate`.
+Converts text to dates.
+
+* `DiagnosticProcedureDate` Procedure date of the diagnostic procedure. [PROCEDURE DATE (DIAGNOSTIC PROCEDURE)](https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'
+        as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20HN%20Procedure%20Occurrence%20Diagnostic%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 HN Procedure Occurrence Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with hn_surgery as (
+    select
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest(
+            [
+                [Record -> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures'],
+                Record -> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+),
+hn_proc as (
+    select
+        NHSNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from hn_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from hn_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20HN%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 HN Procedure Occurrence Primary Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with hn as (
+    select
+        Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest([
+            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], recursive := true) as PrimaryProcedureOPCS,
+        unnest([
+            [Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment.HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'],
+            Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreTreatment[*].HeadNeckCoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'HN'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from hn
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20HN%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V9 HA Procedure Occurrence Procedure Opcs
 Source column  `ProcedureDate`.
 Converts text to dates.
@@ -1134,6 +1342,214 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20HA%20Procedure%20Occurrence%20Diagnostic%20Procedure%20Opcs%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with gy_surgery as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest(
+            [
+                [Record -> '$.Treatment.Surgery'],
+                Record -> '$.Treatment[*].Surgery'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+),
+gy_proc as (
+    select
+        NhsNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOpcs.@code'],
+                Surgery ->> '$.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from gy_surgery
+    where Surgery is not null
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from gy_proc
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Primary Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with gy as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'GY'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from gy
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Diagnostic Procedure SNOMEDCT
+Source column  `DiagnosticProcedureDate`.
+Converts text to dates.
+
+* `DiagnosticProcedureDate` Procedure date of the diagnostic procedure. [PROCEDURE DATE (DIAGNOSTIC PROCEDURE)](https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'
+        as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Diagnostic%20Procedure%20SNOMEDCT%20mapping){: .btn }
+### COSD V9 GY Procedure Occurrence Diagnostic Procedure OPCS
+Source column  `DiagnosticProcedureDate`.
+Converts text to dates.
+
+* `DiagnosticProcedureDate` Procedure date of the diagnostic procedure. [PROCEDURE DATE (DIAGNOSTIC PROCEDURE)](https://www.datadictionary.nhs.uk/data_elements/procedure_date__diagnostic_procedure_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureOpcs.@code'
+        as DiagnosticProcedureOpcs
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and DiagnosticProcedureOpcs is not null
+  and DiagnosticProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20GY%20Procedure%20Occurrence%20Diagnostic%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 GY Procedure Occurrence Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with gy_surgery as (
+    select
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest(
+            [
+                [Record -> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures'],
+                Record -> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+),
+gy_proc as (
+    select
+        NHSNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from gy_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from gy_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 GY Procedure Occurrence Primary Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with gy as (
+    select
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest([
+            [Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+            Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], recursive := true) as PrimaryProcedureOPCS,
+        unnest([
+            [Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate'],
+            Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from gy
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V901 CT Procedure Occurrence Procedure Opcs
 Source column  `ProcedureDate`.
 Converts text to dates.
@@ -1218,6 +1634,168 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20CT%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with cr_surgery as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest(
+            [
+                [Record -> '$.Treatment.Surgery'],
+                Record -> '$.Treatment[*].Surgery'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+),
+cr_proc as (
+    select
+        NhsNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOpcs.@code'],
+                Surgery ->> '$.ProcedureOpcs[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOpcs
+    from cr_surgery
+    where Surgery is not null
+)
+select distinct
+    NhsNumber,
+    ProcedureOpcs,
+    ProcedureDate
+from cr_proc
+where NhsNumber is not null
+  and ProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Primary Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with cr as (
+    select
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code'],
+            Record ->> '$.Treatment[*].Surgery.PrimaryProcedureOpcs.@code'
+        ], recursive := true) as PrimaryProcedureOpcs,
+        unnest([
+            [Record ->> '$.Treatment.Surgery.ProcedureDate'],
+            Record ->> '$.Treatment[*].Surgery.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_901
+    where type = 'CR'
+)
+select distinct
+    NhsNumber,
+    PrimaryProcedureOpcs,
+    ProcedureDate
+from cr
+where NhsNumber is not null
+  and PrimaryProcedureOpcs is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CR Procedure Occurrence Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with cr_surgery as (
+    select
+        Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest(
+            [
+                [Record -> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures'],
+                Record -> '$.Core.CoreCore.CoreTreatment[*].CoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'CR'
+),
+cr_proc as (
+    select
+        NHSNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from cr_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from cr_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V8 CR Procedure Occurrence Primary Procedure OPCS
+Source column  `ProcedureDate`.
+Converts text to dates.
+
+* `ProcedureDate` Date relevant to the activity for the procedure date. [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
+
+```sql
+with cr as (
+    select
+        Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest([
+            [Record ->> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'],
+            Record ->> '$.Core.CoreCore.CoreTreatment[*].CoreSurgeryAndOtherProcedures.PrimaryProcedureOPCS.@code'
+        ], recursive := true) as PrimaryProcedureOPCS,
+        unnest([
+            [Record ->> '$.Core.CoreCore.CoreTreatment.CoreSurgeryAndOtherProcedures.ProcedureDate'],
+            Record ->> '$.Core.CoreCore.CoreTreatment[*].CoreSurgeryAndOtherProcedures.ProcedureDate'
+        ], recursive := true) as ProcedureDate
+    from omop_staging.cosd_staging_81
+    where type = 'CR'
+)
+select distinct
+    NHSNumber,
+    PrimaryProcedureOPCS,
+    ProcedureDate
+from cr
+where NHSNumber is not null
+  and PrimaryProcedureOPCS is not null
+  and ProcedureDate is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_date%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
 ### COSD V9 CO Procedure Occurrence Procedure Opcs
 Source column  `ProcedureDate`.
 Converts text to dates.

@@ -1,0 +1,37 @@
+﻿<Query>
+    <Sql>
+with ba as (
+    select distinct
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+            as NhsNumber,
+        Record ->> '$.NonPrimaryPathway.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed'
+            as DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+        Record ->> '$.NonPrimaryPathway.Recurrence.OriginalPrimaryDiagnosisIcd.@code'
+            as OriginalPrimaryDiagnosisIcd
+    from omop_staging.cosd_staging_901
+    where type = 'BA'
+)
+select distinct
+    NhsNumber,
+    DateOfNonPrimaryCancerDiagnosisClinicallyAgreed,
+    OriginalPrimaryDiagnosisIcd
+from ba
+where NhsNumber is not null
+  and OriginalPrimaryDiagnosisIcd is not null
+  and DateOfNonPrimaryCancerDiagnosisClinicallyAgreed is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DateOfNonPrimaryCancerDiagnosisClinicallyAgreed">
+            <Description>The date the Non Primary Cancer PATIENT DIAGNOSIS was confirmed or agreed.</Description>
+            <Origin>DATE OF NON PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="OriginalPrimaryDiagnosisIcd">
+            <Description>ICD code used to identify the original primary diagnosis. For COSDS Core, used for cancer recurrence and agreed at the multidisciplinary team meeting by the care professional team.</Description>
+            <Origin>PRIMARY DIAGNOSIS (ICD ORIGINAL)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

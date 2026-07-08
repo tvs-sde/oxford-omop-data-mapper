@@ -1,0 +1,30 @@
+<Query>
+    <Sql>
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureDate'
+        as DiagnosticProcedureDate,
+    Record ->> '$.DiagnosticProcedures.DiagnosticProcedureSnomedCt.@code'
+        as DiagnosticProcedureSnomedCt
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and DiagnosticProcedureSnomedCt is not null
+  and DiagnosticProcedureDate is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NhsNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureDate">
+            <Description>Procedure date of the diagnostic procedure.</Description>
+            <Origin>PROCEDURE DATE (DIAGNOSTIC PROCEDURE)</Origin>
+        </Explanation>
+        <Explanation columnName="DiagnosticProcedureSnomedCt">
+            <Description>The SNOMED CT concept ID used to identify the diagnostic procedure.</Description>
+            <Origin>DIAGNOSTIC PROCEDURE (SNOMED CT)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

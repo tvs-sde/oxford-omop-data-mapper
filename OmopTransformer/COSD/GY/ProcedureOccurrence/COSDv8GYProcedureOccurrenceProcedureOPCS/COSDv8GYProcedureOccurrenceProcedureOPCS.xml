@@ -1,0 +1,54 @@
+<Query>
+    <Sql>
+with gy_surgery as (
+    select
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        unnest(
+            [
+                [Record -> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment.GynaecologicalCoreSurgeryAndOtherProcedures'],
+                Record -> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreTreatment[*].GynaecologicalCoreSurgeryAndOtherProcedures'
+            ],
+            recursive := true
+        ) as Surgery
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+),
+gy_proc as (
+    select
+        NHSNumber,
+        Surgery ->> '$.ProcedureDate' as ProcedureDate,
+        unnest(
+            [
+                [Surgery ->> '$.ProcedureOPCS.@code'],
+                Surgery ->> '$.ProcedureOPCS[*].@code'
+            ],
+            recursive := true
+        ) as ProcedureOPCS
+    from gy_surgery
+    where Surgery is not null
+)
+select distinct
+    NHSNumber,
+    ProcedureOPCS,
+    ProcedureDate
+from gy_proc
+where NHSNumber is not null
+  and ProcedureOPCS is not null
+  and ProcedureDate is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureOPCS">
+            <Description>Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.</Description>
+            <Origin>PROCEDURE (OPCS)</Origin>
+        </Explanation>
+        <Explanation columnName="ProcedureDate">
+            <Description>Date relevant to the activity for the procedure date.</Description>
+            <Origin>PROCEDURE DATE</Origin>
+        </Explanation>
+    </Explanations>
+</Query>

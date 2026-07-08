@@ -1,0 +1,110 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith hn_surgery as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [Record -> '$.Treatment.Surgery'],\n                Record -> '$.Treatment[*].Surgery'\n            ],\n            recursive := true\n        ) as Surgery\n    from omop_staging.cosd_staging_901\n    where type = 'HN'\n),\nhn_proc as (\n    select\n        NhsNumber,\n        Surgery ->> '$.ProcedureDate' as ProcedureDate,\n        unnest(\n            [\n                [Surgery ->> '$.ProcedureOpcs.@code'],\n                Surgery ->> '$.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcs\n    from hn_surgery\n    where Surgery is not null\n)\nselect distinct\n    NhsNumber,\n    ProcedureOpcs,\n    ProcedureDate\nfrom hn_proc\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith hn_surgery as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [Record -> '$.Treatment.Surgery'],\n                Record -> '$.Treatment[*].Surgery'\n            ],\n            recursive := true\n        ) as Surgery\n    from omop_staging.cosd_staging_901\n    where type = 'HN'\n),\nhn_proc as (\n    select\n        NhsNumber,\n        Surgery ->> '$.ProcedureDate' as ProcedureDate,\n        unnest(\n            [\n                [Surgery ->> '$.ProcedureOpcs.@code'],\n                Surgery ->> '$.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcs\n    from hn_surgery\n    where Surgery is not null\n)\nselect distinct\n    NhsNumber,\n    ProcedureOpcs,\n    ProcedureDate\nfrom hn_proc\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "Date relevant to the activity for the procedure date.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith hn_surgery as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [Record -> '$.Treatment.Surgery'],\n                Record -> '$.Treatment[*].Surgery'\n            ],\n            recursive := true\n        ) as Surgery\n    from omop_staging.cosd_staging_901\n    where type = 'HN'\n),\nhn_proc as (\n    select\n        NhsNumber,\n        Surgery ->> '$.ProcedureDate' as ProcedureDate,\n        unnest(\n            [\n                [Surgery ->> '$.ProcedureOpcs.@code'],\n                Surgery ->> '$.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcs\n    from hn_surgery\n    where Surgery is not null\n)\nselect distinct\n    NhsNumber,\n    ProcedureOpcs,\n    ProcedureDate\nfrom hn_proc\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `ProcedureOpcs`",
+      "dataSource": [
+        {
+          "name": "ProcedureOpcs",
+          "description": "Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith hn_surgery as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [Record -> '$.Treatment.Surgery'],\n                Record -> '$.Treatment[*].Surgery'\n            ],\n            recursive := true\n        ) as Surgery\n    from omop_staging.cosd_staging_901\n    where type = 'HN'\n),\nhn_proc as (\n    select\n        NhsNumber,\n        Surgery ->> '$.ProcedureDate' as ProcedureDate,\n        unnest(\n            [\n                [Surgery ->> '$.ProcedureOpcs.@code'],\n                Surgery ->> '$.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcs\n    from hn_surgery\n    where Surgery is not null\n)\nselect distinct\n    NhsNumber,\n    ProcedureOpcs,\n    ProcedureDate\nfrom hn_proc\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "ProcedureOpcs",
+          "description": "Patient procedure other than the primary procedure (OPCS). Recommended to record multiple patient procedures where applicable.",
+          "origins": [
+            {
+              "origin": "PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith hn_surgery as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n            as NhsNumber,\n        unnest(\n            [\n                [Record -> '$.Treatment.Surgery'],\n                Record -> '$.Treatment[*].Surgery'\n            ],\n            recursive := true\n        ) as Surgery\n    from omop_staging.cosd_staging_901\n    where type = 'HN'\n),\nhn_proc as (\n    select\n        NhsNumber,\n        Surgery ->> '$.ProcedureDate' as ProcedureDate,\n        unnest(\n            [\n                [Surgery ->> '$.ProcedureOpcs.@code'],\n                Surgery ->> '$.ProcedureOpcs[*].@code'\n            ],\n            recursive := true\n        ) as ProcedureOpcs\n    from hn_surgery\n    where Surgery is not null\n)\nselect distinct\n    NhsNumber,\n    ProcedureOpcs,\n    ProcedureDate\nfrom hn_proc\nwhere NhsNumber is not null\n  and ProcedureOpcs is not null\n  and ProcedureDate is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

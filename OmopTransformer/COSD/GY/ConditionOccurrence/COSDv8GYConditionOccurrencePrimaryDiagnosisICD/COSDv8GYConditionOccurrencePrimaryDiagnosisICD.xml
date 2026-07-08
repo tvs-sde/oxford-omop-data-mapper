@@ -1,0 +1,37 @@
+﻿<Query>
+    <Sql>
+with gy as (
+    select distinct
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+            as NHSNumber,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+            as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'
+            as PrimaryDiagnosisICD
+    from omop_staging.cosd_staging_81
+    where type = 'GY'
+)
+select distinct
+    NHSNumber,
+    ClinicalDateCancerDiagnosis,
+    PrimaryDiagnosisICD
+from gy
+where NHSNumber is not null
+  and PrimaryDiagnosisICD is not null
+  and ClinicalDateCancerDiagnosis is not null;
+    </Sql>
+    <Explanations>
+        <Explanation columnName="NHSNumber">
+            <Description>Patient NHS Number.</Description>
+            <Origin>NHS NUMBER</Origin>
+        </Explanation>
+        <Explanation columnName="ClinicalDateCancerDiagnosis">
+            <Description>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.</Description>
+            <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+        </Explanation>
+        <Explanation columnName="PrimaryDiagnosisICD">
+            <Description>ICD code used to identify the primary diagnosis.</Description>
+            <Origin>PRIMARY DIAGNOSIS (ICD)</Origin>
+        </Explanation>
+    </Explanations>
+</Query>
