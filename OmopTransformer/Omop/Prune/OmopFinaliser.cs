@@ -440,35 +440,29 @@ WHERE
     AND cdm.person.gender_concept_id <> 8507
     AND (
         ca.ancestor_concept_id IN (4090861, 4025213)
-        OR cdmTable.CONDITION_CONCEPT_ID = 79758
+        OR cdmTable.CONDITION_CONCEPT_ID IN (79758, 196068)
     );
 ");
 
         _logger.LogInformation("Correcting female genders.");
 
-        await connection.ExecuteAsync(@"
-
-UPDATE cdm.person
-SET gender_concept_id = 8507
-FROM cdm.CONDITION_OCCURRENCE AS cdmTable
-WHERE cdm.person.person_id = cdmTable.person_id
-	and cdmTable.CONDITION_CONCEPT_ID = 196068;
+		await connection.ExecuteAsync(@"
 
 -- Updates gender to FEMALE (8532) based on a list of conditions
 UPDATE cdm.person
 SET gender_concept_id = 8532
 FROM cdm.CONDITION_OCCURRENCE AS cdmTable
 WHERE 
-    cdm.person.person_id = cdmTable.person_id
-    AND cdm.person.gender_concept_id <> 8532
-    AND cdmTable.CONDITION_CONCEPT_ID IN (
-        201801, 200052, 4194652, 437501, 201817, 201238, 195500,
-        195197, 197236, 199764, 4162860, 441805, 196359, 196048, 437501
-    );");
+	cdm.person.person_id = cdmTable.person_id
+	AND cdm.person.gender_concept_id <> 8532
+	AND cdmTable.CONDITION_CONCEPT_ID IN (
+		201801, 200052, 4194652, 437501, 201817, 201238, 195500,
+		195197, 197236, 199764, 4162860, 441805, 196359, 196048, 437501
+	);");
 
-        _logger.LogInformation("Correcting deaths where the patient had a DEVICE_EXPOSURE beyond 60 days.");
+		_logger.LogInformation("Correcting deaths where the patient had a DEVICE_EXPOSURE beyond 60 days.");
 
-        await connection.ExecuteAsync(@"
+		await connection.ExecuteAsync(@"
 
 -- Combined DELETE statements for the 'death' table
 -- Deletes death records where related events occur >60 days after death
