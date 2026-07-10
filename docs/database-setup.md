@@ -27,6 +27,7 @@ The setup is two steps:
 > |141|   CDM 5   | Cancer Modifier| Diagnostic Modifiers of Cancer (OMOP) |
 > |128| CDM 5   |	OMOP Extension	| OMOP Extension (OHDSI) |
 > |90|   CDM 5   |ICDO3 |International Classification of Diseases for Oncology, Third Edition (WHO) |
+> |88|   CDM 5   | CVX | CDC Vaccine Administered CVX (NCIRD) |
 > |82   |   CDM 5   | RxNorm Extension | OMOP RxNorm Extension |
 > |75|CDM 5| dm+d| Dictionary of Medicines and Devices (NHS)|
 > |71| CDM 5 | ABMS | Provider Specialty (American Board of Medical Specialties) |
