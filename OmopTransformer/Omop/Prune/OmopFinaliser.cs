@@ -446,7 +446,13 @@ WHERE
 
         _logger.LogInformation("Correcting female genders.");
 
-		await connection.ExecuteAsync(@"
+        await connection.ExecuteAsync(@"
+
+UPDATE cdm.person
+SET gender_concept_id = 8507
+FROM cdm.CONDITION_OCCURRENCE AS cdmTable
+WHERE cdm.person.person_id = cdmTable.person_id
+	and cdmTable.CONDITION_CONCEPT_ID = 196068;
 
 -- Updates gender to FEMALE (8532) based on a list of conditions
 UPDATE cdm.person
