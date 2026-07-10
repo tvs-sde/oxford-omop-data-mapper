@@ -19,32 +19,32 @@ The setup is two steps:
 
 1. Create an [https://athena.ohdsi.org/](https://athena.ohdsi.org/) account and download at least the following vocabularies.
 
-> | Id |  CDM | Code | Name |
-> |-------|-----------|-------------------|-----------------------|
-> |154|CDM 5| NHS Ethnic Category|NHS Ethnic Category |
-> |148|CDM 5| OMOP Invest Drug| OMOP Investigational Drugs|
-> |142|CDM 5| OPS| Operations and Procedures Classification (OPS)|
-> |141|   CDM 5   | Cancer Modifier| Diagnostic Modifiers of Cancer (OMOP) |
-> |128| CDM 5   |	OMOP Extension	| OMOP Extension (OHDSI) |
-> |90|   CDM 5   |ICDO3 |International Classification of Diseases for Oncology, Third Edition (WHO) |
-> |88|   CDM 5   | CVX | CDC Vaccine Administered CVX (NCIRD) |
-> |82   |   CDM 5   | RxNorm Extension | OMOP RxNorm Extension |
-> |75|CDM 5| dm+d| Dictionary of Medicines and Devices (NHS)|
-> |71| CDM 5 | ABMS | Provider Specialty (American Board of Medical Specialties) |
-> |57| CDM 5 | HES Specialty| Hospital Episode Statistics Specialty (NHS) |
-> |55|CDM 5| OPCS4| OPCS Classification of Interventions and Procedures version 4 (NHS)|
-> |48   |    CDM 5  | Medicare Specialty | Medicare provider/supplier specialty codes (CMS) |
-> |47   |   CDM 5   | NUCC  | National Uniform Claim Committee Health Care Provider Taxonomy Code Set (NUCC) |
-> |44|CDM 5| Ethnicity |OMOP Ethnicity|
-> |34|CDM 5| ICD10| International Classification of Diseases, Tenth Revision (WHO)|
-> |14   |   CDM 5   | CMS Place of Service | CMS Place of Service |
-> |13|CDM 5| Race| Race and Ethnicity Code Set (USBC)|
-> |12|CDM 5| Gender|OMOP Gender|
-> |8    |  CDM 5   | RxNorm | RxNorm (NLM) |
-> |6    | CDM 5 |  LOINC |Logical Observation Identifiers Names and Codes (Regenstrief Institute) |
-> |3| CDM 5     | ICD9Proc |International Classification of Diseases, Ninth Revision, Clinical Modification, Volume 3 (NCHS) |
-> |2    |CDM 5| ICD9CM| International Classification of Diseases, Ninth Revision, Clinical Modification, Volume 1 and 2 (NCHS) |
-> |1|CDM 5| SNOMED|Systematic Nomenclature of Medicine - Clinical Terms (IHTSDO)|
+> | Id  | CDM   | Code                 | Name                                                                                         |
+> |-----|-------|----------------------|----------------------------------------------------------------------------------------------|
+> | 1   | CDM 5 | SNOMED               | Systematic Nomenclature of Medicine - Clinical Terms (IHTSDO)                                |
+> | 2   | CDM 5 | ICD9CM               | International Classification of Diseases, Ninth Revision, Clinical Modification, Volume 1 and 2 (NCHS) |
+> | 3   | CDM 5 | ICD9Proc             | International Classification of Diseases, Ninth Revision, Clinical Modification, Volume 3 (NCHS) |
+> | 6   | CDM 5 | LOINC                | Logical Observation Identifiers Names and Codes (Regenstrief Institute)                      |
+> | 8   | CDM 5 | RxNorm               | RxNorm (NLM)                                                                                 |
+> | 12  | CDM 5 | Gender               | OMOP Gender                                                                                  |
+> | 13  | CDM 5 | Race                 | Race and Ethnicity Code Set (USBC)                                                           |
+> | 14  | CDM 5 | CMS Place of Service | CMS Place of Service                                                                         |
+> | 34  | CDM 5 | ICD10                | International Classification of Diseases, Tenth Revision (WHO)                               |
+> | 44  | CDM 5 | Ethnicity            | OMOP Ethnicity                                                                               |
+> | 47  | CDM 5 | NUCC                 | National Uniform Claim Committee Health Care Provider Taxonomy Code Set (NUCC)               |
+> | 48  | CDM 5 | Medicare Specialty   | Medicare provider/supplier specialty codes (CMS)                                             |
+> | 55  | CDM 5 | OPCS4                | OPCS Classification of Interventions and Procedures version 4 (NHS)                          |
+> | 57  | CDM 5 | HES Specialty        | Hospital Episode Statistics Specialty (NHS)                                                  |
+> | 71  | CDM 5 | ABMS                 | Provider Specialty (American Board of Medical Specialties)                                   |
+> | 75  | CDM 5 | dm+d                 | Dictionary of Medicines and Devices (NHS)                                                    |
+> | 82  | CDM 5 | RxNorm Extension     | OMOP RxNorm Extension                                                                        |
+> | 88  | CDM 5 | CVX                  | CDC Vaccine Administered CVX (NCIRD)                                                         |
+> | 90  | CDM 5 | ICDO3                | International Classification of Diseases for Oncology, Third Edition (WHO)                   |
+> | 128 | CDM 5 | OMOP Extension       | OMOP Extension (OHDSI)                                                                       |
+> | 141 | CDM 5 | Cancer Modifier      | Diagnostic Modifiers of Cancer (OMOP)                                                        |
+> | 142 | CDM 5 | OPS                  | Operations and Procedures Classification (OPS)                                               |
+> | 148 | CDM 5 | OMOP Invest Drug     | OMOP Investigational Drugs                                                                   |
+> | 154 | CDM 5 | NHS Ethnic Category  | NHS Ethnic Category                                                                          |
 
 It is difficult to add more vocabularies retrospectively, so err on the side of including anything you may want later.
 
