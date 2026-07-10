@@ -440,7 +440,7 @@ WHERE
     AND cdm.person.gender_concept_id <> 8507
     AND (
         ca.ancestor_concept_id IN (4090861, 4025213)
-        OR cdmTable.CONDITION_CONCEPT_ID = 79758
+        OR cdmTable.CONDITION_CONCEPT_ID IN (79758, 196068)
     );
 ");
 
