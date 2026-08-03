@@ -141,7 +141,7 @@ Converts text to dates.
 Source column  `event_start_date`.
 Converts text to dates.
 
-* `event_start_date` Appointment Start Time [TREATMENT START DATE (RADIOTHERAPY TREATMENT EPISODE)]()
+* `event_start_date` Appointment Start Time [TREATMENT START DATE (RADIOTHERAPY TREATMENT EPISODE)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__radiotherapy_treatment_episode_.html)
 
 ```sql
 	with results as (
