@@ -440,8 +440,17 @@ WHERE
     AND cdm.person.gender_concept_id <> 8507
     AND (
         ca.ancestor_concept_id IN (4090861, 4025213)
-        OR cdmTable.CONDITION_CONCEPT_ID IN (79758, 196068)
+        OR cdmTable.CONDITION_CONCEPT_ID = 79758
     );
+
+-- Updates gender to MALE (8507) for Check ID: concept_plausiblegender_condition_occurrence_condition_concept_id_196068
+UPDATE cdm.person
+SET gender_concept_id = 8507
+FROM cdm.CONDITION_OCCURRENCE AS cdmTable
+WHERE
+    cdm.person.person_id = cdmTable.person_id
+    AND cdm.person.gender_concept_id <> 8507
+    AND cdmTable.CONDITION_CONCEPT_ID IN (196068);
 ");
 
         _logger.LogInformation("Correcting female genders.");
