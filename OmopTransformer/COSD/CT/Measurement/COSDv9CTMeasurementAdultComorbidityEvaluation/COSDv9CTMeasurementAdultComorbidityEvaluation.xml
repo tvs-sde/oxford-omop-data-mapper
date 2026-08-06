@@ -24,7 +24,7 @@ select distinct
         cast(DateFirstSeenCancerSpecialist as date),
         cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
         cast(StageDateFinalPretreatmentStage as date),
-        cast(StageDateIntegratedStage as date)
+        cast(nullif(StageDateIntegratedStage, '') as date)
     ) as MeasurementDate
 from CT
 where AdultComorbidityEvaluation27Score is not null
