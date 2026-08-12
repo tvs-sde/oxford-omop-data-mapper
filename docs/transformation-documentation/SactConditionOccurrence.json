@@ -30,7 +30,7 @@
           "origins": [
             {
               "origin": "PRIMARY DIAGNOSIS (ICD AT START SYSTEMIC ANTI-CANCER THERAPY)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_at_start_systemic_anti-cancer_therapy_.html"
+              "url": null
             }
           ]
         }
@@ -127,7 +127,7 @@
           "origins": [
             {
               "origin": "PRIMARY DIAGNOSIS (ICD AT START SYSTEMIC ANTI-CANCER THERAPY)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_at_start_systemic_anti-cancer_therapy_.html"
+              "url": null
             }
           ]
         }

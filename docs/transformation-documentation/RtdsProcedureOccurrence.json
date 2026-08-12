@@ -37,7 +37,7 @@
           "origins": [
             {
               "origin": "TREATMENT START DATE (RADIOTHERAPY TREATMENT EPISODE)",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__radiotherapy_treatment_episode_.html"
             }
           ]
         }
@@ -55,7 +55,7 @@
           "origins": [
             {
               "origin": "TREATMENT START DATE (RADIOTHERAPY TREATMENT EPISODE)",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__radiotherapy_treatment_episode_.html"
             }
           ]
         }

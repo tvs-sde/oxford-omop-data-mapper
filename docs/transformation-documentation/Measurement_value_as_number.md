@@ -105,7 +105,7 @@ Converts text to number.
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.
 
-* `ProstateSpecificAntigenDiagnosis` Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml). [PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/prostate_specific_antigen__diagnosis_.html)
+* `ProstateSpecificAntigenDiagnosis` Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml). [PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)]()
 
 ```sql
 -- Query to extract Prostate Specific Antigen (Diagnosis) for UR cancer area from COSD v9.
@@ -175,7 +175,7 @@ where AdultComorbidityEvaluation is not null
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.
 
-* `ProstateSpecificAntigenDiagnosis` Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml). [PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/prostate_specific_antigen__diagnosis_.html)
+* `ProstateSpecificAntigenDiagnosis` Result of the clinical investigation measuring prostate specific antigen at the time of PATIENT DIAGNOSIS for prostate cancer. Unit of measurement is nanograms per millilitre (ng/ml). [PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)]()
 
 ```sql
 -- Query to extract Prostate Specific Antigen (Diagnosis) for UR cancer area from COSD v8.

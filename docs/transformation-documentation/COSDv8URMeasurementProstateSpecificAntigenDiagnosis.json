@@ -87,7 +87,7 @@
           "origins": [
             {
               "origin": "PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/prostate_specific_antigen__diagnosis_.html"
+              "url": null
             }
           ]
         }
@@ -105,7 +105,7 @@
           "origins": [
             {
               "origin": "PROSTATE SPECIFIC ANTIGEN (DIAGNOSIS)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/prostate_specific_antigen__diagnosis_.html"
+              "url": null
             }
           ]
         }
