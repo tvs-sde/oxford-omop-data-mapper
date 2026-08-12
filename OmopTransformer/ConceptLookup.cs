@@ -53,7 +53,7 @@ internal abstract class ConceptLookup
             }
         }
 
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
         {
             return unknownConceptId;
         }
