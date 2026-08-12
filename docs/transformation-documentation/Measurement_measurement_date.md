@@ -592,7 +592,7 @@ select distinct
 		cast(DateFirstSeenCancerSpecialist as date),
 		cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
 		cast(StageDateFinalPretreatmentStage as date),
-		cast(StageDateIntegratedStage as date)
+		cast(nullif(StageDateIntegratedStage, '') as date)
 	) as MeasurementDate
 from UR
 where AdultComorbidityEvaluation is not null
@@ -1288,7 +1288,7 @@ select distinct
         cast(DateFirstSeenCancerSpecialist as date),
         cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
         cast(StageDateFinalPretreatmentStage as date),
-        cast(StageDateIntegratedStage as date),
+        cast(nullif(StageDateIntegratedStage, '') as date),
         cast(TreatmentStartDateCancer as date),
         cast(ProcedureDate as date)
     ) as MeasurementDate
@@ -1993,7 +1993,7 @@ select
 			cast(DateFirstSeenCancerSpecialist as date),
 			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
 			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date)
+			cast(nullif(StageDateIntegratedStage, '') as date)
 		) as MeasurementDate
 from SK
 where AdultComorbidityEvaluation27Score is not null
@@ -2761,7 +2761,7 @@ select distinct
         cast(DateFirstSeenCancerSpecialist as date),
         cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
         cast(StageDateFinalPretreatmentStage as date),
-        cast(StageDateIntegratedStage as date),
+        cast(nullif(StageDateIntegratedStage, '') as date),
         cast(TreatmentStartDateCancer as date),
         cast(ProcedureDate as date)
     ) as MeasurementDate
@@ -3534,7 +3534,7 @@ select
             cast(DateFirstSeenCancerSpecialist as date),
             cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
             cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
         ) as MeasurementDate
@@ -6214,7 +6214,7 @@ select
             cast(DateFirstSeenCancerSpecialist as date),
             cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
             cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
         ) as MeasurementDate
@@ -6959,7 +6959,7 @@ select distinct
         cast(DateFirstSeenCancerSpecialist as date),
         cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
         cast(StageDateFinalPretreatmentStage as date),
-        cast(StageDateIntegratedStage as date)
+        cast(nullif(StageDateIntegratedStage, '') as date)
     ) as MeasurementDate
 from CT
 where AdultComorbidityEvaluation27Score is not null
@@ -7703,7 +7703,7 @@ select
 			cast(DateFirstSeenCancerSpecialist as date),
 			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
 			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
+			cast(nullif(StageDateIntegratedStage, '') as date),
 			cast(TreatmentStartDateCancer as date),
 			cast(ProcedureDate as date)
 		) as MeasurementDate
@@ -8465,7 +8465,7 @@ select
 			cast(DateFirstSeenCancerSpecialist as date),
 			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
 			cast(StageDateFinalPretreatmentStage as date),
-			cast(StageDateIntegratedStage as date),
+			cast(nullif(StageDateIntegratedStage, '') as date),
 			cast(TreatmentStartDateCancer as date),
 			cast(ProcedureDate as date)
 		) as MeasurementDate
@@ -9337,7 +9337,7 @@ select
             cast(DateFirstSeenCancerSpecialist as date),
             cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
             cast(StageDateFinalPretreatmentStage as date),
-            cast(StageDateIntegratedStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
         ) as MeasurementDate
