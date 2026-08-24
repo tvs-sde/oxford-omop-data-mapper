@@ -13,7 +13,6 @@ select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_81
 where type = 'UR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	</Sql>
     <Explanations>
