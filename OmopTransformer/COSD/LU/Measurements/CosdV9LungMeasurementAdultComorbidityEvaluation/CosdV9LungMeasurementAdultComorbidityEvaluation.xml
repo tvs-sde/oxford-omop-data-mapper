@@ -1,6 +1,6 @@
 <Query>
-    <Sql>
-with LU as (
+  <Sql>
+  with LU as (
     select
         Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
         Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
@@ -26,7 +26,7 @@ select
             cast(nullif(StageDateIntegratedStage, '') as date),
             cast(TreatmentStartDateCancer as date),
             cast(ProcedureDate as date)
-        ) as Date
+        ) as MeasurementDate
 from LU o
 where o.AdultComorbidityEvaluation is not null
   and not (
@@ -38,25 +38,19 @@ where o.AdultComorbidityEvaluation is not null
         TreatmentStartDateCancer is null and
         ProcedureDate is null
     )
-    </Sql>
-    <Explanations>
-      <Explanation columnName="NHSNumber">
-    	  <Description>Patient NHS Number</Description>
-    	  <Origin>NHS NUMBER</Origin>
-      </Explanation>
-		 <Explanation columnName="AdultComorbidityEvaluation">
-		   <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
-		   <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
-		</Explanation>
-      <Explanation columnName="Date" >
-    	  <Description>Observation date</Description>
-    	  <Origin>DATE FIRST SEEN</Origin>
-    	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
-    	  <Origin>DIAGNOSIS DATE</Origin>
-    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
-    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
-    	  <Origin>TREATMENT START DATE (CANCER)</Origin>
-    	  <Origin>PROCEDURE DATE</Origin>
-      </Explanation>
-    </Explanations>
+  </Sql>
+  <Explanations>
+    <Explanation columnName="AdultComorbidityEvaluation">
+      <Description>Adult Comorbidity Evaluation Score</Description>
+      <Origin>AdultComorbidityEvaluation-27Score</Origin>
+    </Explanation>
+    <Explanation columnName="NhsNumber">
+      <Description>Patient NHS Number</Description>
+      <Origin>NHS NUMBER</Origin>
+    </Explanation>
+    <Explanation columnName="MeasurementDate">
+      <Description>Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)</Description>
+      <Origin>Multiple date sources</Origin>
+    </Explanation>
+  </Explanations>
 </Query>

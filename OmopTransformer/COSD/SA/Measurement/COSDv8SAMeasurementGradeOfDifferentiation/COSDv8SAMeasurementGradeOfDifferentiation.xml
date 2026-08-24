@@ -14,7 +14,8 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from SA
-where GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis != 'GX'
+  and GradeOfDifferentiationAtDiagnosis is not null;
 	</Sql>
     <Explanations>
 	    <Explanation columnName="NHSNumber">

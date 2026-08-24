@@ -2,10 +2,10 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Measurement;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementAdultComorbidityEvaluation;
+namespace OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementAdultComorbidityEvaluation;
 
-[Notes("Notes", DocumentationNotes.ApproximatedDatesWarning)]
-internal class CosdV9BreastMeasurementAdultComorbidityEvaluation : OmopMeasurement<CosdV9BreastMeasurementAdultComorbidityEvaluationRecord>
+[Notes("Notes", DocumentationNotes.ApproximatedMeasurementDatesWarning)]
+internal class CosdV8LungMeasurementAdultComorbidityEvaluation : OmopMeasurement<CosdV8LungMeasurementAdultComorbidityEvaluationRecord>
 {
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }

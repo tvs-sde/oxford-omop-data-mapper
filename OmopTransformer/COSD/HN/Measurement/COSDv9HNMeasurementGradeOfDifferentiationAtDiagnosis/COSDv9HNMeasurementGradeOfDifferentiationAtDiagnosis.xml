@@ -10,6 +10,7 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'HN'
+  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 ]]>
     </Sql>

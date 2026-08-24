@@ -10,7 +10,7 @@ internal class CosdV8LungSurgicalAccessType : OmopObservation<CosdV8LungSurgical
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
 
-    [ConstantValue(4301351, "Surgical access")]
+    [ConstantValue(4148968, "Surgical access")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.Date))]

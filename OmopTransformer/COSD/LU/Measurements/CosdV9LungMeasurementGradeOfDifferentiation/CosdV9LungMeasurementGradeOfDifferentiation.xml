@@ -7,6 +7,7 @@ select
         Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where Type = 'LU'
+  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null
   and NhsNumber is not null
 	</Sql>

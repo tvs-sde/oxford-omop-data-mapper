@@ -24,6 +24,7 @@ using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenc
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceProgression;
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceRecurrence;
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceSecondaryDiagnosis;
+using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementMcategoryIntegratedStage;
@@ -35,6 +36,7 @@ using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementTcategoryFinal
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementTcategoryIntegratedStage;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementTNMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementTumourLaterality;
+using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementMcategoryIntegratedStage;
@@ -287,6 +289,7 @@ using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrenceP
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceRecurrence;
+using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementMcategoryIntegratedStage;
@@ -299,6 +302,7 @@ using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementTcategoryIntegra
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementTNMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementTumourLaterality;
+using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementMcategoryIntegratedStage;
@@ -312,7 +316,6 @@ using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTcategoryIntegra
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTumourLaterality;
-using OmopTransformer.COSD.LU.Observation.CosdV8LungAdultComorbidityEvaluation;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAdultPerformanceStatus;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerInLastThreeMonths;
@@ -322,7 +325,6 @@ using OmopTransformer.COSD.LU.Observation.CosdV8LungSmokingStatusCode;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralOutPatients;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSurgicalAccessType;
-using OmopTransformer.COSD.LU.Observation.CosdV9LungAdultComorbidityEvaluation;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungAsaScore;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungFamilialCancerSyndrome;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungFamilialCancerSyndromeSubsidiaryComment;
@@ -1158,12 +1160,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8LungAdultComorbidityEvaluationRecord, CosdV8LungAdultComorbidityEvaluation>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8LungAdultComorbidityEvaluation",
-            runId,
-            cancellationToken);
-
         await Transform<CosdV8LungAdultPerformanceStatusRecord, CosdV8LungAdultPerformanceStatus>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8LungAdultPerformanceStatus",
@@ -1209,12 +1205,6 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8LungSourceOfReferralOutPatientsRecord, CosdV8LungSourceOfReferralOutPatients>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8LungSourceOfReferralOutPatients",
-            runId,
-            cancellationToken);
-
-        await Transform<CosdV9LungAdultComorbidityEvaluationRecord, CosdV9LungAdultComorbidityEvaluation>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9LungAdultComorbidityEvaluation",
             runId,
             cancellationToken);
 
@@ -1500,6 +1490,18 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<CosdV8LungMeasurementAdultComorbidityEvaluationRecord, CosdV8LungMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "CosdV8LungMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9LungMeasurementAdultComorbidityEvaluationRecord, CosdV9LungMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "CosdV9LungMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
         await Transform<CosdV8LungMeasurementGradeOfDifferentiationRecord, CosdV8LungMeasurementGradeOfDifferentiation>(
             _measurementRecorder.InsertUpdateMeasurements,
             "CosdV8LungMeasurementGradeOfDifferentiation",
@@ -1716,9 +1718,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8MeasurementAdultComorbidityEvaluationRecord, CosdV8MeasurementAdultComorbidityEvaluation>(
+        await Transform<CosdV8BreastMeasurementAdultComorbidityEvaluationRecord, CosdV8BreastMeasurementAdultComorbidityEvaluation>(
             _measurementRecorder.InsertUpdateMeasurements,
-            "CosdV8MeasurementAdultComorbidityEvaluation",
+            "CosdV8BreastMeasurementAdultComorbidityEvaluation",
             runId,
             cancellationToken);
 
@@ -1800,9 +1802,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV9MeasurementAdultComorbidityEvaluationRecord, CosdV9MeasurementAdultComorbidityEvaluation>(
+        await Transform<CosdV9BreastMeasurementAdultComorbidityEvaluationRecord, CosdV9BreastMeasurementAdultComorbidityEvaluation>(
              _measurementRecorder.InsertUpdateMeasurements,
-             "CosdV9MeasurementAdultComorbidityEvaluation",
+             "CosdV9BreastMeasurementAdultComorbidityEvaluation",
             runId,
             cancellationToken);
 

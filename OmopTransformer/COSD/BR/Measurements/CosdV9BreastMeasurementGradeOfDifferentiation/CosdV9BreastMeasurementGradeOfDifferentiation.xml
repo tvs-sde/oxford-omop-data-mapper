@@ -13,7 +13,8 @@ select distinct
     DateOfPrimaryDiagnosisClinicallyAgreed,
     GradeOfDifferentiationAtDiagnosis
 from BR
-where GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis != 'GX'
+  and GradeOfDifferentiationAtDiagnosis is not null;
 	</Sql>
     <Explanations>
 	    <Explanation columnName="NhsNumber">
