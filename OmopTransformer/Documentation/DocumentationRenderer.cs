@@ -58,7 +58,7 @@ internal class DocumentationRenderer
         indexStringBuilder.AppendLine();
         indexStringBuilder.AppendLine("# Transformation Documentation");
         indexStringBuilder.AppendLine("");
-        indexStringBuilder.AppendLine("This section of the site covers the documentation for the mappings completed so far from various sources to OMOP v5.4.");
+        indexStringBuilder.AppendLine("This section of the site covers the documentation for the mappings completed so far from various sources to OMOP v5.5.");
         indexStringBuilder.AppendLine("");
         indexStringBuilder.AppendLine("The page is structured based on the OMOP tables mapped. Underneath each table page you will find:");
         indexStringBuilder.AppendLine("");
