@@ -42,7 +42,7 @@ create sequence sequence_procedure_occurrence_id start 1;
 create sequence sequence_provider_id start 1;
 create sequence sequence_visit_detail_id start 1;
 create sequence sequence_visit_occurrence_id start 1;
-
+ 
 create schema dbo;
 create schema cdm;
 create schema omop_staging;
@@ -66,6 +66,7 @@ CREATE TABLE cdm.cdm_source(
 	cdm_etl_reference varchar(255) NULL,
 	source_release_date date NOT NULL,
 	cdm_release_date date NOT NULL,
+	cdm_release_identifier varchar(255) NULL,
 	cdm_version varchar(10) NULL,
 	cdm_version_concept_id integer NOT NULL,
 	vocabulary_version varchar(20) NOT NULL
@@ -357,6 +358,7 @@ CREATE TABLE cdm.measurement(
 	unit_source_value varchar(50) NULL,
 	unit_source_concept_id integer NULL,
 	value_source_value varchar(50) NULL,
+	value_as_source_concept_Id integer NULL,
 	measurement_event_id integer NULL,
 	meas_event_field_concept_id integer NULL,
 	RecordConnectionIdentifier varchar(50) NULL,
@@ -422,6 +424,7 @@ CREATE TABLE cdm.observation(
 	value_as_number float NULL,
 	value_as_string varchar(60) NULL,
 	value_as_concept_id integer NULL,
+	value_as_date date NULL,
 	qualifier_concept_id integer NULL,
 	unit_concept_id integer NULL,
 	provider_id integer NULL,
@@ -430,8 +433,10 @@ CREATE TABLE cdm.observation(
 	observation_source_value varchar(50) NULL,
 	observation_source_concept_id integer NULL,
 	unit_source_value varchar(50) NULL,
+	unit_source_concept_id integer NULL,
 	qualifier_source_value varchar(50) NULL,
 	value_source_value varchar(50) NULL,
+	value_as_source_concept_Id integer NULL,
 	observation_event_id integer NULL,
 	obs_event_field_concept_id integer NULL,
 	RecordConnectionIdentifier varchar(50) NULL,
@@ -563,7 +568,9 @@ CREATE TABLE cdm.specimen(
 	specimen_source_value varchar(50) NULL,
 	unit_source_value varchar(50) NULL,
 	anatomic_site_source_value varchar(50) NULL,
-	disease_status_source_value varchar(50) NULL
+	disease_status_source_value varchar(50) NULL,
+	visit_occurrence_id integer NULL,
+	visit_detail_id integer NULL 
 );
 
 CREATE TABLE cdm.visit_detail(
@@ -621,6 +628,27 @@ CREATE TABLE cdm.vocabulary(
 	vocabulary_version varchar(255) NULL,
 	vocabulary_concept_id integer NOT NULL
 );
+
+CREATE TABLE cdm.pack_content (
+			pack_concept_id integer NOT NULL,
+			drug_concept_id integer NOT NULL,
+			amount integer NULL,
+			box_size integer NULL );
+CREATE TABLE cdm.concept_metadata (
+			concept_id integer NULL,
+			concept_category varchar(20) NULL,
+			reuse_status varchar(20) NULL );
+CREATE TABLE cdm.concept_relationship_metadata (
+			concept_id_1 integer NOT NULL,
+			concept_id_2 integer NOT NULL,
+			relationship_id varchar(20) NOT NULL,
+			relationship_predicate_id varchar(20) NULL,
+			relationship_group integer NULL,
+			mapping_source varchar(50) NULL,
+			confidence NUMERIC NULL,
+			mapping_tool varchar(50) NULL,
+			mapper varchar(50) NULL,
+			reviewer varchar(50) NULL );
 
 
 CREATE TABLE dbo.run_analysis(
@@ -1783,6 +1811,7 @@ CREATE table omop_staging.measurement_row (
 	unit_source_value varchar(50) NULL,
 	unit_source_concept_id integer NULL,
 	value_source_value varchar(50) NULL,
+	value_as_source_concept_id integer NULL,
 	measurement_event_id integer NULL,
 	meas_event_field_concept_id integer NULL,
 	RecordConnectionIdentifier varchar(50) NULL,
@@ -1801,14 +1830,17 @@ CREATE table omop_staging.observation_row (
 	value_as_number float NULL,
 	value_as_string varchar(60) NULL,
 	value_as_concept_id integer NULL,
+	value_as_date date NULL,
 	qualifier_concept_id integer NULL,
 	unit_concept_id integer NULL,
 	provider_id integer NULL,
 	observation_source_value varchar(50) NULL,
 	observation_source_concept_id integer NULL,
 	unit_source_value varchar(50) NULL,
+	unit_source_concept_id integer NULL,
 	qualifier_source_value varchar(50) NULL,
 	value_source_value varchar(50) NULL,
+	value_as_source_concept_id integer NULL,
 	observation_event_id integer NULL,
 	obs_event_field_concept_id integer NULL,
 	data_source varchar(100) NOT NULL
@@ -1955,7 +1987,7 @@ values
 	'', 
 	current_date, 
 	current_date, 
-	'5.4', 
+	'5.5', 
 	0, 
 	''
 );

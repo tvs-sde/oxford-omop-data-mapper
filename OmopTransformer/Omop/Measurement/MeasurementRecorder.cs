@@ -57,6 +57,7 @@ internal class MeasurementRecorder : IMeasurementRecorder
                                 .AppendValue(row.unit_source_value)
                                 .AppendValue(row.unit_source_concept_id)
                                 .AppendValue(row.value_source_value)
+                                .AppendValue(row.value_as_source_concept_id)
                                 .AppendValue(row.measurement_event_id)
                                 .AppendValue(row.meas_event_field_concept_id)
                                 .AppendValue(row.RecordConnectionIdentifier)
@@ -100,6 +101,7 @@ insert into cdm.measurement (
     unit_source_value,
     unit_source_concept_id,
     value_source_value,
+    value_as_source_concept_Id,
     measurement_event_id,
     meas_event_field_concept_id,
     RecordConnectionIdentifier,
@@ -126,6 +128,7 @@ select
         r.unit_source_value,
         r.unit_source_concept_id,
         r.value_source_value,
+        r.value_as_source_concept_id,
         r.measurement_event_id,
         r.meas_event_field_concept_id,
         r.RecordConnectionIdentifier,
