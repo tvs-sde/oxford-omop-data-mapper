@@ -1,0 +1,117 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and WhiteBloodCellCountHighestPretreatment is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ClinicalDateCancerDiagnosis",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and WhiteBloodCellCountHighestPretreatment is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ClinicalDateCancerDiagnosis",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and WhiteBloodCellCountHighestPretreatment is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `4298431`. White blood cell count",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Constant value set to `4298431`. White blood cell count",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `WhiteBloodCellCountHighestPretreatment`",
+      "dataSource": [
+        {
+          "name": "WhiteBloodCellCountHighestPretreatment",
+          "description": "The highest white blood cell count prior to the start of treatment during a Haematological Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "WHITE BLOOD CELL COUNT (HIGHEST PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/white_blood_cell_count__highest_pretreatment_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and WhiteBloodCellCountHighestPretreatment is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_number",
+      "operation_description": "Converts text to number.",
+      "dataSource": [
+        {
+          "name": "WhiteBloodCellCountHighestPretreatment",
+          "description": "The highest white blood cell count prior to the start of treatment during a Haematological Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "WHITE BLOOD CELL COUNT (HIGHEST PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/white_blood_cell_count__highest_pretreatment_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    -- White Blood Cell Count (Highest Pretreatment): numeric lab result (max n3.n1). Will be stored as value_as_number in a later ETL step.\n    Record ->> '$.Haematological.HaematologicalCore.HaematologicalLaboratoryResultsVarious.WhiteBloodCellCountHighestPre.@value' as WhiteBloodCellCountHighestPretreatment\nfrom omop_staging.cosd_staging_81\nwhere type = 'HA'\n  and WhiteBloodCellCountHighestPretreatment is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

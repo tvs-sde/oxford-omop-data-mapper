@@ -1,0 +1,135 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_901\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `Observation` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_901\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_901\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_concept_id",
+      "operation_description": "Lookup performance status concept.",
+      "dataSource": [
+        {
+          "name": "PerformanceStatusAdult",
+          "description": "A World Health Organisation classification indicating a person's status relating to activity or disability.",
+          "origins": [
+            {
+              "origin": "PERFORMANCE STATUS (ADULT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_901\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
+      "lookup_table_markdown": "\r\n\r\n|PerformanceStatusAdult|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|0|45881176|Asymptomatic|\r\n|1|45885272|Symptomatic, full ADLS|\r\n|2|45877958|Symptomatic, in bed <50% day|\r\n|3|45879697|Symptomatic, in bed >50% day|\r\n|4|45877743|Bedridden|\r\n\r\nNotes\r\n* [Performance Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---diagnosis)\r\n"
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `PerformanceStatusAdult`",
+      "dataSource": [
+        {
+          "name": "PerformanceStatusAdult",
+          "description": "A World Health Organisation classification indicating a person's status relating to activity or disability.",
+          "origins": [
+            {
+              "origin": "PERFORMANCE STATUS (ADULT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_901\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_concept_id",
+      "operation_description": "Constant value set to `3008030`. Physical performance [QAM]",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `PerformanceStatusAdult`",
+      "dataSource": [
+        {
+          "name": "PerformanceStatusAdult",
+          "description": "A World Health Organisation classification indicating a person's status relating to activity or disability.",
+          "origins": [
+            {
+              "origin": "PERFORMANCE STATUS (ADULT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/performance_status__adult_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.PerformanceStatusAdult.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_901\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

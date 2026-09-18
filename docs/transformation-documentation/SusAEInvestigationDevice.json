@@ -1,0 +1,192 @@
+{
+  "omopTable": "DeviceExposure",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `device` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "StartDate",
+          "description": "Start date of the episode.",
+          "origins": [
+            {
+              "origin": "START DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_start_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "StartDate",
+          "description": "Start date of the episode.",
+          "origins": [
+            {
+              "origin": "START DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__episode_.html"
+            }
+          ]
+        },
+        {
+          "name": "StartTime",
+          "description": "The earliest episode start time for the spell, or midnight if none are specified.",
+          "origins": [
+            {
+              "origin": "START TIME (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_time__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EndDate",
+          "description": "The latest episode end date for the spell, or the latest activity date if none are specified.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "END DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_date__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_end_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "EndDate",
+          "description": "The latest episode end date for the spell, or the latest activity date if none are specified.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "END DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_date__episode_.html"
+            }
+          ]
+        },
+        {
+          "name": "EndTime",
+          "description": "The latest episode end time for the spell, or midnight if none are specified.",
+          "origins": [
+            {
+              "origin": "END TIME (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_time__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_source_concept_id",
+      "operation_description": "Lookup discharge destination concept.",
+      "dataSource": [
+        {
+          "name": "AccidentAndEmergencyInvestigation",
+          "description": "A broad coding of types of investigation which may be requested to assist with diagnosis as a result of Accident and Emergency Attendances.",
+          "origins": [
+            {
+              "origin": "ACCIDENT AND EMERGENCY INVESTIGATION",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": "\r\n\r\n|AccidentAndEmergencyInvestigation|device_source_concept_id|notes|\r\n|------|-----|-----|\r\n|01|45768233|X-ray|\r\n|02|45768113|Electrocardiograph|\r\n|08|45768357|Microscope (histology)|\r\n|10|45768281|Ultrasound|\r\n|11|4234381|Magnetic Resonance Imaging (MRI)|\r\n|12|45762714|Computerised Tomography (CT)|\r\n|09|45762714|Computerised Tomography (CT)|\r\n|19|618883|Blood culture bottle|\r\n\r\n"
+    },
+    {
+      "name": "device_source_value",
+      "operation_description": "Value copied from `AccidentAndEmergencyInvestigation`",
+      "dataSource": [
+        {
+          "name": "AccidentAndEmergencyInvestigation",
+          "description": "A broad coding of types of investigation which may be requested to assist with diagnosis as a result of Accident and Emergency Attendances.",
+          "origins": [
+            {
+              "origin": "ACCIDENT AND EMERGENCY INVESTIGATION",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "HospitalProviderSpellNumber",
+      "operation_description": "Value copied from `AEAttendanceNumber`",
+      "dataSource": [
+        {
+          "name": "AEAttendanceNumber",
+          "description": "",
+          "origins": [
+            {
+              "origin": "A and E ATTENDANCE NUMBER (Retired)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\tae.AEAttendanceNumber,\n\t\tae.NHSNumber,\n\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as StartDate,\n\t\tcoalesce(ae.ArrivalTime, '000000') as StartTime,\n\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate) as EndDate,\n\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as EndTime,\n\t\ti.AccidentAndEmergencyInvestigation\n\tfrom omop_staging.sus_AE_investigation i\n\t\tinner join omop_staging.sus_AE ae\n\t\t\ton i.MessageId = ae.MessageId\n\twhere ae.NHSNumber is not null\n\tand i.AccidentAndEmergencyInvestigation in ('01', '02', '08', '09', '10', '11', '12', '19')\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

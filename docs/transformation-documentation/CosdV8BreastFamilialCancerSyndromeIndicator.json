@@ -1,0 +1,99 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\nselect \n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'\n    ) as CancerTreatmentStartDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'\n    ) as ProcedureDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'BR'\n)\nselect\n      distinct\n          FamilialCancerSyndromeIndicator,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom BR o\nwhere o.FamilialCancerSyndromeIndicator is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `44782478`. Hereditary cancer-predisposing syndrome",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)",
+          "origins": [
+            {
+              "origin": "Multiple date sources",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\nselect \n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'\n    ) as CancerTreatmentStartDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'\n    ) as ProcedureDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'BR'\n)\nselect\n      distinct\n          FamilialCancerSyndromeIndicator,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom BR o\nwhere o.FamilialCancerSyndromeIndicator is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)",
+          "origins": [
+            {
+              "origin": "Multiple date sources",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\nselect \n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'\n    ) as CancerTreatmentStartDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'\n    ) as ProcedureDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'BR'\n)\nselect\n      distinct\n          FamilialCancerSyndromeIndicator,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom BR o\nwhere o.FamilialCancerSyndromeIndicator is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_string",
+      "operation_description": "Value copied from `FamilialCancerSyndromeIndicator`",
+      "dataSource": [
+        {
+          "name": "FamilialCancerSyndromeIndicator",
+          "description": "Familial Cancer Syndrome Indicator",
+          "origins": [
+            {
+              "origin": "FamilialCancerSyndrome",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\nselect \n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'\n    ) as CancerTreatmentStartDate,\n    coalesce(\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',\n        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'\n    ) as ProcedureDate,\n    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,\n    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'BR'\n)\nselect\n      distinct\n          FamilialCancerSyndromeIndicator,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom BR o\nwhere o.FamilialCancerSyndromeIndicator is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    );\n  ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_concept_id",
+      "operation_description": "Constant value set to `2000500005`. Familial Cancer (Indicator)",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

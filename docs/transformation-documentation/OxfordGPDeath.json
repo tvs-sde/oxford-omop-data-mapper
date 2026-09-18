@@ -1,0 +1,37 @@
+{
+  "omopTable": "Death",
+  "origin": "Oxford-GP",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDateofDeath\nfrom omop_staging.oxford_gp_demographic\nwhere DateofDeath is not null\norder by\n\tNHSNumber,\n\tDateofDeath\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateofDeath",
+          "description": "Date of death.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDateofDeath\nfrom omop_staging.oxford_gp_demographic\nwhere DateofDeath is not null\norder by\n\tNHSNumber,\n\tDateofDeath\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

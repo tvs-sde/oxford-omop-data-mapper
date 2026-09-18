@@ -1,0 +1,147 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          AlcoholHistoryCancerInLastThreeMonths,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.AlcoholHistoryCancerInLastThreeMonths is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `35609491`. Alcohol units consumed per week",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Observation date",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DIAGNOSIS DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          AlcoholHistoryCancerInLastThreeMonths,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.AlcoholHistoryCancerInLastThreeMonths is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Observation date",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DIAGNOSIS DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          AlcoholHistoryCancerInLastThreeMonths,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.AlcoholHistoryCancerInLastThreeMonths is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_string",
+      "operation_description": "Value copied from `AlcoholHistoryCancerInLastThreeMonths`",
+      "dataSource": [
+        {
+          "name": "AlcoholHistoryCancerInLastThreeMonths",
+          "description": "The alcohol consumption by a PATIENT in the 3 months before the cancer diagnosis date.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CURRENT)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          AlcoholHistoryCancerInLastThreeMonths,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.AlcoholHistoryCancerInLastThreeMonths is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_concept_id",
+      "operation_description": "Constant value set to `2000500003`. History Of Alcohol (Current)",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "omopTable": "Death",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `nhs_number`",
+      "dataSource": [
+        {
+          "name": "nhs_number",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n;with primarydiagnosis as (\n\tselect *\n\tfrom omop_staging.sus_ICDDiagnosis\n\twhere IsPrimaryDiagnosis = 1\n)\n\nselect\n\tapc.NHSNumber as nhs_number,\n\tmax(apc.DischargeDateFromHospitalProviderSpell) as death_date,\n\tmax(apc.DischargeTimeHospitalProviderSpell) as death_time,\n\tmax(d.DiagnosisICD) as DiagnosisICD\nfrom omop_staging.sus_APC apc\n\tleft join primarydiagnosis d\n\t\ton apc.MessageId = d.MessageId\nwhere\n\tapc.NHSNumber is not null and\n\tapc.DischargeDateFromHospitalProviderSpell is not null and\n\tapc.DischargeMethodHospitalProviderSpell = '4' -- \"Patient died\"\n\ngroup by apc.NHSNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "death_date",
+          "description": "Discharge date of the patient's spell.",
+          "origins": [
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n;with primarydiagnosis as (\n\tselect *\n\tfrom omop_staging.sus_ICDDiagnosis\n\twhere IsPrimaryDiagnosis = 1\n)\n\nselect\n\tapc.NHSNumber as nhs_number,\n\tmax(apc.DischargeDateFromHospitalProviderSpell) as death_date,\n\tmax(apc.DischargeTimeHospitalProviderSpell) as death_time,\n\tmax(d.DiagnosisICD) as DiagnosisICD\nfrom omop_staging.sus_APC apc\n\tleft join primarydiagnosis d\n\t\ton apc.MessageId = d.MessageId\nwhere\n\tapc.NHSNumber is not null and\n\tapc.DischargeDateFromHospitalProviderSpell is not null and\n\tapc.DischargeMethodHospitalProviderSpell = '4' -- \"Patient died\"\n\ngroup by apc.NHSNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "death_date",
+          "description": "Discharge date of the patient's spell.",
+          "origins": [
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        },
+        {
+          "name": "death_time",
+          "description": "Discharge time of the patient's spell.",
+          "origins": [
+            {
+              "origin": "DISCHARGE TIME (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_time__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n;with primarydiagnosis as (\n\tselect *\n\tfrom omop_staging.sus_ICDDiagnosis\n\twhere IsPrimaryDiagnosis = 1\n)\n\nselect\n\tapc.NHSNumber as nhs_number,\n\tmax(apc.DischargeDateFromHospitalProviderSpell) as death_date,\n\tmax(apc.DischargeTimeHospitalProviderSpell) as death_time,\n\tmax(d.DiagnosisICD) as DiagnosisICD\nfrom omop_staging.sus_APC apc\n\tleft join primarydiagnosis d\n\t\ton apc.MessageId = d.MessageId\nwhere\n\tapc.NHSNumber is not null and\n\tapc.DischargeDateFromHospitalProviderSpell is not null and\n\tapc.DischargeMethodHospitalProviderSpell = '4' -- \"Patient died\"\n\ngroup by apc.NHSNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "cause_concept_id",
+      "operation_description": "Resolve ICD10 codes to standard OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "DiagnosisICD",
+          "description": "Primary Diagnosis",
+          "origins": [
+            {
+              "origin": "PRIMARY DIAGNOSIS",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n;with primarydiagnosis as (\n\tselect *\n\tfrom omop_staging.sus_ICDDiagnosis\n\twhere IsPrimaryDiagnosis = 1\n)\n\nselect\n\tapc.NHSNumber as nhs_number,\n\tmax(apc.DischargeDateFromHospitalProviderSpell) as death_date,\n\tmax(apc.DischargeTimeHospitalProviderSpell) as death_time,\n\tmax(d.DiagnosisICD) as DiagnosisICD\nfrom omop_staging.sus_APC apc\n\tleft join primarydiagnosis d\n\t\ton apc.MessageId = d.MessageId\nwhere\n\tapc.NHSNumber is not null and\n\tapc.DischargeDateFromHospitalProviderSpell is not null and\n\tapc.DischargeMethodHospitalProviderSpell = '4' -- \"Patient died\"\n\ngroup by apc.NHSNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "cause_source_value",
+      "operation_description": "Value copied from `DiagnosisICD`",
+      "dataSource": [
+        {
+          "name": "DiagnosisICD",
+          "description": "Primary Diagnosis",
+          "origins": [
+            {
+              "origin": "PRIMARY DIAGNOSIS",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n;with primarydiagnosis as (\n\tselect *\n\tfrom omop_staging.sus_ICDDiagnosis\n\twhere IsPrimaryDiagnosis = 1\n)\n\nselect\n\tapc.NHSNumber as nhs_number,\n\tmax(apc.DischargeDateFromHospitalProviderSpell) as death_date,\n\tmax(apc.DischargeTimeHospitalProviderSpell) as death_time,\n\tmax(d.DiagnosisICD) as DiagnosisICD\nfrom omop_staging.sus_APC apc\n\tleft join primarydiagnosis d\n\t\ton apc.MessageId = d.MessageId\nwhere\n\tapc.NHSNumber is not null and\n\tapc.DischargeDateFromHospitalProviderSpell is not null and\n\tapc.DischargeMethodHospitalProviderSpell = '4' -- \"Patient died\"\n\ngroup by apc.NHSNumber\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

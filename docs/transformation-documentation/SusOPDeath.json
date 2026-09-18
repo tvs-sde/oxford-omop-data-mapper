@@ -1,0 +1,42 @@
+{
+  "omopTable": "Death",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `nhs_number`",
+      "dataSource": [
+        {
+          "name": "nhs_number",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tNHSNumber as nhs_number,\n\t\tcoalesce(max(ReferralToTreatmentPeriodEndDate), max(CDSActivityDate)) as death_date\n\tfrom omop_staging.sus_OP\n\twhere ReferralToTreatmentPeriodStatus = 36\n\t\tand (CDSActivityDate is not null or ReferralToTreatmentPeriodEndDate is not null)\n\t\tand NHSNumber is not null\n\tgroup by NHSNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "death_date",
+          "description": "Discharge date of the patient's spell.",
+          "origins": [
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tNHSNumber as nhs_number,\n\t\tcoalesce(max(ReferralToTreatmentPeriodEndDate), max(CDSActivityDate)) as death_date\n\tfrom omop_staging.sus_OP\n\twhere ReferralToTreatmentPeriodStatus = 36\n\t\tand (CDSActivityDate is not null or ReferralToTreatmentPeriodEndDate is not null)\n\t\tand NHSNumber is not null\n\tgroup by NHSNumber\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

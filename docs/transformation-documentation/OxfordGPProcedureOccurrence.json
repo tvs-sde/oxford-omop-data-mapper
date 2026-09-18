@@ -1,0 +1,116 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "Oxford-GP",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EventDate",
+          "description": "Event date",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EventDate",
+          "description": "Event date",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EventDate",
+          "description": "Event date",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EventDate",
+          "description": "Event date",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR Administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `SuppliedCode`",
+      "dataSource": [
+        {
+          "name": "SuppliedCode",
+          "description": "",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve Snomed codes to OMOP concepts.",
+      "dataSource": [
+        {
+          "name": "SuppliedCode",
+          "description": "",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\td.NHSNumber,\n\t\te.EventDate,\n\t\te.SuppliedCode\nfrom omop_staging.oxford_gp_event e\n\tinner join omop_staging.oxford_gp_demographic d\n\t\ton e.PatientIdentifier = d.PatientIdentifier\norder by\n\td.NHSNumber,\n\te.EventDate,\n\te.SuppliedCode\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

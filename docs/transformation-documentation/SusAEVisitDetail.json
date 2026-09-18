@@ -1,0 +1,260 @@
+{
+  "omopTable": "VisitDetail",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "HospitalProviderSpellNumber",
+      "operation_description": "Value copied from `AEAttendanceNumber`",
+      "dataSource": [
+        {
+          "name": "AEAttendanceNumber",
+          "description": "",
+          "origins": [
+            {
+              "origin": "A and E ATTENDANCE NUMBER (Retired)",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "VisitStartDate",
+          "description": "Start date of the episode, if exists, else the start date of the spell.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "START DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "START DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_start_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "VisitStartDate",
+          "description": "Start date of the episode, if exists, else the start date of the spell.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "START DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "START DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__episode_.html"
+            }
+          ]
+        },
+        {
+          "name": "VisitStartTime",
+          "description": "Start time of the episode, if exists, else midnight.",
+          "origins": [
+            {
+              "origin": "START TIME (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_time__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "START TIME (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_time__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "VisitEndDate",
+          "description": "End date of the episode, if exists, else the spell discharge date, if exists, else the message date.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "END DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_date__episode_.html"
+            },
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_end_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "VisitEndDate",
+          "description": "End date of the episode, if exists, else the spell discharge date, if exists, else the message date.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "END DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_date__episode_.html"
+            },
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        },
+        {
+          "name": "VisitEndTime",
+          "description": "End time of the episode, if exists, else the spell discharge time, if exists, else the message date.",
+          "origins": [
+            {
+              "origin": "DISCHARGE TIME (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_time__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "END TIME (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_time__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_concept_id",
+      "operation_description": "Constant value set to `9203`. `Emergency Room Visit`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "admitted_from_concept_id",
+      "operation_description": "Lookup admission source concept.",
+      "dataSource": [
+        {
+          "name": "SourceofAdmissionCode",
+          "description": "Admission Source.",
+          "origins": [
+            {
+              "origin": "ADMISSION SOURCE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/admission_source__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": "\r\n\r\n|SourceofAdmissionCode|admitted_from_concept_id|notes|\r\n|------|-----|-----|\r\n|1|38004353|Ambulance|\r\n|2||No mapping possible|\r\n|19|581476|Home Visit|\r\n|29|8602|Temporary Lodging|\r\n|37|38003619|Prison / Correctional Facility|\r\n|40|38003619|Prison / Correctional Facility|\r\n|42|38003619|Prison / Correctional Facility|\r\n|49|38004284|Psychiatric Hospital|\r\n|51|8717|Inpatient Hospital|\r\n|52|8650|Birthing Center|\r\n|53|8976|Psychiatric Residential Treatment Center|\r\n|55|8863|Skilled Nursing Facility|\r\n|56|38004306|Custodial Care Facility|\r\n|66|38004205|Foster Care Agency|\r\n|79|8650|Birthing Center|\r\n|87|8717|Inpatient Hospital|\r\n|88|8546|Hospice|\r\n|98||No mapping possible|\r\n|99||No mapping possible|\r\n\r\nNotes\r\n* [Admission Source](https://www.datadictionary.nhs.uk/data_elements/admission_source__hospital_provider_spell_.html)\r\n* [Admission Source A&E](https://archive.datadictionary.nhs.uk/DD%20Release%20September%202020/attributes/accident_and_emergency_arrival_mode.html)\r\n"
+    },
+    {
+      "name": "admitted_from_source_value",
+      "operation_description": "Value copied from `SourceofAdmissionCode`",
+      "dataSource": [
+        {
+          "name": "SourceofAdmissionCode",
+          "description": "Admission Source.",
+          "origins": [
+            {
+              "origin": "ADMISSION SOURCE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/admission_source__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "discharged_to_source_value",
+      "operation_description": "Value copied from `DischargeDestinationCode`",
+      "dataSource": [
+        {
+          "name": "DischargeDestinationCode",
+          "description": "Discharge Destination Code",
+          "origins": [
+            {
+              "origin": "DISCHARGE DESTINATION CODE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_destination_code__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "discharged_to_concept_id",
+      "operation_description": "Lookup discharge destination concept for A&E.",
+      "dataSource": [
+        {
+          "name": "DischargeDestinationCode",
+          "description": "Discharge Destination Code",
+          "origins": [
+            {
+              "origin": "DISCHARGE DESTINATION CODE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_destination_code__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\twith records as (\n\t\t\tselect  \n\t\t\t\tae.NHSNumber,\n\t\t\t\tae.AEAttendanceNumber,\n\t\t\t\tcoalesce(ae.ArrivalDate, ae.CDSActivityDate) as VisitStartDate,\n\t\t\t\tcoalesce(ae.ArrivalTime, '000000') as VisitStartTime,\n\t\t\t\tcoalesce(ae.AEDepartureDate, ae.AEAttendanceConclusionDate, ae.ArrivalDate, ae.CDSActivityDate) as VisitEndDate,\n\t\t\t\tcoalesce(ae.AEDepartureTime, ae.AEAttendanceConclusionTime, '000000') as VisitEndTime,\n\t\t\t\tae.AEArrivalMode as SourceofAdmissionCode,\n\t\t\t\tae.AEAttendanceDisposal as DischargeDestinationCode\n\t\t\tfrom omop_staging.sus_AE ae\n\t\t\twhere ae.NHSNumber is not null\n\t\t)\n\t\tselect *\n\t\tfrom records\n\t\torder by \n\t\t\tNHSNumber, \n\t\t\tAEAttendanceNumber, \n\t\t\tVisitStartDate, \n\t\t\tVisitStartTime, \n\t\t\tVisitEndDate, \n\t\t\tVisitEndTime, \n\t\t\tSourceofAdmissionCode, \n\t\t\tDischargeDestinationCode\n\n\t",
+      "lookup_table_markdown": "\r\n\r\n|DischargeDestinationCode|discharged_to_concept_id|notes|\r\n|------|-----|-----|\r\n|01|8717|In Patient Hospital|\r\n|02|38004453|Family Practice|\r\n|03|32759|Home Isolation|\r\n|04|8870|Emergency Room - Hospital|\r\n|05|8870|Emergency Room - Hospital|\r\n|06|8756|Out Patient Hospital|\r\n|07||No mapping possible|\r\n|10||No mapping possible|\r\n|11||No mapping possible|\r\n|12||No mapping possible|\r\n|13||No mapping possible|\r\n|14||No mapping possible|\r\n\r\nNotes\r\n* [Discharge Destination](https://www.datadictionary.nhs.uk/data_elements/discharge_destination_code__hospital_provider_spell_.html)\r\n* [Discharge Destination A&E](https://archive.datadictionary.nhs.uk/DD%20Release%20September%202020/data_elements/accident_and_emergency_attendance_disposal_code.html)\r\n"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "omopTable": "Person",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "person_source_value",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..Birthdate' ->> 0 as DateOfBirth,\n  Record ->> '$..streetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..streetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..streetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..streetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..Postcode.postalCode' -> 0 as Postcode,\nfrom omop_staging.cosd_staging_81\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "year_of_birth",
+      "operation_description": "Selects the year from a date or null of the date is null.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..Birthdate' ->> 0 as DateOfBirth,\n  Record ->> '$..streetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..streetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..streetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..streetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..Postcode.postalCode' -> 0 as Postcode,\nfrom omop_staging.cosd_staging_81\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "month_of_birth",
+      "operation_description": "Selects the month of the year or null if the date is null.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..Birthdate' ->> 0 as DateOfBirth,\n  Record ->> '$..streetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..streetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..streetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..streetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..Postcode.postalCode' -> 0 as Postcode,\nfrom omop_staging.cosd_staging_81\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "day_of_birth",
+      "operation_description": "Selects the day of the month or null if the date is null.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..Birthdate' ->> 0 as DateOfBirth,\n  Record ->> '$..streetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..streetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..streetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..streetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..Postcode.postalCode' -> 0 as Postcode,\nfrom omop_staging.cosd_staging_81\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "birth_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..Birthdate' ->> 0 as DateOfBirth,\n  Record ->> '$..streetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..streetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..streetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..streetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..Postcode.postalCode' -> 0 as Postcode,\nfrom omop_staging.cosd_staging_81\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "ethnicity_concept_id",
+      "operation_description": "Constant value set to `0`. Unknown concept",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

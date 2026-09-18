@@ -1,0 +1,42 @@
+{
+  "omopTable": "Death",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `nhs_number`",
+      "dataSource": [
+        {
+          "name": "nhs_number",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tNHSNumber as nhs_number,\n\tcoalesce(max(ReferralToTreatmentPeriodEndDate), max(CDSActivityDate)) as death_date\nfrom omop_staging.sus_AE\nwhere ((ReferralToTreatmentPeriodStatus = 36) --PATIENT died before treatment\n\tor (AEPatientGroup = 70) -- PATIENT brought in dead\n\tor (AEAttendanceDisposal = 10))  --PATIENT died in AE\n\tand (CDSActivityDate is not null or ReferralToTreatmentPeriodEndDate is not null)\n\tand NHSNumber is not null\ngroup by NHSNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "death_date",
+          "description": "Discharge date of the patient's spell.",
+          "origins": [
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tNHSNumber as nhs_number,\n\tcoalesce(max(ReferralToTreatmentPeriodEndDate), max(CDSActivityDate)) as death_date\nfrom omop_staging.sus_AE\nwhere ((ReferralToTreatmentPeriodStatus = 36) --PATIENT died before treatment\n\tor (AEPatientGroup = 70) -- PATIENT brought in dead\n\tor (AEAttendanceDisposal = 10))  --PATIENT died in AE\n\tand (CDSActivityDate is not null or ReferralToTreatmentPeriodEndDate is not null)\n\tand NHSNumber is not null\ngroup by NHSNumber\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

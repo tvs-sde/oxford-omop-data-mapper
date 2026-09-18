@@ -1,0 +1,74 @@
+{
+  "omopTable": "Death",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tdistinct\n\t\tRecord ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  \t\tRecord ->> '$..PersonDeathDate' ->> 0 as DeathDate\nfrom omop_staging.cosd_staging_81\nwhere DeathDate is not null\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DeathDate",
+          "description": "The date on which a PERSON died or is officially deemed to have died.",
+          "origins": [
+            {
+              "origin": "PERSON DEATH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_death_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tdistinct\n\t\tRecord ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  \t\tRecord ->> '$..PersonDeathDate' ->> 0 as DeathDate\nfrom omop_staging.cosd_staging_81\nwhere DeathDate is not null\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DeathDate",
+          "description": "The date on which a PERSON died or is officially deemed to have died.",
+          "origins": [
+            {
+              "origin": "PERSON DEATH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_death_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tdistinct\n\t\tRecord ->> '$..NHSNumber..@extension' ->> 0 as NhsNumber,\n  \t\tRecord ->> '$..PersonDeathDate' ->> 0 as DeathDate\nfrom omop_staging.cosd_staging_81\nwhere DeathDate is not null\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_type_concept_id",
+      "operation_description": "Constant value set to `32818`. EHR Administration record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "cause_source_concept_id",
+      "operation_description": "Constant value set to `32510`. EHR record patient status Deceased",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

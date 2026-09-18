@@ -1,0 +1,103 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n    distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality\nfrom omop_staging.cosd_staging_901\nwhere type = 'BR'\n  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the primary cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n    distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality\nfrom omop_staging.cosd_staging_901\nwhere type = 'BR'\n  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the primary cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n    distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality\nfrom omop_staging.cosd_staging_901\nwhere type = 'BR'\n  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Lookup TumourLaterality concepts.",
+      "dataSource": [
+        {
+          "name": "TumourLaterality",
+          "description": "The laterality (side) of the tumour - Left (L), Right (R), Midline (M), or Bilateral (B).",
+          "origins": [
+            {
+              "origin": "TUMOUR LATERALITY",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n    distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality\nfrom omop_staging.cosd_staging_901\nwhere type = 'BR'\n  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');\n\t",
+      "lookup_table_markdown": "\r\n\r\n|TumourLaterality|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|L|36770232|Left|\r\n|R|36770058|Right|\r\n|M|36769853|Midline|\r\n|B|36770109|Bilateral|\r\n\r\nNotes\r\n* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&conceptClass=Topography&page=1&pageSize=500&query=&boosts)\r\n* [NHS - Tumour Laterality](https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html?hl=tumour%2Claterality)\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `TumourLaterality`",
+      "dataSource": [
+        {
+          "name": "TumourLaterality",
+          "description": "The laterality (side) of the tumour - Left (L), Right (R), Midline (M), or Bilateral (B).",
+          "origins": [
+            {
+              "origin": "TUMOUR LATERALITY",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tumour_laterality.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n    distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code' as TumourLaterality\nfrom omop_staging.cosd_staging_901\nwhere type = 'BR'\n  and (Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.TumourLaterality.@code') in ('L','R','M','B');\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

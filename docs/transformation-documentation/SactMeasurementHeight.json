@@ -1,0 +1,117 @@
+{
+  "omopTable": "Measurement",
+  "origin": "SACT",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHS_Number`",
+      "dataSource": [
+        {
+          "name": "NHS_Number",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tHeight_At_Start_Of_Regimen,\n\t\t\tStart_Date_Of_Regimen\n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "Start_Date_Of_Regimen",
+          "description": "Date the Regiment started",
+          "origins": [
+            {
+              "origin": "START DATE OF REGIMEN",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tHeight_At_Start_Of_Regimen,\n\t\t\tStart_Date_Of_Regimen\n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "Start_Date_Of_Regimen",
+          "description": "Date the Regiment started",
+          "origins": [
+            {
+              "origin": "START DATE OF REGIMEN",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tHeight_At_Start_Of_Regimen,\n\t\t\tStart_Date_Of_Regimen\n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `Height_At_Start_Of_Regimen`",
+      "dataSource": [
+        {
+          "name": "Height_At_Start_Of_Regimen",
+          "description": "Height when the treatment started",
+          "origins": [
+            {
+              "origin": "HEIGHT AT START OF TREATMENT",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tHeight_At_Start_Of_Regimen,\n\t\t\tStart_Date_Of_Regimen\n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Constant value set to `607590`. Body Height",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_number",
+      "operation_description": "Converts text to number.",
+      "dataSource": [
+        {
+          "name": "Height_At_Start_Of_Regimen",
+          "description": "Height when the treatment started",
+          "origins": [
+            {
+              "origin": "HEIGHT AT START OF TREATMENT",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tHeight_At_Start_Of_Regimen,\n\t\t\tStart_Date_Of_Regimen\n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "unit_concept_id",
+      "operation_description": "Constant value set to `8582`. cm",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

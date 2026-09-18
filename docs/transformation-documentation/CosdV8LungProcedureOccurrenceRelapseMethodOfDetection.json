@@ -1,0 +1,151 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreNonPrimaryCancerPathwayALLAMLAndMPAL.RelapseMethodDetectionType.@code' as RelapseMethodDetectionType,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          RelapseMethodDetectionType,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.RelapseMethodDetectionType is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Lookup RelapseMethodOfDetection concepts for lung cancer recurrence.",
+      "dataSource": [
+        {
+          "name": "RelapseMethodDetectionType",
+          "description": "A code representing the method used to detect a relapse or recurrence.",
+          "origins": [
+            {
+              "origin": "RELAPSE - METHOD OF DETECTION",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreNonPrimaryCancerPathwayALLAMLAndMPAL.RelapseMethodDetectionType.@code' as RelapseMethodDetectionType,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          RelapseMethodDetectionType,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.RelapseMethodDetectionType is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": "\r\n\r\n|RelapseMethodDetectionType|procedure_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4303062|Morphology|\r\n|2|4276031|Flow|\r\n|3|4233623|Molecular|\r\n|4|4240345|Clinical Examination|\r\n|9|0|Other (not listed)|\r\n\r\nNotes\r\n* [OMOP Morphology](https://athena.ohdsi.org/search-terms/terms/4303062)\r\n* [OMOP Flow](https://athena.ohdsi.org/search-terms/terms/4276031)\r\n* [OMOP Molecular](https://athena.ohdsi.org/search-terms/terms/4233623)\r\n* [OMOP Clinical Examination](https://athena.ohdsi.org/search-terms/terms/4240345)\r\n* [RELAPSE - METHOD OF DETECTION](https://www.datadictionary.nhs.uk/data_elements/relapse_-_method_of_detection.html)\r\n"
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Procedure date",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DIAGNOSIS DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreNonPrimaryCancerPathwayALLAMLAndMPAL.RelapseMethodDetectionType.@code' as RelapseMethodDetectionType,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          RelapseMethodDetectionType,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.RelapseMethodDetectionType is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Procedure date",
+          "origins": [
+            {
+              "origin": "DATE FIRST SEEN",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html"
+            },
+            {
+              "origin": "DATE FIRST SEEN (CANCER SPECIALIST)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html"
+            },
+            {
+              "origin": "DIAGNOSIS DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreNonPrimaryCancerPathwayALLAMLAndMPAL.RelapseMethodDetectionType.@code' as RelapseMethodDetectionType,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          RelapseMethodDetectionType,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.RelapseMethodDetectionType is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `RelapseMethodDetectionType`",
+      "dataSource": [
+        {
+          "name": "RelapseMethodDetectionType",
+          "description": "A code representing the method used to detect a relapse or recurrence.",
+          "origins": [
+            {
+              "origin": "RELAPSE - METHOD OF DETECTION",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select \n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,\n        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,\n        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,\n        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,\n        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\n        Record ->> '$.Lung.LungCore.LungCoreNonPrimaryCancerPathwayALLAMLAndMPAL.RelapseMethodDetectionType.@code' as RelapseMethodDetectionType,\n        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_81\n    where Type = 'LU'\n)\nselect\n      distinct\n          RelapseMethodDetectionType,\n          NhsNumber,\n          least(\n                cast (DateFirstSeen as date),\n                cast (SpecialistDateFirstSeen as date),\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (IntegratedStageTNMStageGroupingDate as date),\n                cast (FinalPreTreatmentTNMStageGroupingDate as date),\n                cast (CancerTreatmentStartDate as date),\n                cast (ProcedureDate as date)\n              ) as Date\nfrom LU o\nwhere o.RelapseMethodDetectionType is not null\n  and not (\n    DateFirstSeen is null and\n    SpecialistDateFirstSeen is null and\n    ClinicalDateCancerDiagnosis is null and\n    IntegratedStageTNMStageGroupingDate is null and\n    FinalPreTreatmentTNMStageGroupingDate is null and\n    CancerTreatmentStartDate is null and\n    ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

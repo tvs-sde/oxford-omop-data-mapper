@@ -1,0 +1,110 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith sk as (\n    select distinct\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n            as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'\n            as PrimaryDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    PrimaryDiagnosis\nfrom sk\nwhere NhsNumber is not null\n  and PrimaryDiagnosis is not null\n  and ClinicalDateCancerDiagnosis is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_concept_id",
+      "operation_description": "Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "PrimaryDiagnosis",
+          "description": "ICD code used to identify the primary patient diagnosis. Same as the CLINICAL CLASSIFICATION CODE attribute. For Healthcare Operational Data Flows (Acute), this is the main patient diagnosis.",
+          "origins": [
+            {
+              "origin": "PRIMARY DIAGNOSIS (ICD)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith sk as (\n    select distinct\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n            as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'\n            as PrimaryDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    PrimaryDiagnosis\nfrom sk\nwhere NhsNumber is not null\n  and PrimaryDiagnosis is not null\n  and ClinicalDateCancerDiagnosis is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `condition` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ClinicalDateCancerDiagnosis",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith sk as (\n    select distinct\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n            as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'\n            as PrimaryDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    PrimaryDiagnosis\nfrom sk\nwhere NhsNumber is not null\n  and PrimaryDiagnosis is not null\n  and ClinicalDateCancerDiagnosis is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ClinicalDateCancerDiagnosis",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith sk as (\n    select distinct\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n            as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'\n            as PrimaryDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    PrimaryDiagnosis\nfrom sk\nwhere NhsNumber is not null\n  and PrimaryDiagnosis is not null\n  and ClinicalDateCancerDiagnosis is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Value copied from `PrimaryDiagnosis`",
+      "dataSource": [
+        {
+          "name": "PrimaryDiagnosis",
+          "description": "ICD code used to identify the primary patient diagnosis. Same as the CLINICAL CLASSIFICATION CODE attribute. For Healthcare Operational Data Flows (Acute), this is the main patient diagnosis.",
+          "origins": [
+            {
+              "origin": "PRIMARY DIAGNOSIS (ICD)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_diagnosis__icd_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith sk as (\n    select distinct\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'\n            as NhsNumber,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n            as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'\n            as PrimaryDiagnosis\n    from omop_staging.cosd_staging_81\n    where type = 'SK'\n)\nselect distinct\n    NhsNumber,\n    ClinicalDateCancerDiagnosis,\n    PrimaryDiagnosis\nfrom sk\nwhere NhsNumber is not null\n  and PrimaryDiagnosis is not null\n  and ClinicalDateCancerDiagnosis is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -18,11 +18,14 @@ internal class COSDv9CTObservationPerformanceStatusAdult : OmopObservation<COSDv
     [ConstantValue(32828, "EHR episode record")]
     public override int? observation_type_concept_id { get; set; }
 
-    [ConstantValue(4309681, "General physical performance status")]
+    [ConstantValue(3008030, "Physical performance [QAM]")]
     public override int? observation_source_concept_id { get; set; }
 
     [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
     public override int[]? observation_concept_id { get; set; }
+
+    [Transform(typeof(PerformanceStatusLookup), nameof(Source.PerformanceStatusAdult))]
+    public override int? value_as_concept_id { get; set; }
 
     [CopyValue(nameof(Source.PerformanceStatusAdult))]
     public override string? observation_source_value { get; set; }

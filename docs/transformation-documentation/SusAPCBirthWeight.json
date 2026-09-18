@@ -1,0 +1,143 @@
+{
+  "omopTable": "Observation",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tapc.NHSNumber, \n\tapc.GeneratedRecordIdentifier,\n\tapc.HospitalProviderSpellNumber,\n\tcoalesce(max(apc.DeliveryDate), max(apc.CDSActivityDate)) as observation_date, \n\tb.BirthWeightBaby as BirthWeight\nfrom omop_staging.sus_APC apc\n\tinner join omop_staging.sus_Birth as b\n\t\ton apc.MessageId = b.MessageId\nwhere b.BirthWeightBaby is not null\n  and apc.NHSNumber is not null\n  and apc.CdsType in ('140', '120')\ngroup by \n\tapc.NHSNumber,\n\tapc.GeneratedRecordIdentifier,\n    apc.HospitalProviderSpellNumber,\n\tapc.DeliveryDate,\n\tb.BirthWeightBaby;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "RecordConnectionIdentifier",
+      "operation_description": "Value copied from `GeneratedRecordIdentifier`",
+      "dataSource": [
+        {
+          "name": "GeneratedRecordIdentifier",
+          "description": "CDS specific identifier that binds multiple CDS messages together.",
+          "origins": [
+            {
+              "origin": "CDS RECORD IDENTIFIER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_record_identifier.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tapc.NHSNumber, \n\tapc.GeneratedRecordIdentifier,\n\tapc.HospitalProviderSpellNumber,\n\tcoalesce(max(apc.DeliveryDate), max(apc.CDSActivityDate)) as observation_date, \n\tb.BirthWeightBaby as BirthWeight\nfrom omop_staging.sus_APC apc\n\tinner join omop_staging.sus_Birth as b\n\t\ton apc.MessageId = b.MessageId\nwhere b.BirthWeightBaby is not null\n  and apc.NHSNumber is not null\n  and apc.CdsType in ('140', '120')\ngroup by \n\tapc.NHSNumber,\n\tapc.GeneratedRecordIdentifier,\n    apc.HospitalProviderSpellNumber,\n\tapc.DeliveryDate,\n\tb.BirthWeightBaby;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `3662222`. Weight of neonate at birth",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "observation_date",
+          "description": "Event date",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "DELIVERY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/delivery_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tapc.NHSNumber, \n\tapc.GeneratedRecordIdentifier,\n\tapc.HospitalProviderSpellNumber,\n\tcoalesce(max(apc.DeliveryDate), max(apc.CDSActivityDate)) as observation_date, \n\tb.BirthWeightBaby as BirthWeight\nfrom omop_staging.sus_APC apc\n\tinner join omop_staging.sus_Birth as b\n\t\ton apc.MessageId = b.MessageId\nwhere b.BirthWeightBaby is not null\n  and apc.NHSNumber is not null\n  and apc.CdsType in ('140', '120')\ngroup by \n\tapc.NHSNumber,\n\tapc.GeneratedRecordIdentifier,\n    apc.HospitalProviderSpellNumber,\n\tapc.DeliveryDate,\n\tb.BirthWeightBaby;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "observation_date",
+          "description": "Event date",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "DELIVERY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/delivery_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tapc.NHSNumber, \n\tapc.GeneratedRecordIdentifier,\n\tapc.HospitalProviderSpellNumber,\n\tcoalesce(max(apc.DeliveryDate), max(apc.CDSActivityDate)) as observation_date, \n\tb.BirthWeightBaby as BirthWeight\nfrom omop_staging.sus_APC apc\n\tinner join omop_staging.sus_Birth as b\n\t\ton apc.MessageId = b.MessageId\nwhere b.BirthWeightBaby is not null\n  and apc.NHSNumber is not null\n  and apc.CdsType in ('140', '120')\ngroup by \n\tapc.NHSNumber,\n\tapc.GeneratedRecordIdentifier,\n    apc.HospitalProviderSpellNumber,\n\tapc.DeliveryDate,\n\tb.BirthWeightBaby;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32818`. EHR administration record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_string",
+      "operation_description": "Value copied from `BirthWeight`",
+      "dataSource": [
+        {
+          "name": "BirthWeight",
+          "description": "BIRTH WEIGHT is the result of the Clinical Investigation which measures the Birth Weight, where the UNIT OF MEASUREMENT is Grams (g).",
+          "origins": [
+            {
+              "origin": "BIRTH WEIGHT",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/birth_weight.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tapc.NHSNumber, \n\tapc.GeneratedRecordIdentifier,\n\tapc.HospitalProviderSpellNumber,\n\tcoalesce(max(apc.DeliveryDate), max(apc.CDSActivityDate)) as observation_date, \n\tb.BirthWeightBaby as BirthWeight\nfrom omop_staging.sus_APC apc\n\tinner join omop_staging.sus_Birth as b\n\t\ton apc.MessageId = b.MessageId\nwhere b.BirthWeightBaby is not null\n  and apc.NHSNumber is not null\n  and apc.CdsType in ('140', '120')\ngroup by \n\tapc.NHSNumber,\n\tapc.GeneratedRecordIdentifier,\n    apc.HospitalProviderSpellNumber,\n\tapc.DeliveryDate,\n\tb.BirthWeightBaby;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "HospitalProviderSpellNumber",
+      "operation_description": "Value copied from `HospitalProviderSpellNumber`",
+      "dataSource": [
+        {
+          "name": "HospitalProviderSpellNumber",
+          "description": "CDS specific hospital spell number that binds many episodes together.",
+          "origins": [
+            {
+              "origin": "HOSPITAL PROVIDER SPELL NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n\tapc.NHSNumber, \n\tapc.GeneratedRecordIdentifier,\n\tapc.HospitalProviderSpellNumber,\n\tcoalesce(max(apc.DeliveryDate), max(apc.CDSActivityDate)) as observation_date, \n\tb.BirthWeightBaby as BirthWeight\nfrom omop_staging.sus_APC apc\n\tinner join omop_staging.sus_Birth as b\n\t\ton apc.MessageId = b.MessageId\nwhere b.BirthWeightBaby is not null\n  and apc.NHSNumber is not null\n  and apc.CdsType in ('140', '120')\ngroup by \n\tapc.NHSNumber,\n\tapc.GeneratedRecordIdentifier,\n    apc.HospitalProviderSpellNumber,\n\tapc.DeliveryDate,\n\tb.BirthWeightBaby;\n",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "unit_concept_id",
+      "operation_description": "Constant value set to `8504`. gram",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "omopTable": "Provider",
+  "origin": "RTDS",
+  "omopColumns": [
+    {
+      "name": "provider_source_value",
+      "operation_description": "Value copied from `DoctorId`",
+      "dataSource": [
+        {
+          "name": "DoctorId",
+          "description": "This GENERAL MEDICAL PRACTITIONER works within the General Medical Practitioner Practice with which the PATIENT is registered.",
+          "origins": [
+            {
+              "origin": "GENERAL MEDICAL PRACTITIONER (SPECIFIED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/general_medical_practitioner__specified_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tDoctorId \n\t\tfrom omop_staging.RTDS_1_Demographics \n\t\twhere DoctorId is not null\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "provider_name",
+      "operation_description": "Value copied from `DoctorId`",
+      "dataSource": [
+        {
+          "name": "DoctorId",
+          "description": "This GENERAL MEDICAL PRACTITIONER works within the General Medical Practitioner Practice with which the PATIENT is registered.",
+          "origins": [
+            {
+              "origin": "GENERAL MEDICAL PRACTITIONER (SPECIFIED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/general_medical_practitioner__specified_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tDoctorId \n\t\tfrom omop_staging.RTDS_1_Demographics \n\t\twhere DoctorId is not null\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "omopTable": "Person",
+  "origin": "Oxford-GP",
+  "omopColumns": [
+    {
+      "name": "person_source_value",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDOB\nfrom omop_staging.oxford_gp_demographic\norder by\n\tNHSNumber,\n\tDOB\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "year_of_birth",
+      "operation_description": "Selects the year from a date or null of the date is null.",
+      "dataSource": [
+        {
+          "name": "DOB",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDOB\nfrom omop_staging.oxford_gp_demographic\norder by\n\tNHSNumber,\n\tDOB\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "month_of_birth",
+      "operation_description": "Selects the month of the year or null if the date is null.",
+      "dataSource": [
+        {
+          "name": "DOB",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDOB\nfrom omop_staging.oxford_gp_demographic\norder by\n\tNHSNumber,\n\tDOB\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "day_of_birth",
+      "operation_description": "Selects the day of the month or null if the date is null.",
+      "dataSource": [
+        {
+          "name": "DOB",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDOB\nfrom omop_staging.oxford_gp_demographic\norder by\n\tNHSNumber,\n\tDOB\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "birth_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DOB",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tDOB\nfrom omop_staging.oxford_gp_demographic\norder by\n\tNHSNumber,\n\tDOB\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "ethnicity_concept_id",
+      "operation_description": "Constant value set to `0`. Unknown concept",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

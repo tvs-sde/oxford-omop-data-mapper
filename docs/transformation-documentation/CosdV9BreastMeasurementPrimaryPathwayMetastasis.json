@@ -1,0 +1,110 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        unnest(\n            [\n                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],\n                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'\n            ],\n            recursive := true\n        ) as MetastaticSite\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    DateOfPrimaryDiagnosisClinicallyAgreed,\n    MetastaticSite\nfrom BR\nwhere MetastaticSite is not null\n  and MetastaticSite != '97';\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        unnest(\n            [\n                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],\n                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'\n            ],\n            recursive := true\n        ) as MetastaticSite\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    DateOfPrimaryDiagnosisClinicallyAgreed,\n    MetastaticSite\nfrom BR\nwhere MetastaticSite is not null\n  and MetastaticSite != '97';\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        unnest(\n            [\n                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],\n                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'\n            ],\n            recursive := true\n        ) as MetastaticSite\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    DateOfPrimaryDiagnosisClinicallyAgreed,\n    MetastaticSite\nfrom BR\nwhere MetastaticSite is not null\n  and MetastaticSite != '97';\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `2000500007`. PrimaryPathwayMetastasis",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Lookup MetastasisSite concepts.",
+      "dataSource": [
+        {
+          "name": "MetastaticSite",
+          "description": "Is the site of the metastatic disease at PATIENT DIAGNOSIS",
+          "origins": [
+            {
+              "origin": "METASTATIC SITE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        unnest(\n            [\n                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],\n                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'\n            ],\n            recursive := true\n        ) as MetastaticSite\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    DateOfPrimaryDiagnosisClinicallyAgreed,\n    MetastaticSite\nfrom BR\nwhere MetastaticSite is not null\n  and MetastaticSite != '97';\n\t",
+      "lookup_table_markdown": "\r\n\r\n|MetastaticSite|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|01|36769301|Metastasis to bone|\r\n|02|36768862|Metastasis to brain|\r\n|03|36770544|Metastasis to liver|\r\n|04|36770283|Metastasis to lung|\r\n|07|36769180|Metastasis to the Unknown Site|\r\n|08|35225673|Metastasis to skin|\r\n|09|36769243|Distant spread to lymph node|\r\n|10|36769301|Metastasis to bone|\r\n|11|35226074|Metastasis to bone marrow|\r\n|12|36769269|Regional spread to lymph node|\r\n|98|36769180|Metastasis|\r\n|99|36769180|Metastasis|\r\n\r\nNotes\r\n* [OMOP Metastasis](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=metastasis&boosts)\r\n* [NHS - Metastasis](https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html?hl=metastatic%2Csite%2Cdiagnosis)\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `MetastaticSite`",
+      "dataSource": [
+        {
+          "name": "MetastaticSite",
+          "description": "Is the site of the metastatic disease at PATIENT DIAGNOSIS",
+          "origins": [
+            {
+              "origin": "METASTATIC SITE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/metastatic_site__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select distinct\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        unnest(\n            [\n                [ Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis.MetastaticSite.@code' ],\n                Record ->> '$.PrimaryPathway.Diagnosis.MetastaticTypeAndSiteDiagnosis[*].MetastaticSite.@code'\n            ],\n            recursive := true\n        ) as MetastaticSite\n    from omop_staging.cosd_staging_901\n    where type = 'BR'\n)\nselect distinct\n    NhsNumber,\n    DateOfPrimaryDiagnosisClinicallyAgreed,\n    MetastaticSite\nfrom BR\nwhere MetastaticSite is not null\n  and MetastaticSite != '97';\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

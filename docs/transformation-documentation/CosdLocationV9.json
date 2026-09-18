@@ -1,0 +1,172 @@
+{
+  "omopTable": "Location",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "zip",
+      "operation_description": "Uppercase the postcode then insert the space in the correct location, if needed.",
+      "dataSource": [
+        {
+          "name": "Postcode",
+          "description": "Patient Postcode",
+          "origins": [
+            {
+              "origin": "POSTCODE OF USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode_of_usual_address__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "location_source_value",
+      "operation_description": "Separates text with newlines. Trim whitespace.",
+      "dataSource": [
+        {
+          "name": "StreetAddressLine1",
+          "description": "The first line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        },
+        {
+          "name": "StreetAddressLine2",
+          "description": "The second line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        },
+        {
+          "name": "StreetAddressLine3",
+          "description": "The third line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        },
+        {
+          "name": "StreetAddressLine4",
+          "description": "The fourth line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        },
+        {
+          "name": "Postcode",
+          "description": "Patient Postcode",
+          "origins": [
+            {
+              "origin": "POSTCODE OF USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode_of_usual_address__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "address_1",
+      "operation_description": "Convert text to uppercase. Trim whitespace.",
+      "dataSource": [
+        {
+          "name": "StreetAddressLine1",
+          "description": "The first line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "address_2",
+      "operation_description": "Convert text to uppercase. Trim whitespace.",
+      "dataSource": [
+        {
+          "name": "StreetAddressLine2",
+          "description": "The second line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "city",
+      "operation_description": "Convert text to uppercase. Trim whitespace.",
+      "dataSource": [
+        {
+          "name": "StreetAddressLine3",
+          "description": "The third line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "county",
+      "operation_description": "Convert text to uppercase. Trim whitespace.",
+      "dataSource": [
+        {
+          "name": "StreetAddressLine4",
+          "description": "The fourth line of the address.",
+          "origins": [
+            {
+              "origin": "PATIENT USUAL ADDRESS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/patient_usual_address__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "omopTable": "Observation",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number.",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `43054909`. Tobacco smoking status",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfPrimaryDiagnosisClinicallyAgreed",
+          "description": "The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_concept_id",
+      "operation_description": "SMOKING STATUS (CANCER)",
+      "dataSource": [
+        {
+          "name": "SmokingStatusCancer",
+          "description": "Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only.",
+          "origins": [
+            {
+              "origin": "SMOKING STATUS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": "\r\n\r\n|SmokingStatusCancer|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|903657|Current smoker|\r\n|2|903651|Ex-smoker|\r\n|4|903653|Never smoked|\r\n|9|0|Unknown (Not Recorded)|\r\n\r\n"
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `SmokingStatusCancer`",
+      "dataSource": [
+        {
+          "name": "SmokingStatusCancer",
+          "description": "Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only.",
+          "origins": [
+            {
+              "origin": "SMOKING STATUS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `SmokingStatusCancer`",
+      "dataSource": [
+        {
+          "name": "SmokingStatusCancer",
+          "description": "Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only.",
+          "origins": [
+            {
+              "origin": "SMOKING STATUS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCancer\nfrom omop_staging.cosd_staging_901\nwhere type = 'UG'\n  and NhsNumber is not null\n  and SmokingStatusCancer is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'as CancerDiagnosis\n  from omop_staging.cosd_staging_81 lu\nwhere lu.Type = 'LU'\n)\n\nselect\ndistinct\n  NHSNumber,\n  coalesce(DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n  CancerHistology,\n  CancerTopography,\n  CancerDiagnosis\nfrom lung\nwhere NHSNumber is not null\n  and CancerHistology is not null\n  and CancerTopography is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_concept_id",
+      "operation_description": "Resolve ICD-o-3 codes to OMOP concepts.",
+      "dataSource": [
+        {
+          "name": "CancerHistology",
+          "description": "MORPHOLOGY (ICD-O CANCER TRANSFORMATION) is the morphology code of the Cancer Transformation using the ICD-O CODE.",
+          "origins": [
+            {
+              "origin": "MORPHOLOGY (ICD-O CANCER TRANSFORMATION)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html"
+            }
+          ]
+        },
+        {
+          "name": "CancerTopography",
+          "description": "TOPOGRAPHY (ICD-O) is the topographical site of the Tumour using the ICD-O CODE.",
+          "origins": [
+            {
+              "origin": "TOPOGRAPHY (ICD-O)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/topography__icd-o_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'as CancerDiagnosis\n  from omop_staging.cosd_staging_81 lu\nwhere lu.Type = 'LU'\n)\n\nselect\ndistinct\n  NHSNumber,\n  coalesce(DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n  CancerHistology,\n  CancerTopography,\n  CancerDiagnosis\nfrom lung\nwhere NHSNumber is not null\n  and CancerHistology is not null\n  and CancerTopography is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `condition` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DiagnosisDate",
+          "description": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED) is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "CLINICAL DATE CANCER DIAGNOSIS",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'as CancerDiagnosis\n  from omop_staging.cosd_staging_81 lu\nwhere lu.Type = 'LU'\n)\n\nselect\ndistinct\n  NHSNumber,\n  coalesce(DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n  CancerHistology,\n  CancerTopography,\n  CancerDiagnosis\nfrom lung\nwhere NHSNumber is not null\n  and CancerHistology is not null\n  and CancerTopography is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Separates text with newlines. Trim whitespace.",
+      "dataSource": [
+        {
+          "name": "CancerHistology",
+          "description": "MORPHOLOGY (ICD-O CANCER TRANSFORMATION) is the morphology code of the Cancer Transformation using the ICD-O CODE.",
+          "origins": [
+            {
+              "origin": "MORPHOLOGY (ICD-O CANCER TRANSFORMATION)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/morphology__icd-o_cancer_transformation_.html"
+            }
+          ]
+        },
+        {
+          "name": "CancerTopography",
+          "description": "TOPOGRAPHY (ICD-O) is the topographical site of the Tumour using the ICD-O CODE.",
+          "origins": [
+            {
+              "origin": "TOPOGRAPHY (ICD-O)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/topography__icd-o_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n  select \n    Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.DateOfNonPrimaryCancerDiagnosisClinicallyAgreed' as NonPrimaryDiagnosisDate,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.MorphologyICDODiagnosis.@code' as CancerHistology,\n    Record ->> '$.Lung.LungCore.LungCoreDiagnosis.TopographyICDO.@code' as CancerTopography,\n    Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.PrimaryDiagnosis.@code'as CancerDiagnosis\n  from omop_staging.cosd_staging_81 lu\nwhere lu.Type = 'LU'\n)\n\nselect\ndistinct\n  NHSNumber,\n  coalesce(DiagnosisDate, NonPrimaryDiagnosisDate) as DiagnosisDate,\n  CancerHistology,\n  CancerTopography,\n  CancerDiagnosis\nfrom lung\nwhere NHSNumber is not null\n  and CancerHistology is not null\n  and CancerTopography is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n\tselect \n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage\n\tfrom omop_staging.cosd_staging_81\n\twhere Type = 'LU'\n)\nselect distinct\n\tNhsNumber,\n\tcoalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n\tNCategoryIntegratedStage\nfrom lung\nwhere NCategoryIntegratedStage is not null\nand NhsNumber is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n\tselect \n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage\n\tfrom omop_staging.cosd_staging_81\n\twhere Type = 'LU'\n)\nselect distinct\n\tNhsNumber,\n\tcoalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n\tNCategoryIntegratedStage\nfrom lung\nwhere NCategoryIntegratedStage is not null\nand NhsNumber is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement Date is the date on which TNM Stage Grouping (Integrated) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (INTEGRATED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n\tselect \n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage\n\tfrom omop_staging.cosd_staging_81\n\twhere Type = 'LU'\n)\nselect distinct\n\tNhsNumber,\n\tcoalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n\tNCategoryIntegratedStage\nfrom lung\nwhere NCategoryIntegratedStage is not null\nand NhsNumber is not null;\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `2000500011`. NCategoryIntegratedStage",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Lookup NCategory concepts.",
+      "dataSource": [
+        {
+          "name": "NCategoryIntegratedStage",
+          "description": "Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "N CATEGORY (INTEGRATED STAGE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n\tselect \n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage\n\tfrom omop_staging.cosd_staging_81\n\twhere Type = 'LU'\n)\nselect distinct\n\tNhsNumber,\n\tcoalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n\tNCategoryIntegratedStage\nfrom lung\nwhere NCategoryIntegratedStage is not null\nand NhsNumber is not null;\n\n\t",
+      "lookup_table_markdown": "\r\n\r\n|NCategoryIntegratedStage|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|0|1633440|AJCC/UICC N0 Category|\r\n|0a|1633621|AJCC/UICC N0a Category|\r\n|0b|1635244|AJCC/UICC N0b Category|\r\n|1|1634434|AJCC/UICC N1 Category|\r\n|1a|1633735|AJCC/UICC N1a Category|\r\n|1b|1635130|AJCC/UICC N1b Category|\r\n|1c|1634620|AJCC/UICC N1c Category|\r\n|2|1634119|AJCC/UICC N2 Category|\r\n|2a|1635644|AJCC/UICC N2a Category|\r\n|2b|1634134|AJCC/UICC N2b Category|\r\n|2c|1634080|AJCC/UICC N2c Category|\r\n|3|1635320|AJCC/UICC N3 Category|\r\n|3a|1635590|AJCC/UICC N3a Category|\r\n|3b|1633422|AJCC/UICC N3b Category|\r\n|3c|1634735|AJCC/UICC N3c Category|\r\n|4|1635445|AJCC/UICC N4 Category|\r\n|X|1633885|AJCC/UICC NX Category|\r\n\r\nNotes\r\n* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `NCategoryIntegratedStage`",
+      "dataSource": [
+        {
+          "name": "NCategoryIntegratedStage",
+          "description": "Is the code, using a TNM CODING EDITION, which classifies the absence or presence and extent of regional Lymph Node metastases after treatment and/or after all available evidence has been collected during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "N CATEGORY (INTEGRATED STAGE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/n_category__integrated_stage_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith lung as (\n\tselect \n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageNCategory' as NCategoryIntegratedStage,\n\t\tRecord ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as StageDateIntegratedStage\n\tfrom omop_staging.cosd_staging_81\n\twhere Type = 'LU'\n)\nselect distinct\n\tNhsNumber,\n\tcoalesce(StageDateIntegratedStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n\tNCategoryIntegratedStage\nfrom lung\nwhere NCategoryIntegratedStage is not null\nand NhsNumber is not null;\n\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

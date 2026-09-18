@@ -1,0 +1,60 @@
+{
+  "omopTable": "Location",
+  "origin": "Oxford-GP",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tPostcode\nfrom omop_staging.oxford_gp_demographic\nwhere Postcode is not null\norder by\n\tNHSNumber,\n\tPostcode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "zip",
+      "operation_description": "Uppercase the postcode then insert the space in the correct location, if needed.",
+      "dataSource": [
+        {
+          "name": "Postcode",
+          "description": "Patient Postcode",
+          "origins": [
+            {
+              "origin": "POSTCODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tPostcode\nfrom omop_staging.oxford_gp_demographic\nwhere Postcode is not null\norder by\n\tNHSNumber,\n\tPostcode\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "location_source_value",
+      "operation_description": "Value copied from `Postcode`",
+      "dataSource": [
+        {
+          "name": "Postcode",
+          "description": "Patient Postcode",
+          "origins": [
+            {
+              "origin": "POSTCODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tdistinct\n\t\tNHSNumber,\n\t\tPostcode\nfrom omop_staging.oxford_gp_demographic\nwhere Postcode is not null\norder by\n\tNHSNumber,\n\tPostcode\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "omopTable": "Measurement",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage\n    from omop_staging.cosd_staging_81\n    where Type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n    McategoryFinalPreTreatment\nfrom BR\nwhere McategoryFinalPreTreatment is not null\nand NHSNumber is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage\n    from omop_staging.cosd_staging_81\n    where Type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n    McategoryFinalPreTreatment\nfrom BR\nwhere McategoryFinalPreTreatment is not null\nand NHSNumber is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "MeasurementDate",
+          "description": "Measurement Date is the date on which TNM Stage Grouping (Final pre-treatment) was recorded, but if this is not available, then it is the date the Primary Cancer was confirmed or the Primary Cancer diagnosis was agreed.",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage\n    from omop_staging.cosd_staging_81\n    where Type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n    McategoryFinalPreTreatment\nfrom BR\nwhere McategoryFinalPreTreatment is not null\nand NHSNumber is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Constant value set to `2000500014`. MCategoryFinalPreTreatmentStage",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Lookup  concepts.",
+      "dataSource": [
+        {
+          "name": "McategoryFinalPreTreatment",
+          "description": "Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "M CATEGORY (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage\n    from omop_staging.cosd_staging_81\n    where Type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n    McategoryFinalPreTreatment\nfrom BR\nwhere McategoryFinalPreTreatment is not null\nand NHSNumber is not null;\n\t",
+      "lookup_table_markdown": "\r\n\r\n|McategoryFinalPreTreatment|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|0|1635624|AJCC/UICC M0 Category|\r\n|1|1635142|AJCC/UICC M1 Category|\r\n|1a|1635100|AJCC/UICC M1a Category|\r\n|1b|1634463|AJCC/UICC M1b Category|\r\n|1c|1635519|AJCC/UICC M1c Category|\r\n|1d|1634064|AJCC/UICC M1d Category|\r\n|X  |1633547|AJCC/UICC MX Category|\r\n\r\nNotes\r\n* [OMOP Laterality](https://athena.ohdsi.org/search-terms/terms?vocabulary=Cancer+Modifier&page=1&pageSize=500&query=tnm&boosts)\r\n"
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `McategoryFinalPreTreatment`",
+      "dataSource": [
+        {
+          "name": "McategoryFinalPreTreatment",
+          "description": "Is the code, using a TNM CODING EDITION, which classifies the absence or presence of distant metastases before treatment during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "M CATEGORY (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/m_category__final_pretreatment_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith BR as (\n    select \n        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NHSNumber,\n        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentMCategory' as McategoryFinalPreTreatment,\n        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as StageDateFinalPretreatmentStage\n    from omop_staging.cosd_staging_81\n    where Type = 'BR'\n)\nselect distinct\n    NHSNumber,\n    coalesce(StageDateFinalPretreatmentStage, ClinicalDateCancerDiagnosis) as MeasurementDate,\n    McategoryFinalPreTreatment\nfrom BR\nwhere McategoryFinalPreTreatment is not null\nand NHSNumber is not null;\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

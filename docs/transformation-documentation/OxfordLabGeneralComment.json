@@ -1,0 +1,110 @@
+{
+  "omopTable": "Observation",
+  "origin": "OxfordLab",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHS_NUMBER`",
+      "dataSource": [
+        {
+          "name": "NHS_NUMBER",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `1092006`. General Comment Narrative",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EVENT_START_DT_TM",
+          "description": "Lab test event start datetime",
+          "origins": [
+            {
+              "origin": "EVENT START DT TM",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "EVENT_START_DT_TM",
+          "description": "Lab test event start datetime",
+          "origins": [
+            {
+              "origin": "EVENT START DT TM",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32828`. EHR episode record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_string",
+      "operation_description": "Value copied from `RESULT_VALUE`",
+      "dataSource": [
+        {
+          "name": "RESULT_VALUE",
+          "description": "Lab report comment text",
+          "origins": [
+            {
+              "origin": "RESULT VALUE",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `EVENT`",
+      "dataSource": [
+        {
+          "name": "EVENT",
+          "description": "Lab test event",
+          "origins": [
+            {
+              "origin": "EVENT",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

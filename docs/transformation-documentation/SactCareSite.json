@@ -1,0 +1,24 @@
+{
+  "omopTable": "CareSite",
+  "origin": "SACT",
+  "omopColumns": [
+    {
+      "name": "care_site_name",
+      "operation_description": "Value copied from `Organisation_Identifier_Code_Of_Provider`",
+      "dataSource": [
+        {
+          "name": "Organisation_Identifier_Code_Of_Provider",
+          "description": "ORGANISATION SITE CODE  of the ORGANISATION where the PATIENT was treated",
+          "origins": [
+            {
+              "origin": "ORGANISATION IDENTIFIER (CODE OF PROVIDER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/organisation_identifier__code_of_provider_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tOrganisation_Identifier_Code_Of_Provider\n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

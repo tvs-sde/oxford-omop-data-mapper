@@ -1,0 +1,117 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n  distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'LU'\n  and NhsNumber is not null\n  and ProcedureDate is not null\n  and PrimaryProcedureOpcs is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n  distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'LU'\n  and NhsNumber is not null\n  and ProcedureDate is not null\n  and PrimaryProcedureOpcs is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureDate",
+          "description": "The date, month, year and century, or any combination of these elements, that is of relevance to an ACTIVITY.",
+          "origins": [
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n  distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'LU'\n  and NhsNumber is not null\n  and ProcedureDate is not null\n  and PrimaryProcedureOpcs is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `PrimaryProcedureOpcs`",
+      "dataSource": [
+        {
+          "name": "PrimaryProcedureOpcs",
+          "description": "PRIMARY PROCEDURE (OPCS) is the main PROCEDURE (OPCS) undertaken by a PATIENT.",
+          "origins": [
+            {
+              "origin": "PRIMARY PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n  distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'LU'\n  and NhsNumber is not null\n  and ProcedureDate is not null\n  and PrimaryProcedureOpcs is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "PrimaryProcedureOpcs",
+          "description": "PRIMARY PROCEDURE (OPCS) is the main PROCEDURE (OPCS) undertaken by a PATIENT.",
+          "origins": [
+            {
+              "origin": "PRIMARY PROCEDURE (OPCS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/primary_procedure__opcs_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect \n  distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n    Record ->> '$.Treatment.Surgery.PrimaryProcedureOpcs.@code' as PrimaryProcedureOpcs\nfrom omop_staging.cosd_staging_901\nwhere type = 'LU'\n  and NhsNumber is not null\n  and ProcedureDate is not null\n  and PrimaryProcedureOpcs is not null;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "quantity",
+      "operation_description": "Constant value set to `1`. One",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

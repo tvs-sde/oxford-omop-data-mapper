@@ -1,0 +1,188 @@
+{
+  "omopTable": "VisitDetail",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect  \n\t\tdistinct\n\t\t\top.NHSNumber,\n\t\t\top.SUSgeneratedspellID,\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitStartDate,  -- visit_start_date\n\t\t\tcoalesce(op.AppointmentTime, '000000') as VisitStartTime,  -- visit_start_time\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitEndDate,\n\t\t\tnull as VisitEndTime\n\tfrom omop_staging.sus_OP op\n\twhere op.UpdateType = 9   -- New/Modification     (1 = Delete)\n\t\tand op.NHSNumber is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tSUSgeneratedspellID,\n\tVisitStartDate, \n\tVisitStartTime,\n\tVisitEndDate,\n\tVisitEndTime\n\t\t\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "HospitalProviderSpellNumber",
+      "operation_description": "Value copied from `SUSgeneratedspellID`",
+      "dataSource": [
+        {
+          "name": "SUSgeneratedspellID",
+          "description": "System generated value spell id, this id is consistent across all records belonging to the same spell.",
+          "origins": [
+            {
+              "origin": "",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect  \n\t\tdistinct\n\t\t\top.NHSNumber,\n\t\t\top.SUSgeneratedspellID,\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitStartDate,  -- visit_start_date\n\t\t\tcoalesce(op.AppointmentTime, '000000') as VisitStartTime,  -- visit_start_time\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitEndDate,\n\t\t\tnull as VisitEndTime\n\tfrom omop_staging.sus_OP op\n\twhere op.UpdateType = 9   -- New/Modification     (1 = Delete)\n\t\tand op.NHSNumber is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tSUSgeneratedspellID,\n\tVisitStartDate, \n\tVisitStartTime,\n\tVisitEndDate,\n\tVisitEndTime\n\t\t\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "VisitStartDate",
+          "description": "Start date of the episode, if exists, else the start date of the spell.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "START DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "START DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect  \n\t\tdistinct\n\t\t\top.NHSNumber,\n\t\t\top.SUSgeneratedspellID,\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitStartDate,  -- visit_start_date\n\t\t\tcoalesce(op.AppointmentTime, '000000') as VisitStartTime,  -- visit_start_time\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitEndDate,\n\t\t\tnull as VisitEndTime\n\tfrom omop_staging.sus_OP op\n\twhere op.UpdateType = 9   -- New/Modification     (1 = Delete)\n\t\tand op.NHSNumber is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tSUSgeneratedspellID,\n\tVisitStartDate, \n\tVisitStartTime,\n\tVisitEndDate,\n\tVisitEndTime\n\t\t\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_start_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "VisitStartDate",
+          "description": "Start date of the episode, if exists, else the start date of the spell.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "START DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "START DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__episode_.html"
+            }
+          ]
+        },
+        {
+          "name": "VisitStartTime",
+          "description": "Start time of the episode, if exists, else midnight.",
+          "origins": [
+            {
+              "origin": "START TIME (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_time__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "START TIME (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_time__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect  \n\t\tdistinct\n\t\t\top.NHSNumber,\n\t\t\top.SUSgeneratedspellID,\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitStartDate,  -- visit_start_date\n\t\t\tcoalesce(op.AppointmentTime, '000000') as VisitStartTime,  -- visit_start_time\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitEndDate,\n\t\t\tnull as VisitEndTime\n\tfrom omop_staging.sus_OP op\n\twhere op.UpdateType = 9   -- New/Modification     (1 = Delete)\n\t\tand op.NHSNumber is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tSUSgeneratedspellID,\n\tVisitStartDate, \n\tVisitStartTime,\n\tVisitEndDate,\n\tVisitEndTime\n\t\t\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "VisitEndDate",
+          "description": "End date of the episode, if exists, else the spell discharge date, if exists, else the message date.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "END DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_date__episode_.html"
+            },
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect  \n\t\tdistinct\n\t\t\top.NHSNumber,\n\t\t\top.SUSgeneratedspellID,\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitStartDate,  -- visit_start_date\n\t\t\tcoalesce(op.AppointmentTime, '000000') as VisitStartTime,  -- visit_start_time\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitEndDate,\n\t\t\tnull as VisitEndTime\n\tfrom omop_staging.sus_OP op\n\twhere op.UpdateType = 9   -- New/Modification     (1 = Delete)\n\t\tand op.NHSNumber is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tSUSgeneratedspellID,\n\tVisitStartDate, \n\tVisitStartTime,\n\tVisitEndDate,\n\tVisitEndTime\n\t\t\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_end_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "VisitEndDate",
+          "description": "End date of the episode, if exists, else the spell discharge date, if exists, else the message date.",
+          "origins": [
+            {
+              "origin": "CDS ACTIVITY DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_activity_date.html"
+            },
+            {
+              "origin": "END DATE (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_date__episode_.html"
+            },
+            {
+              "origin": "DISCHARGE DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_date__hospital_provider_spell_.html"
+            }
+          ]
+        },
+        {
+          "name": "VisitEndTime",
+          "description": "End time of the episode, if exists, else the spell discharge time, if exists, else the message date.",
+          "origins": [
+            {
+              "origin": "DISCHARGE TIME (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/discharge_time__hospital_provider_spell_.html"
+            },
+            {
+              "origin": "END TIME (EPISODE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/end_time__episode_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect  \n\t\tdistinct\n\t\t\top.NHSNumber,\n\t\t\top.SUSgeneratedspellID,\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitStartDate,  -- visit_start_date\n\t\t\tcoalesce(op.AppointmentTime, '000000') as VisitStartTime,  -- visit_start_time\n\t\t\tcoalesce(op.AppointmentDate, op.CDSActivityDate) as VisitEndDate,\n\t\t\tnull as VisitEndTime\n\tfrom omop_staging.sus_OP op\n\twhere op.UpdateType = 9   -- New/Modification     (1 = Delete)\n\t\tand op.NHSNumber is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tSUSgeneratedspellID,\n\tVisitStartDate, \n\tVisitStartTime,\n\tVisitEndDate,\n\tVisitEndTime\n\t\t\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_concept_id",
+      "operation_description": "Constant value set to `9202`. `Outpatient Visit`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_detail_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

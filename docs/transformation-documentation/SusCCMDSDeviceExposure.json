@@ -1,0 +1,192 @@
+{
+  "omopTable": "DeviceExposure",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `device` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DeviceExposureStartDate",
+          "description": "Start date of the Device",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE START DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_start_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_start_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "DeviceExposureStartDate",
+          "description": "Start date of the Device",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE START DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_start_date.html"
+            }
+          ]
+        },
+        {
+          "name": "DeviceExposureStartTime",
+          "description": "Start time of the Device, if exists, else midnight.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE START TIME",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_start_time.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DeviceExposureEndDate",
+          "description": "End date of the Device, if exists, else the event date",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE PERIOD DISCHARGE DATE",
+              "url": null
+            },
+            {
+              "origin": "EVENT DATE",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_exposure_end_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "DeviceExposureEndDate",
+          "description": "End date of the Device, if exists, else the event date",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE PERIOD DISCHARGE DATE",
+              "url": null
+            },
+            {
+              "origin": "EVENT DATE",
+              "url": null
+            }
+          ]
+        },
+        {
+          "name": "DeviceExposureEndTime",
+          "description": "End time of the Procedure, if exists, else midnight.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE PERIOD DISCHARGE TIME",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "device_source_concept_id",
+      "operation_description": "CCMDS Critical Care Activity Code Device Concept IDs",
+      "dataSource": [
+        {
+          "name": "CriticalCareActivityCode",
+          "description": "Used to look up the Device code.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE ACTIVITY CODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_activity_code.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": "\r\n\r\n|CriticalCareActivityCode|device_source_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4107141|Respiratory support via a tracheal tube (Respiratory support via a tracheal tube provided)|\r\n|2|45761109|Nasal Continuous Positive Airway Pressure (nCPAP) (PATIENT receiving nCPAP for any part of the day)|\r\n|5|45757846|Peritoneal Dialysis (PATIENT received Peritoneal Dialysis)|\r\n|7|4209766|Parenteral Nutrition (PATIENT receiving Parenteral Nutrition (amino acids +/- lipids))|\r\n|9|45759341|Oxygen Therapy|\r\n|11|4121351|Care of an intra-arterial catheter or chest drain (PATIENT receiving care of an intra-arterial catheter or chest drain)|\r\n|13|4229159|Tracheostomy cared for by nursing staff (PATIENT receiving care of tracheostomy cared for by nursing staff not by an external Carer (e.g. parent))|\r\n|14|4229159|Tracheostomy cared for by external Carer (PATIENT receiving care of tracheostomy cared for by an external Carer (e.g. parent) not by a NURSE)|\r\n|16|45758443|Haemofiltration (PATIENT received Haemofiltration)|\r\n|26|36715434|Phototherapy (PATIENT receiving phototherapy)|\r\n|51|4097216|Invasive ventilation via endotracheal tube|\r\n|52|4044008|Invasive ventilation via tracheostomy tube|\r\n|53|45768197|Non-invasive ventilatory support|\r\n|55|4266238|Nasopharyngeal airway|\r\n|56|45768197|Advanced ventilatory support (Jet or Oscillatory ventilation)|\r\n|59|4219814|Acute severe asthma requiring intravenous bronchodilator therapy or continuous nebuliser|\r\n|60|4126195|Arterial line monitoring|\r\n|61|4030875|Cardiac pacing via an external box (pacing wires or external pads or oesophageal pacing)|\r\n|62|4179206|Central venous pressure monitoring|\r\n|63|4042177|Bolus intravenous fluids (> 80 ml/kg/day) in addition to maintenance intravenous fluids|\r\n|73|40491434|Continuous pulse oximetry|\r\n|80|4139525|Heated Humidified High Flow Therapy (HHHFT)|\r\n|81|4124293|Presence of an umbilical venous line|\r\n\r\nNotes\r\n* [CRITICAL CARE ACTIVITY CODES](https://archive.datadictionary.nhs.uk/DD%20Release%20May%202024/attributes/critical_care_activity_code.html)\r\n* [OMOP Devices](https://athena.ohdsi.org/search-terms/terms?domain=Device&invalidReason=Valid&standardConcept=Standard&page=1&pageSize=500&query=)\r\n"
+    },
+    {
+      "name": "device_source_value",
+      "operation_description": "Value copied from `CriticalCareActivityCode`",
+      "dataSource": [
+        {
+          "name": "CriticalCareActivityCode",
+          "description": "Used to look up the Device code.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE ACTIVITY CODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_activity_code.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "HospitalProviderSpellNumber",
+      "operation_description": "Value copied from `HospitalProviderSpellNumber`",
+      "dataSource": [
+        {
+          "name": "HospitalProviderSpellNumber",
+          "description": "CDS specific hospital spell number that binds many episodes together.",
+          "origins": [
+            {
+              "origin": "HOSPITAL PROVIDER SPELL NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\n\t\tselect distinct\n\t\t\t\tapc.NHSNumber,\n\t\t\t\tapc.HospitalProviderSpellNumber,\n\t\t\t\tcc.CriticalCareStartDate as DeviceExposureStartDate,\n\t\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as DeviceExposureStartTime,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as DeviceExposureEndDate,\n\t\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as DeviceExposureEndTime,\n\t\t\t\td.CriticalCareActivityCode as CriticalCareActivityCode\n\t\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc on d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc on cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\t\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode not in('3','4','6','8','10','12','15','21','22','23','24','25','27','28','29','50','57','58','64','65','66','67','68','69','70','71','72','74','82','83','87','99')\n\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

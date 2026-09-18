@@ -1,0 +1,192 @@
+{
+  "omopTable": "ProcedureOccurrence",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `procedure` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureOccurrenceStartDate",
+          "description": "Start date of the Procedure",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE START DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_start_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "ProcedureOccurrenceStartDate",
+          "description": "Start date of the Procedure",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE START DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_start_date.html"
+            }
+          ]
+        },
+        {
+          "name": "ProcedureOccurrenceStartTime",
+          "description": "Start time of the Procedure, if exists, else midnight.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE START TIME",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_start_time.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "ProcedureOccurrenceEndDate",
+          "description": "End date of the Procedure, if exists, else the event date",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE PERIOD DISCHARGE DATE",
+              "url": null
+            },
+            {
+              "origin": "EVENT DATE",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_end_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "ProcedureOccurrenceEndDate",
+          "description": "End date of the Procedure, if exists, else the event date",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE PERIOD DISCHARGE DATE",
+              "url": null
+            },
+            {
+              "origin": "EVENT DATE",
+              "url": null
+            }
+          ]
+        },
+        {
+          "name": "ProcedureOccurrenceEndTime",
+          "description": "End time of the Procedure, if exists, else midnight.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE PERIOD DISCHARGE TIME",
+              "url": null
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR Administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_value",
+      "operation_description": "Value copied from `ProcedureSourceValue`",
+      "dataSource": [
+        {
+          "name": "ProcedureSourceValue",
+          "description": "Used to look up the Procedure code.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE ACTIVITY CODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_activity_code.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "procedure_source_concept_id",
+      "operation_description": "CCMDS Critical Care Activity Code Concept IDs",
+      "dataSource": [
+        {
+          "name": "ProcedureSourceValue",
+          "description": "Used to look up the Procedure code.",
+          "origins": [
+            {
+              "origin": "CRITICAL CARE ACTIVITY CODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/critical_care_activity_code.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": "\r\n\r\n|ProcedureSourceValue|procedure_source_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4161831|Respiratory support via a tracheal tube (Respiratory support via a tracheal tube provided)|\r\n|2|4165535|Nasal Continuous Positive Airway Pressure (nCPAP) (PATIENT receiving nCPAP for any part of the day)|\r\n|3|4301351|Surgery (PATIENT received surgery)|\r\n|4|4193981|Exchange Transfusion (PATIENT received exchange transfusion)|\r\n|5|4324124|Peritoneal Dialysis (PATIENT received Peritoneal Dialysis)|\r\n|6|44806352|Continuous infusion of inotrope, pulmonary vasodilator or prostaglandin (PATIENT received a continuous infusion of an inotrope, vasodilator (includes pulmonary vasodilators) or prostaglandin|\r\n|7|4021169|Parenteral Nutrition (PATIENT receiving Parenteral Nutrition (amino acids +/- lipids))|\r\n|8|4273223|Convulsions (PATIENT having convulsions requiring treatment)|\r\n|9|4239130|Oxygen Therapy|\r\n|10|46271806|Neonatal abstinence syndrome (PATIENT receiving drug treatment for neonatal abstinence (withdrawal) syndrome)|\r\n|11|37395956|Care of an intra-arterial catheter or chest drain (PATIENT receiving care of an intra-arterial catheter or chest drain)|\r\n|12|4050429|Dilution Exchange Transfusion (PATIENT received Dilution Exchange Transfusion)|\r\n|13|4262010|Tracheostomy cared for by nursing staff (PATIENT receiving care of tracheostomy cared for by nursing staff not by an external Carer (e.g. parent))|\r\n|14|4262010|Tracheostomy cared for by external Carer (PATIENT receiving care of tracheostomy cared for by an external Carer (e.g. parent) not by a NURSE)|\r\n|15|4122478|Recurrent apnoea (PATIENT has recurrent apnoea needing frequent intervention, i.e. over 5 stimulations in 8 hours, or resuscitation with IPPV two or more times in 24 hours)|\r\n|16|4050864|Haemofiltration (PATIENT received Haemofiltration)|\r\n|21|4237490|Resident - Caring for Baby|\r\n|22|4141651|Continuous monitoring|\r\n|23|4165358|Intravenous glucose and electrolyte solutions (PATIENT being given intravenous glucose and electrolyte solutions)|\r\n|24|4263536|Tube-fed (PATIENT being tube-fed)|\r\n|25|618552|Barrier nursed (PATIENT being barrier nursed)|\r\n|26|4151902|Phototherapy (PATIENT receiving phototherapy)|\r\n|27|4301936|Special monitoring|\r\n|28|4033847|Observations at regular intervals|\r\n|29|4303434|Intravenous medication|\r\n|50|4141651|Continuous electrocardiogram monitoring|\r\n|51|37157166|Invasive ventilation via endotracheal tube|\r\n|52|4337047|Invasive ventilation via tracheostomy tube|\r\n|53|44791135|Non-invasive ventilatory support|\r\n|55|4082245|Nasopharyngeal airway|\r\n|56|4074666|Advanced ventilatory support (Jet or Oscillatory ventilation)|\r\n|57|4061066|Upper airway obstruction requiring nebulised Epinephrine/ Adrenaline|\r\n|58|4122478|Apnoea requiring intervention|\r\n|59|46272934|Acute severe asthma requiring intravenous bronchodilator therapy or continuous nebuliser|\r\n|60|4213288|Arterial line monitoring|\r\n|61|4049990|Cardiac pacing via an external box (pacing wires or external pads or oesophageal pacing)|\r\n|62|4322479|Central venous pressure monitoring|\r\n|63|4161519|Bolus intravenous fluids (> 80 ml/kg/day) in addition to maintenance intravenous fluids|\r\n|64|4232320|Cardio-pulmonary resuscitation (CPR)|\r\n|65|4336747|Extracorporeal membrane oxygenation (ECMO) or Ventricular Assist Device (VAD) or aortic balloon pump|\r\n|66|4120120|Haemodialysis|\r\n|67|4052539|Plasma filtration or Plasma exchange|\r\n|68|2000097|ICP-intracranial pressure monitoring|\r\n|69|40756782|Intraventricular catheter or external ventricular drain|\r\n|70|4080110|Diabetic ketoacidosis (DKA) requiring continuous infusion of insulin|\r\n|71|4144062|Intravenous infusion of thrombolytic agent (limited to tissue plasminogen activator [tPA] and streptokinase)|\r\n|72|44805305|Extracorporeal liver support using Molecular Absorbent Liver Recirculating System (MARS)|\r\n|73|4262005|Continuous pulse oximetry|\r\n|74|4222885|Patient nursed in single occupancy cubicle|\r\n|80|37158406|Heated Humidified High Flow Therapy (HHHFT)|\r\n|81|4051310|Presence of an umbilical venous line|\r\n|82|4080110|Continuous infusion of insulin (PATIENT  receiving a continuous infusion of insulin)|\r\n|83|4203429|Therapeutic hypothermia|\r\n|87|4022139|Administration of intravenous (IV) blood products|\r\n|96|4086422|intravenous infusion of sedative agent|\r\n\r\nNotes\r\n* [CRITICAL CARE ACTIVITY CODES](https://archive.datadictionary.nhs.uk/DD%20Release%20May%202024/attributes/critical_care_activity_code.html)\r\n* [OMOP Procedures](https://athena.ohdsi.org/search-terms/terms?domain=Procedure&invalidReason=Valid&standardConcept=Standard&vocabulary=SNOMED&page=1&pageSize=15&query=)\r\n"
+    },
+    {
+      "name": "RecordConnectionIdentifier",
+      "operation_description": "Value copied from `GeneratedRecordIdentifier`",
+      "dataSource": [
+        {
+          "name": "GeneratedRecordIdentifier",
+          "description": "CDS specific identifier that binds multiple CDS messages together.",
+          "origins": [
+            {
+              "origin": "CDS RECORD IDENTIFIER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_record_identifier.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\nwith results as\n(\n\tselect \n\t\tdistinct\n\t\t\tapc.NHSNumber,\n\t\t\tapc.GeneratedRecordIdentifier,\n\t\t\tcc.CriticalCareStartDate as ProcedureOccurrenceStartDate,\n\t\t\tcoalesce(cc.CriticalCareStartTime, '00:00:00') as ProcedureOccurrenceStartTime,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeDate, cc.EventDate) as ProcedureOccurrenceEndDate,\n\t\t\tcoalesce(cc.CriticalCarePeriodDischargeTime, '00:00:00') as ProcedureOccurrenceEndTime,\n\t\t\td.CriticalCareActivityCode as ProcedureSourceValue\n\tfrom omop_staging.sus_CCMDS_CriticalCareActivityCode d\n\t\tinner join omop_staging.sus_CCMDS cc \n\t\t\ton d.MessageId = cc.MessageId\n\t\tinner join omop_staging.sus_APC apc \n\t\t\ton cc.GeneratedRecordID = apc.GeneratedRecordIdentifier\n\twhere apc.NHSNumber is not null\n\t\tand d.CriticalCareActivityCode != '99'  -- No Defined Critical Care Activity\n)\nselect *\nfrom results\norder by \n\tNHSNumber,\n\tGeneratedRecordIdentifier,\n\tProcedureOccurrenceStartDate, \n\tProcedureOccurrenceStartTime,\n\tProcedureOccurrenceEndDate,\n\tProcedureOccurrenceEndTime,\n\tProcedureSourceValue\n\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

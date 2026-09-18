@@ -1,0 +1,120 @@
+{
+  "omopTable": "Observation",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tapc.NHSNumber, \n\t\tapc.StartDateHospitalProviderSpell,\n\t\tapc.StartTimeHospitalProviderSpell,\n\t\tapc.ReferralToTreatmentPeriodStartDate,\n\t\tapc.GeneratedRecordIdentifier\n\tfrom omop_staging.sus_APC apc\n\twhere ReferralToTreatmentPeriodStartDate is not null\n\t\tand apc.NHSNumber is not null\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "RecordConnectionIdentifier",
+      "operation_description": "Value copied from `GeneratedRecordIdentifier`",
+      "dataSource": [
+        {
+          "name": "GeneratedRecordIdentifier",
+          "description": "CDS specific identifier that binds multiple CDS messages together.",
+          "origins": [
+            {
+              "origin": "CDS RECORD IDENTIFIER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/cds_record_identifier.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tapc.NHSNumber, \n\t\tapc.StartDateHospitalProviderSpell,\n\t\tapc.StartTimeHospitalProviderSpell,\n\t\tapc.ReferralToTreatmentPeriodStartDate,\n\t\tapc.GeneratedRecordIdentifier\n\tfrom omop_staging.sus_APC apc\n\twhere ReferralToTreatmentPeriodStartDate is not null\n\t\tand apc.NHSNumber is not null\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `40760321`. Date of Referral",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "StartDateHospitalProviderSpell",
+          "description": "START DATE (HOSPITAL PROVIDER SPELL) is the Start Date of the Hospital Provider Spell.",
+          "origins": [
+            {
+              "origin": "START DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tapc.NHSNumber, \n\t\tapc.StartDateHospitalProviderSpell,\n\t\tapc.StartTimeHospitalProviderSpell,\n\t\tapc.ReferralToTreatmentPeriodStartDate,\n\t\tapc.GeneratedRecordIdentifier\n\tfrom omop_staging.sus_APC apc\n\twhere ReferralToTreatmentPeriodStartDate is not null\n\t\tand apc.NHSNumber is not null\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_datetime",
+      "operation_description": "Combines a date with a time of day.",
+      "dataSource": [
+        {
+          "name": "StartDateHospitalProviderSpell",
+          "description": "START DATE (HOSPITAL PROVIDER SPELL) is the Start Date of the Hospital Provider Spell.",
+          "origins": [
+            {
+              "origin": "START DATE (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_date__hospital_provider_spell_.html"
+            }
+          ]
+        },
+        {
+          "name": "StartTimeHospitalProviderSpell",
+          "description": "START TIME (HOSPITAL PROVIDER SPELL)  is the Start Time  of the Hospital Provider Spell .",
+          "origins": [
+            {
+              "origin": "START TIME (HOSPITAL PROVIDER SPELL)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/start_time__hospital_provider_spell_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tapc.NHSNumber, \n\t\tapc.StartDateHospitalProviderSpell,\n\t\tapc.StartTimeHospitalProviderSpell,\n\t\tapc.ReferralToTreatmentPeriodStartDate,\n\t\tapc.GeneratedRecordIdentifier\n\tfrom omop_staging.sus_APC apc\n\twhere ReferralToTreatmentPeriodStartDate is not null\n\t\tand apc.NHSNumber is not null\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_type_concept_id",
+      "operation_description": "Constant value set to `32818`. EHR administration record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_string",
+      "operation_description": "Value copied from `ReferralToTreatmentPeriodStartDate`",
+      "dataSource": [
+        {
+          "name": "ReferralToTreatmentPeriodStartDate",
+          "description": "The start date of a REFERRAL TO TREATMENT PERIOD .",
+          "origins": [
+            {
+              "origin": "REFERRAL TO TREATMENT PERIOD START DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/referral_to_treatment_period_start_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tapc.NHSNumber, \n\t\tapc.StartDateHospitalProviderSpell,\n\t\tapc.StartTimeHospitalProviderSpell,\n\t\tapc.ReferralToTreatmentPeriodStartDate,\n\t\tapc.GeneratedRecordIdentifier\n\tfrom omop_staging.sus_APC apc\n\twhere ReferralToTreatmentPeriodStartDate is not null\n\t\tand apc.NHSNumber is not null\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

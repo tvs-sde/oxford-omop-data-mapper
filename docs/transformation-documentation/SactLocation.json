@@ -1,0 +1,60 @@
+{
+  "omopTable": "Location",
+  "origin": "SACT",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHS_Number`",
+      "dataSource": [
+        {
+          "name": "NHS_Number",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tNHS_Number,\n\tmax (Patient_Postcode) as Patient_Postcode,\n\tmax (Date_Of_Birth) as Date_Of_Birth\nfrom omop_staging.sact_staging\ngroup by NHS_Number\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "zip",
+      "operation_description": "Uppercase the postcode then insert the space in the correct location, if needed.",
+      "dataSource": [
+        {
+          "name": "Patient_Postcode",
+          "description": "Patient's Postcode.",
+          "origins": [
+            {
+              "origin": "POSTCODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tNHS_Number,\n\tmax (Patient_Postcode) as Patient_Postcode,\n\tmax (Date_Of_Birth) as Date_Of_Birth\nfrom omop_staging.sact_staging\ngroup by NHS_Number\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "location_source_value",
+      "operation_description": "Value copied from `Patient_Postcode`",
+      "dataSource": [
+        {
+          "name": "Patient_Postcode",
+          "description": "Patient's Postcode.",
+          "origins": [
+            {
+              "origin": "POSTCODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect\n\tNHS_Number,\n\tmax (Patient_Postcode) as Patient_Postcode,\n\tmax (Date_Of_Birth) as Date_Of_Birth\nfrom omop_staging.sact_staging\ngroup by NHS_Number\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "omopTable": "Death",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t    with cosddates as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date) as TreatmentStartDateCancer,\n        cast(Record ->> '$.CancerCarePlan.MultidisciplinaryTeamDiscussionDateCancer' as date) as MultidisciplinaryTeamDiscussionDateCancer,\n        cast(Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as date) as StageDateFinalPretreatmentStage,\n        cast(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as date) as DateOfPrimaryDiagnosisClinicallyAgreed\n    from omop_staging.cosd_staging_901\n    where type = 'CO'\n      and (Record ->> '$.PrimaryPathway.Diagnosis.BasisOfDiagnosisCancer.@code') in ('0', '1')\n), dates as (\n    select NhsNumber, TreatmentStartDateCancer as \"Date\" from cosddates where TreatmentStartDateCancer is not null\n    union\n    select NhsNumber, MultidisciplinaryTeamDiscussionDateCancer as \"Date\" from cosddates where MultidisciplinaryTeamDiscussionDateCancer is not null\n    union\n    select NhsNumber, StageDateFinalPretreatmentStage as \"Date\" from cosddates where StageDateFinalPretreatmentStage is not null\n    union\n    select NhsNumber, DateOfPrimaryDiagnosisClinicallyAgreed as \"Date\" from cosddates where DateOfPrimaryDiagnosisClinicallyAgreed is not null\n)\nselect\n    NhsNumber,\n    make_date(cast(extract(year from max(\"Date\")) as integer), 12, 31) as DeathDate\nfrom dates\ngroup by NhsNumber;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Value copied from `DeathDate`",
+      "dataSource": [
+        {
+          "name": "DeathDate",
+          "description": "The date on which a PERSON died or is officially deemed to have died.",
+          "origins": [
+            {
+              "origin": "MULTIDISCIPLINARY TEAM DISCUSSION DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/multidisciplinary_team_discussion_date__cancer_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t    with cosddates as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date) as TreatmentStartDateCancer,\n        cast(Record ->> '$.CancerCarePlan.MultidisciplinaryTeamDiscussionDateCancer' as date) as MultidisciplinaryTeamDiscussionDateCancer,\n        cast(Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as date) as StageDateFinalPretreatmentStage,\n        cast(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as date) as DateOfPrimaryDiagnosisClinicallyAgreed\n    from omop_staging.cosd_staging_901\n    where type = 'CO'\n      and (Record ->> '$.PrimaryPathway.Diagnosis.BasisOfDiagnosisCancer.@code') in ('0', '1')\n), dates as (\n    select NhsNumber, TreatmentStartDateCancer as \"Date\" from cosddates where TreatmentStartDateCancer is not null\n    union\n    select NhsNumber, MultidisciplinaryTeamDiscussionDateCancer as \"Date\" from cosddates where MultidisciplinaryTeamDiscussionDateCancer is not null\n    union\n    select NhsNumber, StageDateFinalPretreatmentStage as \"Date\" from cosddates where StageDateFinalPretreatmentStage is not null\n    union\n    select NhsNumber, DateOfPrimaryDiagnosisClinicallyAgreed as \"Date\" from cosddates where DateOfPrimaryDiagnosisClinicallyAgreed is not null\n)\nselect\n    NhsNumber,\n    make_date(cast(extract(year from max(\"Date\")) as integer), 12, 31) as DeathDate\nfrom dates\ngroup by NhsNumber;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_datetime",
+      "operation_description": "Value copied from `DeathDate`",
+      "dataSource": [
+        {
+          "name": "DeathDate",
+          "description": "The date on which a PERSON died or is officially deemed to have died.",
+          "origins": [
+            {
+              "origin": "MULTIDISCIPLINARY TEAM DISCUSSION DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/multidisciplinary_team_discussion_date__cancer_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "TNM STAGE GROUPING DATE (FINAL PRETREATMENT)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html"
+            },
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t    with cosddates as (\n    select\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n        cast(Record ->> '$.Treatment.TreatmentStartDateCancer' as date) as TreatmentStartDateCancer,\n        cast(Record ->> '$.CancerCarePlan.MultidisciplinaryTeamDiscussionDateCancer' as date) as MultidisciplinaryTeamDiscussionDateCancer,\n        cast(Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as date) as StageDateFinalPretreatmentStage,\n        cast(Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as date) as DateOfPrimaryDiagnosisClinicallyAgreed\n    from omop_staging.cosd_staging_901\n    where type = 'CO'\n      and (Record ->> '$.PrimaryPathway.Diagnosis.BasisOfDiagnosisCancer.@code') in ('0', '1')\n), dates as (\n    select NhsNumber, TreatmentStartDateCancer as \"Date\" from cosddates where TreatmentStartDateCancer is not null\n    union\n    select NhsNumber, MultidisciplinaryTeamDiscussionDateCancer as \"Date\" from cosddates where MultidisciplinaryTeamDiscussionDateCancer is not null\n    union\n    select NhsNumber, StageDateFinalPretreatmentStage as \"Date\" from cosddates where StageDateFinalPretreatmentStage is not null\n    union\n    select NhsNumber, DateOfPrimaryDiagnosisClinicallyAgreed as \"Date\" from cosddates where DateOfPrimaryDiagnosisClinicallyAgreed is not null\n)\nselect\n    NhsNumber,\n    make_date(cast(extract(year from max(\"Date\")) as integer), 12, 31) as DeathDate\nfrom dates\ngroup by NhsNumber;\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_type_concept_id",
+      "operation_description": "Constant value set to `32818`. EHR Administration record",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "cause_source_concept_id",
+      "operation_description": "Constant value set to `32510`. EHR record patient status Deceased",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

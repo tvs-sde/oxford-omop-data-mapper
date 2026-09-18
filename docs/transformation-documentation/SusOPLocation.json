@@ -1,0 +1,60 @@
+{
+  "omopTable": "Location",
+  "origin": "SUS",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NHSNumber`",
+      "dataSource": [
+        {
+          "name": "NHSNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\t\tPostcode,\n\t\t\tCountry,\n\t\t\tNHSNumber\n\tfrom omop_staging.sus_OP\n\twhere NHSNumber is not null\n\t\tand Postcode is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "zip",
+      "operation_description": "Uppercase the postcode then insert the space in the correct location, if needed.",
+      "dataSource": [
+        {
+          "name": "Postcode",
+          "description": "Patient Postcode",
+          "origins": [
+            {
+              "origin": "POSTCODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\t\tPostcode,\n\t\t\tCountry,\n\t\t\tNHSNumber\n\tfrom omop_staging.sus_OP\n\twhere NHSNumber is not null\n\t\tand Postcode is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "location_source_value",
+      "operation_description": "Value copied from `Postcode`",
+      "dataSource": [
+        {
+          "name": "Postcode",
+          "description": "Patient Postcode",
+          "origins": [
+            {
+              "origin": "POSTCODE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/postcode.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\tselect\n\t\tdistinct\n\t\t\tPostcode,\n\t\t\tCountry,\n\t\t\tNHSNumber\n\tfrom omop_staging.sus_OP\n\twhere NHSNumber is not null\n\t\tand Postcode is not null\n\t\tand AttendedorDidNotAttend in ('5','6')\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "omopTable": "Death",
+  "origin": "Oxford Spine Death",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `patient_identifier_Value`",
+      "dataSource": [
+        {
+          "name": "patient_identifier_Value",
+          "description": "Patient NHS Number",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DECEASED_DT_TM",
+          "description": "Spine datetime of death.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "death_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DECEASED_DT_TM",
+          "description": "Spine datetime of death.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\n\t",
+      "lookup_table_markdown": null
+    }
+  ]
+}

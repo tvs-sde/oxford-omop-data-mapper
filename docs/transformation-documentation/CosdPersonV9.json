@@ -1,0 +1,157 @@
+{
+  "omopTable": "Person",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "person_source_value",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "year_of_birth",
+      "operation_description": "Selects the year from a date or null of the date is null.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "month_of_birth",
+      "operation_description": "Selects the month of the year or null if the date is null.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "day_of_birth",
+      "operation_description": "Selects the day of the month or null if the date is null.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "birth_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "DateOfBirth",
+          "description": "Patient's date of birth.",
+          "origins": [
+            {
+              "origin": "PERSON BIRTH DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_birth_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "race_concept_id",
+      "operation_description": "Lookup race concept.",
+      "dataSource": [
+        {
+          "name": "EthnicCategory",
+          "description": "Patient EthnicCategory",
+          "origins": [
+            {
+              "origin": "ETHNIC CATEGORY",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": "\r\n\r\n|EthnicCategory|race_concept_id|notes|\r\n|------|-----|-----|\r\n|A|8527|White - British|\r\n|B|8527|White - Irish|\r\n|C|8527|White - Any other White background|\r\n|D|8527|Mixed - White and Black Caribbean [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700388)|\r\n|E|8527|Mixed - White and Black African [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700389)|\r\n|F|8527|Mixed - White and Asian [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700390)|\r\n|G|8527|Mixed - Any other mixed background [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700391)|\r\n|H|38003574|Asian or Asian British - Indian|\r\n|J|38003589|Asian or Asian British - Pakistani|\r\n|K|38003575|Asian or Asian British - Bangladeshi|\r\n|L|8515|Asian or Asian British - Any other Asian background|\r\n|M|38003598|Black or Black British - Caribbean|\r\n|N|38003600|Black or Black British - African|\r\n|P|38003598|Black or Black British - Any other Black background|\r\n|R|38003579|Other Ethnic Groups - Chinese|\r\n|S|0|Other Ethnic Groups - Any other ethnic group|\r\n|Z|0|Not stated|\r\n|99|0|Not known|\r\n||0|No data|\r\n\r\nNotes\r\n* [NHS Race (i.e.Ethnicity)](https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html)\r\n* [OMOP Race](https://athena.ohdsi.org/search-terms/terms?conceptClass=Race&invalidReason=Valid&vocabulary=Race&page=1&pageSize=50&query=)\r\n* [D, E, F, G Race mapping](https://forums.ohdsi.org/t/mapping-nhs-ethnic-category-to-omop-race/20883/2)\r\n"
+    },
+    {
+      "name": "race_source_value",
+      "operation_description": "Value copied from `EthnicCategory`",
+      "dataSource": [
+        {
+          "name": "EthnicCategory",
+          "description": "Patient EthnicCategory",
+          "origins": [
+            {
+              "origin": "ETHNIC CATEGORY",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "race_source_concept_id",
+      "operation_description": "Lookup race source concept.",
+      "dataSource": [
+        {
+          "name": "EthnicCategory",
+          "description": "Patient EthnicCategory",
+          "origins": [
+            {
+              "origin": "ETHNIC CATEGORY",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith demographics as (\nselect \n  Record ->> '$..NhsNumber..@extension' ->> 0 as NhsNumber,\n  Record ->> '$..PersonBirthDate' ->> 0 as DateOfBirth,\n  Record ->> '$..StreetAddressLine[0].#cdata-section' ->> 0 as StreetAddressLine1,\n  Record ->> '$..StreetAddressLine[1].#cdata-section' ->> 0 as StreetAddressLine2,\n  Record ->> '$..StreetAddressLine[2].#cdata-section' ->> 0 as StreetAddressLine3,\n  Record ->> '$..StreetAddressLine[3].#cdata-section' ->> 0 as StreetAddressLine4,\n  Record ->> '$..PostcodeOfUsualAddressAtDiagnosis' ->> 0 as Postcode,\n  Record ->> '$..EthnicCategory.@code' ->> 0 as EthnicCategory\nfrom omop_staging.cosd_staging_901\n)\nselect\n\tNhsNumber,\n\tmax (DateOfBirth) as DateOfBirth,\n\tmax (StreetAddressLine1) as StreetAddressLine1,\n\tmax (StreetAddressLine2) as StreetAddressLine2,\n\tmax (StreetAddressLine3) as StreetAddressLine3,\n\tmax (StreetAddressLine4) as StreetAddressLine4,\n\tmax (Postcode) as Postcode\nfrom demographics \nwhere NhsNumber is not null\ngroup by NhsNumber\n\t",
+      "lookup_table_markdown": "\r\n\r\n|EthnicCategory|race_source_concept_id|notes|\r\n|------|-----|-----|\r\n|A|700385|White - British|\r\n|B|700386|White - Irish|\r\n|C|700387|White - Any other White background|\r\n|D|700388|Mixed - White and Black Caribbean|\r\n|E|700389|Mixed - White and Black African|\r\n|F|700390|Mixed - White and Asian|\r\n|G|700391|Mixed - Any other mixed background|\r\n|H|700362|Asian or Asian British - Indian|\r\n|J|700363|Asian or Asian British - Pakistani|\r\n|K|700364|Asian or Asian British - Bangladeshi|\r\n|L|700365|Asian or Asian British - Any other Asian background|\r\n|M|700366|Black or Black British - Caribbean|\r\n|N|700367|Black or Black British - African|\r\n|P|700368|Black or Black British - Any other Black background|\r\n|R|700369|Other Ethnic Groups - Chinese|\r\n|S|0|Other Ethnic Groups - Any other ethnic group|\r\n|Z|0|Not stated|\r\n|99|0|Not known|\r\n||0|No data|\r\n\r\nNotes\r\n* [NHS Race (i.e.Ethnicity)](https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html)\r\n* [OMOP Race](https://athena.ohdsi.org/search-terms/terms?conceptClass=Race&invalidReason=Valid&vocabulary=Race&page=1&pageSize=50&query=)\r\n"
+    },
+    {
+      "name": "ethnicity_concept_id",
+      "operation_description": "Constant value set to `0`. Unknown concept",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

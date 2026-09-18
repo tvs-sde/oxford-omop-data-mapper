@@ -1,0 +1,110 @@
+{
+  "omopTable": "VisitOccurrence",
+  "origin": "SACT",
+  "omopColumns": [
+    {
+      "name": "NhsNumber",
+      "operation_description": "Value copied from `NHS_Number`",
+      "dataSource": [
+        {
+          "name": "NHS_Number",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tAdministration_Date \n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_start_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "Administration_date",
+          "description": "Date when drug was administered or date an oral drug was initially dispensed to the patient",
+          "origins": [
+            {
+              "origin": "SYSTEMIC ANTI-CANCER THERAPY ADMINISTRATION DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/systemic_anti-cancer_therapy_administration_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tAdministration_Date \n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_start_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "Administration_date",
+          "description": "Date when drug was administered or date an oral drug was initially dispensed to the patient",
+          "origins": [
+            {
+              "origin": "SYSTEMIC ANTI-CANCER THERAPY ADMINISTRATION DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/systemic_anti-cancer_therapy_administration_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tAdministration_Date \n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_end_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "Administration_date",
+          "description": "Date when drug was administered or date an oral drug was initially dispensed to the patient",
+          "origins": [
+            {
+              "origin": "SYSTEMIC ANTI-CANCER THERAPY ADMINISTRATION DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/systemic_anti-cancer_therapy_administration_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tAdministration_Date \n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_end_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "Administration_date",
+          "description": "Date when drug was administered or date an oral drug was initially dispensed to the patient",
+          "origins": [
+            {
+              "origin": "SYSTEMIC ANTI-CANCER THERAPY ADMINISTRATION DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/systemic_anti-cancer_therapy_administration_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\n\t\tselect distinct \n\t\t\tNHS_Number,\n\t\t\tAdministration_Date \n\t\tfrom omop_staging.sact_staging\n\t",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_concept_id",
+      "operation_description": "Constant value set to `38004268`. `Oncology Clinic/Center`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "visit_type_concept_id",
+      "operation_description": "Constant value set to `32818`. `EHR administration record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}
