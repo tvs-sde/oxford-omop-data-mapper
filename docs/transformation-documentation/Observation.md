@@ -479,16 +479,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungPerformanceStatusAdult%20mapping){: .btn }
-## CosdV9LungMenopausalStatus
-<a href="CosdV9LungMenopausalStatus.svg" target="_blank"><img src="CosdV9LungMenopausalStatus.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungMenopausalStatus%20mapping){: .btn }
 ## CosdV9LungHistoryOfAlcoholPast
 <a href="CosdV9LungHistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9LungHistoryOfAlcoholPast.svg" /></a>
 
@@ -873,16 +863,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9PerformanceStatusAdult%20mapping){: .btn }
-## CosdV9MenopausalStatus
-<a href="CosdV9MenopausalStatus.svg" target="_blank"><img src="CosdV9MenopausalStatus.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9MenopausalStatus%20mapping){: .btn }
 ## CosdV9HistoryOfAlcoholPast
 <a href="CosdV9HistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9HistoryOfAlcoholPast.svg" /></a>
 
@@ -1023,16 +1003,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
-## CosdV9BreastMenopausalStatus
-<a href="CosdV9BreastMenopausalStatus.svg" target="_blank"><img src="CosdV9BreastMenopausalStatus.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastMenopausalStatus%20mapping){: .btn }
 ## CosdV9BreastHistoryOfAlcoholPast
 <a href="CosdV9BreastHistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9BreastHistoryOfAlcoholPast.svg" /></a>
 

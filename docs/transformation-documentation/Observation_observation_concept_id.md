@@ -280,10 +280,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4309681`. General physical performance status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungPerformanceStatusAdult%20mapping){: .btn }
-### CosdV9LungMenopausalStatus
-* Constant value set to `4059477`. Menopause
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungMenopausalStatus%20mapping){: .btn }
 ### CosdV9LungHistoryOfAlcoholPast
 * Constant value set to `44782821`. Finding of alcohol consumption
 
@@ -611,10 +607,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4309681`. General physical performance status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9PerformanceStatusAdult%20mapping){: .btn }
-### CosdV9MenopausalStatus
-* Constant value set to `4059477`. Menopause
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9MenopausalStatus%20mapping){: .btn }
 ### CosdV9HistoryOfAlcoholPast
 * Constant value set to `35609491`. Alcohol units consumed per week
 
@@ -671,10 +663,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4309681`. General physical performance status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
-### CosdV9BreastMenopausalStatus
-* Constant value set to `4059477`. Menopause
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastMenopausalStatus%20mapping){: .btn }
 ### CosdV9BreastHistoryOfAlcoholPast
 * Constant value set to `35609491`. Alcohol units consumed per week
 

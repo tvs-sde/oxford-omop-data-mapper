@@ -1747,42 +1747,6 @@ where o.PerformanceStatusAdult is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9LungPerformanceStatusAdult%20mapping){: .btn }
-### CosdV9LungMenopausalStatus
-* Value copied from `Date`
-
-* `Date` Observation date [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with LU as (
-    select
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
-        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'LU'
-)
-select
-    distinct
-        MenopausalStatus,
-        NhsNumber,
-        least(
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
-        ) as Date
-from LU o
-where o.MenopausalStatus is not null
-  and not (
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        TreatmentStartDateCancer is null and
-        ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9LungMenopausalStatus%20mapping){: .btn }
 ### CosdV9LungHistoryOfAlcoholPast
 * Value copied from `Date`
 
@@ -3932,42 +3896,6 @@ where o.PerformanceStatusAdult is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9PerformanceStatusAdult%20mapping){: .btn }
-### CosdV9MenopausalStatus
-* Value copied from `Date`
-
-* `Date` Observation date [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with CO as (
-	select
-		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
-		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
-		Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,
-		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-	from omop_staging.cosd_staging_901
-	where type = 'CO'
-)
-select
-	distinct
-		MenopausalStatus,
-		NhsNumber,
-		least(
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
-		) as Date
-from CO o
-where o.MenopausalStatus is not null
-  and not (
-		DateOfPrimaryDiagnosisClinicallyAgreed is null and
-		TreatmentStartDateCancer is null and
-		ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9MenopausalStatus%20mapping){: .btn }
 ### CosdV9HistoryOfAlcoholPast
 * Value copied from `Date`
 
@@ -4656,48 +4584,6 @@ where o.PerformanceStatusAdult is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
-### CosdV9BreastMenopausalStatus
-* Value copied from `Date`
-
-* `Date` Observation date [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with BR as (
-    select
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        coalesce(
-            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
-            Record ->> '$.Treatment.TreatmentStartDateCancer'
-        ) as TreatmentStartDateCancer,
-        coalesce(
-            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
-            Record ->> '$.Treatment.Surgery.ProcedureDate'
-        ) as ProcedureDate,
-        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'BR'
-)
-select
-    distinct
-        MenopausalStatus,
-        NhsNumber,
-        least(
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
-        ) as Date
-from BR o
-where o.MenopausalStatus is not null
-  and not (
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        TreatmentStartDateCancer is null and
-        ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9BreastMenopausalStatus%20mapping){: .btn }
 ### CosdV9BreastHistoryOfAlcoholPast
 * Value copied from `Date`
 

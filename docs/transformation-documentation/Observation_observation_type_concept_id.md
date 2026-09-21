@@ -270,10 +270,6 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9LungPerformanceStatusAdult%20mapping){: .btn }
-### CosdV9LungMenopausalStatus
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9LungMenopausalStatus%20mapping){: .btn }
 ### CosdV9LungHistoryOfAlcoholPast
 * Constant value set to `32828`. `EHR episode record`
 
@@ -550,10 +546,6 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9PerformanceStatusAdult%20mapping){: .btn }
-### CosdV9MenopausalStatus
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9MenopausalStatus%20mapping){: .btn }
 ### CosdV9HistoryOfAlcoholPast
 * Constant value set to `32828`. `EHR episode record`
 
@@ -610,10 +602,6 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
-### CosdV9BreastMenopausalStatus
-* Constant value set to `32828`. `EHR episode record`
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20CosdV9BreastMenopausalStatus%20mapping){: .btn }
 ### CosdV9BreastHistoryOfAlcoholPast
 * Constant value set to `32828`. `EHR episode record`
 

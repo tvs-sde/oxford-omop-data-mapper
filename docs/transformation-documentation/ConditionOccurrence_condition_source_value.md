@@ -1074,6 +1074,43 @@ where type = 'LU'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Progression%20mapping){: .btn }
+### COSD V9 Lung Condition Occurrence Menopausal Status
+* Value copied from `MenopausalStatus`
+
+* `MenopausalStatus` The PERSON indicator recording the menopausal status of a female patient during a Cancer Care Spell. [MENOPAUSAL STATUS]()
+
+```sql
+with LU as (
+    select
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
+        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'LU'
+)
+select
+    distinct
+        MenopausalStatus,
+        NhsNumber,
+        least(
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from LU o
+where o.MenopausalStatus is not null
+and o.MenopausalStatus != '9'
+  and not (
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Menopausal%20Status%20mapping){: .btn }
 ### COSD V9 Lung Condition Occurrence Familial Cancer Syndrome
 * Value copied from `FamilialCancerSyndrome`
 
@@ -2184,6 +2221,43 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20CR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 Condition Occurrence Menopausal Status
+* Value copied from `MenopausalStatus`
+
+* `MenopausalStatus` MENOPAUSAL STATUS (AT DIAGNOSIS) is the MENOPAUSAL STATUS of a PATIENT at PATIENT DIAGNOSIS. [MENOPAUSAL STATUS (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/menopausal_status__at_diagnosis_.html)
+
+```sql
+with CO as (
+	select
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+		Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'CO'
+)
+select
+	distinct
+		MenopausalStatus,
+		NhsNumber,
+		least(
+			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+			cast(TreatmentStartDateCancer as date),
+			cast(ProcedureDate as date)
+		) as Date
+from CO o
+where o.MenopausalStatus is not null
+and o.MenopausalStatus != '9'
+  and not (
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Condition%20Occurrence%20Menopausal%20Status%20mapping){: .btn }
 ### COSD V9 Condition Occurrence Familial Cancer Syndrome
 * Value copied from `FamilialCancerSyndrome`
 
@@ -2611,6 +2685,49 @@ where DateOfPrimaryDiagnosisClinicallyAgreed is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 Breast Condition Occurrence Menopausal Status
+* Value copied from `MenopausalStatus`
+
+* `MenopausalStatus` MenopausalStatus [MenopausalStatus]()
+
+```sql
+with BR as (
+    select
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        coalesce(
+            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
+            Record ->> '$.Treatment.TreatmentStartDateCancer'
+        ) as TreatmentStartDateCancer,
+        coalesce(
+            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
+            Record ->> '$.Treatment.Surgery.ProcedureDate'
+        ) as ProcedureDate,
+        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select
+    distinct
+        MenopausalStatus,
+        NhsNumber,
+        least(
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from BR o
+where o.MenopausalStatus is not null
+and o.MenopausalStatus != '9'
+  and not (
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Menopausal%20Status%20mapping){: .btn }
 ### COSD V9 Breast Condition Occurrence Familial Cancer Syndrome
 * Value copied from `FamilialCancerSyndrome`
 

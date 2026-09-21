@@ -192,6 +192,10 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungConditionOccurrenceProgression%20mapping){: .btn }
+## CosdV9LungConditionOccurrenceMenopausalStatus
+<a href="CosdV9LungConditionOccurrenceMenopausalStatus.svg" target="_blank"><img src="CosdV9LungConditionOccurrenceMenopausalStatus.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungConditionOccurrenceMenopausalStatus%20mapping){: .btn }
 ## CosdV9LungConditionOccurrenceFamilialCancerSyndrome
 <a href="CosdV9LungConditionOccurrenceFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9LungConditionOccurrenceFamilialCancerSyndrome.svg" /></a>
 
@@ -367,6 +371,10 @@ has_toc: false
 <a href="COSDv8CRConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv8CRConditionOccurrenceCancerProgressionICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8CRConditionOccurrenceCancerProgressionICD%20mapping){: .btn }
+## CosdV9ConditionOccurrenceMenopausalStatus
+<a href="CosdV9ConditionOccurrenceMenopausalStatus.svg" target="_blank"><img src="CosdV9ConditionOccurrenceMenopausalStatus.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9ConditionOccurrenceMenopausalStatus%20mapping){: .btn }
 ## CosdV9ConditionOccurrenceFamilialCancerSyndrome
 <a href="CosdV9ConditionOccurrenceFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9ConditionOccurrenceFamilialCancerSyndrome.svg" /></a>
 
@@ -486,6 +494,10 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV9BreastConditionOccurrenceMenopausalStatus
+<a href="CosdV9BreastConditionOccurrenceMenopausalStatus.svg" target="_blank"><img src="CosdV9BreastConditionOccurrenceMenopausalStatus.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9BreastConditionOccurrenceMenopausalStatus%20mapping){: .btn }
 ## CosdV9BreastConditionOccurrenceFamilialCancerSyndrome
 <a href="CosdV9BreastConditionOccurrenceFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9BreastConditionOccurrenceFamilialCancerSyndrome.svg" /></a>
 

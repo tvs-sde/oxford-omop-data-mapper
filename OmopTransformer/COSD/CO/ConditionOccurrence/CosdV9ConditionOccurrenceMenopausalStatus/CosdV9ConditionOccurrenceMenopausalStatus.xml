@@ -21,6 +21,7 @@ select
 		) as Date
 from CO o
 where o.MenopausalStatus is not null
+and o.MenopausalStatus != '9'
   and not (
 		DateOfPrimaryDiagnosisClinicallyAgreed is null and
 		TreatmentStartDateCancer is null and

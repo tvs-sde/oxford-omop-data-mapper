@@ -60,7 +60,6 @@ using OmopTransformer.COSD.BR.Observation.CosdV9BreastAsaScore;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastFamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastHistoryOfAlcoholCurrent;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastHistoryOfAlcoholPast;
-using OmopTransformer.COSD.BR.Observation.CosdV9BreastMenopausalStatus;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastPerformanceStatusAdult;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastSourceOfReferralForNonPrimaryCancerPathway;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastSourceOfReferralForOutpatients;
@@ -81,6 +80,7 @@ using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV8ConditionOccurre
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopography;
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV9ConditionOccurrenceFamilialCancerSyndrome;
+using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV9ConditionOccurrenceMenopausalStatus;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementMcategoryFinalPreTreatmentStage;
@@ -122,7 +122,6 @@ using OmopTransformer.COSD.Colorectal.Observation.CosdV9AsaScore;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9FamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9HistoryOfAlcoholCurrent;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9HistoryOfAlcoholPast;
-using OmopTransformer.COSD.Colorectal.Observation.CosdV9MenopausalStatus;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9PerformanceStatusAdult;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9PersonSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9SourceOfReferralForNonPrimaryCancerPathway;
@@ -291,6 +290,7 @@ using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrenceP
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceFamilialCancerSyndrome;
+using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceMenopausalStatus;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceRecurrence;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementAdultComorbidityEvaluation;
@@ -332,7 +332,6 @@ using OmopTransformer.COSD.LU.Observation.CosdV9LungAsaScore;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungFamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungHistoryOfAlcoholCurrent;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungHistoryOfAlcoholPast;
-using OmopTransformer.COSD.LU.Observation.CosdV9LungMenopausalStatus;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungPerformanceStatusAdult;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungSourceOfReferralForNonPrimaryCancerPathway;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungSourceOfReferralForOutpatients;
@@ -680,6 +679,7 @@ using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceDia
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceDiagnosticProcedureSNOMEDCT;
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceProcedureOPCS;
+using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceMenopausalStatus;
 
 namespace OmopTransformer.COSD;
 
@@ -818,6 +818,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<CosdV9ConditionOccurrenceMenopausalStatusRecord, CosdV9ConditionOccurrenceMenopausalStatus>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Condition Occurrence Menopausal Status",
+            runId,
+            cancellationToken);
+
         await Transform<CosdV8ConditionOccurrencePrimaryDiagnosisRecord, CosdV8ConditionOccurrencePrimaryDiagnosis>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V8 Condition Occurrence Primary Diagnosis",
@@ -839,6 +845,12 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9BreastConditionOccurrenceFamilialCancerSyndromeRecord, CosdV9BreastConditionOccurrenceFamilialCancerSyndrome>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V9 Breast Condition Occurrence Familial Cancer Syndrome",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastConditionOccurrenceMenopausalStatusRecord, CosdV9BreastConditionOccurrenceMenopausalStatus>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Breast Condition Occurrence Menopausal Status",
             runId,
             cancellationToken);
 
@@ -917,6 +929,12 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9LungConditionOccurrenceFamilialCancerSyndromeRecord, CosdV9LungConditionOccurrenceFamilialCancerSyndrome>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V9 Lung Condition Occurrence Familial Cancer Syndrome",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9LungConditionOccurrenceMenopausalStatusRecord, CosdV9LungConditionOccurrenceMenopausalStatus>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Lung Condition Occurrence Menopausal Status",
             runId,
             cancellationToken);
 
@@ -1058,11 +1076,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV9MenopausalStatusRecord, CosdV9MenopausalStatus>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9MenopausalStatus",
-            runId,
-            cancellationToken);
 
         await Transform<CosdV9PersonSexualOrientationCodeAtDiagnosisRecord, CosdV9PersonSexualOrientationCodeAtDiagnosis>(
             _observationRecorder.InsertUpdateObservations,
@@ -1158,13 +1171,7 @@ internal class CosdTransformer : Transformer
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV9BreastHistoryOfAlcoholPast",
             runId,
-            cancellationToken);
-
-        await Transform<CosdV9BreastMenopausalStatusRecord, CosdV9BreastMenopausalStatus>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9BreastMenopausalStatus",
-            runId,
-            cancellationToken);
+            cancellationToken);           
 
         await Transform<CosdV9BreastPerformanceStatusAdultRecord, CosdV9BreastPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -1252,11 +1259,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV9LungMenopausalStatusRecord, CosdV9LungMenopausalStatus>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9LungMenopausalStatus",
-            runId,
-            cancellationToken);
 
         await Transform<CosdV9LungPerformanceStatusAdultRecord, CosdV9LungPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,

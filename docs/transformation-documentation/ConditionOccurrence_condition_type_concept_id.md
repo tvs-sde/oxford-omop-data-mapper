@@ -166,6 +166,10 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Progression%20mapping){: .btn }
+### COSD V9 Lung Condition Occurrence Menopausal Status
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Menopausal%20Status%20mapping){: .btn }
 ### COSD V9 Lung Condition Occurrence Familial Cancer Syndrome
 * Constant value set to `32828`. `EHR episode record`
 
@@ -322,6 +326,10 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V8%20CR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 Condition Occurrence Menopausal Status
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20Condition%20Occurrence%20Menopausal%20Status%20mapping){: .btn }
 ### COSD V9 Condition Occurrence Familial Cancer Syndrome
 * Constant value set to `32828`. `EHR episode record`
 
@@ -378,6 +386,10 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 Breast Condition Occurrence Menopausal Status
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Menopausal%20Status%20mapping){: .btn }
 ### COSD V9 Breast Condition Occurrence Familial Cancer Syndrome
 * Constant value set to `32828`. `EHR episode record`
 
