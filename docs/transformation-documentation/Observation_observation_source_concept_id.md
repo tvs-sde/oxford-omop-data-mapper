@@ -156,10 +156,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 LV Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20LV%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 LV Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -172,10 +168,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### CosdV9LungFamilialCancerSyndrome
-* Constant value set to `2000500005`. Familial Cancer (Indicator)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9LungFamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV8LungAlcoholHistoryCancerInLastThreeMonths
 * Constant value set to `2000500003`. History Of Alcohol (Current)
 
@@ -192,10 +184,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 HN Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -216,10 +204,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 HN Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HN Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -240,10 +224,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 HA Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HA Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -264,10 +244,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 HA Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HA Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -288,10 +264,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 GY Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -312,10 +284,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 GY Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 GY Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -340,10 +308,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CT Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CT Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -364,10 +328,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 CT Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
 * Constant value set to `35609491`. Alcohol units consumed per week
 
@@ -388,10 +348,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CR Observation Familial Cancer Syndrome Indicator
-* Constant value set to `4171594`. Family history of malignant neoplasm
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CR%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CR Observation Cancer Treatment Intent
 * Constant value set to `4194400`. Treatment intent
 
@@ -432,18 +388,10 @@ order by
 * Constant value set to `2000500003`. History Of Alcohol (Current)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9HistoryOfAlcoholCurrent%20mapping){: .btn }
-### CosdV9FamilialCancerSyndrome
-* Constant value set to `2000500005`. Familial Cancer (Indicator)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9FamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV9FamilialCancerSyndromeSubsidiaryComment
 * Constant value set to `2000500006`. Familial Cancer (Comment)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9FamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
-### CosdV8FamilialCancerSyndromeIndicator
-* Constant value set to `2000500005`. Familial Cancer (Indicator)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV8FamilialCancerSyndromeIndicator%20mapping){: .btn }
 ### CosdV8AlcoholHistoryCancerInLastThreeMonths
 * Constant value set to `2000500003`. History Of Alcohol (Current)
 
@@ -460,18 +408,10 @@ order by
 * Constant value set to `2000500003`. History Of Alcohol (Current)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
-### CosdV9BreastFamilialCancerSyndrome
-* Constant value set to `2000500005`. Familial Cancer (Indicator)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
 * Constant value set to `2000500006`. Familial Cancer (Comment)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
-### COSD V8 Breast Familial Cancer Syndrome Indicator
-* Constant value set to `2000500005`. Familial Cancer (Indicator)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult
 * Constant value set to `3008030`. Physical performance [QAM]
 

@@ -437,6 +437,29 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'LV'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 LV Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -617,6 +640,29 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -677,6 +723,29 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 HN Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.HeadNeckCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'HN'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HN Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -707,6 +776,52 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 HA Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.HaematologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20HA%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Condition Occurrence Secondary Diagnosis ICD
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -797,6 +912,29 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -887,6 +1025,29 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 GY Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.GynaecologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'GY'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 GY Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1007,6 +1168,29 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'CT'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CT Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1067,6 +1251,29 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 CT Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.CTYACoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 CT Condition Occurrence Cancer Progression ICD
 Source column  `DateOfNonPrimaryCancerDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1097,3 +1304,26 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Familial Cancer Syndrome Indicator
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'CR'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }

@@ -1361,29 +1361,6 @@ where type = 'LV'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 LV Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'LV'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20LV%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 LV Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -1902,54 +1879,6 @@ where o.HistoryOfAlcoholCurrent is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9LungHistoryOfAlcoholCurrent%20mapping){: .btn }
-### CosdV9LungFamilialCancerSyndrome
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with LU as (
-    select
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
-        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code' as FamilialCancerSyndrome,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'LU'
-)
-select
-    distinct
-        FamilialCancerSyndrome,
-        NhsNumber,
-        least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(nullif(StageDateIntegratedStage, '') as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
-        ) as Date
-from LU o
-where o.FamilialCancerSyndrome is not null
-  and not (
-        DateFirstSeen is null and
-        DateFirstSeenCancerSpecialist is null and
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        StageDateFinalPretreatmentStage is null and
-        StageDateIntegratedStage is null and
-        TreatmentStartDateCancer is null and
-        ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9LungFamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV9LungFamilialCancerSyndromeSubsidiaryComment
 * Value copied from `Date`
 
@@ -2271,54 +2200,6 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-### CosdV8LungFamilialCancerSyndromeIndicator
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with LU as (
-    select 
-        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
-        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-        Record ->> '$.Lung.LungCore.LungCoreDiagnosis.LungCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator,
-        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_81
-    where Type = 'LU'
-)
-select
-      distinct
-          FamilialCancerSyndromeIndicator,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from LU o
-where o.FamilialCancerSyndromeIndicator is not null
-  and not (
-    DateFirstSeen is null and
-    SpecialistDateFirstSeen is null and
-    ClinicalDateCancerDiagnosis is null and
-    IntegratedStageTNMStageGroupingDate is null and
-    FinalPreTreatmentTNMStageGroupingDate is null and
-    CancerTreatmentStartDate is null and
-    ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV8LungFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ### CosdV8LungAlcoholHistoryCancerInLastThreeMonths
 * Value copied from `Date`
 
@@ -2510,29 +2391,6 @@ where type = 'HN'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 HN Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'HN'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -2660,29 +2518,6 @@ where type = 'HN'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 HN Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.HeadNeckCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'HN'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HN Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -2816,29 +2651,6 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 HA Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'HA'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HA Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -2966,29 +2778,6 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 HA Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.HaematologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'HA'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HA Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -3122,29 +2911,6 @@ where type = 'GY'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 GY Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'GY'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -3272,29 +3038,6 @@ where type = 'GY'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 GY Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.GynaecologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'GY'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 GY Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -3451,29 +3194,6 @@ where type = 'CT'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CT Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'CT'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CT Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -3601,29 +3321,6 @@ where type = 'CT'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 CT Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.CTYACoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'CT'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3740,29 +3437,6 @@ where type = 'CR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CR Observation Familial Cancer Syndrome Indicator
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'CR'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V9%20CR%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CR Observation Cancer Treatment Intent
 Source column  `TreatmentStartDateCancer`.
 Converts text to dates.
@@ -4378,54 +4052,6 @@ where o.HistoryOfAlcoholCurrent is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9HistoryOfAlcoholCurrent%20mapping){: .btn }
-### CosdV9FamilialCancerSyndrome
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with CO as (
-	select
-		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
-		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
-		Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code' as FamilialCancerSyndrome,
-		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-	from omop_staging.cosd_staging_901
-	where type = 'CO'
-)
-select
-	distinct
-		FamilialCancerSyndrome,
-		NhsNumber,
-		least(
-			cast(DateFirstSeen as date),
-			cast(DateFirstSeenCancerSpecialist as date),
-			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-			cast(StageDateFinalPretreatmentStage as date),
-			cast(nullif(StageDateIntegratedStage, '') as date),
-			cast(TreatmentStartDateCancer as date),
-			cast(ProcedureDate as date)
-		) as Date
-from CO o
-where o.FamilialCancerSyndrome is not null
-  and not (
-		DateFirstSeen is null and
-		DateFirstSeenCancerSpecialist is null and
-		DateOfPrimaryDiagnosisClinicallyAgreed is null and
-		StageDateFinalPretreatmentStage is null and
-		StageDateIntegratedStage is null and
-		TreatmentStartDateCancer is null and
-		ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9FamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV9FamilialCancerSyndromeSubsidiaryComment
 * Value copied from `Date`
 
@@ -4702,54 +4328,6 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-### CosdV8FamilialCancerSyndromeIndicator
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with CO as (
-select 
-  Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreDiagnosis.ColorectalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-from omop_staging.cosd_staging_81
-where Type = 'CO'
-)
-select
-      distinct
-          FamilialCancerSyndromeIndicator,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from CO o
-where o.FamilialCancerSyndromeIndicator is not null
-  and not (
-		DateFirstSeen is null and
-		SpecialistDateFirstSeen is null and
-		ClinicalDateCancerDiagnosis is null and
-		IntegratedStageTNMStageGroupingDate is null and
-		FinalPreTreatmentTNMStageGroupingDate is null and
-		CancerTreatmentStartDate is null and
-		ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV8FamilialCancerSyndromeIndicator%20mapping){: .btn }
 ### CosdV8AlcoholHistoryCancerInLastThreeMonths
 * Value copied from `Date`
 
@@ -5207,60 +4785,6 @@ where o.HistoryOfAlcoholCurrent is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
-### CosdV9BreastFamilialCancerSyndrome
-* Value copied from `Date`
-
-* `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
-
-```sql
-with BR as (
-    select
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-        coalesce(
-            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
-            Record ->> '$.Treatment.TreatmentStartDateCancer'
-        ) as TreatmentStartDateCancer,
-        coalesce(
-            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
-            Record ->> '$.Treatment.Surgery.ProcedureDate'
-        ) as ProcedureDate,
-        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code' as FamilialCancerSyndrome,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'BR'
-)
-select
-    distinct
-        FamilialCancerSyndrome,
-        NhsNumber,
-        least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(nullif(StageDateIntegratedStage, '') as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
-        ) as Date
-from BR o
-where o.FamilialCancerSyndrome is not null
-  and not (
-        DateFirstSeen is null and
-        DateFirstSeenCancerSpecialist is null and
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        StageDateFinalPretreatmentStage is null and
-        StageDateIntegratedStage is null and
-        TreatmentStartDateCancer is null and
-        ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
 * Value copied from `Date`
 
@@ -5582,60 +5106,6 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
-### COSD V8 Breast Familial Cancer Syndrome Indicator
-* Value copied from `Date`
-
-* `Date` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with BR as (
-select 
-    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,
-    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-    coalesce(
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'
-    ) as CancerTreatmentStartDate,
-    coalesce(
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',
-        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
-    ) as ProcedureDate,
-    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,
-    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-from omop_staging.cosd_staging_81
-where Type = 'BR'
-)
-select
-      distinct
-          FamilialCancerSyndromeIndicator,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from BR o
-where o.FamilialCancerSyndromeIndicator is not null
-  and not (
-    DateFirstSeen is null and
-    SpecialistDateFirstSeen is null and
-    ClinicalDateCancerDiagnosis is null and
-    IntegratedStageTNMStageGroupingDate is null and
-    FinalPreTreatmentTNMStageGroupingDate is null and
-    CancerTreatmentStartDate is null and
-    ProcedureDate is null
-    );
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_datetime%20field%20COSD%20V8%20Breast%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.

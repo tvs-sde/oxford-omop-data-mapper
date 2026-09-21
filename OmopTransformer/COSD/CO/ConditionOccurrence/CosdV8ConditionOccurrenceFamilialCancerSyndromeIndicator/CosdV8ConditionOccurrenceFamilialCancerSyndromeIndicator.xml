@@ -1,0 +1,63 @@
+<Query>
+    <Sql>
+with CO as (
+select
+  Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreDiagnosis.ColorectalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'CO'
+)
+select
+      distinct
+          FamilialCancerSyndromeIndicator,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from CO o
+where o.FamilialCancerSyndromeIndicator is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null and
+		CancerTreatmentStartDate is null and
+		ProcedureDate is null
+    )
+
+    </Sql>
+    <Explanations>
+      <Explanation columnName="NHSNumber">
+    	  <Description>Patient NHS Number</Description>
+    	  <Origin>NHS NUMBER</Origin>
+      </Explanation>
+		 <Explanation columnName="FamilialCancerSyndromeIndicator">
+		   <Description>An indication of whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell.</Description>
+		   <Origin>FAMILIAL CANCER SYNDROME INDICATOR</Origin>
+		</Explanation>
+      <Explanation columnName="Date" >
+    	  <Description>Observation date</Description>
+    	  <Origin>DATE FIRST SEEN</Origin>
+    	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+    	  <Origin>DIAGNOSIS DATE</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+    	  <Origin>TREATMENT START DATE (CANCER)</Origin>
+    	  <Origin>PROCEDURE DATE</Origin>
+      </Explanation>
+    </Explanations>
+</Query>

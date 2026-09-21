@@ -924,6 +924,28 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'LV'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 LV Condition Occurrence Cancer Progression ICD
 * Value copied from `ProgressionIcd`
 
@@ -1052,6 +1074,54 @@ where type = 'LU'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Progression%20mapping){: .btn }
+### COSD V9 Lung Condition Occurrence Familial Cancer Syndrome
+* Value copied from `FamilialCancerSyndrome`
+
+* `FamilialCancerSyndrome` The PERSON INDICATOR recording whether a hereditary cancer-predisposing syndrome has been identified during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME]()
+
+```sql
+with LU as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
+        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code' as FamilialCancerSyndrome,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'LU'
+)
+select
+    distinct
+        FamilialCancerSyndrome,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from LU o
+where o.FamilialCancerSyndrome is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20mapping){: .btn }
 ### COSD V8 Lung Condition Occurrence Progression
 * Value copied from `NonPrimaryProgressionOriginalDiagnosis`
 
@@ -1143,6 +1213,54 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V8 Lung Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` An indication of whether a PATIENT has a familial cancer syndrome. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+with LU as (
+    select
+        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
+        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Lung.LungCore.LungCoreDiagnosis.LungCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator,
+        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_81
+    where Type = 'LU'
+)
+select
+      distinct
+          FamilialCancerSyndromeIndicator,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from LU o
+where o.FamilialCancerSyndromeIndicator is not null
+  and not (
+    DateFirstSeen is null and
+    SpecialistDateFirstSeen is null and
+    ClinicalDateCancerDiagnosis is null and
+    IntegratedStageTNMStageGroupingDate is null and
+    FinalPreTreatmentTNMStageGroupingDate is null and
+    CancerTreatmentStartDate is null and
+    ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Condition Occurrence Secondary Diagnosis ICD
 * Value copied from `SecondaryDiagnosisIcd`
 
@@ -1230,6 +1348,28 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Condition Occurrence Cancer Progression ICD
 * Value copied from `ProgressionIcd`
 
@@ -1288,6 +1428,28 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 HN Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.HeadNeckCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'HN'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HN Condition Occurrence Cancer Progression ICD
 * Value copied from `CancerProgressionICD`
 
@@ -1317,6 +1479,50 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 HA Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.HaematologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20HA%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Condition Occurrence Secondary Diagnosis ICD
 * Value copied from `SecondaryDiagnosisIcd`
 
@@ -1404,6 +1610,28 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Condition Occurrence Cancer Progression ICD
 * Value copied from `ProgressionIcd`
 
@@ -1491,6 +1719,28 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 GY Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.GynaecologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'GY'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 GY Condition Occurrence Cancer Progression ICD
 * Value copied from `CancerProgressionICD`
 
@@ -1607,6 +1857,28 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'CT'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CT Condition Occurrence Cancer Progression ICD
 * Value copied from `ProgressionIcd`
 
@@ -1665,6 +1937,28 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 CT Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.CTYACoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 CT Condition Occurrence Cancer Progression ICD
 * Value copied from `CancerProgressionICD`
 
@@ -1781,6 +2075,28 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
+        as FamilialCancerSyndromeIndicator
+from omop_staging.cosd_staging_901
+where type = 'CR'
+  and NhsNumber is not null
+  and FamilialCancerSyndromeIndicator is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CR Condition Occurrence Cancer Progression ICD
 * Value copied from `ProgressionIcd`
 
@@ -1868,6 +2184,54 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20CR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 Condition Occurrence Familial Cancer Syndrome
+* Value copied from `FamilialCancerSyndrome`
+
+* `FamilialCancerSyndrome` An indication of whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+with CO as (
+	select
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+		Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code' as FamilialCancerSyndrome,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'CO'
+)
+select
+	distinct
+		FamilialCancerSyndrome,
+		NhsNumber,
+		least(
+			cast(DateFirstSeen as date),
+			cast(DateFirstSeenCancerSpecialist as date),
+			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+			cast(StageDateFinalPretreatmentStage as date),
+			cast(nullif(StageDateIntegratedStage, '') as date),
+			cast(TreatmentStartDateCancer as date),
+			cast(ProcedureDate as date)
+		) as Date
+from CO o
+where o.FamilialCancerSyndrome is not null
+  and not (
+		DateFirstSeen is null and
+		DateFirstSeenCancerSpecialist is null and
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		StageDateFinalPretreatmentStage is null and
+		StageDateIntegratedStage is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20mapping){: .btn }
 ### Cosd V8 Condition Occurrence Primary Diagnosis
 * Value copied from `CancerDiagnosis`
 
@@ -1943,6 +2307,54 @@ where NhsNumber is not null and
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20Cosd%20V8%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V8 Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` An indication of whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+with CO as (
+select
+  Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreDiagnosis.ColorectalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'CO'
+)
+select
+      distinct
+          FamilialCancerSyndromeIndicator,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from CO o
+where o.FamilialCancerSyndromeIndicator is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null and
+		CancerTreatmentStartDate is null and
+		ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 Condition Occurrence Recurrence
 * Value copied from `SecondaryDiagnosis`
 
@@ -2199,6 +2611,60 @@ where DateOfPrimaryDiagnosisClinicallyAgreed is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 Breast Condition Occurrence Familial Cancer Syndrome
+* Value copied from `FamilialCancerSyndrome`
+
+* `FamilialCancerSyndrome` An indication of whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
+
+```sql
+with BR as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(
+            Record ->> '$.Treatment[0].TreatmentStartDateCancer',
+            Record ->> '$.Treatment.TreatmentStartDateCancer'
+        ) as TreatmentStartDateCancer,
+        coalesce(
+            Record ->> '$.Treatment[0].Surgery.ProcedureDate',
+            Record ->> '$.Treatment.Surgery.ProcedureDate'
+        ) as ProcedureDate,
+        Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code' as FamilialCancerSyndrome,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select
+    distinct
+        FamilialCancerSyndrome,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from BR o
+where o.FamilialCancerSyndrome is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20mapping){: .btn }
 ### COSD V8 Breast Condition Occurrence Progression
 * Value copied from `NonPrimaryProgressionOriginalDiagnosis`
 
@@ -2298,6 +2764,60 @@ where NhsNumber is not null and
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20Cosd%20V8%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V8 Breast Condition Occurrence Familial Cancer Syndrome Indicator
+* Value copied from `FamilialCancerSyndromeIndicator`
+
+* `FamilialCancerSyndromeIndicator` Familial Cancer Syndrome Indicator [FamilialCancerSyndrome]()
+
+```sql
+with BR as (
+select 
+    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+    Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+    Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'
+    ) as CancerTreatmentStartDate,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
+    ) as ProcedureDate,
+    Record ->> '$.Breast.BreastCore.BreastCoreDiagnosis.FamilialCancerSyndrome.@code' as FamilialCancerSyndromeIndicator,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'BR'
+)
+select
+      distinct
+          FamilialCancerSyndromeIndicator,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from BR o
+where o.FamilialCancerSyndromeIndicator is not null
+  and not (
+    DateFirstSeen is null and
+    SpecialistDateFirstSeen is null and
+    ClinicalDateCancerDiagnosis is null and
+    IntegratedStageTNMStageGroupingDate is null and
+    FinalPreTreatmentTNMStageGroupingDate is null and
+    CancerTreatmentStartDate is null and
+    ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20COSD%20V8%20Breast%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 BA Condition Occurrence Secondary Diagnosis ICD
 * Value copied from `SecondaryDiagnosisIcd`
 

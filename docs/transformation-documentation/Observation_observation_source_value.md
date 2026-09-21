@@ -738,28 +738,6 @@ where type = 'LV'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 LV Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'LV'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20LV%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 LV Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -900,28 +878,6 @@ where type = 'HN'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 HN Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'HN'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1044,28 +1000,6 @@ where type = 'HN'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 HN Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreDiagnosis.HeadNeckCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'HN'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20HN%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HN Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1194,28 +1128,6 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 HA Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'HA'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HA Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1338,28 +1250,6 @@ where type = 'HA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 HA Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreDiagnosis.HaematologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'HA'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20HA%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HA Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1488,28 +1378,6 @@ where type = 'GY'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 GY Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'GY'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1632,28 +1500,6 @@ where type = 'GY'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 GY Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreDiagnosis.GynaecologicalCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'GY'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20GY%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 GY Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1804,28 +1650,6 @@ where type = 'CT'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CT Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'CT'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CT Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 
@@ -1948,28 +1772,6 @@ where type = 'CT'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 CT Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.CTYACoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_81
-where type = 'CT'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20CT%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
 * Value copied from `AlcoholHistoryCancerInLastThreeMonths`
 
@@ -2081,28 +1883,6 @@ where type = 'CR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CR Observation Familial Cancer Syndrome Indicator
-* Value copied from `FamilialCancerSyndromeIndicator`
-
-* `FamilialCancerSyndromeIndicator` Indicates whether there is a possible or confirmed familial cancer syndrome during a Cancer Care Spell. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisAdditionalItems.FamilialCancerSyndrome.@code'
-        as FamilialCancerSyndromeIndicator
-from omop_staging.cosd_staging_901
-where type = 'CR'
-  and NhsNumber is not null
-  and FamilialCancerSyndromeIndicator is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V9%20CR%20Observation%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CR Observation Cancer Treatment Intent
 * Value copied from `CancerTreatmentIntent`
 

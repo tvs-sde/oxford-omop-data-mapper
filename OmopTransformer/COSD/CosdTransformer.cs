@@ -24,6 +24,8 @@ using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenc
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceProgression;
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceRecurrence;
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceSecondaryDiagnosis;
+using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicator;
+using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceFamilialCancerSyndrome;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.BR.Measurements.CosdV8BreastMeasurementMcategoryFinalPreTreatmentStage;
@@ -50,13 +52,11 @@ using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementTcategoryInteg
 using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementTNMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.BR.Measurements.CosdV9BreastMeasurementTumourLaterality;
-using OmopTransformer.COSD.BR.Observation.CosdV8BreastFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.BR.Observation.CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.BR.Observation.CosdV8BreastSmokingStatusCode;
 using OmopTransformer.COSD.BR.Observation.CosdV8BreastSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 using OmopTransformer.COSD.BR.Observation.CosdV8BreastSourceOfReferralOutPatients;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastAsaScore;
-using OmopTransformer.COSD.BR.Observation.CosdV9BreastFamilialCancerSyndrome;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastFamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastHistoryOfAlcoholCurrent;
 using OmopTransformer.COSD.BR.Observation.CosdV9BreastHistoryOfAlcoholPast;
@@ -78,7 +78,9 @@ using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdConditionOccurrenc
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdConditionOccurrenceRecurrence;
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdConditionOccurrenceSecondaryDiagnosis;
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV8ConditionOccurrencePrimaryDiagnosis;
+using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopography;
+using OmopTransformer.COSD.Colorectal.ConditionOccurrence.CosdV9ConditionOccurrenceFamilialCancerSyndrome;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementGradeOfDifferentiation;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV8MeasurementMcategoryFinalPreTreatmentStage;
@@ -112,13 +114,11 @@ using OmopTransformer.COSD.Colorectal.Measurements.CosdV9MeasurementTumourLatera
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8AdultPerformanceStatus;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerInLastThreeMonths;
-using OmopTransformer.COSD.Colorectal.Observation.CosdV8FamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8PersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8SmokingStatusCode;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8SourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8SourceOfReferralOutPatients;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9AsaScore;
-using OmopTransformer.COSD.Colorectal.Observation.CosdV9FamilialCancerSyndrome;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9FamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9HistoryOfAlcoholCurrent;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV9HistoryOfAlcoholPast;
@@ -220,6 +220,8 @@ using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementTCategoryIntegrated
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementTnmStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementTnmStageGroupingIntegrated;
 using OmopTransformer.COSD.GY.Measurement.COSDv9GYMeasurementTumourLaterality;
+using OmopTransformer.COSD.HA.ConditionOccurrence.COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator;
+using OmopTransformer.COSD.HA.ConditionOccurrence.COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementAdultComorbidityEvaluation;
 using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementAnnArborStage;
 using OmopTransformer.COSD.HA.Measurement.COSDv8HAMeasurementBeta2MicroglobulinLevel;
@@ -284,9 +286,11 @@ using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTCategoryFinalPretr
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTCategoryIntegratedStage;
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTnmStageGroupingFinalPretreatment;
 using OmopTransformer.COSD.HN.Measurement.COSDv9HNMeasurementTnmStageGroupingIntegrated;
+using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosis;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV8LungConditionOccurrenceProgression;
+using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceFamilialCancerSyndrome;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceProgression;
 using OmopTransformer.COSD.LU.ConditionOccurrence.CosdV9LungConditionOccurrenceRecurrence;
 using OmopTransformer.COSD.LU.Measurements.CosdV8LungMeasurementAdultComorbidityEvaluation;
@@ -319,14 +323,12 @@ using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTumourLaterality
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAdultPerformanceStatus;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerInLastThreeMonths;
-using OmopTransformer.COSD.LU.Observation.CosdV8LungFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSmokingStatusCode;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralOutPatients;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSurgicalAccessType;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungAsaScore;
-using OmopTransformer.COSD.LU.Observation.CosdV9LungFamilialCancerSyndrome;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungFamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungHistoryOfAlcoholCurrent;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungHistoryOfAlcoholPast;
@@ -521,25 +523,21 @@ using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationPerformanceStatusAd
 using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationSmokingStatusCancer;
 using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths;
-using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationSmokingStatusCancer;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationSmokingStatusCancer;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationSmokingStatusCancer;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationSmokingStatusCancer;
 using OmopTransformer.COSD.LV.Observation.COSDv8LVObservationCancerTreatmentIntent;
@@ -562,37 +560,31 @@ using OmopTransformer.COSD.BA.Observation.COSDv9BAObservationPerformanceStatusAd
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationSmokingStatusCancer;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationTobaccoSmokingCessationTreatmentIndicationCode;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationSmokingStatusCancer;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationTobaccoSmokingCessationTreatmentIndicationCode;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationSmokingStatusCancer;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationSmokingStatusCancer;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationSmokingStatusCancer;
 using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationCancerTreatmentIntent;
-using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationSmokingStatusCancer;
 using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
@@ -613,11 +605,14 @@ using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv8BAConditionOccurrencePro
 using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv8CRConditionOccurrenceCancerProgressionICD;
 using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv8CRConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv8CTConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv8CTConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv8GYConditionOccurrenceSecondaryDiagnosisICD;
 using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv8HNConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv8HNConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv8LVConditionOccurrenceCancerProgressionICD;
 using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv8LVConditionOccurrencePrimaryDiagnosisICD;
@@ -635,22 +630,27 @@ using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrenceOri
 using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv9BAConditionOccurrenceSecondaryDiagnosisICD;
 using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD;
 using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.CR.ConditionOccurrence.COSDv9CRConditionOccurrenceSecondaryDiagnosisICD;
 using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD;
 using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.CT.ConditionOccurrence.COSDv9CTConditionOccurrenceSecondaryDiagnosisICD;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.GY.ConditionOccurrence.COSDv9GYConditionOccurrenceSecondaryDiagnosisICD;
 using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD;
 using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.HN.ConditionOccurrence.COSDv9HNConditionOccurrenceSecondaryDiagnosisICD;
 using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceCancerProgressionICD;
+using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicator;
 using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD;
 using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrencePrimaryDiagnosisICD;
 using OmopTransformer.COSD.LV.ConditionOccurrence.COSDv9LVConditionOccurrenceSecondaryDiagnosisICD;
@@ -806,6 +806,18 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V8 Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9ConditionOccurrenceFamilialCancerSyndromeRecord, CosdV9ConditionOccurrenceFamilialCancerSyndrome>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Condition Occurrence Familial Cancer Syndrome",
+            runId,
+            cancellationToken);
+
         await Transform<CosdV8ConditionOccurrencePrimaryDiagnosisRecord, CosdV8ConditionOccurrencePrimaryDiagnosis>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V8 Condition Occurrence Primary Diagnosis",
@@ -815,6 +827,18 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopographyRecord, CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopography>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V8 Condition Occurrence Primary Diagnosis Histology Topography",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V8 Breast Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9BreastConditionOccurrenceFamilialCancerSyndromeRecord, CosdV9BreastConditionOccurrenceFamilialCancerSyndrome>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Breast Condition Occurrence Familial Cancer Syndrome",
             runId,
             cancellationToken);
 
@@ -866,6 +890,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V8 Lung Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
         await Transform<CosdV8LungConditionOccurrencePrimaryDiagnosisRecord, CosdV8LungConditionOccurrencePrimaryDiagnosis>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V8 Lung Condition Occurrence Primary Diagnosis",
@@ -881,6 +911,12 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8LungConditionOccurrenceProgressionRecord, CosdV8LungConditionOccurrenceProgression>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "Cosd V8 Lung Condition Occurrence Progression",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9LungConditionOccurrenceFamilialCancerSyndromeRecord, CosdV9LungConditionOccurrenceFamilialCancerSyndrome>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "Cosd V9 Lung Condition Occurrence Familial Cancer Syndrome",
             runId,
             cancellationToken);
 
@@ -1076,12 +1112,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8BreastFamilialCancerSyndromeIndicatorRecord, CosdV8BreastFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8BreastFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
-
         await Transform<CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosisRecord, CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis",
@@ -1109,12 +1139,6 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9BreastAsaScoreRecord, CosdV9BreastAsaScore>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV9BreastAsaScore",
-            runId,
-            cancellationToken);
-
-        await Transform<CosdV9BreastFamilialCancerSyndromeRecord, CosdV9BreastFamilialCancerSyndrome>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9BreastFamilialCancerSyndrome",
             runId,
             cancellationToken);
 
@@ -1178,11 +1202,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8LungFamilialCancerSyndromeIndicatorRecord, CosdV8LungFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8LungFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosisRecord, CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis>(
             _observationRecorder.InsertUpdateObservations,
@@ -1214,11 +1233,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV9LungFamilialCancerSyndromeRecord, CosdV9LungFamilialCancerSyndrome>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9LungFamilialCancerSyndrome",
-            runId,
-            cancellationToken);
 
         await Transform<CosdV9LungFamilialCancerSyndromeSubsidiaryCommentRecord, CosdV9LungFamilialCancerSyndromeSubsidiaryComment>(
             _observationRecorder.InsertUpdateObservations,
@@ -1289,18 +1303,6 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9AsaScoreRecord, CosdV9AsaScore>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV9AsaScore",
-            runId,
-            cancellationToken);
-
-        await Transform<CosdV9FamilialCancerSyndromeRecord, CosdV9FamilialCancerSyndrome>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9FamilialCancerSyndrome",
-            runId,
-            cancellationToken);
-
-        await Transform<CosdV8FamilialCancerSyndromeIndicatorRecord, CosdV8FamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8FamilialCancerSyndromeIndicator",
             runId,
             cancellationToken);
 
@@ -3873,11 +3875,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8CTObservationFamilialCancerSyndromeIndicatorRecord, COSDv8CTObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv8CTObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv8CTObservationPerformanceStatusAdultRecord, COSDv8CTObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -3909,11 +3906,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8GYObservationFamilialCancerSyndromeIndicatorRecord, COSDv8GYObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv8GYObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv8GYObservationPerformanceStatusAdultRecord, COSDv8GYObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -3945,9 +3937,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
         
-        await Transform<COSDv8HAObservationFamilialCancerSyndromeIndicatorRecord, COSDv8HAObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv8HAObservationFamilialCancerSyndromeIndicator",
+        await Transform<COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 HA Condition Occurrence Familial Cancer Syndrome Indicator",
             runId,
             cancellationToken);
 
@@ -3981,11 +3973,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
         
-        await Transform<COSDv8HNObservationFamilialCancerSyndromeIndicatorRecord, COSDv8HNObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv8HNObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv8HNObservationPerformanceStatusAdultRecord, COSDv8HNObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -4119,11 +4106,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
         
-        await Transform<COSDv9CRObservationFamilialCancerSyndromeIndicatorRecord, COSDv9CRObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv9CRObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv9CRObservationPerformanceStatusAdultRecord, COSDv9CRObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -4161,11 +4143,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9CTObservationFamilialCancerSyndromeIndicatorRecord, COSDv9CTObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv9CTObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv9CTObservationPerformanceStatusAdultRecord, COSDv9CTObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -4203,11 +4180,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9GYObservationFamilialCancerSyndromeIndicatorRecord, COSDv9GYObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv9GYObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv9GYObservationPerformanceStatusAdultRecord, COSDv9GYObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -4239,9 +4211,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9HAObservationFamilialCancerSyndromeIndicatorRecord, COSDv9HAObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv9HAObservationFamilialCancerSyndromeIndicator",
+        await Transform<COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HA Condition Occurrence Familial Cancer Syndrome Indicator",
             runId,
             cancellationToken);
 
@@ -4275,11 +4247,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9HNObservationFamilialCancerSyndromeIndicatorRecord, COSDv9HNObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv9HNObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv9HNObservationPerformanceStatusAdultRecord, COSDv9HNObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -4299,11 +4266,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9LVObservationFamilialCancerSyndromeIndicatorRecord, COSDv9LVObservationFamilialCancerSyndromeIndicator>(
-            _observationRecorder.InsertUpdateObservations,
-            "COSDv9LVObservationFamilialCancerSyndromeIndicator",
-            runId,
-            cancellationToken);
 
         await Transform<COSDv9LVObservationPerformanceStatusAdultRecord, COSDv9LVObservationPerformanceStatusAdult>(
             _observationRecorder.InsertUpdateObservations,
@@ -4431,6 +4393,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 CT Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv8GYConditionOccurrenceCancerProgressionICDRecord, COSDv8GYConditionOccurrenceCancerProgressionICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V8 GY Condition Occurrence Cancer Progression ICD",
@@ -4440,6 +4408,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8GYConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8GYConditionOccurrencePrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V8 GY Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 GY Condition Occurrence Familial Cancer Syndrome Indicator",
             runId,
             cancellationToken);
 
@@ -4458,6 +4432,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv8HNConditionOccurrencePrimaryDiagnosisICDRecord, COSDv8HNConditionOccurrencePrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V8 HN Condition Occurrence Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V8 HN Condition Occurrence Familial Cancer Syndrome Indicator",
             runId,
             cancellationToken);
 
@@ -4563,6 +4543,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CR Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv9CRConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9CRConditionOccurrencePrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V9 CR Condition Occurrence Primary Diagnosis ICD",
@@ -4584,6 +4570,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V9 CT Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 CT Condition Occurrence Familial Cancer Syndrome Indicator",
             runId,
             cancellationToken);
 
@@ -4611,6 +4603,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 GY Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv9GYConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9GYConditionOccurrencePrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V9 GY Condition Occurrence Primary Diagnosis ICD",
@@ -4635,6 +4633,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 HN Condition Occurrence Familial Cancer Syndrome Indicator",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv9HNConditionOccurrencePrimaryDiagnosisICDRecord, COSDv9HNConditionOccurrencePrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V9 HN Condition Occurrence Primary Diagnosis ICD",
@@ -4656,6 +4660,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICDRecord, COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD>(
             _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
             "COSD V9 LV Condition Occurrence Original Primary Diagnosis ICD",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicatorRecord, COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicator>(
+            _conditionOccurrenceRecorder.InsertUpdateConditionOccurrence,
+            "COSD V9 LV Condition Occurrence Familial Cancer Syndrome Indicator",
             runId,
             cancellationToken);
 

@@ -365,55 +365,6 @@ where o.SmokingStatusCode is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_number%20field%20CosdV8LungSmokingStatusCode%20mapping){: .btn }
-### CosdV8LungFamilialCancerSyndromeIndicator
-Source column  `FamilialCancerSyndromeIndicator`.
-Converts text to number.
-
-* `FamilialCancerSyndromeIndicator` An indication of whether a PATIENT has a familial cancer syndrome. [FAMILIAL CANCER SYNDROME INDICATOR](https://www.datadictionary.nhs.uk/data_elements/familial_cancer_syndrome_indicator.html)
-
-```sql
-with LU as (
-    select 
-        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
-        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-        Record ->> '$.Lung.LungCore.LungCoreDiagnosis.LungCoreDiagnosisAdditionalItems.FamilialCancerSyndromeIndicator.@code' as FamilialCancerSyndromeIndicator,
-        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_81
-    where Type = 'LU'
-)
-select
-      distinct
-          FamilialCancerSyndromeIndicator,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as Date
-from LU o
-where o.FamilialCancerSyndromeIndicator is not null
-  and not (
-    DateFirstSeen is null and
-    SpecialistDateFirstSeen is null and
-    ClinicalDateCancerDiagnosis is null and
-    IntegratedStageTNMStageGroupingDate is null and
-    FinalPreTreatmentTNMStageGroupingDate is null and
-    CancerTreatmentStartDate is null and
-    ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_number%20field%20CosdV8LungFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ### CosdV8LungAdultPerformanceStatus
 Source column  `AdultPerformanceStatus`.
 Converts text to number.
