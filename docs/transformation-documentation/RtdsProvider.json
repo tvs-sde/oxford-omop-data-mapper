@@ -12,7 +12,7 @@
           "origins": [
             {
               "origin": "GENERAL MEDICAL PRACTITIONER (SPECIFIED)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/general_medical_practitioner__specified_.html"
+              "url": null
             }
           ]
         }
@@ -30,7 +30,7 @@
           "origins": [
             {
               "origin": "GENERAL MEDICAL PRACTITIONER (SPECIFIED)",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/general_medical_practitioner__specified_.html"
+              "url": null
             }
           ]
         }

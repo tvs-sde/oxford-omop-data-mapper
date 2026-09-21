@@ -1111,6 +1111,77 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### CosdV9LungAsaScore
+Source column  `AsaScore`.
+Lookup ASA score concept.
+
+
+|AsaScore|value_as_concept_id|notes|
+|------|-----|-----|
+|1|653309|ASA I (A normal healthy patient)|
+|2|652943|ASA II (Mild systemic disease)|
+|3|654324|ASA III (A patient with severe systemic disease)|
+|4|652750|ASA IV (A patient with severe systemic disease that is a constant threat to life)|
+|5|652861|ASA V (A moribund patient who is not expected to survive without the operation)|
+|6||Unmapped|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `AsaScore` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
+```sql
+with LU as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
+        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Treatment.Surgery.AsaScore.@code' as AsaScore,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'LU'
+)
+select
+    distinct
+        AsaScore,
+        case AsaScore
+            when '1' then 'ASA 1 - A normal healthy patient.'
+            when '2' then 'ASA 2 - A patient with mild systemic disease.'
+            when '3' then 'ASA 3 - A patient with severe systemic disease.'
+            when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
+            when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
+            when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
+            else AsaScore
+        end as AsaScoreDescription,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from LU o
+where o.AsaScore is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9LungAsaScore%20mapping){: .btn }
 ### COSD V9 HN Observation Performance Status Adult
 Source column  `PerformanceStatusAdult`.
 Lookup performance status concept.
@@ -1930,6 +2001,157 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### CosdV9AsaScore
+Source column  `AsaScore`.
+Lookup ASA score concept.
+
+
+|AsaScore|value_as_concept_id|notes|
+|------|-----|-----|
+|1|653309|ASA I (A normal healthy patient)|
+|2|652943|ASA II (Mild systemic disease)|
+|3|654324|ASA III (A patient with severe systemic disease)|
+|4|652750|ASA IV (A patient with severe systemic disease that is a constant threat to life)|
+|5|652861|ASA V (A moribund patient who is not expected to survive without the operation)|
+|6||Unmapped|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `AsaScore` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
+```sql
+with CO as (
+	select
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+		coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+		coalesce(Record ->> '$.Treatment[0].Surgery.AsaScore.@code', Record ->> '$.Treatment.Surgery.AsaScore.@code') as AsaScore,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'CO'
+)
+select
+	distinct
+		AsaScore,
+		case AsaScore
+			when '1' then 'ASA 1 - A normal healthy patient.'
+			when '2' then 'ASA 2 - A patient with mild systemic disease.'
+			when '3' then 'ASA 3 - A patient with severe systemic disease.'
+			when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
+			when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
+			when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
+			else AsaScore
+		end as AsaScoreDescription,
+		NhsNumber,
+		least(
+			cast(DateFirstSeen as date),
+			cast(DateFirstSeenCancerSpecialist as date),
+			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+			cast(StageDateFinalPretreatmentStage as date),
+			cast(nullif(StageDateIntegratedStage, '') as date),
+			cast(TreatmentStartDateCancer as date),
+			cast(ProcedureDate as date)
+		) as Date
+from CO o
+where o.AsaScore is not null
+  and not (
+		DateFirstSeen is null and
+		DateFirstSeenCancerSpecialist is null and
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		StageDateFinalPretreatmentStage is null and
+		StageDateIntegratedStage is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9AsaScore%20mapping){: .btn }
+### CosdV9BreastAsaScore
+Source column  `AsaScore`.
+Lookup ASA score concept.
+
+
+|AsaScore|value_as_concept_id|notes|
+|------|-----|-----|
+|1|653309|ASA I (A normal healthy patient)|
+|2|652943|ASA II (Mild systemic disease)|
+|3|654324|ASA III (A patient with severe systemic disease)|
+|4|652750|ASA IV (A patient with severe systemic disease that is a constant threat to life)|
+|5|652861|ASA V (A moribund patient who is not expected to survive without the operation)|
+|6||Unmapped|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `AsaScore` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
+```sql
+with BR as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        coalesce(
+            Record ->> '$.Treatment[0].TreatmentStartDateCancer', 
+            Record ->> '$.Treatment.TreatmentStartDateCancer'
+        ) as TreatmentStartDateCancer,
+        coalesce(
+            Record ->> '$.Treatment[0].Surgery.ProcedureDate', 
+            Record ->> '$.Treatment.Surgery.ProcedureDate'
+        ) as ProcedureDate,
+        coalesce(
+            Record ->> '$.Treatment[0].Surgery.AsaScore.@code', 
+            Record ->> '$.Treatment.Surgery.AsaScore.@code'
+        ) as AsaScore,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'BR'
+)
+select
+    distinct
+        AsaScore,
+        case AsaScore
+            when '1' then 'ASA 1 - A normal healthy patient.'
+            when '2' then 'ASA 2 - A patient with mild systemic disease.'
+            when '3' then 'ASA 3 - A patient with severe systemic disease.'
+            when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
+            when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
+            when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
+            else AsaScore
+        end as AsaScoreDescription,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from BR o
+where o.AsaScore is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult
 Source column  `PerformanceStatusAdult`.
 Lookup performance status concept.

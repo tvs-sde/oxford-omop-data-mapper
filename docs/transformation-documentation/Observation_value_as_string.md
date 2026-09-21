@@ -599,7 +599,7 @@ with LU as (
 )
 select
     distinct
-        FamilialCancerSyndromeSubsidiaryComment,
+        'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -1103,7 +1103,7 @@ with CO as (
 )
 select
 	distinct
-		FamilialCancerSyndromeSubsidiaryComment,
+		'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
 		NhsNumber,
 		least(
 			cast(DateFirstSeen as date),
@@ -1602,7 +1602,7 @@ with BR as (
 )
 select
     distinct
-        FamilialCancerSyndromeSubsidiaryComment,
+        'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),

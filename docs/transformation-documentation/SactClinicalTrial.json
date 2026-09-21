@@ -90,7 +90,7 @@
           "origins": [
             {
               "origin": "CLINICAL TRIAL INDICATOR",
-              "url": "https://www.datadictionary.nhs.uk/data_elements/clinical_trial_indicator.html"
+              "url": null
             }
           ]
         }

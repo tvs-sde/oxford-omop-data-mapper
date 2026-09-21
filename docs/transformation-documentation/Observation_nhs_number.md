@@ -1807,7 +1807,7 @@ with LU as (
 )
 select
     distinct
-        FamilialCancerSyndromeSubsidiaryComment,
+        'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -1848,12 +1848,23 @@ with LU as (
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
         Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
         Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Treatment.Surgery.AsaScore.@code' as AsaScore,
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_901
     where type = 'LU'
 )
 select
     distinct
+        AsaScore,
+        case AsaScore
+            when '1' then 'ASA 1 - A normal healthy patient.'
+            when '2' then 'ASA 2 - A patient with mild systemic disease.'
+            when '3' then 'ASA 3 - A patient with severe systemic disease.'
+            when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
+            when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
+            when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
+            else AsaScore
+        end as AsaScoreDescription,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -1865,7 +1876,8 @@ select
             cast(ProcedureDate as date)
         ) as Date
 from LU o
-where not (
+where o.AsaScore is not null
+  and not (
         DateFirstSeen is null and
         DateFirstSeenCancerSpecialist is null and
         DateOfPrimaryDiagnosisClinicallyAgreed is null and
@@ -3929,7 +3941,7 @@ with CO as (
 )
 select
 	distinct
-		FamilialCancerSyndromeSubsidiaryComment,
+		'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
 		NhsNumber,
 		least(
 			cast(DateFirstSeen as date),
@@ -3978,6 +3990,15 @@ with CO as (
 select
 	distinct
 		AsaScore,
+		case AsaScore
+			when '1' then 'ASA 1 - A normal healthy patient.'
+			when '2' then 'ASA 2 - A patient with mild systemic disease.'
+			when '3' then 'ASA 3 - A patient with severe systemic disease.'
+			when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
+			when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
+			when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
+			else AsaScore
+		end as AsaScoreDescription,
 		NhsNumber,
 		least(
 			cast(DateFirstSeen as date),
@@ -4668,7 +4689,7 @@ with BR as (
 )
 select
     distinct
-        FamilialCancerSyndromeSubsidiaryComment,
+        'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -4726,6 +4747,15 @@ with BR as (
 select
     distinct
         AsaScore,
+        case AsaScore
+            when '1' then 'ASA 1 - A normal healthy patient.'
+            when '2' then 'ASA 2 - A patient with mild systemic disease.'
+            when '3' then 'ASA 3 - A patient with severe systemic disease.'
+            when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
+            when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
+            when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
+            else AsaScore
+        end as AsaScoreDescription,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),

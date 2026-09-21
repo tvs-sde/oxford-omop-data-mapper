@@ -297,7 +297,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9LungAsaScore
-* Constant value set to `4185914`. Identification of physical status
+* Constant value set to `647671`. Physical status classification ASA
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungAsaScore%20mapping){: .btn }
 ### CosdV8LungSurgicalAccessType
@@ -628,7 +628,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9FamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9AsaScore
-* Constant value set to `4185914`. Identification of physical status
+* Constant value set to `647671`. Physical status classification ASA
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9AsaScore%20mapping){: .btn }
 ### CosdV8SourceOfReferralOutPatients
@@ -688,7 +688,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9BreastAsaScore
-* Constant value set to `4185914`. Identification of physical status
+* Constant value set to `647671`. Physical status classification ASA
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
 ### COSD V8 Breast Source Of Referral Out Patients

@@ -111,10 +111,10 @@
     <line x1="1485" y1="420" x2="1485" y2="615" stroke="white" stroke-width="2" />
     <line x1="1475" y1="605" x2="1485" y2="615" stroke="white" stroke-width="2" />
     <line x1="1495" y1="605" x2="1485" y2="615" stroke="white" stroke-width="2" />
-    <text x="1360" y="728" fill="white" font-size="1em" font-family="Helvetica">Converts text to number.</text>
+    <text x="1360" y="728" fill="white" font-size="1em" font-family="Helvetica">Lookup ASA score concept.</text>
   </g>
   <g>
     <rect x="1285" y="620" width="400" height="80" fill="white" stroke="white" stroke-width="2" rx="10" />
-    <text x="1298" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">value_as_number</text>
+    <text x="1298" y="668" fill="#3E5EB2" font-family="Helvetica" font-size="1.2em" text-anchor="start">value_as_concept_id</text>
   </g>
 </svg>

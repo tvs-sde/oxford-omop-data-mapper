@@ -24,7 +24,7 @@ has_toc: false
 ### RTDS Provider
 * Value copied from `DoctorId`
 
-* `DoctorId` This GENERAL MEDICAL PRACTITIONER works within the General Medical Practitioner Practice with which the PATIENT is registered. [GENERAL MEDICAL PRACTITIONER (SPECIFIED)](https://www.datadictionary.nhs.uk/data_elements/general_medical_practitioner__specified_.html)
+* `DoctorId` This GENERAL MEDICAL PRACTITIONER works within the General Medical Practitioner Practice with which the PATIENT is registered. [GENERAL MEDICAL PRACTITIONER (SPECIFIED)]()
 
 ```sql
 		select distinct 
