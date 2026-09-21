@@ -266,19 +266,21 @@ where type = 'UR'
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 UR Observation Person Stated Sexual Orientation Code At Diagnosis
 Source column  `PersonStatedSexualOrientationCodeAtDiagnosis`.
-PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)
+Lookup sexual orientation concept.
 
 
 |PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|
 |------|-----|-----|
-|1|4069091|Heterosexual or Straight|
-|2|444056|Gay or Lesbian|
-|3|4170582|Bisexual|
-|4|4260977|Other sexual orientation not listed|
-|U|42689512|Person asked and does not know or is not sure|
-|Z|4260977|Not Stated (person asked but declined to provide a response)|
-|9|4260977|Not Known (Not Recorded)|
+|1|36310681|Heterosexual|
+|2|36303203|Homosexual|
+|3|36307527|Bisexual|
+|4|45878142|Other|
+|U|36308454|Asked but unknown|
+|Z|45877986|Unknown|
+|9|45877986|Unknown|
 
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
 
 * `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation as self-stated by the person at the point of cancer diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
 
@@ -1182,6 +1184,57 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9LungAsaScore%20mapping){: .btn }
+### CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis
+Source column  `PersonStatedSexualOrientationCodeAtDiagnosis`.
+Lookup sexual orientation concept.
+
+
+|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|
+|------|-----|-----|
+|1|36310681|Heterosexual|
+|2|36303203|Homosexual|
+|3|36307527|Bisexual|
+|4|45878142|Other|
+|U|36308454|Asked but unknown|
+|Z|45877986|Unknown|
+|9|45877986|Unknown|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation of a PERSON at the time of diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE AT DIAGNOSIS](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code_at_diagnosis.html)
+
+```sql
+with LU as (
+    select 
+        Record ->> '$.Lung.LungCore.LungCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
+        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_81
+    where Type = 'LU'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from LU o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+    ClinicalDateCancerDiagnosis is null and
+    ProcedureDate is null and
+    CancerTreatmentStartDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### COSD V9 HN Observation Performance Status Adult
 Source column  `PerformanceStatusAdult`.
 Lookup performance status concept.
@@ -2001,6 +2054,57 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### CosdV9PersonSexualOrientationCodeAtDiagnosis
+Source column  `PersonSexualOrientationCodeAtDiagnosis`.
+Lookup sexual orientation concept.
+
+
+|PersonSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|
+|------|-----|-----|
+|1|36310681|Heterosexual|
+|2|36303203|Homosexual|
+|3|36307527|Bisexual|
+|4|45878142|Other|
+|U|36308454|Asked but unknown|
+|Z|45877986|Unknown|
+|9|45877986|Unknown|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `PersonSexualOrientationCodeAtDiagnosis` PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
+
+```sql
+with CO as (
+	select
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+		Record ->> '$.Demographics.PersonSexualOrientationCodeAtDiagnosis.@code' as PersonSexualOrientationCodeAtDiagnosis,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'CO'
+)
+select
+	distinct
+		PersonSexualOrientationCodeAtDiagnosis,
+		NhsNumber,
+		least(
+			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+			cast(TreatmentStartDateCancer as date),
+			cast(ProcedureDate as date)
+		) as Date
+from CO o
+where o.PersonSexualOrientationCodeAtDiagnosis is not null
+  and not (
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9PersonSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9AsaScore
 Source column  `AsaScore`.
 Lookup ASA score concept.
@@ -2072,6 +2176,57 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9AsaScore%20mapping){: .btn }
+### CosdV8PersonStatedSexualOrientationCodeAtDiagnosis
+Source column  `PersonStatedSexualOrientationCodeAtDiagnosis`.
+Lookup sexual orientation concept.
+
+
+|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|
+|------|-----|-----|
+|1|36310681|Heterosexual|
+|2|36303203|Homosexual|
+|3|36307527|Bisexual|
+|4|45878142|Other|
+|U|36308454|Asked but unknown|
+|Z|45877986|Unknown|
+|9|45877986|Unknown|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
+
+```sql
+with CO as (
+select 
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'CO'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from CO o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+		ClinicalDateCancerDiagnosis is null and
+		ProcedureDate is null and
+		CancerTreatmentStartDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9BreastAsaScore
 Source column  `AsaScore`.
 Lookup ASA score concept.
@@ -2152,6 +2307,63 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
+### COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis
+Source column  `PersonStatedSexualOrientationCodeAtDiagnosis`.
+Lookup sexual orientation concept.
+
+
+|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|
+|------|-----|-----|
+|1|36310681|Heterosexual|
+|2|36303203|Homosexual|
+|3|36307527|Bisexual|
+|4|45878142|Other|
+|U|36308454|Asked but unknown|
+|Z|45877986|Unknown|
+|9|45877986|Unknown|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` Person Stated Sexual Orientation Code At Diagnosis [PersonStatedSexualOrientationCodeAtDiagnosis]()
+
+```sql
+with BR as (
+select 
+    Record ->> '$.Breast.BreastCore.BreastCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
+    ) as ProcedureDate,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'
+    ) as CancerTreatmentStartDate,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'BR'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from BR o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+    ClinicalDateCancerDiagnosis is null and
+    ProcedureDate is null and
+    CancerTreatmentStartDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_as_concept_id%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult
 Source column  `PerformanceStatusAdult`.
 Lookup performance status concept.

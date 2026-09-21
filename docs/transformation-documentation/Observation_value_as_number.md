@@ -116,7 +116,7 @@ Converts text to number.
 Source column  `NoFracs`.
 Converts text to number.
 
-* `NoFracs` The prescribed number of Radiotherapy Fractions delivered to a PATIENT as described in the Radiotherapy Plan [RADIOTHERAPY PRESCRIBED FRACTIONS]()
+* `NoFracs` The prescribed number of Radiotherapy Fractions delivered to a PATIENT as described in the Radiotherapy Plan [RADIOTHERAPY PRESCRIBED FRACTIONS](https://www.datadictionary.nhs.uk/data_elements/radiotherapy_prescribed_fractions.html)
 
 ```sql
 		select distinct

@@ -9,7 +9,7 @@ has_toc: false
 ### Sus CCMDS High Cost Drugs
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 		select distinct
@@ -30,7 +30,7 @@ has_toc: false
 ### SUS Inpatient Total Previous Pregnancies Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select 
@@ -57,7 +57,7 @@ group by
 ### SUS Inpatient NumberofBabies Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select
@@ -84,7 +84,7 @@ group by
 ### SUS Inpatient Gestation Length Labour Onset Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select 
@@ -111,7 +111,7 @@ group by
 ### SUS Inpatient Carer Support Indicator Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select 
@@ -136,7 +136,7 @@ group by
 ### Sus APC Birth Weight Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select 
@@ -164,7 +164,7 @@ group by
 ### SUS APC Anaesthetic Given Post Labour Delivery Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select
@@ -190,7 +190,7 @@ group by
 ### SUS APC Anaesthetic During Labour Delivery Observation
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 select

@@ -75,7 +75,7 @@
           "origins": [
             {
               "origin": "RADIOTHERAPY PRESCRIBED FRACTIONS",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/radiotherapy_prescribed_fractions.html"
             }
           ]
         }
@@ -93,7 +93,7 @@
           "origins": [
             {
               "origin": "RADIOTHERAPY PRESCRIBED FRACTIONS",
-              "url": null
+              "url": "https://www.datadictionary.nhs.uk/data_elements/radiotherapy_prescribed_fractions.html"
             }
           ]
         }

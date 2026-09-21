@@ -22,7 +22,7 @@
     },
     {
       "name": "observation_concept_id",
-      "operation_description": "Constant value set to `4036080`. Orientation of sexual relationship",
+      "operation_description": "Constant value set to `46235214`. Sexual orientation",
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null
@@ -88,6 +88,60 @@
     },
     {
       "name": "value_as_string",
+      "operation_description": "Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`",
+      "dataSource": [
+        {
+          "name": "PersonStatedSexualOrientationCodeAtDiagnosis",
+          "description": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\nselect \nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'CO'\n)\nselect\n      distinct\n          PersonStatedSexualOrientationCodeAtDiagnosis,\n          NhsNumber,\n          least(\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (ProcedureDate as date),\n                cast (CancerTreatmentStartDate as date)\n          ) as Date\nfrom CO o\nwhere o.PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and not (\n\t\tClinicalDateCancerDiagnosis is null and\n\t\tProcedureDate is null and\n\t\tCancerTreatmentStartDate is null\n    )\n\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_as_concept_id",
+      "operation_description": "Lookup sexual orientation concept.",
+      "dataSource": [
+        {
+          "name": "PersonStatedSexualOrientationCodeAtDiagnosis",
+          "description": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\nselect \nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'CO'\n)\nselect\n      distinct\n          PersonStatedSexualOrientationCodeAtDiagnosis,\n          NhsNumber,\n          least(\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (ProcedureDate as date),\n                cast (CancerTreatmentStartDate as date)\n          ) as Date\nfrom CO o\nwhere o.PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and not (\n\t\tClinicalDateCancerDiagnosis is null and\n\t\tProcedureDate is null and\n\t\tCancerTreatmentStartDate is null\n    )\n\n    ",
+      "lookup_table_markdown": "\r\n\r\n|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|36310681|Heterosexual|\r\n|2|36303203|Homosexual|\r\n|3|36307527|Bisexual|\r\n|4|45878142|Other|\r\n|U|36308454|Asked but unknown|\r\n|Z|45877986|Unknown|\r\n|9|45877986|Unknown|\r\n\r\nNotes\r\n* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment\r\n"
+    },
+    {
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`",
+      "dataSource": [
+        {
+          "name": "PersonStatedSexualOrientationCodeAtDiagnosis",
+          "description": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\nselect \nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,\nRecord ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber\nfrom omop_staging.cosd_staging_81\nwhere Type = 'CO'\n)\nselect\n      distinct\n          PersonStatedSexualOrientationCodeAtDiagnosis,\n          NhsNumber,\n          least(\n                cast (ClinicalDateCancerDiagnosis as date),\n                cast (ProcedureDate as date),\n                cast (CancerTreatmentStartDate as date)\n          ) as Date\nfrom CO o\nwhere o.PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and not (\n\t\tClinicalDateCancerDiagnosis is null and\n\t\tProcedureDate is null and\n\t\tCancerTreatmentStartDate is null\n    )\n\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "value_source_value",
       "operation_description": "Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`",
       "dataSource": [
         {

@@ -148,7 +148,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 UR Observation Person Stated Sexual Orientation Code At Diagnosis
-* Constant value set to `4036080`. Orientation of sexual relationship
+* Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
 ### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
@@ -317,7 +317,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungSmokingStatusCode%20mapping){: .btn }
 ### CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis
-* Constant value set to `4036080`. Orientation of sexual relationship
+* Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV8LungAlcoholHistoryCancerInLastThreeMonths
@@ -604,7 +604,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9SourceOfReferralForNonPrimaryCancerPathway%20mapping){: .btn }
 ### CosdV9PersonSexualOrientationCodeAtDiagnosis
-* Constant value set to `4036080`. Orientation of sexual relationship
+* Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9PersonSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9PerformanceStatusAdult
@@ -644,7 +644,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8SmokingStatusCode%20mapping){: .btn }
 ### CosdV8PersonStatedSexualOrientationCodeAtDiagnosis
-* Constant value set to `4036080`. Orientation of sexual relationship
+* Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV8AlcoholHistoryCancerInLastThreeMonths
@@ -704,7 +704,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Smoking%20Status%20Code%20mapping){: .btn }
 ### COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis
-* Constant value set to `4036080`. Orientation of sexual relationship
+* Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult

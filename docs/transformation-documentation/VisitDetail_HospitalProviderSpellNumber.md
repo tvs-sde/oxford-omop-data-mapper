@@ -45,7 +45,7 @@ order by
 ### Sus Critical Care VisitDetails
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 with results as (
@@ -79,7 +79,7 @@ order by
 ### Sus Inptatient VisitDetails
 * Value copied from `HospitalProviderSpellNumber`
 
-* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER]()
+* `HospitalProviderSpellNumber` CDS specific hospital spell number that binds many episodes together. [HOSPITAL PROVIDER SPELL NUMBER](https://www.datadictionary.nhs.uk/data_elements/hospital_provider_spell_number.html)
 
 ```sql
 		with records as (

@@ -138,7 +138,7 @@ order by
 ### SACT Clinical Trial
 * Value copied from `Source_value`
 
-* `Source_value` Source value for the Systemic Anti-Cancer Therapy Data Set, CLINICAL TRIAL INDICATOR identifies if a PATIENT  is currently in an active Systemic Anti-Cancer Therapy CLINICAL TRIAL [CLINICAL TRIAL INDICATOR]()
+* `Source_value` Source value for the Systemic Anti-Cancer Therapy Data Set, CLINICAL TRIAL INDICATOR identifies if a PATIENT  is currently in an active Systemic Anti-Cancer Therapy CLINICAL TRIAL [CLINICAL TRIAL INDICATOR](https://www.datadictionary.nhs.uk/data_elements/clinical_trial_indicator.html)
 
 ```sql
 		select
@@ -888,6 +888,42 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9LungAsaScore%20mapping){: .btn }
+### CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis
+* Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation of a PERSON at the time of diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE AT DIAGNOSIS](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code_at_diagnosis.html)
+
+```sql
+with LU as (
+    select 
+        Record ->> '$.Lung.LungCore.LungCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
+        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_81
+    where Type = 'LU'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from LU o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+    ClinicalDateCancerDiagnosis is null and
+    ProcedureDate is null and
+    CancerTreatmentStartDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### COSD V9 HN Observation Smoking Status Cancer
 * Value copied from `SmokingStatusCancer`
 
@@ -2137,6 +2173,42 @@ where type = 'CR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### CosdV9PersonSexualOrientationCodeAtDiagnosis
+* Value copied from `PersonSexualOrientationCodeAtDiagnosis`
+
+* `PersonSexualOrientationCodeAtDiagnosis` PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
+
+```sql
+with CO as (
+	select
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+		Record ->> '$.Demographics.PersonSexualOrientationCodeAtDiagnosis.@code' as PersonSexualOrientationCodeAtDiagnosis,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'CO'
+)
+select
+	distinct
+		PersonSexualOrientationCodeAtDiagnosis,
+		NhsNumber,
+		least(
+			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+			cast(TreatmentStartDateCancer as date),
+			cast(ProcedureDate as date)
+		) as Date
+from CO o
+where o.PersonSexualOrientationCodeAtDiagnosis is not null
+  and not (
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9PersonSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9AsaScore
 * Value copied from `AsaScoreDescription`
 
@@ -2192,6 +2264,42 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9AsaScore%20mapping){: .btn }
+### CosdV8PersonStatedSexualOrientationCodeAtDiagnosis
+* Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
+
+```sql
+with CO as (
+select 
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'CO'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from CO o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+		ClinicalDateCancerDiagnosis is null and
+		ProcedureDate is null and
+		CancerTreatmentStartDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9BreastAsaScore
 * Value copied from `AsaScoreDescription`
 
@@ -2256,6 +2364,48 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
+### COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis
+* Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
+
+* `PersonStatedSexualOrientationCodeAtDiagnosis` Person Stated Sexual Orientation Code At Diagnosis [PersonStatedSexualOrientationCodeAtDiagnosis]()
+
+```sql
+with BR as (
+select 
+    Record ->> '$.Breast.BreastCore.BreastCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].BreastCoreSurgery.ProcedureDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'
+    ) as ProcedureDate,
+    coalesce(
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment[0].CancerTreatmentStartDate',
+        Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'
+    ) as CancerTreatmentStartDate,
+    Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'BR'
+)
+select
+      distinct
+          PersonStatedSexualOrientationCodeAtDiagnosis,
+          NhsNumber,
+          least(
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (ProcedureDate as date),
+                cast (CancerTreatmentStartDate as date)
+          ) as Date
+from BR o
+where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
+  and not (
+    ClinicalDateCancerDiagnosis is null and
+    ProcedureDate is null and
+    CancerTreatmentStartDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult
 * Value copied from `PerformanceStatusAdult`
 
