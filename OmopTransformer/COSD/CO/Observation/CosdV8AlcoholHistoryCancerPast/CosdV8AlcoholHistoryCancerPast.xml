@@ -9,14 +9,14 @@ Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNM
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerBeforeLastThreeMonths,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerPast,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
 from omop_staging.cosd_staging_81
 where Type = 'CO'
 )
 select
       distinct
-          AlcoholHistoryCancerBeforeLastThreeMonths,
+          AlcoholHistoryCancerPast,
           NhsNumber,
           least(
                 cast (DateFirstSeen as date),
@@ -28,7 +28,7 @@ select
                 cast (ProcedureDate as date)
               ) as Date
 from CO o
-where o.AlcoholHistoryCancerBeforeLastThreeMonths is not null
+where o.AlcoholHistoryCancerPast is not null
   and not (
 		DateFirstSeen is null and
 		SpecialistDateFirstSeen is null and
@@ -44,7 +44,7 @@ where o.AlcoholHistoryCancerBeforeLastThreeMonths is not null
     	  <Description>Patient NHS Number</Description>
     	  <Origin>NHS NUMBER</Origin>
       </Explanation>
-		 <Explanation columnName="AlcoholHistoryCancerBeforeLastThreeMonths">
+		 <Explanation columnName="AlcoholHistoryCancerPast">
 		   <Description>The past history of alcohol consumption for the PATIENT during a Cancer Care Spell.</Description>
 		   <Origin>ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)</Origin>
 		</Explanation>

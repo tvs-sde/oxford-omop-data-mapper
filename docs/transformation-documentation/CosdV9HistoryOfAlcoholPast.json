@@ -22,7 +22,7 @@
     },
     {
       "name": "observation_concept_id",
-      "operation_description": "Constant value set to `35609491`. Alcohol units consumed per week",
+      "operation_description": "Constant value set to `1340204`. History of event",
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null
@@ -119,7 +119,25 @@
       "lookup_table_markdown": null
     },
     {
-      "name": "value_as_string",
+      "name": "value_as_concept_id",
+      "operation_description": "Lookup history of alcohol concept.",
+      "dataSource": [
+        {
+          "name": "HistoryOfAlcoholPast",
+          "description": "The past history of alcohol consumption for the PATIENT during a Cancer Care Spell.",
+          "origins": [
+            {
+              "origin": "ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/alcohol_history__cancer_before_last_three_months_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n\tselect\n\t\tRecord ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n\t\tRecord ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n\t\tRecord ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n\t\tRecord ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n\t\tRecord ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n\t\t  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,\n\t\tcoalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n\t\tRecord ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as HistoryOfAlcoholPast,\n\t\tRecord ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n\tfrom omop_staging.cosd_staging_901\n\twhere type = 'CO'\n)\nselect\n\tdistinct\n\t\tHistoryOfAlcoholPast,\n\t\tNhsNumber,\n\t\tleast(\n\t\t\tcast(DateFirstSeen as date),\n\t\t\tcast(DateFirstSeenCancerSpecialist as date),\n\t\t\tcast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n\t\t\tcast(StageDateFinalPretreatmentStage as date),\n\t\t\tcast(nullif(StageDateIntegratedStage, '') as date),\n\t\t\tcast(TreatmentStartDateCancer as date),\n\t\t\tcast(ProcedureDate as date)\n\t\t) as Date\nfrom CO o\nwhere o.HistoryOfAlcoholPast is not null\n  and not (\n\t\tDateFirstSeen is null and\n\t\tDateFirstSeenCancerSpecialist is null and\n\t\tDateOfPrimaryDiagnosisClinicallyAgreed is null and\n\t\tStageDateFinalPretreatmentStage is null and\n\t\tStageDateIntegratedStage is null and\n\t\tTreatmentStartDateCancer is null and\n\t\tProcedureDate is null\n    );\n    ",
+      "lookup_table_markdown": "\r\n\r\n|HistoryOfAlcoholPast|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4336673|Heavy drinker|\r\n|2|4042862|Light drinker|\r\n|3|4022664|Non - drinker|\r\n|Z||Not Stated (patient asked but declined to provide a response)|\r\n|9||Not Known (Not recorded)|\r\n\r\nNotes\r\n* [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)\r\n"
+    },
+    {
+      "name": "value_source_value",
       "operation_description": "Value copied from `HistoryOfAlcoholPast`",
       "dataSource": [
         {
@@ -134,13 +152,6 @@
         }
       ],
       "query": "\nwith CO as (\n\tselect\n\t\tRecord ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n\t\tRecord ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n\t\tRecord ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n\t\tRecord ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n\t\tRecord ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n\t\t  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,\n\t\tcoalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n\t\tRecord ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as HistoryOfAlcoholPast,\n\t\tRecord ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n\tfrom omop_staging.cosd_staging_901\n\twhere type = 'CO'\n)\nselect\n\tdistinct\n\t\tHistoryOfAlcoholPast,\n\t\tNhsNumber,\n\t\tleast(\n\t\t\tcast(DateFirstSeen as date),\n\t\t\tcast(DateFirstSeenCancerSpecialist as date),\n\t\t\tcast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n\t\t\tcast(StageDateFinalPretreatmentStage as date),\n\t\t\tcast(nullif(StageDateIntegratedStage, '') as date),\n\t\t\tcast(TreatmentStartDateCancer as date),\n\t\t\tcast(ProcedureDate as date)\n\t\t) as Date\nfrom CO o\nwhere o.HistoryOfAlcoholPast is not null\n  and not (\n\t\tDateFirstSeen is null and\n\t\tDateFirstSeenCancerSpecialist is null and\n\t\tDateOfPrimaryDiagnosisClinicallyAgreed is null and\n\t\tStageDateFinalPretreatmentStage is null and\n\t\tStageDateIntegratedStage is null and\n\t\tTreatmentStartDateCancer is null and\n\t\tProcedureDate is null\n    );\n    ",
-      "lookup_table_markdown": null
-    },
-    {
-      "name": "observation_source_concept_id",
-      "operation_description": "Constant value set to `2000500004`. History Of Alcohol (Past)",
-      "dataSource": null,
-      "query": null,
       "lookup_table_markdown": null
     }
   ]

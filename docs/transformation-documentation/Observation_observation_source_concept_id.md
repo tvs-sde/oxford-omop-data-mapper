@@ -168,14 +168,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### CosdV8LungAlcoholHistoryCancerInLastThreeMonths
-* Constant value set to `2000500003`. History Of Alcohol (Current)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV8LungAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-### CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths
-* Constant value set to `2000500004`. History Of Alcohol (Past)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
 ### COSD V9 HN Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -188,14 +180,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 HN Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 HN Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HN Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -208,14 +192,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 HN Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V8 HN Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HA Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -228,14 +204,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 HA Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 HA Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HA Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -248,14 +216,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 HA Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V8 HA Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 GY Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -268,14 +228,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 GY Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 GY Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 GY Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -288,14 +240,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 GY Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V8 GY Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
 * Constant value set to `4206526`. Smoking cessation behavior
 
@@ -312,14 +256,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CT%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CT Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 CT Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CT Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -328,14 +264,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V8 CT Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
 * Constant value set to `4206526`. Smoking cessation behavior
 
@@ -352,14 +280,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CR Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 CR Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CR Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -372,42 +292,10 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 CR Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V8 CR Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
-### CosdV9HistoryOfAlcoholPast
-* Constant value set to `2000500004`. History Of Alcohol (Past)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9HistoryOfAlcoholPast%20mapping){: .btn }
-### CosdV9HistoryOfAlcoholCurrent
-* Constant value set to `2000500003`. History Of Alcohol (Current)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9HistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9FamilialCancerSyndromeSubsidiaryComment
 * Constant value set to `2000500006`. Familial Cancer (Comment)
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9FamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
-### CosdV8AlcoholHistoryCancerInLastThreeMonths
-* Constant value set to `2000500003`. History Of Alcohol (Current)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV8AlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-### CosdV8AlcoholHistoryCancerBeforeLastThreeMonths
-* Constant value set to `2000500004`. History Of Alcohol (Past)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV8AlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
-### CosdV9BreastHistoryOfAlcoholPast
-* Constant value set to `2000500004`. History Of Alcohol (Past)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastHistoryOfAlcoholPast%20mapping){: .btn }
-### CosdV9BreastHistoryOfAlcoholCurrent
-* Constant value set to `2000500003`. History Of Alcohol (Current)
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
 * Constant value set to `2000500006`. Familial Cancer (Comment)
 

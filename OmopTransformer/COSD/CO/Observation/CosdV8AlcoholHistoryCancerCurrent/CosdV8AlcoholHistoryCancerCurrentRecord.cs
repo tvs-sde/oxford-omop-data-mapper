@@ -1,13 +1,13 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerInLastThreeMonths;
+namespace OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerCurrent;
 
 [DataOrigin("COSD")]
-[Description("CosdV8AlcoholHistoryCancerInLastThreeMonths")]
-[SourceQuery("CosdV8AlcoholHistoryCancerInLastThreeMonths.xml")]
-internal class CosdV8AlcoholHistoryCancerInLastThreeMonthsRecord
+[Description("CosdV8AlcoholHistoryCancerCurrent")]
+[SourceQuery("CosdV8AlcoholHistoryCancerCurrent.xml")]
+internal class CosdV8AlcoholHistoryCancerCurrentRecord
 {
     public string? NhsNumber { get; set; }
     public DateOnly? Date { get; set; }
-    public string? AlcoholHistoryCancerInLastThreeMonths { get; set; }
+    public string? AlcoholHistoryCancerCurrent { get; set; }
 }

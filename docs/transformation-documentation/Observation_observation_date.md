@@ -755,26 +755,6 @@ where type = 'UR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 UR Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code' as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'UR'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 UR Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -785,16 +765,36 @@ Converts text to dates.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'UR'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UR Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code' as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'UR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UR Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -835,26 +835,6 @@ where type = 'UR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UR%20Observation%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
-### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'UR'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UR Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -865,16 +845,36 @@ Converts text to dates.
 select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'UR'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'UR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 UG Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -895,26 +895,6 @@ where type = 'UG'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 UG Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code' as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'UG'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 UG Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -925,16 +905,36 @@ Converts text to dates.
 select distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code' as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'UG'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UG Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code' as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'UG'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UG Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -958,29 +958,6 @@ where type = 'UG'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'UG'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UG Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -994,16 +971,39 @@ select distinct
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'UG'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.UpperGI.UpperGICore.UpperGICoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'UG'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SK Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1027,29 +1027,6 @@ where type = 'SK'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 SK Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'SK'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SK Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1063,16 +1040,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'SK'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SK Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'SK'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SK Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1096,29 +1096,6 @@ where type = 'SK'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 SK Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'SK'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SK Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1132,16 +1109,39 @@ select distinct
     Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'SK'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SK Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Skin.SkinCore.SkinCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Skin.SkinCore.SkinCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'SK'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SA Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1165,29 +1165,6 @@ where type = 'SA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 SA Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'SA'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SA Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1201,16 +1178,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'SA'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SA Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'SA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SA Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1234,29 +1234,6 @@ where type = 'SA'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 SA Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'SA'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SA Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -1270,16 +1247,39 @@ select distinct
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'SA'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SA Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Sarcoma.SarcomaCore.SarcomaCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'SA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 LV Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2142,7 +2142,7 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-### CosdV8LungAlcoholHistoryCancerInLastThreeMonths
+### CosdV8LungAlcoholHistoryCancerPast
 * Value copied from `Date`
 
 * `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
@@ -2157,14 +2157,14 @@ with LU as (
         Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
         unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
         Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,
+        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerPast,
         Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_81
     where Type = 'LU'
 )
 select
       distinct
-          AlcoholHistoryCancerInLastThreeMonths,
+          AlcoholHistoryCancerPast,
           NhsNumber,
           least(
                 cast (DateFirstSeen as date),
@@ -2176,7 +2176,7 @@ select
                 cast (ProcedureDate as date)
               ) as Date
 from LU o
-where o.AlcoholHistoryCancerInLastThreeMonths is not null
+where o.AlcoholHistoryCancerPast is not null
   and not (
     DateFirstSeen is null and
     SpecialistDateFirstSeen is null and
@@ -2189,8 +2189,8 @@ where o.AlcoholHistoryCancerInLastThreeMonths is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8LungAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-### CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8LungAlcoholHistoryCancerPast%20mapping){: .btn }
+### CosdV8LungAlcoholHistoryCancerCurrent
 * Value copied from `Date`
 
 * `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
@@ -2205,14 +2205,14 @@ with LU as (
         Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
         unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
         Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerBeforeLastThreeMonths,
+        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerCurrent,
         Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_81
     where Type = 'LU'
 )
 select
       distinct
-          AlcoholHistoryCancerBeforeLastThreeMonths,
+          AlcoholHistoryCancerCurrent,
           NhsNumber,
           least(
                 cast (DateFirstSeen as date),
@@ -2224,7 +2224,7 @@ select
                 cast (ProcedureDate as date)
               ) as Date
 from LU o
-where o.AlcoholHistoryCancerBeforeLastThreeMonths is not null
+where o.AlcoholHistoryCancerCurrent is not null
   and not (
     DateFirstSeen is null and
     SpecialistDateFirstSeen is null and
@@ -2237,7 +2237,7 @@ where o.AlcoholHistoryCancerBeforeLastThreeMonths is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8LungAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ### CosdV8LungAdultPerformanceStatus
 * Value copied from `Date`
 
@@ -2367,29 +2367,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 HN Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'HN'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HN Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2403,16 +2380,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'HN'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HN Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'HN'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HN Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2500,29 +2500,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 HN Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'HN'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HN Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2536,16 +2513,39 @@ select distinct
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'HN'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HN Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.HeadNeck.HeadNeckCore.HeadNeckCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'HN'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HA Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2627,29 +2627,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 HA Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'HA'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HA Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2663,16 +2640,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'HA'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HA Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'HA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HA Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2760,29 +2760,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 HA Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'HA'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HA Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2796,16 +2773,39 @@ select distinct
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'HA'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HA Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'HA'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 GY Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2887,29 +2887,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 GY Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'GY'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 GY Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -2923,16 +2900,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'GY'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 GY Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'GY'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 GY Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3020,29 +3020,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 GY Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'GY'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 GY Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3056,16 +3033,39 @@ select distinct
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'GY'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 GY Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Gynaecological.GynaecologicalCore.GynaecologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'GY'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3170,29 +3170,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CT%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CT Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'CT'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CT Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3206,16 +3183,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'CT'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CT Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'CT'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CT Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3263,29 +3263,6 @@ where type = 'CT'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.CTYA.CTYACore.CTYACoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'CT'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CT Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3299,16 +3276,39 @@ select distinct
     Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.CTYA.CTYACore.CTYACoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'CT'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.CTYA.CTYACore.CTYACoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'CT'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3413,29 +3413,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CR Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_901
-where type = 'CR'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CR Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3449,16 +3426,39 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'CR'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CR Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_901
+where type = 'CR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CR Observation Smoking Status Cancer
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3540,29 +3540,6 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 CR Observation Alcohol History Cancer In Last Three Months
-Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
-Converts text to dates.
-
-* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
-
-```sql
-select distinct
-    Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
-        as AlcoholHistoryCancerInLastThreeMonths
-from omop_staging.cosd_staging_81
-where type = 'CR'
-  and NhsNumber is not null
-  and AlcoholHistoryCancerInLastThreeMonths is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CR Observation Alcohol History Cancer Before Last Three Months
 Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
 Converts text to dates.
@@ -3576,16 +3553,39 @@ select distinct
     Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'CR'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CR Observation Alcohol History Cancer In Last Three Months
+Source column  `DateOfPrimaryDiagnosisClinicallyAgreed`.
+Converts text to dates.
+
+* `DateOfPrimaryDiagnosisClinicallyAgreed` The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed. [DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)](https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html)
+
+```sql
+select distinct
+    Record ->> '$.Core.CoreCore.CoreLinkagePatientId.NHSNumber.@extension'
+        as NhsNumber,
+    Record ->> '$.Core.CoreCore.CoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+        as DateOfPrimaryDiagnosisClinicallyAgreed,
+    Record ->> '$.Core.CoreCore.CoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+        as AlcoholHistoryCancerCurrent
+from omop_staging.cosd_staging_81
+where type = 'CR'
+  and NhsNumber is not null
+  and AlcoholHistoryCancerCurrent is not null
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### CosdV9TobaccoSmokingStatus
 * Value copied from `Date`
 
@@ -4243,7 +4243,7 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-### CosdV8AlcoholHistoryCancerInLastThreeMonths
+### CosdV8AlcoholHistoryCancerPast
 * Value copied from `Date`
 
 * `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
@@ -4258,14 +4258,14 @@ Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNM
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerPast,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
 from omop_staging.cosd_staging_81
 where Type = 'CO'
 )
 select
       distinct
-          AlcoholHistoryCancerInLastThreeMonths,
+          AlcoholHistoryCancerPast,
           NhsNumber,
           least(
                 cast (DateFirstSeen as date),
@@ -4277,7 +4277,7 @@ select
                 cast (ProcedureDate as date)
               ) as Date
 from CO o
-where o.AlcoholHistoryCancerInLastThreeMonths is not null
+where o.AlcoholHistoryCancerPast is not null
   and not (
 		DateFirstSeen is null and
 		SpecialistDateFirstSeen is null and
@@ -4290,8 +4290,8 @@ where o.AlcoholHistoryCancerInLastThreeMonths is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8AlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-### CosdV8AlcoholHistoryCancerBeforeLastThreeMonths
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8AlcoholHistoryCancerPast%20mapping){: .btn }
+### CosdV8AlcoholHistoryCancerCurrent
 * Value copied from `Date`
 
 * `Date` Observation date [DATE FIRST SEEN](https://www.datadictionary.nhs.uk/data_elements/date_first_seen.html), [DATE FIRST SEEN (CANCER SPECIALIST)](https://www.datadictionary.nhs.uk/data_elements/date_first_seen__cancer_specialist_.html), [DIAGNOSIS DATE](https://www.datadictionary.nhs.uk/data_elements/diagnosis_date.html), [TNM STAGE GROUPING DATE (INTEGRATED)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__integrated_.html), [TNM STAGE GROUPING DATE (FINAL PRETREATMENT)](https://www.datadictionary.nhs.uk/data_elements/tnm_stage_grouping_date__final_pretreatment_.html), [TREATMENT START DATE (CANCER)](https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html), [PROCEDURE DATE](https://www.datadictionary.nhs.uk/data_elements/procedure_date.html)
@@ -4306,14 +4306,14 @@ Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNM
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerBeforeLastThreeMonths,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerCurrent,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
 from omop_staging.cosd_staging_81
 where Type = 'CO'
 )
 select
       distinct
-          AlcoholHistoryCancerBeforeLastThreeMonths,
+          AlcoholHistoryCancerCurrent,
           NhsNumber,
           least(
                 cast (DateFirstSeen as date),
@@ -4325,7 +4325,7 @@ select
                 cast (ProcedureDate as date)
               ) as Date
 from CO o
-where o.AlcoholHistoryCancerBeforeLastThreeMonths is not null
+where o.AlcoholHistoryCancerCurrent is not null
   and not (
 		DateFirstSeen is null and
 		SpecialistDateFirstSeen is null and
@@ -4338,7 +4338,7 @@ where o.AlcoholHistoryCancerBeforeLastThreeMonths is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8AlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_date%20field%20CosdV8AlcoholHistoryCancerCurrent%20mapping){: .btn }
 ### CosdV8AdultPerformanceStatus
 * Value copied from `Date`
 

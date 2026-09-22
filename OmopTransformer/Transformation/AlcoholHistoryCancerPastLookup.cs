@@ -1,9 +1,9 @@
-﻿using OmopTransformer.Annotations;
+using OmopTransformer.Annotations;
 
 namespace OmopTransformer.Transformation;
 
 [Description("ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)")]
-internal class AlcoholHistoryCancerBeforeLastThreeMonthsLookup : ILookup
+internal class AlcoholHistoryCancerPastLookup : ILookup
 {
     public Dictionary<string, ValueWithNote> Mappings { get; } =
         new()
@@ -17,4 +17,3 @@ internal class AlcoholHistoryCancerBeforeLastThreeMonthsLookup : ILookup
 
     public string[] ColumnNotes => Array.Empty<string>();
 }
-

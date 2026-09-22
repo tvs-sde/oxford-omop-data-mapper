@@ -6,11 +6,11 @@ select distinct
     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
         as DateOfPrimaryDiagnosisClinicallyAgreed,
     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
-        as AlcoholHistoryCancerBeforeLastThreeMonths
+        as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_901
 where type = 'HN'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
     </Sql>
     <Explanations>
@@ -22,7 +22,7 @@ where type = 'HN'
             <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
             <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
         </Explanation>
-        <Explanation columnName="AlcoholHistoryCancerBeforeLastThreeMonths">
+        <Explanation columnName="AlcoholHistoryCancerPast">
             <Description>Past history of alcohol consumption for the patient during a cancer care spell.</Description>
             <Origin>ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)</Origin>
         </Explanation>

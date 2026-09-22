@@ -135,14 +135,14 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 UR Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 UR Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UR Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UR Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -151,86 +151,86 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
-### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UR Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UR Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 UG Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 UG Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 UG Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 UG Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UG Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 UG Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 UG Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20UG%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SK Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 SK Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SK Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SK Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SK Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 SK Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SK Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SK Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SK%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SA Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V9 SA Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 SA Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 SA Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SA Observation Smoking Status Cancer
 * Constant value set to `43054909`. Tobacco smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
-### COSD V8 SA Observation Alcohol History Cancer In Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 SA Observation Alcohol History Cancer Before Last Three Months
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 SA Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 LV Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -281,11 +281,11 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungPerformanceStatusAdult%20mapping){: .btn }
 ### CosdV9LungHistoryOfAlcoholPast
-* Constant value set to `44782821`. Finding of alcohol consumption
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungHistoryOfAlcoholPast%20mapping){: .btn }
 ### CosdV9LungHistoryOfAlcoholCurrent
-* Constant value set to `44782821`. Finding of alcohol consumption
+* Constant value set to `4266612`. Eating feeding / drinking observable
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9LungFamilialCancerSyndromeSubsidiaryComment
@@ -316,14 +316,14 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-### CosdV8LungAlcoholHistoryCancerInLastThreeMonths
-* Constant value set to `35609491`. Alcohol units consumed per week
+### CosdV8LungAlcoholHistoryCancerPast
+* Constant value set to `1340204`. History of event
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-### CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths
-* Constant value set to `35609491`. Alcohol units consumed per week
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAlcoholHistoryCancerPast%20mapping){: .btn }
+### CosdV8LungAlcoholHistoryCancerCurrent
+* Constant value set to `4266612`. Eating feeding / drinking observable
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ### CosdV8LungAdultPerformanceStatus
 * Constant value set to `4309681`. General physical performance status
 
@@ -343,16 +343,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 HN Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HN Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HN Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HN Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -368,16 +366,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 HN Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HN Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HN Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HA Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -393,16 +389,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 HA Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 HA Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 HA Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HA Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -418,16 +412,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 HA Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 HA Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 HA Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 GY Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -443,16 +435,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 GY Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 GY Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 GY Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 GY Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -468,16 +458,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 GY Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 GY Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 GY Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -498,16 +486,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CT Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CT Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CT Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CT Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -518,16 +504,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CT Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CT Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -548,16 +532,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CR Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CR Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V9 CR Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CR Observation Smoking Status Cancer
 Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
@@ -573,16 +555,14 @@ Source column  `observation_source_concept_id`.
 Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V8 CR Observation Alcohol History Cancer In Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V8 CR Observation Alcohol History Cancer Before Last Three Months
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20Before%20Last%20Three%20Months%20mapping){: .btn }
+### COSD V8 CR Observation Alcohol History Cancer In Last Three Months
+* Constant value set to `4266612`. Eating feeding / drinking observable
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### CosdV9TobaccoSmokingStatus
 * Constant value set to `43054909`. Tobacco smoking status
 
@@ -608,11 +588,11 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9PerformanceStatusAdult%20mapping){: .btn }
 ### CosdV9HistoryOfAlcoholPast
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9HistoryOfAlcoholPast%20mapping){: .btn }
 ### CosdV9HistoryOfAlcoholCurrent
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `4266612`. Eating feeding / drinking observable
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9HistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9FamilialCancerSyndromeSubsidiaryComment
@@ -639,14 +619,14 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `46235214`. Sexual orientation
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-### CosdV8AlcoholHistoryCancerInLastThreeMonths
-* Constant value set to `35609491`. Alcohol units consumed per week
+### CosdV8AlcoholHistoryCancerPast
+* Constant value set to `1340204`. History of event
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-### CosdV8AlcoholHistoryCancerBeforeLastThreeMonths
-* Constant value set to `35609491`. Alcohol units consumed per week
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AlcoholHistoryCancerPast%20mapping){: .btn }
+### CosdV8AlcoholHistoryCancerCurrent
+* Constant value set to `4266612`. Eating feeding / drinking observable
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8AlcoholHistoryCancerCurrent%20mapping){: .btn }
 ### CosdV8AdultPerformanceStatus
 * Constant value set to `4309681`. General physical performance status
 
@@ -664,11 +644,11 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
 ### CosdV9BreastHistoryOfAlcoholPast
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `1340204`. History of event
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastHistoryOfAlcoholPast%20mapping){: .btn }
 ### CosdV9BreastHistoryOfAlcoholCurrent
-* Constant value set to `35609491`. Alcohol units consumed per week
+* Constant value set to `4266612`. Eating feeding / drinking observable
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment

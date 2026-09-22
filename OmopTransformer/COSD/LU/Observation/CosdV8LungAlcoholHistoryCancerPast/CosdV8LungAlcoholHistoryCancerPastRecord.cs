@@ -1,13 +1,13 @@
 using OmopTransformer.Annotations;
 
-namespace OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
+namespace OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerPast;
 
 [DataOrigin("COSD")]
-[Description("CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths")]
-[SourceQuery("CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths.xml")]
-internal class CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonthsRecord
+[Description("CosdV8LungAlcoholHistoryCancerPast")]
+[SourceQuery("CosdV8LungAlcoholHistoryCancerPast.xml")]
+internal class CosdV8LungAlcoholHistoryCancerPastRecord
 {
     public string? NhsNumber { get; set; }
     public DateOnly? Date { get; set; }
-    public string? AlcoholHistoryCancerBeforeLastThreeMonths { get; set; }
+    public string? AlcoholHistoryCancerPast { get; set; }
 }

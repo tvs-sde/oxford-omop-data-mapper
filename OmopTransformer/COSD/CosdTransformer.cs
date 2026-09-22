@@ -112,8 +112,8 @@ using OmopTransformer.COSD.Colorectal.Measurements.CosdV9MeasurementTNMcategoryF
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV9MeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.Colorectal.Measurements.CosdV9MeasurementTumourLaterality;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8AdultPerformanceStatus;
-using OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerPast;
+using OmopTransformer.COSD.Colorectal.Observation.CosdV8AlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8PersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8SmokingStatusCode;
 using OmopTransformer.COSD.Colorectal.Observation.CosdV8SourceOfReferralForOutPatientsNonPrimaryCancerPathway;
@@ -321,8 +321,8 @@ using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryFinal
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTumourLaterality;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAdultPerformanceStatus;
-using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSmokingStatusCode;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
@@ -515,88 +515,88 @@ using OmopTransformer.Omop.ProcedureOccurrence;
 using OmopTransformer.Transformation;
 using OmopTransformer.COSD.BA.Observation.COSDv8BAObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.BA.Observation.COSDv8BAObservationPerformanceStatusAdult;
-using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CR.Observation.COSDv8CRObservationSmokingStatusCancer;
-using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CT.Observation.COSDv8CTObservationSmokingStatusCancer;
-using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.GY.Observation.COSDv8GYObservationSmokingStatusCancer;
-using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HA.Observation.COSDv8HAObservationSmokingStatusCancer;
-using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HN.Observation.COSDv8HNObservationSmokingStatusCancer;
 using OmopTransformer.COSD.LV.Observation.COSDv8LVObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.LV.Observation.COSDv8LVObservationPerformanceStatusAdult;
-using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationSmokingStatusCancer;
-using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.SK.Observation.COSDv8SKObservationSmokingStatusCancer;
-using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.UG.Observation.COSDv8UGObservationSmokingStatusCancer;
-using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.UR.Observation.COSDv8URObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.UR.Observation.COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis;
 using OmopTransformer.COSD.UR.Observation.COSDv8URObservationSmokingStatusCancer;
 using OmopTransformer.COSD.BA.Observation.COSDv9BAObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.BA.Observation.COSDv9BAObservationPerformanceStatusAdult;
-using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationSmokingStatusCancer;
 using OmopTransformer.COSD.CR.Observation.COSDv9CRObservationTobaccoSmokingCessationTreatmentIndicationCode;
-using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationSmokingStatusCancer;
 using OmopTransformer.COSD.CT.Observation.COSDv9CTObservationTobaccoSmokingCessationTreatmentIndicationCode;
-using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.GY.Observation.COSDv9GYObservationSmokingStatusCancer;
-using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HA.Observation.COSDv9HAObservationSmokingStatusCancer;
-using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.HN.Observation.COSDv9HNObservationSmokingStatusCancer;
 using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationCancerTreatmentIntent;
 using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationPerformanceStatusAdult;
 using OmopTransformer.COSD.LV.Observation.COSDv9LVObservationSmokingStatusCancer;
-using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationSmokingStatusCancer;
-using OmopTransformer.COSD.SK.Observation.COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.SK.Observation.COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.SK.Observation.COSDv9SKObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.SK.Observation.COSDv9SKObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.SK.Observation.COSDv9SKObservationSmokingStatusCancer;
-using OmopTransformer.COSD.UG.Observation.COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.UG.Observation.COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.UG.Observation.COSDv9UGObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.UG.Observation.COSDv9UGObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.UG.Observation.COSDv9UGObservationSmokingStatusCancer;
-using OmopTransformer.COSD.UR.Observation.COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths;
-using OmopTransformer.COSD.UR.Observation.COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths;
+using OmopTransformer.COSD.UR.Observation.COSDv9URObservationAlcoholHistoryCancerPast;
+using OmopTransformer.COSD.UR.Observation.COSDv9URObservationAlcoholHistoryCancerCurrent;
 using OmopTransformer.COSD.UR.Observation.COSDv9URObservationSmokingStatusCancer;
 using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv8BAConditionOccurrenceCancerProgressionICD;
 using OmopTransformer.COSD.BA.ConditionOccurrence.COSDv8BAConditionOccurrencePrimaryDiagnosisICD;
@@ -1058,9 +1058,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8AlcoholHistoryCancerInLastThreeMonthsRecord, CosdV8AlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<CosdV8AlcoholHistoryCancerCurrentRecord, CosdV8AlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8AlcoholHistoryCancerInLastThreeMonths",
+            "Cosd CosdV8AlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -1070,9 +1070,9 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8AlcoholHistoryCancerBeforeLastThreeMonthsRecord, CosdV8AlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<CosdV8AlcoholHistoryCancerPastRecord, CosdV8AlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8AlcoholHistoryCancerBeforeLastThreeMonths",
+            "Cosd CosdV8AlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
@@ -1197,15 +1197,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonthsRecord, CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<CosdV8LungAlcoholHistoryCancerPastRecord, CosdV8LungAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths",
+            "Cosd CosdV8LungAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<CosdV8LungAlcoholHistoryCancerInLastThreeMonthsRecord, CosdV8LungAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<CosdV8LungAlcoholHistoryCancerCurrentRecord, CosdV8LungAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8LungAlcoholHistoryCancerInLastThreeMonths",
+            "Cosd CosdV8LungAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -3835,15 +3835,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8CRObservationAlcoholHistoryCancerPastRecord, COSDv8CRObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8CRObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8CRObservationAlcoholHistoryCancerCurrentRecord, COSDv8CRObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8CRObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -3865,15 +3865,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8CTObservationAlcoholHistoryCancerPastRecord, COSDv8CTObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8CTObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8CTObservationAlcoholHistoryCancerCurrentRecord, COSDv8CTObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8CTObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -3890,15 +3890,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8GYObservationAlcoholHistoryCancerPastRecord, COSDv8GYObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8GYObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8GYObservationAlcoholHistoryCancerCurrentRecord, COSDv8GYObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8GYObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -3921,15 +3921,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8HAObservationAlcoholHistoryCancerPastRecord, COSDv8HAObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8HAObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8HAObservationAlcoholHistoryCancerCurrentRecord, COSDv8HAObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8HAObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -3957,15 +3957,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8HNObservationAlcoholHistoryCancerPastRecord, COSDv8HNObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8HNObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8HNObservationAlcoholHistoryCancerCurrentRecord, COSDv8HNObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8HNObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4000,15 +4000,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8SAObservationAlcoholHistoryCancerPastRecord, COSDv8SAObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8SAObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8SAObservationAlcoholHistoryCancerCurrentRecord, COSDv8SAObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8SAObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4018,15 +4018,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8SKObservationAlcoholHistoryCancerPastRecord, COSDv8SKObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8SKObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8SKObservationAlcoholHistoryCancerCurrentRecord, COSDv8SKObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8SKObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4036,15 +4036,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
         
-        await Transform<COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8UGObservationAlcoholHistoryCancerPastRecord, COSDv8UGObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8UGObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8UGObservationAlcoholHistoryCancerCurrentRecord, COSDv8UGObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8UGObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4054,15 +4054,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv8URObservationAlcoholHistoryCancerPastRecord, COSDv8URObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv8URObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv8URObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv8URObservationAlcoholHistoryCancerCurrentRecord, COSDv8URObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv8URObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
         
@@ -4090,15 +4090,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9CRObservationAlcoholHistoryCancerPastRecord, COSDv9CRObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9CRObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9CRObservationAlcoholHistoryCancerCurrentRecord, COSDv9CRObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9CRObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4127,15 +4127,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9CTObservationAlcoholHistoryCancerPastRecord, COSDv9CTObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9CTObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9CTObservationAlcoholHistoryCancerCurrentRecord, COSDv9CTObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9CTObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4164,15 +4164,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9GYObservationAlcoholHistoryCancerPastRecord, COSDv9GYObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9GYObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9GYObservationAlcoholHistoryCancerCurrentRecord, COSDv9GYObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9GYObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4195,15 +4195,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9HAObservationAlcoholHistoryCancerPastRecord, COSDv9HAObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9HAObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9HAObservationAlcoholHistoryCancerCurrentRecord, COSDv9HAObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9HAObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4231,15 +4231,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9HNObservationAlcoholHistoryCancerPastRecord, COSDv9HNObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9HNObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9HNObservationAlcoholHistoryCancerCurrentRecord, COSDv9HNObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9HNObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4281,15 +4281,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9SAObservationAlcoholHistoryCancerPastRecord, COSDv9SAObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9SAObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9SAObservationAlcoholHistoryCancerCurrentRecord, COSDv9SAObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9SAObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4299,15 +4299,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-       await Transform<COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+       await Transform<COSDv9SKObservationAlcoholHistoryCancerPastRecord, COSDv9SKObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9SKObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9SKObservationAlcoholHistoryCancerCurrentRecord, COSDv9SKObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9SKObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4317,15 +4317,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9UGObservationAlcoholHistoryCancerPastRecord, COSDv9UGObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9UGObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9UGObservationAlcoholHistoryCancerCurrentRecord, COSDv9UGObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9UGObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 
@@ -4335,15 +4335,15 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord, COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths>(
+        await Transform<COSDv9URObservationAlcoholHistoryCancerPastRecord, COSDv9URObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths",
+            "COSDv9URObservationAlcoholHistoryCancerPast",
             runId,
             cancellationToken);
 
-        await Transform<COSDv9URObservationAlcoholHistoryCancerInLastThreeMonthsRecord, COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths>(
+        await Transform<COSDv9URObservationAlcoholHistoryCancerCurrentRecord, COSDv9URObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
-            "COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths",
+            "COSDv9URObservationAlcoholHistoryCancerCurrent",
             runId,
             cancellationToken);
 

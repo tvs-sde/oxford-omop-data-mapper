@@ -3,11 +3,11 @@
 select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerBeforeLastThreeMonths
+    Record ->> '$.Urological.UrologicalCore.UrologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code' as AlcoholHistoryCancerPast
 from omop_staging.cosd_staging_81
 where type = 'UR'
   and NhsNumber is not null
-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
+  and AlcoholHistoryCancerPast is not null
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
     </Sql>
     <Explanations>
@@ -19,7 +19,7 @@ where type = 'UR'
             <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
             <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
         </Explanation>
-        <Explanation columnName="AlcoholHistoryCancerBeforeLastThreeMonths">
+        <Explanation columnName="AlcoholHistoryCancerPast">
             <Description>Past history of alcohol consumption for the patient during a cancer care spell.</Description>
             <Origin>ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)</Origin>
         </Explanation>

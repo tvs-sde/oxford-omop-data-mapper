@@ -2,9 +2,9 @@ using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
 using OmopTransformer.Transformation;
 
-namespace OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
+namespace OmopTransformer.COSD.SA.Observation.COSDv9SAObservationAlcoholHistoryCancerPast;
 
-internal class COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths : OmopObservation<COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord>
+internal class COSDv9SAObservationAlcoholHistoryCancerPast : OmopObservation<COSDv9SAObservationAlcoholHistoryCancerPastRecord>
 {
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
@@ -18,15 +18,15 @@ internal class COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths : Om
     [ConstantValue(32828, "EHR episode record")]
     public override int? observation_type_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+    [CopyValue(nameof(Source.AlcoholHistoryCancerPast))]
     public override string? observation_source_value { get; set; }
 
-    [ConstantValue(35609491, "Alcohol units consumed per week")]
+    [ConstantValue(1340204, "History of event")]
     public override int[]? observation_concept_id { get; set; }
 
-    [Transform(typeof(AlcoholHistoryCancerBeforeLastThreeMonthsLookup), nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+    [Transform(typeof(AlcoholHistoryCancerPastLookup), nameof(Source.AlcoholHistoryCancerPast))]
     public override int? value_as_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+    [CopyValue(nameof(Source.AlcoholHistoryCancerPast))]
     public override string? value_source_value { get; set; }
 }

@@ -9,14 +9,14 @@ Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNM
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate' as CancerTreatmentStartDate,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerInLastThreeMonths,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code' as AlcoholHistoryCancerCurrent,
 Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
 from omop_staging.cosd_staging_81
 where Type = 'CO'
 )
 select
       distinct
-          AlcoholHistoryCancerInLastThreeMonths,
+          AlcoholHistoryCancerCurrent,
           NhsNumber,
           least(
                 cast (DateFirstSeen as date),
@@ -28,7 +28,7 @@ select
                 cast (ProcedureDate as date)
               ) as Date
 from CO o
-where o.AlcoholHistoryCancerInLastThreeMonths is not null
+where o.AlcoholHistoryCancerCurrent is not null
   and not (
 		DateFirstSeen is null and
 		SpecialistDateFirstSeen is null and
@@ -44,7 +44,7 @@ where o.AlcoholHistoryCancerInLastThreeMonths is not null
     	  <Description>Patient NHS Number</Description>
     	  <Origin>NHS NUMBER</Origin>
       </Explanation>
-		 <Explanation columnName="AlcoholHistoryCancerInLastThreeMonths">
+		 <Explanation columnName="AlcoholHistoryCancerCurrent">
 		   <Description>The current history of alcohol consumption for the PATIENT during a Cancer Care Spell.</Description>
 		   <Origin>ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)</Origin>
 		</Explanation>
