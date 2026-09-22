@@ -794,6 +794,54 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### CosdV9LungTobaccoSmokingStatus
+* Value copied from `TobaccoSmokingStatus`
+
+* `TobaccoSmokingStatus` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+with LU as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
+        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as TobaccoSmokingStatus,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'LU'
+)
+select
+    distinct
+        TobaccoSmokingStatus,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from LU o
+where o.TobaccoSmokingStatus is not null
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV9LungTobaccoSmokingStatus%20mapping){: .btn }
 ### CosdV9LungHistoryOfAlcoholPast
 * Value copied from `HistoryOfAlcoholPast`
 
@@ -945,6 +993,54 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV9LungAsaScore%20mapping){: .btn }
+### CosdV8LungSmokingStatusCode
+* Value copied from `SmokingStatusCode`
+
+* `SmokingStatusCode` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+with LU as (
+    select 
+        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
+        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Lung.LungCore.LungCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code' as SmokingStatusCode,
+        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_81
+    where Type = 'LU'
+)
+select
+      distinct
+          SmokingStatusCode,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from LU o
+where o.SmokingStatusCode is not null
+  and not (
+    DateFirstSeen is null and
+    SpecialistDateFirstSeen is null and
+    ClinicalDateCancerDiagnosis is null and
+    IntegratedStageTNMStageGroupingDate is null and
+    FinalPreTreatmentTNMStageGroupingDate is null and
+    CancerTreatmentStartDate is null and
+    ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV8LungSmokingStatusCode%20mapping){: .btn }
 ### CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis
 * Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
 
@@ -2326,6 +2422,54 @@ where type = 'CR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20CR%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
+### CosdV9TobaccoSmokingStatus
+* Value copied from `TobaccoSmokingStatus`
+
+* `TobaccoSmokingStatus` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+with CO as (
+	select
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+		Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+		Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+		Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+		Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+		  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,
+		coalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,
+		Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as TobaccoSmokingStatus,
+		Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+	from omop_staging.cosd_staging_901
+	where type = 'CO'
+)
+select
+	distinct
+		TobaccoSmokingStatus,
+		NhsNumber,
+		least(
+			cast(DateFirstSeen as date),
+			cast(DateFirstSeenCancerSpecialist as date),
+			cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+			cast(StageDateFinalPretreatmentStage as date),
+			cast(nullif(StageDateIntegratedStage, '') as date),
+			cast(TreatmentStartDateCancer as date),
+			cast(ProcedureDate as date)
+		) as Date
+from CO o
+where o.TobaccoSmokingStatus is not null
+  and not (
+		DateFirstSeen is null and
+		DateFirstSeenCancerSpecialist is null and
+		DateOfPrimaryDiagnosisClinicallyAgreed is null and
+		StageDateFinalPretreatmentStage is null and
+		StageDateIntegratedStage is null and
+		TreatmentStartDateCancer is null and
+		ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV9TobaccoSmokingStatus%20mapping){: .btn }
 ### CosdV9PersonSexualOrientationCodeAtDiagnosis
 * Value copied from `PersonSexualOrientationCodeAtDiagnosis`
 
@@ -2513,6 +2657,54 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV9AsaScore%20mapping){: .btn }
+### CosdV8SmokingStatusCode
+* Value copied from `SmokingStatusCode`
+
+* `SmokingStatusCode` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
+
+```sql
+with CO as (
+select 
+  Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+coalesce(Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[0].CancerTreatmentStartDate', Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.CancerTreatmentStartDate') as CancerTreatmentStartDate,
+coalesce(Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment[0].ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate', Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreTreatment.ColorectalCoreSurgeryAndOtherProcedures.ProcedureDate') as ProcedureDate,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatusCode.@code' as SmokingStatusCode,
+Record ->> '$.Colorectal.ColorectalCore.ColorectalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+from omop_staging.cosd_staging_81
+where Type = 'CO'
+)
+select
+      distinct
+          SmokingStatusCode,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from CO o
+where o.SmokingStatusCode is not null
+  and not (
+		DateFirstSeen is null and
+		SpecialistDateFirstSeen is null and
+		ClinicalDateCancerDiagnosis is null and
+		IntegratedStageTNMStageGroupingDate is null and
+		FinalPreTreatmentTNMStageGroupingDate is null and
+		CancerTreatmentStartDate is null and
+		ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV8SmokingStatusCode%20mapping){: .btn }
 ### CosdV8PersonStatedSexualOrientationCodeAtDiagnosis
 * Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
 
@@ -2817,6 +3009,66 @@ where o.AsaScore is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20CosdV9BreastAsaScore%20mapping){: .btn }
+### COSD V8 Breast Smoking Status Code
+* Value copied from `SmokingStatusCode`
+
+* `SmokingStatusCode` Smoking Status Code [TobaccoSmokingStatus]()
+
+```sql
+with BR as (
+    select 
+        Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.Breast.BreastCore.BreastCoreReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as SpecialistDateFirstSeen,
+        Record ->> '$.Breast.BreastCore.BreastCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
+        Record ->> '$.Breast.BreastCore.BreastCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
+        Record ->> '$.Breast.BreastCore.BreastCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
+        unnest(
+            [
+                [Record ->> '$.Breast.BreastCore.BreastCoreTreatment.CancerTreatmentStartDate'], 
+                Record ->> '$.Breast.BreastCore.BreastCoreTreatment[*].CancerTreatmentStartDate'
+            ], 
+            recursive := true
+        ) as CancerTreatmentStartDate,
+        unnest(
+            [
+                [Record ->> '$.Breast.BreastCore.BreastCoreTreatment.BreastCoreSurgery.ProcedureDate'], 
+                Record ->> '$.Breast.BreastCore.BreastCoreTreatment[*].BreastCoreSurgery.ProcedureDate'
+            ], 
+            recursive := true
+        ) as ProcedureDate,
+        Record ->> '$.Breast.BreastCore.BreastCoreClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCode,
+        Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_81
+    where Type = 'BR'
+)
+select
+      distinct
+          SmokingStatusCode,
+          NhsNumber,
+          least(
+                cast (DateFirstSeen as date),
+                cast (SpecialistDateFirstSeen as date),
+                cast (ClinicalDateCancerDiagnosis as date),
+                cast (IntegratedStageTNMStageGroupingDate as date),
+                cast (FinalPreTreatmentTNMStageGroupingDate as date),
+                cast (CancerTreatmentStartDate as date),
+                cast (ProcedureDate as date)
+              ) as Date
+from BR o
+where o.SmokingStatusCode is not null
+  and not (
+    DateFirstSeen is null and
+    SpecialistDateFirstSeen is null and
+    ClinicalDateCancerDiagnosis is null and
+    IntegratedStageTNMStageGroupingDate is null and
+    FinalPreTreatmentTNMStageGroupingDate is null and
+    CancerTreatmentStartDate is null and
+    ProcedureDate is null
+    );
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20Breast%20Smoking%20Status%20Code%20mapping){: .btn }
 ### COSD V8 Breast Person Stated Sexual Orientation Code At Diagnosis
 * Value copied from `PersonStatedSexualOrientationCodeAtDiagnosis`
 

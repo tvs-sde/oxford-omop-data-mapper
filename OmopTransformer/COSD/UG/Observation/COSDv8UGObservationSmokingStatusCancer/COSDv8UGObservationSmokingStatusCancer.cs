@@ -21,10 +21,10 @@ internal class COSDv8UGObservationSmokingStatusCancer : OmopObservation<COSDv8UG
     [CopyValue(nameof(Source.SmokingStatusCancer))]
     public override string? observation_source_value { get; set; }
 
-    [ConstantValue(43054909, "Tobacco smoking status")]
+    [ConstantValue(648645, "Smoking status")]
     public override int[]? observation_concept_id { get; set; }
 
-    [Transform(typeof(SmokingStatusCancerLookup), nameof(Source.SmokingStatusCancer))]
+    [Transform(typeof(SmokingStatusLookup), nameof(Source.SmokingStatusCancer))]
     public override int? value_as_concept_id { get; set; }
 
     [CopyValue(nameof(Source.SmokingStatusCancer))]

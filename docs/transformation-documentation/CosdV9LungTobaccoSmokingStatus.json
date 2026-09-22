@@ -22,7 +22,7 @@
     },
     {
       "name": "observation_concept_id",
-      "operation_description": "Constant value set to `43054909`. Tobacco smoking status",
+      "operation_description": "Constant value set to `648645`. Smoking status",
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null
@@ -119,8 +119,26 @@
       "lookup_table_markdown": null
     },
     {
-      "name": "value_as_number",
-      "operation_description": "Converts text to number.",
+      "name": "value_as_concept_id",
+      "operation_description": "Lookup smoking status concept.",
+      "dataSource": [
+        {
+          "name": "TobaccoSmokingStatus",
+          "description": "SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only.",
+          "origins": [
+            {
+              "origin": "SMOKING STATUS (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith LU as (\n    select\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,\n        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,\n        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,\n        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,\n        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,\n        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,\n        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as TobaccoSmokingStatus,\n        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n    from omop_staging.cosd_staging_901\n    where type = 'LU'\n)\nselect\n    distinct\n        TobaccoSmokingStatus,\n        NhsNumber,\n        least(\n            cast(DateFirstSeen as date),\n            cast(DateFirstSeenCancerSpecialist as date),\n            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n            cast(StageDateFinalPretreatmentStage as date),\n            cast(nullif(StageDateIntegratedStage, '') as date),\n            cast(TreatmentStartDateCancer as date),\n            cast(ProcedureDate as date)\n        ) as Date\nfrom LU o\nwhere o.TobaccoSmokingStatus is not null\n  and not (\n        DateFirstSeen is null and\n        DateFirstSeenCancerSpecialist is null and\n        DateOfPrimaryDiagnosisClinicallyAgreed is null and\n        StageDateFinalPretreatmentStage is null and\n        StageDateIntegratedStage is null and\n        TreatmentStartDateCancer is null and\n        ProcedureDate is null\n    )\n    ",
+      "lookup_table_markdown": "\r\n\r\n|TobaccoSmokingStatus|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|36309332|Current smoker|\r\n|2|45883458|Former smoker|\r\n|4|45879404|Never smoker|\r\n|9||Unknown|\r\n\r\nNotes\r\n* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment\r\n"
+    },
+    {
+      "name": "value_source_value",
+      "operation_description": "Value copied from `TobaccoSmokingStatus`",
       "dataSource": [
         {
           "name": "TobaccoSmokingStatus",
