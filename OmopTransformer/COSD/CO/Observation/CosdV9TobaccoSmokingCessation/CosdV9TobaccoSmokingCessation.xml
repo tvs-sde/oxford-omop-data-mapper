@@ -29,6 +29,7 @@ select
 		) as Date
 from CO o
 where o.TobaccoSmokingCessation is not null
+and o.TobaccoSmokingCessation = '3'
   and not (
 		DateFirstSeen is null and
 		DateFirstSeenCancerSpecialist is null and

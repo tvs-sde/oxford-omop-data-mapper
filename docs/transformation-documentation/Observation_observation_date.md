@@ -1508,6 +1508,7 @@ select
         ) as Date
 from LU o
 where o.TobaccoSmokingCessation is not null
+and o.TobaccoSmokingCessation = '3'
   and not (
         DateFirstSeen is null and
         DateFirstSeenCancerSpecialist is null and
@@ -3084,6 +3085,7 @@ from omop_staging.cosd_staging_901
 where type = 'CT'
   and NhsNumber is not null
   and TobaccoSmokingCessationTreatmentIndicationCode is not null
+  and TobaccoSmokingCessationTreatmentIndicationCode = '3'
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
@@ -3327,6 +3329,7 @@ from omop_staging.cosd_staging_901
 where type = 'CR'
   and NhsNumber is not null
   and TobaccoSmokingCessationTreatmentIndicationCode is not null
+  and TobaccoSmokingCessationTreatmentIndicationCode = '3'
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
@@ -3669,6 +3672,7 @@ select
 		) as Date
 from CO o
 where o.TobaccoSmokingCessation is not null
+and o.TobaccoSmokingCessation = '3'
   and not (
 		DateFirstSeen is null and
 		DateFirstSeenCancerSpecialist is null and

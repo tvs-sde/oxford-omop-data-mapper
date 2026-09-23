@@ -11,6 +11,7 @@ from omop_staging.cosd_staging_901
 where type = 'CT'
   and NhsNumber is not null
   and TobaccoSmokingCessationTreatmentIndicationCode is not null
+  and TobaccoSmokingCessationTreatmentIndicationCode = '3'
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
     </Sql>
     <Explanations>

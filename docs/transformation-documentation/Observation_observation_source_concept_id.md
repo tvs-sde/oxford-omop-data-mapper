@@ -212,10 +212,6 @@ order by
 * Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
-### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
-* Constant value set to `4206526`. Smoking cessation behavior
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CT%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CT Observation Performance Status Adult
 * Constant value set to `3008030`. Physical performance [QAM]
 
@@ -228,10 +224,6 @@ order by
 * Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
-### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
-* Constant value set to `4206526`. Smoking cessation behavior
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20COSD%20V9%20CR%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CR Observation Performance Status Adult
 * Constant value set to `3008030`. Physical performance [QAM]
 

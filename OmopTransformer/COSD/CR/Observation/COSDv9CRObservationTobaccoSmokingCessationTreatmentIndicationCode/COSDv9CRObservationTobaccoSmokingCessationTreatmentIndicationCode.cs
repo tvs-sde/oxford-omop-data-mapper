@@ -18,15 +18,9 @@ internal class COSDv9CRObservationTobaccoSmokingCessationTreatmentIndicationCode
     [ConstantValue(32828, "EHR episode record")]
     public override int? observation_type_concept_id { get; set; }
 
-    [ConstantValue(4206526, "Smoking cessation behavior")]
-    public override int? observation_source_concept_id { get; set; }
-
-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+    [ConstantValue(44802474, "Smoking cessation advice declined")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.TobaccoSmokingCessationTreatmentIndicationCode))]
     public override string? observation_source_value { get; set; }
-
-    [CopyValue(nameof(Source.TobaccoSmokingCessationTreatmentIndicationCode))]
-    public override string? value_source_value { get; set; }
 }

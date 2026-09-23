@@ -1923,28 +1923,6 @@ where type = 'GY'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
-* Value copied from `TobaccoSmokingCessationTreatmentIndicationCode`
-
-* `TobaccoSmokingCessationTreatmentIndicationCode` Indication of whether treatment was given to the patient for tobacco smoking cessation. [TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE](https://www.datadictionary.nhs.uk/data_elements/tobacco_smoking_cessation_treatment_indication_code.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingCessation.@code'
-        as TobaccoSmokingCessationTreatmentIndicationCode
-from omop_staging.cosd_staging_901
-where type = 'CT'
-  and NhsNumber is not null
-  and TobaccoSmokingCessationTreatmentIndicationCode is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V9%20CT%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CT Observation Smoking Status Cancer
 * Value copied from `SmokingStatusCancer`
 
@@ -2156,28 +2134,6 @@ where type = 'CT'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
-### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
-* Value copied from `TobaccoSmokingCessationTreatmentIndicationCode`
-
-* `TobaccoSmokingCessationTreatmentIndicationCode` Indication of whether treatment was given to the patient for tobacco smoking cessation. [TOBACCO SMOKING CESSATION TREATMENT INDICATION CODE](https://www.datadictionary.nhs.uk/data_elements/tobacco_smoking_cessation_treatment_indication_code.html)
-
-```sql
-select distinct
-    Record ->> '$.LinkagePatientId.NhsNumber.@extension'
-        as NhsNumber,
-    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
-        as DateOfPrimaryDiagnosisClinicallyAgreed,
-    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingCessation.@code'
-        as TobaccoSmokingCessationTreatmentIndicationCode
-from omop_staging.cosd_staging_901
-where type = 'CR'
-  and NhsNumber is not null
-  and TobaccoSmokingCessationTreatmentIndicationCode is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20value_source_value%20field%20COSD%20V9%20CR%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CR Observation Smoking Status Cancer
 * Value copied from `SmokingStatusCancer`
 

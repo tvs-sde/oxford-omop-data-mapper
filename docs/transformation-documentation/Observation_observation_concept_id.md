@@ -260,7 +260,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungTobaccoSmokingStatus%20mapping){: .btn }
 ### CosdV9LungTobaccoSmokingCessation
-* Constant value set to `4206526`. Smoking cessation behavior
+* Constant value set to `44802474`. Smoking cessation advice declined
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungTobaccoSmokingCessation%20mapping){: .btn }
 ### CosdV9LungSurgicalAccessType
@@ -460,8 +460,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CT Observation Tobacco Smoking Cessation Treatment Indication Code
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `44802474`. Smoking cessation advice declined
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CT Observation Smoking Status Cancer
@@ -504,8 +503,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Alcohol%20History%20Cancer%20In%20Last%20Three%20Months%20mapping){: .btn }
 ### COSD V9 CR Observation Tobacco Smoking Cessation Treatment Indication Code
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `44802474`. Smoking cessation advice declined
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CR Observation Smoking Status Cancer
@@ -557,7 +555,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9TobaccoSmokingStatus%20mapping){: .btn }
 ### CosdV9TobaccoSmokingCessation
-* Constant value set to `4206526`. Smoking cessation behavior
+* Constant value set to `44802474`. Smoking cessation advice declined
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9TobaccoSmokingCessation%20mapping){: .btn }
 ### CosdV9SourceOfReferralForOutpatients

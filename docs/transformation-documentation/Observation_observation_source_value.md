@@ -833,6 +833,55 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
+### CosdV9LungTobaccoSmokingCessation
+* Value copied from `TobaccoSmokingCessation`
+
+* `TobaccoSmokingCessation` SMOKING CESSATION (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify the patient's current smoking cessation support during a Cancer Care Spell. [SMOKING CESSATION (CANCER)]()
+
+```sql
+with LU as (
+    select
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
+        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
+        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
+        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
+        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
+        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingCessation.@code' as TobaccoSmokingCessation,
+        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
+    from omop_staging.cosd_staging_901
+    where type = 'LU'
+)
+select
+    distinct
+        TobaccoSmokingCessation,
+        NhsNumber,
+        least(
+            cast(DateFirstSeen as date),
+            cast(DateFirstSeenCancerSpecialist as date),
+            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
+            cast(StageDateFinalPretreatmentStage as date),
+            cast(nullif(StageDateIntegratedStage, '') as date),
+            cast(TreatmentStartDateCancer as date),
+            cast(ProcedureDate as date)
+        ) as Date
+from LU o
+where o.TobaccoSmokingCessation is not null
+and o.TobaccoSmokingCessation = '3'
+  and not (
+        DateFirstSeen is null and
+        DateFirstSeenCancerSpecialist is null and
+        DateOfPrimaryDiagnosisClinicallyAgreed is null and
+        StageDateFinalPretreatmentStage is null and
+        StageDateIntegratedStage is null and
+        TreatmentStartDateCancer is null and
+        ProcedureDate is null
+    )
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9LungTobaccoSmokingCessation%20mapping){: .btn }
 ### CosdV9LungAsaScore
 * Value copied from `AsaScoreDescription`
 
@@ -1691,6 +1740,7 @@ from omop_staging.cosd_staging_901
 where type = 'CT'
   and NhsNumber is not null
   and TobaccoSmokingCessationTreatmentIndicationCode is not null
+  and TobaccoSmokingCessationTreatmentIndicationCode = '3'
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
@@ -1924,6 +1974,7 @@ from omop_staging.cosd_staging_901
 where type = 'CR'
   and NhsNumber is not null
   and TobaccoSmokingCessationTreatmentIndicationCode is not null
+  and TobaccoSmokingCessationTreatmentIndicationCode = '3'
   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
 ```
 
