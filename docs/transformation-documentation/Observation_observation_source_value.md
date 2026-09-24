@@ -885,6 +885,8 @@ and o.TobaccoSmokingCessation = '3'
 ### CosdV9LungAsaScore
 * Value copied from `AsaScoreDescription`
 
+* `AsaScoreDescription` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
 ```sql
 with LU as (
     select
@@ -2263,6 +2265,8 @@ where o.PersonSexualOrientationCodeAtDiagnosis is not null
 ### CosdV9AsaScore
 * Value copied from `AsaScoreDescription`
 
+* `AsaScoreDescription` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
 ```sql
 with CO as (
 	select
@@ -2353,6 +2357,8 @@ where o.PersonStatedSexualOrientationCodeAtDiagnosis is not null
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9BreastAsaScore
 * Value copied from `AsaScoreDescription`
+
+* `AsaScoreDescription` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
 
 ```sql
 with BR as (

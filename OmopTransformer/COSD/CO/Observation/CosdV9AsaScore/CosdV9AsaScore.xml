@@ -57,6 +57,10 @@ where o.AsaScore is not null
 		   <Description>The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure.</Description>
 		   <Origin>ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE</Origin>
 		</Explanation>
+		 <Explanation columnName="AsaScoreDescription">
+		   <Description>The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure.</Description>
+		   <Origin>ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE</Origin>
+		</Explanation>
       <Explanation columnName="Date" >
     	  <Description>Observation date</Description>
     	  <Origin>DATE FIRST SEEN</Origin>
