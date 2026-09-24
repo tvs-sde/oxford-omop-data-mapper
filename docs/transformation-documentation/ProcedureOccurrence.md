@@ -147,6 +147,10 @@ has_toc: false
 <a href="COSDv8LVProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8LVProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8LVProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## CosdV9LungProcedureOccurrenceTobaccoSmokingCessation
+<a href="CosdV9LungProcedureOccurrenceTobaccoSmokingCessation.svg" target="_blank"><img src="CosdV9LungProcedureOccurrenceTobaccoSmokingCessation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV9LungProcedureOccurrenceTobaccoSmokingCessation%20mapping){: .btn }
 ## CosdV9LungProcedureOccurrenceRelapseMethodOfDetection
 <a href="CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.svg" target="_blank"><img src="CosdV9LungProcedureOccurrenceRelapseMethodOfDetection.svg" /></a>
 
@@ -266,6 +270,10 @@ has_toc: false
 <a href="COSDv8GYProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8GYProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8GYProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode
+<a href="COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode.svg" target="_blank"><img src="COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode%20mapping){: .btn }
 ## COSDv901CTProcedureOccurrenceProcedureOpcs
 <a href="COSDv901CTProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv901CTProcedureOccurrenceProcedureOpcs.svg" /></a>
 
@@ -278,6 +286,10 @@ has_toc: false
 <a href="COSDv8CTProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8CTProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8CTProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode
+<a href="COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode.svg" target="_blank"><img src="COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode%20mapping){: .btn }
 ## COSDv9CRProcedureOccurrenceProcedureOPCS
 <a href="COSDv9CRProcedureOccurrenceProcedureOPCS.svg" target="_blank"><img src="COSDv9CRProcedureOccurrenceProcedureOPCS.svg" /></a>
 
@@ -294,6 +306,10 @@ has_toc: false
 <a href="COSDv8CRProcedureOccurrencePrimaryProcedureOPCS.svg" target="_blank"><img src="COSDv8CRProcedureOccurrencePrimaryProcedureOPCS.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8CRProcedureOccurrencePrimaryProcedureOPCS%20mapping){: .btn }
+## COSDv9COProcedureOccurrenceSmokingCessationTreatment
+<a href="COSDv9COProcedureOccurrenceSmokingCessationTreatment.svg" target="_blank"><img src="COSDv9COProcedureOccurrenceSmokingCessationTreatment.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9COProcedureOccurrenceSmokingCessationTreatment%20mapping){: .btn }
 ## COSDv9COProcedureOccurrenceProcedureOpcs
 <a href="COSDv9COProcedureOccurrenceProcedureOpcs.svg" target="_blank"><img src="COSDv9COProcedureOccurrenceProcedureOpcs.svg" /></a>
 

@@ -680,6 +680,10 @@ using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceDia
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrencePrimaryProcedureOPCS;
 using OmopTransformer.COSD.GY.ProcedureOccurrence.COSDv9GYProcedureOccurrenceProcedureOPCS;
 using OmopTransformer.COSD.BR.ConditionOccurrence.CosdV9BreastConditionOccurrenceMenopausalStatus;
+using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv9COProcedureOccurrenceSmokingCessationTreatment;
+using OmopTransformer.COSD.CR.ProcedureOccurrence.COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode;
+using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode;
+using OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV9LungProcedureOccurrenceTobaccoSmokingCessation;
 
 namespace OmopTransformer.COSD;
 
@@ -1031,6 +1035,12 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV9LungProcedureOccurrenceRelapseMethodOfDetectionRecord, CosdV9LungProcedureOccurrenceRelapseMethodOfDetection>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "Cosd V9 Lung Procedure Occurrence Relapse Method Of Detection",
+            runId,
+            cancellationToken);
+
+        await Transform<CosdV9LungProcedureOccurrenceTobaccoSmokingCessationRecord, CosdV9LungProcedureOccurrenceTobaccoSmokingCessation>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 Lung Procedure Occurrence Smoking Cessation Treatment",
             runId,
             cancellationToken);
 
@@ -2028,6 +2038,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCodeRecord, COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CT Procedure Occurrence Smoking Cessation Treatment",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv8LVMeasurementAdultComorbidityEvaluationRecord, COSDv8LVMeasurementAdultComorbidityEvaluation>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSD V8 LV Measurement Adult Comorbidity Evaluation",
@@ -2169,6 +2185,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9COProcedureOccurrenceProcedureOpcsRecord, COSDv9COProcedureOccurrenceProcedureOpcs>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V9 CO Procedure Occurrence Procedure Opcs",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9COProcedureOccurrenceSmokingCessationTreatmentRecord, COSDv9COProcedureOccurrenceSmokingCessationTreatment>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CO Procedure Occurrence Smoking Cessation Treatment",
             runId,
             cancellationToken);
 
@@ -3496,6 +3518,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9CRProcedureOccurrenceProcedureOPCSRecord, COSDv9CRProcedureOccurrenceProcedureOPCS>(
             _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
             "COSD V9 CR Procedure Occurrence Procedure OPCS",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCodeRecord, COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode>(
+            _procedureOccurrenceRecorder.InsertUpdateProcedureOccurrence,
+            "COSD V9 CR Procedure Occurrence Smoking Cessation Treatment",
             runId,
             cancellationToken);
 

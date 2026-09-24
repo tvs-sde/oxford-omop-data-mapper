@@ -134,6 +134,10 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V8%20LV%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 LU Procedure Occurrence Tobacco Smoking Cessation
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V9%20LU%20Procedure%20Occurrence%20Tobacco%20Smoking%20Cessation%20mapping){: .btn }
 ### CosdV9LungProcedureOccurrenceRelapseMethodOfDetection
 * Constant value set to `32828`. `EHR episode record`
 
@@ -222,6 +226,10 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V8%20GY%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CT Procedure Occurrence Tobacco Smoking Cessation Treatment Indication Code
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V9%20CT%20Procedure%20Occurrence%20Tobacco%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V901 CT Procedure Occurrence Procedure Opcs
 * Constant value set to `32828`. `EHR episode record`
 
@@ -234,6 +242,10 @@ has_toc: false
 * Constant value set to `32828`. `EHR episode record`
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V8%20CT%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CR Procedure Occurrence Smoking Cessation Treatment Indication Code
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V9%20CR%20Procedure%20Occurrence%20Smoking%20Cessation%20Treatment%20Indication%20Code%20mapping){: .btn }
 ### COSD V9 CR Procedure Occurrence Procedure OPCS
 * Constant value set to `32828`. EHR episode record
 
@@ -250,6 +262,10 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V8%20CR%20Procedure%20Occurrence%20Primary%20Procedure%20OPCS%20mapping){: .btn }
+### COSD V9 CO Procedure Occurrence Smoking Cessation Treatment
+* Constant value set to `32828`. `EHR episode record`
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20COSD%20V9%20CO%20Procedure%20Occurrence%20Smoking%20Cessation%20Treatment%20mapping){: .btn }
 ### COSD V9 CO Procedure Occurrence Procedure Opcs
 * Constant value set to `32828`. `EHR episode record`
 
