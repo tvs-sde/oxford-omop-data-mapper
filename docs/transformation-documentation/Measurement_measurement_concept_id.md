@@ -691,6 +691,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -713,7 +714,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'UR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -1320,6 +1320,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -1345,7 +1346,6 @@ select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_81
 where type = 'UR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -1701,20 +1701,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -1918,6 +1918,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -1936,7 +1937,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'UG'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -2307,6 +2307,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -2333,8 +2334,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from UG
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -3130,6 +3130,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -3148,7 +3149,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'SK'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -3746,6 +3746,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -3772,8 +3773,7 @@ select distinct
 	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from SK
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -4391,6 +4391,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -4409,7 +4410,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'SA'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -5011,6 +5011,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -5037,8 +5038,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from SA
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -5634,6 +5634,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -5652,7 +5653,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'LV'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
@@ -5970,6 +5970,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -5996,8 +5997,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from lv
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
 
@@ -6458,7 +6458,7 @@ select
   distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
@@ -6544,7 +6544,7 @@ select
   distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
@@ -6602,6 +6602,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -6621,7 +6622,6 @@ select
         Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where Type = 'LU'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null
   and NhsNumber is not null
 	
@@ -6629,10 +6629,6 @@ where Type = 'LU'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V9%20Lung%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
-### CosdV9LungMeasurementAdultComorbidityEvaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20CosdV9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V8 Lung Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.
@@ -7246,6 +7242,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -7272,18 +7269,13 @@ select distinct
 	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from lung
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null
+where GradeOfDifferentiationAtDiagnosis is not null
 and NHSNumber is not null;
 	
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20COSD%20V8%20Lung%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
-### CosdV8LungMeasurementAdultComorbidityEvaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20CosdV8LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V9 HN Measurement Tnm Stage Grouping Integrated
 Source column  `TnmStageGroupingIntegrated`.
 Lookup TNMCategory concepts.
@@ -7883,6 +7875,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -7904,7 +7897,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'HN'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
@@ -8525,6 +8517,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -8555,8 +8548,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from hn
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
 
@@ -8730,20 +8722,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -8784,20 +8776,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -8838,20 +8830,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -8976,6 +8968,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -8995,7 +8988,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'HA'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -9146,20 +9138,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -9187,20 +9179,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -9240,6 +9232,7 @@ Lookup GradeDifferentiation concepts.
 
 |DiagnosisGradeOfDifferentiation|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -9729,20 +9722,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -9782,20 +9775,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -9835,20 +9828,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -10352,20 +10345,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -10392,20 +10385,20 @@ METASTATIC SITE (AT DIAGNOSIS)
 
 |MetastaticSite|measurement_concept_id|notes|
 |------|-----|-----|
-|01|36769301|Bone (Retired 1 July 2012)|
-|02|36768862|Brain|
-|03|36770544|Liver|
-|04|36770283|Lung|
-|05|36769180|Other metastatic site (Retired 1 July 2012)|
-|06|36769180|Multiple metastatic sites (Retired 1 April 2018)|
-|07|35226309|Unknown metastatic site|
-|08|35225673|Skin|
-|09|36768964|Distant Lymph Nodes|
-|10|36769301|Bone (excluding Bone Marrow)|
-|11|35226074|Bone marrow|
-|12|36768989|Regional Lymph Nodes|
-|98|36769180|Other metastatic site (not listed)|
-|99|36769180|Other metastatic site (Retired 1 April 2018)|
+|01|0|Bone (Retired 1 July 2012)|
+|02|0|Brain|
+|03|0|Liver|
+|04|0|Lung|
+|05|0|Other metastatic site (Retired 1 July 2012)|
+|06|0|Multiple metastatic sites (Retired 1 April 2018)|
+|07|0|Unknown metastatic site|
+|08|0|Skin|
+|09|0|Distant Lymph Nodes|
+|10|0|Bone (excluding Bone Marrow)|
+|11|0|Bone marrow|
+|12|0|Regional Lymph Nodes|
+|98|0|Other metastatic site (not listed)|
+|99|0|Other metastatic site (Retired 1 April 2018)|
 |97|0|Not Applicable (Disease not spread)|
 
 
@@ -11259,6 +11252,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -11280,7 +11274,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'CT'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -11840,6 +11833,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -11870,8 +11864,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from CT
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -12447,6 +12440,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -12465,7 +12459,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'CR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -13056,6 +13049,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -13082,8 +13076,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from cr
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -13736,6 +13729,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -13755,7 +13749,6 @@ select
         Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis,
 from omop_staging.cosd_staging_901
 where Type = 'CO'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null
 	
 ```
@@ -14410,6 +14403,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -14436,8 +14430,7 @@ select distinct
 	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from CO
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -15101,6 +15094,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -15126,8 +15120,7 @@ select distinct
     DateOfPrimaryDiagnosisClinicallyAgreed,
     GradeOfDifferentiationAtDiagnosis
 from BR
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -15664,6 +15657,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -15690,8 +15684,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BR
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -16059,6 +16052,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -16077,7 +16071,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'BA'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -16171,6 +16164,7 @@ Lookup GradeDifferentiation concepts.
 
 |GradeOfDifferentiationAtDiagnosis|measurement_concept_id|notes|
 |------|-----|-----|
+|GX|0|GX grade|
 |G1|36768162|Grade 1: Well differentiated|
 |G2|36770626|Grade 2: Moderately differentiated|
 |G3|36769666|Grade 3: Poorly differentiated|
@@ -16197,8 +16191,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BA
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null
+where GradeOfDifferentiationAtDiagnosis is not null
   and GradeOfDifferentiationAtDiagnosis != ''
 	
 ```

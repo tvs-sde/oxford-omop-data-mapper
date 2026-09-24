@@ -12,14 +12,17 @@ internal abstract class OmopObservation<T> : IOmopRecord<T>
     public virtual double? value_as_number { get; set; }
     public virtual string? value_as_string { get; set; }
     public virtual int? value_as_concept_id { get; set; }
+    public virtual DateOnly? value_as_date { get; set; }
     public virtual int? qualifier_concept_id { get; set; }
     public virtual int? unit_concept_id { get; set; }
     public virtual int? provider_id { get; set; }
     public virtual string? observation_source_value { get; set; }
     public virtual int? observation_source_concept_id { get; set; }
     public virtual string? unit_source_value { get; set; }
+    public virtual int? unit_source_concept_id { get; set; }
     public virtual string? qualifier_source_value { get; set; }
     public virtual string? value_source_value { get; set; }
+    public virtual int? value_as_source_concept_id { get; set; }
     public virtual int? observation_event_id { get; set; }
     public virtual int? obs_event_field_concept_id { get; set; }
     public string OmopTargetTypeDescription => "Observation";

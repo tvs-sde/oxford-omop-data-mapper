@@ -295,8 +295,12 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `647671`. Physical status classification ASA
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungAsaScore%20mapping){: .btn }
+### CosdV9LungAdultComorbidityEvaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungAdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV8LungSurgicalAccessType
-* Constant value set to `4148968`. Surgical access
+* Constant value set to `4301351`. Surgical access
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungSurgicalAccessType%20mapping){: .btn }
 ### CosdV8LungSourceOfReferralOutPatients
@@ -327,6 +331,10 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4309681`. General physical performance status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAdultPerformanceStatus%20mapping){: .btn }
+### CosdV8LungAdultComorbidityEvaluation
+* Constant value set to `40488785`. Adult comorbidity evaluation-27
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V9 HN Observation Smoking Status Cancer
 * Constant value set to `648645`. Smoking status
 

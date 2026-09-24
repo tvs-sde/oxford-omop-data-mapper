@@ -10,7 +10,7 @@ has_children: true
 
 # Transformation Documentation
 
-This section of the site covers the documentation for the mappings completed so far from various sources to OMOP v5.4.
+This section of the site covers the documentation for the mappings completed so far from various sources to OMOP v5.5.
 
 The page is structured based on the OMOP tables mapped. Underneath each table page you will find:
 

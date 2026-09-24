@@ -1,6 +1,5 @@
 <Query>
     <Sql>
-
 with LU as (
     select 
         Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
@@ -27,7 +26,7 @@ select
                 cast (FinalPreTreatmentTNMStageGroupingDate as date),
                 cast (CancerTreatmentStartDate as date),
                 cast (ProcedureDate as date)
-              ) as MeasurementDate
+              ) as Date
 from LU o
 where o.AdultComorbidityEvaluation is not null
   and not (
@@ -39,19 +38,25 @@ where o.AdultComorbidityEvaluation is not null
         CancerTreatmentStartDate is null and
         ProcedureDate is null
     )
-	</Sql>
+    </Sql>
     <Explanations>
-	    <Explanation columnName="NhsNumber">
-		    <Description>Patient NHS Number</Description>
-		    <Origin>NHS NUMBER</Origin>
-	    </Explanation>
-	    <Explanation columnName="MeasurementDate">
-			<Description>Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates)</Description>
-			<Origin>Multiple date sources</Origin>
+      <Explanation columnName="NHSNumber">
+    	  <Description>Patient NHS Number</Description>
+    	  <Origin>NHS NUMBER</Origin>
+      </Explanation>
+		 <Explanation columnName="AdultComorbidityEvaluation">
+		   <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+		   <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
 		</Explanation>
-		<Explanation columnName="AdultComorbidityEvaluation">
-			<Description>Adult Comorbidity Evaluation-27 score indicating the severity of comorbid conditions</Description>
-			<Origin>ADULT COMORBIDITY EVALUATION-27 SCORE</Origin>
-		</Explanation>
-	</Explanations>
+      <Explanation columnName="Date" >
+    	  <Description>Observation date</Description>
+    	  <Origin>DATE FIRST SEEN</Origin>
+    	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
+    	  <Origin>DIAGNOSIS DATE</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
+    	  <Origin>TREATMENT START DATE (CANCER)</Origin>
+    	  <Origin>PROCEDURE DATE</Origin>
+      </Explanation>
+    </Explanations>
 </Query>

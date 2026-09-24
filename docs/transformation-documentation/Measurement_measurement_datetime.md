@@ -560,7 +560,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'UR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -965,7 +964,6 @@ select distinct
     Record ->> '$.Urological.UrologicalCore.UrologicalCoreDiagnosis.DiagnosisGradeOfDifferentiation.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_81
 where type = 'UR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -1260,7 +1258,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'UG'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -1524,8 +1521,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from UG
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -1968,7 +1964,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'SK'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -2342,8 +2337,7 @@ select distinct
 	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from SK
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -2737,7 +2731,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'SA'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -3162,8 +3155,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from SA
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -3512,7 +3504,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'LV'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
@@ -3744,8 +3735,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from lv
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
 
@@ -4003,7 +3993,7 @@ select
   distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.NCategoryIntegratedStage' as NCategoryIntegratedStage
@@ -4044,14 +4034,14 @@ where type = 'LU'
 Source column  `MeasurementDate`.
 Converts text to dates.
 
-* `MeasurementDate` The date of the staging measurement, using the stage date if available, otherwise the diagnosis date. [STAGE DATE INTEGRATED STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)]()
+* `MeasurementDate` The date of the staging measurement, using the stage date if available, otherwise the diagnosis date. [STAGE DATE FINAL PRETREATMENT STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)]()
 
 ```sql
 select 
   distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
@@ -4102,7 +4092,6 @@ select
         Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where Type = 'LU'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null
   and NhsNumber is not null
 	
@@ -4110,54 +4099,6 @@ where Type = 'LU'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V9%20Lung%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
-### CosdV9LungMeasurementAdultComorbidityEvaluation
-* Value copied from `MeasurementDate`
-
-* `MeasurementDate` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with LU as (
-    select
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.PrimaryPathway.ReferralAndFirstStageOfPatientPathway.DateFirstSeenCancerSpecialist' as DateFirstSeenCancerSpecialist,
-        Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,
-        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage' as StageDateFinalPretreatmentStage,
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
-        Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
-        Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
-        Record ->> '$.CancerCarePlan.AdultComorbidityEvaluation-27Score.@code' as AdultComorbidityEvaluation,
-        Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_901
-    where type = 'LU'
-)
-select
-    distinct
-        AdultComorbidityEvaluation,
-        NhsNumber,
-        least(
-            cast(DateFirstSeen as date),
-            cast(DateFirstSeenCancerSpecialist as date),
-            cast(DateOfPrimaryDiagnosisClinicallyAgreed as date),
-            cast(StageDateFinalPretreatmentStage as date),
-            cast(nullif(StageDateIntegratedStage, '') as date),
-            cast(TreatmentStartDateCancer as date),
-            cast(ProcedureDate as date)
-        ) as MeasurementDate
-from LU o
-where o.AdultComorbidityEvaluation is not null
-  and not (
-        DateFirstSeen is null and
-        DateFirstSeenCancerSpecialist is null and
-        DateOfPrimaryDiagnosisClinicallyAgreed is null and
-        StageDateFinalPretreatmentStage is null and
-        StageDateIntegratedStage is null and
-        TreatmentStartDateCancer is null and
-        ProcedureDate is null
-    )
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20CosdV9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V8 Lung Measurement Tumour Laterality
 Source column  `MeasurementDate`.
 Converts text to dates.
@@ -4509,63 +4450,13 @@ select distinct
 	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from lung
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null
+where GradeOfDifferentiationAtDiagnosis is not null
 and NHSNumber is not null;
 	
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20COSD%20V8%20Lung%20Measurement%20Grade%20of%20Differentiation%20(At%20Diagnosis)%20mapping){: .btn }
-### CosdV8LungMeasurementAdultComorbidityEvaluation
-* Value copied from `MeasurementDate`
-
-* `MeasurementDate` Approximated date from earliest available date field (first seen, diagnosis, staging, or treatment dates) [Multiple date sources]()
-
-```sql
-with LU as (
-    select 
-        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.DateFirstSeen' as DateFirstSeen,
-        Record ->> '$.Lung.LungCore.LungCoreReferralAndFirstStageOfPatientPathway.SpecialistDateFirstSeen' as SpecialistDateFirstSeen,
-        Record ->> '$.Lung.LungCore.LungCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as ClinicalDateCancerDiagnosis,
-        Record ->> '$.Lung.LungCore.LungCoreStaging.IntegratedStageTNMStageGroupingDate' as IntegratedStageTNMStageGroupingDate,
-        Record ->> '$.Lung.LungCore.LungCoreStaging.FinalPreTreatmentTNMStageGroupingDate' as FinalPreTreatmentTNMStageGroupingDate,
-        unnest ([[Record ->> '$.Lung.LungCore.LungCoreTreatment.CancerTreatmentStartDate'], Record ->> '$.Lung.LungCore.LungCoreTreatment[*].CancerTreatmentStartDate'], recursive := true) as CancerTreatmentStartDate,
-        Record ->> '$.Lung.LungCore.LungCoreTreatment.LungCoreSurgeryAndOtherProcedures.ProcedureDate' as ProcedureDate,
-        Record ->> '$.Lung.LungCore.LungCoreCancerCarePlan.AdultComorbidityEvaluation.@code' as AdultComorbidityEvaluation,
-        Record ->> '$.Lung.LungCore.LungCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
-    from omop_staging.cosd_staging_81
-    where Type = 'LU'
-)
-select
-      distinct
-          AdultComorbidityEvaluation,
-          NhsNumber,
-          least(
-                cast (DateFirstSeen as date),
-                cast (SpecialistDateFirstSeen as date),
-                cast (ClinicalDateCancerDiagnosis as date),
-                cast (IntegratedStageTNMStageGroupingDate as date),
-                cast (FinalPreTreatmentTNMStageGroupingDate as date),
-                cast (CancerTreatmentStartDate as date),
-                cast (ProcedureDate as date)
-              ) as MeasurementDate
-from LU o
-where o.AdultComorbidityEvaluation is not null
-  and not (
-        DateFirstSeen is null and
-        SpecialistDateFirstSeen is null and
-        ClinicalDateCancerDiagnosis is null and
-        IntegratedStageTNMStageGroupingDate is null and
-        FinalPreTreatmentTNMStageGroupingDate is null and
-        CancerTreatmentStartDate is null and
-        ProcedureDate is null
-    )
-	
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_datetime%20field%20CosdV8LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V9 HN Measurement Tnm Stage Grouping Integrated
 Source column  `MeasurementDate`.
 Converts text to dates.
@@ -4890,7 +4781,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'HN'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
@@ -5299,8 +5189,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from hn
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 ```
 
 
@@ -5601,7 +5490,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'HA'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -7039,7 +6927,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'CT'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -7440,8 +7327,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from CT
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -7786,7 +7672,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'CR'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -8159,8 +8044,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from cr
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -8550,7 +8434,6 @@ select
         Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis,
 from omop_staging.cosd_staging_901
 where Type = 'CO'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null
 	
 ```
@@ -8991,8 +8874,7 @@ select distinct
 	coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
 	GradeOfDifferentiationAtDiagnosis
 from CO
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -9417,8 +9299,7 @@ select distinct
     DateOfPrimaryDiagnosisClinicallyAgreed,
     GradeOfDifferentiationAtDiagnosis
 from BR
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -9787,8 +9668,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BR
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null;
+where GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
 
@@ -10023,7 +9903,6 @@ select distinct
     Record ->> '$.PrimaryPathway.Diagnosis.GradeOfDifferentiationAtDiagnosis.@code' as GradeOfDifferentiationAtDiagnosis
 from omop_staging.cosd_staging_901
 where type = 'BA'
-  and GradeOfDifferentiationAtDiagnosis != 'GX'
   and GradeOfDifferentiationAtDiagnosis is not null;
 	
 ```
@@ -10099,8 +9978,7 @@ select distinct
     coalesce(ClinicalDateCancerDiagnosis, DateOfNonPrimaryCancerDiagnosisClinicallyAgreed) as MeasurementDate,
     GradeOfDifferentiationAtDiagnosis
 from BA
-where GradeOfDifferentiationAtDiagnosis != 'GX'
-  and GradeOfDifferentiationAtDiagnosis is not null
+where GradeOfDifferentiationAtDiagnosis is not null
   and GradeOfDifferentiationAtDiagnosis != ''
 	
 ```

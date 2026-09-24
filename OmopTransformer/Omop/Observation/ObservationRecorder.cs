@@ -49,14 +49,17 @@ internal class ObservationRecorder : IObservationRecorder
                                 .AppendValue((float?)row.value_as_number)
                                 .AppendValue(row.value_as_string)
                                 .AppendValue(row.value_as_concept_id)
+                                .AppendValue(row.value_as_date)
                                 .AppendValue(row.qualifier_concept_id)
                                 .AppendValue(row.unit_concept_id)
                                 .AppendValue(row.provider_id)
                                 .AppendValue(row.observation_source_value)
                                 .AppendValue(row.observation_source_concept_id)
                                 .AppendValue(row.unit_source_value)
+                                .AppendValue(row.unit_source_concept_id)
                                 .AppendValue(row.qualifier_source_value)
                                 .AppendValue(row.value_source_value)
+                                .AppendValue(row.value_as_source_concept_id)
                                 .AppendValue(row.observation_event_id)
                                 .AppendValue(row.obs_event_field_concept_id)
                                 .AppendValue(dataSource)
@@ -88,6 +91,7 @@ insert into cdm.observation (
     value_as_number,
     value_as_string,
     value_as_concept_id,
+    value_as_date,
     qualifier_concept_id,
     unit_concept_id,
     provider_id,
@@ -96,8 +100,10 @@ insert into cdm.observation (
     observation_source_value,
     observation_source_concept_id,
     unit_source_value,
+    unit_source_concept_id,
     qualifier_source_value,
     value_source_value,
+    value_as_source_concept_Id,
     observation_event_id,
     obs_event_field_concept_id,
     RecordConnectionIdentifier,
@@ -114,6 +120,7 @@ select
         r.value_as_number,
         r.value_as_string,
         r.value_as_concept_id,
+        r.value_as_date,
         r.qualifier_concept_id,
         r.unit_concept_id,
         r.provider_id,
@@ -136,8 +143,10 @@ select
         r.observation_source_value,
         r.observation_source_concept_id,
         r.unit_source_value,
+        r.unit_source_concept_id,
         r.qualifier_source_value,
         r.value_source_value,
+        r.value_as_source_concept_id,
         r.observation_event_id,
         r.obs_event_field_concept_id,
         r.RecordConnectionIdentifier,

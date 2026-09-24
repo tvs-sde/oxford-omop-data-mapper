@@ -4,7 +4,7 @@ select
   distinct
     Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,
     coalesce(
-        Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage',
+        Record ->> '$.PrimaryPathway.Staging.StageDateFinalPretreatmentStage',
         Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
     ) as MeasurementDate,
     Record ->> '$.PrimaryPathway.Staging.MCategoryIntegratedStage' as MCategoryIntegratedStage
@@ -20,7 +20,7 @@ where type = 'LU'
 	    </Explanation>
 	    <Explanation columnName="MeasurementDate">
 			<Description>The date of the staging measurement, using the stage date if available, otherwise the diagnosis date.</Description>
-			<Origin>STAGE DATE INTEGRATED STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+			<Origin>STAGE DATE FINAL PRETREATMENT STAGE / DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
 		</Explanation>
 		<Explanation columnName="MCategoryIntegratedStage">
 			<Description>The M category (distant metastasis) assigned to the tumour for the integrated stage.</Description>

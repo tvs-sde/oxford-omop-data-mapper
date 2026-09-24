@@ -16,10 +16,11 @@
   </g>
   <g>
     <rect x="445" y="20" width="400" height="400" fill="#3E5EB2" stroke="white" stroke-width="2" />
-    <text x="458" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">STAGE DATE INTEGRATED</text>
-    <text x="458" y="246" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">STAGE / DATE</text>
-    <text x="458" y="264" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">OF PRIMARY CANCER</text>
-    <text x="458" y="282" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">DIAGNOSIS (CLINICALLY AGREED)</text>
+    <text x="458" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">STAGE DATE FINAL</text>
+    <text x="458" y="246" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">PRETREATMENT STAGE /</text>
+    <text x="458" y="264" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">DATE OF PRIMARY</text>
+    <text x="458" y="282" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">CANCER DIAGNOSIS (CLINICALLY</text>
+    <text x="458" y="300" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">AGREED)</text>
   </g>
   <g>
     <line x1="645" y1="420" x2="645" y2="615" stroke="white" stroke-width="2" />
@@ -33,10 +34,11 @@
   </g>
   <g>
     <rect x="865" y="20" width="400" height="400" fill="#3E5EB2" stroke="white" stroke-width="2" />
-    <text x="878" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">STAGE DATE INTEGRATED</text>
-    <text x="878" y="246" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">STAGE / DATE</text>
-    <text x="878" y="264" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">OF PRIMARY CANCER</text>
-    <text x="878" y="282" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">DIAGNOSIS (CLINICALLY AGREED)</text>
+    <text x="878" y="228" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">STAGE DATE FINAL</text>
+    <text x="878" y="246" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">PRETREATMENT STAGE /</text>
+    <text x="878" y="264" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">DATE OF PRIMARY</text>
+    <text x="878" y="282" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">CANCER DIAGNOSIS (CLINICALLY</text>
+    <text x="878" y="300" fill="white" font-family="Helvetica" font-size="1.2em" text-anchor="start">AGREED)</text>
   </g>
   <g>
     <line x1="1065" y1="420" x2="1065" y2="615" stroke="white" stroke-width="2" />
