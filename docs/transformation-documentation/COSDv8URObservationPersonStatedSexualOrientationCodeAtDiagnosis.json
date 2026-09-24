@@ -86,7 +86,7 @@
         }
       ],
       "query": "\nselect distinct\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.Urological.UrologicalCore.UrologicalCoreDemographics.PersonStatedSexualOrientationCodeAtDiagnosis.@code' as PersonStatedSexualOrientationCodeAtDiagnosis\nfrom omop_staging.cosd_staging_81\nwhere type = 'UR'\n  and NhsNumber is not null\n  and PersonStatedSexualOrientationCodeAtDiagnosis is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
-      "lookup_table_markdown": "\r\n\r\n|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|36310681|Heterosexual|\r\n|2|36303203|Homosexual|\r\n|3|36307527|Bisexual|\r\n|4|45878142|Other|\r\n|U|36308454|Asked but unknown|\r\n|Z|45877986|Unknown|\r\n|9|45877986|Unknown|\r\n\r\nNotes\r\n* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment\r\n"
+      "lookup_table_markdown": "\r\n\r\n|PersonStatedSexualOrientationCodeAtDiagnosis|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|36310681|Heterosexual|\r\n|2|36303203|Homosexual|\r\n|3|36307527|Bisexual|\r\n|4|45878142|Other|\r\n|U|36308454|Asked but unknown|\r\n|Z|45877986|Unknown|\r\n|9|45877986|Unknown|\r\n\r\nNotes\r\n* [Sexual Orientation](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---demographics)\r\n"
     },
     {
       "name": "observation_source_value",

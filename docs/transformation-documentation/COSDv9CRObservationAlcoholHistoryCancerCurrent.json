@@ -86,7 +86,7 @@
         }
       ],
       "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'\n        as AlcoholHistoryCancerCurrent\nfrom omop_staging.cosd_staging_901\nwhere type = 'CR'\n  and NhsNumber is not null\n  and AlcoholHistoryCancerCurrent is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;\n    ",
-      "lookup_table_markdown": "\r\n\r\n|AlcoholHistoryCancerCurrent|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4336673|Heavy drinker|\r\n|2|4042862|Light drinker|\r\n|3|4022664|Non - drinker|\r\n|Z||Not Stated (patient asked but declined to provide a response)|\r\n|9||Not Known (Not recorded)|\r\n\r\nNotes\r\n* [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)\r\n"
+      "lookup_table_markdown": "\r\n\r\n|AlcoholHistoryCancerCurrent|value_as_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4336673|Heavy drinker|\r\n|2|4042862|Light drinker|\r\n|3|4022664|Non - drinker|\r\n|Z|0|Not Stated (patient asked but declined to provide a response)|\r\n|9|0|Not Known (Not recorded)|\r\n\r\nNotes\r\n* [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)\r\n"
     },
     {
       "name": "observation_source_value",

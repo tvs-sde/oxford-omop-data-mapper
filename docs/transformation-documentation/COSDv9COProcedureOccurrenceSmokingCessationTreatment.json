@@ -29,7 +29,7 @@
     },
     {
       "name": "procedure_date",
-      "operation_description": "Converts text to dates.",
+      "operation_description": "Value copied from `Date`",
       "dataSource": [
         {
           "name": "Date",

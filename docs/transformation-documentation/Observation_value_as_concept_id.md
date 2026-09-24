@@ -159,7 +159,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -250,7 +250,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -284,7 +284,7 @@ Lookup sexual orientation concept.
 |9|45877986|Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Sexual Orientation](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---demographics)
 
 * `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation as self-stated by the person at the point of cancer diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
 
@@ -375,7 +375,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -466,7 +466,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -566,7 +566,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -666,7 +666,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -766,7 +766,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -866,7 +866,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -966,7 +966,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -1176,7 +1176,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `TobaccoSmokingStatus` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -1233,8 +1233,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -1294,8 +1294,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -1429,7 +1429,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCode` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -1492,7 +1492,7 @@ Lookup sexual orientation concept.
 |9|45877986|Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Sexual Orientation](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---demographics)
 
 * `PersonStatedSexualOrientationCodeAtDiagnosis` The sexual orientation of a PERSON at the time of diagnosis. [PERSON STATED SEXUAL ORIENTATION CODE AT DIAGNOSIS](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code_at_diagnosis.html)
 
@@ -1537,8 +1537,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -1598,8 +1598,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -1662,7 +1662,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -1778,8 +1778,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -1813,8 +1813,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -1851,7 +1851,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -1973,8 +1973,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2008,8 +2008,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2046,7 +2046,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -2162,8 +2162,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2197,8 +2197,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2235,7 +2235,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -2357,8 +2357,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2392,8 +2392,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2430,7 +2430,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -2546,8 +2546,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2581,8 +2581,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2619,7 +2619,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -2741,8 +2741,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2776,8 +2776,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2814,7 +2814,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -2930,8 +2930,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -2965,8 +2965,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3003,7 +3003,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -3070,8 +3070,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3105,8 +3105,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3143,7 +3143,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -3259,8 +3259,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3294,8 +3294,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3332,7 +3332,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCancer` Used in the Cancer Outcomes and Services Data Set: Core to identify if the patient smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -3448,8 +3448,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3483,8 +3483,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3521,7 +3521,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `TobaccoSmokingStatus` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -3584,7 +3584,7 @@ Lookup sexual orientation concept.
 |9|45877986|Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Sexual Orientation](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---demographics)
 
 * `PersonSexualOrientationCodeAtDiagnosis` PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
 
@@ -3629,8 +3629,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3690,8 +3690,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3825,7 +3825,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCode` SMOKING STATUS (CANCER) is for use in the Cancer Outcomes and Services Data Set: Core to identify if the PATIENT smokes tobacco only. [SMOKING STATUS (CANCER)](https://www.datadictionary.nhs.uk/data_elements/smoking_status__cancer_.html)
 
@@ -3888,7 +3888,7 @@ Lookup sexual orientation concept.
 |9|45877986|Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Sexual Orientation](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---demographics)
 
 * `PersonStatedSexualOrientationCodeAtDiagnosis` PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS) is the PERSON STATED SEXUAL ORIENTATION CODE at the time of the PATIENT DIAGNOSIS. [PERSON STATED SEXUAL ORIENTATION CODE (AT DIAGNOSIS)](https://www.datadictionary.nhs.uk/data_elements/person_stated_sexual_orientation_code__at_diagnosis_.html)
 
@@ -3933,8 +3933,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -3994,8 +3994,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -4055,8 +4055,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -4122,8 +4122,8 @@ Lookup history of alcohol concept.
 |1|4336673|Heavy drinker|
 |2|4042862|Light drinker|
 |3|4022664|Non - drinker|
-|Z||Not Stated (patient asked but declined to provide a response)|
-|9||Not Known (Not recorded)|
+|Z|0|Not Stated (patient asked but declined to provide a response)|
+|9|0|Not Known (Not recorded)|
 
 Notes
 * [History of Alcohol](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
@@ -4272,7 +4272,7 @@ Lookup smoking status concept.
 |9||Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)
 
 * `SmokingStatusCode` Smoking Status Code [TobaccoSmokingStatus]()
 
@@ -4347,7 +4347,7 @@ Lookup sexual orientation concept.
 |9|45877986|Unknown|
 
 Notes
-* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+* [Sexual Orientation](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---demographics)
 
 * `PersonStatedSexualOrientationCodeAtDiagnosis` Person Stated Sexual Orientation Code At Diagnosis [PersonStatedSexualOrientationCodeAtDiagnosis]()
 

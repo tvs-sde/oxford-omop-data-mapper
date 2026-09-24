@@ -11,8 +11,8 @@ internal class HistoryOfAlcoholLookup : ILookup
             { "1", new ValueWithNote("4336673", "Heavy drinker") },
             { "2", new ValueWithNote("4042862", "Light drinker") },
             { "3", new ValueWithNote("4022664", "Non - drinker") },
-            { "Z", new ValueWithNote("", "Not Stated (patient asked but declined to provide a response)") },
-            { "9", new ValueWithNote("", "Not Known (Not recorded)") }
+            { "Z", new ValueWithNote("0", "Not Stated (patient asked but declined to provide a response)") },
+            { "9", new ValueWithNote("0", "Not Known (Not recorded)") }
         };
 
     public string[] ColumnNotes =>

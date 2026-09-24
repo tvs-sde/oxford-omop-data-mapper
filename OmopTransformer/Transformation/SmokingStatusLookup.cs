@@ -16,6 +16,6 @@ internal class SmokingStatusLookup : ILookup
 
     public string[] ColumnNotes =>
     [
-        "[ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment"
+        "[Smoking Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)"
     ];
 }
