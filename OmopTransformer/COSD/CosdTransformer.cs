@@ -378,7 +378,6 @@ using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementNcategoryIntegrated
 using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementNonPrimaryPathwayMetastaticSite;
 using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementPrimaryPathwayMetastaticSite;
 using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementSarcomaTumourSiteBone;
-using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementSarcomaTumourSiteSoftTissue;
 using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementTcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementTcategoryIntegratedStage;
 using OmopTransformer.COSD.SA.Measurement.COSDv8SAMeasurementTNMcategoryFinalPreTreatmentStage;
@@ -394,7 +393,6 @@ using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementNonPrimaryPathwayPr
 using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementNonPrimaryPathwayRecurrenceMetastaticSite;
 using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementPrimaryPathwayMetastaticSite;
 using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementSarcomaTumourSiteBone;
-using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementSarcomaTumourSiteSoftTissue;
 using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementTcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementTcategoryIntegratedStage;
 using OmopTransformer.COSD.SA.Measurement.COSDv9SAMeasurementTNMcategoryFinalPreTreatmentStage;
@@ -683,6 +681,8 @@ using OmopTransformer.COSD.CO.ProcedureOccurrence.COSDv9COProcedureOccurrenceSmo
 using OmopTransformer.COSD.CR.ProcedureOccurrence.COSDv9CRProcedureOccurrenceSmokingCessationTreatmentIndicationCode;
 using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv9CTProcedureOccurrenceTobaccoSmokingCessationTreatmentIndicationCode;
 using OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV9LungProcedureOccurrenceTobaccoSmokingCessation;
+using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationSarcomaTumourSiteSoftTissue;
+using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationSarcomaTumourSiteSoftTissue;
 
 namespace OmopTransformer.COSD;
 
@@ -2385,12 +2385,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv9SAMeasurementSarcomaTumourSiteSoftTissueRecord, COSDv9SAMeasurementSarcomaTumourSiteSoftTissue>(
-            _measurementRecorder.InsertUpdateMeasurements,
-            "COSD V9 SA Measurement Sarcoma Tumour Site Soft Tissue",
-            runId,
-            cancellationToken);
-
         await Transform<COSDv9SAMeasurementTcategoryFinalPreTreatmentStageRecord, COSDv9SAMeasurementTcategoryFinalPreTreatmentStage>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSD V9 SA Measurement Tcategory Final Pre Treatment Stage",
@@ -3382,12 +3376,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<COSDv8SAMeasurementSarcomaTumourSiteSoftTissueRecord, COSDv8SAMeasurementSarcomaTumourSiteSoftTissue>(
-            _measurementRecorder.InsertUpdateMeasurements,
-            "COSDv8SAMeasurementSarcomaTumourSiteSoftTissue",
-            runId,
-            cancellationToken);
-
         await Transform<COSDv8SAMeasurementTcategoryFinalPreTreatmentStageRecord, COSDv8SAMeasurementTcategoryFinalPreTreatmentStage>(
             _measurementRecorder.InsertUpdateMeasurements,
             "COSDv8SAMeasurementTcategoryFinalPreTreatmentStage",
@@ -4027,6 +4015,12 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
+        await Transform<COSDv8SAObservationSarcomaTumourSiteSoftTissueRecord, COSDv8SAObservationSarcomaTumourSiteSoftTissue>(
+            _observationRecorder.InsertUpdateObservations,
+            "COSDv8SAObservationSarcomaTumourSiteSoftTissueRecord",
+            runId,
+            cancellationToken);
+
         await Transform<COSDv8SAObservationAlcoholHistoryCancerPastRecord, COSDv8SAObservationAlcoholHistoryCancerPast>(
             _observationRecorder.InsertUpdateObservations,
             "COSDv8SAObservationAlcoholHistoryCancerPast",
@@ -4317,6 +4311,12 @@ internal class CosdTransformer : Transformer
         await Transform<COSDv9SAObservationAlcoholHistoryCancerCurrentRecord, COSDv9SAObservationAlcoholHistoryCancerCurrent>(
             _observationRecorder.InsertUpdateObservations,
             "COSDv9SAObservationAlcoholHistoryCancerCurrent",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9SAObservationSarcomaTumourSiteSoftTissueRecord, COSDv9SAObservationSarcomaTumourSiteSoftTissue>(
+            _observationRecorder.InsertUpdateObservations,
+            "COSDv9SAObservationSarcomaTumourSiteSoftTissueRecord",
             runId,
             cancellationToken);
 

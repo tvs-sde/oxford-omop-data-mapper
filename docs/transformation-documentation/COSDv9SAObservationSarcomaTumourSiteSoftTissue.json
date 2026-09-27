@@ -1,5 +1,5 @@
 {
-  "omopTable": "Measurement",
+  "omopTable": "Observation",
   "origin": "COSD",
   "omopColumns": [
     {
@@ -21,7 +21,14 @@
       "lookup_table_markdown": null
     },
     {
-      "name": "measurement_date",
+      "name": "observation_concept_id",
+      "operation_description": "Constant value set to `4019104`. Soft tissue tumor AND/OR sarcoma",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "observation_date",
       "operation_description": "Converts text to dates.",
       "dataSource": [
         {
@@ -39,7 +46,7 @@
       "lookup_table_markdown": null
     },
     {
-      "name": "measurement_datetime",
+      "name": "observation_datetime",
       "operation_description": "Converts text to dates.",
       "dataSource": [
         {
@@ -57,14 +64,14 @@
       "lookup_table_markdown": null
     },
     {
-      "name": "measurement_type_concept_id",
+      "name": "observation_type_concept_id",
       "operation_description": "Constant value set to `32828`. EHR episode record",
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null
     },
     {
-      "name": "measurement_source_concept_id",
+      "name": "value_as_concept_id",
       "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
       "dataSource": [
         {
@@ -82,14 +89,25 @@
       "lookup_table_markdown": null
     },
     {
-      "name": "measurement_concept_id",
-      "operation_description": "Maps concepts to standard valid concepts in the `measurement` domain.",
-      "dataSource": null,
-      "query": null,
+      "name": "observation_source_value",
+      "operation_description": "Value copied from `SarcomaTumourSiteSoftTissue`",
+      "dataSource": [
+        {
+          "name": "SarcomaTumourSiteSoftTissue",
+          "description": "Location of the soft tissue sarcoma within the body using an OPCS-4 code, at a more detailed level than ICD or ICD-O.",
+          "origins": [
+            {
+              "origin": "SARCOMA TUMOUR SITE (SOFT TISSUE)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/sarcoma_tumour_site__soft_tissue_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nselect distinct\n    Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber,\n    Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.PrimaryPathway.Diagnosis.DiagnosisBoneAndSoftTissue.SarcomaTumourSiteSoftTissue.@code' as SarcomaTumourSiteSoftTissue\nfrom omop_staging.cosd_staging_901\nwhere type = 'SA'\n  and SarcomaTumourSiteSoftTissue is not null;\n\t",
       "lookup_table_markdown": null
     },
     {
-      "name": "measurement_source_value",
+      "name": "value_source_value",
       "operation_description": "Value copied from `SarcomaTumourSiteSoftTissue`",
       "dataSource": [
         {

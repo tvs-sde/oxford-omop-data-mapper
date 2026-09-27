@@ -379,6 +379,10 @@ has_toc: false
 <a href="COSDv9SAObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9SAObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationSmokingStatusCancer%20mapping){: .btn }
+## COSDv9SAObservationSarcomaTumourSiteSoftTissue
+<a href="COSDv9SAObservationSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv9SAObservationSarcomaTumourSiteSoftTissue.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationSarcomaTumourSiteSoftTissue%20mapping){: .btn }
 ## COSDv9SAObservationAlcoholHistoryCancerPast
 <a href="COSDv9SAObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9SAObservationAlcoholHistoryCancerPast.svg" /></a>
 
@@ -391,6 +395,10 @@ has_toc: false
 <a href="COSDv8SAObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8SAObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationSmokingStatusCancer%20mapping){: .btn }
+## COSDv8SAObservationSarcomaTumourSiteSoftTissue
+<a href="COSDv8SAObservationSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv8SAObservationSarcomaTumourSiteSoftTissue.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationSarcomaTumourSiteSoftTissue%20mapping){: .btn }
 ## COSDv8SAObservationAlcoholHistoryCancerPast
 <a href="COSDv8SAObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8SAObservationAlcoholHistoryCancerPast.svg" /></a>
 

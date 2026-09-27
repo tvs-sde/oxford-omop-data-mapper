@@ -211,6 +211,10 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `648645`. Smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V9 SA Observation Sarcoma Tumour Site Soft Tissue
+* Constant value set to `4019104`. Soft tissue tumor AND/OR sarcoma
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20SA%20Observation%20Sarcoma%20Tumour%20Site%20Soft%20Tissue%20mapping){: .btn }
 ### COSD V9 SA Observation Alcohol History Cancer Before Last Three Months
 * Constant value set to `1340204`. History of event
 
@@ -223,6 +227,10 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `648645`. Smoking status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
+### COSD V8 SA Observation Sarcoma Tumour Site Soft Tissue
+* Constant value set to `4019104`. Soft tissue tumor AND/OR sarcoma
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20SA%20Observation%20Sarcoma%20Tumour%20Site%20Soft%20Tissue%20mapping){: .btn }
 ### COSD V8 SA Observation Alcohol History Cancer Before Last Three Months
 * Constant value set to `1340204`. History of event
 

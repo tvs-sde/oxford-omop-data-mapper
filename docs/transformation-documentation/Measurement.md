@@ -395,10 +395,6 @@ has_toc: false
 <a href="COSDv9SAMeasurementTcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv9SAMeasurementTcategoryFinalPreTreatmentStage.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9SAMeasurementTcategoryFinalPreTreatmentStage%20mapping){: .btn }
-## COSDv9SAMeasurementSarcomaTumourSiteSoftTissue
-<a href="COSDv9SAMeasurementSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv9SAMeasurementSarcomaTumourSiteSoftTissue.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9SAMeasurementSarcomaTumourSiteSoftTissue%20mapping){: .btn }
 ## COSDv9SAMeasurementSarcomaTumourSiteBone
 <a href="COSDv9SAMeasurementSarcomaTumourSiteBone.svg" target="_blank"><img src="COSDv9SAMeasurementSarcomaTumourSiteBone.svg" /></a>
 
@@ -459,10 +455,6 @@ has_toc: false
 <a href="COSDv8SAMeasurementTcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8SAMeasurementTcategoryFinalPreTreatmentStage.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTcategoryFinalPreTreatmentStage%20mapping){: .btn }
-## COSDv8SAMeasurementSarcomaTumourSiteSoftTissue
-<a href="COSDv8SAMeasurementSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv8SAMeasurementSarcomaTumourSiteSoftTissue.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementSarcomaTumourSiteSoftTissue%20mapping){: .btn }
 ## COSDv8SAMeasurementSarcomaTumourSiteBone
 <a href="COSDv8SAMeasurementSarcomaTumourSiteBone.svg" target="_blank"><img src="COSDv8SAMeasurementSarcomaTumourSiteBone.svg" /></a>
 
