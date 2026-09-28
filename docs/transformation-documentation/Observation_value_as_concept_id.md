@@ -1081,6 +1081,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -1166,6 +1167,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -1777,6 +1779,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -1966,6 +1969,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -2161,6 +2165,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -2350,6 +2355,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -2545,6 +2551,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -2734,6 +2741,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -2929,6 +2937,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -3258,6 +3267,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -3447,6 +3457,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -4482,6 +4493,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 
@@ -4567,6 +4579,7 @@ Lookup cancer intent concept.
 |04|4129646|Diagnostic|
 |05|4190468|Staging|
 |06||Uncertain of Treatment Intent - No mapping possible|
+|08||Not Known - No mapping possible|
 |09||Not Known - No mapping possible|
 |98||Other - No mapping possible|
 

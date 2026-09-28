@@ -249,8 +249,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 LV Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 LV Observation Performance Status Adult
@@ -259,8 +258,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 LV Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### CosdV9LungTobaccoSmokingStatus
@@ -353,8 +351,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 HN Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V9 HN Observation Alcohol History Cancer Before Last Three Months
@@ -375,8 +372,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 HN Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 HN Observation Alcohol History Cancer Before Last Three Months
@@ -397,8 +393,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 HA Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V9 HA Observation Alcohol History Cancer Before Last Three Months
@@ -419,8 +414,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 HA Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 HA Observation Alcohol History Cancer Before Last Three Months
@@ -441,8 +435,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 GY Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V9 GY Observation Alcohol History Cancer Before Last Three Months
@@ -463,8 +456,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 GY Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 GY Observation Alcohol History Cancer Before Last Three Months
@@ -489,8 +481,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 CT Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V9 CT Observation Alcohol History Cancer Before Last Three Months
@@ -532,8 +523,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 CR Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V9 CR Observation Alcohol History Cancer Before Last Three Months
@@ -554,8 +544,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 CR Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 CR Observation Alcohol History Cancer Before Last Three Months
@@ -684,8 +673,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20BA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 BA Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20BA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 BA Observation Performance Status Adult
@@ -694,7 +682,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20BA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 BA Observation Cancer Treatment Intent
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `4194400`. Treatment intent
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20BA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }

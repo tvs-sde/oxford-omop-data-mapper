@@ -14,6 +14,7 @@ internal class CancerIntentLookup : ILookup
             { "04", new ValueWithNote("4129646", "Diagnostic") },
             { "05", new ValueWithNote("4190468", "Staging") },
             { "06", new ValueWithNote("",     "Uncertain of Treatment Intent - No mapping possible") },
+            { "08", new ValueWithNote("",     "Not Known - No mapping possible") },
             { "09", new ValueWithNote("",     "Not Known - No mapping possible") },
             { "98", new ValueWithNote("",     "Other - No mapping possible") }
         };
