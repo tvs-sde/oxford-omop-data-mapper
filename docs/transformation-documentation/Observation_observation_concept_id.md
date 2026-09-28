@@ -292,17 +292,13 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9LungFamilialCancerSyndromeSubsidiaryComment
-* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+* Constant value set to `4171594`. Family history of malignant neoplasm
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9LungAsaScore
 * Constant value set to `647671`. Physical status classification ASA
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungAsaScore%20mapping){: .btn }
-### CosdV9LungAdultComorbidityEvaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungAdultComorbidityEvaluation%20mapping){: .btn }
 ### CosdV8LungSurgicalAccessType
 * Constant value set to `4301351`. Surgical access
 
@@ -335,10 +331,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `4309681`. General physical performance status
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAdultPerformanceStatus%20mapping){: .btn }
-### CosdV8LungAdultComorbidityEvaluation
-* Constant value set to `40488785`. Adult comorbidity evaluation-27
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungAdultComorbidityEvaluation%20mapping){: .btn }
 ### COSD V9 HN Observation Smoking Status Cancer
 * Constant value set to `648645`. Smoking status
 
@@ -632,7 +624,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
 ### CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
-* Constant value set to `44782478`. Hereditary cancer-predisposing syndrome
+* Constant value set to `4171594`. Family history of malignant neoplasm
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9BreastFamilialCancerSyndromeSubsidiaryComment%20mapping){: .btn }
 ### CosdV9BreastAsaScore

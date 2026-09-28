@@ -685,6 +685,14 @@ has_toc: false
 <a href="CosdV8LungMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV8LungMeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## COSDv9LungMeasurementAdultComorbidityEvaluation
+<a href="COSDv9LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv9LungMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+## COSDv8LungMeasurementAdultComorbidityEvaluation
+<a href="COSDv8LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8LungMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## COSDv9HNMeasurementTnmStageGroupingIntegrated
 <a href="COSDv9HNMeasurementTnmStageGroupingIntegrated.svg" target="_blank"><img src="COSDv9HNMeasurementTnmStageGroupingIntegrated.svg" /></a>
 

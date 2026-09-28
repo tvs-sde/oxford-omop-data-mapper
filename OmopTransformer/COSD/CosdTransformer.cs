@@ -317,7 +317,6 @@ using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTcategoryIntegra
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryFinalPreTreatmentStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTNMcategoryIntegratedStage;
 using OmopTransformer.COSD.LU.Measurements.CosdV9LungMeasurementTumourLaterality;
-using OmopTransformer.COSD.LU.Observation.CosdV8LungAdultComorbidityEvaluation;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAdultPerformanceStatus;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerPast;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungAlcoholHistoryCancerCurrent;
@@ -326,7 +325,6 @@ using OmopTransformer.COSD.LU.Observation.CosdV8LungSmokingStatusCode;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralForOutPatientsNonPrimaryCancerPathway;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSourceOfReferralOutPatients;
 using OmopTransformer.COSD.LU.Observation.CosdV8LungSurgicalAccessType;
-using OmopTransformer.COSD.LU.Observation.CosdV9LungAdultComorbidityEvaluation;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungAsaScore;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungFamilialCancerSyndromeSubsidiaryComment;
 using OmopTransformer.COSD.LU.Observation.CosdV9LungHistoryOfAlcoholCurrent;
@@ -683,6 +681,8 @@ using OmopTransformer.COSD.CT.ProcedureOccurrence.COSDv9CTProcedureOccurrenceTob
 using OmopTransformer.COSD.LU.ProcedureOccurrence.CosdV9LungProcedureOccurrenceTobaccoSmokingCessation;
 using OmopTransformer.COSD.SA.Observation.COSDv8SAObservationSarcomaTumourSiteSoftTissue;
 using OmopTransformer.COSD.SA.Observation.COSDv9SAObservationSarcomaTumourSiteSoftTissue;
+using OmopTransformer.COSD.LU.Measurement.COSDv9LungMeasurementAdultComorbidityEvaluation;
+using OmopTransformer.COSD.LU.Measurement.COSDv8LungMeasurementAdultComorbidityEvaluation;
 
 namespace OmopTransformer.COSD;
 
@@ -1200,12 +1200,6 @@ internal class CosdTransformer : Transformer
             runId,
             cancellationToken);
 
-        await Transform<CosdV8LungAdultComorbidityEvaluationRecord, CosdV8LungAdultComorbidityEvaluation>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV8LungAdultComorbidityEvaluation",
-            runId,
-            cancellationToken);
-
         await Transform<CosdV8LungAdultPerformanceStatusRecord, CosdV8LungAdultPerformanceStatus>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8LungAdultPerformanceStatus",
@@ -1246,12 +1240,6 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8LungSourceOfReferralOutPatientsRecord, CosdV8LungSourceOfReferralOutPatients>(
             _observationRecorder.InsertUpdateObservations,
             "Cosd CosdV8LungSourceOfReferralOutPatients",
-            runId,
-            cancellationToken);
-
-        await Transform<CosdV9LungAdultComorbidityEvaluationRecord, CosdV9LungAdultComorbidityEvaluation>(
-            _observationRecorder.InsertUpdateObservations,
-            "Cosd CosdV9LungAdultComorbidityEvaluation",
             runId,
             cancellationToken);
 
@@ -1584,6 +1572,18 @@ internal class CosdTransformer : Transformer
         await Transform<CosdV8LungMeasurementTumourLateralityRecord, CosdV8LungMeasurementTumourLaterality>(
             _measurementRecorder.InsertUpdateMeasurements,
             "CosdV8LungMeasurementTumourLaterality",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv8LungMeasurementAdultComorbidityEvaluationRecord, COSDv8LungMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "CosdV8LungMeasurementAdultComorbidityEvaluation",
+            runId,
+            cancellationToken);
+
+        await Transform<COSDv9LungMeasurementAdultComorbidityEvaluationRecord, COSDv9LungMeasurementAdultComorbidityEvaluation>(
+            _measurementRecorder.InsertUpdateMeasurements,
+            "CosdV9LungMeasurementAdultComorbidityEvaluation",
             runId,
             cancellationToken);
 

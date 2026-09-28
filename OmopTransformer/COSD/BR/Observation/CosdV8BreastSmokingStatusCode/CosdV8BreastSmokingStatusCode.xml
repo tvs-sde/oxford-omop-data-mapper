@@ -21,7 +21,7 @@ with BR as (
             ], 
             recursive := true
         ) as ProcedureDate,
-        Record ->> '$.Breast.BreastCore.BreastCoreClinicalNurseSpecialistAndRiskFactorAssessments.TobaccoSmokingStatus.@code' as SmokingStatusCode,
+        Record ->> '$.Breast.BreastCore.BreastCoreClinicalNurseSpecialistAndRiskFactorAssessments.SmokingStatus.@code' as SmokingStatusCode,
         Record ->> '$.Breast.BreastCore.BreastCoreLinkagePatientId.NHSNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_81
     where Type = 'BR'
