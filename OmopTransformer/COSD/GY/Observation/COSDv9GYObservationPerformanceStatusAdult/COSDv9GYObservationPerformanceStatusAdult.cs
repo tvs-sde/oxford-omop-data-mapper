@@ -19,9 +19,6 @@ internal class COSDv9GYObservationPerformanceStatusAdult : OmopObservation<COSDv
     public override int? observation_type_concept_id { get; set; }
 
     [ConstantValue(3008030, "Physical performance [QAM]")]
-    public override int? observation_source_concept_id { get; set; }
-
-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
     public override int[]? observation_concept_id { get; set; }
 
     [Transform(typeof(PerformanceStatusLookup), nameof(Source.PerformanceStatusAdult))]

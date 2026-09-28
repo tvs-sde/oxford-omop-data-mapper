@@ -22,7 +22,7 @@
     },
     {
       "name": "observation_concept_id",
-      "operation_description": "Maps concepts to standard valid concepts in the `Observation` domain.",
+      "operation_description": "Constant value set to `3008030`. Physical performance [QAM]",
       "dataSource": null,
       "query": null,
       "lookup_table_markdown": null
@@ -104,13 +104,6 @@
         }
       ],
       "query": "\nselect distinct\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkagePatientId.NHSNumber.@extension'\n        as NhsNumber,\n    Record ->> '$.CTYA.CTYACore.CTYACoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'\n        as DateOfPrimaryDiagnosisClinicallyAgreed,\n    Record ->> '$.CTYA.CTYACore.CTYACoreDiagnosis.AdultPerformanceStatus.@code'\n        as PerformanceStatusAdult\nfrom omop_staging.cosd_staging_81\nwhere type = 'CT'\n  and NhsNumber is not null\n  and PerformanceStatusAdult is not null\n  and DateOfPrimaryDiagnosisClinicallyAgreed is not null\n  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');\n    ",
-      "lookup_table_markdown": null
-    },
-    {
-      "name": "observation_source_concept_id",
-      "operation_description": "Constant value set to `3008030`. Physical performance [QAM]",
-      "dataSource": null,
-      "query": null,
       "lookup_table_markdown": null
     },
     {

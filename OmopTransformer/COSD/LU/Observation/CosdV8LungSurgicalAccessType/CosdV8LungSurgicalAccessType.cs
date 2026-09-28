@@ -23,8 +23,8 @@ internal class CosdV8LungSurgicalAccessType : OmopObservation<CosdV8LungSurgical
     public override int? observation_type_concept_id { get; set; }
 
     [Transform(typeof(SurgicalAccessTypeLungLookup), nameof(Source.SurgicalAccessType))]
-    public override int? qualifier_concept_id { get; set; }
+    public override int? value_as_concept_id { get; set; }
 
     [CopyValue(nameof(Source.SurgicalAccessType))]
-    public override string? qualifier_source_value { get; set; }
+    public override string? value_source_value { get; set; }
 }

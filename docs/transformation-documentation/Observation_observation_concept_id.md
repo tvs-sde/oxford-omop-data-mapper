@@ -244,8 +244,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V9 LV Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 LV Observation Cancer Treatment Intent
@@ -253,8 +252,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20LV%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 LV Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20LV%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 LV Observation Cancer Treatment Intent
@@ -346,8 +344,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V9 HN Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 HN Observation Cancer Treatment Intent
@@ -367,8 +364,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 HN Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HN%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 HN Observation Cancer Treatment Intent
@@ -388,8 +384,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V9 HA Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 HA Observation Cancer Treatment Intent
@@ -409,8 +404,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 HA Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20HA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 HA Observation Cancer Treatment Intent
@@ -430,8 +424,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V9 GY Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 GY Observation Cancer Treatment Intent
@@ -451,8 +444,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 GY Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20GY%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 GY Observation Cancer Treatment Intent
@@ -476,8 +468,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V9 CT Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 CT Observation Cancer Treatment Intent
@@ -497,8 +488,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 CT Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CT%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 CT Observation Alcohol History Cancer Before Last Three Months
@@ -518,8 +508,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V9 CR Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 CR Observation Cancer Treatment Intent
@@ -539,8 +528,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Smoking%20Status%20Cancer%20mapping){: .btn }
 ### COSD V8 CR Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20CR%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 CR Observation Cancer Treatment Intent
@@ -668,8 +656,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20Breast%20Person%20Stated%20Sexual%20Orientation%20Code%20At%20Diagnosis%20mapping){: .btn }
 ### COSD V9 BA Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20BA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V9 BA Observation Cancer Treatment Intent
@@ -677,8 +664,7 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V9%20BA%20Observation%20Cancer%20Treatment%20Intent%20mapping){: .btn }
 ### COSD V8 BA Observation Performance Status Adult
-Source column  `observation_source_concept_id`.
-Maps concepts to standard valid concepts in the `Observation` domain.
+* Constant value set to `3008030`. Physical performance [QAM]
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20COSD%20V8%20BA%20Observation%20Performance%20Status%20Adult%20mapping){: .btn }
 ### COSD V8 BA Observation Cancer Treatment Intent
