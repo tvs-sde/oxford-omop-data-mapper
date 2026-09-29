@@ -40,21 +40,21 @@ where o.SurgicalAccessType is not null
     )
     </Sql>
     <Explanations>
-      <Explanation columnName="NhsNumber">
+      <Explanation columnName="NHSNumber">
     	  <Description>Patient NHS Number</Description>
     	  <Origin>NHS NUMBER</Origin>
       </Explanation>
-		 <Explanation columnName="SurgicalAccessType">
-		   <Description>A code representing the surgical access type used during a procedure.</Description>
-		   <Origin>SURGICAL ACCESS TYPE</Origin>
+		 <Explanation columnName="AdultComorbidityEvaluation">
+		   <Description>The PERSON SCORE recorded during a Cancer Care Spell, where the ASSESSMENT TOOL is 'Adult Comorbidity Evaluation - 27'.</Description>
+		   <Origin>ADULT COMORBIDITY EVALUATION - 27 SCORE</Origin>
 		</Explanation>
       <Explanation columnName="Date" >
     	  <Description>Observation date</Description>
     	  <Origin>DATE FIRST SEEN</Origin>
     	  <Origin>DATE FIRST SEEN (CANCER SPECIALIST)</Origin>
-    	  <Origin>DIAGNOSIS DATE (CLINICALLY AGREED)</Origin>
-    	  <Origin>STAGE DATE (FINAL PRETREATMENT STAGE)</Origin>
-    	  <Origin>STAGE DATE (INTEGRATED STAGE)</Origin>
+    	  <Origin>DIAGNOSIS DATE</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (INTEGRATED)</Origin>
+    	  <Origin>TNM STAGE GROUPING DATE (FINAL PRETREATMENT)</Origin>
     	  <Origin>TREATMENT START DATE (CANCER)</Origin>
     	  <Origin>PROCEDURE DATE</Origin>
       </Explanation>

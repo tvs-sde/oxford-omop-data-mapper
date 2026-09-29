@@ -17,6 +17,7 @@ has_toc: false
 * [measurement_source_value]({% link docs/transformation-documentation/Measurement_measurement_source_value.md %})
 * [operator_concept_id]({% link docs/transformation-documentation/Measurement_operator_concept_id.md %})
 * [value_as_number]({% link docs/transformation-documentation/Measurement_value_as_number.md %})
+* [value_as_concept_id]({% link docs/transformation-documentation/Measurement_value_as_concept_id.md %})
 * [unit_concept_id]({% link docs/transformation-documentation/Measurement_unit_concept_id.md %})
 * [range_low]({% link docs/transformation-documentation/Measurement_range_low.md %})
 * [range_high]({% link docs/transformation-documentation/Measurement_range_high.md %})
@@ -685,10 +686,18 @@ has_toc: false
 <a href="CosdV8LungMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV8LungMeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=CosdV8LungMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## COSDv9LungMeasurementSurgicalAccessType
+<a href="COSDv9LungMeasurementSurgicalAccessType.svg" target="_blank"><img src="COSDv9LungMeasurementSurgicalAccessType.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9LungMeasurementSurgicalAccessType%20mapping){: .btn }
 ## COSDv9LungMeasurementAdultComorbidityEvaluation
 <a href="COSDv9LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv9LungMeasurementAdultComorbidityEvaluation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+## COSDv8LungMeasurementSurgicalAccessType
+<a href="COSDv8LungMeasurementSurgicalAccessType.svg" target="_blank"><img src="COSDv8LungMeasurementSurgicalAccessType.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=COSDv8LungMeasurementSurgicalAccessType%20mapping){: .btn }
 ## COSDv8LungMeasurementAdultComorbidityEvaluation
 <a href="COSDv8LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8LungMeasurementAdultComorbidityEvaluation.svg" /></a>
 

@@ -8,19 +8,16 @@ internal class SurgicalAccessTypeLungLookup : ILookup
     public Dictionary<string, ValueWithNote> Mappings { get; } =
         new()
         {
-            { "1",   new ValueWithNote("4044378", "Open approach") },
-            { "2",   new ValueWithNote("4044378", "Laparoscopic/Thoracoscopic with planned conversion to open surgery") },
-            { "3",   new ValueWithNote("4044378", "Laparoscopic/Thoracoscopic with unplanned conversion to open surgery") },
-            { "4",   new ValueWithNote("44808608", "Laparoscopic/Thoracoscopic completed") },
-            { "5",   new ValueWithNote("44790026", "Robotic surgery") },
-            { "Z",   new ValueWithNote("0", "Other") }
+            { "1",   new ValueWithNote("45882425", "Open approach") },
+            { "2",   new ValueWithNote("45882426", "Laparoscopic/Thoracoscopic with planned conversion to open surgery") },
+            { "3",   new ValueWithNote("45882426", "Laparoscopic/Thoracoscopic with unplanned conversion to open surgery") },
+            { "4",   new ValueWithNote("45884447", "Laparoscopic/Thoracoscopic completed") },
+            { "5",   new ValueWithNote("45884446", "Robotic surgery") },
+            { "Z",   new ValueWithNote("", "Other") }
         };
 
     public string[] ColumnNotes =>
     [
-        "[OMOP Open approach](https://athena.ohdsi.org/search-terms/terms/4044378)",
-        "[OMOP Laparoscopic/Thoracoscopic](https://athena.ohdsi.org/search-terms/terms/44808608)",
-        "[OMOP Robotic surgery](https://athena.ohdsi.org/search-terms/terms/44790026)",
         "[SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)"
     ];
 }

@@ -267,10 +267,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `44802474`. Smoking cessation advice declined
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungTobaccoSmokingCessation%20mapping){: .btn }
-### CosdV9LungSurgicalAccessType
-* Constant value set to `4301351`. Surgical access
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungSurgicalAccessType%20mapping){: .btn }
 ### CosdV9LungSourceOfReferralForOutpatients
 * Constant value set to `4258129`. Referral by
 
@@ -299,10 +295,6 @@ Maps concepts to standard valid concepts in the `Observation` domain.
 * Constant value set to `647671`. Physical status classification ASA
 
 [Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV9LungAsaScore%20mapping){: .btn }
-### CosdV8LungSurgicalAccessType
-* Constant value set to `4301351`. Surgical access
-
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_concept_id%20field%20CosdV8LungSurgicalAccessType%20mapping){: .btn }
 ### CosdV8LungSourceOfReferralOutPatients
 * Constant value set to `4258129`. Referral by
 
