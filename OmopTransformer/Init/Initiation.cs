@@ -1952,10 +1952,13 @@ CREATE table omop_staging.visit_occurrence_row (
 copy cdm.CONCEPT from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT.csv")}' (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.CONCEPT_ANCESTOR from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT_ANCESTOR.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.CONCEPT_CLASS from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT_CLASS.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
+copy cdm.CONCEPT_METADATA from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT_METADATA.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.CONCEPT_RELATIONSHIP from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT_RELATIONSHIP.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
+copy cdm.CONCEPT_RELATIONSHIP_METADATA from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT_RELATIONSHIP_METADATA.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.CONCEPT_SYNONYM from '{Path.Combine(_configuration.VocabularyDirectory!, "CONCEPT_SYNONYM.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.DOMAIN from '{Path.Combine(_configuration.VocabularyDirectory!, "DOMAIN.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.DRUG_STRENGTH from '{Path.Combine(_configuration.VocabularyDirectory!, "DRUG_STRENGTH.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
+copy cdm.PACK_CONTENT from '{Path.Combine(_configuration.VocabularyDirectory!, "PACK_CONTENT.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.RELATIONSHIP from '{Path.Combine(_configuration.VocabularyDirectory!, "RELATIONSHIP.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');
 copy cdm.VOCABULARY from '{Path.Combine(_configuration.VocabularyDirectory!, "VOCABULARY.csv")}'  (HEADER, DATEFORMAT '%Y%m%d');",
                 cancellationToken);
