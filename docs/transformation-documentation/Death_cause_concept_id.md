@@ -37,4 +37,4 @@ group by apc.NHSNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20cause_concept_id%20field%20SUS%20Inpatient%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20cause_concept_id%20field%20SUS%20Inpatient%20Death%20mapping){: .btn }

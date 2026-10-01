@@ -14,16 +14,16 @@ has_toc: false
 ## SusOPCareSite
 <a href="SusOPCareSite.svg" target="_blank"><img src="SusOPCareSite.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusOPCareSite%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusOPCareSite%20mapping){: .btn }
 ## SusAPCCareSite
 <a href="SusAPCCareSite.svg" target="_blank"><img src="SusAPCCareSite.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusAPCCareSite%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusAPCCareSite%20mapping){: .btn }
 ## SusAECareSite
 <a href="SusAECareSite.svg" target="_blank"><img src="SusAECareSite.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusAECareSite%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusAECareSite%20mapping){: .btn }
 ## SactCareSite
 <a href="SactCareSite.svg" target="_blank"><img src="SactCareSite.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SactCareSite%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SactCareSite%20mapping){: .btn }

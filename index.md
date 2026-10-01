@@ -22,7 +22,7 @@ nav_order: 1
   <img src="docs/RegenerateSVG.gif" />
 </a>
 
-[![.NET](https://github.com/answerdigital/oxford-omop-data-mapper/actions/workflows/dotnet.yml/badge.svg)](https://github.com/answerdigital/oxford-omop-data-mapper/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/tvs-sde/oxford-omop-data-mapper/actions/workflows/dotnet.yml/badge.svg)](https://github.com/tvs-sde/oxford-omop-data-mapper/actions/workflows/dotnet.yml)
 
 [Automatically Generated OMOP Data Transformation Documentation]({% link docs/transformation-documentation/transformation-documentation.md %}#prune-command){: .btn .btn-blue }
 

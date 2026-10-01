@@ -31,7 +31,7 @@ Combines a date with a time of day.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20OP%20Device%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20OP%20Device%20Exposure%20mapping){: .btn }
 ### SUS CCMDS Device Exposure
 Source columns  `DeviceExposureStartDate`, `DeviceExposureStartTime`.
 Combines a date with a time of day.
@@ -59,7 +59,7 @@ Combines a date with a time of day.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20CCMDS%20Device%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20CCMDS%20Device%20Exposure%20mapping){: .btn }
 ### SUS APC Procedure Occurrence
 Source column  `PrimaryProcedureDate`.
 Converts text to dates.
@@ -81,7 +81,7 @@ where NHSNumber is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20APC%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20APC%20Procedure%20Occurrence%20mapping){: .btn }
 ### SUS AE Procedure Device Exposure
 Source column  `PrimaryProcedureDate`.
 Converts text to dates.
@@ -103,7 +103,7 @@ Converts text to dates.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20AE%20Procedure%20Device%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20AE%20Procedure%20Device%20Exposure%20mapping){: .btn }
 ### SUS AE Investigation Device Exposure
 Source columns  `StartDate`, `StartTime`.
 Combines a date with a time of day.
@@ -131,7 +131,7 @@ Combines a date with a time of day.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20AE%20Investigation%20Device%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20SUS%20AE%20Investigation%20Device%20Exposure%20mapping){: .btn }
 ### Oxford Device Exposure
 Source column  `EventDate`.
 Converts text to dates.
@@ -155,4 +155,4 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20Oxford%20Device%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_exposure_start_datetime%20field%20Oxford%20Device%20Exposure%20mapping){: .btn }

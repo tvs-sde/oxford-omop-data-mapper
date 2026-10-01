@@ -42,7 +42,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20Outpatient%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20Outpatient%20Procedure%20Occurrence%20mapping){: .btn }
 ### SUS CCMDS Procedure Occurrence
 Source columns  `ProcedureOccurrenceEndDate`, `ProcedureOccurrenceEndTime`.
 Combines a date with a time of day.
@@ -86,7 +86,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20CCMDS%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20CCMDS%20Procedure%20Occurrence%20mapping){: .btn }
 ### SUS APC Procedure Occurrence
 Source column  `PrimaryProcedureDate`.
 Converts text to dates.
@@ -113,7 +113,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20APC%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20APC%20Procedure%20Occurrence%20mapping){: .btn }
 ### SUS AE Procedure Occurrence
 Source column  `PrimaryProcedureDate`.
 Converts text to dates.
@@ -140,7 +140,7 @@ Converts text to dates.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20AE%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20SUS%20AE%20Procedure%20Occurrence%20mapping){: .btn }
 ### Rtds Procedure Occurrence
 Source column  `event_end_date`.
 Converts text to dates.
@@ -182,7 +182,7 @@ where PatientId is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20Rtds%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20Rtds%20Procedure%20Occurrence%20mapping){: .btn }
 ### Oxford Procedure Occurrence
 Source column  `EventDate`.
 Converts text to dates.
@@ -206,4 +206,4 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20Oxford%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_end_datetime%20field%20Oxford%20Procedure%20Occurrence%20mapping){: .btn }

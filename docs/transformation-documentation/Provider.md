@@ -15,16 +15,16 @@ has_toc: false
 ## SusOPProvider
 <a href="SusOPProvider.svg" target="_blank"><img src="SusOPProvider.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusOPProvider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusOPProvider%20mapping){: .btn }
 ## SusAPCProvider
 <a href="SusAPCProvider.svg" target="_blank"><img src="SusAPCProvider.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusAPCProvider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusAPCProvider%20mapping){: .btn }
 ## SactProvider
 <a href="SactProvider.svg" target="_blank"><img src="SactProvider.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SactProvider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SactProvider%20mapping){: .btn }
 ## RtdsProvider
 <a href="RtdsProvider.svg" target="_blank"><img src="RtdsProvider.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=RtdsProvider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=RtdsProvider%20mapping){: .btn }

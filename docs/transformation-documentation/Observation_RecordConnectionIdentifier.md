@@ -31,7 +31,7 @@ order by NHSNumber,
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20OP%20Source%20Of%20Referral%20For%20Outpatients%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20OP%20Source%20Of%20Referral%20For%20Outpatients%20mapping){: .btn }
 ### SUS OP Referral Received Date For Outpatients
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -57,7 +57,7 @@ order by NHSNumber,
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20OP%20Referral%20Received%20Date%20For%20Outpatients%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20OP%20Referral%20Received%20Date%20For%20Outpatients%20mapping){: .btn }
 ### SUS Outpatient Procedure Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -91,7 +91,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Outpatient%20Procedure%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Outpatient%20Procedure%20Observation%20mapping){: .btn }
 ### Sus OP ICDDiagnosis table
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -113,7 +113,7 @@ where op.NHSNumber is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20Sus%20OP%20ICDDiagnosis%20table%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20Sus%20OP%20ICDDiagnosis%20table%20mapping){: .btn }
 ### SUS Outpatient Carer Support Indicator Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -137,7 +137,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Outpatient%20Carer%20Support%20Indicator%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Outpatient%20Carer%20Support%20Indicator%20Observation%20mapping){: .btn }
 ### SUS Inpatient Total Previous Pregnancies Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -164,7 +164,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Total%20Previous%20Pregnancies%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Total%20Previous%20Pregnancies%20Observation%20mapping){: .btn }
 ### SUS APC Source Of Referral For Inpatients
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -183,7 +183,7 @@ where NHSNumber is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Source%20Of%20Referral%20For%20Inpatients%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Source%20Of%20Referral%20For%20Inpatients%20mapping){: .btn }
 ### SUS APC Referral Received Date For Inpatients
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -203,7 +203,7 @@ where NHSNumber is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Referral%20Received%20Date%20For%20Inpatients%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Referral%20Received%20Date%20For%20Inpatients%20mapping){: .btn }
 ### SUS APC Procedure Occurrence
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -229,7 +229,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Procedure%20Occurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Procedure%20Occurrence%20mapping){: .btn }
 ### SUS Inpatient NumberofBabies Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -256,7 +256,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20NumberofBabies%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20NumberofBabies%20Observation%20mapping){: .btn }
 ### Sus APC Diagnosis Table
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -282,7 +282,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20Sus%20APC%20Diagnosis%20Table%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20Sus%20APC%20Diagnosis%20Table%20mapping){: .btn }
 ### SUS Inpatient Gestation Length Labour Onset Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -309,7 +309,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Gestation%20Length%20Labour%20Onset%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Gestation%20Length%20Labour%20Onset%20Observation%20mapping){: .btn }
 ### SUS Inpatient Carer Support Indicator Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -334,7 +334,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Carer%20Support%20Indicator%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Carer%20Support%20Indicator%20Observation%20mapping){: .btn }
 ### Sus APC Birth Weight Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -362,7 +362,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20Sus%20APC%20Birth%20Weight%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20Sus%20APC%20Birth%20Weight%20Observation%20mapping){: .btn }
 ### SUS APC Anaesthetic Given Post Labour Delivery Observation
 * Value copied from `RecordConnectionIdentifier`
 
@@ -388,7 +388,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Anaesthetic%20Given%20Post%20Labour%20Delivery%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Anaesthetic%20Given%20Post%20Labour%20Delivery%20Observation%20mapping){: .btn }
 ### SUS APC Anaesthetic During Labour Delivery Observation
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -415,7 +415,7 @@ group by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Anaesthetic%20During%20Labour%20Delivery%20Observation%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20APC%20Anaesthetic%20During%20Labour%20Delivery%20Observation%20mapping){: .btn }
 ### SUS AE Source Of Referral For AE
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -434,7 +434,7 @@ where SourceofReferralForAE is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20AE%20Source%20Of%20Referral%20For%20AE%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20AE%20Source%20Of%20Referral%20For%20AE%20mapping){: .btn }
 ### SUS AE Diabetic Patient
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -457,7 +457,7 @@ and d.AccidentAndEmergencyDiagnosis in ('30','301')
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20AE%20Diabetic%20Patient%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20AE%20Diabetic%20Patient%20mapping){: .btn }
 ### SUS AE Diabetic Patient
 * Value copied from `GeneratedRecordIdentifier`
 
@@ -480,4 +480,4 @@ and d.AccidentAndEmergencyDiagnosis in ('20','201')
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20AE%20Diabetic%20Patient%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20RecordConnectionIdentifier%20field%20SUS%20AE%20Diabetic%20Patient%20mapping){: .btn }

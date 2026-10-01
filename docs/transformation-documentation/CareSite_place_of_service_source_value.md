@@ -44,7 +44,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20CareSite%20table%20place_of_service_source_value%20field%20SUS%20Outpatient%20Care%20Site%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20CareSite%20table%20place_of_service_source_value%20field%20SUS%20Outpatient%20Care%20Site%20mapping){: .btn }
 ### SUS Inpatient Care Site
 * Value copied from `MainSpecialtyCode`
 
@@ -84,4 +84,4 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20CareSite%20table%20place_of_service_source_value%20field%20SUS%20Inpatient%20Care%20Site%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20CareSite%20table%20place_of_service_source_value%20field%20SUS%20Inpatient%20Care%20Site%20mapping){: .btn }

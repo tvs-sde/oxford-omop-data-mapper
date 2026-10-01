@@ -44,7 +44,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Outpatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Outpatient%20VisitDetails%20mapping){: .btn }
 ### Sus Critical Care VisitDetails
 Source columns  `VisitStartDate`, `VisitStartTime`.
 Combines a date with a time of day.
@@ -81,7 +81,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Critical%20Care%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Critical%20Care%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 Source columns  `VisitStartDate`, `VisitStartTime`.
 Combines a date with a time of day.
@@ -123,7 +123,7 @@ Combines a date with a time of day.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 Source columns  `VisitStartDate`, `VisitStartTime`.
 Combines a date with a time of day.
@@ -162,7 +162,7 @@ Combines a date with a time of day.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
 ### Oxford Visit Details
 Source column  `EventDate`.
 Converts text to dates.
@@ -183,4 +183,4 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Oxford%20Visit%20Details%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20visit_detail_start_datetime%20field%20Oxford%20Visit%20Details%20mapping){: .btn }

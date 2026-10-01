@@ -169,7 +169,7 @@ internal class DocumentationRenderer
                     omopTable.AppendLine("");
                 }
 
-                omopTable.AppendLine($"[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title={target.MapperType.Name}%20mapping){{: .btn }}");
+                omopTable.AppendLine($"[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title={target.MapperType.Name}%20mapping){{: .btn }}");
             }
 
             yield return new Document($"{omopTarget.Key}.md", omopTable.ToString());
@@ -456,7 +456,7 @@ internal class DocumentationRenderer
             query?.WriteMarkdown(stringBuilder);
 
             stringBuilder.AppendLine();
-            stringBuilder.AppendLine($"[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20{TableName}%20table%20{FieldName}%20field%20{(dataSourceDescription ?? "").Replace(" ", "%20")}%20mapping){{: .btn }}");
+            stringBuilder.AppendLine($"[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20{TableName}%20table%20{FieldName}%20field%20{(dataSourceDescription ?? "").Replace(" ", "%20")}%20mapping){{: .btn }}");
         }
     }
 

@@ -20,7 +20,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20provider_name%20field%20SACT%20Provider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20provider_name%20field%20SACT%20Provider%20mapping){: .btn }
 ### RTDS Provider
 * Value copied from `DoctorId`
 
@@ -35,4 +35,4 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20provider_name%20field%20RTDS%20Provider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20provider_name%20field%20RTDS%20Provider%20mapping){: .btn }

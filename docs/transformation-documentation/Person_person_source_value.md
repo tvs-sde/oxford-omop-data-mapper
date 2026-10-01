@@ -24,7 +24,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SUS%20Outpatient%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SUS%20Outpatient%20Person%20mapping){: .btn }
 ### SUS Inpatient Person
 * Value copied from `NHSNumber`
 
@@ -43,7 +43,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SUS%20Inpatient%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SUS%20Inpatient%20Person%20mapping){: .btn }
 ### SUS A&E Person
 * Value copied from `NHSNumber`
 
@@ -62,7 +62,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SUS%20A&E%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SUS%20A&E%20Person%20mapping){: .btn }
 ### SACT Person
 * Value copied from `NHS_Number`
 
@@ -79,7 +79,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SACT%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20SACT%20Person%20mapping){: .btn }
 ### Rtds Person
 * Value copied from `PatientId`
 
@@ -97,7 +97,7 @@ group by PatientId
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20Rtds%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20Rtds%20Person%20mapping){: .btn }
 ### Oxford GP Person
 * Value copied from `NHSNumber`
 
@@ -116,7 +116,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20Oxford%20GP%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20Oxford%20GP%20Person%20mapping){: .btn }
 ### COSD Demographics
 * Value copied from `NhsNumber`
 
@@ -150,7 +150,7 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20COSD%20Demographics%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20COSD%20Demographics%20mapping){: .btn }
 ### COSD Demographics v8
 * Value copied from `NhsNumber`
 
@@ -183,4 +183,4 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20COSD%20Demographics%20v8%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20person_source_value%20field%20COSD%20Demographics%20v8%20mapping){: .btn }

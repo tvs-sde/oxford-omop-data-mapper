@@ -70,7 +70,7 @@ where o.SurgicalAccessType is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20qualifier_concept_id%20field%20CosdV9LungSurgicalAccessType%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20qualifier_concept_id%20field%20CosdV9LungSurgicalAccessType%20mapping){: .btn }
 ### CosdV8LungSurgicalAccessType
 Source column  `SurgicalAccessType`.
 Lookup SurgicalAccessType concepts for lung cancer procedures.
@@ -135,4 +135,4 @@ where o.SurgicalAccessType is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20qualifier_concept_id%20field%20CosdV8LungSurgicalAccessType%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20qualifier_concept_id%20field%20CosdV8LungSurgicalAccessType%20mapping){: .btn }

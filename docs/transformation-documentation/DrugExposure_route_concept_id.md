@@ -117,7 +117,7 @@ TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20route_concept_id%20field%20Oxford%20Prescribing%20Drug%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20route_concept_id%20field%20Oxford%20Prescribing%20Drug%20Exposure%20mapping){: .btn }
 ### Oxford Prescribing Drug Exposure (with Snomed)
 Source column  `rxroute`.
 Prescribing Drug Routes to OMOP Condition Concept IDs
@@ -228,4 +228,4 @@ where concept_identifier is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20route_concept_id%20field%20Oxford%20Prescribing%20Drug%20Exposure%20(with%20Snomed)%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20route_concept_id%20field%20Oxford%20Prescribing%20Drug%20Exposure%20(with%20Snomed)%20mapping){: .btn }

@@ -25,7 +25,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20sig%20field%20SACT%20Drug%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20sig%20field%20SACT%20Drug%20Exposure%20mapping){: .btn }
 ### Oxford Prescribing Drug Exposure
 * Value copied from `order_detail_display_line`
 
@@ -49,7 +49,7 @@ TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20sig%20field%20Oxford%20Prescribing%20Drug%20Exposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20sig%20field%20Oxford%20Prescribing%20Drug%20Exposure%20mapping){: .btn }
 ### Oxford Prescribing Drug Exposure (with Snomed)
 * Value copied from `order_detail_display_line`
 
@@ -72,4 +72,4 @@ where concept_identifier is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20sig%20field%20Oxford%20Prescribing%20Drug%20Exposure%20(with%20Snomed)%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20sig%20field%20Oxford%20Prescribing%20Drug%20Exposure%20(with%20Snomed)%20mapping){: .btn }

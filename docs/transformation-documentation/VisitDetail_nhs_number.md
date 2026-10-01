@@ -41,7 +41,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Outpatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Outpatient%20VisitDetails%20mapping){: .btn }
 ### Sus Critical Care VisitDetails
 * Value copied from `NHSNumber`
 
@@ -75,7 +75,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Critical%20Care%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Critical%20Care%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 * Value copied from `NHSNumber`
 
@@ -114,7 +114,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 * Value copied from `NHSNumber`
 
@@ -150,7 +150,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
 ### Oxford Visit Details
 * Value copied from `NHSNumber`
 
@@ -170,4 +170,4 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Oxford%20Visit%20Details%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20nhs_number%20field%20Oxford%20Visit%20Details%20mapping){: .btn }

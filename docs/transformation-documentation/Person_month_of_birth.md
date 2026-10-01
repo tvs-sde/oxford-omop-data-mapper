@@ -25,7 +25,7 @@ Selects the month of the year or null if the date is null.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SUS%20Outpatient%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SUS%20Outpatient%20Person%20mapping){: .btn }
 ### SUS Inpatient Person
 Source column  `DateOfBirth`.
 Selects the month of the year or null if the date is null.
@@ -45,7 +45,7 @@ Selects the month of the year or null if the date is null.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SUS%20Inpatient%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SUS%20Inpatient%20Person%20mapping){: .btn }
 ### SUS A&E Person
 Source column  `DateOfBirth`.
 Selects the month of the year or null if the date is null.
@@ -65,7 +65,7 @@ Selects the month of the year or null if the date is null.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SUS%20A&E%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SUS%20A&E%20Person%20mapping){: .btn }
 ### SACT Person
 Source column  `Date_Of_Birth`.
 Selects the month of the year or null if the date is null.
@@ -83,7 +83,7 @@ Selects the month of the year or null if the date is null.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SACT%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20SACT%20Person%20mapping){: .btn }
 ### Rtds Person
 Source column  `DateOfBirth`.
 Selects the month of the year or null if the date is null.
@@ -102,7 +102,7 @@ group by PatientId
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20Rtds%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20Rtds%20Person%20mapping){: .btn }
 ### Oxford GP Person
 Source column  `DOB`.
 Selects the month of the year or null if the date is null.
@@ -122,7 +122,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20Oxford%20GP%20Person%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20Oxford%20GP%20Person%20mapping){: .btn }
 ### COSD Demographics
 Source column  `DateOfBirth`.
 Selects the month of the year or null if the date is null.
@@ -157,7 +157,7 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20COSD%20Demographics%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20COSD%20Demographics%20mapping){: .btn }
 ### COSD Demographics v8
 Source column  `DateOfBirth`.
 Selects the month of the year or null if the date is null.
@@ -191,4 +191,4 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20COSD%20Demographics%20v8%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Person%20table%20month_of_birth%20field%20COSD%20Demographics%20v8%20mapping){: .btn }

@@ -63,7 +63,7 @@ docker run \
       --rm \
       -v /path/to/athena/extract:/vocabulary \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       init
 ```
 

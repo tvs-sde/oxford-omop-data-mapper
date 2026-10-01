@@ -25,7 +25,7 @@ Converts text to dates.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20SUS%20Outpatient%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20SUS%20Outpatient%20Death%20mapping){: .btn }
 ### SUS Inpatient Death
 Source column  `death_date`.
 Converts text to dates.
@@ -57,7 +57,7 @@ group by apc.NHSNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20SUS%20Inpatient%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20SUS%20Inpatient%20Death%20mapping){: .btn }
 ### SUS A&E Death
 Source column  `death_date`.
 Converts text to dates.
@@ -79,7 +79,7 @@ group by NHSNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20SUS%20A&E%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20SUS%20A&E%20Death%20mapping){: .btn }
 ### Oxford Spine Death
 Source column  `DECEASED_DT_TM`.
 Converts text to dates.
@@ -95,7 +95,7 @@ from ##duckdb_source##
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20Oxford%20Spine%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20Oxford%20Spine%20Death%20mapping){: .btn }
 ### Oxford GP Death
 Source column  `DateofDeath`.
 Converts text to dates.
@@ -116,7 +116,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20Oxford%20GP%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20Oxford%20GP%20Death%20mapping){: .btn }
 ### COSD v9 DeathDischargeDestination
 * Value copied from `DeathDate`
 
@@ -139,7 +139,7 @@ where (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code')
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20COSD%20v9%20DeathDischargeDestination%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20COSD%20v9%20DeathDischargeDestination%20mapping){: .btn }
 ### COSD v9 BasisOfDiagnosisCancer
 * Value copied from `DeathDate`
 
@@ -174,7 +174,7 @@ group by NhsNumber;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20COSD%20v9%20BasisOfDiagnosisCancer%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20COSD%20v9%20BasisOfDiagnosisCancer%20mapping){: .btn }
 ### COSD v8 Death
 Source column  `DeathDate`.
 Converts text to dates.
@@ -191,4 +191,4 @@ where DeathDate is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20COSD%20v8%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20death_date%20field%20COSD%20v8%20Death%20mapping){: .btn }

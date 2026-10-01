@@ -66,7 +66,7 @@ jobs:
           body: |
             # Oxford OMOP data mapper ${{ github.ref_name }}
 
-            [Tagged Container images](https://github.com/answerdigital/oxford-omop-data-mapper/pkgs/container/oxford-omop-data-mapper)
+            [Tagged Container images](https://github.com/${{ github.repository_owner }}/oxford-omop-data-mapper/pkgs/container/oxford-omop-data-mapper)
           generateReleaseNotes: true
           prerelease: ${{ steps.version.outputs.prerelease != '' }}
           makeLatest: true

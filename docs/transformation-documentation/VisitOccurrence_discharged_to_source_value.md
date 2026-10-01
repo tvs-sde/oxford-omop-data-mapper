@@ -45,7 +45,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitOccurrence%20table%20discharged_to_source_value%20field%20SUS%20APC%20VisitOccurrenceWithSpell%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitOccurrence%20table%20discharged_to_source_value%20field%20SUS%20APC%20VisitOccurrenceWithSpell%20mapping){: .btn }
 ### SUS AE VisitOccurrenceWithSpell
 * Value copied from `DischargeDestinationCode`
 
@@ -82,4 +82,4 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitOccurrence%20table%20discharged_to_source_value%20field%20SUS%20AE%20VisitOccurrenceWithSpell%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitOccurrence%20table%20discharged_to_source_value%20field%20SUS%20AE%20VisitOccurrenceWithSpell%20mapping){: .btn }

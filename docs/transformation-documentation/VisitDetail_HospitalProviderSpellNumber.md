@@ -41,7 +41,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Outpatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Outpatient%20VisitDetails%20mapping){: .btn }
 ### Sus Critical Care VisitDetails
 * Value copied from `HospitalProviderSpellNumber`
 
@@ -75,7 +75,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Critical%20Care%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Critical%20Care%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 * Value copied from `HospitalProviderSpellNumber`
 
@@ -114,7 +114,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 * Value copied from `AEAttendanceNumber`
 
@@ -150,4 +150,4 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20HospitalProviderSpellNumber%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }

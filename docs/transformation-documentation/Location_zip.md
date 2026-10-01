@@ -26,7 +26,7 @@ Uppercase the postcode then insert the space in the correct location, if needed.
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SUS%20Outpatient%20Location%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SUS%20Outpatient%20Location%20mapping){: .btn }
 ### SUS Inpatient Location
 Source column  `Postcode`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -44,7 +44,7 @@ where Postcode is not null;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SUS%20Inpatient%20Location%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SUS%20Inpatient%20Location%20mapping){: .btn }
 ### SUS A&E Location
 Source column  `Postcode`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -63,7 +63,7 @@ and NHSNumber is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SUS%20A&E%20Location%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SUS%20A&E%20Location%20mapping){: .btn }
 ### SACT Location
 Source column  `Patient_Postcode`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -81,7 +81,7 @@ group by NHS_Number
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SACT%20Location%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20SACT%20Location%20mapping){: .btn }
 ### Rtds PAS Location
 Source column  `FirstOfPOSTCODE`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -100,7 +100,7 @@ where p.FirstOfPOSTCODE is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20Rtds%20PAS%20Location%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20Rtds%20PAS%20Location%20mapping){: .btn }
 ### Oxford GP Location
 Source column  `Postcode`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -121,7 +121,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20Oxford%20GP%20Location%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20Oxford%20GP%20Location%20mapping){: .btn }
 ### COSD Demographics
 Source column  `Postcode`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -156,7 +156,7 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20COSD%20Demographics%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20COSD%20Demographics%20mapping){: .btn }
 ### COSD Demographics v8
 Source column  `Postcode`.
 Uppercase the postcode then insert the space in the correct location, if needed.
@@ -190,4 +190,4 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20COSD%20Demographics%20v8%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20zip%20field%20COSD%20Demographics%20v8%20mapping){: .btn }

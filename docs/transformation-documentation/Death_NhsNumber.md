@@ -24,7 +24,7 @@ has_toc: false
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20SUS%20Outpatient%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20SUS%20Outpatient%20Death%20mapping){: .btn }
 ### SUS Inpatient Death
 * Value copied from `nhs_number`
 
@@ -55,7 +55,7 @@ group by apc.NHSNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20SUS%20Inpatient%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20SUS%20Inpatient%20Death%20mapping){: .btn }
 ### SUS A&E Death
 * Value copied from `nhs_number`
 
@@ -76,7 +76,7 @@ group by NHSNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20SUS%20A&E%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20SUS%20A&E%20Death%20mapping){: .btn }
 ### Oxford Spine Death
 * Value copied from `patient_identifier_Value`
 
@@ -91,7 +91,7 @@ from ##duckdb_source##
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20Oxford%20Spine%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20Oxford%20Spine%20Death%20mapping){: .btn }
 ### Oxford GP Death
 * Value copied from `NHSNumber`
 
@@ -111,7 +111,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20Oxford%20GP%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20Oxford%20GP%20Death%20mapping){: .btn }
 ### COSD v9 DeathDischargeDestination
 * Value copied from `NhsNumber`
 
@@ -134,7 +134,7 @@ where (Record ->> '$.Treatment.DischargeDestinationHospitalProviderSpell.@code')
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20COSD%20v9%20DeathDischargeDestination%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20COSD%20v9%20DeathDischargeDestination%20mapping){: .btn }
 ### COSD v9 BasisOfDiagnosisCancer
 * Value copied from `NhsNumber`
 
@@ -169,7 +169,7 @@ group by NhsNumber;
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20COSD%20v9%20BasisOfDiagnosisCancer%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20COSD%20v9%20BasisOfDiagnosisCancer%20mapping){: .btn }
 ### COSD v8 Death
 * Value copied from `NhsNumber`
 
@@ -185,4 +185,4 @@ where DeathDate is not null
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20COSD%20v8%20Death%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Death%20table%20NhsNumber%20field%20COSD%20v8%20Death%20mapping){: .btn }

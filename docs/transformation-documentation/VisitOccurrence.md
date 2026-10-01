@@ -32,7 +32,7 @@ has_toc: false
 > * `Patient Classification` ID 1 is the only entry that covers 24 hours or more with the use of a bed, and whilst others may be a day/night only, they will be discounted because they are less than 24 hours.
 > * No calculations to be made between Start and end visit date to try to calculate 24 hours, but instead the `Patient Classification` will be sufficient
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusOPVisitOccurrenceWithSpell%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusOPVisitOccurrenceWithSpell%20mapping){: .btn }
 ## SusAPCVisitOccurrenceWithSpell
 <a href="SusAPCVisitOccurrenceWithSpell.svg" target="_blank"><img src="SusAPCVisitOccurrenceWithSpell.svg" /></a>
 
@@ -44,7 +44,7 @@ has_toc: false
 > * `Patient Classification` ID 1 is the only entry that covers 24 hours or more with the use of a bed, and whilst others may be a day/night only, they will be discounted because they are less than 24 hours. Also, maternity is also not taken as an `Inpatient` visit.
 > * No calculations to be made between Start and end visit date to try to calculate 24 hours, but instead the `Patient Classification` will be sufficient
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusAPCVisitOccurrenceWithSpell%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusAPCVisitOccurrenceWithSpell%20mapping){: .btn }
 ## SusAEVisitOccurrenceWithSpell
 <a href="SusAEVisitOccurrenceWithSpell.svg" target="_blank"><img src="SusAEVisitOccurrenceWithSpell.svg" /></a>
 
@@ -53,7 +53,7 @@ has_toc: false
 >
 > * `Emergency` covers a visit to A&E within the given Hospital Provider, and hence covers Admission Code 21 and 24 only
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SusAEVisitOccurrenceWithSpell%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusAEVisitOccurrenceWithSpell%20mapping){: .btn }
 ## SactVisitOccurrence
 <a href="SactVisitOccurrence.svg" target="_blank"><img src="SactVisitOccurrence.svg" /></a>
 
@@ -65,12 +65,12 @@ has_toc: false
 > * ii) For recording continuous oral chemotherapy, the administration date will be the first day of the nominal cycle, or the date on which an oral drug was dispensed to the patient.
 > * The assumption made is that all the drugs were administered in a Cancer clinic as we have no way of identifying if an oral drug was taken at home
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SactVisitOccurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SactVisitOccurrence%20mapping){: .btn }
 ## RtdsVisitOccurrence
 <a href="RtdsVisitOccurrence.svg" target="_blank"><img src="RtdsVisitOccurrence.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=RtdsVisitOccurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=RtdsVisitOccurrence%20mapping){: .btn }
 ## OxfordGPVisitOccurrence
 <a href="OxfordGPVisitOccurrence.svg" target="_blank"><img src="OxfordGPVisitOccurrence.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OxfordGPVisitOccurrence%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordGPVisitOccurrence%20mapping){: .btn }

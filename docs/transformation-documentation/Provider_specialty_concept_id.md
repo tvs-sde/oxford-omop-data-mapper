@@ -136,7 +136,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20specialty_concept_id%20field%20SUS%20Outpatient%20Provider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20specialty_concept_id%20field%20SUS%20Outpatient%20Provider%20mapping){: .btn }
 ### SUS Inpatient Provider
 Source column  `MainSpecialtyCode`.
 Lookup provider concept.
@@ -270,7 +270,7 @@ order by
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20specialty_concept_id%20field%20SUS%20Inpatient%20Provider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20specialty_concept_id%20field%20SUS%20Inpatient%20Provider%20mapping){: .btn }
 ### SACT Provider
 Source column  `Consultant_Specialty_Code`.
 Lookup provider concept.
@@ -380,4 +380,4 @@ Notes
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20specialty_concept_id%20field%20SACT%20Provider%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Provider%20table%20specialty_concept_id%20field%20SACT%20Provider%20mapping){: .btn }

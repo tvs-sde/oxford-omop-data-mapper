@@ -30,7 +30,7 @@ docker run \
       --rm \
       -v /path/to/athena/extract:/vocabulary \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       init
 ```
 
@@ -42,7 +42,7 @@ docker run \
       -e BatchSize=500000 \
       --rm \
       -v /path/to/your/data:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type sus-op /data/OS_SEM_1234_Outpatient_Q1_12345678_aaaaaaaa.csv --allowed_nhs_number_list_path /data/allowed_patients.txt
 ```
 
@@ -107,7 +107,7 @@ docker run \
       -e BatchSize=500000 \
       --rm \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       transform --type sus-op
 ```
 
@@ -183,7 +183,7 @@ docker run \
       -e BatchSize=500000 \
       --rm \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       finalise
 ```
 

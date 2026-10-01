@@ -40,7 +40,7 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20address_1%20field%20COSD%20Demographics%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20address_1%20field%20COSD%20Demographics%20mapping){: .btn }
 ### COSD Demographics v8
 Source column  `StreetAddressLine1`.
 Convert text to uppercase. Trim whitespace.
@@ -74,4 +74,4 @@ group by NhsNumber
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20address_1%20field%20COSD%20Demographics%20v8%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Location%20table%20address_1%20field%20COSD%20Demographics%20v8%20mapping){: .btn }

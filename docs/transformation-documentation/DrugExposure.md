@@ -26,16 +26,16 @@ has_toc: false
 ## SactDrugExposure
 <a href="SactDrugExposure.svg" target="_blank"><img src="SactDrugExposure.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=SactDrugExposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SactDrugExposure%20mapping){: .btn }
 ## OxfordPrescribingDrugExposure
 <a href="OxfordPrescribingDrugExposure.svg" target="_blank"><img src="OxfordPrescribingDrugExposure.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OxfordPrescribingDrugExposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordPrescribingDrugExposure%20mapping){: .btn }
 ## OxfordPrescribingDrugExposureWithSnomed
 <a href="OxfordPrescribingDrugExposureWithSnomed.svg" target="_blank"><img src="OxfordPrescribingDrugExposureWithSnomed.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OxfordPrescribingDrugExposureWithSnomed%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordPrescribingDrugExposureWithSnomed%20mapping){: .btn }
 ## OxfordGPDrugExposure
 <a href="OxfordGPDrugExposure.svg" target="_blank"><img src="OxfordGPDrugExposure.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OxfordGPDrugExposure%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordGPDrugExposure%20mapping){: .btn }

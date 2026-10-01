@@ -72,7 +72,7 @@ Notes
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20admitted_from_concept_id%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20admitted_from_concept_id%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
 ### Sus Inptatient VisitDetails
 Source column  `SourceofAdmissionCode`.
 Lookup admission source concept.
@@ -136,4 +136,4 @@ Notes
 ```
 
 
-[Comment or raise an issue for this mapping.](https://github.com/answerdigital/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20admitted_from_concept_id%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20VisitDetail%20table%20admitted_from_concept_id%20field%20Sus%20Inptatient%20VisitDetails%20mapping){: .btn }
