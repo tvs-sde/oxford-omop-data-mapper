@@ -21,10 +21,10 @@ internal class COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis :
     [CopyValue(nameof(Source.PersonStatedSexualOrientationCodeAtDiagnosis))]
     public override string? observation_source_value { get; set; }
 
-    [ConstantValue(4036080, "Orientation of sexual relationship")]
+    [ConstantValue(46235214, "Sexual orientation")]
     public override int[]? observation_concept_id { get; set; }
 
-    [Transform(typeof(PersonStatedSexualOrientationCodeAtDiagnosisLookup), nameof(Source.PersonStatedSexualOrientationCodeAtDiagnosis))]
+    [Transform(typeof(SexualOrientationLookup), nameof(Source.PersonStatedSexualOrientationCodeAtDiagnosis))]
     public override int? value_as_concept_id { get; set; }
 
     [CopyValue(nameof(Source.PersonStatedSexualOrientationCodeAtDiagnosis))]

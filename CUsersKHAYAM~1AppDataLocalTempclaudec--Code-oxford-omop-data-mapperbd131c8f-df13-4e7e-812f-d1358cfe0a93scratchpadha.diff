@@ -1,0 +1,760 @@
+diff --git a/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.cs b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.cs
+new file mode 100644
+index 00000000..bc1fad1f
+--- /dev/null
++++ b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.cs
+@@ -0,0 +1,29 @@
++using OmopTransformer.Annotations;
++using OmopTransformer.Omop.ConditionOccurrence;
++using OmopTransformer.Transformation;
++
++namespace OmopTransformer.COSD.HA.ConditionOccurrence.COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator;
++
++internal class COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator : OmopConditionOccurrence<COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord>
++{
++    [CopyValue(nameof(Source.NhsNumber))]
++    public override string? nhs_number { get; set; }
++
++    [Transform(typeof(DateConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
++    public override DateTime? condition_start_date { get; set; }
++
++    [Transform(typeof(DateConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
++    public override DateTime? condition_start_datetime { get; set; }
++
++    [ConstantValue(32828, "EHR episode record")]
++    public override int? condition_type_concept_id { get; set; }
++
++    [ConstantValue(2000500005, "Familial Cancer (Indicator)")]
++    public override int? condition_source_concept_id { get; set; }
++
++    [ConstantValue(44782478, "Hereditary cancer-predisposing syndrome")]
++    public override int[]? condition_concept_id { get; set; }
++
++    [CopyValue(nameof(Source.FamilialCancerSyndromeIndicator))]
++    public override string? condition_source_value { get; set; }
++}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicator.xml b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.xml
+similarity index 100%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicator.xml
+rename to OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.xml
+diff --git a/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord.cs b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord.cs
+new file mode 100644
+index 00000000..6d8f5cba
+--- /dev/null
++++ b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord.cs
+@@ -0,0 +1,13 @@
++using OmopTransformer.Annotations;
++
++namespace OmopTransformer.COSD.HA.ConditionOccurrence.COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator;
++
++[DataOrigin("COSD")]
++[Description("COSD V8 HA Condition Occurrence Familial Cancer Syndrome Indicator")]
++[SourceQuery("COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.xml")]
++internal class COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord
++{
++    public string? NhsNumber { get; set; }
++    public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
++    public string? FamilialCancerSyndromeIndicator { get; set; }
++}
+diff --git a/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.cs b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.cs
+new file mode 100644
+index 00000000..f5072b38
+--- /dev/null
++++ b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.cs
+@@ -0,0 +1,29 @@
++using OmopTransformer.Annotations;
++using OmopTransformer.Omop.ConditionOccurrence;
++using OmopTransformer.Transformation;
++
++namespace OmopTransformer.COSD.HA.ConditionOccurrence.COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator;
++
++internal class COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator : OmopConditionOccurrence<COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord>
++{
++    [CopyValue(nameof(Source.NhsNumber))]
++    public override string? nhs_number { get; set; }
++
++    [Transform(typeof(DateConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
++    public override DateTime? condition_start_date { get; set; }
++
++    [Transform(typeof(DateConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
++    public override DateTime? condition_start_datetime { get; set; }
++
++    [ConstantValue(32828, "EHR episode record")]
++    public override int? condition_type_concept_id { get; set; }
++
++    [ConstantValue(2000500005, "Familial Cancer (Indicator)")]
++    public override int? condition_source_concept_id { get; set; }
++
++    [ConstantValue(44782478, "Hereditary cancer-predisposing syndrome")]
++    public override int[]? condition_concept_id { get; set; }
++
++    [CopyValue(nameof(Source.FamilialCancerSyndromeIndicator))]
++    public override string? condition_source_value { get; set; }
++}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicator.xml b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.xml
+similarity index 100%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicator.xml
+rename to OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.xml
+diff --git a/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord.cs b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord.cs
+new file mode 100644
+index 00000000..666f8a53
+--- /dev/null
++++ b/OmopTransformer/COSD/HA/ConditionOccurrence/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator/COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord.cs
+@@ -0,0 +1,13 @@
++using OmopTransformer.Annotations;
++
++namespace OmopTransformer.COSD.HA.ConditionOccurrence.COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator;
++
++[DataOrigin("COSD")]
++[Description("COSD V9 HA Condition Occurrence Familial Cancer Syndrome Indicator")]
++[SourceQuery("COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.xml")]
++internal class COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicatorRecord
++{
++    public string? NhsNumber { get; set; }
++    public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
++    public string? FamilialCancerSyndromeIndicator { get; set; }
++}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.cs
+deleted file mode 100644
+index 58811b89..00000000
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.cs
++++ /dev/null
+@@ -1,32 +0,0 @@
+-using OmopTransformer.Annotations;
+-using OmopTransformer.Omop.Observation;
+-using OmopTransformer.Transformation;
+-
+-namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
+-
+-internal class COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths : OmopObservation<COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord>
+-{
+-    [CopyValue(nameof(Source.NhsNumber))]
+-    public override string? nhs_number { get; set; }
+-
+-    [Transform(typeof(DateOnlyConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
+-    public override DateOnly? observation_date { get; set; }
+-
+-    [Transform(typeof(DateConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
+-    public override DateTime? observation_datetime { get; set; }
+-
+-    [ConstantValue(32828, "EHR episode record")]
+-    public override int? observation_type_concept_id { get; set; }
+-
+-    [ConstantValue(35609491, "Alcohol units consumed per week")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+-    public override int[]? observation_concept_id { get; set; }
+-
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+-    public override string? observation_source_value { get; set; }
+-
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+-    public override string? value_source_value { get; set; }
+-}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicator.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrent.cs
+similarity index 61%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicator.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrent.cs
+index 981156ea..00a8643b 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicator.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrent.cs
+@@ -2,9 +2,9 @@ using OmopTransformer.Annotations;
+ using OmopTransformer.Omop.Observation;
+ using OmopTransformer.Transformation;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationFamilialCancerSyndromeIndicator;
++namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerCurrent;
+ 
+-internal class COSDv8HAObservationFamilialCancerSyndromeIndicator : OmopObservation<COSDv8HAObservationFamilialCancerSyndromeIndicatorRecord>
++internal class COSDv8HAObservationAlcoholHistoryCancerCurrent : OmopObservation<COSDv8HAObservationAlcoholHistoryCancerCurrentRecord>
+ {
+     [CopyValue(nameof(Source.NhsNumber))]
+     public override string? nhs_number { get; set; }
+@@ -18,15 +18,15 @@ internal class COSDv8HAObservationFamilialCancerSyndromeIndicator : OmopObservat
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(4171594, "Family history of malignant neoplasm")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
++    [ConstantValue(4266612, "Eating feeding / drinking observable")]
+     public override int[]? observation_concept_id { get; set; }
+ 
+-    [CopyValue(nameof(Source.FamilialCancerSyndromeIndicator))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerCurrent))]
+     public override string? observation_source_value { get; set; }
+ 
+-    [CopyValue(nameof(Source.FamilialCancerSyndromeIndicator))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerCurrent))]
+     public override string? value_source_value { get; set; }
++
++    [Transform(typeof(HistoryOfAlcoholLookup), nameof(Source.AlcoholHistoryCancerCurrent))]
++    public override int? value_as_concept_id { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.xml b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrent.xml
+similarity index 88%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.xml
+rename to OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrent.xml
+index 0b433f49..b92da7cb 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.xml
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrent.xml
+@@ -6,11 +6,11 @@ select distinct
+     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+         as DateOfPrimaryDiagnosisClinicallyAgreed,
+     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerInLastThreeMonths.@code'
+-        as AlcoholHistoryCancerInLastThreeMonths
++        as AlcoholHistoryCancerCurrent
+ from omop_staging.cosd_staging_81
+ where type = 'HA'
+   and NhsNumber is not null
+-  and AlcoholHistoryCancerInLastThreeMonths is not null
++  and AlcoholHistoryCancerCurrent is not null
+   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+     </Sql>
+     <Explanations>
+@@ -22,7 +22,7 @@ where type = 'HA'
+             <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+             <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+         </Explanation>
+-        <Explanation columnName="AlcoholHistoryCancerInLastThreeMonths">
++        <Explanation columnName="AlcoholHistoryCancerCurrent">
+             <Description>Current history of alcohol consumption for the patient during a cancer care spell.</Description>
+             <Origin>ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)</Origin>
+         </Explanation>
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrentRecord.cs
+similarity index 54%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrentRecord.cs
+index 7532e94d..c36f30d6 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerCurrent/COSDv8HAObservationAlcoholHistoryCancerCurrentRecord.cs
+@@ -1,13 +1,13 @@
+ using OmopTransformer.Annotations;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths;
++namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerCurrent;
+ 
+ [DataOrigin("COSD")]
+ [Description("COSD V8 HA Observation Alcohol History Cancer In Last Three Months")]
+-[SourceQuery("COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.xml")]
+-internal class COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord
++[SourceQuery("COSDv8HAObservationAlcoholHistoryCancerCurrent.xml")]
++internal class COSDv8HAObservationAlcoholHistoryCancerCurrentRecord
+ {
+     public string? NhsNumber { get; set; }
+     public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
+-    public string? AlcoholHistoryCancerInLastThreeMonths { get; set; }
++    public string? AlcoholHistoryCancerCurrent { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPast.cs
+similarity index 60%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPast.cs
+index c46d51d5..e46f7d74 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPast.cs
+@@ -2,9 +2,9 @@ using OmopTransformer.Annotations;
+ using OmopTransformer.Omop.Observation;
+ using OmopTransformer.Transformation;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths;
++namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerPast;
+ 
+-internal class COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths : OmopObservation<COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord>
++internal class COSDv8HAObservationAlcoholHistoryCancerPast : OmopObservation<COSDv8HAObservationAlcoholHistoryCancerPastRecord>
+ {
+     [CopyValue(nameof(Source.NhsNumber))]
+     public override string? nhs_number { get; set; }
+@@ -18,15 +18,15 @@ internal class COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths : OmopOb
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(35609491, "Alcohol units consumed per week")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
++    [ConstantValue(1340204, "History of event")]
+     public override int[]? observation_concept_id { get; set; }
+ 
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerInLastThreeMonths))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerPast))]
+     public override string? observation_source_value { get; set; }
+ 
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerInLastThreeMonths))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerPast))]
+     public override string? value_source_value { get; set; }
++
++    [Transform(typeof(HistoryOfAlcoholLookup), nameof(Source.AlcoholHistoryCancerPast))]
++    public override int? value_as_concept_id { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPast.xml
+similarity index 88%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml
+rename to OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPast.xml
+index fe481602..2d887ba4 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPast.xml
+@@ -6,11 +6,11 @@ select distinct
+     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreLinkageDiagnosticDetails.ClinicalDateCancerDiagnosis'
+         as DateOfPrimaryDiagnosisClinicallyAgreed,
+     Record ->> '$.Haematological.HaematologicalCore.HaematologicalCoreClinicalNurseSpecialistAndRiskFactorAssessments.AlcoholHistoryCancerBeforeLastThreeMonths.@code'
+-        as AlcoholHistoryCancerBeforeLastThreeMonths
++        as AlcoholHistoryCancerPast
+ from omop_staging.cosd_staging_81
+ where type = 'HA'
+   and NhsNumber is not null
+-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
++  and AlcoholHistoryCancerPast is not null
+   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+     </Sql>
+     <Explanations>
+@@ -22,7 +22,7 @@ where type = 'HA'
+             <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+             <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+         </Explanation>
+-        <Explanation columnName="AlcoholHistoryCancerBeforeLastThreeMonths">
++        <Explanation columnName="AlcoholHistoryCancerPast">
+             <Description>Past history of alcohol consumption for the patient during a cancer care spell.</Description>
+             <Origin>ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)</Origin>
+         </Explanation>
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPastRecord.cs
+similarity index 53%
+rename from OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPastRecord.cs
+index 347eb36a..7b037c76 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationAlcoholHistoryCancerPast/COSDv8HAObservationAlcoholHistoryCancerPastRecord.cs
+@@ -1,13 +1,13 @@
+ using OmopTransformer.Annotations;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
++namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationAlcoholHistoryCancerPast;
+ 
+ [DataOrigin("COSD")]
+ [Description("COSD V8 HA Observation Alcohol History Cancer Before Last Three Months")]
+-[SourceQuery("COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml")]
+-internal class COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord
++[SourceQuery("COSDv8HAObservationAlcoholHistoryCancerPast.xml")]
++internal class COSDv8HAObservationAlcoholHistoryCancerPastRecord
+ {
+     public string? NhsNumber { get; set; }
+     public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
+-    public string? AlcoholHistoryCancerBeforeLastThreeMonths { get; set; }
++    public string? AlcoholHistoryCancerPast { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationCancerTreatmentIntent/COSDv8HAObservationCancerTreatmentIntent.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationCancerTreatmentIntent/COSDv8HAObservationCancerTreatmentIntent.cs
+index 3e93925a..4603f262 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationCancerTreatmentIntent/COSDv8HAObservationCancerTreatmentIntent.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationCancerTreatmentIntent/COSDv8HAObservationCancerTreatmentIntent.cs
+@@ -24,6 +24,9 @@ internal class COSDv8HAObservationCancerTreatmentIntent : OmopObservation<COSDv8
+     [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+     public override int[]? observation_concept_id { get; set; }
+ 
++     [Transform(typeof(CancerIntentLookup), nameof(Source.CancerTreatmentIntent))]
++     public override int? value_as_concept_id { get; set; }
++
+     [CopyValue(nameof(Source.CancerTreatmentIntent))]
+     public override string? observation_source_value { get; set; }
+ 
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicatorRecord.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicatorRecord.cs
+deleted file mode 100644
+index 8c27e231..00000000
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationFamilialCancerSyndromeIndicator/COSDv8HAObservationFamilialCancerSyndromeIndicatorRecord.cs
++++ /dev/null
+@@ -1,13 +0,0 @@
+-using OmopTransformer.Annotations;
+-
+-namespace OmopTransformer.COSD.HA.Observation.COSDv8HAObservationFamilialCancerSyndromeIndicator;
+-
+-[DataOrigin("COSD")]
+-[Description("COSD V8 HA Observation Familial Cancer Syndrome Indicator")]
+-[SourceQuery("COSDv8HAObservationFamilialCancerSyndromeIndicator.xml")]
+-internal class COSDv8HAObservationFamilialCancerSyndromeIndicatorRecord
+-{
+-    public string? NhsNumber { get; set; }
+-    public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
+-    public string? FamilialCancerSyndromeIndicator { get; set; }
+-}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.cs
+index 33834355..3a58af7d 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.cs
+@@ -18,12 +18,15 @@ internal class COSDv8HAObservationPerformanceStatusAdult : OmopObservation<COSDv
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(4309681, "General physical performance status")]
++    [ConstantValue(3008030, "Physical performance [QAM]")]
+     public override int? observation_source_concept_id { get; set; }
+ 
+     [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+     public override int[]? observation_concept_id { get; set; }
+ 
++    [Transform(typeof(PerformanceStatusLookup), nameof(Source.PerformanceStatusAdult))]
++    public override int? value_as_concept_id { get; set; }
++
+     [CopyValue(nameof(Source.PerformanceStatusAdult))]
+     public override string? observation_source_value { get; set; }
+ 
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.xml b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.xml
+index 4f514b11..dc7833f5 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.xml
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationPerformanceStatusAdult/COSDv8HAObservationPerformanceStatusAdult.xml
+@@ -11,7 +11,8 @@ from omop_staging.cosd_staging_81
+ where type = 'HA'
+   and NhsNumber is not null
+   and PerformanceStatusAdult is not null
+-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
++  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
++  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');
+     </Sql>
+     <Explanations>
+         <Explanation columnName="NhsNumber">
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationSmokingStatusCancer/COSDv8HAObservationSmokingStatusCancer.cs b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationSmokingStatusCancer/COSDv8HAObservationSmokingStatusCancer.cs
+index 24b545de..afa4e48b 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationSmokingStatusCancer/COSDv8HAObservationSmokingStatusCancer.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv8HAObservationSmokingStatusCancer/COSDv8HAObservationSmokingStatusCancer.cs
+@@ -18,10 +18,7 @@ internal class COSDv8HAObservationSmokingStatusCancer : OmopObservation<COSDv8HA
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(43054909, "Tobacco smoking status")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
++    [ConstantValue(648645, "Smoking status")]
+     public override int[]? observation_concept_id { get; set; }
+ 
+     [CopyValue(nameof(Source.SmokingStatusCancer))]
+@@ -29,4 +26,7 @@ internal class COSDv8HAObservationSmokingStatusCancer : OmopObservation<COSDv8HA
+ 
+     [CopyValue(nameof(Source.SmokingStatusCancer))]
+     public override string? value_source_value { get; set; }
++
++    [Transform(typeof(SmokingStatusLookup), nameof(Source.SmokingStatusCancer))]
++    public override int? value_as_concept_id { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.cs
+deleted file mode 100644
+index 5fdf8168..00000000
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.cs
++++ /dev/null
+@@ -1,32 +0,0 @@
+-using OmopTransformer.Annotations;
+-using OmopTransformer.Omop.Observation;
+-using OmopTransformer.Transformation;
+-
+-namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
+-
+-internal class COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths : OmopObservation<COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord>
+-{
+-    [CopyValue(nameof(Source.NhsNumber))]
+-    public override string? nhs_number { get; set; }
+-
+-    [Transform(typeof(DateOnlyConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
+-    public override DateOnly? observation_date { get; set; }
+-
+-    [Transform(typeof(DateConverter), nameof(Source.DateOfPrimaryDiagnosisClinicallyAgreed))]
+-    public override DateTime? observation_datetime { get; set; }
+-
+-    [ConstantValue(32828, "EHR episode record")]
+-    public override int? observation_type_concept_id { get; set; }
+-
+-    [ConstantValue(35609491, "Alcohol units consumed per week")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+-    public override int[]? observation_concept_id { get; set; }
+-
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+-    public override string? observation_source_value { get; set; }
+-
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerBeforeLastThreeMonths))]
+-    public override string? value_source_value { get; set; }
+-}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicator.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrent.cs
+similarity index 61%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicator.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrent.cs
+index 03711111..84deb3f9 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicator.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrent.cs
+@@ -2,9 +2,9 @@ using OmopTransformer.Annotations;
+ using OmopTransformer.Omop.Observation;
+ using OmopTransformer.Transformation;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationFamilialCancerSyndromeIndicator;
++namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerCurrent;
+ 
+-internal class COSDv9HAObservationFamilialCancerSyndromeIndicator : OmopObservation<COSDv9HAObservationFamilialCancerSyndromeIndicatorRecord>
++internal class COSDv9HAObservationAlcoholHistoryCancerCurrent : OmopObservation<COSDv9HAObservationAlcoholHistoryCancerCurrentRecord>
+ {
+     [CopyValue(nameof(Source.NhsNumber))]
+     public override string? nhs_number { get; set; }
+@@ -18,15 +18,15 @@ internal class COSDv9HAObservationFamilialCancerSyndromeIndicator : OmopObservat
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(4171594, "Family history of malignant neoplasm")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
++    [ConstantValue(4266612, "Eating feeding / drinking observable")]
+     public override int[]? observation_concept_id { get; set; }
+ 
+-    [CopyValue(nameof(Source.FamilialCancerSyndromeIndicator))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerCurrent))]
+     public override string? observation_source_value { get; set; }
+ 
+-    [CopyValue(nameof(Source.FamilialCancerSyndromeIndicator))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerCurrent))]
+     public override string? value_source_value { get; set; }
++
++    [Transform(typeof(HistoryOfAlcoholLookup), nameof(Source.AlcoholHistoryCancerCurrent))]
++    public override int? value_as_concept_id { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.xml b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrent.xml
+similarity index 87%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.xml
+rename to OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrent.xml
+index 4b796f84..eb612cb1 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.xml
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrent.xml
+@@ -6,11 +6,11 @@ select distinct
+     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+         as DateOfPrimaryDiagnosisClinicallyAgreed,
+     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholCurrent.@code'
+-        as AlcoholHistoryCancerInLastThreeMonths
++        as AlcoholHistoryCancerCurrent
+ from omop_staging.cosd_staging_901
+ where type = 'HA'
+   and NhsNumber is not null
+-  and AlcoholHistoryCancerInLastThreeMonths is not null
++  and AlcoholHistoryCancerCurrent is not null
+   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+     </Sql>
+     <Explanations>
+@@ -22,7 +22,7 @@ where type = 'HA'
+             <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+             <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+         </Explanation>
+-        <Explanation columnName="AlcoholHistoryCancerInLastThreeMonths">
++        <Explanation columnName="AlcoholHistoryCancerCurrent">
+             <Description>Current history of alcohol consumption for the patient during a cancer care spell.</Description>
+             <Origin>ALCOHOL HISTORY (CANCER IN LAST THREE MONTHS)</Origin>
+         </Explanation>
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrentRecord.cs
+similarity index 54%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrentRecord.cs
+index 654d91d9..4029b61e 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerCurrent/COSDv9HAObservationAlcoholHistoryCancerCurrentRecord.cs
+@@ -1,13 +1,13 @@
+ using OmopTransformer.Annotations;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths;
++namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerCurrent;
+ 
+ [DataOrigin("COSD")]
+ [Description("COSD V9 HA Observation Alcohol History Cancer In Last Three Months")]
+-[SourceQuery("COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.xml")]
+-internal class COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord
++[SourceQuery("COSDv9HAObservationAlcoholHistoryCancerCurrent.xml")]
++internal class COSDv9HAObservationAlcoholHistoryCancerCurrentRecord
+ {
+     public string? NhsNumber { get; set; }
+     public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
+-    public string? AlcoholHistoryCancerInLastThreeMonths { get; set; }
++    public string? AlcoholHistoryCancerCurrent { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPast.cs
+similarity index 60%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPast.cs
+index 397452c2..935b170a 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPast.cs
+@@ -2,9 +2,9 @@ using OmopTransformer.Annotations;
+ using OmopTransformer.Omop.Observation;
+ using OmopTransformer.Transformation;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths;
++namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerPast;
+ 
+-internal class COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths : OmopObservation<COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonthsRecord>
++internal class COSDv9HAObservationAlcoholHistoryCancerPast : OmopObservation<COSDv9HAObservationAlcoholHistoryCancerPastRecord>
+ {
+     [CopyValue(nameof(Source.NhsNumber))]
+     public override string? nhs_number { get; set; }
+@@ -18,15 +18,15 @@ internal class COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths : OmopOb
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(35609491, "Alcohol units consumed per week")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
++    [ConstantValue(1340204, "History of event")]
+     public override int[]? observation_concept_id { get; set; }
+ 
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerInLastThreeMonths))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerPast))]
+     public override string? observation_source_value { get; set; }
+ 
+-    [CopyValue(nameof(Source.AlcoholHistoryCancerInLastThreeMonths))]
++    [CopyValue(nameof(Source.AlcoholHistoryCancerPast))]
+     public override string? value_source_value { get; set; }
++
++    [Transform(typeof(HistoryOfAlcoholLookup), nameof(Source.AlcoholHistoryCancerPast))]
++    public override int? value_as_concept_id { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPast.xml
+similarity index 86%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml
+rename to OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPast.xml
+index 2e4c792e..8132092b 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPast.xml
+@@ -6,11 +6,11 @@ select distinct
+     Record ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed'
+         as DateOfPrimaryDiagnosisClinicallyAgreed,
+     Record ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.HistoryOfAlcoholPast.@code'
+-        as AlcoholHistoryCancerBeforeLastThreeMonths
++        as AlcoholHistoryCancerPast
+ from omop_staging.cosd_staging_901
+ where type = 'HA'
+   and NhsNumber is not null
+-  and AlcoholHistoryCancerBeforeLastThreeMonths is not null
++  and AlcoholHistoryCancerPast is not null
+   and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+     </Sql>
+     <Explanations>
+@@ -22,7 +22,7 @@ where type = 'HA'
+             <Description>The date the Primary Cancer was confirmed or the Primary Cancer diagnosis was clinically agreed.</Description>
+             <Origin>DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)</Origin>
+         </Explanation>
+-        <Explanation columnName="AlcoholHistoryCancerBeforeLastThreeMonths">
++        <Explanation columnName="AlcoholHistoryCancerPast">
+             <Description>Past history of alcohol consumption for the patient during a cancer care spell.</Description>
+             <Origin>ALCOHOL HISTORY (CANCER BEFORE LAST THREE MONTHS)</Origin>
+         </Explanation>
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPastRecord.cs
+similarity index 53%
+rename from OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord.cs
+rename to OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPastRecord.cs
+index 745f4d15..f7d0500b 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths/COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationAlcoholHistoryCancerPast/COSDv9HAObservationAlcoholHistoryCancerPastRecord.cs
+@@ -1,13 +1,13 @@
+ using OmopTransformer.Annotations;
+ 
+-namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths;
++namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationAlcoholHistoryCancerPast;
+ 
+ [DataOrigin("COSD")]
+ [Description("COSD V9 HA Observation Alcohol History Cancer Before Last Three Months")]
+-[SourceQuery("COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.xml")]
+-internal class COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonthsRecord
++[SourceQuery("COSDv9HAObservationAlcoholHistoryCancerPast.xml")]
++internal class COSDv9HAObservationAlcoholHistoryCancerPastRecord
+ {
+     public string? NhsNumber { get; set; }
+     public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
+-    public string? AlcoholHistoryCancerBeforeLastThreeMonths { get; set; }
++    public string? AlcoholHistoryCancerPast { get; set; }
+ }
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationCancerTreatmentIntent/COSDv9HAObservationCancerTreatmentIntent.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationCancerTreatmentIntent/COSDv9HAObservationCancerTreatmentIntent.cs
+index 4e5ac6c9..ef939954 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationCancerTreatmentIntent/COSDv9HAObservationCancerTreatmentIntent.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationCancerTreatmentIntent/COSDv9HAObservationCancerTreatmentIntent.cs
+@@ -24,6 +24,9 @@ internal class COSDv9HAObservationCancerTreatmentIntent : OmopObservation<COSDv9
+     [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+     public override int[]? observation_concept_id { get; set; }
+ 
++     [Transform(typeof(CancerIntentLookup), nameof(Source.CancerTreatmentIntent))]
++     public override int? value_as_concept_id { get; set; }
++
+     [CopyValue(nameof(Source.CancerTreatmentIntent))]
+     public override string? observation_source_value { get; set; }
+ 
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicatorRecord.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicatorRecord.cs
+deleted file mode 100644
+index 7ef45c5b..00000000
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationFamilialCancerSyndromeIndicator/COSDv9HAObservationFamilialCancerSyndromeIndicatorRecord.cs
++++ /dev/null
+@@ -1,13 +0,0 @@
+-using OmopTransformer.Annotations;
+-
+-namespace OmopTransformer.COSD.HA.Observation.COSDv9HAObservationFamilialCancerSyndromeIndicator;
+-
+-[DataOrigin("COSD")]
+-[Description("COSD V9 HA Observation Familial Cancer Syndrome Indicator")]
+-[SourceQuery("COSDv9HAObservationFamilialCancerSyndromeIndicator.xml")]
+-internal class COSDv9HAObservationFamilialCancerSyndromeIndicatorRecord
+-{
+-    public string? NhsNumber { get; set; }
+-    public string? DateOfPrimaryDiagnosisClinicallyAgreed { get; set; }
+-    public string? FamilialCancerSyndromeIndicator { get; set; }
+-}
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.cs
+index c941a84f..f5a38bdc 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.cs
+@@ -18,12 +18,15 @@ internal class COSDv9HAObservationPerformanceStatusAdult : OmopObservation<COSDv
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(4309681, "General physical performance status")]
++    [ConstantValue(3008030, "Physical performance [QAM]")]
+     public override int? observation_source_concept_id { get; set; }
+ 
+     [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+     public override int[]? observation_concept_id { get; set; }
+ 
++    [Transform(typeof(PerformanceStatusLookup), nameof(Source.PerformanceStatusAdult))]
++    public override int? value_as_concept_id { get; set; }
++
+     [CopyValue(nameof(Source.PerformanceStatusAdult))]
+     public override string? observation_source_value { get; set; }
+ 
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.xml b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.xml
+index 84077321..51792a5a 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.xml
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationPerformanceStatusAdult/COSDv9HAObservationPerformanceStatusAdult.xml
+@@ -11,7 +11,8 @@ from omop_staging.cosd_staging_901
+ where type = 'HA'
+   and NhsNumber is not null
+   and PerformanceStatusAdult is not null
+-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
++  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
++  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');
+     </Sql>
+     <Explanations>
+         <Explanation columnName="NhsNumber">
+diff --git a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationSmokingStatusCancer/COSDv9HAObservationSmokingStatusCancer.cs b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationSmokingStatusCancer/COSDv9HAObservationSmokingStatusCancer.cs
+index 65a71b93..4f2177ee 100644
+--- a/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationSmokingStatusCancer/COSDv9HAObservationSmokingStatusCancer.cs
++++ b/OmopTransformer/COSD/HA/Observation/COSDv9HAObservationSmokingStatusCancer/COSDv9HAObservationSmokingStatusCancer.cs
+@@ -18,10 +18,7 @@ internal class COSDv9HAObservationSmokingStatusCancer : OmopObservation<COSDv9HA
+     [ConstantValue(32828, "EHR episode record")]
+     public override int? observation_type_concept_id { get; set; }
+ 
+-    [ConstantValue(43054909, "Tobacco smoking status")]
+-    public override int? observation_source_concept_id { get; set; }
+-
+-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
++    [ConstantValue(648645, "Smoking status")]
+     public override int[]? observation_concept_id { get; set; }
+ 
+     [CopyValue(nameof(Source.SmokingStatusCancer))]
+@@ -29,4 +26,7 @@ internal class COSDv9HAObservationSmokingStatusCancer : OmopObservation<COSDv9HA
+ 
+     [CopyValue(nameof(Source.SmokingStatusCancer))]
+     public override string? value_source_value { get; set; }
++
++    [Transform(typeof(SmokingStatusLookup), nameof(Source.SmokingStatusCancer))]
++    public override int? value_as_concept_id { get; set; }
+ }

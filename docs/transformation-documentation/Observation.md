@@ -17,11 +17,9 @@ has_toc: false
 * [HospitalProviderSpellNumber]({% link docs/transformation-documentation/Observation_HospitalProviderSpellNumber.md %})
 * [value_as_number]({% link docs/transformation-documentation/Observation_value_as_number.md %})
 * [value_as_concept_id]({% link docs/transformation-documentation/Observation_value_as_concept_id.md %})
-* [qualifier_concept_id]({% link docs/transformation-documentation/Observation_qualifier_concept_id.md %})
 * [unit_concept_id]({% link docs/transformation-documentation/Observation_unit_concept_id.md %})
 * [observation_source_value]({% link docs/transformation-documentation/Observation_observation_source_value.md %})
 * [observation_source_concept_id]({% link docs/transformation-documentation/Observation_observation_source_concept_id.md %})
-* [qualifier_source_value]({% link docs/transformation-documentation/Observation_qualifier_source_value.md %})
 * [value_source_value]({% link docs/transformation-documentation/Observation_value_source_value.md %})
 
 ## SusOPSourceOfReferralForOutpatients
@@ -303,14 +301,14 @@ has_toc: false
 <a href="COSDv9URObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9URObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9URObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9URObservationAlcoholHistoryCancerPast
+<a href="COSDv9URObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9URObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9URObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9URObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9URObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9URObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9URObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9URObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9URObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8URObservationSmokingStatusCancer
 <a href="COSDv8URObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8URObservationSmokingStatusCancer.svg" /></a>
 
@@ -319,86 +317,94 @@ has_toc: false
 <a href="COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.svg" target="_blank"><img src="COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-## COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8URObservationAlcoholHistoryCancerPast
+<a href="COSDv8URObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8URObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8URObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8URObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8URObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8URObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9UGObservationSmokingStatusCancer
 <a href="COSDv9UGObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9UGObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9UGObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9UGObservationAlcoholHistoryCancerPast
+<a href="COSDv9UGObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9UGObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9UGObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9UGObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9UGObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9UGObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9UGObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9UGObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9UGObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8UGObservationSmokingStatusCancer
 <a href="COSDv8UGObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8UGObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8UGObservationAlcoholHistoryCancerPast
+<a href="COSDv8UGObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8UGObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8UGObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8UGObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8UGObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8UGObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9SKObservationSmokingStatusCancer
 <a href="COSDv9SKObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9SKObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SKObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9SKObservationAlcoholHistoryCancerPast
+<a href="COSDv9SKObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9SKObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SKObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SKObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9SKObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9SKObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9SKObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SKObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SKObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8SKObservationSmokingStatusCancer
 <a href="COSDv8SKObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8SKObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SKObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8SKObservationAlcoholHistoryCancerPast
+<a href="COSDv8SKObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8SKObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SKObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SKObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8SKObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8SKObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8SKObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SKObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SKObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9SAObservationSmokingStatusCancer
 <a href="COSDv9SAObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9SAObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9SAObservationSarcomaTumourSiteSoftTissue
+<a href="COSDv9SAObservationSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv9SAObservationSarcomaTumourSiteSoftTissue.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationSarcomaTumourSiteSoftTissue%20mapping){: .btn }
+## COSDv9SAObservationAlcoholHistoryCancerPast
+<a href="COSDv9SAObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9SAObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9SAObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9SAObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9SAObservationAlcoholHistoryCancerCurrent.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8SAObservationSmokingStatusCancer
 <a href="COSDv8SAObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8SAObservationSmokingStatusCancer.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationSmokingStatusCancer%20mapping){: .btn }
-## COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8SAObservationSarcomaTumourSiteSoftTissue
+<a href="COSDv8SAObservationSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv8SAObservationSarcomaTumourSiteSoftTissue.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationSarcomaTumourSiteSoftTissue%20mapping){: .btn }
+## COSDv8SAObservationAlcoholHistoryCancerPast
+<a href="COSDv8SAObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8SAObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8SAObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8SAObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8SAObservationAlcoholHistoryCancerCurrent.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9LVObservationSmokingStatusCancer
 <a href="COSDv9LVObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9LVObservationSmokingStatusCancer.svg" /></a>
 
@@ -407,10 +413,6 @@ has_toc: false
 <a href="COSDv9LVObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9LVObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9LVObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv9LVObservationFamilialCancerSyndromeIndicator
-<a href="COSDv9LVObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9LVObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9LVObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9LVObservationCancerTreatmentIntent
 <a href="COSDv9LVObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv9LVObservationCancerTreatmentIntent.svg" /></a>
 
@@ -443,16 +445,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungTobaccoSmokingCessation%20mapping){: .btn }
-## CosdV9LungSurgicalAccessType
-<a href="CosdV9LungSurgicalAccessType.svg" target="_blank"><img src="CosdV9LungSurgicalAccessType.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungSurgicalAccessType%20mapping){: .btn }
 ## CosdV9LungSourceOfReferralForOutpatients
 <a href="CosdV9LungSourceOfReferralForOutpatients.svg" target="_blank"><img src="CosdV9LungSourceOfReferralForOutpatients.svg" /></a>
 
@@ -483,16 +475,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungPerformanceStatusAdult%20mapping){: .btn }
-## CosdV9LungMenopausalStatus
-<a href="CosdV9LungMenopausalStatus.svg" target="_blank"><img src="CosdV9LungMenopausalStatus.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungMenopausalStatus%20mapping){: .btn }
 ## CosdV9LungHistoryOfAlcoholPast
 <a href="CosdV9LungHistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9LungHistoryOfAlcoholPast.svg" /></a>
 
@@ -513,16 +495,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungHistoryOfAlcoholCurrent%20mapping){: .btn }
-## CosdV9LungFamilialCancerSyndrome
-<a href="CosdV9LungFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9LungFamilialCancerSyndrome.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungFamilialCancerSyndrome%20mapping){: .btn }
 ## CosdV9LungFamilialCancerSyndromeSubsidiaryComment
 <a href="CosdV9LungFamilialCancerSyndromeSubsidiaryComment.svg" target="_blank"><img src="CosdV9LungFamilialCancerSyndromeSubsidiaryComment.svg" /></a>
 
@@ -543,26 +515,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungAsaScore%20mapping){: .btn }
-## CosdV9LungAdultComorbidityEvaluation
-<a href="CosdV9LungAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV9LungAdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungAdultComorbidityEvaluation%20mapping){: .btn }
-## CosdV8LungSurgicalAccessType
-<a href="CosdV8LungSurgicalAccessType.svg" target="_blank"><img src="CosdV8LungSurgicalAccessType.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungSurgicalAccessType%20mapping){: .btn }
 ## CosdV8LungSourceOfReferralOutPatients
 <a href="CosdV8LungSourceOfReferralOutPatients.svg" target="_blank"><img src="CosdV8LungSourceOfReferralOutPatients.svg" /></a>
 
@@ -603,8 +555,8 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-## CosdV8LungFamilialCancerSyndromeIndicator
-<a href="CosdV8LungFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8LungFamilialCancerSyndromeIndicator.svg" /></a>
+## CosdV8LungAlcoholHistoryCancerPast
+<a href="CosdV8LungAlcoholHistoryCancerPast.svg" target="_blank"><img src="CosdV8LungAlcoholHistoryCancerPast.svg" /></a>
 
 {: .important-title }
 > Notes
@@ -612,9 +564,9 @@ has_toc: false
 > Observation dates are approximated using other date fields.
 >
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungFamilialCancerSyndromeIndicator%20mapping){: .btn }
-## CosdV8LungAlcoholHistoryCancerInLastThreeMonths
-<a href="CosdV8LungAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="CosdV8LungAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungAlcoholHistoryCancerPast%20mapping){: .btn }
+## CosdV8LungAlcoholHistoryCancerCurrent
+<a href="CosdV8LungAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="CosdV8LungAlcoholHistoryCancerCurrent.svg" /></a>
 
 {: .important-title }
 > Notes
@@ -622,17 +574,7 @@ has_toc: false
 > Observation dates are approximated using other date fields.
 >
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## CosdV8LungAdultPerformanceStatus
 <a href="CosdV8LungAdultPerformanceStatus.svg" target="_blank"><img src="CosdV8LungAdultPerformanceStatus.svg" /></a>
 
@@ -643,16 +585,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungAdultPerformanceStatus%20mapping){: .btn }
-## CosdV8LungAdultComorbidityEvaluation
-<a href="CosdV8LungAdultComorbidityEvaluation.svg" target="_blank"><img src="CosdV8LungAdultComorbidityEvaluation.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungAdultComorbidityEvaluation%20mapping){: .btn }
 ## COSDv9HNObservationSmokingStatusCancer
 <a href="COSDv9HNObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9HNObservationSmokingStatusCancer.svg" /></a>
 
@@ -661,22 +593,18 @@ has_toc: false
 <a href="COSDv9HNObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9HNObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv9HNObservationFamilialCancerSyndromeIndicator
-<a href="COSDv9HNObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9HNObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9HNObservationCancerTreatmentIntent
 <a href="COSDv9HNObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv9HNObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9HNObservationAlcoholHistoryCancerPast
+<a href="COSDv9HNObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9HNObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9HNObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9HNObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9HNObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8HNObservationSmokingStatusCancer
 <a href="COSDv8HNObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8HNObservationSmokingStatusCancer.svg" /></a>
 
@@ -685,22 +613,18 @@ has_toc: false
 <a href="COSDv8HNObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv8HNObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv8HNObservationFamilialCancerSyndromeIndicator
-<a href="COSDv8HNObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8HNObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv8HNObservationCancerTreatmentIntent
 <a href="COSDv8HNObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv8HNObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8HNObservationAlcoholHistoryCancerPast
+<a href="COSDv8HNObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8HNObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8HNObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8HNObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8HNObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9HAObservationSmokingStatusCancer
 <a href="COSDv9HAObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9HAObservationSmokingStatusCancer.svg" /></a>
 
@@ -709,22 +633,18 @@ has_toc: false
 <a href="COSDv9HAObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9HAObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv9HAObservationFamilialCancerSyndromeIndicator
-<a href="COSDv9HAObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9HAObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9HAObservationCancerTreatmentIntent
 <a href="COSDv9HAObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv9HAObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9HAObservationAlcoholHistoryCancerPast
+<a href="COSDv9HAObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9HAObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9HAObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9HAObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9HAObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8HAObservationSmokingStatusCancer
 <a href="COSDv8HAObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8HAObservationSmokingStatusCancer.svg" /></a>
 
@@ -733,22 +653,18 @@ has_toc: false
 <a href="COSDv8HAObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv8HAObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv8HAObservationFamilialCancerSyndromeIndicator
-<a href="COSDv8HAObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8HAObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv8HAObservationCancerTreatmentIntent
 <a href="COSDv8HAObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv8HAObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8HAObservationAlcoholHistoryCancerPast
+<a href="COSDv8HAObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8HAObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8HAObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8HAObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8HAObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9GYObservationSmokingStatusCancer
 <a href="COSDv9GYObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9GYObservationSmokingStatusCancer.svg" /></a>
 
@@ -757,22 +673,18 @@ has_toc: false
 <a href="COSDv9GYObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9GYObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv9GYObservationFamilialCancerSyndromeIndicator
-<a href="COSDv9GYObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9GYObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9GYObservationCancerTreatmentIntent
 <a href="COSDv9GYObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv9GYObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9GYObservationAlcoholHistoryCancerPast
+<a href="COSDv9GYObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9GYObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9GYObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9GYObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9GYObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8GYObservationSmokingStatusCancer
 <a href="COSDv8GYObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8GYObservationSmokingStatusCancer.svg" /></a>
 
@@ -781,22 +693,18 @@ has_toc: false
 <a href="COSDv8GYObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv8GYObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv8GYObservationFamilialCancerSyndromeIndicator
-<a href="COSDv8GYObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8GYObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv8GYObservationCancerTreatmentIntent
 <a href="COSDv8GYObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv8GYObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8GYObservationAlcoholHistoryCancerPast
+<a href="COSDv8GYObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8GYObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8GYObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8GYObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8GYObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9CTObservationTobaccoSmokingCessationTreatmentIndicationCode
 <a href="COSDv9CTObservationTobaccoSmokingCessationTreatmentIndicationCode.svg" target="_blank"><img src="COSDv9CTObservationTobaccoSmokingCessationTreatmentIndicationCode.svg" /></a>
 
@@ -809,22 +717,18 @@ has_toc: false
 <a href="COSDv9CTObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9CTObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv9CTObservationFamilialCancerSyndromeIndicator
-<a href="COSDv9CTObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9CTObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9CTObservationCancerTreatmentIntent
 <a href="COSDv9CTObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv9CTObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9CTObservationAlcoholHistoryCancerPast
+<a href="COSDv9CTObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9CTObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9CTObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9CTObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9CTObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8CTObservationSmokingStatusCancer
 <a href="COSDv8CTObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8CTObservationSmokingStatusCancer.svg" /></a>
 
@@ -833,18 +737,14 @@ has_toc: false
 <a href="COSDv8CTObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv8CTObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv8CTObservationFamilialCancerSyndromeIndicator
-<a href="COSDv8CTObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8CTObservationFamilialCancerSyndromeIndicator.svg" /></a>
+## COSDv8CTObservationAlcoholHistoryCancerPast
+<a href="COSDv8CTObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8CTObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
-## COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8CTObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8CTObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8CTObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv9CRObservationTobaccoSmokingCessationTreatmentIndicationCode
 <a href="COSDv9CRObservationTobaccoSmokingCessationTreatmentIndicationCode.svg" target="_blank"><img src="COSDv9CRObservationTobaccoSmokingCessationTreatmentIndicationCode.svg" /></a>
 
@@ -857,22 +757,18 @@ has_toc: false
 <a href="COSDv9CRObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9CRObservationPerformanceStatusAdult.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationPerformanceStatusAdult%20mapping){: .btn }
-## COSDv9CRObservationFamilialCancerSyndromeIndicator
-<a href="COSDv9CRObservationFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9CRObservationFamilialCancerSyndromeIndicator.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9CRObservationCancerTreatmentIntent
 <a href="COSDv9CRObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv9CRObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv9CRObservationAlcoholHistoryCancerPast
+<a href="COSDv9CRObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv9CRObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv9CRObservationAlcoholHistoryCancerCurrent
+<a href="COSDv9CRObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv9CRObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## COSDv8CRObservationSmokingStatusCancer
 <a href="COSDv8CRObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv8CRObservationSmokingStatusCancer.svg" /></a>
 
@@ -885,14 +781,14 @@ has_toc: false
 <a href="COSDv8CRObservationCancerTreatmentIntent.svg" target="_blank"><img src="COSDv8CRObservationCancerTreatmentIntent.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CRObservationCancerTreatmentIntent%20mapping){: .btn }
-## COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths
-<a href="COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+## COSDv8CRObservationAlcoholHistoryCancerPast
+<a href="COSDv8CRObservationAlcoholHistoryCancerPast.svg" target="_blank"><img src="COSDv8CRObservationAlcoholHistoryCancerPast.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CRObservationAlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths
-<a href="COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CRObservationAlcoholHistoryCancerPast%20mapping){: .btn }
+## COSDv8CRObservationAlcoholHistoryCancerCurrent
+<a href="COSDv8CRObservationAlcoholHistoryCancerCurrent.svg" target="_blank"><img src="COSDv8CRObservationAlcoholHistoryCancerCurrent.svg" /></a>
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CRObservationAlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CRObservationAlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## CosdV9TobaccoSmokingStatus
 <a href="CosdV9TobaccoSmokingStatus.svg" target="_blank"><img src="CosdV9TobaccoSmokingStatus.svg" /></a>
 
@@ -953,16 +849,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9PerformanceStatusAdult%20mapping){: .btn }
-## CosdV9MenopausalStatus
-<a href="CosdV9MenopausalStatus.svg" target="_blank"><img src="CosdV9MenopausalStatus.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9MenopausalStatus%20mapping){: .btn }
 ## CosdV9HistoryOfAlcoholPast
 <a href="CosdV9HistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9HistoryOfAlcoholPast.svg" /></a>
 
@@ -983,16 +869,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9HistoryOfAlcoholCurrent%20mapping){: .btn }
-## CosdV9FamilialCancerSyndrome
-<a href="CosdV9FamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9FamilialCancerSyndrome.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9FamilialCancerSyndrome%20mapping){: .btn }
 ## CosdV9FamilialCancerSyndromeSubsidiaryComment
 <a href="CosdV9FamilialCancerSyndromeSubsidiaryComment.svg" target="_blank"><img src="CosdV9FamilialCancerSyndromeSubsidiaryComment.svg" /></a>
 
@@ -1053,8 +929,8 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8PersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-## CosdV8FamilialCancerSyndromeIndicator
-<a href="CosdV8FamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8FamilialCancerSyndromeIndicator.svg" /></a>
+## CosdV8AlcoholHistoryCancerPast
+<a href="CosdV8AlcoholHistoryCancerPast.svg" target="_blank"><img src="CosdV8AlcoholHistoryCancerPast.svg" /></a>
 
 {: .important-title }
 > Notes
@@ -1062,9 +938,9 @@ has_toc: false
 > Observation dates are approximated using other date fields.
 >
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8FamilialCancerSyndromeIndicator%20mapping){: .btn }
-## CosdV8AlcoholHistoryCancerInLastThreeMonths
-<a href="CosdV8AlcoholHistoryCancerInLastThreeMonths.svg" target="_blank"><img src="CosdV8AlcoholHistoryCancerInLastThreeMonths.svg" /></a>
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8AlcoholHistoryCancerPast%20mapping){: .btn }
+## CosdV8AlcoholHistoryCancerCurrent
+<a href="CosdV8AlcoholHistoryCancerCurrent.svg" target="_blank"><img src="CosdV8AlcoholHistoryCancerCurrent.svg" /></a>
 
 {: .important-title }
 > Notes
@@ -1072,17 +948,7 @@ has_toc: false
 > Observation dates are approximated using other date fields.
 >
 
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8AlcoholHistoryCancerInLastThreeMonths%20mapping){: .btn }
-## CosdV8AlcoholHistoryCancerBeforeLastThreeMonths
-<a href="CosdV8AlcoholHistoryCancerBeforeLastThreeMonths.svg" target="_blank"><img src="CosdV8AlcoholHistoryCancerBeforeLastThreeMonths.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8AlcoholHistoryCancerBeforeLastThreeMonths%20mapping){: .btn }
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8AlcoholHistoryCancerCurrent%20mapping){: .btn }
 ## CosdV8AdultPerformanceStatus
 <a href="CosdV8AdultPerformanceStatus.svg" target="_blank"><img src="CosdV8AdultPerformanceStatus.svg" /></a>
 
@@ -1123,16 +989,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastPerformanceStatusAdult%20mapping){: .btn }
-## CosdV9BreastMenopausalStatus
-<a href="CosdV9BreastMenopausalStatus.svg" target="_blank"><img src="CosdV9BreastMenopausalStatus.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastMenopausalStatus%20mapping){: .btn }
 ## CosdV9BreastHistoryOfAlcoholPast
 <a href="CosdV9BreastHistoryOfAlcoholPast.svg" target="_blank"><img src="CosdV9BreastHistoryOfAlcoholPast.svg" /></a>
 
@@ -1153,16 +1009,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastHistoryOfAlcoholCurrent%20mapping){: .btn }
-## CosdV9BreastFamilialCancerSyndrome
-<a href="CosdV9BreastFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9BreastFamilialCancerSyndrome.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastFamilialCancerSyndrome%20mapping){: .btn }
 ## CosdV9BreastFamilialCancerSyndromeSubsidiaryComment
 <a href="CosdV9BreastFamilialCancerSyndromeSubsidiaryComment.svg" target="_blank"><img src="CosdV9BreastFamilialCancerSyndromeSubsidiaryComment.svg" /></a>
 
@@ -1223,16 +1069,6 @@ has_toc: false
 >
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8BreastPersonStatedSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
-## CosdV8BreastFamilialCancerSyndromeIndicator
-<a href="CosdV8BreastFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8BreastFamilialCancerSyndromeIndicator.svg" /></a>
-
-{: .important-title }
-> Notes
->
-> Observation dates are approximated using other date fields.
->
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8BreastFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9BAObservationPerformanceStatusAdult
 <a href="COSDv9BAObservationPerformanceStatusAdult.svg" target="_blank"><img src="COSDv9BAObservationPerformanceStatusAdult.svg" /></a>
 

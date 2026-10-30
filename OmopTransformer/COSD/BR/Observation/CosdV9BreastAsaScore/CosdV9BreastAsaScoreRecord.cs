@@ -10,4 +10,5 @@ internal class CosdV9BreastAsaScoreRecord
     public string? NhsNumber { get; set; }
     public DateOnly? Date { get; set; }
     public string? AsaScore { get; set; }
+    public string? AsaScoreDescription { get; set; }
 }

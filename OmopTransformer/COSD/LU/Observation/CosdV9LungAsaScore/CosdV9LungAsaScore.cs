@@ -1,5 +1,6 @@
 using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
+using OmopTransformer.Transformation;
 
 namespace OmopTransformer.COSD.LU.Observation.CosdV9LungAsaScore;
 
@@ -9,7 +10,7 @@ internal class CosdV9LungAsaScore : OmopObservation<CosdV9LungAsaScoreRecord>
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
 
-    [ConstantValue(4185914, "Identification of physical status")]
+    [ConstantValue(647671, "Physical status classification ASA")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.Date))]
@@ -21,4 +22,12 @@ internal class CosdV9LungAsaScore : OmopObservation<CosdV9LungAsaScoreRecord>
     [ConstantValue(32828, "`EHR episode record`")]
     public override int? observation_type_concept_id { get; set; }
 
+    [CopyValue(nameof(Source.AsaScoreDescription))]
+    public override string? value_source_value { get; set; }
+
+    [CopyValue(nameof(Source.AsaScoreDescription))]
+    public override string? observation_source_value { get; set; }
+
+    [Transform(typeof(AsaScoreLookup), nameof(Source.AsaScore))]
+    public override int? value_as_concept_id { get; set; }
 }

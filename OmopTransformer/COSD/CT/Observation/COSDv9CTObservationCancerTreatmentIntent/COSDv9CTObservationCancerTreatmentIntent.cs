@@ -19,10 +19,10 @@ internal class COSDv9CTObservationCancerTreatmentIntent : OmopObservation<COSDv9
     public override int? observation_type_concept_id { get; set; }
 
     [ConstantValue(4194400, "Treatment intent")]
-    public override int? observation_source_concept_id { get; set; }
-
-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
     public override int[]? observation_concept_id { get; set; }
+
+     [Transform(typeof(CancerIntentLookup), nameof(Source.CancerTreatmentIntent))]
+     public override int? value_as_concept_id { get; set; }
 
     [CopyValue(nameof(Source.CancerTreatmentIntent))]
     public override string? observation_source_value { get; set; }
