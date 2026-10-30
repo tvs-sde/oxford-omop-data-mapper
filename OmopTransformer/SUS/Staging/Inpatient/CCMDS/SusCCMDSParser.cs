@@ -1,16 +1,11 @@
-﻿using System.Globalization;
-using CsvHelper;
-
-namespace OmopTransformer.SUS.Staging.Inpatient.CCMDS;
+﻿namespace OmopTransformer.SUS.Staging.Inpatient.CCMDS;
 
 internal class SusCCMDSParser : ISusCCMDSParser
 {
     public IEnumerable<CCMDSRecord> ReadFile(string path, CancellationToken cancellationToken)
     {
         using var reader = new StreamReader(path);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Read();
-        csv.ReadHeader();
+        using var csv = CsvReaderExtensions.CreateReader(reader);
 
         while (csv.Read())
         {
@@ -24,29 +19,29 @@ internal class SusCCMDSParser : ISusCCMDSParser
             var record = new CCMDSRow
             {
                 MessageId = messageId,
-                GeneratedRecordID = csv.GetField<string>("Generated Record ID").GetTrimmedValueOrNull(),
-                LoadStagingDate = csv.GetField<string>("Load Staging Date").GetTrimmedValueOrNull(),
-                CriticalCarePeriodSequenceNumber = csv.GetField<string>("Critical Care Period Sequence Number").GetTrimmedValueOrNull(),
-                CDSVersionontheepisodes = csv.GetField<string>("CDS Version on the episodes").GetTrimmedValueOrNull(),
-                HESEPITYPEoftheepisode = csv.GetField<string>("HES EPITYPE of the episode").GetTrimmedValueOrNull(),
-                CDSInterchangeID = csv.GetField<string>("CDS Interchange ID").GetTrimmedValueOrNull(),
-                HESEPISTAToftheepisode = csv.GetField<string>("HES EPISTAT of the episode").GetTrimmedValueOrNull(),
-                EventDate = csv.GetField<string>("Event Date").GetTrimmedValueOrNull(),
-                ActivityDateCriticalCare = csv.GetField<string>("Activity Date (Critical Care)").GetTrimmedValueOrNull(),
-                CriticalCarePeriodType = csv.GetField<string>("Critical Care Period Type").GetTrimmedValueOrNull(),
-                CriticalCareEpisodeRelationship = csv.GetField<string>("Critical Care Episode Relationship").GetTrimmedValueOrNull(),
-                CriticalCareUnitFunction = csv.GetField<string>("Critical Care Unit Function").GetTrimmedValueOrNull(),
-                CriticalCareStartDate = csv.GetField<string>("Critical Care Start Date").GetTrimmedValueOrNull(),
-                CriticalCareStartTime = csv.GetField<string>("Critical Care Start Time").GetTrimmedValueOrNull(),
-                CriticalCarePeriodDischargeDate = csv.GetField<string>("Critical Care Period Discharge Date").GetTrimmedValueOrNull(),
-                CriticalCarePeriodDischargeTime = csv.GetField<string>("Critical Care Period Discharge Time").GetTrimmedValueOrNull(),
-                CriticalCarePeriodLocalIdentifier = csv.GetField<string>("Critical Care Period Local Identifier").GetTrimmedValueOrNull(),
-                GestationLengthAtDelivery = csv.GetField<string>("Gestation Length At Delivery").GetTrimmedValueOrNull(),
-                CriticalCareSequenceNumberDerived = csv.GetField<string>("Critical Care Sequence Number (Derived)").GetTrimmedValueOrNull(),
-                TotalnumberofCriticalCareActivitiesDerived = csv.GetField<string>("Total number of Critical Care Activities (Derived)").GetTrimmedValueOrNull(),
-                LastRecordforthisCriticalCarePeriodIndicatorDerived = csv.GetField<string>("Last Record for this Critical Care Period Indicator (Derived)").GetTrimmedValueOrNull(),
-                CriticalCareActivitytoEpisodeRelationshipDerived = csv.GetField<string>("Critical Care Activity to Episode Relationship (Derived)").GetTrimmedValueOrNull(),
-                PersonWeight = csv.GetField<string>("Person Weight").GetTrimmedValueOrNull()
+                GeneratedRecordID = csv.GetString("Generated Record ID").GetTrimmedValueOrNull(),
+                LoadStagingDate = csv.GetString("Load Staging Date").GetTrimmedValueOrNull(),
+                CriticalCarePeriodSequenceNumber = csv.GetString("Critical Care Period Sequence Number").GetTrimmedValueOrNull(),
+                CDSVersionontheepisodes = csv.GetString("CDS Version on the episodes").GetTrimmedValueOrNull(),
+                HESEPITYPEoftheepisode = csv.GetString("HES EPITYPE of the episode").GetTrimmedValueOrNull(),
+                CDSInterchangeID = csv.GetString("CDS Interchange ID").GetTrimmedValueOrNull(),
+                HESEPISTAToftheepisode = csv.GetString("HES EPISTAT of the episode").GetTrimmedValueOrNull(),
+                EventDate = csv.GetString("Event Date").GetTrimmedValueOrNull(),
+                ActivityDateCriticalCare = csv.GetString("Activity Date (Critical Care)").GetTrimmedValueOrNull(),
+                CriticalCarePeriodType = csv.GetString("Critical Care Period Type").GetTrimmedValueOrNull(),
+                CriticalCareEpisodeRelationship = csv.GetString("Critical Care Episode Relationship").GetTrimmedValueOrNull(),
+                CriticalCareUnitFunction = csv.GetString("Critical Care Unit Function").GetTrimmedValueOrNull(),
+                CriticalCareStartDate = csv.GetString("Critical Care Start Date").GetTrimmedValueOrNull(),
+                CriticalCareStartTime = csv.GetString("Critical Care Start Time").GetTrimmedValueOrNull(),
+                CriticalCarePeriodDischargeDate = csv.GetString("Critical Care Period Discharge Date").GetTrimmedValueOrNull(),
+                CriticalCarePeriodDischargeTime = csv.GetString("Critical Care Period Discharge Time").GetTrimmedValueOrNull(),
+                CriticalCarePeriodLocalIdentifier = csv.GetString("Critical Care Period Local Identifier").GetTrimmedValueOrNull(),
+                GestationLengthAtDelivery = csv.GetString("Gestation Length At Delivery").GetTrimmedValueOrNull(),
+                CriticalCareSequenceNumberDerived = csv.GetString("Critical Care Sequence Number (Derived)").GetTrimmedValueOrNull(),
+                TotalnumberofCriticalCareActivitiesDerived = csv.GetString("Total number of Critical Care Activities (Derived)").GetTrimmedValueOrNull(),
+                LastRecordforthisCriticalCarePeriodIndicatorDerived = csv.GetString("Last Record for this Critical Care Period Indicator (Derived)").GetTrimmedValueOrNull(),
+                CriticalCareActivitytoEpisodeRelationshipDerived = csv.GetString("Critical Care Activity to Episode Relationship (Derived)").GetTrimmedValueOrNull(),
+                PersonWeight = csv.GetString("Person Weight").GetTrimmedValueOrNull()
             };
 
             int index = 22;
@@ -56,7 +51,7 @@ internal class SusCCMDSParser : ISusCCMDSParser
                 var activityCode = new CCMDSCriticalCareActivityCode
                 {
                     MessageId = messageId,
-                    CriticalCareActivityCode = csv[++index].GetTrimmedValueOrNull()
+                    CriticalCareActivityCode = csv.GetString(++index).GetTrimmedValueOrNull()
                 };
 
                 if (activityCode.IsEmpty)
@@ -72,7 +67,7 @@ internal class SusCCMDSParser : ISusCCMDSParser
                 var highCostDrug = new CCMDSCriticalCareHighCostDrugs
                 {
                     MessageId = messageId,
-                    CriticalCareHighCostDrugs = csv[++index].GetTrimmedValueOrNull()
+                    CriticalCareHighCostDrugs = csv.GetString(++index).GetTrimmedValueOrNull()
                 };
 
                 if (highCostDrug.IsEmpty)
