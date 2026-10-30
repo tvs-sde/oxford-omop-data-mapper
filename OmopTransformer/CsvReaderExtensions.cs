@@ -34,7 +34,7 @@ internal static class CsvReaderExtensions
         ArgumentNullException.ThrowIfNull(reader, nameof(reader));
         ArgumentNullException.ThrowIfNull(reader, nameof(name));
 
-        if (reader.TryGetFieldIndex(name, out var index) && index < reader.FieldCount)
+        if (reader.TryGetFieldIndex(name, out _))
         {
             return reader.GetFieldOrNullWhenEmpty(name);
         }

@@ -99,12 +99,12 @@ internal class SactStaging : ISactStaging
 
     private static string? GetPatientPostcode(CsvReader csv)
     {
-        if (csv.TryGetFieldIndex("Patient_Postcode", out var index) && index < csv.FieldCount)
+        if (csv.TryGetFieldIndex("Patient_Postcode", out var index))
         {
             return csv.GetString(index);
         }
 
-        if (csv.TryGetFieldIndex("Patient_PostCode", out index) && index < csv.FieldCount)
+        if (csv.TryGetFieldIndex("Patient_PostCode", out index))
         {
             return csv.GetString(index);
         }
