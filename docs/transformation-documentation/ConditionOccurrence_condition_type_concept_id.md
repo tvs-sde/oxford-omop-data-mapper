@@ -30,6 +30,18 @@ has_toc: false
 * Constant value set to `32818`. EHR administration record
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20Oxford%20Condition%20Occurrence%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, from databricks_diagnosis.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
+### OPCS4-coded diagnoses from databricks_diagnosis.parquet. Only mappings to the Condition domain are retained.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20OPCS4-coded%20diagnoses%20from%20databricks_diagnosis.parquet.%20Only%20mappings%20to%20the%20Condition%20domain%20are%20retained.%20mapping){: .btn }
+### ICD-10 and ICD10 diagnoses from databricks_diagnosis.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_type_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
 ### COSD V9 UR Condition Occurrence Secondary Diagnosis ICD
 * Constant value set to `32828`. EHR episode record
 
