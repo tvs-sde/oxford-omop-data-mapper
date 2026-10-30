@@ -299,6 +299,14 @@ has_toc: false
 <a href="OxfordLabGeneralComment.svg" target="_blank"><img src="OxfordLabGeneralComment.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordLabGeneralComment%20mapping){: .btn }
+## OxfordDiagnosisObservationSnomed
+<a href="OxfordDiagnosisObservationSnomed.svg" target="_blank"><img src="OxfordDiagnosisObservationSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisObservationSnomed%20mapping){: .btn }
+## OxfordDiagnosisObservationIcd10
+<a href="OxfordDiagnosisObservationIcd10.svg" target="_blank"><img src="OxfordDiagnosisObservationIcd10.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisObservationIcd10%20mapping){: .btn }
 ## COSDv9URObservationSmokingStatusCancer
 <a href="COSDv9URObservationSmokingStatusCancer.svg" target="_blank"><img src="COSDv9URObservationSmokingStatusCancer.svg" /></a>
 

@@ -164,7 +164,7 @@ order by
 ### SNOMED CT diagnoses, including UK ED Subset, from databricks_diagnosis.parquet.
 * Value copied from `patient_identifier_value`
 
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
 
 ```sql
 select
@@ -180,29 +180,10 @@ order by diagnosis_id, warehouse_identifier
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
-### OPCS4-coded diagnoses from databricks_diagnosis.parquet. Only mappings to the Condition domain are retained.
-* Value copied from `patient_identifier_value`
-
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
-
-```sql
-select
-    patient_identifier_value,
-    diagnosis_date,
-    diagnosis_datetime,
-    diagnosis_code,
-    replace(upper(trim(diagnosis_code)), '.', '') as concept_code
-from ##duckdb_source##
-where upper(trim(diagnosis_code_system)) = 'OPCS4'
-order by diagnosis_id, warehouse_identifier
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20OPCS4-coded%20diagnoses%20from%20databricks_diagnosis.parquet.%20Only%20mappings%20to%20the%20Condition%20domain%20are%20retained.%20mapping){: .btn }
 ### ICD-10 and ICD10 diagnoses from databricks_diagnosis.parquet.
 * Value copied from `patient_identifier_value`
 
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
 
 ```sql
 select

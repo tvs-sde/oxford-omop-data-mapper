@@ -4,7 +4,7 @@ namespace OmopTransformer.OxfordDiagnosis.ConditionOccurrence.OxfordDiagnosisCon
 
 [DataOrigin("Oxford Diagnosis")]
 [Description("ICD-10 and ICD10 diagnoses from databricks_diagnosis.parquet.")]
-[SourceQuery("OxfordDiagnosisIcd10.xml")]
+[SourceQuery("OxfordDiagnosisConditionOccurrenceIcd10.xml")]
 internal class OxfordDiagnosisIcd10Record : OxfordDiagnosisRecord
 {
 }

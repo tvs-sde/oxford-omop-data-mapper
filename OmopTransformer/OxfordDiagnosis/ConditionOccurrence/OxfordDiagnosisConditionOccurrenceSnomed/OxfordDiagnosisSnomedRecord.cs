@@ -4,7 +4,7 @@ namespace OmopTransformer.OxfordDiagnosis.ConditionOccurrence.OxfordDiagnosisCon
 
 [DataOrigin("Oxford Diagnosis")]
 [Description("SNOMED CT diagnoses, including UK ED Subset, from databricks_diagnosis.parquet.")]
-[SourceQuery("OxfordDiagnosisSnomed.xml")]
+[SourceQuery("OxfordDiagnosisConditionOccurrenceSnomed.xml")]
 internal class OxfordDiagnosisSnomedRecord : OxfordDiagnosisRecord
 {
 }

@@ -42,3 +42,7 @@ has_toc: false
 <a href="OxfordGPDeviceExposure.svg" target="_blank"><img src="OxfordGPDeviceExposure.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordGPDeviceExposure%20mapping){: .btn }
+## OxfordDiagnosisDeviceExposureSnomed
+<a href="OxfordDiagnosisDeviceExposureSnomed.svg" target="_blank"><img src="OxfordDiagnosisDeviceExposureSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisDeviceExposureSnomed%20mapping){: .btn }

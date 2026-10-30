@@ -1,0 +1,85 @@
+{
+  "omopTable": "Measurement",
+  "origin": "Oxford Diagnosis",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `patient_identifier_value`",
+      "dataSource": [
+        {
+          "name": "patient_identifier_value",
+          "description": "Patient NHS number, used to join existing OMOP Person records.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    diagnosis_date,\n    diagnosis_datetime,\n    diagnosis_code,\n    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')\norder by diagnosis_id, warehouse_identifier\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "diagnosis_date",
+          "description": "Clinical diagnosis date. Missing dates produce invalid measurement records.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    diagnosis_date,\n    diagnosis_datetime,\n    diagnosis_code,\n    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')\norder by diagnosis_id, warehouse_identifier\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "diagnosis_datetime",
+          "description": "Clinical diagnosis timestamp.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    diagnosis_date,\n    diagnosis_datetime,\n    diagnosis_code,\n    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')\norder by diagnosis_id, warehouse_identifier\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32817`. EHR",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "concept_code",
+          "description": "Uppercase, trimmed ICD10 code. Codes shorter than three characters are passed as null to the existing resolver. Only resolved Measurement-domain targets are retained.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    diagnosis_date,\n    diagnosis_datetime,\n    diagnosis_code,\n    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')\norder by diagnosis_id, warehouse_identifier\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `measurement` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `diagnosis_code`",
+      "dataSource": [
+        {
+          "name": "diagnosis_code",
+          "description": "Original diagnosis code, preserved as the source value.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    diagnosis_date,\n    diagnosis_datetime,\n    diagnosis_code,\n    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')\norder by diagnosis_id, warehouse_identifier\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

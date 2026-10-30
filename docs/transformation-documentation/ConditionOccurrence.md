@@ -48,10 +48,6 @@ has_toc: false
 <a href="OxfordDiagnosisConditionOccurrenceSnomed.svg" target="_blank"><img src="OxfordDiagnosisConditionOccurrenceSnomed.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisConditionOccurrenceSnomed%20mapping){: .btn }
-## OxfordDiagnosisConditionOccurrenceOpcs4
-<a href="OxfordDiagnosisConditionOccurrenceOpcs4.svg" target="_blank"><img src="OxfordDiagnosisConditionOccurrenceOpcs4.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisConditionOccurrenceOpcs4%20mapping){: .btn }
 ## OxfordDiagnosisConditionOccurrenceIcd10
 <a href="OxfordDiagnosisConditionOccurrenceIcd10.svg" target="_blank"><img src="OxfordDiagnosisConditionOccurrenceIcd10.svg" /></a>
 

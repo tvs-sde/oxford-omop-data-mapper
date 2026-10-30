@@ -144,3 +144,22 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20nhs_number%20field%20Oxford%20Device%20Exposure%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, mapped to Device Exposure from databricks_diagnosis.parquet.
+* Value copied from `patient_identifier_value`
+
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
+
+```sql
+select
+    patient_identifier_value,
+    diagnosis_date,
+    diagnosis_datetime,
+    diagnosis_code,
+    trim(diagnosis_code) as concept_code
+from ##duckdb_source##
+where upper(trim(diagnosis_code_system)) = 'SNOMED CT'
+order by diagnosis_id, warehouse_identifier
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20nhs_number%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20mapped%20to%20Device%20Exposure%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }

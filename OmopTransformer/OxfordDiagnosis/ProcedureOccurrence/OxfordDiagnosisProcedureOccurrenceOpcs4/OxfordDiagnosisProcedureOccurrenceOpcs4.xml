@@ -1,0 +1,20 @@
+<Query>
+    <Sql type="duckdb">
+select
+    patient_identifier_value,
+    diagnosis_date,
+    diagnosis_datetime,
+    diagnosis_code,
+    replace(upper(trim(diagnosis_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(diagnosis_code_system)) = 'OPCS4'
+order by diagnosis_id, warehouse_identifier
+    </Sql>
+    <Explanations>
+        <Explanation columnName="patient_identifier_value"><Description>Patient NHS number, used to join existing OMOP Person records.</Description></Explanation>
+        <Explanation columnName="diagnosis_date"><Description>Clinical diagnosis date. Missing dates produce invalid procedure records.</Description></Explanation>
+        <Explanation columnName="diagnosis_datetime"><Description>Clinical diagnosis timestamp.</Description></Explanation>
+        <Explanation columnName="diagnosis_code"><Description>Original diagnosis code, preserved as the source value.</Description></Explanation>
+        <Explanation columnName="concept_code"><Description>Uppercase, trimmed OPCS4 code with dots removed for the existing OPCS4 resolver. Only Procedure-domain targets are retained.</Description></Explanation>
+    </Explanations>
+</Query>

@@ -30,3 +30,7 @@ has_toc: false
 * Constant value set to `32818`. `EHR administration record`
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_type_concept_id%20field%20Oxford%20Device%20Exposure%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, mapped to Device Exposure from databricks_diagnosis.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_type_concept_id%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20mapped%20to%20Device%20Exposure%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }

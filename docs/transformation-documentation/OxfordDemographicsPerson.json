@@ -26,7 +26,7 @@
         }
       ],
       "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
-      "lookup_table_markdown": "\r\n\r\n|sex|gender_concept_id|notes|\r\n|------|-----|-----|\r\n|Male|8507|Male|\r\n|Female|8532|Female|\r\n||0|No data|\r\n\r\nNotes\r\n* [OMOP Gender](https://athena.ohdsi.org/search-terms/terms?conceptClass=Gender&invalidReason=Valid&vocabulary=Gender&page=1&pageSize=50&query=)\r\n"
+      "lookup_table_markdown": "\r\n\r\n|sex|gender_concept_id|notes|\r\n|------|-----|-----|\r\n|Male|8507|Male|\r\n|Female|8532|Female|\r\n\r\nNotes\r\n* [OMOP Gender](https://athena.ohdsi.org/search-terms/terms?conceptClass=Gender&invalidReason=Valid&vocabulary=Gender&page=1&pageSize=50&query=)\r\n"
     },
     {
       "name": "year_of_birth",

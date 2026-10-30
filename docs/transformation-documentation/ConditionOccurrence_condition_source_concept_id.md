@@ -423,7 +423,7 @@ order by
 Source column  `concept_code`.
 Resolve Snomed codes to OMOP concepts.
 
-* `concept_code` Trimmed SNOMED CT code. Includes SNOMED CT and UK ED Subset source vocabularies.
+* `concept_code` Trimmed SNOMED CT code. Includes SNOMED CT and UK ED Subset source vocabularies. 
 
 ```sql
 select
@@ -439,31 +439,11 @@ order by diagnosis_id, warehouse_identifier
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
-### OPCS4-coded diagnoses from databricks_diagnosis.parquet. Only mappings to the Condition domain are retained.
-Source column  `concept_code`.
-Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
-
-* `concept_code` Uppercase, trimmed OPCS4 code with dots removed for the existing OPCS4 resolver. Only Condition-domain targets are retained.
-
-```sql
-select
-    patient_identifier_value,
-    diagnosis_date,
-    diagnosis_datetime,
-    diagnosis_code,
-    replace(upper(trim(diagnosis_code)), '.', '') as concept_code
-from ##duckdb_source##
-where upper(trim(diagnosis_code_system)) = 'OPCS4'
-order by diagnosis_id, warehouse_identifier
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20OPCS4-coded%20diagnoses%20from%20databricks_diagnosis.parquet.%20Only%20mappings%20to%20the%20Condition%20domain%20are%20retained.%20mapping){: .btn }
 ### ICD-10 and ICD10 diagnoses from databricks_diagnosis.parquet.
 Source column  `concept_code`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
 
-* `concept_code` Uppercase, trimmed ICD10 code. Codes shorter than three characters are passed as null to the existing resolver, yielding unknown concept 0 rather than throwing.
+* `concept_code` Uppercase, trimmed ICD10 code. Codes shorter than three characters are passed as null to the existing resolver, yielding unknown concept 0 rather than throwing. 
 
 ```sql
 select

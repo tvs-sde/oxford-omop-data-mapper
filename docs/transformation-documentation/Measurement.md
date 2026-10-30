@@ -55,6 +55,14 @@ has_toc: false
 <a href="OxfordLabMeasurement.svg" target="_blank"><img src="OxfordLabMeasurement.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordLabMeasurement%20mapping){: .btn }
+## OxfordDiagnosisMeasurementSnomed
+<a href="OxfordDiagnosisMeasurementSnomed.svg" target="_blank"><img src="OxfordDiagnosisMeasurementSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisMeasurementSnomed%20mapping){: .btn }
+## OxfordDiagnosisMeasurementIcd10
+<a href="OxfordDiagnosisMeasurementIcd10.svg" target="_blank"><img src="OxfordDiagnosisMeasurementIcd10.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisMeasurementIcd10%20mapping){: .btn }
 ## COSDv9URMeasurementTumourLaterality
 <a href="COSDv9URMeasurementTumourLaterality.svg" target="_blank"><img src="COSDv9URMeasurementTumourLaterality.svg" /></a>
 

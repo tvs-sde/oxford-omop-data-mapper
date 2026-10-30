@@ -173,6 +173,46 @@ where lower(EVENT) not like '%comment%'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, mapped to Measurement from databricks_diagnosis.parquet. No result or unit is inferred.
+Source column  `diagnosis_date`.
+Converts text to dates.
+
+* `diagnosis_date` Clinical diagnosis date. Missing dates produce invalid measurement records. 
+
+```sql
+select
+    patient_identifier_value,
+    diagnosis_date,
+    diagnosis_datetime,
+    diagnosis_code,
+    trim(diagnosis_code) as concept_code
+from ##duckdb_source##
+where upper(trim(diagnosis_code_system)) = 'SNOMED CT'
+order by diagnosis_id, warehouse_identifier
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
+### ICD-10 and ICD10 diagnoses mapped to Measurement from databricks_diagnosis.parquet. No result or unit is inferred.
+Source column  `diagnosis_date`.
+Converts text to dates.
+
+* `diagnosis_date` Clinical diagnosis date. Missing dates produce invalid measurement records. 
+
+```sql
+select
+    patient_identifier_value,
+    diagnosis_date,
+    diagnosis_datetime,
+    diagnosis_code,
+    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code
+from ##duckdb_source##
+where upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')
+order by diagnosis_id, warehouse_identifier
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_date%20field%20ICD-10%20and%20ICD10%20diagnoses%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
 ### COSD V9 UR Measurement Tumour Laterality
 Source column  `MeasurementDate`.
 Converts text to dates.

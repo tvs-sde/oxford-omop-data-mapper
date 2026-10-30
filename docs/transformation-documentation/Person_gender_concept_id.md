@@ -171,7 +171,6 @@ Lookup Databricks gender concept.
 |------|-----|-----|
 |Male|8507|Male|
 |Female|8532|Female|
-||0|No data|
 
 Notes
 * [OMOP Gender](https://athena.ohdsi.org/search-terms/terms?conceptClass=Gender&invalidReason=Valid&vocabulary=Gender&page=1&pageSize=50&query=)
