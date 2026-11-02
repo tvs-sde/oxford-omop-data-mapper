@@ -128,6 +128,8 @@ order by
 ### COSD V9 Lung Measurement Surgical Access Type
 * Value copied from `SurgicalAccessType`
 
+* `SurgicalAccessType` A code representing the surgical access type used during a procedure. [SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)
+
 ```sql
 with LU as (
     select
@@ -173,6 +175,8 @@ where o.SurgicalAccessType is not null
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20COSD%20V9%20Lung%20Measurement%20Surgical%20Access%20Type%20mapping){: .btn }
 ### COSD V8 Lung Measurement Surgical Access Type
 * Value copied from `SurgicalAccessType`
+
+* `SurgicalAccessType` A code representing the surgical access type used during a procedure. [SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)
 
 ```sql
 with LU as (

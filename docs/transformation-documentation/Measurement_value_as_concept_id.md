@@ -23,6 +23,8 @@ Lookup SurgicalAccessType concepts for lung cancer procedures.
 Notes
 * [SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)
 
+* `SurgicalAccessType` A code representing the surgical access type used during a procedure. [SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)
+
 ```sql
 with LU as (
     select
@@ -82,6 +84,8 @@ Lookup SurgicalAccessType concepts for lung cancer procedures.
 
 Notes
 * [SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)
+
+* `SurgicalAccessType` A code representing the surgical access type used during a procedure. [SURGICAL ACCESS TYPE](https://www.datadictionary.nhs.uk/data_elements/surgical_access_type.html)
 
 ```sql
 with LU as (

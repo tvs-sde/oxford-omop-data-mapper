@@ -926,9 +926,23 @@ and o.TobaccoSmokingCessation = '3'
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9LungTobaccoSmokingCessation%20mapping){: .btn }
 ### CosdV9LungAsaScore
-* Value copied from `AsaScoreDescription`
+Source column  `AsaScore`.
+Lookup ASA score description concept.
 
-* `AsaScoreDescription` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
+|AsaScore|observation_source_value|notes|
+|------|-----|-----|
+|1|653309|ASA 1 - A normal healthy patient.|
+|2|652943|ASA 2 - A patient with mild systemic disease.|
+|3|654324|ASA 3 - A patient with severe systemic disease.|
+|4|652750|ASA 4 - A patient with poorly controlled systemic disease.|
+|5|652861|ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.|
+|6||ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `AsaScore` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
 
 ```sql
 with LU as (
@@ -948,15 +962,6 @@ with LU as (
 select
     distinct
         AsaScore,
-        case AsaScore
-            when '1' then 'ASA 1 - A normal healthy patient.'
-            when '2' then 'ASA 2 - A patient with mild systemic disease.'
-            when '3' then 'ASA 3 - A patient with severe systemic disease.'
-            when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
-            when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
-            when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
-            else AsaScore
-        end as AsaScoreDescription,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -2306,9 +2311,23 @@ where o.PersonSexualOrientationCodeAtDiagnosis is not null
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20CosdV9PersonSexualOrientationCodeAtDiagnosis%20mapping){: .btn }
 ### CosdV9AsaScore
-* Value copied from `AsaScoreDescription`
+Source column  `AsaScore`.
+Lookup ASA score description concept.
 
-* `AsaScoreDescription` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
+
+|AsaScore|observation_source_value|notes|
+|------|-----|-----|
+|1|653309|ASA 1 - A normal healthy patient.|
+|2|652943|ASA 2 - A patient with mild systemic disease.|
+|3|654324|ASA 3 - A patient with severe systemic disease.|
+|4|652750|ASA 4 - A patient with poorly controlled systemic disease.|
+|5|652861|ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.|
+|6||ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes|
+
+Notes
+* [ASA Score](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---treatment
+
+* `AsaScore` The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure. [ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE](https://www.datadictionary.nhs.uk/data_elements/asa_physical_status_classification_system_code.html)
 
 ```sql
 with CO as (
@@ -2328,15 +2347,6 @@ with CO as (
 select
 	distinct
 		AsaScore,
-		case AsaScore
-			when '1' then 'ASA 1 - A normal healthy patient.'
-			when '2' then 'ASA 2 - A patient with mild systemic disease.'
-			when '3' then 'ASA 3 - A patient with severe systemic disease.'
-			when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
-			when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
-			when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
-			else AsaScore
-		end as AsaScoreDescription,
 		NhsNumber,
 		least(
 			cast(DateFirstSeen as date),

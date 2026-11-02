@@ -1878,15 +1878,6 @@ with LU as (
 select
     distinct
         AsaScore,
-        case AsaScore
-            when '1' then 'ASA 1 - A normal healthy patient.'
-            when '2' then 'ASA 2 - A patient with mild systemic disease.'
-            when '3' then 'ASA 3 - A patient with severe systemic disease.'
-            when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
-            when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
-            when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
-            else AsaScore
-        end as AsaScoreDescription,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -3982,15 +3973,6 @@ with CO as (
 select
 	distinct
 		AsaScore,
-		case AsaScore
-			when '1' then 'ASA 1 - A normal healthy patient.'
-			when '2' then 'ASA 2 - A patient with mild systemic disease.'
-			when '3' then 'ASA 3 - A patient with severe systemic disease.'
-			when '4' then 'ASA 4 - A patient with poorly controlled systemic disease.'
-			when '5' then 'ASA 5 - A patient with a moribund condition that is not expected to survive without the operation.'
-			when '6' then 'ASA 6 - A declared brain-dead patient whose organs are being removed for donor purposes'
-			else AsaScore
-		end as AsaScoreDescription,
 		NhsNumber,
 		least(
 			cast(DateFirstSeen as date),

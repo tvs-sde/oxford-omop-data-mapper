@@ -22,10 +22,10 @@ internal class CosdV9LungAsaScore : OmopObservation<CosdV9LungAsaScoreRecord>
     [ConstantValue(32828, "`EHR episode record`")]
     public override int? observation_type_concept_id { get; set; }
 
-    [CopyValue(nameof(Source.AsaScoreDescription))]
+    [CopyValue(nameof(Source.AsaScore))]
     public override string? value_source_value { get; set; }
 
-    [CopyValue(nameof(Source.AsaScoreDescription))]
+    [Transform(typeof(AsaScoreDescriptionLookup), nameof(Source.AsaScore))]
     public override string? observation_source_value { get; set; }
 
     [Transform(typeof(AsaScoreLookup), nameof(Source.AsaScore))]
