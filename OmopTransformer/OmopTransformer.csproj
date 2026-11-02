@@ -26,7 +26,7 @@
 
 
   <ItemGroup>
-    <None Include="**\*.xml" Exclude="bin\**;obj\**">
+    <None Include="**\*.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
