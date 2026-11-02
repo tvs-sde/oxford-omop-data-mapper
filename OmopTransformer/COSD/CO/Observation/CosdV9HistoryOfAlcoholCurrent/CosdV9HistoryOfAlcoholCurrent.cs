@@ -1,5 +1,6 @@
 using OmopTransformer.Annotations;
 using OmopTransformer.Omop.Observation;
+using OmopTransformer.Transformation;
 
 namespace OmopTransformer.COSD.Colorectal.Observation.CosdV9HistoryOfAlcoholCurrent;
 
@@ -9,7 +10,7 @@ internal class CosdV9HistoryOfAlcoholCurrent : OmopObservation<CosdV9HistoryOfAl
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
 
-    [ConstantValue(35609491, "Alcohol units consumed per week")]
+    [ConstantValue(4266612, "Eating feeding / drinking observable")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.Date))]
@@ -22,8 +23,8 @@ internal class CosdV9HistoryOfAlcoholCurrent : OmopObservation<CosdV9HistoryOfAl
     public override int? observation_type_concept_id { get; set; }
 
     [CopyValue(nameof(Source.HistoryOfAlcoholCurrent))]
-    public override string? value_as_string { get; set; }
+    public override string? value_source_value { get; set; }
 
-    [ConstantValue(2000500003, "History Of Alcohol (Current)")]
-    public override int? observation_source_concept_id { get; set; }
+    [Transform(typeof(HistoryOfAlcoholLookup), nameof(Source.HistoryOfAlcoholCurrent))]
+    public override int? value_as_concept_id { get; set; }
 }

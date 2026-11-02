@@ -17,6 +17,7 @@ has_toc: false
 * [measurement_source_value]({% link docs/transformation-documentation/Measurement_measurement_source_value.md %})
 * [operator_concept_id]({% link docs/transformation-documentation/Measurement_operator_concept_id.md %})
 * [value_as_number]({% link docs/transformation-documentation/Measurement_value_as_number.md %})
+* [value_as_concept_id]({% link docs/transformation-documentation/Measurement_value_as_concept_id.md %})
 * [unit_concept_id]({% link docs/transformation-documentation/Measurement_unit_concept_id.md %})
 * [range_low]({% link docs/transformation-documentation/Measurement_range_low.md %})
 * [range_high]({% link docs/transformation-documentation/Measurement_range_high.md %})
@@ -395,10 +396,6 @@ has_toc: false
 <a href="COSDv9SAMeasurementTcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv9SAMeasurementTcategoryFinalPreTreatmentStage.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAMeasurementTcategoryFinalPreTreatmentStage%20mapping){: .btn }
-## COSDv9SAMeasurementSarcomaTumourSiteSoftTissue
-<a href="COSDv9SAMeasurementSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv9SAMeasurementSarcomaTumourSiteSoftTissue.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9SAMeasurementSarcomaTumourSiteSoftTissue%20mapping){: .btn }
 ## COSDv9SAMeasurementSarcomaTumourSiteBone
 <a href="COSDv9SAMeasurementSarcomaTumourSiteBone.svg" target="_blank"><img src="COSDv9SAMeasurementSarcomaTumourSiteBone.svg" /></a>
 
@@ -459,10 +456,6 @@ has_toc: false
 <a href="COSDv8SAMeasurementTcategoryFinalPreTreatmentStage.svg" target="_blank"><img src="COSDv8SAMeasurementTcategoryFinalPreTreatmentStage.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementTcategoryFinalPreTreatmentStage%20mapping){: .btn }
-## COSDv8SAMeasurementSarcomaTumourSiteSoftTissue
-<a href="COSDv8SAMeasurementSarcomaTumourSiteSoftTissue.svg" target="_blank"><img src="COSDv8SAMeasurementSarcomaTumourSiteSoftTissue.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8SAMeasurementSarcomaTumourSiteSoftTissue%20mapping){: .btn }
 ## COSDv8SAMeasurementSarcomaTumourSiteBone
 <a href="COSDv8SAMeasurementSarcomaTumourSiteBone.svg" target="_blank"><img src="COSDv8SAMeasurementSarcomaTumourSiteBone.svg" /></a>
 
@@ -693,6 +686,22 @@ has_toc: false
 <a href="CosdV8LungMeasurementGradeOfDifferentiation.svg" target="_blank"><img src="CosdV8LungMeasurementGradeOfDifferentiation.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungMeasurementGradeOfDifferentiation%20mapping){: .btn }
+## COSDv9LungMeasurementSurgicalAccessType
+<a href="COSDv9LungMeasurementSurgicalAccessType.svg" target="_blank"><img src="COSDv9LungMeasurementSurgicalAccessType.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9LungMeasurementSurgicalAccessType%20mapping){: .btn }
+## COSDv9LungMeasurementAdultComorbidityEvaluation
+<a href="COSDv9LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv9LungMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
+## COSDv8LungMeasurementSurgicalAccessType
+<a href="COSDv8LungMeasurementSurgicalAccessType.svg" target="_blank"><img src="COSDv8LungMeasurementSurgicalAccessType.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8LungMeasurementSurgicalAccessType%20mapping){: .btn }
+## COSDv8LungMeasurementAdultComorbidityEvaluation
+<a href="COSDv8LungMeasurementAdultComorbidityEvaluation.svg" target="_blank"><img src="COSDv8LungMeasurementAdultComorbidityEvaluation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8LungMeasurementAdultComorbidityEvaluation%20mapping){: .btn }
 ## COSDv9HNMeasurementTnmStageGroupingIntegrated
 <a href="COSDv9HNMeasurementTnmStageGroupingIntegrated.svg" target="_blank"><img src="COSDv9HNMeasurementTnmStageGroupingIntegrated.svg" /></a>
 

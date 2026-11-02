@@ -10,7 +10,7 @@ internal class CosdV9LungTobaccoSmokingCessation : OmopObservation<CosdV9LungTob
     [CopyValue(nameof(Source.NhsNumber))]
     public override string? nhs_number { get; set; }
 
-    [ConstantValue(4206526, "Smoking cessation behavior")]
+    [ConstantValue(44802474, "Smoking cessation advice declined")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.Date))]
@@ -22,7 +22,7 @@ internal class CosdV9LungTobaccoSmokingCessation : OmopObservation<CosdV9LungTob
     [ConstantValue(32828, "`EHR episode record`")]
     public override int? observation_type_concept_id { get; set; }
 
-    [Transform(typeof(DoubleParser), nameof(Source.TobaccoSmokingCessation))]
-    public override double? value_as_number { get; set; }
+    [CopyValue(nameof(Source.TobaccoSmokingCessation))]
+    public override string? observation_source_value { get; set; }
 
 }

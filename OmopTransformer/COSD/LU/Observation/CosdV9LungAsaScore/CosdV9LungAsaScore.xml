@@ -9,12 +9,14 @@ with LU as (
         Record ->> '$.PrimaryPathway.Staging.StageDateIntegratedStage' as StageDateIntegratedStage,
         Record ->> '$.Treatment.TreatmentStartDateCancer' as TreatmentStartDateCancer,
         Record ->> '$.Treatment.Surgery.ProcedureDate' as ProcedureDate,
+        Record ->> '$.Treatment.Surgery.AsaScore.@code' as AsaScore,
         Record ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber
     from omop_staging.cosd_staging_901
     where type = 'LU'
 )
 select
     distinct
+        AsaScore,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),
@@ -26,7 +28,8 @@ select
             cast(ProcedureDate as date)
         ) as Date
 from LU o
-where not (
+where o.AsaScore is not null
+  and not (
         DateFirstSeen is null and
         DateFirstSeenCancerSpecialist is null and
         DateOfPrimaryDiagnosisClinicallyAgreed is null and
@@ -41,6 +44,10 @@ where not (
     	  <Description>Patient NHS Number</Description>
     	  <Origin>NHS NUMBER</Origin>
       </Explanation>
+		 <Explanation columnName="AsaScore">
+		   <Description>The physical status of the PATIENT as recorded by an anaesthetist for the operative procedure.</Description>
+		   <Origin>ASA PHYSICAL STATUS CLASSIFICATION SYSTEM CODE</Origin>
+		</Explanation>
       <Explanation columnName="Date" >
     	  <Description>Observation date</Description>
     	  <Origin>DATE FIRST SEEN</Origin>

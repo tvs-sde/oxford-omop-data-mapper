@@ -156,6 +156,10 @@ has_toc: false
 <a href="COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9LVConditionOccurrenceOriginalPrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9LVConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9LVConditionOccurrenceCancerProgressionICD
 <a href="COSDv9LVConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv9LVConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -188,6 +192,14 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungConditionOccurrenceProgression%20mapping){: .btn }
+## CosdV9LungConditionOccurrenceMenopausalStatus
+<a href="CosdV9LungConditionOccurrenceMenopausalStatus.svg" target="_blank"><img src="CosdV9LungConditionOccurrenceMenopausalStatus.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungConditionOccurrenceMenopausalStatus%20mapping){: .btn }
+## CosdV9LungConditionOccurrenceFamilialCancerSyndrome
+<a href="CosdV9LungConditionOccurrenceFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9LungConditionOccurrenceFamilialCancerSyndrome.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9LungConditionOccurrenceFamilialCancerSyndrome%20mapping){: .btn }
 ## CosdV8LungConditionOccurrenceProgression
 <a href="CosdV8LungConditionOccurrenceProgression.svg" target="_blank"><img src="CosdV8LungConditionOccurrenceProgression.svg" /></a>
 
@@ -219,6 +231,10 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8LungConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9HNConditionOccurrenceSecondaryDiagnosisICD
 <a href="COSDv9HNConditionOccurrenceSecondaryDiagnosisICD.svg" target="_blank"><img src="COSDv9HNConditionOccurrenceSecondaryDiagnosisICD.svg" /></a>
 
@@ -231,6 +247,10 @@ has_toc: false
 <a href="COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNConditionOccurrenceOriginalPrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HNConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9HNConditionOccurrenceCancerProgressionICD
 <a href="COSDv9HNConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv9HNConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -239,10 +259,22 @@ has_toc: false
 <a href="COSDv8HNConditionOccurrencePrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv8HNConditionOccurrencePrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNConditionOccurrencePrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv8HNConditionOccurrenceCancerProgressionICD
 <a href="COSDv8HNConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv8HNConditionOccurrenceCancerProgressionICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HNConditionOccurrenceCancerProgressionICD%20mapping){: .btn }
+## COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9HAConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
+## COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8HAConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9GYConditionOccurrenceSecondaryDiagnosisICD
 <a href="COSDv9GYConditionOccurrenceSecondaryDiagnosisICD.svg" target="_blank"><img src="COSDv9GYConditionOccurrenceSecondaryDiagnosisICD.svg" /></a>
 
@@ -255,6 +287,10 @@ has_toc: false
 <a href="COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYConditionOccurrenceOriginalPrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9GYConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9GYConditionOccurrenceCancerProgressionICD
 <a href="COSDv9GYConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv9GYConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -267,6 +303,10 @@ has_toc: false
 <a href="COSDv8GYConditionOccurrencePrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv8GYConditionOccurrencePrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYConditionOccurrencePrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8GYConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv8GYConditionOccurrenceCancerProgressionICD
 <a href="COSDv8GYConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv8GYConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -283,6 +323,10 @@ has_toc: false
 <a href="COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTConditionOccurrenceOriginalPrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CTConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9CTConditionOccurrenceCancerProgressionICD
 <a href="COSDv9CTConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv9CTConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -291,6 +335,10 @@ has_toc: false
 <a href="COSDv8CTConditionOccurrencePrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv8CTConditionOccurrencePrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTConditionOccurrencePrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CTConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv8CTConditionOccurrenceCancerProgressionICD
 <a href="COSDv8CTConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv8CTConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -307,6 +355,10 @@ has_toc: false
 <a href="COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" target="_blank"><img src="COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRConditionOccurrenceOriginalPrimaryDiagnosisICD%20mapping){: .btn }
+## COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv9CRConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9CRConditionOccurrenceCancerProgressionICD
 <a href="COSDv9CRConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv9CRConditionOccurrenceCancerProgressionICD.svg" /></a>
 
@@ -319,6 +371,14 @@ has_toc: false
 <a href="COSDv8CRConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv8CRConditionOccurrenceCancerProgressionICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8CRConditionOccurrenceCancerProgressionICD%20mapping){: .btn }
+## CosdV9ConditionOccurrenceMenopausalStatus
+<a href="CosdV9ConditionOccurrenceMenopausalStatus.svg" target="_blank"><img src="CosdV9ConditionOccurrenceMenopausalStatus.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9ConditionOccurrenceMenopausalStatus%20mapping){: .btn }
+## CosdV9ConditionOccurrenceFamilialCancerSyndrome
+<a href="CosdV9ConditionOccurrenceFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9ConditionOccurrenceFamilialCancerSyndrome.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9ConditionOccurrenceFamilialCancerSyndrome%20mapping){: .btn }
 ## CosdV8ConditionOccurrencePrimaryDiagnosis
 <a href="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" target="_blank"><img src="CosdV8ConditionOccurrencePrimaryDiagnosis.svg" /></a>
 
@@ -340,6 +400,10 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8ConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8ConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## CosdV9ConditionOccurrenceSecondaryDiagnosis
 <a href="CosdV9ConditionOccurrenceSecondaryDiagnosis.svg" target="_blank"><img src="CosdV9ConditionOccurrenceSecondaryDiagnosis.svg" /></a>
 
@@ -430,6 +494,14 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV9BreastConditionOccurrenceMenopausalStatus
+<a href="CosdV9BreastConditionOccurrenceMenopausalStatus.svg" target="_blank"><img src="CosdV9BreastConditionOccurrenceMenopausalStatus.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastConditionOccurrenceMenopausalStatus%20mapping){: .btn }
+## CosdV9BreastConditionOccurrenceFamilialCancerSyndrome
+<a href="CosdV9BreastConditionOccurrenceFamilialCancerSyndrome.svg" target="_blank"><img src="CosdV9BreastConditionOccurrenceFamilialCancerSyndrome.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV9BreastConditionOccurrenceFamilialCancerSyndrome%20mapping){: .btn }
 ## CosdV8BreastConditionOccurrenceProgression
 <a href="CosdV8BreastConditionOccurrenceProgression.svg" target="_blank"><img src="CosdV8BreastConditionOccurrenceProgression.svg" /></a>
 
@@ -461,6 +533,10 @@ has_toc: false
 > * If the same Diagnosis occurs but we have 2 separate "basis of diagnosis" values, then the first one will be taken only
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8BreastConditionOccurrencePrimaryDiagnosisHistologyTopography%20mapping){: .btn }
+## CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicator
+<a href="CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicator.svg" target="_blank"><img src="CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicator.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=CosdV8BreastConditionOccurrenceFamilialCancerSyndromeIndicator%20mapping){: .btn }
 ## COSDv9BAConditionOccurrenceSecondaryDiagnosisICD
 <a href="COSDv9BAConditionOccurrenceSecondaryDiagnosisICD.svg" target="_blank"><img src="COSDv9BAConditionOccurrenceSecondaryDiagnosisICD.svg" /></a>
 
