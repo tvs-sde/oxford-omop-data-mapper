@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using CsvHelper;
-
-namespace OmopTransformer.RTDS.Parser;
+﻿namespace OmopTransformer.RTDS.Parser;
 
 internal class RtdsPasDataParser(string text)
 {
@@ -10,10 +7,7 @@ internal class RtdsPasDataParser(string text)
     public IEnumerable<RtdsPasData> Parse()
     {
         using var reader = new StringReader(_text);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        csv.Read();
-        csv.ReadHeader();
+        using var csv = CsvReaderExtensions.CreateReader(reader);
 
         while (csv.Read())
         {

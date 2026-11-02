@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using CsvHelper;
-
-namespace OmopTransformer.RTDS.Parser;
+﻿namespace OmopTransformer.RTDS.Parser;
 
 internal class Rtds2AAttendancesParser(string text)
 {
@@ -10,14 +7,11 @@ internal class Rtds2AAttendancesParser(string text)
     public IEnumerable<Rtds2AAttendances> Parse()
     {
         using var reader = new StringReader(_text);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        csv.Read();
-        csv.ReadHeader();
+        using var csv = CsvReaderExtensions.CreateReader(reader);
 
         while (csv.Read())
         {
-            if (csv.Parser.Record!.Length != csv.HeaderRecord!.Length) // I have no idea why but one of the rows in one of the files has a missing column.
+            if (csv.FieldCount != csv.Headers.Count) // I have no idea why but one of the rows in one of the files has a missing column.
                 continue;
 
             yield return new Rtds2AAttendances
