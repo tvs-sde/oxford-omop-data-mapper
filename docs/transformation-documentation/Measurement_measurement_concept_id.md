@@ -36,16 +36,6 @@ Maps concepts to standard valid concepts in the `measurement` domain.
 * Constant value set to `607590`. Body Height
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
-### SNOMED CT procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
-Source column  `measurement_source_concept_id`.
-Maps concepts to standard valid concepts in the `measurement` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Measurement%20from%20databricks_procedures.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
-### OPCS4 procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
-Source column  `measurement_source_concept_id`.
-Maps concepts to standard valid concepts in the `measurement` domain.
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Measurement%20from%20databricks_procedures.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
 ### Oxford Lab Measurement
 Source column  `measurement_source_concept_id`.
 Maps concepts to standard valid concepts in the `measurement` domain.

@@ -52,14 +52,6 @@ has_toc: false
 <a href="SactMeasurementHeight.svg" target="_blank"><img src="SactMeasurementHeight.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SactMeasurementHeight%20mapping){: .btn }
-## OxfordProceduresMeasurementSnomed
-<a href="OxfordProceduresMeasurementSnomed.svg" target="_blank"><img src="OxfordProceduresMeasurementSnomed.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresMeasurementSnomed%20mapping){: .btn }
-## OxfordProceduresMeasurementOpcs4
-<a href="OxfordProceduresMeasurementOpcs4.svg" target="_blank"><img src="OxfordProceduresMeasurementOpcs4.svg" /></a>
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresMeasurementOpcs4%20mapping){: .btn }
 ## OxfordLabMeasurement
 <a href="OxfordLabMeasurement.svg" target="_blank"><img src="OxfordLabMeasurement.svg" /></a>
 

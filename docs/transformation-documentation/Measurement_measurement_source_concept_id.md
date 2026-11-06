@@ -56,46 +56,6 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20Sus%20APC%20Measurement%20mapping){: .btn }
-### SNOMED CT procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
-Source column  `concept_code`.
-Resolve Snomed codes to OMOP concepts.
-
-* `concept_code` Trimmed SNOMED CT code. Only resolved Measurement-domain targets are retained. 
-
-```sql
-select
-    patient_identifier_value,
-    clinical_date,
-    clinical_datetime,
-    clinical_code,
-    trim(clinical_code) as concept_code
-from ##duckdb_source##
-where upper(trim(clinical_code_system)) = 'SNOMED CT'
-order by all
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Measurement%20from%20databricks_procedures.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
-### OPCS4 procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
-Source column  `concept_code`.
-Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
-
-* `concept_code` Uppercase, trimmed OPCS4 code with dots removed. Only resolved Measurement-domain targets are retained. 
-
-```sql
-select
-    patient_identifier_value,
-    clinical_date,
-    clinical_datetime,
-    clinical_code,
-    replace(upper(trim(clinical_code)), '.', '') as concept_code
-from ##duckdb_source##
-where upper(trim(clinical_code_system)) = 'OPCS4'
-order by all
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Measurement%20from%20databricks_procedures.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
 ### Oxford Lab Measurement
 Source column  `EVENT`.
 OXford Lab Test Lookup lookup
