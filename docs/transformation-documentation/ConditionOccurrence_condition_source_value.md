@@ -115,7 +115,7 @@ where
 ### SNOMED CT procedures mapped to Condition Occurrence from databricks_procedures.parquet.
 * Value copied from `clinical_code`
 
-* `clinical_code` Original procedure code, preserved as the condition source value.
+* `clinical_code` Original procedure code, preserved as the condition source value. 
 
 ```sql
 select
@@ -126,6 +126,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -133,7 +134,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 ### OPCS4 procedures mapped to Condition Occurrence from databricks_procedures.parquet.
 * Value copied from `clinical_code`
 
-* `clinical_code` Original procedure code, preserved as the condition source value.
+* `clinical_code` Original procedure code, preserved as the condition source value. 
 
 ```sql
 select
@@ -144,6 +145,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 

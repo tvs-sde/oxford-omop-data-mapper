@@ -60,7 +60,7 @@ order by
 Source column  `concept_code`.
 Resolve Snomed codes to OMOP concepts.
 
-* `concept_code` Trimmed SNOMED CT code. Only resolved Measurement-domain targets are retained.
+* `concept_code` Trimmed SNOMED CT code. Only resolved Measurement-domain targets are retained. 
 
 ```sql
 select
@@ -71,6 +71,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -79,7 +80,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 Source column  `concept_code`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
 
-* `concept_code` Uppercase, trimmed OPCS4 code with dots removed. Only resolved Measurement-domain targets are retained.
+* `concept_code` Uppercase, trimmed OPCS4 code with dots removed. Only resolved Measurement-domain targets are retained. 
 
 ```sql
 select
@@ -90,6 +91,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -1657,6 +1659,7 @@ select
 	NORMAL_HIGH
 from ##duckdb_source##
 where lower(EVENT) not like '%comment%'
+order by all
 	
 ```
 

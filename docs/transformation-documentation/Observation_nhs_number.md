@@ -691,7 +691,7 @@ and d.AccidentAndEmergencyDiagnosis in ('20','201')
 ### SNOMED CT procedures mapped to Observation from databricks_procedures.parquet.
 * Value copied from `patient_identifier_value`
 
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
 
 ```sql
 select
@@ -702,6 +702,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -709,7 +710,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 ### OPCS4 procedures mapped to Observation from databricks_procedures.parquet.
 * Value copied from `patient_identifier_value`
 
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
 
 ```sql
 select
@@ -720,6 +721,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -737,6 +739,7 @@ select
     RESULT_VALUE
 from ##duckdb_source##
 where lower(EVENT) like '%comment%'
+order by all
 ```
 
 

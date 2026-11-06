@@ -8,6 +8,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
     </Sql>
     <Explanations>
         <Explanation columnName="patient_identifier_value"><Description>Patient NHS number, used to join existing OMOP Person records.</Description></Explanation>

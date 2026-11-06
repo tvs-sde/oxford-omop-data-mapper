@@ -159,7 +159,7 @@ Converts text to dates.
 Source column  `clinical_datetime`.
 Converts text to dates.
 
-* `clinical_datetime` Clinical measurement timestamp.
+* `clinical_datetime` Clinical measurement timestamp. 
 
 ```sql
 select
@@ -170,6 +170,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -178,7 +179,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 Source column  `clinical_datetime`.
 Converts text to dates.
 
-* `clinical_datetime` Clinical measurement timestamp.
+* `clinical_datetime` Clinical measurement timestamp. 
 
 ```sql
 select
@@ -189,6 +190,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -210,6 +212,7 @@ select
 	NORMAL_HIGH
 from ##duckdb_source##
 where lower(EVENT) not like '%comment%'
+order by all
 	
 ```
 

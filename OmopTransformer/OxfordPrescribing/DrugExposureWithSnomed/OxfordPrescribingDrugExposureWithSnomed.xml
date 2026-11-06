@@ -13,6 +13,7 @@ select
 	EVENT_ID
 from ##duckdb_source##
 where concept_identifier is not null
+order by all
     </Sql>
 	<Explanations>
 		<Explanation columnName="patient_identifier_Value">

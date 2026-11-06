@@ -12,7 +12,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -25,7 +25,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -38,7 +38,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -58,7 +58,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -78,7 +78,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    trim(clinical_code) as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'SNOMED CT'\norder by all\n    ",
       "lookup_table_markdown": null
     }
   ]

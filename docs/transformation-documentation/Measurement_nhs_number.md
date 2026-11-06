@@ -147,7 +147,7 @@ order by
 ### SNOMED CT procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
 * Value copied from `patient_identifier_value`
 
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
 
 ```sql
 select
@@ -158,6 +158,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -165,7 +166,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 ### OPCS4 procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
 * Value copied from `patient_identifier_value`
 
-* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records. 
 
 ```sql
 select
@@ -176,6 +177,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -196,6 +198,7 @@ select
 	NORMAL_HIGH
 from ##duckdb_source##
 where lower(EVENT) not like '%comment%'
+order by all
 	
 ```
 

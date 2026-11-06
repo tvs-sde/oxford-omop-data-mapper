@@ -10,7 +10,7 @@ has_toc: false
 Source column  `clinical_datetime`.
 Converts text to dates.
 
-* `clinical_datetime` Clinical drug exposure start timestamp.
+* `clinical_datetime` Clinical drug exposure start timestamp. 
 
 ```sql
 select
@@ -21,6 +21,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -29,7 +30,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 Source column  `clinical_datetime`.
 Converts text to dates.
 
-* `clinical_datetime` Clinical drug exposure start timestamp.
+* `clinical_datetime` Clinical drug exposure start timestamp. 
 
 ```sql
 select
@@ -40,6 +41,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -65,6 +67,7 @@ select
 from ##duckdb_source##
 where concept_identifier is null or
 TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
+order by all
 ```
 
 
@@ -89,6 +92,7 @@ select
 	EVENT_ID
 from ##duckdb_source##
 where concept_identifier is not null
+order by all
 ```
 
 

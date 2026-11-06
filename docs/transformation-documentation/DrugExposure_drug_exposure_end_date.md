@@ -32,7 +32,7 @@ Source column  `clinical_date`.
 Converts text to dates.
 * Single-day exposure: the clinical date supplies the required end date; no duration is available.
 
-* `clinical_date` Clinical drug exposure date. Used for both start and required end date as a single-day exposure.
+* `clinical_date` Clinical drug exposure date. Used for both start and required end date as a single-day exposure. 
 
 ```sql
 select
@@ -43,6 +43,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -52,7 +53,7 @@ Source column  `clinical_date`.
 Converts text to dates.
 * Single-day exposure: the clinical date supplies the required end date; no duration is available.
 
-* `clinical_date` Clinical drug exposure date. Used for both start and required end date as a single-day exposure.
+* `clinical_date` Clinical drug exposure date. Used for both start and required end date as a single-day exposure. 
 
 ```sql
 select
@@ -63,6 +64,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -88,6 +90,7 @@ select
 from ##duckdb_source##
 where concept_identifier is null or
 TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
+order by all
 ```
 
 
@@ -112,6 +115,7 @@ select
 	EVENT_ID
 from ##duckdb_source##
 where concept_identifier is not null
+order by all
 ```
 
 

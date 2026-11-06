@@ -721,7 +721,7 @@ Converts text to dates.
 Source column  `clinical_date`.
 Converts text to dates.
 
-* `clinical_date` Clinical date of the observation.
+* `clinical_date` Clinical date of the observation. 
 
 ```sql
 select
@@ -732,6 +732,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -740,7 +741,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 Source column  `clinical_date`.
 Converts text to dates.
 
-* `clinical_date` Clinical date of the observation.
+* `clinical_date` Clinical date of the observation. 
 
 ```sql
 select
@@ -751,6 +752,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 
@@ -769,6 +771,7 @@ select
     RESULT_VALUE
 from ##duckdb_source##
 where lower(EVENT) like '%comment%'
+order by all
 ```
 
 

@@ -136,7 +136,7 @@ Combines a date with a time of day.
 Source column  `clinical_datetime`.
 Converts text to dates.
 
-* `clinical_datetime` Clinical device exposure start timestamp.
+* `clinical_datetime` Clinical device exposure start timestamp. 
 
 ```sql
 select
@@ -147,6 +147,7 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
 ```
 
 
@@ -155,7 +156,7 @@ where upper(trim(clinical_code_system)) = 'SNOMED CT'
 Source column  `clinical_datetime`.
 Converts text to dates.
 
-* `clinical_datetime` Clinical device exposure start timestamp.
+* `clinical_datetime` Clinical device exposure start timestamp. 
 
 ```sql
 select
@@ -166,6 +167,7 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
 ```
 
 

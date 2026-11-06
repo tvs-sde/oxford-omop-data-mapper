@@ -12,7 +12,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\n\t",
+      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\norder by all\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -25,7 +25,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\n\t",
+      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\norder by all\n\t",
       "lookup_table_markdown": null
     },
     {
@@ -38,7 +38,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\n\t",
+      "query": "\nselect\n\tpatient_identifier_value,\n\tDECEASED_DT_TM\nfrom ##duckdb_source##\norder by all\n\t",
       "lookup_table_markdown": null
     }
   ]
