@@ -12,7 +12,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\norder by source_record_id, warehouse_identifier\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -32,7 +32,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\norder by source_record_id, warehouse_identifier\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -45,7 +45,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\norder by source_record_id, warehouse_identifier\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -65,7 +65,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\norder by source_record_id, warehouse_identifier\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -78,7 +78,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\norder by source_record_id, warehouse_identifier\n    ",
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
       "lookup_table_markdown": null
     }
   ]

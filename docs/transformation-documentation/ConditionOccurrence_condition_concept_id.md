@@ -31,6 +31,16 @@ Source column  `condition_source_concept_id`.
 Maps concepts to standard valid concepts in the `condition` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_concept_id%20field%20Rtds%20Condition%20Occurrence%20mapping){: .btn }
+### SNOMED CT procedures mapped to Condition Occurrence from databricks_procedures.parquet.
+Source column  `condition_source_concept_id`.
+Maps concepts to standard valid concepts in the `condition` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_concept_id%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Condition%20Occurrence%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to Condition Occurrence from databricks_procedures.parquet.
+Source column  `condition_source_concept_id`.
+Maps concepts to standard valid concepts in the `condition` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Condition%20Occurrence%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Condition Occurrence
 Source column  `condition_source_concept_id`.
 Maps concepts to standard valid concepts in the `condition` domain.

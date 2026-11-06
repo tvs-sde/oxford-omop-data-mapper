@@ -378,7 +378,6 @@ select
     trim(clinical_code) as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'SNOMED CT'
-order by source_record_id, warehouse_identifier
 ```
 
 
@@ -398,31 +397,10 @@ select
     replace(upper(trim(clinical_code)), '.', '') as concept_code
 from ##duckdb_source##
 where upper(trim(clinical_code_system)) = 'OPCS4'
-order by source_record_id, warehouse_identifier
 ```
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20OPCS4%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
-### ICD-10 and ICD10 procedures from databricks_procedures.parquet.
-Source column  `concept_code`.
-Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
-
-* `concept_code` Uppercase, trimmed ICD10 code. Codes shorter than three characters are passed as null to the existing resolver, yielding unknown concept 0 rather than throwing. Only Procedure-domain targets are retained. 
-
-```sql
-select
-    patient_identifier_value,
-    clinical_date,
-    clinical_datetime,
-    clinical_code,
-    case when length(trim(clinical_code)) >= 3 then upper(trim(clinical_code)) end as concept_code
-from ##duckdb_source##
-where upper(trim(clinical_code_system)) in ('ICD-10', 'ICD10')
-order by source_record_id, warehouse_identifier
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20ICD-10%20and%20ICD10%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Procedure Occurrence
 Source column  `SuppliedCode`.
 Resolve Snomed codes to OMOP concepts.

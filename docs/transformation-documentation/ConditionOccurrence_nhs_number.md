@@ -138,6 +138,42 @@ where
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20Rtds%20Condition%20Occurrence%20mapping){: .btn }
+### SNOMED CT procedures mapped to Condition Occurrence from databricks_procedures.parquet.
+* Value copied from `patient_identifier_value`
+
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Condition%20Occurrence%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to Condition Occurrence from databricks_procedures.parquet.
+* Value copied from `patient_identifier_value`
+
+* `patient_identifier_value` Patient NHS number, used to join existing OMOP Person records.
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20nhs_number%20field%20OPCS4%20procedures%20mapped%20to%20Condition%20Occurrence%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Condition Occurrence
 * Value copied from `NHSNumber`
 

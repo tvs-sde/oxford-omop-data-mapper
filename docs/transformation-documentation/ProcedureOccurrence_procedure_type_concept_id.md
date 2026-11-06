@@ -34,10 +34,6 @@ has_toc: false
 * Constant value set to `32817`. EHR
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20OPCS4%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
-### ICD-10 and ICD10 procedures from databricks_procedures.parquet.
-* Constant value set to `32817`. EHR
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_type_concept_id%20field%20ICD-10%20and%20ICD10%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Procedure Occurrence
 * Constant value set to `32818`. `EHR Administration record`
 

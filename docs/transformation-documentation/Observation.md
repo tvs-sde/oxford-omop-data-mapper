@@ -293,6 +293,14 @@ has_toc: false
 <a href="RtdsTreatmentAnatomicalSite.svg" target="_blank"><img src="RtdsTreatmentAnatomicalSite.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=RtdsTreatmentAnatomicalSite%20mapping){: .btn }
+## OxfordProceduresObservationSnomed
+<a href="OxfordProceduresObservationSnomed.svg" target="_blank"><img src="OxfordProceduresObservationSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresObservationSnomed%20mapping){: .btn }
+## OxfordProceduresObservationOpcs4
+<a href="OxfordProceduresObservationOpcs4.svg" target="_blank"><img src="OxfordProceduresObservationOpcs4.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresObservationOpcs4%20mapping){: .btn }
 ## OxfordLabGeneralComment
 <a href="OxfordLabGeneralComment.svg" target="_blank"><img src="OxfordLabGeneralComment.svg" /></a>
 

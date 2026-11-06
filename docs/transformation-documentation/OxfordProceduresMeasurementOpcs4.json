@@ -1,0 +1,85 @@
+{
+  "omopTable": "Measurement",
+  "origin": "Oxford Procedures",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `patient_identifier_value`",
+      "dataSource": [
+        {
+          "name": "patient_identifier_value",
+          "description": "Patient NHS number, used to join existing OMOP Person records.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_date",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "clinical_date",
+          "description": "Clinical measurement date.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_datetime",
+      "operation_description": "Converts text to dates.",
+      "dataSource": [
+        {
+          "name": "clinical_datetime",
+          "description": "Clinical measurement timestamp.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_type_concept_id",
+      "operation_description": "Constant value set to `32817`. EHR",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_concept_id",
+      "operation_description": "Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.",
+      "dataSource": [
+        {
+          "name": "concept_code",
+          "description": "Uppercase, trimmed OPCS4 code with dots removed. Only resolved Measurement-domain targets are retained.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_concept_id",
+      "operation_description": "Maps concepts to standard valid concepts in the `measurement` domain.",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "measurement_source_value",
+      "operation_description": "Value copied from `clinical_code`",
+      "dataSource": [
+        {
+          "name": "clinical_code",
+          "description": "Original procedure code, preserved as the measurement source value.",
+          "origins": []
+        }
+      ],
+      "query": "\nselect\n    patient_identifier_value,\n    clinical_date,\n    clinical_datetime,\n    clinical_code,\n    replace(upper(trim(clinical_code)), '.', '') as concept_code\nfrom ##duckdb_source##\nwhere upper(trim(clinical_code_system)) = 'OPCS4'\n    ",
+      "lookup_table_markdown": null
+    }
+  ]
+}

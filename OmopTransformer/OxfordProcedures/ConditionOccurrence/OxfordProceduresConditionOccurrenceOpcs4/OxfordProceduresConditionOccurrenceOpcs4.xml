@@ -1,0 +1,19 @@
+<Query>
+    <Sql type="duckdb">
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+    </Sql>
+    <Explanations>
+        <Explanation columnName="patient_identifier_value"><Description>Patient NHS number, used to join existing OMOP Person records.</Description></Explanation>
+        <Explanation columnName="clinical_date"><Description>Clinical condition start date.</Description></Explanation>
+        <Explanation columnName="clinical_datetime"><Description>Clinical condition start timestamp.</Description></Explanation>
+        <Explanation columnName="clinical_code"><Description>Original procedure code, preserved as the condition source value.</Description></Explanation>
+        <Explanation columnName="concept_code"><Description>Uppercase, trimmed OPCS4 code with dots removed. Only resolved Condition-domain targets are retained.</Description></Explanation>
+    </Explanations>
+</Query>

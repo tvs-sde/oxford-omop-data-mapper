@@ -54,6 +54,42 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20Sus%20APC%20Measurement%20mapping){: .btn }
+### SNOMED CT procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
+* Value copied from `clinical_code`
+
+* `clinical_code` Original procedure code, preserved as the measurement source value.
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Measurement%20from%20databricks_procedures.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
+### OPCS4 procedures mapped to Measurement from databricks_procedures.parquet. No result or unit is inferred.
+* Value copied from `clinical_code`
+
+* `clinical_code` Original procedure code, preserved as the measurement source value.
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_value%20field%20OPCS4%20procedures%20mapped%20to%20Measurement%20from%20databricks_procedures.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
 ### Oxford Lab Measurement
 * Value copied from `EVENT`
 

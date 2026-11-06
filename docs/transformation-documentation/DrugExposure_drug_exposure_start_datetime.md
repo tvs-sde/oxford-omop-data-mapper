@@ -6,6 +6,44 @@ grand_parent: Transformation Documentation
 has_toc: false
 ---
 # drug_exposure_start_datetime
+### SNOMED CT procedures mapped to single-day Drug Exposure from databricks_procedures.parquet.
+Source column  `clinical_datetime`.
+Converts text to dates.
+
+* `clinical_datetime` Clinical drug exposure start timestamp.
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20drug_exposure_start_datetime%20field%20SNOMED%20CT%20procedures%20mapped%20to%20single-day%20Drug%20Exposure%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to single-day Drug Exposure from databricks_procedures.parquet.
+Source column  `clinical_datetime`.
+Converts text to dates.
+
+* `clinical_datetime` Clinical drug exposure start timestamp.
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DrugExposure%20table%20drug_exposure_start_datetime%20field%20OPCS4%20procedures%20mapped%20to%20single-day%20Drug%20Exposure%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Prescribing Drug Exposure
 Source column  `beg_dt_tm`.
 Converts text to dates.
