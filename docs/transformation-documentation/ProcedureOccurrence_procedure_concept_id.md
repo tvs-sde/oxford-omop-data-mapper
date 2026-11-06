@@ -31,6 +31,16 @@ Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20Rtds%20Procedure%20Occurrence%20mapping){: .btn }
+### SNOMED CT procedures from databricks_procedures.parquet.
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20SNOMED%20CT%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures from databricks_procedures.parquet.
+Source column  `procedure_source_concept_id`.
+Maps concepts to standard valid concepts in the `procedure` domain.
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_concept_id%20field%20OPCS4%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Procedure Occurrence
 Source column  `procedure_source_concept_id`.
 Maps concepts to standard valid concepts in the `procedure` domain.

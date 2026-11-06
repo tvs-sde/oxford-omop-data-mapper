@@ -12,7 +12,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -25,7 +25,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": "\r\n\r\n|sex|gender_concept_id|notes|\r\n|------|-----|-----|\r\n|Male|8507|Male|\r\n|Female|8532|Female|\r\n\r\nNotes\r\n* [OMOP Gender](https://athena.ohdsi.org/search-terms/terms?conceptClass=Gender&invalidReason=Valid&vocabulary=Gender&page=1&pageSize=50&query=)\r\n"
     },
     {
@@ -38,7 +38,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -51,7 +51,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -64,7 +64,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -77,7 +77,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -90,7 +90,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": "\r\n\r\n|ethnic_group|race_concept_id|notes|\r\n|------|-----|-----|\r\n|Asian - Any Other Asian Background|8515|Asian or Asian British - Any other Asian background|\r\n|Asian or Asian British - Bangladeshi|38003575|Asian or Asian British - Bangladeshi|\r\n|Asian or Asian British - Indian|38003574|Asian or Asian British - Indian|\r\n|Asian or Asian British - Pakistani|38003589|Asian or Asian British - Pakistani|\r\n|Black - Any Other Black Background|38003598|Black or Black British - Any other Black background|\r\n|Black or Black British - African|38003600|Black or Black British - African|\r\n|Black or Black British - Caribbean|38003598|Black or Black British - Caribbean|\r\n|Mixed - Any Other Mixed Background|8527|Mixed - Any other mixed background [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700391)|\r\n|Mixed - White and Asian|8527|Mixed - White and Asian [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700390)|\r\n|Mixed - White and Black African|8527|Mixed - White and Black African [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700389)|\r\n|Mixed - White and Black Caribbean|8527|Mixed - White and Black Caribbean [Athena mapping](https://athena.ohdsi.org/search-terms/terms/700388)|\r\n|Other - Any Other Ethnic Group|0|Other Ethnic Groups - Any other ethnic group|\r\n|Other - Chinese|38003579|Other Ethnic Groups - Chinese|\r\n|Other - Not Known|0|Not known|\r\n|Other - Not Stated|0|Not stated|\r\n|White - Any Other White Background|8527|White - Any other White background|\r\n|White - British|8527|White - British|\r\n|White - Irish|8527|White - Irish|\r\n||0|No data|\r\n\r\nNotes\r\n* [NHS Race (i.e.Ethnicity)](https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html)\r\n* [OMOP Race](https://athena.ohdsi.org/search-terms/terms?conceptClass=Race&invalidReason=Valid&vocabulary=Race&page=1&pageSize=50&query=)\r\n* [Mixed race mapping](https://forums.ohdsi.org/t/mapping-nhs-ethnic-category-to-omop-race/20883/2)\r\n"
     },
     {
@@ -103,7 +103,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -116,7 +116,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\n    ",
+      "query": "\nselect\n    cast(date_of_birth as varchar) as date_of_birth,\n    ethnic_group,\n    sex,\n    cast(nhs_number as varchar) as nhs_number\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {

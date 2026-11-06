@@ -265,7 +265,7 @@ Transforms the staged data (and records data provenance) into the OMOP tables.
 
 | Option                          | Remarks                                                                                                                                                |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-prescribing`, `oxford-lab`, `oxford-death`.                |
+| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-procedures`, `oxford-prescribing`, `oxford-lab`, `oxford-death`.                |
 | `-d, --duckdb-source <expr>`    | Optional. A DuckDB source expression used in place of the default staging table, eg `"read_csv('/data/medication_results_short.csv', all_varchar=true)"`. Useful for transforming directly from a CSV without a separate staging step. |
 | `--dry-run`                     | Optional. Runs the transformation without writing to the OMOP tables. Defaults to `false`.                                                              |
 | `--batch-size <n>`              | Optional. Number of records to process per batch. Defaults to `4000000`.                                                                                |

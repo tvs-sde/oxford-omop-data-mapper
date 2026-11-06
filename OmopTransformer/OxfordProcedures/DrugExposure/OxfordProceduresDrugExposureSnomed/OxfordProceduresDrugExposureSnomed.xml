@@ -1,0 +1,20 @@
+<Query>
+    <Sql type="duckdb">
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
+    </Sql>
+    <Explanations>
+        <Explanation columnName="patient_identifier_value"><Description>Patient NHS number, used to join existing OMOP Person records.</Description></Explanation>
+        <Explanation columnName="clinical_date"><Description>Clinical drug exposure date. Used for both start and required end date as a single-day exposure.</Description></Explanation>
+        <Explanation columnName="clinical_datetime"><Description>Clinical drug exposure start timestamp.</Description></Explanation>
+        <Explanation columnName="clinical_code"><Description>Original procedure code, preserved as the drug source value.</Description></Explanation>
+        <Explanation columnName="concept_code"><Description>Trimmed SNOMED CT code. Only resolved Drug-domain targets are retained.</Description></Explanation>
+    </Explanations>
+</Query>

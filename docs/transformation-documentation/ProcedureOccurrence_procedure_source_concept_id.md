@@ -363,6 +363,46 @@ where PatientId is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20Rtds%20Procedure%20Occurrence%20mapping){: .btn }
+### SNOMED CT procedures from databricks_procedures.parquet.
+Source column  `concept_code`.
+Resolve Snomed codes to OMOP concepts.
+
+* `concept_code` Trimmed SNOMED CT code. Only Procedure-domain targets are retained. 
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20SNOMED%20CT%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures from databricks_procedures.parquet.
+Source column  `concept_code`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `concept_code` Uppercase, trimmed OPCS4 code with dots removed for the existing OPCS4 resolver. Only Procedure-domain targets are retained. 
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ProcedureOccurrence%20table%20procedure_source_concept_id%20field%20OPCS4%20procedures%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Procedure Occurrence
 Source column  `SuppliedCode`.
 Resolve Snomed codes to OMOP concepts.
