@@ -265,7 +265,7 @@ Transforms the staged data (and records data provenance) into the OMOP tables.
 
 | Option                          | Remarks                                                                                                                                                |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-prescribing`, `oxford-lab`, `oxford-death`.                |
+| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-procedures`, `oxford-prescribing`, `oxford-lab`, `oxford-death`.                |
 | `-d, --duckdb-source <expr>`    | Optional. A DuckDB source expression used in place of the default staging table, eg `"read_csv('/data/medication_results_short.csv', all_varchar=true)"`. Useful for transforming directly from a CSV without a separate staging step. |
 | `--dry-run`                     | Optional. Runs the transformation without writing to the OMOP tables. Defaults to `false`.                                                              |
 | `--batch-size <n>`              | Optional. Number of records to process per batch. Defaults to `4000000`.                                                                                |
@@ -314,9 +314,46 @@ OMOP race concepts as the NHS ethnicity lookup; the original ethnic group is pre
 `race_source_value`. No data, not known, not stated and unmapped "Other" groups map to race concept `0`.
 OMOP `ethnicity_concept_id` is `0`, as it represents Hispanic/non-Hispanic ethnicity rather than UK ethnic groups.
 
+### Example - transform Oxford procedures directly from Parquet
+
+```
+docker run \
+      -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
+      --rm \
+      -v /path/to/database/folder:/data \
+      -v /path/to/your/data:/input \
+      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      transform --type oxford-procedures \
+        --duckdb-source "read_parquet('/input/databricks_procedures.parquet')"
+```
+
+The procedures file is supplied at runtime, not bundled with the application.
+The source must contain `patient_identifier_value`, `clinical_date`, `clinical_datetime`,
+`clinical_code`, `clinical_code_system`, `source_record_id` and `warehouse_identifier`.
+Load demographics first: `patient_identifier_value` joins the NHS number stored in
+OMOP Person's `person_source_value`. Clinical dates and timestamps populate `procedure_date`
+and `procedure_datetime`; end dates, providers, quantities and visit linkage are not inferred.
+
+Each mapping has its own folder, source record and uniquely named XML query.
+
+| Code system | Procedure Occurrence mapping |
+|-------------|-----------------------------|
+| `SNOMED CT` | Existing SNOMED selector and standard Procedure-domain selector. |
+| `ICD-10`, `ICD10` | Existing ICD10 standard/non-standard selector and standard Procedure-domain selector. |
+| `OPCS4` | Existing OPCS4 selector and standard Procedure-domain selector. |
+
+Original codes are preserved in `procedure_source_value`; EHR type concept `32817` is used.
+Known concepts mapped only to other domains are not inserted as procedures. Unknown codes
+retain the existing resolver fallback to concept `0`. ICD10 codes shorter than three
+characters are passed as null to the resolver, avoiding its minimum-length exception.
+Missing clinical dates or patient identifiers produce invalid records.
+Patient Care and IMO are unsupported and are not selected; a warning is logged about
+excluded code systems. Missing or unrecognised code systems are also not selected.
+`active_ind` is not filtered, consistent with the other direct Parquet transformations.
+
 ### Remarks
 
-Note that `oxford-demographics`, `oxford-prescribing`, `oxford-lab` and `oxford-death` are transform-only types - there is no `stage load` path for them. They require `--duckdb-source` against a Parquet file, CSV, or another DuckDB source expression.
+Note that `oxford-demographics`, `oxford-procedures`, `oxford-prescribing`, `oxford-lab` and `oxford-death` are transform-only types - there is no `stage load` path for them. They require `--duckdb-source` against a Parquet file, CSV, or another DuckDB source expression.
 
 The OMOP data provenance is recorded as each data set is transformed. [See data provenance.]({% link docs/data-provenance.md %}#data-provenance)
 

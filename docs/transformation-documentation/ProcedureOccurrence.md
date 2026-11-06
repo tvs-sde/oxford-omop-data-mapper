@@ -39,6 +39,18 @@ has_toc: false
 <a href="RtdsProcedureOccurrence.svg" target="_blank"><img src="RtdsProcedureOccurrence.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=RtdsProcedureOccurrence%20mapping){: .btn }
+## OxfordProceduresProcedureOccurrenceSnomed
+<a href="OxfordProceduresProcedureOccurrenceSnomed.svg" target="_blank"><img src="OxfordProceduresProcedureOccurrenceSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresProcedureOccurrenceSnomed%20mapping){: .btn }
+## OxfordProceduresProcedureOccurrenceOpcs4
+<a href="OxfordProceduresProcedureOccurrenceOpcs4.svg" target="_blank"><img src="OxfordProceduresProcedureOccurrenceOpcs4.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresProcedureOccurrenceOpcs4%20mapping){: .btn }
+## OxfordProceduresProcedureOccurrenceIcd10
+<a href="OxfordProceduresProcedureOccurrenceIcd10.svg" target="_blank"><img src="OxfordProceduresProcedureOccurrenceIcd10.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresProcedureOccurrenceIcd10%20mapping){: .btn }
 ## OxfordGPProcedureOccurrence
 <a href="OxfordGPProcedureOccurrence.svg" target="_blank"><img src="OxfordGPProcedureOccurrence.svg" /></a>
 

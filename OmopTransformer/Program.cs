@@ -29,6 +29,7 @@ using OmopTransformer.OxfordGP.Staging;
 using OmopTransformer.OxfordGP.Staging.Clearing;
 using OmopTransformer.OxfordLab;
 using OmopTransformer.OxfordPrescribing;
+using OmopTransformer.OxfordProcedures;
 using OmopTransformer.OxfordSpineDeath;
 using OmopTransformer.RTDS;
 using OmopTransformer.RTDS.Parser;
@@ -326,6 +327,11 @@ internal class Program
             {
                 builder.Services.AddTransient<OxfordDemographicsTransformer>();
                 builder.Services.AddHostedService<OxfordDemographicsTransformHostedService>();
+            }
+            else if (string.Equals(transformOptions.Type, "oxford-procedures", StringComparison.OrdinalIgnoreCase))
+            {
+                builder.Services.AddTransient<OxfordProceduresTransformer>();
+                builder.Services.AddHostedService<OxfordProceduresTransformHostedService>();
             }
             else if (string.Equals(transformOptions.Type, "oxford-prescribing", StringComparison.OrdinalIgnoreCase))
             {
