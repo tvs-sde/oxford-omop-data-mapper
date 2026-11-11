@@ -459,6 +459,46 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20Oxford%20Condition%20Occurrence%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, from databricks_diagnosis.parquet.
+Source column  `concept_code`.
+Resolve Snomed codes to OMOP concepts.
+
+* `concept_code` Trimmed SNOMED CT code. Includes SNOMED CT and UK ED Subset source vocabularies. 
+
+```sql
+select
+    patient_identifier_value,
+    diagnosis_date,
+    diagnosis_datetime,
+    diagnosis_code,
+    trim(diagnosis_code) as concept_code
+from ##duckdb_source##
+where upper(trim(diagnosis_code_system)) = 'SNOMED CT'
+order by diagnosis_id, warehouse_identifier
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
+### ICD-10 and ICD10 diagnoses from databricks_diagnosis.parquet.
+Source column  `concept_code`.
+Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `concept_code` Uppercase, trimmed ICD10 code. Codes shorter than three characters are passed as null to the existing resolver, yielding unknown concept 0 rather than throwing. 
+
+```sql
+select
+    patient_identifier_value,
+    diagnosis_date,
+    diagnosis_datetime,
+    diagnosis_code,
+    case when length(trim(diagnosis_code)) >= 3 then upper(trim(diagnosis_code)) end as concept_code
+from ##duckdb_source##
+where upper(trim(diagnosis_code_system)) in ('ICD-10', 'ICD10')
+order by diagnosis_id, warehouse_identifier
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
 ### COSD V9 UR Condition Occurrence Secondary Diagnosis ICD
 Source column  `SecondaryDiagnosisIcd`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.

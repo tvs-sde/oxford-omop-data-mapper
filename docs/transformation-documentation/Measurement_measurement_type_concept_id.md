@@ -38,6 +38,14 @@ has_toc: false
 * Constant value set to `32828`. EHR episode record
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20Oxford%20Lab%20Measurement%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, mapped to Measurement from databricks_diagnosis.parquet. No result or unit is inferred.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20SNOMED%20CT%20diagnoses,%20including%20UK%20ED%20Subset,%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
+### ICD-10 and ICD10 diagnoses mapped to Measurement from databricks_diagnosis.parquet. No result or unit is inferred.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_type_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
 ### COSD V9 UR Measurement Tumour Laterality
 * Constant value set to `32828`. EHR episode record
 
