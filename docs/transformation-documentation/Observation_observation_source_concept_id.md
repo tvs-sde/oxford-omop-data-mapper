@@ -148,24 +148,15 @@ order by
 * Constant value set to `2000500001`. ANAESTHETIC GIVEN DURING LABOUR OR DELIVERY CODE
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20SUS%20APC%20Anaesthetic%20During%20Labour%20Delivery%20Observation%20mapping){: .btn }
-<<<<<<< HEAD
 ### SNOMED CT procedures mapped to Observation from databricks_procedures.parquet.
 Source column  `concept_code`.
 Resolve Snomed codes to OMOP concepts.
 
 * `concept_code` Trimmed SNOMED CT code. Only resolved Observation-domain targets are retained. 
-=======
-### SNOMED CT diagnoses, including UK ED Subset, mapped to Observation from databricks_diagnosis.parquet.
-Source column  `concept_code`.
-Resolve Snomed codes to OMOP concepts.
-
-* `concept_code` Trimmed SNOMED CT code. Includes SNOMED CT and UK ED Subset source vocabularies. Only Observation-domain targets are retained. 
->>>>>>> main
 
 ```sql
 select
     patient_identifier_value,
-<<<<<<< HEAD
     clinical_date,
     clinical_datetime,
     clinical_code,
@@ -182,7 +173,30 @@ Source column  `concept_code`.
 Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
 
 * `concept_code` Uppercase, trimmed OPCS4 code with dots removed. Only resolved Observation-domain targets are retained. 
-=======
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, mapped to Observation from databricks_diagnosis.parquet.
+Source column  `concept_code`.
+Resolve Snomed codes to OMOP concepts.
+
+* `concept_code` Trimmed SNOMED CT code. Includes SNOMED CT and UK ED Subset source vocabularies. Only Observation-domain targets are retained. 
+
+```sql
+select
+    patient_identifier_value,
     diagnosis_date,
     diagnosis_datetime,
     diagnosis_code,
@@ -199,24 +213,10 @@ Source column  `concept_code`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
 
 * `concept_code` Uppercase, trimmed ICD10 code. Codes shorter than three characters are passed as null to the existing resolver. Only resolved Observation-domain targets are retained. 
->>>>>>> main
 
 ```sql
 select
     patient_identifier_value,
-<<<<<<< HEAD
-    clinical_date,
-    clinical_datetime,
-    clinical_code,
-    replace(upper(trim(clinical_code)), '.', '') as concept_code
-from ##duckdb_source##
-where upper(trim(clinical_code_system)) = 'OPCS4'
-order by all
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
-=======
     diagnosis_date,
     diagnosis_datetime,
     diagnosis_code,
@@ -228,7 +228,6 @@ order by diagnosis_id, warehouse_identifier
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20mapped%20to%20Observation%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
->>>>>>> main
 ### CosdV9FamilialCancerSyndromeSubsidiaryComment
 * Constant value set to `2000500006`. Familial Cancer (Comment)
 

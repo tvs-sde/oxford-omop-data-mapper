@@ -112,22 +112,14 @@ where
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20Rtds%20Condition%20Occurrence%20mapping){: .btn }
-<<<<<<< HEAD
 ### SNOMED CT procedures mapped to Condition Occurrence from databricks_procedures.parquet.
 * Value copied from `clinical_code`
 
 * `clinical_code` Original procedure code, preserved as the condition source value. 
-=======
-### SNOMED CT diagnoses, including UK ED Subset, from databricks_diagnosis.parquet.
-* Value copied from `diagnosis_code`
-
-* `diagnosis_code` Original diagnosis code, preserved as the source value. 
->>>>>>> main
 
 ```sql
 select
     patient_identifier_value,
-<<<<<<< HEAD
     clinical_date,
     clinical_datetime,
     clinical_code,
@@ -143,7 +135,29 @@ order by all
 * Value copied from `clinical_code`
 
 * `clinical_code` Original procedure code, preserved as the condition source value. 
-=======
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20OPCS4%20procedures%20mapped%20to%20Condition%20Occurrence%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### SNOMED CT diagnoses, including UK ED Subset, from databricks_diagnosis.parquet.
+* Value copied from `diagnosis_code`
+
+* `diagnosis_code` Original diagnosis code, preserved as the source value. 
+
+```sql
+select
+    patient_identifier_value,
     diagnosis_date,
     diagnosis_datetime,
     diagnosis_code,
@@ -159,24 +173,10 @@ order by diagnosis_id, warehouse_identifier
 * Value copied from `diagnosis_code`
 
 * `diagnosis_code` Original diagnosis code, preserved as the source value. 
->>>>>>> main
 
 ```sql
 select
     patient_identifier_value,
-<<<<<<< HEAD
-    clinical_date,
-    clinical_datetime,
-    clinical_code,
-    replace(upper(trim(clinical_code)), '.', '') as concept_code
-from ##duckdb_source##
-where upper(trim(clinical_code_system)) = 'OPCS4'
-order by all
-```
-
-
-[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20OPCS4%20procedures%20mapped%20to%20Condition%20Occurrence%20from%20databricks_procedures.parquet.%20mapping){: .btn }
-=======
     diagnosis_date,
     diagnosis_datetime,
     diagnosis_code,
@@ -188,7 +188,6 @@ order by diagnosis_id, warehouse_identifier
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_value%20field%20ICD-10%20and%20ICD10%20diagnoses%20from%20databricks_diagnosis.parquet.%20mapping){: .btn }
->>>>>>> main
 ### COSD V9 UR Condition Occurrence Secondary Diagnosis ICD
 * Value copied from `SecondaryDiagnosisIcd`
 
