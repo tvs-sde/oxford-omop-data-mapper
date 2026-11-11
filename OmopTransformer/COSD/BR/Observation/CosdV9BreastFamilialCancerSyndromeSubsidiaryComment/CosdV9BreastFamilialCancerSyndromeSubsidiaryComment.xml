@@ -22,7 +22,7 @@ with BR as (
 )
 select
     distinct
-        FamilialCancerSyndromeSubsidiaryComment,
+        'Familial Cancer Syndrome Subsidiary Comments - ' || FamilialCancerSyndromeSubsidiaryComment as FamilialCancerSyndromeSubsidiaryComment,
         NhsNumber,
         least(
             cast(DateFirstSeen as date),

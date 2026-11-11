@@ -11,7 +11,8 @@ from omop_staging.cosd_staging_901
 where type = 'LV'
   and NhsNumber is not null
   and PerformanceStatusAdult is not null
-  and DateOfPrimaryDiagnosisClinicallyAgreed is not null;
+  and DateOfPrimaryDiagnosisClinicallyAgreed is not null
+  and PerformanceStatusAdult in ('0', '1', '2', '3', '4');
     </Sql>
     <Explanations>
         <Explanation columnName="NhsNumber">

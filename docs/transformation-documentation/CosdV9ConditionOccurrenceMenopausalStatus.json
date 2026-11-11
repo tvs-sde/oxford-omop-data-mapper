@@ -1,0 +1,93 @@
+{
+  "omopTable": "ConditionOccurrence",
+  "origin": "COSD",
+  "omopColumns": [
+    {
+      "name": "nhs_number",
+      "operation_description": "Value copied from `NhsNumber`",
+      "dataSource": [
+        {
+          "name": "NhsNumber",
+          "description": "Patient NHS Number",
+          "origins": [
+            {
+              "origin": "NHS NUMBER",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/nhs_number.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n\tselect\n\t\tRecord ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n\t\t  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,\n\t\tcoalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n\t\tRecord ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,\n\t\tRecord ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n\tfrom omop_staging.cosd_staging_901\n\twhere type = 'CO'\n)\nselect\n\tdistinct\n\t\tMenopausalStatus,\n\t\tNhsNumber,\n\t\tleast(\n\t\t\tcast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n\t\t\tcast(TreatmentStartDateCancer as date),\n\t\t\tcast(ProcedureDate as date)\n\t\t) as Date\nfrom CO o\nwhere o.MenopausalStatus is not null\nand o.MenopausalStatus != '9'\n  and not (\n\t\tDateOfPrimaryDiagnosisClinicallyAgreed is null and\n\t\tTreatmentStartDateCancer is null and\n\t\tProcedureDate is null\n    );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_concept_id",
+      "operation_description": "Lookup menopausal status concept.",
+      "dataSource": [
+        {
+          "name": "MenopausalStatus",
+          "description": "MENOPAUSAL STATUS (AT DIAGNOSIS) is the MENOPAUSAL STATUS of a PATIENT at PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "MENOPAUSAL STATUS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/menopausal_status__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n\tselect\n\t\tRecord ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n\t\t  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,\n\t\tcoalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n\t\tRecord ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,\n\t\tRecord ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n\tfrom omop_staging.cosd_staging_901\n\twhere type = 'CO'\n)\nselect\n\tdistinct\n\t\tMenopausalStatus,\n\t\tNhsNumber,\n\t\tleast(\n\t\t\tcast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n\t\t\tcast(TreatmentStartDateCancer as date),\n\t\t\tcast(ProcedureDate as date)\n\t\t) as Date\nfrom CO o\nwhere o.MenopausalStatus is not null\nand o.MenopausalStatus != '9'\n  and not (\n\t\tDateOfPrimaryDiagnosisClinicallyAgreed is null and\n\t\tTreatmentStartDateCancer is null and\n\t\tProcedureDate is null\n    );\n    ",
+      "lookup_table_markdown": "\r\n\r\n|MenopausalStatus|condition_concept_id|notes|\r\n|------|-----|-----|\r\n|1|4331463|Premenopausal state|\r\n|2|45757505|Perimenopausal state|\r\n|3|4295261|Postmenopausal state|\r\n\r\nNotes\r\n* [Menopausal Status](https://digital.nhs.uk/ndrs/data/data-sets/cosd/cosd-user-guide-v10/core---clinical-nurse-specialist)\r\n"
+    },
+    {
+      "name": "condition_start_date",
+      "operation_description": "Value copied from `Date`",
+      "dataSource": [
+        {
+          "name": "Date",
+          "description": "Observation date",
+          "origins": [
+            {
+              "origin": "DATE OF PRIMARY CANCER DIAGNOSIS (CLINICALLY AGREED)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/date_of_primary_cancer_diagnosis__clinically_agreed_.html"
+            },
+            {
+              "origin": "TREATMENT START DATE (CANCER)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/treatment_start_date__cancer_.html"
+            },
+            {
+              "origin": "PROCEDURE DATE",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/procedure_date.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n\tselect\n\t\tRecord ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n\t\t  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,\n\t\tcoalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n\t\tRecord ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,\n\t\tRecord ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n\tfrom omop_staging.cosd_staging_901\n\twhere type = 'CO'\n)\nselect\n\tdistinct\n\t\tMenopausalStatus,\n\t\tNhsNumber,\n\t\tleast(\n\t\t\tcast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n\t\t\tcast(TreatmentStartDateCancer as date),\n\t\t\tcast(ProcedureDate as date)\n\t\t) as Date\nfrom CO o\nwhere o.MenopausalStatus is not null\nand o.MenopausalStatus != '9'\n  and not (\n\t\tDateOfPrimaryDiagnosisClinicallyAgreed is null and\n\t\tTreatmentStartDateCancer is null and\n\t\tProcedureDate is null\n    );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_source_value",
+      "operation_description": "Value copied from `MenopausalStatus`",
+      "dataSource": [
+        {
+          "name": "MenopausalStatus",
+          "description": "MENOPAUSAL STATUS (AT DIAGNOSIS) is the MENOPAUSAL STATUS of a PATIENT at PATIENT DIAGNOSIS.",
+          "origins": [
+            {
+              "origin": "MENOPAUSAL STATUS (AT DIAGNOSIS)",
+              "url": "https://www.datadictionary.nhs.uk/data_elements/menopausal_status__at_diagnosis_.html"
+            }
+          ]
+        }
+      ],
+      "query": "\nwith CO as (\n\tselect\n\t\tRecord ->> '$.PrimaryPathway.LinkageDiagnosticDetails.DateOfPrimaryDiagnosisClinicallyAgreed' as DateOfPrimaryDiagnosisClinicallyAgreed,\n\t\t  coalesce(Record ->> '$.Treatment[0].TreatmentStartDateCancer', Record ->> '$.Treatment.TreatmentStartDateCancer') as TreatmentStartDateCancer,\n\t\tcoalesce(Record ->> '$.Treatment[0].Surgery.ProcedureDate', Record ->> '$.Treatment.Surgery.ProcedureDate') as ProcedureDate,\n\t\tRecord ->> '$.ClinicalNurseSpecialistAndRiskFactorAssessments.MenopausalStatus.@code' as MenopausalStatus,\n\t\tRecord ->> '$.LinkagePatientId.NhsNumber.@extension' as NhsNumber\n\tfrom omop_staging.cosd_staging_901\n\twhere type = 'CO'\n)\nselect\n\tdistinct\n\t\tMenopausalStatus,\n\t\tNhsNumber,\n\t\tleast(\n\t\t\tcast(DateOfPrimaryDiagnosisClinicallyAgreed as date),\n\t\t\tcast(TreatmentStartDateCancer as date),\n\t\t\tcast(ProcedureDate as date)\n\t\t) as Date\nfrom CO o\nwhere o.MenopausalStatus is not null\nand o.MenopausalStatus != '9'\n  and not (\n\t\tDateOfPrimaryDiagnosisClinicallyAgreed is null and\n\t\tTreatmentStartDateCancer is null and\n\t\tProcedureDate is null\n    );\n    ",
+      "lookup_table_markdown": null
+    },
+    {
+      "name": "condition_type_concept_id",
+      "operation_description": "Constant value set to `32828`. `EHR episode record`",
+      "dataSource": null,
+      "query": null,
+      "lookup_table_markdown": null
+    }
+  ]
+}

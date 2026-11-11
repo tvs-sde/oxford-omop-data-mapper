@@ -1299,6 +1299,10 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 LV Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20LV%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 LV Condition Occurrence Cancer Progression ICD
 Source column  `ProgressionIcd`.
 Resolve ICD10 codes to standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1432,6 +1436,10 @@ where type = 'LU'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Progression%20mapping){: .btn }
+### COSD V9 Lung Condition Occurrence Familial Cancer Syndrome
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20Lung%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20mapping){: .btn }
 ### COSD V8 Lung Condition Occurrence Progression
 Source column  `NonPrimaryProgressionOriginalDiagnosis`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1525,6 +1533,10 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V8 Lung Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Lung%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Condition Occurrence Secondary Diagnosis ICD
 Source column  `SecondaryDiagnosisIcd`.
 Resolve ICD10 codes to standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1615,6 +1627,10 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 HN Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HN%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 HN Condition Occurrence Cancer Progression ICD
 Source column  `ProgressionIcd`.
 Resolve ICD10 codes to standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1675,6 +1691,10 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 HN Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 HN Condition Occurrence Cancer Progression ICD
 Source column  `CancerProgressionICD`.
 Resolve ICD10 codes to standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1705,6 +1725,14 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20HN%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 HA Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20HA%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+### COSD V8 HA Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20HA%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Condition Occurrence Secondary Diagnosis ICD
 Source column  `SecondaryDiagnosisIcd`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1795,6 +1823,10 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 GY Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20GY%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 GY Condition Occurrence Cancer Progression ICD
 Source column  `ProgressionIcd`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -1885,6 +1917,10 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 GY Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20GY%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 GY Condition Occurrence Cancer Progression ICD
 Source column  `CancerProgressionICD`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2005,6 +2041,10 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CT Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20CT%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CT Condition Occurrence Cancer Progression ICD
 Source column  `ProgressionIcd`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2065,6 +2105,10 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V8 CT Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20CT%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V8 CT Condition Occurrence Cancer Progression ICD
 Source column  `CancerProgressionICD`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2185,6 +2229,10 @@ where NhsNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Original%20Primary%20Diagnosis%20ICD%20mapping){: .btn }
+### COSD V9 CR Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 CR Condition Occurrence Cancer Progression ICD
 Source column  `ProgressionIcd`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2275,6 +2323,10 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20CR%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+### COSD V9 Condition Occurrence Familial Cancer Syndrome
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20mapping){: .btn }
 ### Cosd V8 Condition Occurrence Primary Diagnosis
 Source column  `CancerDiagnosis`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2351,6 +2403,10 @@ where NhsNumber is not null and
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20Cosd%20V8%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V8 Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 Condition Occurrence Recurrence
 Source column  `SecondaryDiagnosis`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2615,6 +2671,10 @@ where DateOfPrimaryDiagnosisClinicallyAgreed is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V9 Breast Condition Occurrence Familial Cancer Syndrome
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V9%20Breast%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20mapping){: .btn }
 ### COSD V8 Breast Condition Occurrence Progression
 Source column  `NonPrimaryProgressionOriginalDiagnosis`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.
@@ -2716,6 +2776,10 @@ where NhsNumber is not null and
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20Cosd%20V8%20Breast%20Condition%20Occurrence%20Primary%20Diagnosis%20Histology%20Topography%20mapping){: .btn }
+### COSD V8 Breast Condition Occurrence Familial Cancer Syndrome Indicator
+* Constant value set to `2000500005`. Familial Cancer (Indicator)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20Breast%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
 ### COSD V9 BA Condition Occurrence Secondary Diagnosis ICD
 Source column  `SecondaryDiagnosisIcd`.
 Resolve ICD10 codes to standard or non standard OMOP concepts. If code cannot be mapped, map using the parent code.

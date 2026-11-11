@@ -18,10 +18,7 @@ internal class COSDv9GYObservationSmokingStatusCancer : OmopObservation<COSDv9GY
     [ConstantValue(32828, "EHR episode record")]
     public override int? observation_type_concept_id { get; set; }
 
-    [ConstantValue(43054909, "Tobacco smoking status")]
-    public override int? observation_source_concept_id { get; set; }
-
-    [Transform(typeof(StandardObservationConceptSelector), useOmopTypeAsSource: true, nameof(observation_source_concept_id))]
+    [ConstantValue(648645, "Smoking status")]
     public override int[]? observation_concept_id { get; set; }
 
     [CopyValue(nameof(Source.SmokingStatusCancer))]
@@ -29,4 +26,7 @@ internal class COSDv9GYObservationSmokingStatusCancer : OmopObservation<COSDv9GY
 
     [CopyValue(nameof(Source.SmokingStatusCancer))]
     public override string? value_source_value { get; set; }
+
+    [Transform(typeof(SmokingStatusLookup), nameof(Source.SmokingStatusCancer))]
+    public override int? value_as_concept_id { get; set; }
 }
