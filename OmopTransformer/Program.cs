@@ -351,6 +351,8 @@ internal class Program
             else
             {
                 await Console.Error.WriteLineAsync($"Unknown transform type {transformOptions.Type}.");
+                Environment.ExitCode = (int)ExitCodes.UnknownError;
+                return;
             }
         }
 
