@@ -168,6 +168,7 @@ select
 	NORMAL_HIGH
 from ##duckdb_source##
 where lower(EVENT) not like '%comment%'
+order by all
 	
 ```
 

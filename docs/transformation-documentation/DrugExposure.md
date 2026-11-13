@@ -27,6 +27,14 @@ has_toc: false
 <a href="SactDrugExposure.svg" target="_blank"><img src="SactDrugExposure.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SactDrugExposure%20mapping){: .btn }
+## OxfordProceduresDrugExposureSnomed
+<a href="OxfordProceduresDrugExposureSnomed.svg" target="_blank"><img src="OxfordProceduresDrugExposureSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresDrugExposureSnomed%20mapping){: .btn }
+## OxfordProceduresDrugExposureOpcs4
+<a href="OxfordProceduresDrugExposureOpcs4.svg" target="_blank"><img src="OxfordProceduresDrugExposureOpcs4.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresDrugExposureOpcs4%20mapping){: .btn }
 ## OxfordPrescribingDrugExposure
 <a href="OxfordPrescribingDrugExposure.svg" target="_blank"><img src="OxfordPrescribingDrugExposure.svg" /></a>
 

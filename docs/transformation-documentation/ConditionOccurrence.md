@@ -40,6 +40,14 @@ has_toc: false
 <a href="RtdsConditionOccurrence.svg" target="_blank"><img src="RtdsConditionOccurrence.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=RtdsConditionOccurrence%20mapping){: .btn }
+## OxfordProceduresConditionOccurrenceSnomed
+<a href="OxfordProceduresConditionOccurrenceSnomed.svg" target="_blank"><img src="OxfordProceduresConditionOccurrenceSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresConditionOccurrenceSnomed%20mapping){: .btn }
+## OxfordProceduresConditionOccurrenceOpcs4
+<a href="OxfordProceduresConditionOccurrenceOpcs4.svg" target="_blank"><img src="OxfordProceduresConditionOccurrenceOpcs4.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresConditionOccurrenceOpcs4%20mapping){: .btn }
 ## OxfordGPConditionOccurrence
 <a href="OxfordGPConditionOccurrence.svg" target="_blank"><img src="OxfordGPConditionOccurrence.svg" /></a>
 

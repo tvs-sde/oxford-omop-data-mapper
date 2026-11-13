@@ -17,7 +17,7 @@
           ]
         }
       ],
-      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -42,7 +42,7 @@
           ]
         }
       ],
-      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -60,7 +60,7 @@
           ]
         }
       ],
-      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -85,7 +85,7 @@
           ]
         }
       ],
-      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -103,7 +103,7 @@
           ]
         }
       ],
-      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\n    ",
+      "query": "\nselect\n    NHS_NUMBER,\n    EVENT,\n    EVENT_START_DT_TM,\n    RESULT_VALUE\nfrom ##duckdb_source##\nwhere lower(EVENT) like '%comment%'\norder by all\n    ",
       "lookup_table_markdown": null
     }
   ]
