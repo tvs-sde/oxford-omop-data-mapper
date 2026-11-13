@@ -6,6 +6,8 @@ select
     sex,
     cast(nhs_number as varchar) as nhs_number
 from ##duckdb_source##
+where date_of_birth is not null
+and sex in ('Male', 'Female')
     </Sql>
     <Explanations>
         <Explanation columnName="date_of_birth">
