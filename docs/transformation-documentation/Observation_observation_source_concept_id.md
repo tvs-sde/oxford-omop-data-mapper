@@ -148,6 +148,46 @@ order by
 * Constant value set to `2000500001`. ANAESTHETIC GIVEN DURING LABOUR OR DELIVERY CODE
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20SUS%20APC%20Anaesthetic%20During%20Labour%20Delivery%20Observation%20mapping){: .btn }
+### SNOMED CT procedures mapped to Observation from databricks_procedures.parquet.
+Source column  `concept_code`.
+Resolve Snomed codes to OMOP concepts.
+
+* `concept_code` Trimmed SNOMED CT code. Only resolved Observation-domain targets are retained. 
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to Observation from databricks_procedures.parquet.
+Source column  `concept_code`.
+Resolve OPCS4 codes to OMOP concepts. If code cannot be mapped, map using the parent code.
+
+* `concept_code` Uppercase, trimmed OPCS4 code with dots removed. Only resolved Observation-domain targets are retained. 
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### SNOMED CT diagnoses, including UK ED Subset, mapped to Observation from databricks_diagnosis.parquet.
 Source column  `concept_code`.
 Resolve Snomed codes to OMOP concepts.

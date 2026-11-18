@@ -199,6 +199,7 @@ select
     sex,
     cast(nhs_number as varchar) as nhs_number
 from ##duckdb_source##
+order by all
 ```
 
 

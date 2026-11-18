@@ -14,6 +14,7 @@ select
 from ##duckdb_source##
 where concept_identifier is null or
 TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
+order by all
     </Sql>
 	<Explanations>
 		<Explanation columnName="patient_identifier_Value">

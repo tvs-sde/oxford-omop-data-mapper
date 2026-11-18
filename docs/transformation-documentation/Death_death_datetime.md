@@ -51,6 +51,7 @@ select
 	patient_identifier_value,
 	DECEASED_DT_TM
 from ##duckdb_source##
+order by all
 	
 ```
 

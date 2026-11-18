@@ -381,6 +381,7 @@ select
     RESULT_VALUE
 from ##duckdb_source##
 where lower(EVENT) like '%comment%'
+order by all
 ```
 
 

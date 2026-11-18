@@ -26,6 +26,14 @@ has_toc: false
 * Constant value set to `32818`. `EHR administration record`
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_type_concept_id%20field%20SUS%20AE%20Investigation%20Device%20Exposure%20mapping){: .btn }
+### SNOMED CT procedures mapped to Device Exposure from databricks_procedures.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_type_concept_id%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Device%20Exposure%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to Device Exposure from databricks_procedures.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20DeviceExposure%20table%20device_type_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Device%20Exposure%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Device Exposure
 * Constant value set to `32818`. `EHR administration record`
 

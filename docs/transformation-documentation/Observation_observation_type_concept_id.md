@@ -122,6 +122,14 @@ has_toc: false
 * Constant value set to `32818`. EHR administration record
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20RTDS%20Treatment%20Anatomical%20Site%20mapping){: .btn }
+### SNOMED CT procedures mapped to Observation from databricks_procedures.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to Observation from databricks_procedures.parquet.
+* Constant value set to `32817`. EHR
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_type_concept_id%20field%20OPCS4%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Lab General Comment Observation
 * Constant value set to `32828`. EHR episode record
 

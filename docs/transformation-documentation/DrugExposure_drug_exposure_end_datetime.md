@@ -27,6 +27,7 @@ select
 from ##duckdb_source##
 where concept_identifier is null or
 TRY_CAST(TRIM(concept_identifier) AS INTEGER) = 0
+order by all
 ```
 
 
@@ -51,6 +52,7 @@ select
 	EVENT_ID
 from ##duckdb_source##
 where concept_identifier is not null
+order by all
 ```
 
 

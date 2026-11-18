@@ -38,6 +38,14 @@ has_toc: false
 <a href="SusAEInvestigationDevice.svg" target="_blank"><img src="SusAEInvestigationDevice.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=SusAEInvestigationDevice%20mapping){: .btn }
+## OxfordProceduresDeviceExposureSnomed
+<a href="OxfordProceduresDeviceExposureSnomed.svg" target="_blank"><img src="OxfordProceduresDeviceExposureSnomed.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresDeviceExposureSnomed%20mapping){: .btn }
+## OxfordProceduresDeviceExposureOpcs4
+<a href="OxfordProceduresDeviceExposureOpcs4.svg" target="_blank"><img src="OxfordProceduresDeviceExposureOpcs4.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordProceduresDeviceExposureOpcs4%20mapping){: .btn }
 ## OxfordGPDeviceExposure
 <a href="OxfordGPDeviceExposure.svg" target="_blank"><img src="OxfordGPDeviceExposure.svg" /></a>
 

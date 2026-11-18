@@ -156,6 +156,44 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20SACT%20Clinical%20Trial%20mapping){: .btn }
+### SNOMED CT procedures mapped to Observation from databricks_procedures.parquet.
+* Value copied from `clinical_code`
+
+* `clinical_code` Original procedure code, preserved as the observation source value. 
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    trim(clinical_code) as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'SNOMED CT'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20SNOMED%20CT%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
+### OPCS4 procedures mapped to Observation from databricks_procedures.parquet.
+* Value copied from `clinical_code`
+
+* `clinical_code` Original procedure code, preserved as the observation source value. 
+
+```sql
+select
+    patient_identifier_value,
+    clinical_date,
+    clinical_datetime,
+    clinical_code,
+    replace(upper(trim(clinical_code)), '.', '') as concept_code
+from ##duckdb_source##
+where upper(trim(clinical_code_system)) = 'OPCS4'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Observation%20table%20observation_source_value%20field%20OPCS4%20procedures%20mapped%20to%20Observation%20from%20databricks_procedures.parquet.%20mapping){: .btn }
 ### Oxford Lab General Comment Observation
 * Value copied from `EVENT`
 
@@ -169,6 +207,7 @@ select
     RESULT_VALUE
 from ##duckdb_source##
 where lower(EVENT) like '%comment%'
+order by all
 ```
 
 
