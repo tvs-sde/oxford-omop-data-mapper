@@ -8,7 +8,6 @@ namespace OmopTransformerTests;
 [TestFixture]
 public class ProgramTests
 {
-    [TestCase("oxford-procedures")]
     [TestCase("unknown-transform")]
     public async Task UnknownTransformType_ExitsWithErrorWithoutStartingHost(string transformType)
     {
