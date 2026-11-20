@@ -5,7 +5,12 @@ select
     EVENT_END_DT_TM,
     EVENT,
     RESULT_VALUE,
-    RESULT_UNITS,
+    case
+        when trim(EVENT) in ('Weight', 'Weight Measured')
+            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '&lt;no data&gt;'))
+        then 'kg'
+        else RESULT_UNITS
+    end as RESULT_UNITS,
     NORMAL_LOW,
     NORMAL_HIGH
 from ##duckdb_source##
@@ -16,7 +21,7 @@ order by all
         <Explanation columnName="EVENT_END_DT_TM"><Description>Clinical event end timestamp</Description></Explanation>
         <Explanation columnName="EVENT"><Description>Original event name.</Description></Explanation>
         <Explanation columnName="RESULT_VALUE"><Description>Original result</Description></Explanation>
-        <Explanation columnName="RESULT_UNITS"><Description>Original units</Description></Explanation>
+        <Explanation columnName="RESULT_UNITS"><Description>Original units; null, blank or &lt;no data&gt; units default to kg for Weight and Weight Measured events only.</Description></Explanation>
         <Explanation columnName="NORMAL_LOW"><Description>Lower reference range, when numeric.</Description></Explanation>
         <Explanation columnName="NORMAL_HIGH"><Description>Upper reference range, when numeric.</Description></Explanation>
     </Explanations>
