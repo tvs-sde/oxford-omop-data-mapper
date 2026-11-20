@@ -9,7 +9,6 @@ select
     NORMAL_LOW,
     NORMAL_HIGH
 from ##duckdb_source##
-)
 order by all
     </Sql>
     <Explanations>
