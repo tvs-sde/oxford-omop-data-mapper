@@ -101,6 +101,28 @@ Converts text to number.
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### Oxford clinical observations: weight, height and body mass index from clinical_observations_bmi.parquet.
+Source column  `RESULT_VALUE`.
+Converts text to number.
+
+* `RESULT_VALUE` Original result 
+
+```sql
+select
+    nhs_number,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH
+from ##duckdb_source##
+)
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_as_number%20field%20Oxford%20clinical%20observations:%20weight,%20height%20and%20body%20mass%20index%20from%20clinical_observations_bmi.parquet.%20mapping){: .btn }
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 Source column  `ProstateSpecificAntigenDiagnosis`.
 Converts text to number.

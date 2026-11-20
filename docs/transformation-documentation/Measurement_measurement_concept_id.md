@@ -51,6 +51,42 @@ Source column  `measurement_source_concept_id`.
 Maps concepts to standard valid concepts in the `measurement` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
+### Oxford clinical observations: weight, height and body mass index from clinical_observations_bmi.parquet.
+Source column  `EVENT`.
+Maps weight, height and BMI event names to standard Measurement concepts.
+
+
+|EVENT|measurement_concept_id|notes|
+|------|-----|-----|
+|Weight|4099154|Body weight|
+|Weight (kg)|4099154|Body weight|
+|Weight Measured|4099154|Body weight|
+|Height/Length Measured|607590|Body height|
+|Booking Height/Length Measured|607590|Body height|
+|Height|607590|Body height|
+|Body Mass Index|3038553|Body mass index (BMI) [Ratio]|
+|Booking Body Mass Index|3038553|Body mass index (BMI) [Ratio]|
+|Body Mass Index (Generic)|3038553|Body mass index (BMI) [Ratio]|
+
+
+* `EVENT` Original event name. 
+
+```sql
+select
+    nhs_number,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH
+from ##duckdb_source##
+)
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20clinical%20observations:%20weight,%20height%20and%20body%20mass%20index%20from%20clinical_observations_bmi.parquet.%20mapping){: .btn }
 ### COSD V9 UR Measurement Tumour Laterality
 Source column  `TumourLaterality`.
 Lookup TumourLaterality concepts.

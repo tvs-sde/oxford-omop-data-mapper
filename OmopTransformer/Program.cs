@@ -24,6 +24,7 @@ using OmopTransformer.Omop.Prune;
 using OmopTransformer.Omop.VisitDetail;
 using OmopTransformer.Omop.VisitOccurrence;
 using OmopTransformer.OxfordDemographics;
+using OmopTransformer.OxfordClinicalObservationsBmi;
 using OmopTransformer.OxfordDiagnosis;
 using OmopTransformer.OxfordGP;
 using OmopTransformer.OxfordGP.Staging;
@@ -328,6 +329,11 @@ internal class Program
             {
                 builder.Services.AddTransient<OxfordDemographicsTransformer>();
                 builder.Services.AddHostedService<OxfordDemographicsTransformHostedService>();
+            }
+            else if (string.Equals(transformOptions.Type, "oxford-clinical-observations-bmi", StringComparison.OrdinalIgnoreCase))
+            {
+                builder.Services.AddTransient<OxfordClinicalObservationsBmiTransformer>();
+                builder.Services.AddHostedService<OxfordClinicalObservationsBmiTransformHostedService>();
             }
             else if (string.Equals(transformOptions.Type, "oxford-procedures", StringComparison.OrdinalIgnoreCase))
             {

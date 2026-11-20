@@ -26,6 +26,38 @@ has_toc: false
 * Constant value set to `8582`. cm
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### Oxford clinical observations: weight, height and body mass index from clinical_observations_bmi.parquet.
+Source column  `RESULT_UNITS`.
+
+
+|RESULT_UNITS|unit_concept_id|notes|
+|------|-----|-----|
+|kg|9529|Kilogram|
+|cm|8582|Centimeter|
+|kg/m2|9531|Kilogram per square meter|
+|<no data>|0|Unknown unit|
+|square metre|0|Not a supported measurement unit|
+||0|Missing unit|
+
+
+* `RESULT_UNITS` Original units 
+
+```sql
+select
+    nhs_number,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH
+from ##duckdb_source##
+)
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20clinical%20observations:%20weight,%20height%20and%20body%20mass%20index%20from%20clinical_observations_bmi.parquet.%20mapping){: .btn }
 ### COSD V9 UR Measurement Prostate Specific Antigen Diagnosis
 * Constant value set to `8842`. nanogram per millilitre
 

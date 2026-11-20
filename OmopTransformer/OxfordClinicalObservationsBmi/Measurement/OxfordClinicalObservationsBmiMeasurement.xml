@@ -1,0 +1,24 @@
+<Query>
+    <Sql type="duckdb">
+select
+    nhs_number,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH
+from ##duckdb_source##
+)
+order by all
+    </Sql>
+    <Explanations>
+        <Explanation columnName="nhs_number"><Description>Patient NHS number</Description></Explanation>
+        <Explanation columnName="EVENT_END_DT_TM"><Description>Clinical event end timestamp</Description></Explanation>
+        <Explanation columnName="EVENT"><Description>Original event name.</Description></Explanation>
+        <Explanation columnName="RESULT_VALUE"><Description>Original result</Description></Explanation>
+        <Explanation columnName="RESULT_UNITS"><Description>Original units</Description></Explanation>
+        <Explanation columnName="NORMAL_LOW"><Description>Lower reference range, when numeric.</Description></Explanation>
+        <Explanation columnName="NORMAL_HIGH"><Description>Upper reference range, when numeric.</Description></Explanation>
+    </Explanations>
+</Query>
