@@ -18,7 +18,7 @@ has_children: false
 {:toc}
 </details>
 
-The tool is distributed as the Docker image `ghcr.io/answerdigital/oxford-omop-data-mapper:latest`. Each command below is shown as a full `docker run` invocation so it can be copied and pasted.
+The tool is distributed as the Docker image `ghcr.io/tvs-sde/oxford-omop-data-mapper:latest`. Each command below is shown as a full `docker run` invocation so it can be copied and pasted.
 
 Every command reads its `ConnectionString`, `VocabularyDirectory` and `BatchSize` settings from `appsettings.json` or from `-e` environment variables. See the [configuration guide]({% link docs/user-guide/configuration.md %}) for the full list.
 
@@ -39,7 +39,7 @@ docker run \
       --rm \
       -v /path/to/athena/extract:/vocabulary \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       init
 ```
 
@@ -63,7 +63,7 @@ Generates transformation documentation into the host directory mounted at `/out`
 docker run \
       --rm \
       -v /path/to/output:/out \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       docs /out
 ```
 
@@ -145,7 +145,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type sus-apc "/input/April 2022 Submission.zip" --ccmds "/input/April 2022 CCMDS.zip"
 ```
 
@@ -157,7 +157,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type sus-op /input/OS_SEM_1234_Outpatient_Q1_12345678_aaaaaaaa.csv
 ```
 
@@ -169,7 +169,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type sus-ae /input/OS_SEM_1234_AE_Q1_12345678_aaaaaaaa.csv
 ```
 
@@ -181,7 +181,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type cosd "/input/April 2022 Submission.zip"
 ```
 
@@ -193,7 +193,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type sact /input/SACT_v3-20200101-20200131.csv
 ```
 
@@ -205,7 +205,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type rtds /input/Rtds.zip
 ```
 
@@ -217,7 +217,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage load --type oxford-gp \
         --demographics /input/demographics.csv \
         --appointments /input/appointments.csv \
@@ -247,7 +247,7 @@ docker run \
       -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
       --rm \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       stage clear --type sus-apc
 ```
 
@@ -265,11 +265,7 @@ Transforms the staged data (and records data provenance) into the OMOP tables.
 
 | Option                          | Remarks                                                                                                                                                |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-<<<<<<< HEAD
-| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-procedures`, `oxford-prescribing`, `oxford-lab`, `oxford-death`.                |
-=======
-| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-diagnosis`, `oxford-prescribing`, `oxford-lab`, `oxford-death`.                |
->>>>>>> main
+| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-procedures`, `oxford-diagnosis`, `oxford-prescribing`, `oxford-lab`, `oxford-death`. |
 | `-d, --duckdb-source <expr>`    | Optional. A DuckDB source expression used in place of the default staging table, eg `"read_csv('/data/medication_results_short.csv', all_varchar=true)"`. Useful for transforming directly from a CSV without a separate staging step. |
 | `--dry-run`                     | Optional. Runs the transformation without writing to the OMOP tables. Defaults to `false`.                                                              |
 | `--batch-size <n>`              | Optional. Number of records to process per batch. Defaults to `4000000`.                                                                                |
@@ -281,7 +277,7 @@ docker run \
       -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
       --rm \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       transform --type sus-apc
 ```
 
@@ -293,7 +289,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       transform --type oxford-prescribing \
         --duckdb-source "read_csv('/input/medication_results_short.csv', all_varchar=true)"
 ```
@@ -306,7 +302,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       transform --type oxford-demographics \
         --duckdb-source "read_parquet('/input/databricks_demographics.parquet')"
 ```
@@ -326,7 +322,7 @@ docker run \
       --rm \
       -v /path/to/database/folder:/data \
       -v /path/to/your/data:/input \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       transform --type oxford-diagnosis \
         --duckdb-source "read_parquet('/input/databricks_diagnosis.parquet')"
 ```
@@ -355,7 +351,7 @@ excluded code systems. Missing or unrecognised code systems are also not selecte
 
 ### Remarks
 
-Note that `oxford-demographics`, `oxford-diagnosis`, `oxford-prescribing`, `oxford-lab` and `oxford-death` are transform-only types - there is no `stage load` path for them. They require `--duckdb-source` against a Parquet file, CSV, or another DuckDB source expression.
+Note that `oxford-demographics`, `oxford-procedures`, `oxford-diagnosis`, `oxford-prescribing`, `oxford-lab` and `oxford-death` are transform-only types - there is no `stage load` path for them. They require `--duckdb-source` against a Parquet file, CSV, or another DuckDB source expression.
 
 The OMOP data provenance is recorded as each data set is transformed. [See data provenance.]({% link docs/data-provenance.md %}#data-provenance)
 
@@ -376,7 +372,7 @@ docker run \
       -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
       --rm \
       -v /path/to/database/folder:/data \
-      ghcr.io/answerdigital/oxford-omop-data-mapper:latest \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
       finalise
 ```
 

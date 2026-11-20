@@ -14,7 +14,7 @@ This tool supports the following format [SUS_SEM_Extract_Specification](https://
 This data can be requested in bulk for your trust via the [SUS+ Portal](https://digital.nhs.uk/services/secondary-uses-service-sus/sus-portal-user-guide).
 
 ## Prerequisites
-* [Docker](https://www.docker.com/get-started/) (or .NET 8 SDK if running from source)
+* [Docker](https://www.docker.com/get-started/) (or .NET 10 SDK if running from source)
 * An unpacked [Athena](https://athena.ohdsi.org/) vocabulary extract - see the [Database Setup guide]({% link docs/database-setup.md %}).
 
 The tool uses [DuckDB](https://duckdb.org/) for storage. The database is a single `.db` file created at the location given by the `ConnectionString` setting.
