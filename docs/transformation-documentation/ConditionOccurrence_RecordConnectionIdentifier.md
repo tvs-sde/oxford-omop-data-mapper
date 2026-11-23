@@ -85,3 +85,24 @@ has_toc: false
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20RecordConnectionIdentifier%20field%20SUS%20Inpatient%20Condition%20Occurrence%20mapping){: .btn }
+
+### Oxford tracheostomy-in-situ condition from Yes answers only.
+* Value copied from `record_connection_identifier`
+
+* `record_connection_identifier` Stable hash of the warehouse identifier and original event timestamp, name, result, units and ranges, preserving distinct positive readings across batches and identifying identical rows on reruns.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) = 'Tracheostomy In Situ'
+  and lower(trim(RESULT_VALUE)) = 'yes'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20RecordConnectionIdentifier%20field%20Oxford%20tracheostomy-in-situ%20condition%20from%20Yes%20answers%20only.%20mapping){: .btn }

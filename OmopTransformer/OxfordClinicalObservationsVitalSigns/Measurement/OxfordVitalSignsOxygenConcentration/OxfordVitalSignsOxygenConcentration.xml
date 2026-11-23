@@ -1,0 +1,29 @@
+<Query>
+    <Sql type="duckdb">
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) = 'Oxygen % delivered'
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '&lt;no data&gt;', '%'))
+order by all
+    </Sql>
+    <Explanations>
+        <Explanation columnName="patient_identifier_value"><Description>Patient NHS number.</Description></Explanation>
+        <Explanation columnName="EVENT_END_DT_TM"><Description>Event end timestamp.</Description></Explanation>
+        <Explanation columnName="EVENT"><Description>Delivered oxygen concentration only, not oxygen saturation.</Description></Explanation>
+        <Explanation columnName="RESULT_VALUE"><Description>Finite numeric oxygen concentration, preserved without physiological clipping.</Description></Explanation>
+        <Explanation columnName="RESULT_UNITS"><Description>Original supplied units. Missing units are interpreted as %; other explicit units are excluded.</Description></Explanation>
+        <Explanation columnName="NORMAL_LOW"><Description>Lower reference range when numeric.</Description></Explanation>
+        <Explanation columnName="NORMAL_HIGH"><Description>Upper reference range when numeric.</Description></Explanation>
+        <Explanation columnName="record_connection_identifier"><Description>Stable hash of the warehouse identifier and original event timestamp, name, result, units and ranges; preserves distinct same-day readings and identifies identical rows on reruns.</Description></Explanation>
+    </Explanations>
+</Query>

@@ -1407,3 +1407,25 @@ where type = 'CR'
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20COSD%20V9%20CR%20Condition%20Occurrence%20Familial%20Cancer%20Syndrome%20Indicator%20mapping){: .btn }
+
+### Oxford tracheostomy-in-situ condition from Yes answers only.
+Source column  `EVENT_END_DT_TM`.
+Converts text to dates.
+
+* `EVENT_END_DT_TM` Event end timestamp supplies condition start date and datetime; no condition end is inferred.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) = 'Tracheostomy In Situ'
+  and lower(trim(RESULT_VALUE)) = 'yes'
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_start_datetime%20field%20Oxford%20tracheostomy-in-situ%20condition%20from%20Yes%20answers%20only.%20mapping){: .btn }

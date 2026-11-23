@@ -1,0 +1,20 @@
+<Query>
+    <Sql type="duckdb">
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) = 'Tracheostomy In Situ'
+  and lower(trim(RESULT_VALUE)) = 'yes'
+order by all
+    </Sql>
+    <Explanations>
+        <Explanation columnName="record_connection_identifier"><Description>Stable hash of the warehouse identifier and original event timestamp, name, result, units and ranges, preserving distinct positive readings across batches and identifying identical rows on reruns.</Description></Explanation>
+        <Explanation columnName="patient_identifier_value"><Description>Patient NHS number.</Description></Explanation>
+        <Explanation columnName="EVENT_END_DT_TM"><Description>Event end timestamp supplies condition start date and datetime; no condition end is inferred.</Description></Explanation>
+        <Explanation columnName="EVENT"><Description>Original tracheostomy-in-situ event. Only Yes answers are selected; No and other answers are excluded.</Description></Explanation>
+    </Explanations>
+</Query>

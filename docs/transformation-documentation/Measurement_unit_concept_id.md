@@ -26,6 +26,42 @@ has_toc: false
 * Constant value set to `8582`. cm
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### Oxford vital signs: temperature.
+* Constant value set to `586323`. Degree Celsius
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20temperature.%20mapping){: .btn }
+### Oxford vital signs: systolic blood pressure.
+* Constant value set to `8876`. Millimeter of mercury
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20systolic%20blood%20pressure.%20mapping){: .btn }
+### Oxford vital signs: respiratory rate.
+* Constant value set to `8541`. Per minute
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20respiratory%20rate.%20mapping){: .btn }
+### Oxford vital signs: oxygen saturation.
+* Constant value set to `8554`. Percent
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20oxygen%20saturation.%20mapping){: .btn }
+### Oxford vital signs: delivered oxygen concentration.
+* Constant value set to `8554`. Percent
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20delivered%20oxygen%20concentration.%20mapping){: .btn }
+### Oxford vital signs: mean arterial pressure.
+* Constant value set to `8876`. Millimeter of mercury
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20mean%20arterial%20pressure.%20mapping){: .btn }
+### Oxford vital signs: heart rate.
+* Constant value set to `8541`. Per minute
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20heart%20rate.%20mapping){: .btn }
+### Oxford numeric Glasgow Coma Score totals; component responses are excluded.
+* Constant value set to `0`. Dimensionless Glasgow Coma Score; no physical unit is inferred.
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20numeric%20Glasgow%20Coma%20Score%20totals;%20component%20responses%20are%20excluded.%20mapping){: .btn }
+### Oxford vital signs: diastolic blood pressure.
+* Constant value set to `8876`. Millimeter of mercury
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20unit_concept_id%20field%20Oxford%20vital%20signs:%20diastolic%20blood%20pressure.%20mapping){: .btn }
 ### Oxford clinical observations: weight, height and body mass index from clinical_observations_bmi.parquet.
 Source column  `RESULT_UNITS`.
 
@@ -40,7 +76,7 @@ Source column  `RESULT_UNITS`.
 ||0|Missing unit|
 
 
-* `RESULT_UNITS` Original units 
+* `RESULT_UNITS` Original units; null, blank or <no data> units default to kg for Weight and Weight Measured events only. 
 
 ```sql
 select
@@ -48,11 +84,15 @@ select
     EVENT_END_DT_TM,
     EVENT,
     RESULT_VALUE,
-    RESULT_UNITS,
+    case
+        when trim(EVENT) in ('Weight', 'Weight Measured')
+            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))
+        then 'kg'
+        else RESULT_UNITS
+    end as RESULT_UNITS,
     NORMAL_LOW,
     NORMAL_HIGH
 from ##duckdb_source##
-)
 order by all
 ```
 

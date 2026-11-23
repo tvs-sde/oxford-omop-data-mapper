@@ -265,7 +265,7 @@ Transforms the staged data (and records data provenance) into the OMOP tables.
 
 | Option                          | Remarks                                                                                                                                                |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-procedures`, `oxford-diagnosis`, `oxford-prescribing`, `oxford-lab`, `oxford-death`. |
+| `-t, --type <type>`             | Required. One of `sus-apc`, `sus-op`, `sus-ae`, `cosd`, `sact`, `rtds`, `oxford-gp`, `oxford-demographics`, `oxford-procedures`, `oxford-diagnosis`, `oxford-clinical-observations-vital-signs`, `oxford-prescribing`, `oxford-lab`, `oxford-death`. |
 | `-d, --duckdb-source <expr>`    | Optional. A DuckDB source expression used in place of the default staging table, eg `"read_csv('/data/medication_results_short.csv', all_varchar=true)"`. Useful for transforming directly from a CSV without a separate staging step. |
 | `--dry-run`                     | Optional. Runs the transformation without writing to the OMOP tables. Defaults to `false`.                                                              |
 | `--batch-size <n>`              | Optional. Number of records to process per batch. Defaults to `4000000`.                                                                                |
@@ -313,6 +313,99 @@ The transformation creates or updates OMOP Person records, using the NHS number 
 OMOP race concepts as the NHS ethnicity lookup; the original ethnic group is preserved in
 `race_source_value`. No data, not known, not stated and unmapped "Other" groups map to race concept `0`.
 OMOP `ethnicity_concept_id` is `0`, as it represents Hispanic/non-Hispanic ethnicity rather than UK ethnic groups.
+
+### Example - transform Oxford vital signs directly from Parquet
+
+```
+docker run \
+      -e ConnectionString="DataSource=/data/omop.db;memory_limit=4GB" \
+      --rm \
+      -v /path/to/database/folder:/data \
+      -v /path/to/your/data:/input \
+      ghcr.io/tvs-sde/oxford-omop-data-mapper:latest \
+      transform --type oxford-clinical-observations-vital-signs \
+        --duckdb-source "read_parquet('/input/clinical_observations_vital_signs.parquet')"
+```
+
+The Parquet file is supplied at runtime; its name can be changed through `--duckdb-source`.
+Required columns are `patient_identifier_value`, `WAREHOUSE_IDENTIFIER`, `EVENT_END_DT_TM`, `EVENT`, `RESULT_VALUE`,
+`RESULT_UNITS`, `NORMAL_LOW` and `NORMAL_HIGH`. The export must already apply the MPI
+`Not Opted Out` restriction. The transformer cannot reconstruct opt-out status from these
+columns. `WAREHOUSE_IDENTIFIER` is not used as a fallback patient identifier.
+Load demographics first: the exported NHS number joins OMOP Person's `person_source_value`.
+
+Ten separate mapping/query pairs run under one provenance run ID. Each numeric
+reading type has its own small query, without a shared event/unit `CASE` expression.
+Every query has its own independent source-record class and mapper; source records
+do not inherit from a shared base class, so their schemas can evolve separately.
+
+| Mapping | Events | Target |
+|---------|--------|--------|
+| Heart rate | Apical Heart Rate, Heart Rate, Heart Rate Monitored, Peripheral Pulse Rate | Measurement: Heart rate (`3027018`) |
+| Systolic blood pressure | Booking Systolic Blood Pressure; Systolic Blood Pressure, including Invasive, Sitting, Standing and Supine variants | Measurement: Systolic blood pressure (`3004249`) |
+| Diastolic blood pressure | Booking Diastolic Blood Pressure; Diastolic Blood Pressure, including Invasive, Sitting, Standing and Supine variants | Measurement: Diastolic blood pressure (`3012888`) |
+| Mean arterial pressure | Mean Arterial Pressure; Mean Arterial Pressure, Cuff; Mean Arterial Pressure, Invasive | Measurement: Mean blood pressure (`3027598`) |
+| Respiratory rate | Respiratory Rate; Respiratory Rate Total; Respiratory Rate, Spontaneous | Measurement: Respiratory rate (`3024171`) |
+| Temperature | Temperature; Temperature POCT; Temperature Tympanic | Measurement: Body temperature (`3020891`) |
+| Oxygen saturation | Oxygen Saturation; SpO2 | Measurement: Pulse-oximetry oxygen saturation (`3016502`) |
+| Delivered oxygen concentration | Oxygen % delivered | Measurement: Inhaled oxygen concentration (`3024882`), not oxygen saturation |
+| Glasgow Coma Score | Glasgow Coma Score totals only | Measurement: Glasgow coma score (`3032652`, SNOMED CT `248241002`) |
+| Tracheostomy present | Tracheostomy In Situ, with Yes answers only | Condition occurrence: Tracheostomy present (`4201387`, SNOMED CT `302108003`) |
+
+Glasgow Coma Score sets both measurement concept IDs directly to `3032652`, without
+vocabulary resolution. Tracheostomy sets both condition concept IDs directly to
+`4201387`; only Yes answers are selected, ignoring case and surrounding whitespace.
+No, missing and other answers do not produce conditions or observations.
+The positive event timestamp supplies the condition start; no condition end is inferred.
+These mappings are not a substitute for local vocabulary/clinical review.
+
+The event end timestamp supplies date/datetime, EHR type concept `32817` is used, and
+original event names are retained in the corresponding source fields.
+Measurements also retain their original results and units.
+No provider, visit, relationship between separate events or physiological correction is inferred.
+Position and method variants retain their original event names even where they share a broad concept.
+Ranges use the existing numeric parser.
+Each mapping supplies a stable record-connection identifier derived from the warehouse
+identifier and original event timestamp, name, result, units and ranges. This prevents
+the shared recorders from collapsing distinct same-day readings across batches and
+provides a rerun key for identical exported rows. No source event ID is available.
+
+For numeric vital signs, null, blank and `<no data>` units default by event:
+heart/pulse rate to `bpm`, respiratory rate to `br/min`, blood pressure to `mmHg`,
+temperature to `degrees C`, and oxygen saturation/concentration to `%`.
+Each mapper sets its fixed unit concept directly using `ConstantValue`; no unit lookup
+or synthetic unit column is needed. The original unit text is preserved separately.
+Each query accepts only the expected
+unit for that reading type or a missing unit; mismatched explicit units are excluded
+without conversion. Unit matching ignores
+case and surrounding whitespace. Glasgow Coma Score is dimensionless and requires
+missing units; unexpected explicit units are excluded.
+Time-point heart-rate threshold readings are no longer mapped.
+
+Only finite numeric results are selected for measurements. Placeholders such as
+`<REDACTED>`, `<long freetext>`, `patient_refused`, `ERROR` and `*` are not numeric and
+are excluded. Negative values and physiological extremes are retained without clipping,
+including Glasgow scores outside the usual 3-15 range.
+
+The supplied event profile contains 60 event types; 30 are supported. These 30 are
+deliberately excluded:
+
+* Heart Rate at 1 minute; Heart Rate at 5 minutes; Heart Rate at 10 minutes.
+* AVPU Scale; Best Verbal Response; Eye Opening Response; Motor Response; GCS Assessed.
+* Blood Pressure Position; Blood Pressure Site.
+* Delivery device used; Oxygen Humidified; Oxygen L/min delivered; Oxygen monitoring;
+  Oxygen Saturation >95% on air.
+* Escalated; Other Reasons for Escalation; Heart Rate and BP within normal range;
+  Paediatric Vital Signs Actions Taken.
+* T&T Total Score; TAT AVPU Scale; TAT Delivery Device Used; TAT Oxygen Saturation;
+  TAT Pulse Rate; TAT Respiratory Rate; TAT Systolic Blood Pressure; TAT Temperature.
+* Vital Signs; Vital Signs Adult; Vital Signs Stable.
+
+Unknown events are excluded too. The upstream-excluded Vital Signs Nursing Evaluation
+and `(M)` heart-rate events are never selected. Warnings describe these exclusions;
+rows filtered out by SQL are not counted as invalid transformed rows.
+Each query uses `ORDER BY ALL`; keep the source unchanged throughout pagination.
+The grouped frequency CSV is a profiling input only, not a patient-level transformation source.
 
 ### Example - transform Oxford diagnoses directly from Parquet
 

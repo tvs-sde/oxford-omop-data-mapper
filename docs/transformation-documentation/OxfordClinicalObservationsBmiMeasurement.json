@@ -12,7 +12,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -25,7 +25,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -38,7 +38,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -58,7 +58,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -71,7 +71,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": "\r\n\r\n|EVENT|measurement_concept_id|notes|\r\n|------|-----|-----|\r\n|Weight|4099154|Body weight|\r\n|Weight (kg)|4099154|Body weight|\r\n|Weight Measured|4099154|Body weight|\r\n|Height/Length Measured|607590|Body height|\r\n|Booking Height/Length Measured|607590|Body height|\r\n|Height|607590|Body height|\r\n|Body Mass Index|3038553|Body mass index (BMI) [Ratio]|\r\n|Booking Body Mass Index|3038553|Body mass index (BMI) [Ratio]|\r\n|Body Mass Index (Generic)|3038553|Body mass index (BMI) [Ratio]|\r\n\r\n"
     },
     {
@@ -84,7 +84,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -97,7 +97,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -106,11 +106,11 @@
       "dataSource": [
         {
           "name": "RESULT_UNITS",
-          "description": "Original units",
+          "description": "Original units; null, blank or <no data> units default to kg for Weight and Weight Measured events only.",
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": "\r\n\r\n|RESULT_UNITS|unit_concept_id|notes|\r\n|------|-----|-----|\r\n|kg|9529|Kilogram|\r\n|cm|8582|Centimeter|\r\n|kg/m2|9531|Kilogram per square meter|\r\n|<no data>|0|Unknown unit|\r\n|square metre|0|Not a supported measurement unit|\r\n||0|Missing unit|\r\n\r\n"
     },
     {
@@ -123,7 +123,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -136,7 +136,7 @@
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     },
     {
@@ -145,11 +145,11 @@
       "dataSource": [
         {
           "name": "RESULT_UNITS",
-          "description": "Original units",
+          "description": "Original units; null, blank or <no data> units default to kg for Weight and Weight Measured events only.",
           "origins": []
         }
       ],
-      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\n)\norder by all\n    ",
+      "query": "\nselect\n    nhs_number,\n    EVENT_END_DT_TM,\n    EVENT,\n    RESULT_VALUE,\n    case\n        when trim(EVENT) in ('Weight', 'Weight Measured')\n            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))\n        then 'kg'\n        else RESULT_UNITS\n    end as RESULT_UNITS,\n    NORMAL_LOW,\n    NORMAL_HIGH\nfrom ##duckdb_source##\norder by all\n    ",
       "lookup_table_markdown": null
     }
   ]

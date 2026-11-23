@@ -3032,3 +3032,8 @@ where NHSNumber is not null
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20COSD%20V8%20BA%20Condition%20Occurrence%20Cancer%20Progression%20ICD%20mapping){: .btn }
+
+### Oxford tracheostomy-in-situ condition from Yes answers only.
+* Constant value set to `4201387`. Tracheostomy present (SNOMED CT 302108003)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20ConditionOccurrence%20table%20condition_source_concept_id%20field%20Oxford%20tracheostomy-in-situ%20condition%20from%20Yes%20answers%20only.%20mapping){: .btn }

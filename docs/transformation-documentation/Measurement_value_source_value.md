@@ -125,6 +125,237 @@ order by
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20SACT%20%20Measurement%20Height%20mapping){: .btn }
+### Oxford vital signs: temperature.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric temperature, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in ('Temperature', 'Temperature POCT', 'Temperature Tympanic')
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', 'degrees c'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20temperature.%20mapping){: .btn }
+### Oxford vital signs: systolic blood pressure.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric systolic pressure, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in (
+    'Booking Systolic Blood Pressure', 'Systolic Blood Pressure', 'Systolic Blood Pressure Invasive',
+    'Systolic Blood Pressure Sitting', 'Systolic Blood Pressure Standing', 'Systolic Blood Pressure Supine'
+)
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', 'mmhg'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20systolic%20blood%20pressure.%20mapping){: .btn }
+### Oxford vital signs: respiratory rate.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric respiratory rate, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in ('Respiratory Rate', 'Respiratory Rate Total', 'Respiratory Rate, Spontaneous')
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', 'br/min'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20respiratory%20rate.%20mapping){: .btn }
+### Oxford vital signs: oxygen saturation.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric saturation, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in ('Oxygen Saturation', 'SpO2')
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', '%'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20oxygen%20saturation.%20mapping){: .btn }
+### Oxford vital signs: delivered oxygen concentration.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric oxygen concentration, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) = 'Oxygen % delivered'
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', '%'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20delivered%20oxygen%20concentration.%20mapping){: .btn }
+### Oxford vital signs: mean arterial pressure.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric mean pressure, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in ('Mean Arterial Pressure', 'Mean Arterial Pressure, Cuff', 'Mean Arterial Pressure, Invasive')
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', 'mmhg'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20mean%20arterial%20pressure.%20mapping){: .btn }
+### Oxford vital signs: heart rate.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric heart rate, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in ('Apical Heart Rate', 'Heart Rate', 'Heart Rate Monitored', 'Peripheral Pulse Rate')
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', 'bpm'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20heart%20rate.%20mapping){: .btn }
+### Oxford numeric Glasgow Coma Score totals; component responses are excluded.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Original numeric score; values are not clipped to the usual 3-15 range.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) = 'Glasgow Coma Score'
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20numeric%20Glasgow%20Coma%20Score%20totals;%20component%20responses%20are%20excluded.%20mapping){: .btn }
+### Oxford vital signs: diastolic blood pressure.
+* Value copied from `RESULT_VALUE`
+
+* `RESULT_VALUE` Finite numeric diastolic pressure, preserved without physiological clipping.
+
+```sql
+select
+    patient_identifier_value,
+    EVENT_END_DT_TM,
+    EVENT,
+    RESULT_VALUE,
+    RESULT_UNITS,
+    NORMAL_LOW,
+    NORMAL_HIGH,
+    md5(to_json(row(WAREHOUSE_IDENTIFIER, EVENT_END_DT_TM, EVENT, RESULT_VALUE,
+        RESULT_UNITS, NORMAL_LOW, NORMAL_HIGH))) as record_connection_identifier
+from ##duckdb_source##
+where trim(EVENT) in (
+    'Booking Diastolic Blood Pressure', 'Diastolic Blood Pressure', 'Diastolic Blood Pressure Invasive',
+    'Diastolic Blood Pressure Sitting', 'Diastolic Blood Pressure Standing', 'Diastolic Blood Pressure Supine'
+)
+  and isfinite(try_cast(trim(RESULT_VALUE) as double))
+  and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>', 'mmhg'))
+order by all
+```
+
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20value_source_value%20field%20Oxford%20vital%20signs:%20diastolic%20blood%20pressure.%20mapping){: .btn }
 ### Oxford clinical observations: weight, height and body mass index from clinical_observations_bmi.parquet.
 * Value copied from `RESULT_VALUE`
 
@@ -136,11 +367,15 @@ select
     EVENT_END_DT_TM,
     EVENT,
     RESULT_VALUE,
-    RESULT_UNITS,
+    case
+        when trim(EVENT) in ('Weight', 'Weight Measured')
+            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))
+        then 'kg'
+        else RESULT_UNITS
+    end as RESULT_UNITS,
     NORMAL_LOW,
     NORMAL_HIGH
 from ##duckdb_source##
-)
 order by all
 ```
 

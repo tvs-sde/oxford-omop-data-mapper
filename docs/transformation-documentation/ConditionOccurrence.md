@@ -581,3 +581,8 @@ has_toc: false
 <a href="COSDv8BAConditionOccurrenceCancerProgressionICD.svg" target="_blank"><img src="COSDv8BAConditionOccurrenceCancerProgressionICD.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=COSDv8BAConditionOccurrenceCancerProgressionICD%20mapping){: .btn }
+
+## OxfordVitalSignsTracheostomy
+<a href="OxfordVitalSignsTracheostomy.svg" target="_blank"><img src="OxfordVitalSignsTracheostomy.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsTracheostomy%20mapping){: .btn }

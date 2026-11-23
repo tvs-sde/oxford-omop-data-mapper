@@ -64,6 +64,42 @@ has_toc: false
 <a href="OxfordDiagnosisMeasurementIcd10.svg" target="_blank"><img src="OxfordDiagnosisMeasurementIcd10.svg" /></a>
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordDiagnosisMeasurementIcd10%20mapping){: .btn }
+## OxfordVitalSignsTemperature
+<a href="OxfordVitalSignsTemperature.svg" target="_blank"><img src="OxfordVitalSignsTemperature.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsTemperature%20mapping){: .btn }
+## OxfordVitalSignsSystolicBloodPressure
+<a href="OxfordVitalSignsSystolicBloodPressure.svg" target="_blank"><img src="OxfordVitalSignsSystolicBloodPressure.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsSystolicBloodPressure%20mapping){: .btn }
+## OxfordVitalSignsRespiratoryRate
+<a href="OxfordVitalSignsRespiratoryRate.svg" target="_blank"><img src="OxfordVitalSignsRespiratoryRate.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsRespiratoryRate%20mapping){: .btn }
+## OxfordVitalSignsOxygenSaturation
+<a href="OxfordVitalSignsOxygenSaturation.svg" target="_blank"><img src="OxfordVitalSignsOxygenSaturation.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsOxygenSaturation%20mapping){: .btn }
+## OxfordVitalSignsOxygenConcentration
+<a href="OxfordVitalSignsOxygenConcentration.svg" target="_blank"><img src="OxfordVitalSignsOxygenConcentration.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsOxygenConcentration%20mapping){: .btn }
+## OxfordVitalSignsMeanArterialPressure
+<a href="OxfordVitalSignsMeanArterialPressure.svg" target="_blank"><img src="OxfordVitalSignsMeanArterialPressure.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsMeanArterialPressure%20mapping){: .btn }
+## OxfordVitalSignsHeartRate
+<a href="OxfordVitalSignsHeartRate.svg" target="_blank"><img src="OxfordVitalSignsHeartRate.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsHeartRate%20mapping){: .btn }
+## OxfordVitalSignsGlasgowComaScore
+<a href="OxfordVitalSignsGlasgowComaScore.svg" target="_blank"><img src="OxfordVitalSignsGlasgowComaScore.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsGlasgowComaScore%20mapping){: .btn }
+## OxfordVitalSignsDiastolicBloodPressure
+<a href="OxfordVitalSignsDiastolicBloodPressure.svg" target="_blank"><img src="OxfordVitalSignsDiastolicBloodPressure.svg" /></a>
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OxfordVitalSignsDiastolicBloodPressure%20mapping){: .btn }
 ## OxfordClinicalObservationsBmiMeasurement
 <a href="OxfordClinicalObservationsBmiMeasurement.svg" target="_blank"><img src="OxfordClinicalObservationsBmiMeasurement.svg" /></a>
 

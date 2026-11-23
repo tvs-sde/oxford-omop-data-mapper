@@ -51,6 +51,42 @@ Source column  `measurement_source_concept_id`.
 Maps concepts to standard valid concepts in the `measurement` domain.
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
+### Oxford vital signs: temperature.
+* Constant value set to `3020891`. Body temperature
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20temperature.%20mapping){: .btn }
+### Oxford vital signs: systolic blood pressure.
+* Constant value set to `3004249`. Systolic blood pressure
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20systolic%20blood%20pressure.%20mapping){: .btn }
+### Oxford vital signs: respiratory rate.
+* Constant value set to `3024171`. Respiratory rate
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20respiratory%20rate.%20mapping){: .btn }
+### Oxford vital signs: oxygen saturation.
+* Constant value set to `3016502`. Oxygen saturation in arterial blood by pulse oximetry
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20oxygen%20saturation.%20mapping){: .btn }
+### Oxford vital signs: delivered oxygen concentration.
+* Constant value set to `3024882`. Inhaled oxygen concentration
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20delivered%20oxygen%20concentration.%20mapping){: .btn }
+### Oxford vital signs: mean arterial pressure.
+* Constant value set to `3027598`. Mean blood pressure
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20mean%20arterial%20pressure.%20mapping){: .btn }
+### Oxford vital signs: heart rate.
+* Constant value set to `3027018`. Heart rate
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20heart%20rate.%20mapping){: .btn }
+### Oxford numeric Glasgow Coma Score totals; component responses are excluded.
+* Constant value set to `3032652`. Glasgow coma score (SNOMED CT 248241002)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20numeric%20Glasgow%20Coma%20Score%20totals;%20component%20responses%20are%20excluded.%20mapping){: .btn }
+### Oxford vital signs: diastolic blood pressure.
+* Constant value set to `3012888`. Diastolic blood pressure
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_concept_id%20field%20Oxford%20vital%20signs:%20diastolic%20blood%20pressure.%20mapping){: .btn }
 ### Oxford clinical observations: weight, height and body mass index from clinical_observations_bmi.parquet.
 Source column  `EVENT`.
 Maps weight, height and BMI event names to standard Measurement concepts.
@@ -77,11 +113,15 @@ select
     EVENT_END_DT_TM,
     EVENT,
     RESULT_VALUE,
-    RESULT_UNITS,
+    case
+        when trim(EVENT) in ('Weight', 'Weight Measured')
+            and (RESULT_UNITS is null or lower(trim(RESULT_UNITS)) in ('', '<no data>'))
+        then 'kg'
+        else RESULT_UNITS
+    end as RESULT_UNITS,
     NORMAL_LOW,
     NORMAL_HIGH
 from ##duckdb_source##
-)
 order by all
 ```
 

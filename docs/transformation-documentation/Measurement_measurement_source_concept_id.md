@@ -1665,6 +1665,10 @@ order by diagnosis_id, warehouse_identifier
 
 
 [Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20ICD-10%20and%20ICD10%20diagnoses%20mapped%20to%20Measurement%20from%20databricks_diagnosis.parquet.%20No%20result%20or%20unit%20is%20inferred.%20mapping){: .btn }
+### Oxford numeric Glasgow Coma Score totals; component responses are excluded.
+* Constant value set to `3032652`. Glasgow coma score (SNOMED CT 248241002)
+
+[Comment or raise an issue for this mapping.](https://github.com/tvs-sde/oxford-omop-data-mapper/issues/new?title=OMOP%20Measurement%20table%20measurement_source_concept_id%20field%20Oxford%20numeric%20Glasgow%20Coma%20Score%20totals;%20component%20responses%20are%20excluded.%20mapping){: .btn }
 ### COSD V9 UR Measurement TNM Category Integrated Stage
 * Constant value set to `2000500013`. TNMCategoryIntegratedStage
 
